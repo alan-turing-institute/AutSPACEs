@@ -22,7 +22,7 @@ We do not tolerate discrimination or harassment based on characteristics that in
 
 Everyone who participates in Autistica/Turing citizen science project activities is required to conform to this Code of Conduct. This Code of Conduct applies to all spaces managed by the Autistica/Turing citizen science project including, but not limited to, in person focus groups and workshops, and communications online viaGitHub. By participating, contributors indicate their acceptance of the procedures by which the Autistica/Turing citizen science project research team resolves any Code of Conduct incidents, which may include storage and processing of their personal information.
 
-## 2.1 Expected Behaviour
+### 2.1 Expected Behaviour
 
 We are confident that our community members will together build a supportive and collaborative atmosphere at our events and during online communications. 
 The following bullet points set out explicitly what we hopeyou will consider to be appropriate community guidelines:
