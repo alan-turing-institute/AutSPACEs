@@ -32,6 +32,8 @@ The platform has three main goals:
 
 Users of the platform have the option to view other's stories or to submit their own. They must sign in to submit. All users have the option of submitting their story for research, publishing their story on the platform itself, neither, or both. If it is published, it will first be moderated to make sure it follows the platform's code of conduct. While logged in, users will be able to view their own stories and change their consent options.
 
+![How-it-works](/Citscicartoon.png)
+
 ### How it is built
 
 The platform is being developed using the Python/Django web development framework. Users will be able to share experiences through a website which will then be deposited into a backend database supported by [Open Humans.](https://github.com/OpenHumans). A demo website for data transfer based on Open Humans and deployed using Django, can be found in the [Filemanagement Demo Repository](https://github.com/alan-turing-institute/autistica-filemanagement-demo).
