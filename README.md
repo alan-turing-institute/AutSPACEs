@@ -30,9 +30,9 @@ The platform has three main goals:
 
 ### How it works 
 
-Users of the platform have the option to view other's stories or to submit their own. They must sign in to submit. All users have the option of submitting their story for research, publishing their story on the platform itself, neither, or both. If it is published, it will first be moderated to make sure it follows the platform's code of conduct. While logged in, users will be able to view their own stories and change their consent options.
-
 ![How-it-works](/Citscicartoon.png)
+
+Users of the platform have the option to view other's stories or to submit their own. They must sign in to submit. All users have the option of submitting their story for research, publishing their story on the platform itself, neither, or both. If it is published, it will first be moderated to make sure it follows the platform's code of conduct. While logged in, users will be able to view their own stories and change their consent options.
 
 ### How it is built
 
