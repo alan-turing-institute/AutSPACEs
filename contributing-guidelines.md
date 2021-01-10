@@ -166,5 +166,5 @@ Finally, don't forget to add yourself to the list of contributors!
 
 ---
 
-_These Contributing Guidelines have been adapted from the [Contributing Guideleines] of [The Turing Way](https://github.com/alan-turing-institute/the-turing-way/blob/master/CONTRIBUTING.md) [Contributing Guidelines](https://github.com/bids-standard/bids-starter-kit/blob/master/CONTRIBUTING.md) of the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit). (License: CC-BY)_
+_These Contributing Guidelines have been adapted from the [Contributing Guideleines](https://github.com/alan-turing-institute/the-turing-way/blob/master/CONTRIBUTING.md) of [The Turing Way](https://github.com/alan-turing-institute/the-turing-way), which were themselvse adapted from the [Contributing Guidelines](https://github.com/bids-standard/bids-starter-kit/blob/master/CONTRIBUTING.md) of the [BIDS Starter Kit](https://github.com/bids-standard/bids-starter-kit). (License: CC-BY)_
 
