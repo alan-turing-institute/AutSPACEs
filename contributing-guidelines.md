@@ -87,7 +87,7 @@ This allows other members of the _AutSPACEs_ team to confirm that you aren't ove
 
 [This blog](https://www.igvita.com/2011/12/19/dont-push-your-pull-requests/) is a nice explanation of why putting this work in upfront is so useful to everyone involved.
 
-### 2. [Fork][github-fork] AutSPACEs
+### 2. Fork AutSPACEs
 
 This is now your own unique copy of _AutSPACEs_.
 Changes here won't affect anyone else's work, so it's a safe space to explore edits to the code!
@@ -113,7 +113,7 @@ That is, please do not use the [rebase](https://help.github.com/en/articles/abou
 
 Are you new to Git and GitHub or just want a detailed guide on getting started with version control? Check out The Turing Way's chapter on [Version Control](https://the-turing-way.netlify.com/version_control/version_control.html).
 
-### 4. Submit a [pull request][github-pullrequest]
+### 4. Submit a pull request
 
 We encourage you to open a pull request as early in your contributing process as possible.
 This allows everyone to see what is currently being worked on.
