@@ -30,15 +30,15 @@ Been here before? Already know what you're looking for in this guide? Jump to th
 ## Joining the community
 
 _AutSPACEs_ is a community-led and collaboratively developed project. 
-We, therefore, require that all our members and their contributions **adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) (CoC)**.
-Please familiarize yourself with our [CoC](CODE_OF_CONDUCT.md) that lists the expected behaviours. 
+We, therefore, require that all our members and their contributions **adhere to our code of conduct**.
+Please familiarize yourself with our code of conduct that lists the expected behaviours. 
 
 ## Inclusivity
 
-_The Turing Way_ aims to be inclusive to people from all walks of life and to all research fields.
+_AutSPACEs_ aims to be inclusive to people from all walks of life and to all research fields.
 These intentions must be reflected in the contributions that we make to the project.
 
-In addition to the CoC, we encourage intentional, inclusive actions from contributors to _AutSPACEs_.
+In addition to the code of conduct, we encourage intentional, inclusive actions from contributors to _AutSPACEs_.
 Here are a few examples of such actions:
 
 - use respectful, gender-neutral and inclusive language (learn more about [inclusive writing](https://www2.le.ac.uk/offices/ld/all-resources/writing/writing-resources/inclusive), resource by University of Leicester).
