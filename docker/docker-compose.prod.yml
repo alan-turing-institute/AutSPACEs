@@ -1,0 +1,65 @@
+---
+
+# This compose-file is production only. So, it should not be called directly.
+#
+# Instead, it should be a part of your deploy strategy.
+# This setup is supposed to be used with `docker-swarm`.
+# See `./docs/pages/template/production.rst` docs.
+
+version: "3.6"
+services:
+  caddy:
+    image: "caddy:2.2.1"
+    restart: unless-stopped
+    env_file: ./config/.env
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile  # configuration
+      - caddy-config:/config  # configuration autosaves
+      - caddy-data:/data  # saving certificates
+      - django-static:/var/www/django/static  # serving django's statics
+      - django-media:/var/www/django/media  # serving django's media
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+    networks:
+      - proxynet
+
+  web:
+    <<: &web
+      # Image for production:
+      image: "registry.gitlab.com/Alan Turing Institute/autspaces:latest"
+      build:
+        target: production_build
+        args:
+          DJANGO_ENV: production
+
+      restart: unless-stopped
+      volumes:
+        - django-media:/var/www/django/media  # since in dev it is app's folder
+        - django-locale:/code/locale  # since in dev it is app's folder
+
+    command: sh ./docker/django/gunicorn.sh
+    networks:
+      - proxynet
+    expose:
+      - 8000
+
+# This task is an example of how to extend existing ones:
+#   some_wroker:
+#     <<: *web
+#     command: python manage.py worker_process
+#     deploy:
+#       replicas: 2
+
+networks:
+  # Network for your proxy server and application to connect them,
+  # do not use it for anything else!
+  proxynet:
+
+volumes:
+  django-media:
+  django-locale:
+  caddy-config:
+  caddy-data:
