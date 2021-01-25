@@ -127,36 +127,6 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 * Confirmation page
 * Easy navigation from confirmation page
 
-### Enter expeeriences flow: community recommendations
-
-**Have different input options**
-* (A g): “we want to make it as accessible to as wide a scope of the autistic community as we can”
-* (A d): “accommodate as many different preferences and styles for providing input within the realms of what’s actually achievable”
-* (A g): “…accommodate as many different preferences and styles for providing input within the realms of what’s actually achievable…some people would prefer the free text option…but others would like to be guided down a more structured process”
-* Free text
-* **No word limit** (A P d): “please don’t put a word limit, and especially not seeing it count down, because it’s very horrible
-* Structured input
-* (A d): **split the question up**: “Where were you? What time was it? What happened? What effect did it have? and What would you like instead?
-* (A P d): “you could give options for options, so you could say, for example, ‘would you like a template?’”
-* (A d): split the question up: “Where were you? What time was it? What happened? What effect did it have? and What would you like instead?” 
-* Record (vid or speak); upload;
-* (A d): **Have a non-verbal means of inputting information**
-* (A d): “…having the option to…upload photos, or pictures, or voice recordings of people.”
-* Upload options
-* (A g): upload pictures of situations that were a problem, so that organisations can go onto the platform and easily see what to change, “because visual things can have much more impact than just…a dense script”
-* **Have a question about solutions or ideas for improvements/what would have made it better**
-* **autistic people want to be part of the solution.** 
-* (A d): “…it’s crucial to have a field that can capture…learning and solutions” 
-* (A d): there are two important aspects: what can autistic people do to change their environments, and what can autistic people do to protect themselves from their environments. 
-* (A g): “if you’re autistic you want to know…[how] are other autistic people with their expertise…dealing with it? Have they got something to solve the problem?”
-* (A d): “I want to be able to say and this is what I think would have helped – you know, it may be that it’s not possible to do the thing, you know we can’t probably make the tube quieter very easily, but we do have ideas about what might help and we should be including those”
-* **Able to save drafts and input experience after event**
-* (R T d): drafts could be saved but would stay private, and would only be accessed by the person writing them
-* Other features - Hashtag
-* (P A d): highlight that as an option, “because I’m still very used to the hashtag”
-* **Tag or hashtag option for people to search for experiences
-* Give clear confirmation once experience has been submitted.** 
-
 ### Enter experiences flow: resources
 
 * Crisisloggerl https://crisislogger.org has some good basic input options and is open source so we could reuse the code 
@@ -183,18 +153,6 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 	* Relevance
 * Option to save to personal page
 
-### View other experiences page: community recommendations
-
-**Be able to search**
-**Be able to filter out distressing experiences/self-censor**
-* (A d): may cause additional stress: “don’t particularly want to be aroused, as it were, by reading about things”
-8 (A d): include option to moderate out distressing or negative experiences: “if I’m feeling particularly stressed and I’m going to go on a platform, I don’t want to be reading…a lot of what went wrong on your day, I’d rather click on a button that filters to the – what happened, and what went well, and who accommodated you well”
-* **Be able to filter autism-only experiences**
-	* Desire for an autism first space
-	* Desire for relevance
-* (A d): “that would be good…if you’re an autistic person who wants someone to relate to…you can always filter it through to see personal perspectives, whilst…parents might be looking for a different thing”
-* (A d): “it’s very difficult to make a place welcoming to autistic people when you also have a lot of neurotypical people explaining about autistic people”
-
 ### View own experiences page
 
 * Private page
@@ -212,16 +170,6 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 * Export button - share page with someone else or email to self 
 * Allow someone else to edit/co-create page – toggle consent 
 * View and edit tags created by machine learning algorithm as well as own 
-
-### View own experiences page: community recommendations
-
-* (P A d): important to deliver on promises: prior experience of being incentivised to use an app (Molehill Mountain) because it promised to give a mood graph, and was frustrated when this wasn’t offered
-Data visualisations
-* (A d): have graphs linking data
-* (A P d): would help to trace causes and correlations based on patterns of occurrences 
-* (A P d): “…with the accumulation of data…you begin to see connections in your own life – and that adds value, you know you were talking about increments of value, but increments of value going both ways”
-* Be able to share page with others
-* (A d): make it something that an autistic person could use with their mentor – help create plans.
 
 ### Moderation flow
 
@@ -278,21 +226,6 @@ N.B. jiraslama has already done a lot of design work on this which is available 
 * Newsletter sign up
 * Resources/links to external resources for concerns, e.g. welfare concerns  
 
-About Page: community recommendations
-
-(R T d) show videos of people contributing in different ways and maybe for different reasons on the about page – “I’m imagining a vignette…of three different people…who take part for different reasons, with the idea that you should totally see some aspect of yourself across those three”)
-**Include lots of useful information**
-* Up-to-date with current research and proposals
-* Info about individuals involved 
-* Info about participatory science and how it wa built
-* Refer to other website for crisis management tools, calm, help etc. 
-**Make clear not interested in profit**
-* (A g): Concerns about commercial use: “[put] a ringfence around potential commercial uses, because this is intelligence which commercial interests might want to get their hands on” 
-* (A i): “people might be wary of contributing, because they might think people just want to make money out of my vulnerabilities”
-Lots of people prone to information overload – make this clean, and divide into near, clear sections! 
-p) What would help?
-(A d): “if you were concerned about the welfare of someone… a section if you need advice or if you need help”
-
 ### Crisis Support Page
 * Link to different websites which can offer advice on:
 	* medical issues
@@ -324,16 +257,7 @@ Basic, government digital services guide to designing for autistic users:
 
 ![](https://i.imgur.com/B1vVF7W.png)
 
-### Additional design considerations: community recommendations
-
-* (A P d): “that actually matters to me because I… switch between android and iPad, and It’s how I choose to live my life, but it can be annoying when things don’t work out”
-* (A d): bring one thing up at a time
-* (A d): “just one thing or question or visual per page, and then…press next”
-Back-to-top button
-* (A d): “the words used, or any writing used” should be “well-spaced out and in a good font that anyone could read - and obviously a screen reader could pick out as well”
-* (A d): make a button you can press for help to come up
-* (P d): Have a tagline: “this is what we’re looking for, this is what we want from you, and this is what we’re going to do, and don’t be afraid to repeat yourself just literally on every page like, this is what we want, this is what we need from you, this is what we expect from you”
-* (A d): “I’m very prone to information overload, so I would want from my point of view this default interface to be as plain and un-distracting as possible…I wouldn’t want something that was busy and distracting, it just needs to be focussed on the content.
+### Additional design considerations: resources
 
 Blog by an autistic UX designer: https://uxmastery.com/researching-designing-for-autism/
 
