@@ -1,14 +1,14 @@
-# AutSPACEs Platform Pages
+# AutSPACEs Requirements List
 
-This file lists every page/page-flow of the platform to be built, along with a list of desired features on each page. 
-It also includes some additional features to be used throughout the platform.   
+This is a requirement list which can be used to see the basic structure of the platform. 
+
+This file lists every page/page-flow of the AutSPACEs platform which has to be built for the platform to be functional, along with a list of desired features on each page. These will eventually be turned into issues on the main repository. For now we are working on a simplified MVP version of the platform.  
+It also includes some additional features to be used throughout the platform.  
+
+This list can be used to 
 
 *The content is based on preferences and needs emerging from the Autistic/Turing Citizen Science community in discussion sessions and co-working sesssions. 
-A selection of community recommendations which support this list of features are also provided. 
-
 You can view all the gathered recommendations from the community in the [community-recommendations folder](https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/community-recommendations) of the project management reepository.
-
-An selection of these features necessary to complete an MVP versoin of the platform is broken down into issues on [Asana](https://app.asana.com/0/1199166684586821/board)
 
 A complete board of issues is available on the AutSPACEs issues board on [Trello](https://trello.com/b/w2XLjB9g/issues).
 Issues will be migrated gradually as the platform progresses, to make sure priority milestones are met and the supporting platform infrastructure is in place.
@@ -187,7 +187,7 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 
 **Be able to search**
 **Be able to filter out distressing experiences/self-censor**
-* (A d): may cause additional stress: “don’t particularly want to be aroused, as it were, by 	reading about things”
+* (A d): may cause additional stress: “don’t particularly want to be aroused, as it were, by reading about things”
 8 (A d): include option to moderate out distressing or negative experiences: “if I’m feeling particularly stressed and I’m going to go on a platform, I don’t want to be reading…a lot of what went wrong on your day, I’d rather click on a button that filters to the – what happened, and what went well, and who accommodated you well”
 * **Be able to filter autism-only experiences**
 	* Desire for an autism first space
