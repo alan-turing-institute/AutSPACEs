@@ -11,15 +11,14 @@
   5. Type 'git clone', and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
   >$ git clone https://github.com/YOUR-USERNAME/AutSPACEs
   7. Press enter. Your local clone will be created. 
+  
+#### 3. Create the .env file in config directory using the .env.template. Copy that template and follow the instructions with the README to generate the Django secret key.
 
-#### 3. Open up Terminal or Command Line in the root level of the repository and type in the following command: `docker-compose up`
+***DO NOT UPLOAD THESE .ENV FILES ONTO GITHUB*** It's the equivalent of posting your passport ID on Twitter. Don't do it.
 
-*If you aren't sure how to get to the root repository, you can find it more easily by doing the following steps:* 
+#### 4. Open up Terminal or Command Line in the root level of the repository and type in the following command: `docker-compose up`
 
-  1. Type `git config --global alias.root 'rev-parse --show-toplevel` into your terminal. This will create a simpler command to take you to the root repository. 
-  2. Type `cd $(git root)` into your terminal. This will take you to the root of the repository you are in. 
-
-#### 4. Open your browser to `https://localhost:8000`
+#### 5. Open your browser to `https://localhost:8000`
 
 *This will display the AutSPACEs website.*
 
@@ -33,3 +32,10 @@
 * Repository: this is a place which holds all the files and folders specific to one project. On GitHub, this is where people can work on a project together. 
 * Root level: this is the level of the project which contains all the others as files and subfolders
 * Terminal: this is an application on your computer which allows you to use code to modify your computer's software and files. 
+
+## Extra Tips
+
+*If you aren't sure how to get to the root repository, you can find it more easily by following these steps:* 
+
+  1. Type `git config --global alias.root 'rev-parse --show-toplevel` into your terminal. This will create a simpler command to take you to the root repository. 
+  2. Type `cd $(git root)` into your terminal. This will take you to the root of the repository you are in. 
