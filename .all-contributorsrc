@@ -25,6 +25,18 @@
         "content",
         "doc"
       ]
+    },
+    {
+      "login": "Angelsaur",
+      "name": "Angelsaur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67108701?v=4",
+      "profile": "https://github.com/Angelsaur",
+      "contributions": [
+        "doc",
+        "design",
+        "ideas",
+        "userTesting"
+      ]
     }
   ],
   "contributorsPerLine": 7,
