@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -107,6 +107,7 @@ Full documentation is available here: [`docs/`](docs).
   <tr>
     <td align="center"><a href="https://github.com/jhlink"><img src="https://avatars2.githubusercontent.com/u/1872836?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James </b></sub></a><br /><a href="#infra-jhlink" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Tests">⚠️</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/GeorgiaHCA"><img src="https://avatars1.githubusercontent.com/u/46889966?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Georgia</b></sub></a><br /><a href="#content-GeorgiaHCA" title="Content">🖋</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=GeorgiaHCA" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/Angelsaur"><img src="https://avatars.githubusercontent.com/u/67108701?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Angelsaur</b></sub></a><br /><a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=Angelsaur" title="Documentation">📖</a> <a href="#design-Angelsaur" title="Design">🎨</a> <a href="#ideas-Angelsaur" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-Angelsaur" title="User Testing">📓</a></td>
   </tr>
 </table>
 
