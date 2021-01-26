@@ -64,24 +64,6 @@ There are lots of ways to get in touch and stay updated. You can:
 
 We welcome all contributions and feedback! 
 
-## Contributors 
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/jhlink"><img src="https://avatars2.githubusercontent.com/u/1872836?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James </b></sub></a><br /><a href="#infra-jhlink" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Tests">⚠️</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/GeorgiaHCA"><img src="https://avatars1.githubusercontent.com/u/46889966?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Georgia</b></sub></a><br /><a href="#content-GeorgiaHCA" title="Content">🖋</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=GeorgiaHCA" title="Documentation">📖</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-
 # Development Information 
 
 Autistica Turing Citizen Science Platform
@@ -110,8 +92,25 @@ When developing locally, we use:
 - [`poetry`](https://github.com/python-poetry/poetry) (**required**)
 - `pycharm 2017+` or `vscode`
 
-To get the current website to run on your local device please follow [these steps](/dev_readme.md)
+To get the current website to run on your local device please follow [these steps](/dev_readme.md).
 
 ## Documentation
 
 Full documentation is available here: [`docs/`](docs).
+
+## Contributors 
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/jhlink"><img src="https://avatars2.githubusercontent.com/u/1872836?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James </b></sub></a><br /><a href="#infra-jhlink" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Tests">⚠️</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/GeorgiaHCA"><img src="https://avatars1.githubusercontent.com/u/46889966?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Georgia</b></sub></a><br /><a href="#content-GeorgiaHCA" title="Content">🖋</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=GeorgiaHCA" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
