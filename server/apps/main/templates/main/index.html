@@ -23,13 +23,12 @@ Tooplate 2115 Marvel
 https://www.tooplate.com/view/2115-marvel
 
 -->
-  </head>
-  <body>
 
     <!-- MENU -->
+
     <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i>Login</a>
+            <a class="navbar-brand" href="login.html"><i class='uil uil-user'></i>Login</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -41,16 +40,16 @@ https://www.tooplate.com/view/2115-marvel
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a href="#about" class="nav-link"><span data-hover="About">About</span></a>
+                        <a href="file:///Users/gaitkenhead/AutSPACEs/server/apps/main/templates/main/index.html" class="nav-link"><span data-hover="Home">Home</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#explore-stories" class="nav-link"><span data-hover="Explore Stories">Explore Stories</span></a>
+                        <a href="explore-stories.html" class="nav-link"><span data-hover="Explore Stories">Explore Stories</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#share-stories" class="nav-link"><span data-hover="Share Stories">Share Stories</span></a>
+                        <a href="share-stories.html" class="nav-link"><span data-hover="Share Stories">Share Stories</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#My Storis" class="nav-link"><span data-hover="My Stories">My Stories</span></a>
+                        <a href="my-stories.html" class="nav-link"><span data-hover="My Stories">My Stories</span></a>
                     </li>
                 </ul>
 
@@ -87,7 +86,7 @@ https://www.tooplate.com/view/2115-marvel
 
                         <div class="custom-btn-group mt-4">
                           <a href="#" class="btn mr-lg-2 custom-btn"><i class='uil uil-file-alt'></i>Find out more</a>
-                          <a href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link">Sign up</a>
+                          <a href="signup.html" class="btn custom-btn custom-btn-bg custom-btn-link">Sign up</a>
                         </div>
                     </div>
                 </div>
@@ -147,19 +146,27 @@ https://www.tooplate.com/view/2115-marvel
 
                   </div>
                 </div>
-        </div>
-    </section>
 
-<p>We are a group of autistic people, researchers, and allies of autistic people, who think that the world would be a much better place if autistic people had more of a say in how public and private spaces are used and designed. </p>
-<p>Compared to non-autistic people, autistic people can experience the sensory world differently.
-For example, they may find sounds lounder, lights brighter, colours more beautiful and virbrant or busy spaces more overwhelming.</p>
-<p>This can be a wonderful gift, but it can also cause lots of problems for autistic people and their families when they are trying to navigate a world not built with autistic people in mind. For example, it can be stressful taking a busy train during rush hour, or attending an appointment in a brightly lit hospital waiting room.</p>
-<p>The video below, which was made in collaboration with autistic people, shows some of the challenges sensory processing differences can present:</p>
-<p><a href="https://youtu.be/rP1S8ip4VVE"><img src="https://img.youtube.com/vi/rP1S8ip4VVE/maxresdefault.jpg" alt="Watch the video"></a>
+    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+        <div class="container">
+            <div class="row">
 
-<p>All autistic people are different.
-We want to collect together lots of stories from autistic people and those close to them, for example family members, so that we can better understand how sensory processsing differences affect the way autistic people navigate the world around them.
-Together, we can use this information to build a better world for autistic people and their families. </p>
+<h2>About our community</h2>
+
+                <p>We are a group of autistic people, researchers, and allies of autistic people, who think that the world would be a much better place if autistic people had more of a say in how public and private spaces are used and designed. </p>
+<h2>Sensory processing and autism</h2>
+
+                <p>Compared to non-autistic people, autistic people can experience the sensory world differently.
+                    For example, they may find sounds lounder, lights brighter, colours more beautiful and virbrant or busy spaces more overwhelming.</p>
+                    <p>This can be a wonderful gift, but it can also cause lots of problems for autistic people and their families when they are trying to navigate a world not built with autistic people in mind. For example, it can be stressful taking a busy train during rush hour, or attending an appointment in a brightly lit hospital waiting room.</p>
+                    <p>The video below, which was made in collaboration with autistic people, shows some of the challenges sensory processing differences can present:</p>
+                    <p><a href="https://youtu.be/rP1S8ip4VVE"><img src="https://img.youtube.com/vi/rP1S8ip4VVE/maxresdefault.jpg" alt="Watch the video"></a>
+<h2>Research to make change happen</h2>
+                        <p>All autistic people are different.
+                            We want to collect together lots of stories from autistic people and those close to them, for example family members, so that we can better understand how sensory processsing differences affect the way autistic people navigate the world around them.
+                            Together, we can use this information to build a better world for autistic people and their families. </p>
+                        </div>
+                    </section>
 
     <!-- FEATURES -->
     <section class="resume py-5 d-lg-flex justify-content-center align-items-center" id="resume">
@@ -292,6 +299,18 @@ Together, we can use this information to build a better world for autistic peopl
         </div>
       </div>
     </section>
+
+<style>
+
+    .card-footer {
+        background-color: transparent !important;
+    }
+
+    .card-subtitle {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+</style>
 
     <!-- FOOTER -->
      <footer class="footer py-5">
