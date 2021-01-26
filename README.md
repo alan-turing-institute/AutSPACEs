@@ -110,6 +110,7 @@ When developing locally, we use:
 - [`poetry`](https://github.com/python-poetry/poetry) (**required**)
 - `pycharm 2017+` or `vscode`
 
+To get the current website to run on your local device please follow [these steps](/dev_readme.md)
 
 ## Documentation
 
