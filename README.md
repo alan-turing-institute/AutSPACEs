@@ -94,6 +94,8 @@ When developing locally, we use:
 
 To get the current website to run on your local device please follow [these steps](/dev_readme.md).
 
+**N.B.** *The most advanced version of the website is currently in the branch 'new-html' and is in a PR awaiting merging. To avoid merge errors, it is advised that you clone this fork and make code-based PRs to the 'new-html' branch. This is to allow you to see and work withthe most up-to-date cod and to avoid merge errors when 'new-html' is merged into the main branch.*
+
 ## Documentation
 
 Full documentation is available here: [`docs/`](docs).
