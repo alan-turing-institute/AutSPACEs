@@ -11,12 +11,6 @@ This repository holds the code for AutSPACEs. AutSPACEs is a citizen science pla
 
 The platform is currently being developed using the Python/Django web development framework. [Skip to Development Information](#development-information)
 
-It builds on work from the following repositories:
-
-* Project Management: [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience)
-* Code for earlier version: [AutisticaPlatformPrototype](https://github.com/alan-turing-institute/AutisticaPlatformPrototype)
-* Code for earlier version: [alan-turing-institute/autistica-filemanagement-demo](https://github.com/alan-turing-institute/autistica-filemanagement-demo)
-
 ## How to work with us
 
 The issues list contains all the work that is still to be done to finish the platform. It also lists extra features that are not essential but which would make the platform better. Every issue is labelled to show what skills we think will be required to contribute to the platform. 
@@ -52,6 +46,12 @@ The platform is entirely open source. All code is available to be used and adapt
 The design for the platform is created according to specifications made by autistic people and their supporters. It is build with, for, and by the autistic community. You can find out more about this at the [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience) repository. 
 
 **To be succesful, the platform must be accessible to diverse autistic users and meet the priorities and recommendations of the autistica/turing citizen science community.**
+
+It has been built on work from the following repositories:
+
+* Project Management: [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience)
+* Code for earlier version: [AutisticaPlatformPrototype](https://github.com/alan-turing-institute/AutisticaPlatformPrototype)
+* Code for earlier version: [alan-turing-institute/autistica-filemanagement-demo](https://github.com/alan-turing-institute/autistica-filemanagement-demo)
 
 ## About the project
 
