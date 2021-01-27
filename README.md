@@ -11,6 +11,12 @@ This repository holds the code for AutSPACEs. AutSPACEs is a citizen science pla
 
 The platform is currently being developed using the Python/Django web development framework. [Skip to Development Information](#development-information)
 
+It builds on work from the following repositories:
+
+* Project Management: [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience)
+* Code for earlier version: [AutisticaPlatformPrototype](https://github.com/alan-turing-institute/AutisticaPlatformPrototype)
+* Code for earlier version: [alan-turing-institute/autistica-filemanagement-demo](https://github.com/alan-turing-institute/autistica-filemanagement-demo)
+
 ## How to work with us
 
 The issues list contains all the work that is still to be done to finish the platform. It also lists extra features that are not essential but which would make the platform better. Every issue is labelled to show what skills we think will be required to contribute to the platform. 
