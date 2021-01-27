@@ -30,7 +30,7 @@ The platform has three main goals:
 1. **Collect**: to collect together the stories of autistic people and their supporters about how they are affected by sensory processing in their daily lives. This will form a qualitative dataset for research.
 2. **Share**: to create a safe, autism-voice-first online environment for autistic people and their supporters to share their stories. These can then be read by others who can benefit from their experiences and insights. 
 3. **Educate**: to educate non-autistic people about the experiences of autistic people so that they can become better supporters to them, and to reduce misunderstandings and stigmas about autism. 
-4. **Change** use research done on the dataset to inform policy-makers and people who build and design environments how to make those spaces better for autistic people.
+4. **Change**: use research done on the dataset to inform policy-makers and people who build and design environments how to make those spaces better for autistic people.
 
 ### How it works 
 
