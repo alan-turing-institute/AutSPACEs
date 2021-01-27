@@ -25,7 +25,7 @@ AutSPACEs is a citizen science platform which will be used to investigate how se
 
 ### Goals
 
-The platform has three main goals:
+The platform has four main goals:
 
 1. **Collect**: to collect together the stories of autistic people and their supporters about how they are affected by sensory processing in their daily lives. This will form a qualitative dataset for research.
 2. **Share**: to create a safe, autism-voice-first online environment for autistic people and their supporters to share their stories. These can then be read by others who can benefit from their experiences and insights. 
