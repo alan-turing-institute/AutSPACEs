@@ -9,9 +9,9 @@ will cover the most common uses cases.
 
 1. Clone this repository
 2. Install dependencies, [here's how to do it](pages/template/development.rst)
+  - Note: If running project *locally* and not in docker, run `poetry shell`
 3. Run `cd docs && make html`
 4. Open `_build/html/index.html` with your browser
-
 
 ## Where to go next
 
