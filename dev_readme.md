@@ -15,7 +15,7 @@
 #### 3. Create the .env file in config directory using the .env.template. Copy that template and follow the instructions with the README to generate the Django secret key.
   
   1. Go into "config" directory - find file called env.template
-  2. Make a copy of the template and rename it as .nv within that same directory
+  2. Make a copy of the template and rename it as .env within that same directory
   3. Within that .env file, generate Django secret key following instructions defined in the file 
 
 ***DO NOT UPLOAD THESE .ENV FILES ONTO GITHUB*** It's the equivalent of posting your passport ID on Twitter. Don't do it.
