@@ -18,7 +18,7 @@
 
 #### 4. Open up Terminal or Command Line in the root level of the repository and type in the following command: `docker-compose up`
 
-#### 5. Open your browser to `https://localhost:8000`
+#### 5. Open your browser to `http://localhost:8000`
 
 *This will display the AutSPACEs website.*
 
