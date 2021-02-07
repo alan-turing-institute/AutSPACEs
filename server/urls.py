@@ -46,6 +46,11 @@ urlpatterns = [
     path('', index, name='index'),
 ]
 
+# Appending url patterns for the prototype
+urlpatterns += [
+    path('openhumans/', include('openhumans.urls')),
+]
+
 if settings.DEBUG:  # pragma: no cover
     import debug_toolbar  # noqa: WPS433
     from django.conf.urls.static import static  # noqa: WPS433
