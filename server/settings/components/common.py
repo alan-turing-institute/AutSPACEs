@@ -19,6 +19,10 @@ from server.settings.components import BASE_DIR, config
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
+OPENHUMANS_APP_BASE_URL = config('OPENHUMANS_APP_BASE_URL')
+OPENHUMANS_CLIENT_ID = config('OPENHUMANS_CLIENT_ID')
+OPENHUMANS_CLIENT_SECRET = config('OPENHUMANS_CLIENT_SECRET')
+
 # Application definition:
 
 INSTALLED_APPS: Tuple[str, ...] = (
