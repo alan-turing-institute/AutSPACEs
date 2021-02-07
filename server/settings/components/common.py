@@ -25,6 +25,9 @@ INSTALLED_APPS: Tuple[str, ...] = (
     # Your apps go here:
     'server.apps.main',
 
+    # django-open-humans dependency
+    'openhumans'
+
     # Default django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
