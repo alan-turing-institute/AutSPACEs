@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: project_member_id=1234&file_id=1337
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['40']
+      Content-Type: [application/x-www-form-urlencoded]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/delete/?access_token=foo
+  response:
+    body: {string: '{"ids":[1337]}'}
+    headers:
+      Allow: ['POST, OPTIONS']
+      Cache-Control: ['no-store, no-cache, max-age=0, must-revalidate']
+      Connection: [close]
+      Content-Language: [en]
+      Content-Type: [application/json]
+      Date: ['Tue, 06 Mar 2018 04:33:37 GMT']
+      Expires: ['Tue, 06 Mar 2018 04:33:38 GMT']
+      Last-Modified: ['Tue, 06 Mar 2018 04:33:38 GMT']
+      Server: [Cowboy]
+      Vary: ['Accept, Accept-Language, Cookie']
+      Via: [1.1 vegur]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.4]
+    method: GET
+    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/?access_token=foo
+  response:
+    body: {string: '{"created":"2018-01-19T21:55:40.049169Z","project_member_id":"12345678","message_permission":true,"sources_shared":[],"data":[{"id":12345,"basename":"file_1","created":"2018-03-05T18:39:09.932067Z","download_url":"https://mytest.s3.amazonaws.com/member-files/direct-sharing-1337/7e3a0b60-20a4-11e8-8e3d-4a700bd48bfa/file_1?Signature=mysignature&Expires=1520291000&AWSAccessKeyId=ABCDEFGHIJ","metadata":{"tags":["foo","bar","baz"],"description":"foo"},"source":"direct-sharing-73"}]}'}
+    headers:
+      Allow: ['GET, HEAD, OPTIONS']
+      Cache-Control: ['must-revalidate, no-store, no-cache, max-age=0']
+      Connection: [close]
+      Content-Language: [en]
+      Content-Type: [application/json]
+      Date: ['Mon, 05 Mar 2018 22:15:42 GMT']
+      Expires: ['Mon, 05 Mar 2018 22:15:42 GMT']
+      Last-Modified: ['Mon, 05 Mar 2018 22:15:42 GMT']
+      Server: [Cowboy]
+      Vary: ['Accept, Accept-Language, Cookie']
+      Via: [1.1 vegur]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: OK}
+version: 1

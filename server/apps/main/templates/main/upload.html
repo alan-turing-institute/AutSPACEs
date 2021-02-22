@@ -1,0 +1,34 @@
+{% extends 'main/application.html' %}
+
+{% block content %}
+
+<h2>Add your Experience</h2>
+
+<form method="post" action="{% url 'upload' %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="experience">Enter your experience</label>
+    <textarea type="textarea" rows="5" class="form-control" id="experience" name="experience" placeholder="Your experience can be entered here"></textarea>
+
+    <label for="wish_different">What would you have wished to be different?</label>
+    <textarea type="textarea" rows="5" class="form-control" id="wish_different" name="wish_different" placeholder="Let us know what you would have wished to be differently in this experience."></textarea>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" name='research' type="checkbox" value="research" id="research">
+    <label class="form-check-label" for="research">
+      Can be used for Research
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" name='viewable' type="checkbox" value="viewable" id="viewable">
+    <label class="form-check-label" for="viewable">
+      Is viewable by others
+    </label>
+  </div>
+
+  <input class="btn btn-primary" type="submit" value="Share your Experience">
+</form>
+
+{% endblock %}

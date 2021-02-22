@@ -1,0 +1,60 @@
+{% extends 'main/application.html' %}
+
+{% block content %}
+
+      <div class="jumbotron">
+        <h1>Welcome to the Open Humans App Demo/Dev site</h1>
+        <p>
+          This project is intended for testing, development, and demonstration
+          of the reusable Django app for working with Open Humans,
+          <a href="https://github.com/OpenHumans/django-open-humans">django-open-humans</a>.
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            Configure this app by copying the <code>env.sample</code> file to
+            <code>.env</code> and setting these as needed. <b>You will need to
+            create a project in Open Humans</b> to get a "Client ID" and
+            "Client secret" for your own project, and put these in your local
+            <code>.env</code> file.
+          </p>
+          <p>
+            The code for this site can be found on Github at:
+            <a href="https://github.com/OpenHumans/oh-app-demo">https://github.com/OpenHumans/oh-app-demo</a>.
+            You're welcome to use it as a template or reference for how a
+            Django-based website can connect and interact with Open Humans
+            member accounts.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h2>How it works (once configured)</h2>
+          <ol>
+            <li><b>Log in to your Open Humans account</b><br></li>
+            <li><b>Authorize your version of this project on <i>Open Humans</i></b><br>
+              This authorizes this app to deposit your archive into your Open Humans account.</li>
+            <li><b>Upload your data.</b><br>
+              You will be redirected back to this site and can then
+              upload your data.
+              You'll be able to
+              <a href="{{ oh_proj_page }}">access &amp; manage your data on
+              Open Humans</a>.
+            </li>
+          </ol>
+
+          {% if auth_url %}
+          <a class="btn btn-primary btn-lg"
+            href="{{ auth_url }}">
+              Get started / Login
+          </a>
+          {% else %}
+          <b>
+            But first you need to set up your <code>.env</code>!
+          </b>
+          {% endif %}
+        </div>
+      </div>
+
+
+{%endblock%}

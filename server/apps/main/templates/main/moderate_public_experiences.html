@@ -1,0 +1,24 @@
+{% extends 'main/application.html' %}
+
+{% block content %}
+    <h1>File List</h1>
+    <p class="lead">This is a list of all public experiences</p>
+
+
+        {% for experience in experiences %}
+
+        <div class="panel panel-default">
+          <div class="panel-heading">{{experience.open_humans_member.oh_id}} - {{experience.created_at}}</div>
+          <div class="panel-body">
+            <h5>Experience</h5>
+            {{experience.experience_text}}
+            <h5>What would you have liked to be different?</h5>
+            {{experience.difference_text}}
+          </div>
+        </div>
+
+        <p><a href="{%url 'review_experience' experience.experience_id %}" class="btn btn-success">Approve</a></p>
+
+        {% endfor %}
+
+{% endblock %}

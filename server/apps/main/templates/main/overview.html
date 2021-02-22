@@ -1,0 +1,27 @@
+{% extends 'main/application.html' %}
+
+{% block content %}
+
+      <h1>Manage your {{config.project_title}} data.</h1>
+      <p class="lead">
+        Thank you! We logged you in through <i>Open Humans</i>.
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          You can now use this project to add or remove your Experiences.
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+
+              {% include 'main/partials/upload_form.html' %}
+            </div>
+          </div>
+          <p>
+            You can also take a look at the <a href="{% url 'list' %}">file list</a>.
+          </p>
+        </div>
+      </div>
+
+{% endblock %}

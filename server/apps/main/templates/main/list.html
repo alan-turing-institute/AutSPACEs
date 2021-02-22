@@ -1,0 +1,62 @@
+{% extends 'main/application.html' %}
+
+{% block content %}
+    <h1>Your Experiences</h1>
+    <p class="lead">This is a list of files you have uploaded to OpenHumans using this project.</p>
+
+    {% if files|length %}
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th style="width: 10%;">Name</th>
+                <th style="width: 40%;">Description</th>
+                <th style="width: 40%;">Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+        <tr>
+            <td>{{ file.basename }}</td>
+            <td>{{ file.metadata.description }}</td>
+            <td>
+                {% for tag in file.metadata.tags %}
+                  {%if tag == 'viewable' %}
+                  <a href="{%url 'make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                  {%elif tag == 'not public'%}
+                    <a href="{%url 'make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                  {%elif tag == 'research'%}
+                    <a href="{%url 'make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                  {%elif tag == 'non-research'%}
+                    <a href="{%url 'make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                  {%else%}
+                    <span class="badge">{{ tag }}</span>
+                  {%endif%}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{{ file.download_url }}" class="btn btn-secondary btn-sm text-success" target="_blank">Download</a>
+            </td>
+            <td>
+              <form action="{% url 'openhumans:delete_file'  %}" method="post">{% csrf_token %}
+                <input type="text" name="file_id" value={{ file.id }}  style="display:none"/>
+                <input type="text" name="next" value="{% url 'list' %}" style="display:none"/>
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="{% url 'openhumans:delete_all_files' %}" method="post">{% csrf_token %}
+        <input type="text" name="next" value="{% url 'list' %}" style="display:none"/>
+        <button type="submit">Delete  all files</button>
+    </form>
+
+    {% else %}
+    <div class="text-center">
+        <p class="lead">No files uploaded</p>
+    </div>
+    {% endif %}
+
+{% endblock %}
