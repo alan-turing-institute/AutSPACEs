@@ -8,15 +8,15 @@
   2. Above the list of files, click the green **Code** button.
   3. Clone the repository into your local directory. 
   4. Open terminal to the project directory.
-  5. Type 'git clone', and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
-  >$ git clone https://github.com/YOUR-USERNAME/AutSPACEs
+  5. Type `git clone`, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
+  >$ `git clone https://github.com/YOUR-USERNAME/AutSPACEs`
   7. Press enter. Your local clone will be created. 
   
 #### 3. Create the .env file in config directory using the .env.template. Copy that template and follow the instructions with the README to generate the Django secret key.
   
-  1. Go into "config" directory - find file called env.template
-  2. Make a copy of the template and rename it as .env within that same directory
-  3. Within that .env file, generate DJANGO_SECRET_KEY following instructions defined in the file 
+  1. Go into "config" directory - find file called `env.template`
+  2. Make a copy of the template and rename it as `.env` within that same directory
+  3. Within that `.env` file, generate a `DJANGO_SECRET_KEY` following instructions defined in the file 
 
 ***DO NOT UPLOAD THESE .ENV FILES ONTO GITHUB*** It's the equivalent of posting your passport ID on Twitter. Don't do it.
 
