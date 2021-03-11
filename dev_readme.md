@@ -2,6 +2,8 @@
 
 #### 1. Download and install [Docker](https://www.docker.com/products/docker-desktop) for your operating system.
 
+You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in _The Turing Way_ useful!
+
 #### 2. Clone the repository into your local directory.
 
   1. **Fork** the repository by clicking on the Fork icon at the top right hand corner of the page. 
