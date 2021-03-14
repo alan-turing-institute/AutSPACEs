@@ -1,15 +1,16 @@
+import datetime
+import io
 import json
 import logging
-import datetime
-import requests
+import uuid
 
+import requests
 from django.conf import settings
 from django.contrib.auth import logout
 from django.shortcuts import redirect, render
-from .models import PublicExperience
 from openhumans.models import OpenHumansMember
-import io
-import uuid
+
+from .models import PublicExperience
 
 logger = logging.getLogger(__name__)
 
