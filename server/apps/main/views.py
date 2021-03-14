@@ -22,7 +22,7 @@ def index(request):
     context = {'auth_url': auth_url,
                'oh_proj_page': settings.OH_PROJ_PAGE}
     if request.user.is_authenticated:
-        return redirect('overview')
+        return redirect('main:overview')
     return render(request, 'main/index.html', context=context)
 
 
@@ -136,7 +136,7 @@ def make_non_viewable(request, oh_file_id, file_uuid):
                 filename='testfile.json',
                 metadata=new_metadata)
             request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
-    return redirect('list')
+    return redirect('main:list')
 
 
 def make_viewable(request, oh_file_id, file_uuid):

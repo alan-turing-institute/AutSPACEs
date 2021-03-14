@@ -4,7 +4,7 @@
 
 <h2>Add your Experience</h2>
 
-<form method="post" action="{% url 'upload' %}">
+<form method="post" action="{% url 'main:upload' %}">
   {% csrf_token %}
   <div class="form-group">
     <label for="experience">Enter your experience</label>

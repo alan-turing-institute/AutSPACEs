@@ -73,12 +73,12 @@ body {
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'index' %}">{{config.project_title}}</a>
+                <a class="navbar-brand" href="{% url 'main:index' %}">{{config.project_title}}</a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                   <li {% if section == 'home' %} class="active" {%endif%}>
-                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'main:index' %}">Home</a>
                   </li>
                   <li {% if section == 'main:public_experiences' %} class="active" {%endif%}>
                     <a href="{% url 'main:public_experiences' %}">Public Experiences</a>
@@ -96,14 +96,14 @@ body {
                   {% if request.user.is_authenticated %}
                     {% if not is_admin %}
                     <li>
-                      <a href="{% url 'upload' %}">Add Experience</a>
+                      <a href="{% url 'main:upload' %}">Add Experience</a>
                     </li>
-                    <li {% if section == 'list' %} class="active" {%endif%}>
-                      <a href="{% url 'list' %}">Your Experiences</a>
+                    <li {% if section == 'main:list' %} class="active" {%endif%}>
+                      <a href="{% url 'main:list' %}">Your Experiences</a>
                     </li>
                     {% endif %}
                   <li>
-                    <form action="{% url 'logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out" style="margin-top:6px;" class="btn btn-default"></form>
+                    <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out" style="margin-top:6px;" class="btn btn-default"></form>
                   </li>
                   {% endif %}
                 </ul>

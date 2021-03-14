@@ -21,13 +21,13 @@
             <td>
                 {% for tag in file.metadata.tags %}
                   {%if tag == 'viewable' %}
-                  <a href="{%url 'make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                  <a href="{%url 'main:make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
                   {%elif tag == 'not public'%}
-                    <a href="{%url 'make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                    <a href="{%url 'main:make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
                   {%elif tag == 'research'%}
-                    <a href="{%url 'make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                    <a href="{%url 'main:make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
                   {%elif tag == 'non-research'%}
-                    <a href="{%url 'make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+                    <a href="{%url 'main:make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
                   {%else%}
                     <span class="badge">{{ tag }}</span>
                   {%endif%}
@@ -39,7 +39,7 @@
             <td>
               <form action="{% url 'openhumans:delete_file'  %}" method="post">{% csrf_token %}
                 <input type="text" name="file_id" value={{ file.id }}  style="display:none"/>
-                <input type="text" name="next" value="{% url 'list' %}" style="display:none"/>
+                <input type="text" name="next" value="{% url 'main:list' %}" style="display:none"/>
                 <button type="submit">Delete</button>
               </form>
             </td>
@@ -49,7 +49,7 @@
     </table>
 
     <form action="{% url 'openhumans:delete_all_files' %}" method="post">{% csrf_token %}
-        <input type="text" name="next" value="{% url 'list' %}" style="display:none"/>
+        <input type="text" name="next" value="{% url 'main:list' %}" style="display:none"/>
         <button type="submit">Delete  all files</button>
     </form>
 
