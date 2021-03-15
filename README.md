@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -66,7 +66,7 @@ It is a research project which is pioneering new methods of participatory scienc
 There are lots of ways to get in touch and stay updated. You can:
 
 * Anonymously, publicly share suggestions via the "always open" google form: https://bit.ly/AutisticaTuringCitSciForm
-* Say hello in our public slack channel: https://app.slack.com/client/T48QEEVTJ/CNMECPNCD 
+* Say hello in our public slack channel: https://slackin.openhumans.org 
 * Subscribe to our mailing list for monthly project updates: https://tinyletter.com/AutisticaTuringCitizenScience
 * Join the discussion in our issues and pull requests 
 
@@ -116,6 +116,9 @@ Full documentation is available here: [`docs/`](docs).
     <td align="center"><a href="https://github.com/jhlink"><img src="https://avatars2.githubusercontent.com/u/1872836?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James </b></sub></a><br /><a href="#infra-jhlink" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Tests">⚠️</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=jhlink" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/GeorgiaHCA"><img src="https://avatars1.githubusercontent.com/u/46889966?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Georgia</b></sub></a><br /><a href="#content-GeorgiaHCA" title="Content">🖋</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=GeorgiaHCA" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Angelsaur"><img src="https://avatars.githubusercontent.com/u/67108701?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Angelsaur</b></sub></a><br /><a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=Angelsaur" title="Documentation">📖</a> <a href="#design-Angelsaur" title="Design">🎨</a> <a href="#ideas-Angelsaur" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-Angelsaur" title="User Testing">📓</a></td>
+    <td align="center"><a href="https://github.com/JamesSCTJ"><img src="https://avatars.githubusercontent.com/u/60160241?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JamesSCTJ</b></sub></a><br /><a href="#ideas-JamesSCTJ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=JamesSCTJ" title="Tests">⚠️</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3AJamesSCTJ" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="http://www.brainonsilicon.com"><img src="https://avatars.githubusercontent.com/u/42813259?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sophia Batchelor</b></sub></a><br /><a href="#ideas-BrainonSilicon" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://tzovar.as"><img src="https://avatars.githubusercontent.com/u/674899?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bastian Greshake Tzovaras</b></sub></a><br /><a href="#infra-gedankenstuecke" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=gedankenstuecke" title="Tests">⚠️</a> <a href="https://github.com/GeorgiaHCA/AutSPACEs/commits?author=gedankenstuecke" title="Code">💻</a></td>
   </tr>
 </table>
 
