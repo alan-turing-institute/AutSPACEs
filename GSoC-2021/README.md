@@ -7,7 +7,7 @@ Thank you for being here!
 We are currently in the exploration phase. 
 Interested applicants should:
 
-1. **First read thouroughly and follow the steps in this issue**: 
+1. **First read thouroughly and follow the steps in [issue #88](https://github.com/GeorgiaHCA/AutSPACEs/issues/88)**
 
 2. Then create a subfolder here (in this GSoC-2021 folder), titled with their name in the form: firstname-lastname: and they share their work as a pull request. 
 
