@@ -15,7 +15,7 @@ Before starting, please check that the following minimum requirements have been 
 ## Installation
 Project installation can be tricky, but like all things, progress is made one step at a time. 
 
-1. Clone the repository at [AutSPACEs](https://github.com/GeorgiaHCA/AutSPACEs)
+1. [Clone](cloning-the-repository) the repository at [AutSPACEs](https://github.com/GeorgiaHCA/AutSPACEs)
 2. Within the `config` directory, copy `.env.template` to `.env`. 
   Note: ***DO NOT UPLOAD THESE .ENV FILES ONTO GITHUB*** It's the equivalent of posting your passport ID on Twitter. Don't do it.
 
