@@ -39,7 +39,7 @@ You'll need to obtain the Client ID and Client Secret for the OAuth project you'
 Within `.env` there are four different fields that must be populated for the project to build.
 
 #### Django Secret Key Generation
-1. Open `.env` in your favorite editor, and using `python3`, follow the instructions under the `django` header to copy/paste the ggenerated secret key to `DJANGO_SECRET_KEY` 
+1. Open `.env` in your favorite editor, and using `python3`, follow the instructions under the `django` header to copy/paste the generated secret key to `DJANGO_SECRET_KEY` 
 
 The following...
 `DJANGO_SECRET_KEY=__CHANGEME__`
