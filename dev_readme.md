@@ -74,7 +74,7 @@ The project builds and runs in a self-contained environment called Docker. This 
 
 *This will display the AutSPACEs website.* Yay!
 
-Note: Please note that certain aspects of the website may not be functional. ;)
+Note: Please note that certain aspects of the website may not be fully functional. ;)
 
 ## Glossary 
 
