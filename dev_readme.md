@@ -74,6 +74,8 @@ The project builds and runs in a self-contained environment called Docker. This 
 
 *This will display the AutSPACEs website.* Yay!
 
+Note: Please note that certain aspects of the website may not be functional. ;)
+
 ## Glossary 
 
 * Clone: make a copy of all the files and folder in the repository on your computer
