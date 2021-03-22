@@ -1,7 +1,5 @@
 # How to start website
 
-// TODO: Merge into main readme. 
-
 If you're interested in building and running the AutSPACE platform, read on!
 
 ## Setup
