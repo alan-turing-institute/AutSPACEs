@@ -1,33 +1,16 @@
-import textwrap
-from typing import Final, final
-
 from django.db import models
-
-#: That's how constants should be defined.
-_POST_TITLE_MAX_LENGTH: Final = 80
+from openhumans.models import OpenHumansMember
 
 
-@final
-class BlogPost(models.Model):
-    """
-    This model is used just as an example.
-
-    With it we show how one can:
-    - Use fixtures and factories
-    - Use migrations testing
-
-    """
-
-    title = models.CharField(max_length=_POST_TITLE_MAX_LENGTH)
-    body = models.TextField()
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta(object):
-        verbose_name = 'BlogPost'  # You can probably use `gettext` for this
-        verbose_name_plural = 'BlogPosts'
-
-    def __str__(self) -> str:
-        """All django models should have this method."""
-        return textwrap.wrap(self.title, _POST_TITLE_MAX_LENGTH // 4)[0]
+class PublicExperience(models.Model):
+    experience_text = models.TextField()
+    difference_text = models.TextField(default="")
+    created_at = models.DateTimeField(auto_now=True)
+    experience_id = models.TextField()
+    open_humans_member = models.ForeignKey(OpenHumansMember,
+                                           blank=True, null=True,
+                                           on_delete=models.CASCADE)
+    approved = models.CharField(
+        blank=False,
+        default='not reviewed',
+        max_length=50)

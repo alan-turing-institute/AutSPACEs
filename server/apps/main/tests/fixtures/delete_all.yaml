@@ -1,0 +1,29 @@
+interactions:
+- request:
+    body: project_member_id=1234&all_files=True
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['41']
+      Content-Type: [application/x-www-form-urlencoded]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/delete/?access_token=foo
+  response:
+    body: {string: '{"ids":[1337]}'}
+    headers:
+      Allow: ['POST, OPTIONS']
+      Cache-Control: ['must-revalidate, no-store, no-cache, max-age=0']
+      Connection: [close]
+      Content-Language: [en]
+      Content-Type: [application/json]
+      Date: ['Tue, 06 Mar 2018 04:22:46 GMT']
+      Expires: ['Tue, 06 Mar 2018 04:22:46 GMT']
+      Last-Modified: ['Tue, 06 Mar 2018 04:22:46 GMT']
+      Server: [Cowboy]
+      Vary: ['Accept, Accept-Language, Cookie']
+      Via: [1.1 vegur]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: OK}
+version: 1

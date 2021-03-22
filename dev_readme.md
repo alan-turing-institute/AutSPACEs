@@ -1,30 +1,80 @@
 # How to start website
 
-#### 1. Download and install [Docker](https://www.docker.com/products/docker-desktop) for your operating system.
+// TODO: Merge into main readme. 
 
-#### 2. Clone the repository into your local directory.
+If you're interested in building and running the AutSPACE platform, read on!
 
-  1. **Fork** the repository by clicking on the Fork icon at the top right hand corner of the page. 
-  2. Above the list of files, click the green **Code** button.
-  3. Clone the repository into your local directory. 
-  4. Open terminal to the project directory.
-  5. Type `git clone`, and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
-  >$ `git clone https://github.com/YOUR-USERNAME/AutSPACEs`
-  7. Press enter. Your local clone will be created. 
-  
-#### 3. Create the .env file in config directory using the .env.template. Copy that template and follow the instructions with the README to generate the Django secret key.
-  
-  1. Go into "config" directory - find file called `env.template`
-  2. Make a copy of the template and rename it as `.env` within that same directory
-  3. Within that `.env` file, generate a `DJANGO_SECRET_KEY` following instructions defined in the file 
+## Setup
+Before starting, please check that the following minimum requirements have been completed.
 
-***DO NOT UPLOAD THESE .ENV FILES ONTO GITHUB*** It's the equivalent of posting your passport ID on Twitter. Don't do it.
+1. Install [Docker](https://www.docker.com/products/docker-desktop). (Latest stable release, version 20.10.5 or greater)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/). (Latest stable release, version 1.28.5 or greater)
+3. Create an [Open Humans](https://www.openhumans.org/) account.
+4. Some version of Python 3.x.x.
 
-#### 4. Open up Terminal or Command Line in the root level of the repository and type in the following command: `docker-compose up`
+## Installation
+Project installation can be tricky, but like all things, progress is made one step at a time. 
 
-#### 5. Open your browser to `http://localhost:8000`
+1. [Clone](#cloning-the-repository) the repository at [AutSPACEs](https://github.com/GeorgiaHCA/AutSPACEs)
+2. Within the `config` directory, copy `.env.template` to `.env`. 
+  Note: ***DO NOT UPLOAD THESE .ENV FILES ONTO GITHUB*** It's the equivalent of posting your passport ID on Twitter. Don't do it.
 
-*This will display the AutSPACEs website.*
+### Open Humans Project Creation
+This step is a little tricky, but you're almost there. 
+
+1. Login to [OpenHumans](openhumans.org). 
+2. Navigate to [Manage Project](https://www.openhumans.org/direct-sharing/projects/manage/).
+3. Create a new Oauth2 Data Request Project on Open Humans. 
+4. Populate the required fields as directed. 
+5. In the `Redirect URL` field, enter `http://localhost:8000/openhumans/complete`.
+6. Click `Create Project`.
+
+You'll need to obtain the Client ID and Client Secret for the OAuth project you've created. 
+
+1. Navigate to [Manage Project](https://www.openhumans.org/direct-sharing/projects/manage/).
+2. Click the newly created project. 
+3. Copy and paste somewhere safe the `Client ID` and `Client Secret` under `OAuth2 Credentials`. 
+
+### Project Configuration 
+Within `.env` there are four different fields that must be populated for the project to build.
+
+#### Django Secret Key Generation
+1. Open `.env` in your favorite editor, and using `python3`, follow the instructions under the `django` header to copy/paste the generated secret key to `DJANGO_SECRET_KEY` 
+
+The following...
+`DJANGO_SECRET_KEY=__CHANGEME__`
+
+should look something like this, where XXXXXXXXXXXXXXXXXXXXXX is the generated key. 
+`DJANGO_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXX`
+
+#### Configuring OpenHumans
+Further down the `.env` file, you should see three texts: `OPENHUMANS_CLIENT_ID`, `OPENHUMANS_CLIENT_SECRET`, and `OPENHUMANS_APP_BASE_URL`.
+
+1. Copy the `Client ID` and `Client Secret` that you've copied previously into `OPENHUMANS_CLIENT_ID` and `OPENHUMANS_CLIENT_SECRET`, respectively.
+It should look something like this, where XXXXXXXXXXXXXXXXXXXXXX are the inputted information. 
+```
+OPENHUMANS_CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXX
+OPENHUMANS_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXX
+````
+
+2. Type the following url into `OPENHUMANS_APP_BASE_URL`.
+It should look like this!
+
+```
+OPENHUMANS_APP_BASE_URL="http://localhost:8000"
+```
+
+3. You're done!
+
+## Running the Project
+The project builds and runs in a self-contained environment called Docker. This means developer environments are preserved, and you don't need to mess with any dependency management or installation.
+
+1. Open up Terminal or Command Line in the root level of the repository and execute the following command: `./docker-run.sh`
+2. Open your browser to `http://localhost:8000`
+
+*This will display the AutSPACEs website.* Yay!
+
+Note: Please note that certain aspects of the website may not be fully functional. ;)
 
 ## Glossary 
 
@@ -37,7 +87,18 @@
 * Root level: this is the level of the project which contains all the others as files and subfolders
 * Terminal: this is an application on your computer which allows you to use code to modify your computer's software and files. 
 
-## Extra Tips
+## How-Tos 
+
+### Cloning the Repository
+  1. **Fork** the repository by clicking on the Fork icon at the top right hand corner of the page. 
+  2. Above the list of files, click the green **Code** button.
+  3. Clone the repository into your local directory. 
+  4. Open terminal to the project directory.
+  5. Type 'git clone', and then paste the URL you copied earlier. It will look like this, with your GitHub username instead of YOUR-USERNAME:
+  >$ git clone https://github.com/YOUR-USERNAME/AutSPACEs
+  7. Press enter. Your local clone will be created. 
+
+### Extra Tips
 
 *If you aren't sure how to get to the root repository, you can find it more easily by following these steps:* 
 
