@@ -5,7 +5,7 @@
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
 
-Welcome.
+## Welcome.
 
 This repository **holds the code** for AutSPACEs. AutSPACEs is a citizen science platform co-created by autistic people and their supporters alongside researchers and the open source community. 
 
@@ -13,11 +13,11 @@ It is linked to the [Autistica/Turing Citizen Science](https://github.com/alan-t
 
 The platform is currently being developed using the Python/Django web development framework. You can [Skip to Development Information](#development-information) or continue reading for more information about the project in general. 
 
-Here is a useful resource for learning Django: https://tutorial.djangogirls.org/en/
-
 ## Get the platform running
 
 To get the current website to run on your local device please follow [these steps](/dev_readme.md).
+
+Here is a useful resource for learning Django: https://tutorial.djangogirls.org/en/
 
 ## How to work with us
 
