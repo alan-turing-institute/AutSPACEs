@@ -30,7 +30,7 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 
 
-### Enter Experiences Page -
+### :writing_hand: Enter Experiences Page -
 ![Screenshot from 2021-03-29 23-17-00](https://user-images.githubusercontent.com/73518403/112880921-b5181980-90e8-11eb-8b74-0680a40c4e59.png)
 
 
