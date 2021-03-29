@@ -23,8 +23,10 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 3. Text
 4. Symbols
 
+
 ### Landing Page -
 ![Screenshot from 2021-03-29 23-16-20](https://user-images.githubusercontent.com/73518403/112879818-49817c80-90e7-11eb-8a40-ea972965288b.png)
+
 
 ### Enter Experiences Page -
 ![Screenshot from 2021-03-29 23-17-00](https://user-images.githubusercontent.com/73518403/112880921-b5181980-90e8-11eb-8b74-0680a40c4e59.png)
@@ -34,8 +36,12 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 #### List View-
 ![Screenshot from 2021-03-29 23-41-13](https://user-images.githubusercontent.com/73518403/112880687-623e6200-90e8-11eb-8482-a32af7141892.png)
 
+
 #### Table View-
 ![Screenshot from 2021-03-29 23-41-30](https://user-images.githubusercontent.com/73518403/112880697-65395280-90e8-11eb-85ef-3135cde426a8.png)
+
+
+The above pictu
 
 
 
