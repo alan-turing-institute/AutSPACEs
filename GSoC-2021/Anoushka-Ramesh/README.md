@@ -27,7 +27,8 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 ![Screenshot from 2021-03-29 23-16-20](https://user-images.githubusercontent.com/73518403/112879818-49817c80-90e7-11eb-8a40-ea972965288b.png)
 
 ### Enter Experiences Page -
-![Screenshot from 2021-03-29 23-16-20](https://user-images.githubusercontent.com/73518403/112880329-ee03be80-90e7-11eb-96f5-e589b2468b12.png)
+![Screenshot from 2021-03-29 23-17-00](https://user-images.githubusercontent.com/73518403/112880921-b5181980-90e8-11eb-8b74-0680a40c4e59.png)
+
 
 ### Views -
 #### List View-
