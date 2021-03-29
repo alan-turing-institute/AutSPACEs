@@ -1,4 +1,4 @@
-# GSoC Expression of Interest: Anoushka Ramesh
+# GSoC2021 Expression of Interest: Anoushka Ramesh
 Email - anoushkaramesh21@gmail.com
 
 ## Assessment Step 1
@@ -9,3 +9,8 @@ Activity page - [https://www.openhumans.org/activity/project-autspaces/#activity
 UserData JSON file - 
 ![Screenshot from 2021-03-29 22-59-34](https://user-images.githubusercontent.com/73518403/112876035-a0388780-90e2-11eb-8e98-fd2a71a55d11.png)
 
+## Assessment Step 2
+[Todo-App](https://github.com/anoura12/todo-app) - A basic Django todo application where you can create and update tasks.
+I've used HTML and Tailwind CSS for the frontend.
+
+## Assessment Step 3
