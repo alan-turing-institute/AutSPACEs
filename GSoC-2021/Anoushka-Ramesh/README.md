@@ -48,7 +48,15 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 ### Layout
 * The card view of on the landing and experiences page are nice but the the size of each card could be increased so that the text doesn't look as congested.
 * In the experiences pages, the buttons on the enter experiences look clustered up as well. So either the card size could be increased or the buttons could be placed outside the card right next to it for better spacing 
-* From the both the views, I believe the list view would be a much better option. A similar card view like I've done in the todo-app could be implemented here . 
+* From the both the views, I believe the list view would be a much better option because:-
+  1. The table view looks too mathemathical as mentioned by one of the autistic test users in the sprint
+  2. With a good amount of spaces and proper gridlines, The list view can be implemented to show all the user experiences. A similar card view like that in my todo-app can be done here
+
+
+
+
+### Color
+* 
 
 
 
