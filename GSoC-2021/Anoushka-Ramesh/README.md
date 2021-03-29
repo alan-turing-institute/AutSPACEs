@@ -22,3 +22,7 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 2. Color
 3. Text
 4. Symbols
+
+![Screenshot from 2021-03-29 23-16-20](https://user-images.githubusercontent.com/73518403/112879818-49817c80-90e7-11eb-8a40-ea972965288b.png)
+
+
