@@ -25,7 +25,7 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 **The pictures below are the pages I'm referring to while I'm talking about the design** 
 
-### Landing Page -
+### :book: Landing Page -
 ![Screenshot from 2021-03-29 23-51-58](https://user-images.githubusercontent.com/73518403/112881828-cada0e80-90e9-11eb-82f4-937600592b43.png)
 
 
@@ -34,7 +34,7 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 ![Screenshot from 2021-03-29 23-17-00](https://user-images.githubusercontent.com/73518403/112880921-b5181980-90e8-11eb-8b74-0680a40c4e59.png)
 
 
-### Views -
+### :eye: Views -
 #### List View-
 ![Screenshot from 2021-03-29 23-41-13](https://user-images.githubusercontent.com/73518403/112880687-623e6200-90e8-11eb-8482-a32af7141892.png)
 
