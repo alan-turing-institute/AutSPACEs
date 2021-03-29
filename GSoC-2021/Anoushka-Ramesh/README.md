@@ -25,7 +25,8 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 
 ### Landing Page -
-![Screenshot from 2021-03-29 23-16-20](https://user-images.githubusercontent.com/73518403/112879818-49817c80-90e7-11eb-8a40-ea972965288b.png)
+![Screenshot from 2021-03-29 23-51-58](https://user-images.githubusercontent.com/73518403/112881828-cada0e80-90e9-11eb-82f4-937600592b43.png)
+
 
 
 ### Enter Experiences Page -
@@ -41,7 +42,12 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 ![Screenshot from 2021-03-29 23-41-30](https://user-images.githubusercontent.com/73518403/112880697-65395280-90e8-11eb-85ef-3135cde426a8.png)
 
 
-The above pictu
+**The above pictures are the pages I'm referring to while I'm talking about the design** 
+
+### Layout
+* The card view of on the landing and experiences page are nice but the the size of each card could be increased so that the text doesn't look as congested.
+* From the both the views, I believe the list view would be a much better option.  
+
 
 
 
