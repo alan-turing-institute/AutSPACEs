@@ -47,16 +47,28 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 ### Layout
 * The card view of on the landing and experiences page are nice but the the size of each card could be increased so that the text doesn't look as congested.
+* The How it Works card should be the biggest among the restor should be highlighted in some manner because a lot of test users said that the particular card was the first thing they focused on.
+* 
 * In the experiences pages, the buttons on the enter experiences look clustered up as well. So either the card size could be increased or the buttons could be placed outside the card right next to it for better spacing 
 * From the both the views, I believe the list view would be a much better option because:-
   1. The table view looks too mathemathical as mentioned by one of the autistic test users in the sprint
   2. With a good amount of spaces and proper gridlines, The list view can be implemented to show all the user experiences. A similar card view like that in my todo-app can be done here
-
-
-
-
-### Color
 * 
+
+
+
+### Colour
+* More pastel colours can be incorporated for the default settings of the page. Additional changes can be configured in the settings page
+* Pale pink is the colour that goes really well with autistic people after researching a bit
+* The orange button in the landing page seems to stand out. A little bit of contrast is required to make the other elements stand out as mentioned by the autistic test users, i.e. the current page it is too plain for their liking
+
+### Text
+* In the enter experiences page, the text contained inside the card which tells the user what to enter needs to be darker.
+* It needs to be more concise on the landing page
+* Some users were confusedd between the save and the upload button on the enter experiences page. Maybe one button for submitting the data could be used instead
+
+### Symbols
+* In the landing page, the
 
 
 
