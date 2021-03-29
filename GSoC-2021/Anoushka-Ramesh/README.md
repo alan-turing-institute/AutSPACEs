@@ -46,8 +46,8 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 
 ### Layout
-* The card view of on the landing and experiences page are nice but the the size of each card could be increased so that the text doesn't look as congested.
-* The How it Works card should be the biggest among the restor should be highlighted in some manner because a lot of test users said that the particular card was the first thing they focused on.
+* The card view on the landing and experiences page are nice but the size of each card could be increased so that the text doesn't look as congested.
+* The How it Works card should be the biggest among the rest or it should be highlighted in some manner because a lot of test users said that the particular card was the first thing they focused on.
 * 
 * In the experiences pages, the buttons on the enter experiences look clustered up as well. So either the card size could be increased or the buttons could be placed outside the card right next to it for better spacing 
 * From the both the views, I believe the list view would be a much better option because:-
@@ -64,11 +64,16 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 ### Text
 * In the enter experiences page, the text contained inside the card which tells the user what to enter needs to be darker.
-* It needs to be more concise on the landing page
-* Some users were confusedd between the save and the upload button on the enter experiences page. Maybe one button for submitting the data could be used instead
+* Text needs to be more concise on the landing page
+* Some users were confused between the save and the upload button on the enter experiences page. Maybe one button for submitting the data could be used instead
 
 ### Symbols
-* In the landing page, the
+* In the landing page, the symbol for the configure card was ambiguous for the users. Maybe a gear icon or a wrench tool could be used for configure and a book icon could be used for how it works.
+* The stack icon on the experiences page was vague as well.
+
+### Accessibility Settings and Screen Reader
+
+
 
 
 
