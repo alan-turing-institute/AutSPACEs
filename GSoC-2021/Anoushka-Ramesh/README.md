@@ -23,6 +23,7 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 3. Text
 4. Symbols
 
+**The pictures below are the pages I'm referring to while I'm talking about the design** 
 
 ### Landing Page -
 ![Screenshot from 2021-03-29 23-51-58](https://user-images.githubusercontent.com/73518403/112881828-cada0e80-90e9-11eb-82f4-937600592b43.png)
@@ -42,11 +43,12 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 ![Screenshot from 2021-03-29 23-41-30](https://user-images.githubusercontent.com/73518403/112880697-65395280-90e8-11eb-85ef-3135cde426a8.png)
 
 
-**The above pictures are the pages I'm referring to while I'm talking about the design** 
+
 
 ### Layout
 * The card view of on the landing and experiences page are nice but the the size of each card could be increased so that the text doesn't look as congested.
-* From the both the views, I believe the list view would be a much better option.  
+* In the experiences pages, the buttons on the enter experiences look clustered up as well. So either the card size could be increased or the buttons could be placed outside the card right next to it for better spacing 
+* From the both the views, I believe the list view would be a much better option. A similar card view like I've done in the todo-app could be implemented here . 
 
 
 
