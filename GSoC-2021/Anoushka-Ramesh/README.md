@@ -15,9 +15,10 @@ I've used HTML and Tailwind CSS for the frontend.
 
 ## Assessment Step 3
 The development requirement that I would like to work on is the additional design requirements for the website.
-Most of the world’s autistic population uses the web for their personal needs, and the number keeps increasing every year. It so happens that most websites have a user interface not quite attuned to their needs and requirements. The bright colors, glary screens, ambiguous symbols, and cluttered layouts overwhelm autistic users because this triggers their sensory processing sensitivities. Hence, I would like to create a simple but effective user interface that makes it easier for them to navigate the Autistica website. 
 
-I have gone through Sprint No. 6 where the site was tested on autistic people/parents of autistic people and I have researched different UIs best suited for autistic people. I concluded that the website design can be broken down into 4 categories-
+Most of the world’s autistic population uses the web for their personal needs, and the number keeps increasing every year. Most websites contain bright colors, glary screens, ambiguous symbols, and cluttered layouts that overwhelm autistic users because this triggers their sensory processing sensitivities. Hence, I would like to create a simple but effective user interface that makes it easier for them to navigate the Autistica website. 
+
+I have gone through Sprint No. 6 where the site was tested on autistic people/parents of autistic people and I have concluded that the website design can be broken down into 4 categories-
 1. Layout
 2. Color
 3. Text
@@ -48,36 +49,38 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 ### Layout
 * The card view on the landing and experiences page are nice but the size of each card could be increased so that the text doesn't look as congested.
 * The How it Works card should be the biggest among the rest or it should be highlighted in some manner because a lot of test users said that the particular card was the first thing they focused on.
-* 
 * In the experiences pages, the buttons on the enter experiences look clustered up as well. So either the card size could be increased or the buttons could be placed outside the card right next to it for better spacing 
 * From the both the views, I believe the list view would be a much better option because:-
-  1. The table view looks too mathemathical as mentioned by one of the autistic test users in the sprint
-  2. With a good amount of spaces and proper gridlines, The list view can be implemented to show all the user experiences. A similar card view like that in my todo-app can be done here
-* 
-
+  1. The table view looks too mathematical as mentioned by one of the autistic test users in the sprint
+  2. With a good amount of spaces and proper gridlines, the list view would be perfect. A similar card view like that in my todo-app can be done here
 
 
 ### Colour
-* More pastel colours can be incorporated for the default settings of the page. Additional changes can be configured in the settings page
-* After researching a bit, pale pink is the colour that a lot of autistic users love.
-* The orange button in the landing page seems to stand out. A little bit of contrast is required to make the other elements stand out as mentioned by the autistic test users, i.e. the current page is too plain for their liking
-* Colours like this could be included-
+* More pastel or muted colours like pale pink can be incorporated for the default settings of the page. Additional changes can be configured in the settings page.
+* Colours like these could be included-
 ![Screenshot from 2021-03-30 07-49-46](https://user-images.githubusercontent.com/73518403/112926581-427f5c00-9131-11eb-800b-45b0d0268dcd.png)
 ![Screenshot from 2021-03-30 07-50-03](https://user-images.githubusercontent.com/73518403/112926585-44e1b600-9131-11eb-8c9c-3cd8e2d77c8c.png)
 
 
 ### Text
 * In the enter experiences page, the text contained inside the card which tells the user what to enter needs to be darker.
-* Explanation of the aims on the landing page needs to be more concise
 * Some users were confused between the save and the upload button on the enter experiences page. Maybe one button for submitting the data could be used instead
 * The 'Non-Verbal' button could be changed to 'Read the Page'
 
 ### Symbols
-* In the landing page, the symbol for the configure card was ambiguous for the users. Maybe a gear icon or a wrench tool could be used for configure and a book icon could be used for how it works.
+* In the landing page, the symbol for the Configure card was ambiguous for the users. Maybe a gear icon or a wrench tool could be used for configure and a book icon could be used for How It Works.
 * The stack icon on the experiences page was vague as well.
 
 ### Accessibility Settings and Screen Reader
-The accessibility of hte site can definitely be increased to 
+The accessibility of hte site can be increased to utilise all the user's senses to the maximum. The following can be implemented from Jiraslama's templates
+* Configuring the colours on the website
+* Changing font size, spacing between text and luminance
+* Accessing the voice to text and screen reader commands
+
+Since most ready made screen readers are specific to the browser or the OS, an initial disclaimer can be provided to inform them about the kind of browser they should use to access the screen reader.
+
+### Implementation
+Using TailWind CSS would be the best way to execute this as they have clear layouts and appropriate styling for this task with simple implementation. 
 
 
 
