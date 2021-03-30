@@ -59,20 +59,25 @@ I have gone through Sprint No. 6 where the site was tested on autistic people/pa
 
 ### Colour
 * More pastel colours can be incorporated for the default settings of the page. Additional changes can be configured in the settings page
-* Pale pink is the colour that goes really well with autistic people after researching a bit
-* The orange button in the landing page seems to stand out. A little bit of contrast is required to make the other elements stand out as mentioned by the autistic test users, i.e. the current page it is too plain for their liking
+* After researching a bit, pale pink is the colour that a lot of autistic users love.
+* The orange button in the landing page seems to stand out. A little bit of contrast is required to make the other elements stand out as mentioned by the autistic test users, i.e. the current page is too plain for their liking
+* Colours like this could be included-
+![Screenshot from 2021-03-30 07-49-46](https://user-images.githubusercontent.com/73518403/112926581-427f5c00-9131-11eb-800b-45b0d0268dcd.png)
+![Screenshot from 2021-03-30 07-50-03](https://user-images.githubusercontent.com/73518403/112926585-44e1b600-9131-11eb-8c9c-3cd8e2d77c8c.png)
+
 
 ### Text
 * In the enter experiences page, the text contained inside the card which tells the user what to enter needs to be darker.
-* Text needs to be more concise on the landing page
+* Explanation of the aims on the landing page needs to be more concise
 * Some users were confused between the save and the upload button on the enter experiences page. Maybe one button for submitting the data could be used instead
+* The 'Non-Verbal' button could be changed to 'Read the Page'
 
 ### Symbols
 * In the landing page, the symbol for the configure card was ambiguous for the users. Maybe a gear icon or a wrench tool could be used for configure and a book icon could be used for how it works.
 * The stack icon on the experiences page was vague as well.
 
 ### Accessibility Settings and Screen Reader
-
+The accessibility of hte site can definitely be increased to 
 
 
 
