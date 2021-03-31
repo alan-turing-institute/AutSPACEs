@@ -48,6 +48,9 @@ Starting with the basic functionality of the page(Backend implementation details
   - Content (to store the actual content or reference to a file)
   - Permissions: To store the kind of permissions the user has given for viewers and researchers.
   - Associated Tags: For filtering options when searching up other experiences.
+  - Date: Date on which the experience was published
+  - Time: So that we can show details like "published 20mins ago" on the view other experiences page.
+  - Meta Data: Other possible meta data that could be associated with each post.
 
 The form filling flow will be as follows:
 - User is greeted with the appropriate title, text and the options:
