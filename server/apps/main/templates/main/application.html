@@ -1,0 +1,137 @@
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{config.project_title |default:"My Open Humans Project" }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    {% load static %}
+    <link rel="icon" type="image/png"
+      href="{% static 'favicon.ico' %}">
+
+    <style>
+      body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      .navbar {
+        margin-bottom: 20px;
+      }
+
+
+      /* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+.fcontainer .text-muted {
+  padding: 0 15px;
+  margin: 20px 0;
+}
+    </style>
+  </head>
+
+  <body>
+        <div class="container">
+
+          <!-- Static navbar -->
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'main:index' %}">{{config.project_title}}</a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li {% if section == 'home' %} class="active" {%endif%}>
+                    <a href="{% url 'main:index' %}">Home</a>
+                  </li>
+                  <li {% if section == 'main:public_experiences' %} class="active" {%endif%}>
+                    <a href="{% url 'main:public_experiences' %}">Public Experiences</a>
+                  </li>
+                  <li {% if section == 'main:moderate_public_experiences' %} class="active" {%endif%}>
+                    <a href="{% url 'main:moderate_public_experiences' %}">Moderate Public Experiences</a>
+                  </li>
+                  {% if is_admin %}
+                  <li>
+                    <a href="{% url 'project-admin:home' %}">Project config</a>
+                  </li>
+                  {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  {% if request.user.is_authenticated %}
+                    {% if not is_admin %}
+                    <li>
+                      <a href="{% url 'main:upload' %}">Add Experience</a>
+                    </li>
+                    <li {% if section == 'main:list' %} class="active" {%endif%}>
+                      <a href="{% url 'main:list' %}">Your Experiences</a>
+                    </li>
+                    {% endif %}
+                  <li>
+                    <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out" style="margin-top:6px;" class="btn btn-default"></form>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+
+          {% if messages %}
+
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+            {{ message }}
+            </div>
+            {% endfor %}
+
+          {% endif %}
+          {% block content %}
+          {% endblock %}
+
+        </div> <!-- /container -->
+        <footer class="footer">
+          <div class="fcontainer">
+            <p class="text-muted">
+              <a href="https://www.openhumans.org/create/">
+                Create your own project on <i>Open Humans</i>
+              </a>
+            </p>
+          </div>
+        </footer>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'main/application.html' %}
+
+{% block content %}
+
+      <h1>Now you can uploading a file to Open Humans with your project!</h1>
+      <p class="lead">
+        Thank you! We got your authorization to connect to <i>Open Humans</i>.
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          Upload a file.
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              {% include 'main/partials/upload_form.html' %}
+            </div>
+          </div>
+          <p>
+            You can also visit <a href="{{ oh_proj_page }}">this project's page on Open Humans </a>
+            to see any data you've previously uploaded.
+          </p>
+        </div>
+      </div>
+
+{% endblock %}

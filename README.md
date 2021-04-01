@@ -5,12 +5,19 @@
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
 
-Welcome.
+## Welcome.
 
-This repository holds the code for AutSPACEs. AutSPACEs is a citizen science platform co-created by autistic people and their supporters alongside researchers and the open source community. It is linked to the [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience) repository, which is used for project management and to hold resources. If you'd like to take part in anything which isn't directly related to building the platform, take a look there. There are lots of ways to get involved. You can find out more in the contributing guidelines. 
+This repository **holds the code** for AutSPACEs. AutSPACEs is a citizen science platform co-created by autistic people and their supporters alongside researchers and the open source community. 
 
-The platform is currently being developed using the Python/Django web development framework. [Skip to Development Information](#development-information)
-This is a useful resource for learning Django: https://tutorial.djangogirls.org/en/
+It is linked to the [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience) repository, which is used for **project management and to hold resources**. If you'd like to take part in anything which isn't directly related to building the platform, take a look there. There are lots of ways to get involved. You can find out more in the contributing guidelines. 
+
+The platform is currently being developed using the Python/Django web development framework. You can [Skip to Development Information](#development-information) or continue reading for more information about the project in general. 
+
+## Get the platform running
+
+To get the current website to run on your local device please follow [these steps](/dev_readme.md).
+
+Here is a useful resource for learning Django: https://tutorial.djangogirls.org/en/
 
 ## How to work with us
 
@@ -66,7 +73,7 @@ It is a research project which is pioneering new methods of participatory scienc
 There are lots of ways to get in touch and stay updated. You can:
 
 * Anonymously, publicly share suggestions via the "always open" google form: https://bit.ly/AutisticaTuringCitSciForm
-* Say hello in our public slack channel: https://app.slack.com/client/T48QEEVTJ/CNMECPNCD 
+* Say hello in our public slack channel: https://slackin.openhumans.org 
 * Subscribe to our mailing list for monthly project updates: https://tinyletter.com/AutisticaTuringCitizenScience
 * Join the discussion in our issues and pull requests 
 

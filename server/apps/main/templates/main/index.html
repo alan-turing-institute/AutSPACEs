@@ -1,305 +1,60 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends 'main/application.html' %}
 
-    <title>Marvel HTML Bootstrap 4 Template</title>
+{% block content %}
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/unicons.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+      <div class="jumbotron">
+        <h3>Building Accessible Community Environment<h3>
+        <h1>Welcome to AutSPACE</h1>
+        <p>
+          This website exists for autistic people to share stories about how our senses affect us in our daily lives.
+          <a href="https://github.com/OpenHumans/django-open-humans">django-open-humans</a>.
+        </p>
+      </div>
 
-    <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="css/tooplate-style.css">
-
-<!--
-
-Tooplate 2115 Marvel
-
-https://www.tooplate.com/view/2115-marvel
-
--->
-
-    <!-- MENU -->
-
-    <nav class="navbar navbar-expand-sm navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="login.html"><i class='uil uil-user'></i>Login</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a href="file:///Users/gaitkenhead/AutSPACEs/server/apps/main/templates/main/index.html" class="nav-link"><span data-hover="Home">Home</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="explore-stories.html" class="nav-link"><span data-hover="Explore Stories">Explore Stories</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="share-stories.html" class="nav-link"><span data-hover="Share Stories">Share Stories</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="my-stories.html" class="nav-link"><span data-hover="My Stories">My Stories</span></a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ml-lg-auto">
-                    <div class="ml-lg-4">
-                      <div class="color-mode d-lg-flex justify-content-center align-items-center">
-                        <i class="color-mode-icon"></i>
-                        Color mode
-                      </div>
-                    </div>
-                </ul>
-            </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            Configure this app by copying the <code>env.sample</code> file to
+            <code>.env</code> and setting these as needed. <b>You will need to
+            create a project in Open Humans</b> to get a "Client ID" and
+            "Client secret" for your own project, and put these in your local
+            <code>.env</code> file.
+          </p>
+          <p>
+            The code for this site can be found on Github at:
+            <a href="https://github.com/OpenHumans/oh-app-demo">https://github.com/OpenHumans/oh-app-demo</a>.
+            You're welcome to use it as a template or reference for how a
+            Django-based website can connect and interact with Open Humans
+            member accounts.
+          </p>
         </div>
-    </nav>
+        <div class="col-md-6">
+          <h2>How it works (once configured)</h2>
+          <ol>
+            <li><b>Log in to your Open Humans account</b><br></li>
+            <li><b>Authorize your version of this project on <i>Open Humans</i></b><br>
+              This authorizes this app to deposit your archive into your Open Humans account.</li>
+            <li><b>Upload your data.</b><br>
+              You will be redirected back to this site and can then
+              upload your data.
+              You'll be able to
+              <a href="{{ oh_proj_page }}">access &amp; manage your data on
+              Open Humans</a>.
+            </li>
+          </ol>
 
-    <!-- ABOUT -->
-    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
-                    <div class="about-text">
-                        <small class="small-text">Building <span class="mobile-block"> accessible community environments</span></small>
-                        <h1 class="animated animated-text">
-                            <span class="mr-2">Welcome to AutSPACEs</span>
-                                <div class="animated-info">
-                                    <span class="animated-item">Share stories</span>
-                                    <span class="animated-item">Help research</span>
-                                    <span class="animated-item">Create change</span>
-                                </div>
-                        </h1>
-
-                        <p>This website exists for autistic people to share stories about how our senses affect us in our daily lives.</p>
-
-                        <div class="custom-btn-group mt-4">
-                          <a href="explore-stories.html" class="btn custom-btn custom-btn-bg custom-btn-link">Explore</a>
-                          <a href="signup.html" class="btn custom-btn custom-btn-bg custom-btn-link">Sign up</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5 col-md-12 col-12">
-                    <div class="about-image svg">
-                        <img src="images/undraw/2944THEA_16.jpg" class="img-fluid" alt="svg cartoon graphic platform illustration image">
-                    </div>
-                </div>
-
-            </div>
+          {% if auth_url %}
+          <a class="btn btn-primary btn-lg"
+            href="{{ auth_url }}">
+              Get started / Login
+          </a>
+          {% else %}
+          <b>
+            But first you need to set up your <code>.env</code>!
+          </b>
+          {% endif %}
         </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="project py-5" id="project">
-        <div class="container">
-
-                <div class="row">
-                  <div class="col-lg-11 text-center mx-auto col-12">
-
-                      <div class="col-lg-8 mx-auto">
-                        <h2>Explore Stories</h2>
-                      </div>
-
-                      <div class="owl-carousel owl-theme">
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="images/project/sky.jpg" class="img-fluid" alt="sketched input">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="images/project/Asakusa-Honganji-Hokusai.jpg" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="images/project/Screenshot 2020-12-27 at 23.24.07.png" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="images/project/citylights.jpg" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-
-                        <div class="item">
-                          <div class="project-info">
-                            <img src="images/project/jan-huber-4OhFZSAT3sw-unsplash.jpg" class="img-fluid" alt="project image">
-                          </div>
-                        </div>
-                      </div>
-
-                  </div>
-                </div>
-
-    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
-        <div class="container">
-            <div class="row">
-
-<h2>About our community</h2>
-
-                <p>We are a group of autistic people, researchers, and allies of autistic people, who think that the world would be a much better place if autistic people had more of a say in how public and private spaces are used and designed. </p>
-<h2>Sensory processing and autism</h2>
-
-                <p>Compared to non-autistic people, autistic people can experience the sensory world differently.
-                    For example, they may find sounds lounder, lights brighter, colours more beautiful and virbrant or busy spaces more overwhelming.</p>
-                    <p>This can be a wonderful gift, but it can also cause lots of problems for autistic people and their families when they are trying to navigate a world not built with autistic people in mind. For example, it can be stressful taking a busy train during rush hour, or attending an appointment in a brightly lit hospital waiting room.</p>
-                    <p>The video below, which was made in collaboration with autistic people, shows some of the challenges sensory processing differences can present:</p>
-                    <p><a href="https://youtu.be/rP1S8ip4VVE"><img src="https://img.youtube.com/vi/rP1S8ip4VVE/maxresdefault.jpg" alt="Watch the video"></a>
-<h2>Research to make change happen</h2>
-                        <p>All autistic people are different.
-                            We want to collect together lots of stories from autistic people and those close to them, for example family members, so that we can better understand how sensory processsing differences affect the way autistic people navigate the world around them.
-                            Together, we can use this information to build a better world for autistic people and their families. </p>
-                        </div>
-                    </section>
-
-    <!-- FEATURES -->
-    <section class="resume py-5 d-lg-flex justify-content-center align-items-center" id="resume">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-12">
-                  <h2 class="mb-4">How it works</h2>
-
-                    <div class="timeline">
-                        <div class="timeline-wrapper">
-                             <div class="timeline-yr">
-                                  <span>1</span>
-                             </div>
-                             <div class="timeline-info">
-                                  <h3><span>Sign Up</span><small>Sign Up</small></h3>
-                                  <p>This will let you create a completely anonymous account.</p>
-                             </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Share Story</span><small>Share Story</small></h3>
-                                <p>Enter a story about how your sensee differences affect you in your daily life and decide who you want to share it with.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>3</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Explore Stories<small>Explore Stories</small></h3>
-                                <p>Explore the stories about that other people have shared on AutSPACEs</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>4</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Change any time<small>Change stories</small></h3>
-                                <p>You can edit your story and change who you would like to share it with at any time, even once you have submitted it.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12">
-                  <h2 class="mb-4 mobile-mt-2">Our Goals</h2>
-
-                    <div class="timeline">
-                        <div class="timeline-wrapper">
-                             <div class="timeline-yr">
-                                  <span>1</span>
-                             </div>
-                             <div class="timeline-info">
-                                  <h3><span>Share</span></h3>
-                                  <p>To share autistic people’s stories and tips with other autistic people who have similar experiences, so that they can learn from each other</p>
-                             </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Educate</span></h3>
-                                <p>To educate non-autistic people so that they can better support their autistic friends, families, and colleagues.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>3</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Impact</span></h3>
-                                <p>To advise organisations about how they can design and adapt spaces and policies to improve autistic people’s lives.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <p>Sign up to our Newsletter to receive monthly updates</p>
-
-    <form style="border:1px solid #ccc;padding:3px;text-align:center;" action="https://tinyletter.com/AutisticaTuringCitizenScience" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/AutisticaTuringCitizenScience', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"><p><label for="tlemail">Enter your email address</label></p><p><input type="text" style="width:140px" name="email" id="tlemail" /></p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /><p><a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a></p></form>
+      </div>
 
 
-<style>
-
-    .card-footer {
-        background-color: transparent !important;
-    }
-
-    .card-subtitle {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-</style>
-
-    <!-- FOOTER -->
-     <footer class="footer py-5">
-          <div class="container">
-               <div class="row">
-
-                    <div class="col-lg-12 col-12">
-                        <p class="copyright-text text-center">MIT license</p>
-                        <p class="copyright-text text-center">Designed by <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a></p>
-                    </div>
-
-               </div>
-          </div>
-     </footer>
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/Headroom.js"></script>
-    <script src="js/jQuery.headroom.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="js/custom.js"></script>
-
-  </body>
-</html>
+{%endblock%}
