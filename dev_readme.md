@@ -100,5 +100,9 @@ Note: Please note that certain aspects of the website may not be fully functiona
 
 *If you aren't sure how to get to the root repository, you can find it more easily by following these steps:* 
 
-  1. Type `git config --global alias.root 'rev-parse --show-toplevel` into your terminal. This will create a simpler command to take you to the root repository. 
-  2. Type `cd $(git root)` into your terminal. This will take you to the root of the repository you are in. 
+1. Type `git config --global alias.root 'rev-parse --show-toplevel` into your terminal. This will create a simpler command to take you to the root repository. 
+2. Type `cd $(git root)` into your terminal. This will take you to the root of the repository you are in. 
+
+### Docker overview 
+
+You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in _The Turing Way_ useful!
