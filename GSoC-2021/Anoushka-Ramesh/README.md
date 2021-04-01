@@ -12,6 +12,7 @@ UserData JSON file -
 ## Assessment Step 2
 [Todo-App](https://github.com/anoura12/todo-app) - A basic Django todo application where you can create and update tasks.
 I've used HTML and Tailwind CSS for the frontend.
+You can click [here](http://3.142.144.255:8000/todo/) to view the app
 
 ## Assessment Step 3
 The development requirement that I would like to work on is the additional design requirements for the website.
