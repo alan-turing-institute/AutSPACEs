@@ -1,6 +1,6 @@
 # Building A Working Prototype of the AutSPACEs Website
 
-## Contact Details:
+## :phone:Contact Details:
 Full Name - Anoushka Ramesh  
 Email Address - anoushkaramesh21@gmail.com  
 Location - Maharashtra, India  
@@ -9,7 +9,7 @@ Portfolio - [https://anoura12.github.io/](https://anoura12.github.io/)
 GitHub - [https://github.com/anoura12](https://github.com/anoura12)  
 Hangouts ID - anoushkaramesh21@gmail.com  
 
-## Project Abstract:
+## 📖Project Abstract:
 The project aims to build and implement a working prototype of the AutSPACEs website in collaboration with the autistic community.  
   
 AutSPACEs is a citizen science platform that captures an autistic person’s experiences with sensory processing differences and challenges and generates a qualitative dataset. This data serves two purposes:
@@ -29,7 +29,7 @@ with required pages and features [[1]](https://github.com/alan-turing-institute/
 * Testing and improving the prototype based on feedback from the autistic
 community.
 
-## Project in Detail:
+## :mag:Project in Detail:
 This is a basic overview of how the user will go through the website-
 ![website flow](https://user-images.githubusercontent.com/73518403/114704760-99e21680-9d44-11eb-9bda-18948fab0e2b.png)  
 
@@ -93,7 +93,7 @@ What needs to be done?
 * Check the order makes sense when tabbing.
 * Check nothing unexpected happens when tabbing through a page.  
 
-## Project Deliverables
+## ✔️Project Deliverables:
 * Connect the website to Open Humans - site responsible for the backend
 database
 * Solve issues from milestones 2 and 3 which are -
@@ -107,7 +107,7 @@ outcomes
 * Test the prototype in collaboration with the autistic community
 * Raise new issues based on the feedback from the community
 
-## Project Timeline  
+## :clock10:Project Timeline:  
 
 | Week | Tasks |
 | --- | --- |
@@ -132,10 +132,10 @@ I would be solving the following issues if time permits:
 2. Issue #69 - Brief explanation of explore stories page
 3. Issue #47 - Check if images have proper descriptions  
 
-## Plan for communication with mentors:
+## 🗣️Plan for communication with mentors:
 I would be giving regular status updates on Slack everyday updating my mentors about my work and progress. I will also attend weekly calls on Zoom with Lotty (community manager) and Kirstie (project lead), and regular calls with James Kim (lead developer) as needed. I will attend the fortnightly community meet-ups to build connections to the autistic contributors.  
 
-## About Me
+## :star2:About Me
 * **Why do you want to do this project?**  
 This project combines my interest in design with a sense of purpose towards the community. I’ve always liked to draw and design and I do have good skills in web
 development. This particular project gives me a good opportunity to create an accessible design specifically for autistic people which not only puts my skills to
@@ -168,7 +168,7 @@ Currently, I am a part of a student-run open source club called amFOSS [[9]](htt
 non-technical skills.  
 For further information, please feel free to get in touch via any of the means given in this proposal, or refer to my CV [[10]](https://anoura12.github.io/docs/Anoushka_Resume.pdf).  
 
-## Appendix
+## 📑Appendix:
 [1] [https://github.com/alan-turing-institute/AutSPACEs/milestone/2](https://github.com/alan-turing-institute/AutSPACEs/milestone/2)  
 [2] [https://github.com/alan-turing-institute/AutSPACEs/milestone/3](https://github.com/alan-turing-institute/AutSPACEs/milestone/3)  
 [3] [https://github.com/alan-turing-institute/AutSPACEs/issues/32](https://github.com/alan-turing-institute/AutSPACEs/issues/32)  
