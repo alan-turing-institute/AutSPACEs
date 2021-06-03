@@ -1,4 +1,26 @@
 # Steps to start the website
+
+## Setup:
+
+Before starting, please check that the following minimum requirements have been completed.
+
+1. Install [Docker](https://www.docker.com/products/docker-desktop). (Latest stable release, version 20.10.5 or greater)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/). (Latest stable release, version 1.28.5 or greater)
+3. Create an [Open Humans](https://www.openhumans.org/) account.
+4. Some version of Python 3.x.x.
+
+### Some prerequisites and know-hows for installing Docker:
+
+### Windows 10:
+
+- Download Docker from the official Website named as "Docker Desktop for Windows"
+- Make sure to Download and install the [Linux kernel update package](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
+- When Docker is downloaded completely, go to the location where the application downloaded and double click on the Docker Desktop Installer.exe to run the installer.
+- When prompted  **Install required Windows components for WSL 2** option is selected on the Configuration page.
+- Follow the instructions on the installation wizard to authorize the installer and proceed with the install.
+- When the installation is successful, click **Close** to complete the installation process.
+- Open the Docker for Desktop, try the tutorial to understand to create and build a docker image. In order to share the image, create an account from the Docker hub.
+- In this Docker is successfully and running!
 # How to start website
 
 If you're interested in building and running the AutSPACE platform, read on!
@@ -120,3 +142,5 @@ Note: Please note that certain aspects of the website may not be fully functiona
 ### Docker overview
 
 You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in *The Turing Way* useful!
+
+
