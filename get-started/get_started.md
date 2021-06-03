@@ -72,7 +72,7 @@ OPENHUMANS_APP_BASE_URL="<http://localhost:8000>"
 
 ```
 
-1. You're done!
+2. You're done!
 
 ## Running the Project
 
