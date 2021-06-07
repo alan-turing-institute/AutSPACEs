@@ -1,3 +1,10 @@
+# What can all be found in this repo?
+
+Please follow the below mind map to understand the impotant topics to concentrate on the repository
+
+![alt text](https://github.com/alan-turing-institute/AutSPACEs/blob/lotty-repo-refresh/get-started/github_mindmap.png)
+
+
 # Steps to start the website
 
 ## Setup:
@@ -21,6 +28,7 @@ Before starting, please check that the following minimum requirements have been 
 - When the installation is successful, click **Close** to complete the installation process.
 - Open the Docker for Desktop, try the tutorial to understand to create and build a docker image. In order to share the image, create an account from the Docker hub.
 - In this Docker is successfully and running!
+
 # How to start website
 
 If you're interested in building and running the AutSPACE platform, read on!
@@ -143,4 +151,7 @@ Note: Please note that certain aspects of the website may not be fully functiona
 
 You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in *The Turing Way* useful!
 
+# Code
+* The main code is found in the folder called [server](https://github.com/alan-turing-institute/AutSPACEs/tree/main/server)
+* This code can be modfied accordingly. 
 
