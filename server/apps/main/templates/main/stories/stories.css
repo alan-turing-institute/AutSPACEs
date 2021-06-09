@@ -1,0 +1,152 @@
+body {
+position: absolute;
+width: 1440px;
+height: 2523px;
+left: 0px;
+top: 0px;
+overflow-y: scroll;
+
+background: #EEF8FF;
+}
+
+
+li{
+  list-style-type: none;
+  margin: 0 2vw;
+  font-size: 3vh;
+}
+a{
+	text-decoration: none;
+	color: black;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	top: 30px;
+	
+}
+nav{
+	position: absolute;
+	width: 1535px;
+	height: 88px;
+	left: 0px;
+	top: 0px;
+	color: #95EFEA;
+	background-color: #D6EFFF;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+body{
+  margin: 0;
+}
+a:hover{
+  background-color: #C6E9FF;
+  font-size: 150%;
+}
+
+
+    #moderation{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 39px;
+		
+    }
+	#about{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 251px;
+	}
+	#share{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 438px;
+	}
+	#view{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 625px;
+	}
+	#mypage{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 812px;
+	}
+	#login{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 999px;
+	}
+	#settings{
+		position: absolute;
+		width: 212px;
+		height: 85px;
+		left: 1171px;
+	}
+	
+h1{
+	position: absolute;
+	width: 345px;
+	height: 167px;
+	left: 530px;
+	top: 125px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 72px;
+	line-height: 84px;
+	text-align: center;
+
+	color: rgba(9, 15, 17, 0.66);
+}
+h2{
+	position: absolute;
+	width: 1500px;
+	height: 440px;
+	left: 74px;
+	top: 311px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 45px;
+	/* or 94% */
+	color: #000000;
+}
+h4{
+	position: absolute;
+	width: 613px;
+	height: 105px;
+	left: 483px;
+	top: 609px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 45px;
+	/* or 94% */
+	color: #000000;
+}
+boxed{
+	position: absolute;
+	width: 488px;
+	height: 536px;
+	left: 0px;
+	top: 768px;
+	background: #EBF1F5
+}
+
+
