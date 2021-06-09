@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="stories.css">
+	<nav>
+		<ul>
+			<!-- list of all the items in nav bar -->
+			<li><a href="#" id="moderation"> Moderation </a></li>
+			<li>
+				<a href="#" id="about">ABOUT</a>
+			</li>
+			<li>
+				<a href="#" id="share">Share</a>
+			</li>
+			<li>
+				<a href="#" id="view">View</a>
+			</li>
+			<li>
+				<a href="#"id="mypage">MyPage</a>
+			</li>
+			<li>
+				<a href="#" id="login">LOGIN</a>
+			</li>
+			<li>
+				<a href="#" id="settings">Settings</a>
+			</li>
+			  
+		</ul>
+
+	</nav>
+	<h1>My Stories</h1>
+	<h2>Welcome to your personal AutSPACE page. Here you can:
+		<pre>* See the experiences you have saved and submitted</pre>
+		<pre>* Change who your experiences are shared with </pre>
+	<h2>
+	<h4>MY EXPERIENCES</h4>
+<div class="boxed" style="position: absolute;
+						width: 316px;
+						height: 102px;
+						left: 24px;
+						top: 801px;
+						font-family: Roboto;
+						font-style: normal;
+						font-weight: bold;
+						font-size: 36px;
+						line-height: 42px;
+						color: #000000;"> Shared with...
+                        </div>
+	
+<style>
+	.boxed {
+ 	position: absolute;
+	width: 488px;
+	height: 536px;
+	left: 0px;
+	top: 768px;
+	background: #EBF1F5;
+	
+ </style>
+<style>
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+ }
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 60px;
+  top: 941px;
+  background: #C4C4C4;
+}
+</style>
+<body>
+
+
+
+	<label class="container"style="position: absolute;width: 310.03px;height: 106.08px;left: 123px;top: 922px" class="boxed" >Share with the world by publishing on the AutSPACE website.
+		<input type="radio" checked="checked" name="radio">
+		<span class="checkmark"></span>
+	</label>
+	<label class="container" style="position: absolute;width: 310.03px;height: 106.08px;left: 126.16px;top: 1028.08px;">Share, but only with people who have signed up and told us that they are autistic.
+		<input type="radio" name="radio">
+		<span class="checkmark"></span>
+	</label>
+	<label class="container" style="position: absolute; width: 310.03px; height: 106.08px; left: 126.16px;top: 1140.92px;">Share with scientists and researchers
+		<input type="radio" name="radio">
+		<span class="checkmark"></span>
+	</label>
+   </body>
+
+</html>
