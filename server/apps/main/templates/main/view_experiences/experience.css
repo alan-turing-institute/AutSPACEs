@@ -1,0 +1,155 @@
+body {
+position: absolute;
+width: 1440px;
+height: 2933px;
+left: 0px;
+top: 0px;
+overflow-y: scroll;
+background: #EEF8FF;
+}
+
+
+li{
+  list-style-type: none;
+  margin: 0 2vw;
+  font-size: 3vh;
+}
+a{
+	text-decoration: none;
+	color: black;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	
+}
+nav{
+	position: absolute;
+	width: 1440px;
+	height: 88px;
+	left: 0px;
+	top: 0px;
+	background: rgba(149, 239, 234, 0.42);
+}
+ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+body{
+  margin: 0;
+}
+a:hover{
+  background-color: #C6E9FF;
+  font-size: 150%;
+}
+#about{
+	position: absolute;
+	width: 212px;
+	height: 85px;
+	left: 251px;
+	top: 30px;
+}
+#share{
+	position: absolute;
+	width: 212px;
+	height: 85px;
+	left: 438px;
+	top: 30px;
+}
+#login{
+	position: absolute;
+	width: 212px;
+	height: 85px;
+	left: 999px;
+	top: 30px;
+}
+h1{
+	position: absolute;
+	width: 345px;
+	height: 167px;
+	left: 530px;
+	top: 125px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 72px;
+	line-height: 84px;
+	text-align: center;
+	color: rgba(9, 15, 17, 0.66);
+}
+p{
+	position: absolute;
+	width: 1106px;
+	height: 53px;
+	left: 149px;
+	top: 239px;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 36px;
+	line-height: 42px;
+	text-align: center;
+	color: #000000;
+
+}
+input[type=text] {
+	position: absolute;
+	width: 1071px;
+	height: 68px;
+	left: 184px;
+	top: 330px;
+	background: #C4C4C4;
+	font-family: Roboto;font-style: normal;
+		font-weight: normal;font-size: 36px;line-height: 42px;color: #000000;
+
+}
+::placeholder{
+	"position: absolute;width: 245px; height: 68px;left: 149px;top: 342px; font-family: Roboto;font-style: normal;
+		font-weight: normal;font-size: 36px;line-height: 42px;color: #000000;
+}
+#rect{
+	position: absolute;
+	width: 170px;
+	height: 1167px;
+	left: 140px;
+	top: 780px;
+	background: #EBF1F5;
+	transform: rotate(-90deg)
+}
+#newrect{
+	position: absolute;
+	width: 1167px;
+	height: 699px;
+	left: 140px;
+	top: 609px;
+	background: #C4C4C4;
+}
+#greenrect{
+	position: absolute;
+	width: 167px;
+	height: 91px;
+	left: 188px;
+	top: 808px;
+	background: #299C57
+}
+
+#redrect{
+	position: absolute;
+	width: 147px;
+	height: 96px;
+	left: 396px;
+	top: 803px;
+	background: #DD2424;
+}
+#bluerect{
+	position: absolute;
+	width: 1086px;
+	height: 150px;
+	left: 188px;
+	top: 937px;
+	background: #00B2FF;
+}
