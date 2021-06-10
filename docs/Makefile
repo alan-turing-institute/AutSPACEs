@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = python -msphinx
+SPHINXBUILD   = python3.8 -msphinx
 SPHINXPROJ    = wemake-django-template
 SOURCEDIR     = .
 BUILDDIR      = _build
