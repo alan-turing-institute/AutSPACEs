@@ -24,7 +24,7 @@ def index(request):
                'oh_proj_page': settings.OH_PROJ_PAGE}
     if request.user.is_authenticated:
         return redirect('main:overview')
-    return render(request, 'main/index.html', context=context)
+    return render(request, 'main/landing.html', context=context)
 
 
 def overview(request):
