@@ -83,7 +83,7 @@ def upload(request):
         return redirect('index')
     else:
         if request.user.is_authenticated:
-            return render(request, 'main/upload.html')
+            return render(request, 'main/share_experiences.html')
     return redirect('index')
 
 
