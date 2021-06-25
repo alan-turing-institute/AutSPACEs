@@ -6,7 +6,7 @@ import uuid
 
 import requests
 from django.conf import settings
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 
@@ -200,3 +200,11 @@ def make_research(request, oh_file_id, file_uuid):
             request.user.openhumansmember.delete_single_file(
                 file_id=oh_file_id)
     return redirect('list')
+
+
+def my_stories(request):
+    context = {}
+
+    if request.user.is_authenticated:
+        return render(request, "main/my_stories.html", context)
+    return redirect("main:overview")
