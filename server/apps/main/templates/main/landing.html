@@ -75,11 +75,22 @@
 </head>
 
 <body>
-    <nav class="navbar">
+    <nav class="navbar navbar-expand">
         <a class="navbar-brand" href="#">
             <img src="autistic.png" width="65" height="35" alt="">
             <img src="alanturing.png" width="75" height="35" alt="">
         </a>
+        <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">View Experiences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">Logout</a>
+            </li>
+          </ul>
     </nav>
     <div class="container">
 
@@ -115,15 +126,13 @@
             </div>
             <br>
             <div class="col-sm-2 offset-sm-3">
-                <br><br>
+                <br><br><br>
                 <a href="#" class="btn btn-default btn-colour btn-lg text-dark"
                     role="button">Sign Up</a>
                 <br>
                 <a href="{{ auth_url }}" class="btn btn-colour btn-lg btn-block text-dark"
                     role="button">Sign In</a>
                 <br>
-                <a href="#" class="btn btn-default btn-colour btn-lg btn-block text-dark"
-                    role="button">View Experiences</a>
             </div>
 
         </div>
