@@ -7,6 +7,7 @@ app_name = 'main'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^signup/?$', views.signup, name='signup'),
     url(r'^logout/?$', views.logout_user, name='logout'),
     url(r'^overview/?$', views.overview, name='overview'),
     url(r'^public_experiences/?$', views.list_public_experiences,
