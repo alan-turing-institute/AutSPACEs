@@ -161,13 +161,13 @@
             <li {% if section == 'main:my_stories' %} class="active" {%endif%}>
               {% if not request.user.is_authenticated %}
               <a href="{% url 'main:index' %}">Home</a>
-              {% else% }
+              {% else %}
                 <a href="">My Stories</a>
               {% endif %}
             </li>
 
             {% if request.user.is_authenticated %}
-            {% comment %}
+            {% comment %} 
               Couldn't find the share experiences url, 
               so I'm leaving that there for anyone to fix it in 
 
@@ -175,10 +175,13 @@
 
               href="{% url 'main:share-experiences-url' %}"
               
-            <li {% if section == '' %} class="active" {%endif%}>
-              <a href="{% url '' %}">Share Experiences</a>
+            <li {% if section == 'main:hare-experiences-url' %} class="active" {%endif%}>
+              <a href="{% url 'main:hare-experiences-url' %}">Share Experiences</a>
             </li>
             {% endcomment %}
+            <li class="active">
+              <a href="">Share Experiences</a>
+            </li>
 
             <li {% if section == 'main:logout' %} class="active" {%endif%}>
               <a href="{% url 'main:logout' %}" class="btn btn-default btn-sm">Logout</a>

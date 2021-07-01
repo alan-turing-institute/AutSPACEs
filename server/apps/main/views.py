@@ -207,4 +207,5 @@ def my_stories(request):
 
     if request.user.is_authenticated:
         return render(request, "main/my_stories.html", context)
-    return redirect("main:overview")
+    else:
+        return redirect("main:overview")
