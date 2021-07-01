@@ -200,3 +200,7 @@ def make_research(request, oh_file_id, file_uuid):
             request.user.openhumansmember.delete_single_file(
                 file_id=oh_file_id)
     return redirect('list')
+
+
+def signup(request):
+    return render(request, "main/signup.html")
