@@ -23,7 +23,7 @@
             height: 100vh;
         }
         .bg-light {
-            background-color: #87ebe6;
+            background-color:rgba(149, 239, 234, 0.42);
             margin-bottom: 0;
         }
 
@@ -99,7 +99,7 @@
     <div id="project-sign-up">
         <p>Sign Up to AutSPACE</p>
     </div>
-    <form id="form-check">
+    <form id="form-check" action="{% url 'signup_frame4_test' %}" method="POST">
         <div class="container">
             <div id="question">
                 <p>Are you autistic?</p>
@@ -114,11 +114,12 @@
                 <label for="explicit-label-name">PREFER NOT TO SAY </label>
                 <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
             </div>
+            <div class="submit">
+                <button type="button" class="btn btn-primary mb1 bg-greenyellow" form="form-check">CONTINUE</button>
+            </div>
         </div>
     </form>
-    <div class="submit">
-        <button type="button" class="btn btn-primary mb1 bg-greenyellow" form="form-check">CONTINUE</button>
-    </div>
+
     <footer class="footer navbar-fixed-bottom">
 </body>
 </html>
