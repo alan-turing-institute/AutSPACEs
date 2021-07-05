@@ -1,3 +1,5 @@
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>AutSPACEs Experiences Page</title>
+    <title>View Experiences</title>
     <style>
         body {
             background: #E8F3FC;
@@ -42,11 +44,18 @@
 
 <body>
 	<nav class="navbar">
-		<a class="navbar-brand" href="#" </a>
-
-			 <a style="color:#000000;"href="#about">About</a>      
-			 <a style="color:#000000;"href="#share">Share</a>      
-			 <a style="color:#000000;"href="#login">Login</a>
+		<a class="navbar-brand" href="#"</a>
+       <a style="color:#000000;" href="{% url 'main:index' %}">Home</a>
+			 <a style="color:#000000;"href="#about">About</a>  
+             {% if section == 'main:list' %} class="active" {%endif%}
+                <a style="color:#000000;"href="{% url 'main:list' %}">View Experiences</a>
+             {%if user.is_authenticated%}
+			 <a style="color:#000000;"href="#" class="active">My Stories</a>
+			 <a style="color:#000000;"href="#" class="active">Share Experiences</a>
+             <a style="color:#000000;"href="{% url 'main:index' %}">Logout</a>
+			 {%else%}
+			 <a style="color:#000000;"href="#login" class="active">Login</a>
+			 {%endif%}
 	</nav>
         <div class="container">
            
@@ -152,3 +161,5 @@
 </body>
 
 </html>
+
+{% endblock %}
