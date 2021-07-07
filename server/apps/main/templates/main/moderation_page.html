@@ -1,3 +1,4 @@
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,7 @@
         }
         .my-custom-card{
             background:#C4C4C4;
-			height: 699px;
+			      height: 699px;
 
         }
         .goals{
@@ -24,7 +25,7 @@
         }
         .navbar{
             background: rgba(149, 239, 234, 0.42);
-			font-size: 24px;
+			      font-size: 24px;
 
         }
 		form{
@@ -52,10 +53,17 @@
 <body>
 	<nav class="navbar">
 		<a class="navbar-brand" href="#" </a>
+             <a style="color:#000000;"href="{% url 'main:index' %}">Home</a>
+             <a style="color:#000000;"href="#" class="active">About</a>	
+             <a style="color:#000000;"href="{% url 'main:public_experiences'%}">View Experiences</a>
+             {%if user.is_authenticated%}
+			 <a style="color:#000000;"href="#" class="active">My Stories</a>
+             <a style="color:#000000;"href="{% url 'main:index' %}">Logout</a>
+             <a style="color:#000000;"href="#" class="active">Share Experiences</a>
+			 {%else%}
+             <a style="color:#000000;"href="#" class="active">Login</a>
+			 {%endif%}
 
-			 <a style="color:#000000;"href="#about">About</a>      
-			 <a style="color:#000000;"href="#share">Share</a>      
-			 <a style="color:#000000;"href="#login">Login</a>
 	</nav>
         <div class="container">
            
@@ -147,3 +155,5 @@
 </body>
 
 </html>
+
+{% endblock %}
