@@ -6,7 +6,7 @@ import uuid
 
 import requests
 from django.conf import settings
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 
@@ -24,7 +24,7 @@ def index(request):
                'oh_proj_page': settings.OH_PROJ_PAGE}
     if request.user.is_authenticated:
         return redirect('main:overview')
-    return render(request, 'main/index.html', context=context)
+    return render(request, 'main/landing.html', context=context)
 
 
 def overview(request):
@@ -83,7 +83,7 @@ def upload(request):
         return redirect('index')
     else:
         if request.user.is_authenticated:
-            return render(request, 'main/upload.html')
+            return render(request, 'main/share_experiences.html')
     return redirect('index')
 
 
@@ -201,9 +201,16 @@ def make_research(request, oh_file_id, file_uuid):
                 file_id=oh_file_id)
     return redirect('list')
 
-
 def signup(request):
     return render(request, "main/signup.html")
 
 def signup_frame4_test(request):
     return render(request, "main/signup1.html")
+
+def my_stories(request):
+    context = {}
+
+    if request.user.is_authenticated:
+        return render(request, "main/my_stories.html", context)
+    else:
+        return redirect("main:overview")
