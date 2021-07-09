@@ -209,3 +209,7 @@ def my_stories(request):
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
+
+
+def confirmation_page(request):
+    return render(request, "main/confirmation_page.html")
