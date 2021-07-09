@@ -31,4 +31,5 @@ urlpatterns = [
          views.make_research,
          name='make_research'),
     path('my_stories/', views.my_stories, name="my_stories"),
+    path('confirm_page/', views.confirmation_page, name="confirm_page"),
 ]
