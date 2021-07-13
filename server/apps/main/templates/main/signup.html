@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{config.project_title |default:"My Open Humans Project" }}</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Sign Up</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+        .bg-light {
+            background-color:rgba(149, 239, 234, 0.42);
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-item {
+            padding: 1.5em 2em 1.5em 2em;
+            font-size: large;
+            font-weight: bold;
+        }
+        .nav-link {
+            color: black;
+        }
+
+        .nav-link:hover {
+            text-decoration: none;
+            color: black;
+        }
+        #project-sign-up {
+            margin-left: 2em;
+            font-size: large;
+            margin-top: 0.5em;
+        }
+        .container {
+            margin: auto;
+        }
+        #form-check {
+            display: flex;
+            /* height: 50vh; */
+            padding-top: 25vh;
+
+        }
+        .footer {
+            background-color: gray;
+            height: 10vh;
+        }
+        .submit {
+            margin-left: 45%;
+        }
+        input[type="radio"]{
+           margin: 0 10px 0 10px;
+        }
+
+        #question p {
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <ul class="navbar-nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Share</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">View</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">MyPage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">LOGIN</a>
+            </li>
+          </ul>
+    </nav>
+    <div id="project-sign-up">
+        <p>Sign Up to AutSPACE</p>
+    </div>
+    <form id="form-check">
+        <div class="container">
+            <div id="question">
+                <p>Are you autistic?</p>
+            </div>
+            <div class="options">
+                <label for="explicit-label-name">YES </label>
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label for="explicit-label-name">NO </label>
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label for="explicit-label-name">NOT SURE </label>
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                <label for="explicit-label-name">PREFER NOT TO SAY </label>
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+            </div>
+            <div class="submit">
+                <a href="{% url 'main:signup_frame4_test' %}"><button type="button" class="btn btn-primary mb1 bg-greenyellow" form="form-check">CONTINUE</button></a>
+            </div>
+        </div>
+    </form>
+
+    <footer class="footer navbar-fixed-bottom">
+</body>
+</html>

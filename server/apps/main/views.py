@@ -201,6 +201,11 @@ def make_research(request, oh_file_id, file_uuid):
                 file_id=oh_file_id)
     return redirect('list')
 
+def signup(request):
+    return render(request, "main/signup.html")
+
+def signup_frame4_test(request):
+    return render(request, "main/signup1.html")
 
 def my_stories(request):
     context = {}
