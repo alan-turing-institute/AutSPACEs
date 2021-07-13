@@ -216,10 +216,3 @@ def confirmation_page(request):
     Confirmation Page For App
     """
     return render(request, "main/confirmation_page.html")
-
-
-def register_user(request):
-    """
-    Register User: If successful, redirect the user to the confirm_page
-    """
-    return redirect("main:confirm_page")
