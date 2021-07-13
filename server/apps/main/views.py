@@ -6,7 +6,7 @@ import uuid
 
 import requests
 from django.conf import settings
-from django.contrib.auth import logout
+from django.contrib.auth import login,logout
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 
