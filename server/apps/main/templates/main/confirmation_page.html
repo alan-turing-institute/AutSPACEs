@@ -17,7 +17,6 @@
 
 <body>
   
-  <!-- Custom Styles Starts Here -->
   <style>
     body {
       background: #E8F3FC;
@@ -102,6 +101,7 @@
     div.to_do_now {
       text-align: center;
       margin-top: 60px;
+      padding-bottom: 60px;
     }
 
     div.to_do_now p.h4 {
@@ -141,10 +141,8 @@
     }
 
   </style>
-  <!-- Custom Styles Ends Here -->
 
 
-  <!-- Navbar Starts Here -->
   <nav class="navbar navbar-expand">
     <ul class="navbar-nav mx-auto justify-content-around">
       <li class="nav-item">
@@ -164,22 +162,17 @@
       </li>
     </ul>
   </nav>
-  <!-- Navbar Ends Here -->
 
 
-  <!-- Container Starts Here -->
   <div class="container">
 
-    <!-- Confirmation Section Starts Here -->
     <section class="confirmation">
       <div class="confirmation_flex">
 
-        <!-- Confirm SVG -->
         <div class="confirm_svg">
           <i class="fa fa-check" aria-hidden="true"></i>
         </div>
 
-        <!-- Confirm Success -->
         <div class="confirm_success">
           <p class="h3 text-success">
             Success!
@@ -206,14 +199,13 @@
       </div>
 
 
-      <!-- What Happens Now Section Starts Here -->
       <div class="what_now">
         <p class="h4" id="whatNow">
           What Happens Now? <span class="step">(step by step)</span>
         </p>
 
         <div class="what_now_texts">
-          <ul class="texts card d-none" id="whatNowTexts">
+          <ul class="texts card" id="whatNowTexts">
 
             <!-- First Item Text -->
             <li class="text">
@@ -245,10 +237,7 @@
           </ul>
         </div>
       </div>
-      <!-- What Happens Now Section Ends Here -->
 
-
-      <!-- What Would You Like To Do Now Section Starts Here -->
       <div class="to_do_now">
         <p class="h4 text-success">
           What would you like to do now?
@@ -284,13 +273,9 @@
           </button>
         </div>
       </div>
-      <!-- What Would You Like To Do Now Section Ends Here -->
 
     </section>
-    <!-- Confirmation Section Ends Here -->
-
   </div>
-  <!-- Container Ends Here -->
 
 
 
@@ -304,17 +289,6 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-  </script>
-
-  <!-- Custom Scripts Goes Here -->
-  <script defer>
-    const whatNow = document.getElementById("whatNow");
-    const whatNowTexts = document.getElementById("whatNowTexts");
-
-    whatNow.addEventListener("click", () => {
-      whatNowTexts.classList.toggle("d-none");
-    });
-
   </script>
 
 </body>
