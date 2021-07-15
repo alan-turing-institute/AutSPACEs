@@ -80,7 +80,7 @@ def upload(request):
                     difference_text=wish_different_text,
                     open_humans_member=request.user.openhumansmember,
                     experience_id=experience_id)
-        return redirect('index')
+        return redirect('main:confirm_page')
     else:
         if request.user.is_authenticated:
             return render(request, 'main/share_experiences.html')
@@ -214,3 +214,10 @@ def my_stories(request):
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
+
+
+def confirmation_page(request):
+    """
+    Confirmation Page For App
+    """
+    return render(request, "main/confirmation_page.html")
