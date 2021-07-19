@@ -99,7 +99,7 @@ def list_public_experiences(request):
     experiences = PublicExperience.objects.filter(approved='approved')
     return render(
         request,
-        'main/public_experiences.html',
+        'main/experiences_page.html',
         context={'experiences': experiences})
 
 
@@ -200,10 +200,3 @@ def make_research(request, oh_file_id, file_uuid):
             request.user.openhumansmember.delete_single_file(
                 file_id=oh_file_id)
     return redirect('list')
-def public_experiences(request):
-    context = {}
-
-    if request.user.is_authenticated:
-        return render(request, "main/public_experiences.html", context)
-    else:
-        return redirect("main:overview")
