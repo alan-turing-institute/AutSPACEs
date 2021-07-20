@@ -99,7 +99,7 @@ def list_public_experiences(request):
     experiences = PublicExperience.objects.filter(approved='approved')
     return render(
         request,
-        'main/public_experiences.html',
+        'main/experiences_page.html',
         context={'experiences': experiences})
 
 
