@@ -1,24 +1,163 @@
-{% extends 'main/application.html' %}
-
 {% block content %}
-    <h1>File List</h1>
-    <p class="lead">This is a list of all public experiences</p>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>AutSPACEs Moderation Page</title>
+    <style>
+        body {
+            background: #E8F3FC;
+        }
+        .my-custom-card{
+            background:#C4C4C4;
+			      height: 699px;
 
-        {% for experience in experiences %}
+        }
+        .goals{
+            background:#EBF1F5;
+        
+        }
+        .navbar{
+            background: rgba(149, 239, 234, 0.42);
+			      font-size: 24px;
 
-        <div class="panel panel-default">
-          <div class="panel-heading">{{experience.open_humans_member.oh_id}} - {{experience.created_at}}</div>
-          <div class="panel-body">
-            <h5>Experience</h5>
-            {{experience.experience_text}}
-            <h5>What would you have liked to be different?</h5>
-            {{experience.difference_text}}
-          </div>
+        }
+		form{
+            text-align: center;
+            font-size: x-large;
+        }
+		.mysmallCcards{
+			background: #00B2FF;
+			
+		}
+        .btn-colour{
+            height: 80.84px;
+            width: 200px;
+		}
+		.btn-colour:hover{
+            background: #7dce1b;
+            height: 80.84px;
+            width: 200px;
+        
+        }
+        
+    </style>
+</head>
+
+<body>
+	<nav class="navbar">
+		<a class="navbar-brand" href="#" </a>
+             <a style="color:#000000;"href="{% url 'main:index' %}">Home</a>
+             <a style="color:#000000;"href="#" class="active">About</a>	
+             <a style="color:#000000;"href="{% url 'main:public_experiences'%}">View Experiences</a>
+             {%if user.is_authenticated%}
+			 <a style="color:#000000;"href="#" class="active">My Stories</a>
+             <a style="color:#000000;"href="{% url 'main:index' %}">Logout</a>
+             <a style="color:#000000;"href="#" class="active">Share Experiences</a>
+			 {%else%}
+             <a style="color:#000000;"href="#" class="active">Login</a>
+			 {%endif%}
+
+	</nav>
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center; padding:3%">
+                    <h1>Moderate</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1 text-center">
+                    <h4> Here you can moderate experiences shared by other people.
+                    </h4>
+                </div>
+    
+            </div>
+			
+            <br><br><br>
+            <div class="row my-custom-card">
+                <div class="col-sm-12 ">
+                    <div class="card goals">
+                        <div class="card-body">
+							<div class="row">
+								<div class="col-2 col-sm-2 offset-sm-1">
+									<h3 class="card-text h3">DATE</h3>
+								</div>
+								<div class="col-2 col-sm-4">
+									<h3 class="card-text">PERSON'S <br/> AUTISM </br> CONNECTION </h3>
+								</div>
+							</div>
+							<br>
+							
+                        </div>
+        
+                    </div>
+					<br>
+					<br><br><br>
+					<div class="card mysmallCcards">
+							<div class="card mysmallCcards">
+								<div class="row">
+									<div class="col-2 col-sm-2 offset-sm-1">
+										<h3>July 21</h3>
+									</div>
+									<div class ="col align-self-center ">
+										<h4>Me and Timmy had some Ice Cream, 
+											and I decided to drop mine for the lolz.<br/>Timmy just watched me, mouth agape.</h4>
+									</div>
+								</div>
+							</div>
+					</div>
+					<br><br>
+						<div class="row">
+							<div class="col-2 col-sm-2 offset-sm-2">
+								<button class="bbtn btn-colour btn-lg" style="background:#299C57"> 
+                    <a style="color:#000000" href="{% url 'main:index' %}" > Approve </a>
+                </button>
+							</div>
+							<br>
+							<br>
+							<div class ="col-2 col-sm-2 offset-sm-3 ">
+                <button class="bbtn btn-colour btn-lg" style="background:#DD2424"> 
+                     <a style="color:#000000" href="{% url 'main:index' %}" > Decline </a>
+                </button>
+							</div>
+						</div>
+					</div>
+							
+                </div>
+                
+            </div>
+		</div>
+					
+				
+    <br><br><br>
+
+    
         </div>
+        <br><br>
+    
+    
 
-        <p><a href="{%url 'main:review_experience' experience.experience_id %}" class="btn btn-success">Approve</a></p>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
-        {% endfor %}
+</body>
+
+</html>
 
 {% endblock %}
