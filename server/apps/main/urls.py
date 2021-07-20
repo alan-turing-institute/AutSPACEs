@@ -7,6 +7,8 @@ app_name = 'main'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^signup/?$', views.signup, name='signup'),
+    url(r'^signup1/?$', views.signup_frame4_test, name='signup_frame4_test'),
     url(r'^logout/?$', views.logout_user, name='logout'),
     url(r'^overview/?$', views.overview, name='overview'),
     url(r'^public_experiences/?$', views.list_public_experiences,
@@ -30,4 +32,5 @@ urlpatterns = [
     path('make_research/<oh_file_id>/<file_uuid>/',
          views.make_research,
          name='make_research'),
+    path('my_stories/', views.my_stories, name="my_stories"),
 ]
