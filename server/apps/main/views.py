@@ -23,7 +23,7 @@ def index(request):
     context = {'auth_url': auth_url,
                'oh_proj_page': settings.OH_PROJ_PAGE}
     if request.user.is_authenticated:
-        return redirect('main:overview')
+        return render(request, 'main/landing.html', context=context)
     return render(request, 'main/landing.html', context=context)
 
 
