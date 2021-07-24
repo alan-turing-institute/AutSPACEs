@@ -58,7 +58,7 @@
              {%if user.is_authenticated%}
 			 <a style="color:#000000;"href="{% url 'main:my_stories' %}" class="active">My Stories</a>
              <a style="color:#000000;"href="{% url 'main:index' %}">Logout</a>
-             <a style="color:#000000;"href="#" class="active">Share Experiences</a>
+             <a style="color:#000000;"href="{% url 'main:upload' %}" class="active">Share Experiences</a>
 			 {%else%}
              <a style="color:#000000;"href="#" class="active">Login</a>
 			 {%endif%}
