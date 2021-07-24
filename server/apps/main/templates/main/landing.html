@@ -85,11 +85,19 @@
               <a class="nav-link text-dark" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="#">View Experiences</a>
+              <a class="nav-link text-dark" href="{% url 'main:public_experiences' %}">View Experiences</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link text-dark" href="#">Logout</a>
+                <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
             </li>
+            {% endif %}
           </ul>
     </nav>
     <div class="container">
@@ -110,6 +118,28 @@
         </div>
         <br>
         <br>
+        {% if user.is_authenticated %}
+            <div class="row my-custom-row">
+                <div class="col-sm-10 offset-sm-3">
+                    <div class="card my-custom-card">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">How It Works</h3>
+                            <ol class="card-text h5">
+                                <li>Sign up</li>
+                                <li>Share a story about you</li>
+                                <li>Choose who gets to view your story</li>
+                                <li>Explore other people's stories</li>
+                            </ol>
+        
+                        </div>
+        
+                    </div>
+                </div>
+                
+                <br>
+    
+            </div>
+            {% else %}
         <div class="row my-custom-row">
             <div class="card my-custom-card">
                 <div class="card-body">
@@ -134,8 +164,8 @@
                     role="button">Sign In</a>
                 <br>
             </div>
-
         </div>
+            {%endif%}
         <br><br>
         <div class="row">
             <div class="col-sm-10 offset-sm-1 text-center">
