@@ -87,17 +87,6 @@
             <li class="nav-item">
               <a class="nav-link text-dark" href="{% url 'main:public_experiences' %}">View Experiences</a>
             </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
-            </li>
-            {% endif %}
           </ul>
     </nav>
     <div class="container">
