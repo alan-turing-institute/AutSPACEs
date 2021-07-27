@@ -33,7 +33,7 @@ def overview(request):
         context = {'oh_id': oh_member.oh_id,
                    'oh_member': oh_member,
                    'oh_proj_page': settings.OH_PROJ_PAGE}
-        return render(request, 'main/landing.html', context=context)
+        return render(request, 'main/overview.html', context=context)
     return redirect('index')
 
 
@@ -41,7 +41,7 @@ def logout_user(request):
     """
     Logout user
     """
-    if request.user.is_authenticated:
+    if request.method == 'POST':
         logout(request)
     return redirect('index')
 
