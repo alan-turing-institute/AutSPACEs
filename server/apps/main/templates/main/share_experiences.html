@@ -71,16 +71,19 @@
                 <a class="nav-link text-dark" href="{% url 'main:overview' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="#">View Experiences</a>
+                <a class="nav-link text-dark" href="{% url 'main:public_experiences' %}">View Experiences</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:list' %}">My Stories</a>
+                <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Share Experiences</a>
+                <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Logout</a>
+                <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
               </li>
             </ul>
       </nav>
