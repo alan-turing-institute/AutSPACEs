@@ -175,7 +175,7 @@
             </li>
               
             <li {% if section == 'main:logout' %} class="active" {%endif%}>
-              <a href="{% url 'main:logout' %}" class="btn btn-default btn-sm">Logout</a>
+              <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out" style="margin-top:6px;" class="btn btn-default"></form>
             </li>
           </ul>
         </div>
