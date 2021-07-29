@@ -54,15 +54,11 @@
 	<nav class="navbar">
 		<a class="navbar-brand" href="#" </a>
              <a style="color:#000000;"href="{% url 'main:index' %}">Home</a>
-             <a style="color:#000000;"href="#" class="active">About</a>	
              <a style="color:#000000;"href="{% url 'main:public_experiences'%}">View Experiences</a>
-             {%if user.is_authenticated%}
-			 <a style="color:#000000;"href="#" class="active">My Stories</a>
-             <a style="color:#000000;"href="{% url 'main:index' %}">Logout</a>
-             <a style="color:#000000;"href="#" class="active">Share Experiences</a>
-			 {%else%}
-             <a style="color:#000000;"href="#" class="active">Login</a>
-			 {%endif%}
+             <a style="color:#000000;"href="{% url 'main:moderate_public_experiences' %}" class="active">Moderate Experiences</a>
+             <a style="color:#000000;"href="{% url 'main:upload' %}" class="active">Share Experiences</a>
+			 <a style="color:#000000;"href="{% url 'main:my_stories' %}" class="active">My Stories</a>
+             <a style="color:#000000;"href="{% url 'main:logout' %}">Logout</a>
 
 	</nav>
         <div class="container">
@@ -107,8 +103,13 @@
 										<h3>July 21</h3>
 									</div>
 									<div class ="col align-self-center ">
-										<h4>Me and Timmy had some Ice Cream, 
-											and I decided to drop mine for the lolz.<br/>Timmy just watched me, mouth agape.</h4>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus, 
+                                        non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur 
+                                        ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel, 
+                                        consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget. 
+                                        Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan 
+                                        diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non 
+                                        velit fermentum, egestas libero nec, faucibus tortor.</p>
 									</div>
 								</div>
 							</div>
