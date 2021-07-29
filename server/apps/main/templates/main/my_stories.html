@@ -155,8 +155,8 @@
             <li {% if section == 'home' %} class="active" {%endif%}>
               <a href="{% url 'main:index' %}">Home</a>
             </li>
-            <li {% if section == 'main:list' %} class="active" {%endif%}>
-              <a href="{% url 'main:list' %}">View Experiences</a>
+            <li {% if section == 'main:view_experiences' %} class="active" {%endif%}>
+              <a href="{% url 'main:view_experiences' %}">View Experiences</a>
             </li>
             <li {% if section == 'main:my_stories' %} class="active" {%endif%}>
               {% if not request.user.is_authenticated %}
