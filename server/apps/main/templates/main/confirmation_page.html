@@ -146,19 +146,22 @@
   <nav class="navbar navbar-expand">
     <ul class="navbar-nav mx-auto justify-content-around">
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url "main:index" %}">About</a>
+        <a class="nav-link text-dark" href="{% url 'main:index' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url "main:upload" %}">Share</a>
+        <a class="nav-link text-dark" href="{% url 'main:public_experiences' %}">View Experiences</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:view_experiences' %}">View</a>
+        <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="#">MyPage</a>
+        <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url "main:logout" %}">Logout</a>
+        <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
       </li>
     </ul>
   </nav>
@@ -249,7 +252,7 @@
 
           <button class="btn btn-success">
             <a href="{% url "main:my_stories" %}">
-              Go To My Experience Page
+              Go To My Stories
             </a>
           </button>
         </div>

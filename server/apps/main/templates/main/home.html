@@ -89,6 +89,9 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+              </li>
+            <li class="nav-item">
                 <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
               </li>
               <li class="nav-item">
