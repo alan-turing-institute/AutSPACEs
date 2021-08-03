@@ -23,8 +23,8 @@ def index(request):
     context = {'auth_url': auth_url,
                'oh_proj_page': settings.OH_PROJ_PAGE}
     if request.user.is_authenticated:
-        return render(request, 'main/landing.html', context=context)
-    return render(request, 'main/landing.html', context=context)
+        return redirect('main:overview')
+    return render(request, 'main/home.html', context=context)
 
 
 def overview(request):
@@ -33,7 +33,7 @@ def overview(request):
         context = {'oh_id': oh_member.oh_id,
                    'oh_member': oh_member,
                    'oh_proj_page': settings.OH_PROJ_PAGE}
-        return render(request, 'main/landing.html', context=context)
+        return render(request, 'main/home.html', context=context)
     return redirect('index')
 
 
