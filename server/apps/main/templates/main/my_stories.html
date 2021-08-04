@@ -155,8 +155,8 @@
             <li {% if section == 'home' %} class="active" {%endif%}>
               <a href="{% url 'main:index' %}">Home</a>
             </li>
-            <li {% if section == 'main:view_experiences' %} class="active" {%endif%}>
-              <a href="{% url 'main:view_experiences' %}">View Experiences</a>
+            <li {% if section == 'main:public_experiences' %} class="active" {%endif%}>
+              <a href="{% url 'main:public_experiences' %}">View Experiences</a>
             </li>
             <li {% if section == 'main:moderate_public_experiences' %} class="active" {%endif%}>
               <a href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>

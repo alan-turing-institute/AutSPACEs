@@ -54,15 +54,11 @@
 	<nav class="navbar">
 		<a class="navbar-brand" href="#" </a>
              <a style="color:#000000;"href="{% url 'main:index' %}">Home</a>
-             <a style="color:#000000;"href="#" class="active">About</a>	
-             <a style="color:#000000;"href="{% url 'main:view_experiences'%}">View Experiences</a>
-             {%if user.is_authenticated%}
-			 <a style="color:#000000;"href="#" class="active">My Stories</a>
-             <a style="color:#000000;"href="{% url 'main:index' %}">Logout</a>
-             <a style="color:#000000;"href="#" class="active">Share Experiences</a>
-			 {%else%}
-             <a style="color:#000000;"href="#" class="active">Login</a>
-			 {%endif%}
+             <a style="color:#000000;"href="{% url 'main:public_experiences'%}">View Experiences</a>
+             <a style="color:#000000;"href="{% url 'main:moderate_public_experiences' %}" class="active">Moderate Experiences</a>
+             <a style="color:#000000;"href="{% url 'main:upload' %}" class="active">Share Experiences</a>
+			 <a style="color:#000000;"href="{% url 'main:my_stories' %}" class="active">My Stories</a>
+             <a style="color:#000000;"href="{% url 'main:logout' %}">Logout</a>
 
 	</nav>
         <div class="container">
