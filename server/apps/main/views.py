@@ -50,8 +50,8 @@ def upload(request):
     if request.method == 'POST':
         permission = {'public': 'public', 'research': 'research'}
         print(request.POST)
-        experience_text = request.POST.get('experience')
-        wish_different_text = request.POST.get('suggestion')
+        experience = request.POST.get('experience')
+        suggestion = request.POST.get('suggestion')
         viewable = request.POST.get('viewable')
         if not viewable:
             permission['public'] = 'not public'
@@ -59,11 +59,11 @@ def upload(request):
         if not research:
             permission['research'] = 'non-research'
 
-        if experience_text:
+        if experience:
             experience_id = str(uuid.uuid1())
             output_json = {
-                'experience': experience_text,
-                'suggestion': wish_different_text,
+                'experience': experience,
+                'suggestion': suggestion,
                 'timestamp': str(datetime.datetime.now()),
                 'user_id': ""}
             output = io.StringIO()
@@ -79,8 +79,8 @@ def upload(request):
                 metadata=metadata)
             if viewable == 'viewable':
                 Experience.objects.create(
-                    experience_text=experience_text,
-                    suggestion_text=wish_different_text,
+                    experience=experience,
+                    suggestion=suggestion,
                     permission=permission,
                     open_humans_member=request.user.openhumansmember,
                     experience_id=experience_id,
