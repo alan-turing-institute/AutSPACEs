@@ -81,7 +81,8 @@ def upload(request):
                     experience_text=experience_text,
                     suggestion_text=wish_different_text,
                     open_humans_member=request.user.openhumansmember,
-                    experience_id=experience_id)
+                    experience_id=experience_id,
+                    moderation_state="in review")
         return redirect('main:confirm_page')
     else:
         if request.user.is_authenticated:
