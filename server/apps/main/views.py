@@ -10,7 +10,7 @@ from django.contrib.auth import login, logout
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 
-from .models import PublicExperience
+from .models import Experience
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ def upload(request):
     if request.method == 'POST':
         print(request.POST)
         experience_text = request.POST.get('experience')
-        wish_different_text = request.POST.get('wish_different')
+        wish_different_text = request.POST.get('suggestion')
         viewable = request.POST.get('viewable')
         if not viewable:
             viewable = 'not public'
@@ -61,23 +61,25 @@ def upload(request):
         if experience_text:
             experience_id = str(uuid.uuid1())
             output_json = {
-                'text': experience_text,
-                'wish_different': wish_different_text,
-                'timestamp': str(datetime.datetime.now())}
+                'experience': experience_text,
+                'suggestion': wish_different_text,
+                'timestamp': str(datetime.datetime.now()),
+                'user_id': ""}
             output = io.StringIO()
             output.write(json.dumps(output_json))
             output.seek(0)
             metadata = {'tags': [viewable, research],
-                        'uuid': experience_id,
-                        'description': 'this is a test file'}
+                        'experience_id': experience_id,
+                        'description': "details about experience " + experience_id,
+                        'moderation_state': ""}
             request.user.openhumansmember.upload(
                 stream=output,
-                filename='testfile.json',
+                filename=experience_id + ".json",
                 metadata=metadata)
             if viewable == 'viewable':
-                PublicExperience.objects.create(
+                Experience.objects.create(
                     experience_text=experience_text,
-                    difference_text=wish_different_text,
+                    suggestion_text=wish_different_text,
                     open_humans_member=request.user.openhumansmember,
                     experience_id=experience_id)
         return redirect('main:confirm_page')
