@@ -48,15 +48,16 @@ def logout_user(request):
 
 def upload(request):
     if request.method == 'POST':
+        permission = {'public': 'public', 'research': 'research'}
         print(request.POST)
         experience_text = request.POST.get('experience')
         wish_different_text = request.POST.get('suggestion')
         viewable = request.POST.get('viewable')
         if not viewable:
-            viewable = 'not public'
+            permission['public'] = 'not public'
         research = request.POST.get('research')
         if not research:
-            research = 'non-research'
+            permission['research'] = 'non-research'
 
         if experience_text:
             experience_id = str(uuid.uuid1())
@@ -80,6 +81,7 @@ def upload(request):
                 Experience.objects.create(
                     experience_text=experience_text,
                     suggestion_text=wish_different_text,
+                    permission=permission,
                     open_humans_member=request.user.openhumansmember,
                     experience_id=experience_id,
                     moderation_state="in review")
