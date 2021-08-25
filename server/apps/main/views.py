@@ -101,7 +101,7 @@ def list_files(request):
 
 
 def list_public_experiences(request):
-    experiences = PublicExperience.objects.filter(approved='approved')
+    experiences = Experience.objects.filter(approved='approved')
     return render(
         request,
         'main/experiences_page.html',
@@ -109,7 +109,7 @@ def list_public_experiences(request):
 
 
 def moderate_public_experiences(request):
-    experiences = PublicExperience.objects.filter(approved='not reviewed')
+    experiences = Experience.objects.filter(approved='not reviewed')
     return render(
         request,
         'main/moderate_public_experiences.html',
@@ -117,7 +117,7 @@ def moderate_public_experiences(request):
 
 
 def review_experience(request, experience_id):
-    experience = PublicExperience.objects.get(experience_id=experience_id)
+    experience = Experience.objects.get(experience_id=experience_id)
     print(experience)
     experience.approved = 'approved'
     experience.save()
@@ -126,7 +126,7 @@ def review_experience(request, experience_id):
 
 
 def make_non_viewable(request, oh_file_id, file_uuid):
-    pe = PublicExperience.objects.get(experience_id=file_uuid)
+    pe = Experience.objects.get(experience_id=file_uuid)
     pe.delete()
     oh_files = request.user.openhumansmember.list_files()
     for f in oh_files:
@@ -161,9 +161,9 @@ def make_viewable(request, oh_file_id, file_uuid):
                 metadata=new_metadata)
             request.user.openhumansmember.delete_single_file(
                 file_id=oh_file_id)
-            PublicExperience.objects.create(
-                experience_text=experience['text'],
-                difference_text=experience['wish_different'],
+            Experience.objects.create(
+                experience=experience['experience'],
+                suggestion=experience['suggestion'],
                 open_humans_member=request.user.openhumansmember,
                 experience_id=file_uuid)
     return redirect('list')
