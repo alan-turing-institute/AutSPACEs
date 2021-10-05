@@ -128,19 +128,19 @@
 						<div class="row-sm-2 offset-sm-1 " style="width: 167px; height: 91px;background: #DD2424"></div>
 					</div>
 					<br><br><br>
-                    {% for i in experiences %}
+                    {% for experience in experiences %}
 					<div class="card mysmallCcards">
 							<div class="card mysmallCcards">
 								<div class="row">
 									<div class="col align-self-center">
-										<h3 style="text-align: center">{{i.created_at}}</h3>
+										<h3 style="text-align: center">{{experience.created_at}}</h3>
 									</div>
 									<div class ="col align-self-center">
 										<h3> Researcher</h3>
 									</div>
 									<div class ="col align-self-center ">
 										<p>
-                                           {{i.experience_text}}
+                                           {{experience.experience_text}}
                                            
                                         </p>
 									</div>
