@@ -17,7 +17,7 @@
         }
         .my-custom-card{
             background:#C4C4C4;
-			height: 699px;
+			
 
         }
         .goals{
@@ -128,33 +128,32 @@
 						<div class="row-sm-2 offset-sm-1 " style="width: 167px; height: 91px;background: #DD2424"></div>
 					</div>
 					<br><br><br>
+                    {% for i in experiences %}
 					<div class="card mysmallCcards">
 							<div class="card mysmallCcards">
 								<div class="row">
 									<div class="col align-self-center">
-										<h3 style="text-align: center">July 21</h3>
+										<h3 style="text-align: center">{{i.created_at}}</h3>
 									</div>
 									<div class ="col align-self-center">
 										<h3> Researcher</h3>
 									</div>
 									<div class ="col align-self-center ">
 										<p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus, 
-                                        non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur 
-                                        ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel, 
-                                        consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget. 
-                                        Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan 
-                                        diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non 
-                                        velit fermentum, egestas libero nec, faucibus tortor.
+                                           {{i.experience_text}}
+                                           
                                         </p>
 									</div>
 								</div>
+                                <br>    
 							</div>
 					</div>
-							
+                    {% endfor %}	
                 </div>
                 
             </div>
+
+            
 		</div>
 					
 				
