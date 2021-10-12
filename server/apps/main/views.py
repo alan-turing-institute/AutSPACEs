@@ -57,7 +57,6 @@ def upload(request):
         research = request.POST.get('research')
         if not research:
             research = 'non-research'
-
         if experience_text:
             experience_id = str(uuid.uuid1())
             output_json = {
