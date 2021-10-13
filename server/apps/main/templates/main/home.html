@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  {% load static %}
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -77,8 +79,8 @@
 <body>
     <nav class="navbar navbar-expand">
         <a class="navbar-brand" href="#">
-            <img src="autistic.png" width="65" height="35" alt="">
-            <img src="alanturing.png" width="75" height="35" alt="">
+            <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
+            <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
         </a>
         <ul class="navbar-nav ">
             <li class="nav-item">
@@ -133,14 +135,14 @@
                                 <li>Choose who gets to view your story</li>
                                 <li>Explore other people's stories</li>
                             </ol>
-        
+
                         </div>
-        
+
                     </div>
                 </div>
-                
+
                 <br>
-    
+
             </div>
             {% else %}
         <div class="row my-custom-row">
