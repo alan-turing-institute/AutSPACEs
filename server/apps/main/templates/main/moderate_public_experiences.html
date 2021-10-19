@@ -2,13 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  {% load static %}
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
     <title>AutSPACEs Moderation Page</title>
     <style>
         body {
@@ -21,12 +24,9 @@
         }
         .goals{
             background:#EBF1F5;
-        
         }
         .navbar{
             background: rgba(149, 239, 234, 0.42);
-			      font-size: 24px;
-
         }
 		form{
             text-align: center;
@@ -34,7 +34,7 @@
         }
 		.mysmallCcards{
 			background: #00B2FF;
-			
+
 		}
         .btn-colour{
             height: 80.84px;
@@ -44,25 +44,50 @@
             background: #7dce1b;
             height: 80.84px;
             width: 200px;
-        
         }
-        
     </style>
 </head>
 
 <body>
-	<nav class="navbar">
-		<a class="navbar-brand" href="#" ></a>
-             <a style="color:#000000;"href="{% url 'main:index' %}">Home</a>
-             <a style="color:#000000;"href="{% url 'main:view_experiences'%}">View Experiences</a>
-             <a style="color:#000000;"href="{% url 'main:moderate_public_experiences' %}" class="active">Moderate Experiences</a>
-             <a style="color:#000000;"href="{% url 'main:upload' %}" class="active">Share Experiences</a>
-			 <a style="color:#000000;"href="{% url 'main:my_stories' %}" class="active">My Stories</a>
-             <a style="color:#000000;"href="{% url 'main:logout' %}">Logout</a>
+	<nav class="navbar navbar-default">
+        <a class="navbar-brand" href="#">
+            <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
+        </a>
+        <a class="navbar-brand" href="#">
+            <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
+        </a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
 
+      <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item">
+                  <a class="nav-link" style="color:#000000;"href="{% url 'main:index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color:#000000;"href="{% url 'main:view_experiences'%}">View Experiences</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color:#000000;"href="{% url 'main:moderate_public_experiences' %}" class="active">Moderate Experiences</a>
+              </li>
+              <li>
+               <a class="nav-link" style="color:#000000;"href="{% url 'main:upload' %}" class="active">Share Experiences</a>
+              </li>
+              <li>
+                <a class="nav-link" style="color:#000000;"href="{% url 'main:my_stories' %}" class="active">My Stories</a>
+              </li>
+              <li>
+                <a class="nav-link" style="color:#000000;"href="{% url 'main:logout' %}">Logout</a>
+              </li>
+      </div>
 	</nav>
         <div class="container">
-           
+
             <div class="row">
                 <div class="col-sm-12" style="text-align: center; padding:3%">
                     <h1>Moderate</h1>
@@ -73,9 +98,9 @@
                     <h4> Here you can moderate experiences shared by other people.
                     </h4>
                 </div>
-    
+
             </div>
-			
+
             <br><br><br>
             <div class="row my-custom-card">
                 <div class="col-sm-12 ">
@@ -90,9 +115,9 @@
 								</div>
 							</div>
 							<br>
-							
+
                         </div>
-        
+
                     </div>
 					<br>
 					<br><br><br>
@@ -103,12 +128,12 @@
 										<h3>July 21</h3>
 									</div>
 									<div class ="col align-self-center ">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus, 
-                                        non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur 
-                                        ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel, 
-                                        consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget. 
-                                        Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan 
-                                        diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non 
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
+                                        non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
+                                        ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
+                                        consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
+                                        Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
+                                        diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
                                         velit fermentum, egestas libero nec, faucibus tortor.</p>
 									</div>
 								</div>
@@ -117,45 +142,43 @@
 					<br><br>
 						<div class="row">
 							<div class="col-2 col-sm-2 offset-sm-2">
-								<button class="bbtn btn-colour btn-lg" style="background:#299C57"> 
+								<button class="bbtn btn-colour btn-lg" style="background:#299C57">
                     <a style="color:#000000" href="{% url 'main:index' %}" > Approve </a>
                 </button>
 							</div>
 							<br>
 							<br>
 							<div class ="col-2 col-sm-2 offset-sm-3 ">
-                <button class="bbtn btn-colour btn-lg" style="background:#DD2424"> 
+                <button class="bbtn btn-colour btn-lg" style="background:#DD2424">
                      <a style="color:#000000" href="{% url 'main:index' %}" > Decline </a>
                 </button>
 							</div>
 						</div>
 					</div>
-							
+
                 </div>
-                
+
             </div>
 		</div>
-					
-				
+
+
     <br><br><br>
 
-    
+
         </div>
         <br><br>
-    
-    
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
 
 </body>
 
