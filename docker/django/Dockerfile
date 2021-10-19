@@ -36,6 +36,7 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
     bash \
+    postgresql \
     build-essential \
     curl \
     gettext \
