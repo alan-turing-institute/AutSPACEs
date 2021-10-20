@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    {% load static %}
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
   <!-- Font Awesome Kit JS -->
   <script src="https://kit.fontawesome.com/6e47be172b.js" crossorigin="anonymous"></script>
@@ -16,7 +18,7 @@
 </head>
 
 <body>
-  
+
   <style>
     body {
       background: #E8F3FC;
@@ -68,7 +70,7 @@
       text-decoration: none;
       font-size: 18px;
     }
-    
+
     span.step{
       font-size: 14px !important;
     }
@@ -119,7 +121,7 @@
 
     div.btn_flex_one button,
     div.btn_flex_two button {
-      
+
     }
 
     div.btn_flex_one button a,
@@ -143,27 +145,43 @@
   </style>
 
 
-  <nav class="navbar navbar-expand">
-    <ul class="navbar-nav mx-auto justify-content-around">
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:index' %}">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
-      </li>
-    </ul>
+  <nav class="navbar navbar-default">
+    <a class="navbar-brand" href="#">
+            <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
+        </a>
+        <a class="navbar-brand" href="#">
+            <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
+    </a>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+      aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="{% url 'main:index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="{% url 'main:view_experiences' %}">View Experiences</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
 
@@ -281,14 +299,12 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-  </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
   </script>
 
 </body>
