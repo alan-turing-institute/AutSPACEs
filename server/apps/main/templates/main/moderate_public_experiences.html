@@ -36,7 +36,10 @@
 			background: #00B2FF;
 
 		}
-        .btn-colour{
+    .button-icon {
+          padding: 0 5%;
+    }
+    .btn-colour{
             height: 80.84px;
             width: 200px;
 		}
@@ -87,7 +90,6 @@
       </div>
 	</nav>
         <div class="container">
-
             <div class="row">
                 <div class="col-sm-12" style="text-align: center; padding:3%">
                     <h1>Moderate</h1>
@@ -141,25 +143,22 @@
 					</div>
 					<br><br>
 						<div class="row">
-							<div class="col-2 col-sm-2 offset-sm-2">
-								<button class="bbtn btn-colour btn-lg" style="background:#299C57">
+							  <div class="col-lg-6">
+								<button class="btn btn-colour btn-lg" style="background:#299C57">
                     <a style="color:#000000" href="{% url 'main:index' %}" > Approve </a>
                 </button>
-							</div>
-							<br>
-							<br>
-							<div class ="col-2 col-sm-2 offset-sm-3 ">
-                <button class="bbtn btn-colour btn-lg" style="background:#DD2424">
+                <button class="btn btn-colour btn-lg" style="background:#DD2424">
                      <a style="color:#000000" href="{% url 'main:index' %}" > Decline </a>
                 </button>
 							</div>
+            </div>
+
+
 						</div>
 					</div>
 
                 </div>
 
-            </div>
-		</div>
 
 
     <br><br><br>
