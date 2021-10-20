@@ -32,21 +32,20 @@
         }
 
         .btn-colour {
-            background: #A0F832;
+            /*background: #A0F832;*/
             height: 80.84px;
             width: 200px;
             text-align: center;
             display: table-cell;
             vertical-align: middle;
-
         }
 
-        .btn-colour:hover {
+ /*       .btn-colour:hover {
             background: #7dce1b;
             height: 80.84px;
             width: 200px;
 
-        }
+        }*/
 
         .navbar {
             background: rgba(149, 239, 234, 0.42);
@@ -174,14 +173,14 @@
 
             </div>
             <br>
-            <div class="col-sm-2 offset-sm-3">
+            <div class="col-lg-6 offset-sm-3">
                 <br><br><br>
-                <a href="#" class="btn btn-default btn-colour btn-lg text-dark"
-                    role="button">Sign Up</a>
-                <br>
-                <a href="{{ auth_url }}" class="btn btn-colour btn-lg btn-block text-dark"
-                    role="button">Sign In</a>
-                <br>
+                <button class="btn btn-colour btn-primary btn-lg btn-block">
+                   <a href="#" style="color: #fff">Sign Up</a>
+                </button>
+                <button class="btn btn-colour btn-info btn-lg btn-block">
+                  <a href="{{ auth_url }}" style="color: #fff">Sign In</a>
+                </button>
             </div>
         </div>
             {%endif%}
