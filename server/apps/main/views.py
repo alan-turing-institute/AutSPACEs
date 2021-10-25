@@ -57,7 +57,6 @@ def upload(request):
         research = request.POST.get('research')
         if not research:
             research = 'non-research'
-
         if experience_text:
             experience_id = str(uuid.uuid1())
             output_json = {
@@ -96,7 +95,8 @@ def list_files(request):
 
 
 def list_public_experiences(request):
-    experiences = PublicExperience.objects.filter(approved='approved')
+    # experiences = PublicExperience.objects.filter(approved='approved')
+    experiences = PublicExperience.objects.all()
     return render(
         request,
         'main/experiences_page.html',
