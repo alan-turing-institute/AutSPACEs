@@ -1,273 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  {% load static %}
+{% load static %}
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <!-- Bootstrap CSS -->
-    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
+   <!--Google Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet" type="text/css">
 
-    <title>AutSPACEs Landing Page</title>
-    <style>
-        body {
-            background: #E8F3FC;
-        }
+  <title>AutSPACEs Landing Page</title>
+  <style>
+    * {
+    font-family: 'Open Sans', 'PT-Serif';
+    font-weight: 400;
+    }
+    body {
+      background: #E8F3FC;
+    }
 
-        .my-custom-card {
-            background: #C4D9E8;
-            width: 500px;
-            height: 400px;
+    .my-custom-card {
+      background: #C4D9E8;
+      width: 500px;
+      height: 400px;
 
-        }
+    }
 
-        .goals {
-            background: #C4D9E8;
-            height: 307.84px;
-        }
+    .goals {
+      background: #C4D9E8;
+      height: 307.84px;
+    }
 
-        .btn-colour {
-            /*background: #A0F832;*/
-            height: 80.84px;
-            width: 200px;
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
+    .btn-colour {
+      height: 80.84px;
+      width: 200px;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+    }
 
- /*       .btn-colour:hover {
-            background: #7dce1b;
-            height: 80.84px;
-            width: 200px;
+    .btn-colour:hover {
+      height: 80.84px;
+      width: 200px;
 
-        }*/
+    }
 
-        .navbar {
-            font-size: 24px;
-            background: rgba(149, 239, 234, 0.42);
-        }
+    .navbar {
+      font-size: 20px;
+      margin-bottom: 20px;
+      padding: 2px !important;
+      }
 
-        .tiny-letter {
-            background: #C4D9E8;
-            height: 307.84px;
+    a:hover {
+      font-weight: 550 !important;
+      transition: 0.3s;
+    }
 
-        }
+    img {
+      margin: 2px 10px;
+    }
 
-        .newsletter-btn {
-            background: #A0F832;
-            height: 50px;
-            width: 150px;
+  .btn {
+    font-size: 16px;
+    margin: 8px;
+    }
 
-        }
+  .tiny-letter {
+    background: #C4D9E8;
+    height: 307.84px;
 
-        .newsletter-btn:hover {
-            background: #7dce1b;
-            height: 50px;
-            width: 150px;
+  }
 
-        }
+  .newsletter-btn {
+    background: #A0F832;
+    height: 50px;
+    width: 150px;
 
-        form {
-            text-align: center;
-            font-size: x-large;
-        }
-    </style>
+  }
+
+  .newsletter-btn:hover {
+    background: #7dce1b;
+    height: 50px;
+    width: 150px;
+
+  }
+
+  form {
+    text-align: center;
+    font-size: x-large;
+  }
+  </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <a class="navbar-brand" href="#">
-            <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
-        </a>
-        <a class="navbar-brand" href="#">
-            <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
-        </a>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-          aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:view_experiences' %}">View Experiences</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                  <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-                </li>
-              <li class="nav-item">
-                  <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
-                </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
-              </li>
-              {% endif %}
-          </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
+    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Institute Logo" />
+  </a>
+  <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+          data-target="#navbarText"
+          data-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
+      {% if user.is_authenticated %}
+      <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+
+      <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+
+      <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
+
+      <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
+                                                                              style="margin-top:6px;"
+                                                                              class="btn btn-outline-primary"></form>
+
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12" style="text-align: center; padding:3%">
+      <h1>AutSPACEs</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1 text-center">
+      <h4>AutSPACE is an online place where you can help make environments better for autistic people by
+        sharing
+        your stories about how your senses affect you.
+      </h4>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  {% if user.is_authenticated %}
+  <div class="row my-custom-row">
+    <div class="col-sm-10 offset-sm-3">
+      <div class="card my-custom-card">
+        <div class="card-body">
+          <h3 class="card-title text-center">How It Works</h3>
+          <ol class="card-text h5">
+            <li>Sign up</li>
+            <li>Share a story about you</li>
+            <li>Choose who gets to view your story</li>
+            <li>Explore other people's stories</li>
+          </ol>
+
         </div>
-    </nav>
-    <div class="container">
 
-        <div class="row">
-            <div class="col-sm-12" style="text-align: center; padding:3%">
-                <h1>AutSPACE</h1>
-            </div>
+      </div>
+    </div>
+
+    <br>
+
+  </div>
+  {% else %}
+  <div class="row my-custom-row">
+    <div class="card my-custom-card">
+      <div class="card-body">
+        <h3 class="card-title text-center">How It Works</h3>
+        <ol class="card-text h5">
+          <li>Sign up</li>
+          <li>Share a story about you</li>
+          <li>Choose who gets to view your story</li>
+          <li>Explore other people's stories</li>
+        </ol>
+
+      </div>
+
+    </div>
+    <br>
+    <div class="col-lg-6 offset-sm-3">
+      <br><br><br>
+      <button class="btn btn-colour btn-warning btn-lg">
+        <a href="#" style="color: #ffffff; font-size: 20px;">Sign Up</a>
+      </button>
+      <button class="btn btn-colour btn-primary btn-lg">
+        <a href="{{ auth_url }}" style="color: #ffffff; font-size: 20px;">Sign In</a>
+      </button>
+    </div>
+  </div>
+  {%endif%}
+  <br><br>
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1 text-center">
+      <h4>Autistic people often have different sensory processing to people who are not autistic.
+        By collecting together lots of autistic people’s experiences, we can change spaces so that they are
+        better for autistic people.
+      </h4>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card goals">
+        <div class="card-body">
+          <h3 class="card-title text-center">Our Goals</h3>
+          <ol class="card-text h5">
+            <li>Research - increase understanding of sensory processing</li>
+            <li>Share strategies and experiences of autistic people</li>
+            <li>Advise organisations how to create better environments for autistic people</li>
+          </ol>
+
         </div>
-        <div class="row">
-            <div class="col-sm-10 offset-sm-1 text-center">
-                <h4>AutSPACE is an online place where you can help make environments better for autistic people by
-                    sharing
-                    your stories about how your senses affect you.
-                </h4>
+
+      </div>
+    </div>
+
+  </div>
+
+  <br><br><br>
+  <div class="row my-custom-row">
+    <div class="col-sm-8 offset-sm-2">
+      <div class="card tiny-letter">
+        <div class="card-body">
+          <form action="https://tinyletter.com/AutisticaTuringCitizenScience" class="form-horizontal"
+                method="POST" onsubmit="window.open('https://tinyletter.com/AutisticaTuringCitizenScience', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true" role="form"
+                target="popupwindow">
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Enter your email address</label>
+              <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" name="email"
+                     placeholder="Enter email" type="email">
             </div>
-
-        </div>
-        <br>
-        <br>
-        {% if user.is_authenticated %}
-            <div class="row my-custom-row">
-                <div class="col-sm-10 offset-sm-3">
-                    <div class="card my-custom-card">
-                        <div class="card-body">
-                            <h3 class="card-title text-center">How It Works</h3>
-                            <ol class="card-text h5">
-                                <li>Sign up</li>
-                                <li>Share a story about you</li>
-                                <li>Choose who gets to view your story</li>
-                                <li>Explore other people's stories</li>
-                            </ol>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <br>
-
-            </div>
-            {% else %}
-        <div class="row my-custom-row">
-            <div class="card my-custom-card">
-                <div class="card-body">
-                    <h3 class="card-title text-center">How It Works</h3>
-                    <ol class="card-text h5">
-                        <li>Sign up</li>
-                        <li>Share a story about you</li>
-                        <li>Choose who gets to view your story</li>
-                        <li>Explore other people's stories</li>
-                    </ol>
-
-                </div>
-
-            </div>
+            <small class="form-text text-muted" id="emailHelp">We'll never share your email with anyone
+              else.</small>
+            <input name="embed" type="hidden" value="1"/>
             <br>
-            <div class="col-lg-6 offset-sm-3">
-                <br><br><br>
-                <button class="btn btn-colour btn-primary btn-lg btn-block">
-                   <a href="#" style="color: #fff">Sign Up</a>
-                </button>
-                <button class="btn btn-colour btn-info btn-lg btn-block">
-                  <a href="{{ auth_url }}" style="color: #fff">Sign In</a>
-                </button>
+            <div class="form-group">
+              <button class="btn newsletter-btn btn-lg active" type="submit"
+                      value="Subscribe">Subscribe
+              </button>
+              <br>
+              <a href="https://tinyletter.com" style="font-size: medium;" target="_blank">powered by
+                TinyLetter</a>
             </div>
-        </div>
-            {%endif%}
-        <br><br>
-        <div class="row">
-            <div class="col-sm-10 offset-sm-1 text-center">
-                <h4>Autistic people often have different sensory processing to people who are not autistic.
-                    By collecting together lots of autistic people’s experiences, we can change spaces so that they are
-                    better for autistic people.
-                </h4>
-            </div>
-        </div>
-        <br><br>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card goals">
-                    <div class="card-body">
-                        <h3 class="card-title text-center">Our Goals</h3>
-                        <ol class="card-text h5">
-                            <li>Research - increase understanding of sensory processing</li>
-                            <li>Share strategies and experiences of autistic people</li>
-                            <li>Advise organisations how to create better environments for autistic people</li>
-                        </ol>
 
-                    </div>
+            <br>
 
-                </div>
-            </div>
+          </form>
+
+          </p>
+          <p></p>
 
         </div>
 
-        <br><br><br>
-        <div class="row my-custom-row">
-            <div class="col-sm-8 offset-sm-2">
-                <div class="card tiny-letter">
-                    <div class="card-body">
-                        <form action="https://tinyletter.com/AutisticaTuringCitizenScience" method="POST"
-                            target="popupwindow" role="form" class="form-horizontal"
-                            onsubmit="window.open('https://tinyletter.com/AutisticaTuringCitizenScience', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+      </div>
+    </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Enter your email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" name="email"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                            <input type="hidden" value="1" name="embed" />
-                            <br>
-                            <div class="form-group">
-                                <button class="btn newsletter-btn btn-lg active" type="submit"
-                                    value="Subscribe">Subscribe</button>
-                                <br>
-                                <a style="font-size: medium;" href="https://tinyletter.com" target="_blank">powered by
-                                    TinyLetter</a>
-                            </div>
+  </div>
+  <br><br>
 
-                            <br>
-
-
-                        </form>
-
-                        </p>
-                        <p></p>
-
-
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-        <br><br>
-
-
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-          integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-        </script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script crossorigin="anonymous"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script crossorigin="anonymous"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script crossorigin="anonymous"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
