@@ -48,6 +48,11 @@
     margin: 2px 10px;
   }
 
+  .btn {
+    font-size: 16px;
+    margin: 8px;
+  }
+  
   section.confirmation {
     margin-top: 60px;
   }
@@ -185,7 +190,9 @@
 
       <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
 
-      <a class="nav-item nav-link" href="{% url 'main:logout' %}">Logout</a>
+     <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
+                                                                                    style="margin-top:6px;"
+                                                                                    class="btn btn-outline-primary"></form>
       {% endif %}
     </div>
   </div>
