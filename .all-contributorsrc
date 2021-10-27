@@ -97,7 +97,11 @@
       "profile": "https://whitakerlab.github.io",
       "contributions": [
         "ideas",
-        "content"
+        "content",
+        "question",
+        "review",
+        "mentoring",
+        "projectManagement"
       ]
     },
     {
