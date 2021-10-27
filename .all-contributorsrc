@@ -121,6 +121,18 @@
         "ideas",
         "doc"
       ]
+    },
+    {
+      "login": "soledadli",
+      "name": "soledadli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67457005?v=4",
+      "profile": "https://github.com/soledadli",
+      "contributions": [
+        "code",
+        "doc",
+        "design",
+        "projectManagement"
+      ]
     }
   ],
   "contributorsPerLine": 7,
