@@ -121,6 +121,18 @@
         "ideas",
         "doc"
       ]
+    },
+    {
+      "login": "badgermind",
+      "name": "Robin Taylor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1136671?v=4",
+      "profile": "http://www.badgermind.net",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
