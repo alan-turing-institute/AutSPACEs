@@ -68,11 +68,21 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "mridubhatnagar",
+      "name": "Mridu Bhatnagar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16894718?v=4",
+      "profile": "https://github.com/mridubhatnagar",
+      "contributions": [
+        "code",
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "AutSPACEs",
-  "projectOwner": "GeorgiaHCA",
+  "projectOwner": "alan-turing-institute",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true
