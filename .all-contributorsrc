@@ -55,7 +55,11 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42813259?v=4",
       "profile": "http://www.brainonsilicon.com",
       "contributions": [
-        "ideas"
+        "ideas",
+        "code",
+        "design",
+        "question",
+        "mentoring"
       ]
     },
     {
@@ -87,7 +91,9 @@
       "contributions": [
         "ideas",
         "doc",
-        "design"
+        "design",
+        "projectManagement",
+        "mentoring"
       ]
     },
     {
@@ -97,7 +103,11 @@
       "profile": "https://whitakerlab.github.io",
       "contributions": [
         "ideas",
-        "content"
+        "content",
+        "question",
+        "review",
+        "mentoring",
+        "projectManagement"
       ]
     },
     {
@@ -133,6 +143,28 @@
         "design",
         "projectManagement",
         "ideas"
+        ]
+    },
+    {
+      "login": "badgermind",
+      "name": "Robin Taylor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1136671?v=4",
+      "profile": "http://www.badgermind.net",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc",
+        "design"
+        ]
+      },
+    {
+      "login": "israelvictory",
+      "name": "Israel Abraham (~‾▿‾)~",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55067204?v=4",
+      "profile": "https://github.com/israelvictory",
+      "contributions": [
+        "code",
+        "infra"
       ]
     }
   ],
