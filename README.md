@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -133,6 +133,7 @@ Full documentation is available here: [`docs/`](docs).
     <td align="center"><a href="https://whitakerlab.github.io"><img src="https://avatars.githubusercontent.com/u/3626306?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kirstie Whitaker</b></sub></a><br /><a href="#ideas-KirstieJane" title="Ideas, Planning, & Feedback">🤔</a> <a href="#content-KirstieJane" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/sowmya9507"><img src="https://avatars.githubusercontent.com/u/55495129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sowmya</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=sowmya9507" title="Code">💻</a> <a href="#ideas-sowmya9507" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=sowmya9507" title="Documentation">📖</a></td>
     <td align="center"><a href="http://anoura12.github.io"><img src="https://avatars.githubusercontent.com/u/73518403?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anoushka Ramesh</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=anoura12" title="Code">💻</a> <a href="#ideas-anoura12" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=anoura12" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.badgermind.net"><img src="https://avatars.githubusercontent.com/u/1136671?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robin Taylor</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=badgermind" title="Code">💻</a> <a href="#ideas-badgermind" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=badgermind" title="Documentation">📖</a> <a href="#design-badgermind" title="Design">🎨</a></td>
   </tr>
 </table>
 
