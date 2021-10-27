@@ -133,6 +133,18 @@
       ]
     },
     {
+      "login": "badgermind",
+      "name": "Robin Taylor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1136671?v=4",
+      "profile": "http://www.badgermind.net",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc",
+        "design"
+        ]
+      },
+    {
       "login": "israelvictory",
       "name": "Israel Abraham (~‾▿‾)~",
       "avatar_url": "https://avatars.githubusercontent.com/u/55067204?v=4",
