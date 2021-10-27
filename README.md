@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -127,6 +127,9 @@ Full documentation is available here: [`docs/`](docs).
     <td align="center"><a href="http://www.brainonsilicon.com"><img src="https://avatars.githubusercontent.com/u/42813259?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sophia Batchelor</b></sub></a><br /><a href="#ideas-BrainonSilicon" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://tzovar.as"><img src="https://avatars.githubusercontent.com/u/674899?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bastian Greshake Tzovaras</b></sub></a><br /><a href="#infra-gedankenstuecke" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=gedankenstuecke" title="Tests">⚠️</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=gedankenstuecke" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mridubhatnagar"><img src="https://avatars.githubusercontent.com/u/16894718?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mridu Bhatnagar</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=mridubhatnagar" title="Code">💻</a> <a href="#infra-mridubhatnagar" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/lottycoupat"><img src="https://avatars.githubusercontent.com/u/82104604?v=4?s=100" width="100px;" alt=""/><br /><sub><b>lottycoupat</b></sub></a><br /><a href="#ideas-lottycoupat" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=lottycoupat" title="Documentation">📖</a> <a href="#design-lottycoupat" title="Design">🎨</a></td>
   </tr>
 </table>
 
