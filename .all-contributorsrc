@@ -127,6 +127,16 @@
         "ideas",
         "doc"
       ]
+    },
+    {
+      "login": "israelvictory",
+      "name": "Israel Abraham (~‾▿‾)~",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55067204?v=4",
+      "profile": "https://github.com/israelvictory",
+      "contributions": [
+        "code",
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
