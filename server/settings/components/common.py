@@ -19,9 +19,23 @@ from server.settings.components import BASE_DIR, config
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
+OPENHUMANS_APP_BASE_URL = config('OPENHUMANS_APP_BASE_URL')
+OPENHUMANS_CLIENT_ID = config('OPENHUMANS_CLIENT_ID')
+OPENHUMANS_CLIENT_SECRET = config('OPENHUMANS_CLIENT_SECRET')
+
+# After log in, send users to the confirm page.
+LOGIN_REDIRECT_URL = 'main:confirm_page'
+
+# Project's page on Open Humans
+OH_PROJ_PAGE = config('OH_PROJ_PAGE')
+
 # Application definition:
 
 INSTALLED_APPS: Tuple[str, ...] = (
+
+    # django-open-humans dependency
+    'openhumans',
+
     # Your apps go here:
     'server.apps.main',
 

@@ -5,6 +5,7 @@ SECURITY WARNING: don't run with debug turned on in production!
 """
 
 import logging
+import os.path
 from typing import List
 
 from server.settings.components import config
@@ -38,7 +39,9 @@ INSTALLED_APPS += (
 # Static files:
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-STATICFILES_DIRS
 
-STATICFILES_DIRS: List[str] = []
+STATICFILES_DIRS: List[str] = [
+    os.path.join('static/images')
+]
 
 
 # Django debug toolbar:
@@ -65,9 +68,14 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # This will make debug toolbar to work with django-csp,
 # since `ddt` loads some scripts from `ajax.googleapis.com`:
-CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com')
+CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com',
+                  'cdnjs.cloudflare.com', 'maxcdn.bootstrapcdn.com')
 CSP_IMG_SRC = ("'self'", 'data:')
 CSP_CONNECT_SRC = ("'self'",)
+CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com',
+                'maxcdn.bootstrapcdn.com', 'netdna.bootstrapcdn.com')
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com',
+                 'maxcdn.bootstrapcdn.com', 'netdna.bootstrapcdn.com')
 
 
 # nplusone

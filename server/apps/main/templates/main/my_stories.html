@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>My Stories</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+  </script>
+
+  <!-- Favicon -->
+
+</head>
+
+<body>
+  <style>
+    * {
+      font-family: 'Open Sans', 'PT-Serif';
+      font-weight: 400;
+    }
+
+    /* application.html inline styles */
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .navbar {
+      margin-bottom: 20px;
+      padding: 2px !important;
+    }
+
+
+    /* Sticky footer styles
+    -------------------------------------------------- */
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 60px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      height: 60px;
+      background-color: #f5f5f5;
+    }
+
+
+    .fcontainer .text-muted {
+      padding: 0 15px;
+      margin: 20px 0;
+    }
+
+    /* End of application.html inline styles */
+
+    a.navbar-brand {
+      font-weight: 550 !important;
+    }
+
+    a:hover {
+      font-weight: 550 !important;
+      transition: 0.3s;
+    }
+
+    section.stories_page {
+      text-align: center;
+      margin-top: 30px;
+      color: #000;
+    }
+
+    div.story_head p.h3,
+    div.story_body p.h3 {
+      font-weight: 550;
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    span.p_page {
+      font-weight: 500;
+      font-size: 19px;
+    }
+
+    div.story_head p.h5 {
+      font-size: 22px;
+      margin-top: 40px;
+      font-weight: 550;
+    }
+
+    ul.can_do {
+      list-style: none;
+      max-width: 600px !important;
+      margin: auto;
+    }
+
+    ul.can_do li.do {
+      font-size: 19px;
+      text-align: left !important;
+    }
+
+    div.story_body {
+      margin-top: 60px;
+    }
+
+    .btn {
+      padding: 6px 12px !important;
+      margin-top: 6px !important;
+      font-size: 14px;
+    }
+
+  </style>
+
+  <!-- Navbar -->
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+            aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <!-- Logo -->
+          <a class="navbar-brand" href="{% url 'main:index' %}">
+            AutSPACEs
+          </a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li {% if section == 'home' %} class="active" {%endif%}>
+              <a href="{% url 'main:index' %}">Home</a>
+            </li>
+            <li {% if section == 'main:view_experiences' %} class="active" {%endif%}>
+              <a href="{% url 'main:view_experiences' %}">View Experiences</a>
+            </li>
+            <li {% if section == 'main:moderate_public_experiences' %} class="active" {%endif%}>
+              <a href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+            </li>
+
+            <li {% if section == 'main:upload' %} class="active" {%endif%}>
+              <a href="{% url 'main:upload' %}">Share Experiences</a>
+            </li>
+            
+            <li {% if section == 'main:my_stories' %} class="active" {%endif%}>
+              {% if not request.user.is_authenticated %}
+              <a href="{% url 'main:index' %}">Home</a>
+              {% else %}
+                <a href="">My Stories</a>
+              {% endif %}
+            </li>
+              
+            <li {% if section == 'main:logout' %} class="active" {%endif%}>
+              <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out" style="margin-top:6px;" class="btn btn-default"></form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Alert Messages -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <!-- Section -->
+  <section class="stories_page">
+    <div class="container">
+      <div class="story_head">
+        <p class="h3">
+          My Stories
+        </p>
+
+        <span class="p_page">
+          Welcome to your personal AutSPACEs page.
+        </span>
+
+        <p class="h5">
+          Here you can:
+        </p>
+
+        <ul class="can_do">
+          <li class="do">
+            <span class="asterik">*</span> See the experiences you have saved and submitted.
+          </li>
+          <li class="do">
+            <span class="asterik">*</span> Change sharing permissions for your experiences.
+          </li>
+        </ul>
+      </div>
+
+      <div class="story_body">
+        <p class="h3">
+          My Experiences
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

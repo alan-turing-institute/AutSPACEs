@@ -1,16 +1,23 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
 
-Welcome.
+## Welcome.
 
-This repository holds the code for AutSPACEs. AutSPACEs is a citizen science platform co-created by autistic people and their supporters alongside researchers and the open source community. It is linked to the [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience) repository, which is used for project management and to hold resources. If you'd like to take part in anything which isn't directly related to building the platform, take a look there. There are lots of ways to get involved. You can find out more in the contributing guidelines. 
+This repository **holds the code** for AutSPACEs. AutSPACEs is a citizen science platform co-created by autistic people and their supporters alongside researchers and the open source community. 
 
-The platform is currently being developed using the Python/Django web development framework. [Skip to Development Information](#development-information)
-This is a useful resource for learning Django: https://tutorial.djangogirls.org/en/
+It is linked to the [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience) repository, which is used for **project management and to hold resources**. If you'd like to take part in anything which isn't directly related to building the platform, take a look there. There are lots of ways to get involved. You can find out more in the contributing guidelines. 
+
+The platform is currently being developed using the Python/Django web development framework. You can [Skip to Development Information](#development-information) or continue reading for more information about the project in general. 
+
+## Get the platform running
+
+To get the current website to run on your local device please follow [these steps](/dev_readme.md).
+
+Here is a useful resource for learning Django: https://tutorial.djangogirls.org/en/
 
 ## How to work with us
 
@@ -66,7 +73,7 @@ It is a research project which is pioneering new methods of participatory scienc
 There are lots of ways to get in touch and stay updated. You can:
 
 * Anonymously, publicly share suggestions via the "always open" google form: https://bit.ly/AutisticaTuringCitSciForm
-* Say hello in our public slack channel: https://app.slack.com/client/T48QEEVTJ/CNMECPNCD 
+* Say hello in our public slack channel: https://slackin.openhumans.org 
 * Subscribe to our mailing list for monthly project updates: https://tinyletter.com/AutisticaTuringCitizenScience
 * Join the discussion in our issues and pull requests 
 
@@ -118,6 +125,15 @@ Full documentation is available here: [`docs/`](docs).
     <td align="center"><a href="https://github.com/Angelsaur"><img src="https://avatars.githubusercontent.com/u/67108701?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Angelsaur</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=Angelsaur" title="Documentation">📖</a> <a href="#design-Angelsaur" title="Design">🎨</a> <a href="#ideas-Angelsaur" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-Angelsaur" title="User Testing">📓</a></td>
     <td align="center"><a href="https://github.com/JamesSCTJ"><img src="https://avatars.githubusercontent.com/u/60160241?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JamesSCTJ</b></sub></a><br /><a href="#ideas-JamesSCTJ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=JamesSCTJ" title="Tests">⚠️</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3AJamesSCTJ" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="http://www.brainonsilicon.com"><img src="https://avatars.githubusercontent.com/u/42813259?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sophia Batchelor</b></sub></a><br /><a href="#ideas-BrainonSilicon" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=BrainonSilicon" title="Code">💻</a> <a href="#design-BrainonSilicon" title="Design">🎨</a> <a href="#question-BrainonSilicon" title="Answering Questions">💬</a> <a href="#mentoring-BrainonSilicon" title="Mentoring">🧑‍🏫</a></td>
+    <td align="center"><a href="https://tzovar.as"><img src="https://avatars.githubusercontent.com/u/674899?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bastian Greshake Tzovaras</b></sub></a><br /><a href="#infra-gedankenstuecke" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=gedankenstuecke" title="Tests">⚠️</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=gedankenstuecke" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mridubhatnagar"><img src="https://avatars.githubusercontent.com/u/16894718?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mridu Bhatnagar</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=mridubhatnagar" title="Code">💻</a> <a href="#infra-mridubhatnagar" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/lottycoupat"><img src="https://avatars.githubusercontent.com/u/82104604?v=4?s=100" width="100px;" alt=""/><br /><sub><b>lottycoupat</b></sub></a><br /><a href="#ideas-lottycoupat" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=lottycoupat" title="Documentation">📖</a> <a href="#design-lottycoupat" title="Design">🎨</a> <a href="#projectManagement-lottycoupat" title="Project Management">📆</a> <a href="#mentoring-lottycoupat" title="Mentoring">🧑‍🏫</a></td>
+    <td align="center"><a href="https://whitakerlab.github.io"><img src="https://avatars.githubusercontent.com/u/3626306?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kirstie Whitaker</b></sub></a><br /><a href="#ideas-KirstieJane" title="Ideas, Planning, & Feedback">🤔</a> <a href="#content-KirstieJane" title="Content">🖋</a> <a href="#question-KirstieJane" title="Answering Questions">💬</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3AKirstieJane" title="Reviewed Pull Requests">👀</a> <a href="#mentoring-KirstieJane" title="Mentoring">🧑‍🏫</a> <a href="#projectManagement-KirstieJane" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://github.com/sowmya9507"><img src="https://avatars.githubusercontent.com/u/55495129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sowmya</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=sowmya9507" title="Code">💻</a> <a href="#ideas-sowmya9507" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=sowmya9507" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://anoura12.github.io"><img src="https://avatars.githubusercontent.com/u/73518403?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Anoushka Ramesh</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=anoura12" title="Code">💻</a> <a href="#ideas-anoura12" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=anoura12" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/israelvictory"><img src="https://avatars.githubusercontent.com/u/55067204?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Israel Abraham (~‾▿‾)~</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=israelvictory" title="Code">💻</a> <a href="#infra-israelvictory" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
 </table>
 

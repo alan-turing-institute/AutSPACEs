@@ -61,6 +61,86 @@
         "question",
         "mentoring"
       ]
+    },
+    {
+      "login": "gedankenstuecke",
+      "name": "Bastian Greshake Tzovaras",
+      "avatar_url": "https://avatars.githubusercontent.com/u/674899?v=4",
+      "profile": "https://tzovar.as",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "mridubhatnagar",
+      "name": "Mridu Bhatnagar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16894718?v=4",
+      "profile": "https://github.com/mridubhatnagar",
+      "contributions": [
+        "code",
+        "infra"
+      ]
+    },
+    {
+      "login": "lottycoupat",
+      "name": "lottycoupat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82104604?v=4",
+      "profile": "https://github.com/lottycoupat",
+      "contributions": [
+        "ideas",
+        "doc",
+        "design",
+        "projectManagement",
+        "mentoring"
+      ]
+    },
+    {
+      "login": "KirstieJane",
+      "name": "Kirstie Whitaker",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3626306?v=4",
+      "profile": "https://whitakerlab.github.io",
+      "contributions": [
+        "ideas",
+        "content",
+        "question",
+        "review",
+        "mentoring",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "sowmya9507",
+      "name": "Sowmya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55495129?v=4",
+      "profile": "https://github.com/sowmya9507",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc"
+      ]
+    },
+    {
+      "login": "anoura12",
+      "name": "Anoushka Ramesh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73518403?v=4",
+      "profile": "http://anoura12.github.io",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc"
+      ]
+    },
+    {
+      "login": "israelvictory",
+      "name": "Israel Abraham (~‾▿‾)~",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55067204?v=4",
+      "profile": "https://github.com/israelvictory",
+      "contributions": [
+        "code",
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,

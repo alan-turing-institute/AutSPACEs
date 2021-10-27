@@ -1,0 +1,82 @@
+interactions:
+- request:
+    body: project_member_id=1234567890abcdef&filename=myimage.jpg&metadata=%7B%22tags%22%3A+%5B%22foo%22%2C+%22+bar+%22%5D%2C+%22description%22%3A+%22some+text%22%7D
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['147']
+      Content-Type: [application/x-www-form-urlencoded]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/upload/direct/?access_token=foo
+  response:
+    body: {string: '{"id":1337,"url":"https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-73/somestring/myimage.jpg?Signature=signature&Expires=1520390000&AWSAccessKeyId=accesskey"}'}
+    headers:
+      Allow: ['POST, OPTIONS']
+      Cache-Control: ['max-age=0, no-cache, must-revalidate, no-store']
+      Connection: [close]
+      Content-Language: [en]
+      Content-Type: [application/json]
+      Date: ['Tue, 06 Mar 2018 21:19:57 GMT']
+      Expires: ['Tue, 06 Mar 2018 21:19:57 GMT']
+      Last-Modified: ['Tue, 06 Mar 2018 21:19:57 GMT']
+      Server: [Cowboy]
+      Vary: ['Accept, Accept-Language, Cookie']
+      Via: [1.1 vegur]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 201, message: Created}
+- request:
+    body: !!python/object/new:_io.BytesIO
+      state: !!python/tuple
+      - !!binary |
+        bXliaW5hcnlkYXRh
+      - 0
+      - null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['12']
+      User-Agent: [python-requests/2.18.4]
+    method: PUT
+    uri: https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-73/somestring/myimage.jpg?Signature=signature&Expires=1520390000&AWSAccessKeyId=accesskey
+  response:
+    body: {string: ''}
+    headers:
+      Content-Length: ['0']
+      Date: ['Tue, 06 Mar 2018 21:19:59 GMT']
+      ETag: ['"fjlaksjfklsajkljl"']
+      Server: [AmazonS3]
+      x-amz-id-2: [heregoessomeid=]
+      x-amz-request-id: [randomone]
+      x-amz-version-id: [randomtwo]
+    status: {code: 200, message: OK}
+- request:
+    body: project_member_id=1234567890abcdef&file_id=1337
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      Content-Length: ['40']
+      Content-Type: [application/x-www-form-urlencoded]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/upload/complete/?access_token=foo
+  response:
+    body: {string: '{"status":"ok","size":12}'}
+    headers:
+      Allow: ['POST, OPTIONS']
+      Cache-Control: ['max-age=0, no-cache, must-revalidate, no-store']
+      Connection: [close]
+      Content-Language: [en]
+      Content-Type: [application/json]
+      Date: ['Tue, 06 Mar 2018 21:19:58 GMT']
+      Expires: ['Tue, 06 Mar 2018 21:19:59 GMT']
+      Last-Modified: ['Tue, 06 Mar 2018 21:19:59 GMT']
+      Server: [Cowboy]
+      Vary: ['Accept, Accept-Language, Cookie']
+      Via: [1.1 vegur]
+      X-Frame-Options: [SAMEORIGIN]
+    status: {code: 200, message: OK}
+version: 1
