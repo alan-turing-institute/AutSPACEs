@@ -110,6 +110,17 @@
         "ideas",
         "doc"
       ]
+    },
+    {
+      "login": "anoura12",
+      "name": "Anoushka Ramesh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73518403?v=4",
+      "profile": "http://anoura12.github.io",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
