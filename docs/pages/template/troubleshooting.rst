@@ -55,12 +55,12 @@ Django Problems
 
 NoReverseMatch Errors
 ---------------------
-Django is saying that it cannot find a matching URL pattern for the URL you've provided in any of your installed app's urls. (i.e. urls.py, views.py, etc.) See (here)[https://stackoverflow.com/questions/38390177/what-is-a-noreversematch-error-and-how-do-i-fix-it] for more information.
+Django is saying that it cannot find a matching URL pattern for the URL you've provided in any of your installed app's urls. (i.e. urls.py, views.py, etc.) See `here <https://stackoverflow.com/questions/38390177/what-is-a-noreversematch-error-and-how-do-i-fix-it>`_ for more information.
 
 Styling is All Wrong!
 ---------------------
 This is because the CSP settings within the project are quite strict. The css, scripts, and other static assets used to make the website look pretty isn't allowed for security reasons. You can see these errors when opening up the `Inspector` (Right Click -> Inspect Element) and viewing the Console tab within your browser of choice. See the following for more information.
-(Django CSP)[https://django-csp.readthedocs.io/en/latest/configuration.htm://django-csp.readthedocs.io/en/latest/configuration.html]
-(Unsafe-Inline)[https://content-security-policy.com/unsafe-inline/]
-(Managing Static Files)[https://docs.djangoproject.com/en/2.2/howto/static-files/]
+`Django CSP <https://django-csp.readthedocs.io/en/latest/configuration.htm://django-csp.readthedocs.io/en/latest/configuration.html>`_
+`Unsafe-Inline <https://content-security-policy.com/unsafe-inline/>`_
+`Managing Static Files <https://docs.djangoproject.com/en/2.2/howto/static-files/>`_
 
