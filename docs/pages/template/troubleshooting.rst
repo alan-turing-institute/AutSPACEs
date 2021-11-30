@@ -60,7 +60,7 @@ Django is saying that it cannot find a matching URL pattern for the URL you've p
 Styling is All Wrong!
 ---------------------
 This is because the CSP settings within the project are quite strict. The css, scripts, and other static assets used to make the website look pretty isn't allowed for security reasons. You can see these errors when opening up the `Inspector` (Right Click -> Inspect Element) and viewing the Console tab within your browser of choice. See the following for more information.
-`Django CSP <https://django-csp.readthedocs.io/en/latest/configuration.htm://django-csp.readthedocs.io/en/latest/configuration.html>`_
-`Unsafe-Inline <https://content-security-policy.com/unsafe-inline/>`_
-`Managing Static Files <https://docs.djangoproject.com/en/2.2/howto/static-files/>`_
+- `Django CSP <https://django-csp.readthedocs.io/en/latest/configuration.htm://django-csp.readthedocs.io/en/latest/configuration.html>`_
+- `Unsafe-Inline <https://content-security-policy.com/unsafe-inline/>`_
+- `Managing Static Files <https://docs.djangoproject.com/en/2.2/howto/static-files/>`_
 
