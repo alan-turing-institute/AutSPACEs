@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 {% load static %}
 
 <head>
@@ -8,29 +7,249 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <!--  Stylesheet-->
-   <link href="{% static "main/css/home.css" %}" rel="stylesheet">
+  <link href="{% static " main
+  /css/home.css" %}" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-
+  <!-- Font Awesome icons (free version)-->
+  <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
   <!--Google Fonts-->
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
         rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-
   <title>AutSPACEs Landing Page</title>
+<style>
 
-</head>
+  * {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
+
+  /*Navigation*/
+  .navbar {
+    padding: 0 0 4rem;
+  }
+  .nav-content {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .nav-item {
+    padding: 0 25px;
+  }
+  .nav-link:hover {
+    color:#000 !important;
+  }
+
+  /*Headings*/
+  .big-heading {
+    font-size: 5rem;
+    font-weight: bold;
+  }
+  .section-heading {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .value-heading {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+  .experience-heading {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+  }
+  .usage-heading {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+
+  /*Introduction Section*/
+  .container-fluid {
+    padding: 3% 5%;
+    background: #F1806F;
+    color: #fff;
+  }
+
+  .title-content {
+    padding: 3% 1%;
+  }
+  .title-text {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+  .title-image {
+    width: 65%;
+    margin-left: 35%;
+    border-radius: 5%;
+  }
+
+
+  /*Value Section*/
+  #value {
+    padding: 4% 5%;
+    color: #1BB5AF;
+  }
+  .value-text {
+    line-height: 2;
+    font-size: 20px;
+  }
+  .value-box {
+    text-align: center;
+    padding: 1%;
+  }
+
+  /*What Autism is Section*/
+  #autism {
+    background: #F9BB33;
+    padding: 3% 5%;
+    color: #fff;
+  }
+  .autism-text {
+    line-height: 2;
+  }
+
+  /*Shared Experience Section*/
+  #experience {
+    padding:  4% 5%;
+    color: #1BB5AF;
+  }
+  .experience-content {
+    color: #8f8f8f;
+    line-height: 2;
+    font-size: 20px;
+  }
+  .experience-image {
+    width: 50%;
+    padding-right: 5%;
+  }
+
+  .carousel-item {
+    padding: 5% 5%;
+    height: 500px;
+  }
+
+  .carousel-control-next,
+  .carousel-control-prev {
+    filter: invert(100%);
+    width: 3%
+  }
+
+  .carousel-indicators {
+    filter: invert(100%);
+  }
+
+  /*How to Use the Platform Section*/
+  #platform_usage {
+    background: #309FDC;
+    padding: 4% 5%;
+    color: #ffffff;
+  }
+
+  .platform-box {
+    text-align: center;
+    padding: 2% 0;
+  }
+
+  .usage-text {
+    color: #ffffff;
+    text-align: left;
+    padding: 0 3%;
+    font-size: 20px;
+    line-height: 2;
+  }
+
+  /*CTA Section*/
+  #cta {
+    padding: 4% 5%;
+    color: #1BB5AF;
+  }
+
+  .cta-card {
+    padding: 3% 2%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 2;
+  }
+
+  .card-header {
+    background-color: #1BB5AF;
+    color: #fff;
+  }
+
+  /*Footer*/
+  #footer {
+    background: #F2F2F2;
+    padding: 2% 5%;
+  }
+
+  .footer-column {
+    padding: 0% 3%;
+  }
+
+  .footer-image {
+    margin-bottom: 5%;
+  }
+
+  .footer-column p {
+    padding-top: 1%;
+    line-height: 0.5;
+  }
+
+  .footer-text {
+    padding: 0% 3%;
+    text-align: left;
+  }
+
+  .footer-text p {
+    padding-top: 1%;
+    line-height: 0.5;
+  }
+
+
+  /*Responsive Design*/
+  @media (max-width: 992px) {
+
+    .big-heading {
+      text-align: center;
+    }
+
+    .container-fluid {
+      padding-bottom: 10%;
+      text-align: center;
+    }
+
+    .title-image {
+      margin-left: 0;
+    }
+
+    #value {
+      padding: 2% 0;
+    }
+
+    .value-box {
+      padding: 2%;
+    }
+
+    .value-box p {
+      font-size: 1.5rem;
+    }
+  }
+  </style>
+  </head>
 
 <body>
 <!--Navigation-->
 <section id="title">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-xl navbar-dark">
-      <a class="navbar-brand" href="#">AutSPACEs</a>
+      <a class="nav-content navbar-brand" href="#">AutSPACEs</a>
       <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
               data-target="#navbarText"
               data-toggle="collapse" type="button">
@@ -38,15 +257,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="#">What Autism is</a>
-          <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
+          <a class="nav-content nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-content nav-item nav-link" href="#">What Autism is</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
           {% if user.is_authenticated %}
-          <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate
+            Experiences</a>
 
-          <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
 
-          <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
 
           <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input class="btn btn-outline-primary"
                                                                                       style="margin-top:6px;"
@@ -54,69 +274,81 @@
                                                                                       value="Log out">
           </form>
           {% endif %}
-          <a class="nav-item nav-link" href="#">About Us</a>
+          <a class="nav-content nav-item nav-link" href="#">About Us</a>
         </div>
       </div>
       <a class="navbar-brand" href="#">
-        <a class="nav-item nav-link" href="{{ auth_url }}" style="color: white">Register / Log In</a>
+        <a class="nav-content nav-item nav-link" href="{{ auth_url }}" style="color: #fff">Log In</a>
+      </a>
+<!--      Update the link to Registration Instructions page-->
+      <a class="navbar-brand" href="#">
+         <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience"
+            class="nav-content nav-item btn btn-lg btn-light">Register</a>
       </a>
     </nav>
     <!--Introduction of AutSPACEs-->
     <div class="row autspaces">
       <div class="col-lg-6 text-left">
-        <h1>AutSPACEs</h1>
+        <h1 class="big-heading">AutSPACEs</h1>
       </div>
     </div>
     <div class="row autspaces">
-      <div class="col-lg-6">
-        <h3>Makes environments better for autistic people by sharing stories about how senses affect people</h3>
+      <div class="title-content col-lg-6">
+        <h3 class="title-text">Makes environments better for autistic people by sharing stories about how senses
+          affect
+          people</h3>
+        <!--    Direct to 'About Us' Page-->
+            <button class="btn btn-outline-light btn-lg float-left" type="button">Read More</button>
+
       </div>
       <div class="col-lg-6">
         <img class="title-image" src="{% static "animation_a.jpg" %}" alt="Illustration" />
       </div>
     </div>
-<!--    Direct to 'About Us' Page-->
-    <button class="btn btn-outline-light btn-lg float-right read-more" type="button">Read More</button>
   </div>
 </section>
 <section id="value">
   <div class="row">
   <div class="col-lg-4 value-box">
-     <h3>Increase</h3>
-  <p>understanding of sensory processing</p>
+     <h3 class="value-heading">Increase</h3>
+  <p class="value-text">understanding of sensory processing</p>
   </div>
 
   <div class="col-lg-4 value-box">
-  <h3>Share</h3>
-  <p>strategies and experiences of autistic people</p>
+  <h3 class="value-heading">Share</h3>
+  <p class="value-text"> strategies and experiences of autistic people</p>
 </div>
 
   <div class="col-lg-4 value-box">
-  <h3>Advise</h3>
-  <p>organisations how to create better environments for autistic people</p>
+  <h3 class="value-heading">Advise</h3>
+  <p class="value-text">organisations how to create better environments for autistic people</p>
     </div>
     </div>
 </section>
 <!--  What Autism is-->
 <section id="autism">
-  <div class="row">
-    <div class="col-lg-6 autism">
-      <h2>What Autism is</h2>
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <h2 class="section-heading">What Autism is</h2>
     </div>
-    <div class="col-lg-6 autism">
-      <h4>Autistic people often have different sensory processing to people who are not autistic.</h4>
-      <h4>By collecting together lots of autistic people’s experiences, we can change spaces so that they are
+    <div class="col-lg-6">
+      <h4 class="autism-text">Autistic people often have different sensory processing to people who are not autistic
+        .</h4>
+      <h4 class="autism-text">By collecting together lots of autistic people’s experiences, we can change spaces so
+        that
+        they are
         better for autistic people.</h4>
+      <!--  Direct to 'What Autism Is Page-->
+      <button class="btn btn-outline-light btn-lg float-right" type="button">Read More</button>
     </div>
   </div>
 <!--  Direct to 'What Autism Is Page-->
-      <button class="btn btn-outline-light btn-lg float-right read-more" type="button">Read More</button>
 </section>
 <!--  View Experiences -->
 <section id="experience">
   <div class="row">
       <div class="col-lg-6 shared-experience">
-      <h2>Shared Experiences</h2>
+      <h2 class="section-heading">Shared Experiences</h2>
     </div>
   </div>
   <div id="experience-carousel" class="carousel slide" data-ride="false" data-interval="false">
@@ -128,22 +360,24 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="experience-image float-left d-block" src="{% static "animation_d.jpg" %}" width="150" height="325"/ alt="First slide">
-        <h3>Eating in a Restaurant</h3>
-        <p>...Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve
+        <h3 class="experience-heading">Eating in a Restaurant</h3>
+        <p class="experience-content">...Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve
           realised hunger exacerbates my sensory differences I know how to cope. I try to make sure I’ve eaten something before I go out and a while back I bought some earplugs which are great for small and bustling places.. </p>
-        <em>Sdy</em>
+        <em class="experience-content">Sdy</em>
       </div>
       <div class="carousel-item">
          <img class="experience-image float-left d-block" src="{% static "animation_b.jpg" %}" width="150" height="325"/ alt="Second slide">
-         <h3>Ice cream</h3>
-         <p>...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co.... </p>
-        <em>Ali</em>
+         <h3 class="experience-heading">Ice cream</h3>
+         <p class="experience-content">...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+           et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co.... </p>
+        <em class="experience-content">Ali</em>
       </div>
       <div class="carousel-item">
          <img class="experience-image float-left d-block" src="{% static "animation_c.jpg" %}"/ width="150" height="325"  alt="Third slide">
-         <h3>Traffic</h3>
-        <p>...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co .. </p>
-        <em>Jess</em>
+         <h3 class="experience-heading">Traffic</h3>
+        <p class="experience-content">...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co .. </p>
+        <em class="experience-content">Jess</em>
       </div>
     </div>
     <a class="carousel-control-prev" href="#experience-carousel" role="button" data-slide="prev">
@@ -160,41 +394,56 @@
 <section id="platform_usage">
   <div class="row">
       <div class="col-lg-6 platform-usage">
-      <h2>How to Use the Platform</h2>
+      <h2 class="section-heading">How to Use the Platform</h2>
     </div>
   </div>
  <div class="row">
   <div class="col-lg-3 platform-box">
-     <h3>Register</h3>
-  <p>an account on OpenHumans</p>
+     <h3 class="usage-heading">Register</h3>
+  <p class="usage-text">an account on OpenHumans. When you register you create a private and anonymous account with Open Humans. We
+                                     work with Open Humans to make sure you have control over your data and that it is safe.
+  </p>
   </div>
 
-  <div class="col-lg-3 platform-box">
-  <h3>Share</h3>
-  <p>a story abbout sensory experiences</p>
+  <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Share</h3>
+  <p class="usage-text">a story abbout sensory experiences. Enter a description of how your senses affect you. For example: “I do not go
+    on trains because they are too loud”.</p>
 </div>
 
-  <div class="col-lg-3 platform-box">
-  <h3>Choose</h3>
-  <p>the viewing access of the stories</p>
+  <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Choose</h3>
+  <p class="usage-text">the viewing access of the stories. You can choose to share your story publicly or privately, for research. You can also share both publicly and with researchers if you prefer.
+  </p>
     </div>
 
      <div class="col-lg-3 platform-box">
-  <h3>Explore</h3>
-  <p>other people's stories</p>
+  <h3 class="usage-heading">Check</h3>
+  <p class="usage-text">shared stories. If you want to make your story public, it will first be checked to make sure it follows our code
+    of conduct. This is to keep AutSPACEs an autism-first, inclusive and welcoming space for all.
+  </p>
     </div>
+     <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Change</h3>
+  <p class="usage-text">your stories any time. You can view your own stories and edit them, or change who they are
+    shared with any
+    time,
+    even once they are submitted.</p>
     </div>
-   <a href="{{ auth_url }}" style="color: white">
-       <button class="btn btn-outline-light btn-lg float-right read-more" type="button">Register an Account</button>
+      <a class="col-lg-12" href="{{ auth_url }}" style="color: white">
+       <button class="btn btn-outline-light btn-lg float-right register-button" type="button">Register an
+         Account</button>
    </a>
+    </div>
+
 </section>
 <!-- Call to Action-->
 <section id="cta">
-  <h2>Get Involved</h2>
+  <h2 class="section-heading">Get Involved</h2>
      <div class="row">
        <div class="cta-card col-lg-3">
          <div class="card">
-           <h4 class="card-header">Project Management</h4>
+           <h3 class="card-header">Project Management</h3>
            <div class="card-body">
              <p class="card-text">Contribute to the <br> GitHub repository.</p>
                 <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience" class="btn btn-primary">Contribute</a>
@@ -203,7 +452,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h4 class="card-header">Project Development</h4>
+           <h3 class="card-header">Project Development</h3>
            <div class="card-body">
              <p class="card-text">Contribute to the <br> GitHub repository.</p>
                 <a href="https://github.com/alan-turing-institute/AutSPACEs" class="btn btn-primary">Contribute</a>
@@ -212,7 +461,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h4 class="card-header">Project Discussion</h4>
+           <h3 class="card-header">Project Discussion</h3>
            <div class="card-body">
              <p class="card-text">Join us on our public <br> Slack Channel.</p>
                 <a href="https://slackin.openhumans.org" class="btn btn-primary">Join Us</a>
@@ -221,7 +470,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h4 class="card-header">Project Updates</h4>
+           <h3 class="card-header">Project Updates</h3>
            <div class="card-body">
              <p class="card-text">Subscribe to our newsletter <br> for monthly updates.</p>
                 <a href="https://tinyletter.com/AutisticaTuringCitizenScience" class="btn btn-primary">Subscribe</a>
