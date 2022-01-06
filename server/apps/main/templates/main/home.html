@@ -40,6 +40,9 @@
   .nav-link:hover {
     color:#000 !important;
   }
+  .log-link {
+    color: #fff;
+  }
 
   /*Headings*/
   .big-heading {
@@ -258,7 +261,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav">
           <a class="nav-content nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-content nav-item nav-link" href="#">What Autism is</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
           <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
           {% if user.is_authenticated %}
           <a class="nav-content nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate
@@ -274,11 +277,11 @@
                                                                                       value="Log out">
           </form>
           {% endif %}
-          <a class="nav-content nav-item nav-link" href="#">About Us</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
         </div>
       </div>
       <a class="navbar-brand" href="#">
-        <a class="nav-content nav-item nav-link" href="{{ auth_url }}" style="color: #fff">Log In</a>
+        <a class="nav-content nav-item nav-link log-link" href="{{ auth_url }}">Log In</a>
       </a>
 <!--      Update the link to Registration Instructions page-->
       <a class="navbar-brand" href="#">
@@ -384,7 +387,7 @@
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#experience-carousel" role="button" style="" data-slide="next">
+    <a class="carousel-control-next" href="#experience-carousel" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -430,7 +433,7 @@
     time,
     even once they are submitted.</p>
     </div>
-      <a class="col-lg-12" href="{{ auth_url }}" style="color: white">
+      <a class="col-lg-12" href="{{ auth_url }}">
        <button class="btn btn-outline-light btn-lg float-right register-button" type="button">Register an
          Account</button>
    </a>

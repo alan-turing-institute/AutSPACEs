@@ -221,3 +221,9 @@ def confirmation_page(request):
     Confirmation Page For App
     """
     return render(request, "main/confirmation_page.html")
+
+def about_us(request):
+    return render(request, "main/about_us.html")
+
+def what_autism_is(request):
+    return render(request, "main/what_autism_is.html")
