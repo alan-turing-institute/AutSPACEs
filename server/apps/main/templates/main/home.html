@@ -6,298 +6,25 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <!--  Stylesheet-->
-  <link href="{% static " main
-  /css/home.css" %}" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-  <!-- Font Awesome icons (free version)-->
-  <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
   <!--Google Fonts-->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
         rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+  <!--  Stylesheet-->
+<!--  <link href="{% static 'home.css' %}" rel="stylesheet">-->
   <title>AutSPACEs Landing Page</title>
-<style>
-
-  * {
-    font-family: 'Poppins', 'PT-Serif';
-    font-weight: 400;
-  }
-
-  /*Navigation*/
-  .navbar {
-    padding: 0 0 4rem;
-  }
-  .nav-content {
-    font-weight: bold;
-    font-size: 1.3rem;
-  }
-  .nav-item {
-    padding: 0 25px;
-  }
-  .nav-link:hover {
-    color:#000 !important;
-  }
-  .log-link {
-    color: #fff;
-  }
-
-  /*Headings*/
-  .big-heading {
-    font-size: 5rem;
-    font-weight: bold;
-  }
-  .section-heading {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-  .value-heading {
-    font-size: 2rem;
-    line-height: 2;
-    font-weight: bold;
-    padding-bottom: 3%;
-  }
-  .experience-heading {
-    font-size: 2rem;
-    line-height: 2;
-    font-weight: bold;
-  }
-  .usage-heading {
-    font-size: 2rem;
-    line-height: 2;
-    font-weight: bold;
-    padding-bottom: 3%;
-  }
-
-  /*Introduction Section*/
-  .container-fluid {
-    padding: 3% 5%;
-    background: #F1806F;
-    color: #fff;
-  }
-
-  .title-content {
-    padding: 3% 1%;
-  }
-  .title-text {
-    font-size: 2rem;
-    line-height: 2;
-    font-weight: bold;
-    padding-bottom: 3%;
-  }
-  .title-image {
-    width: 65%;
-    margin-left: 35%;
-    border-radius: 5%;
-  }
-
-
-  /*Value Section*/
-  #value {
-    padding: 4% 5%;
-    color: #1BB5AF;
-  }
-  .value-text {
-    line-height: 2;
-    font-size: 20px;
-  }
-  .value-box {
-    text-align: center;
-    padding: 1%;
-  }
-
-  /*What Autism is Section*/
-  #autism {
-    background: #F9BB33;
-    padding: 3% 5%;
-    color: #fff;
-  }
-  .autism-text {
-    line-height: 2;
-  }
-
-  /*Shared Experience Section*/
-  #experience {
-    padding:  4% 5%;
-    color: #1BB5AF;
-  }
-  .experience-content {
-    color: #8f8f8f;
-    line-height: 2;
-    font-size: 20px;
-  }
-  .experience-image {
-    width: 50%;
-    padding-right: 5%;
-    padding-left: 2%;
-  }
-
-  .carousel-item {
-    padding: 5% 5%;
-    height: 500px;
-  }
-
-  .carousel-control-next,
-  .carousel-control-prev {
-    filter: invert(100%);
-    width: 5%
-  }
-  .carousel-control-prev-icon {
-    position: relative;
-    bottom: 20px;
-    left: 0px;
-}
-
-  .carousel-indicators {
-    filter: invert(100%);
-  }
-
-  /*How to Use the Platform Section*/
-  #platform_usage {
-    background: #309FDC;
-    padding: 4% 5%;
-    color: #ffffff;
-  }
-
-  .platform-box {
-    text-align: left;
-    margin: 2% 0.5%;
-  }
-
-  .usage-text {
-    color: #ffffff;
-    text-align: left;
-    padding: 0 1%;
-    font-size: 20px;
-    line-height: 2;
-  }
-
-  .register-button {
-    margin-right: 2.5%
-  }
-  /*CTA Section*/
-  #cta {
-    padding: 4% 5%;
-    color: #1BB5AF;
-  }
-
-  .cta-card {
-    padding: 3% 2%;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.5;
-  }
-
-  .card-header {
-    background-color: #1BB5AF;
-    color: #fff;
-  }
-
-  /*Footer*/
-  #footer {
-    background: #F2F2F2;
-    padding: 2% 5%;
-  }
-
-  .footer-column {
-    padding: 0% 3%;
-  }
-
-  .footer-image {
-    margin-bottom: 5%;
-  }
-
-  .footer-column p {
-    padding-top: 1%;
-    line-height: 0.5;
-  }
-
-  .footer-text {
-    padding: 0% 3%;
-    text-align: left;
-  }
-
-  .footer-text p {
-    padding-top: 1%;
-    line-height: 0.5;
-  }
-
-
-  /*Responsive Design*/
-  @media (max-width: 992px) {
-
-    .big-heading {
-      text-align: center;
-    }
-
-    .container-fluid {
-      padding-bottom: 10%;
-      text-align: center;
-    }
-
-    .title-image {
-      margin-left: 0;
-    }
-
-    #value {
-      padding: 2% 0;
-    }
-
-    .value-box {
-      padding: 2%;
-    }
-
-    .value-box p {
-      font-size: 1.5rem;
-    }
-  }
-  </style>
   </head>
 
 <body>
 <!--Navigation-->
 <section id="title">
+    <div class="container-fluid">
+  {% include 'main/partials/navigation.html' %}
   <div class="container-fluid">
-    <nav class="navbar navbar-expand-xl navbar-dark">
-      <a class="nav-content navbar-brand" href="#">AutSPACEs</a>
-      <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-              data-target="#navbarText"
-              data-toggle="collapse" type="button">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <div class="navbar-nav">
-          <a class="nav-content nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
-          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-          {% if user.is_authenticated %}
-          <a class="nav-content nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate
-            Experiences</a>
 
-          <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-          <a class="nav-content nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-          <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input class="btn btn-outline-primary"
-                                                                                      style="margin-top:6px;"
-                                                                                      type="submit"
-                                                                                      value="Log out">
-          </form>
-          {% endif %}
-          <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
-        </div>
-      </div>
-      <a class="navbar-brand" href="#">
-        <a class="nav-content nav-item nav-link log-link" href="{{ auth_url }}">Log In</a>
-      </a>
-<!--      Update the link to Registration Instructions page-->
-      <a class="navbar-brand" href="#">
-         <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience"
-            class="nav-content nav-item btn btn-lg btn-light">Register</a>
-      </a>
-    </nav>
     <!--Introduction of AutSPACEs-->
     <div class="row autspaces">
       <div class="col-lg-6 text-left">
@@ -314,7 +41,7 @@
 
       </div>
       <div class="col-lg-6">
-        <img class="title-image" src="{% static "animation_a.jpg" %}" alt="Illustration" />
+        <img class="title-image" src="{% static '/images/animation_a.jpg' %}" alt="Illustration" />
       </div>
     </div>
   </div>
@@ -426,32 +153,32 @@
     </div>
   </div>
  <div class="row">
-  <div class="col-lg-3 border border-light rounded platform-box">
+  <div class="col-lg-3 platform-box">
      <h3 class="usage-heading">Register</h3>
   <p class="usage-text">an account on OpenHumans. When you register you create a private and anonymous account with Open Humans. We
                                      work with Open Humans to make sure you have control over your data and that it is safe.
   </p>
   </div>
 
-  <div class="col-lg-2 border border-light rounded platform-box">
+  <div class="col-lg-2 platform-box">
   <h3 class="usage-heading">Share</h3>
   <p class="usage-text">a story abbout sensory experiences. Enter a description of how your senses affect you. For example: “I do not go
     on trains because they are too loud”.</p>
 </div>
 
-  <div class="col-lg-2 border border-light rounded platform-box">
+  <div class="col-lg-2 platform-box">
   <h3 class="usage-heading">Choose</h3>
   <p class="usage-text">the viewing access of the stories. You can choose to share your story publicly or privately, for research. You can also share both publicly and with researchers if you prefer.
   </p>
     </div>
 
-     <div class="col-lg-2 border border-light rounded platform-box">
+     <div class="col-lg-3 platform-box">
   <h3 class="usage-heading">Check</h3>
   <p class="usage-text">shared stories. If you want to make your story public, it will first be checked to make sure it follows our code
     of conduct. This is to keep AutSPACEs an autism-first, inclusive and welcoming space for all.
   </p>
     </div>
-     <div class="col-lg-2 border border-light rounded platform-box">
+     <div class="col-lg-2 platform-box">
   <h3 class="usage-heading">Change</h3>
   <p class="usage-text">your stories any time. You can view your own stories and edit them, or change who they are
     shared with any
@@ -470,7 +197,7 @@
      <div class="row">
        <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header">Project Management</h3>
+           <h3 class="card-header">Management</h3>
            <div class="card-body">
              <p class="card-text">Contribute to the <br> GitHub repository.</p>
                 <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience" class="btn btn-primary">Contribute</a>
@@ -479,7 +206,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header">Project Development</h3>
+           <h3 class="card-header">Development</h3>
            <div class="card-body">
              <p class="card-text">Contribute to the <br> GitHub repository.</p>
                 <a href="https://github.com/alan-turing-institute/AutSPACEs" class="btn btn-primary">Contribute</a>
@@ -488,7 +215,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header">Project Discussion</h3>
+           <h3 class="card-header">Discussion</h3>
            <div class="card-body">
              <p class="card-text">Join us on our public <br> Slack Channel.</p>
                 <a href="https://slackin.openhumans.org" class="btn btn-primary">Join Us</a>
@@ -497,7 +224,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header">Project Updates</h3>
+           <h3 class="card-header">Updates</h3>
            <div class="card-body">
              <p class="card-text">Subscribe to our newsletter <br> for monthly updates.</p>
                 <a href="https://tinyletter.com/AutisticaTuringCitizenScience" class="btn btn-primary">Subscribe</a>
@@ -509,35 +236,11 @@
 </section>
 <!--Footer-->
 <footer id="footer">
+  {% include 'main/partials/footer.html' %}
   <div class="row">
-    <div class="col-lg-3 footer-column">
-      <img class="footer-image" src="{% static "autistica.png" %}" width="65" height="40" alt="Autistica Logo" />
-      <img class="footer-image" src="{% static "alanturing.png" %}" width="75" height="40" alt="Alan Turing Institute
-      Logo" />
-      <p>© Copyright 2021 AutSPACEs</p>
-      <p><a href="https://twitter.com/AutSpaces">@AutSpaces</a> at Twitter</p>
-    </div>
-    <div class="col-lg-3 footer-text">
-        <h5>Allied Organisations</h5>
-        <p>Autistica</p>
-      <p>National Autistic Society</p>
-      <p>Samaritans</p>
-    </div>
+  {% block content %}
 
-    <div class="col-lg-3 footer-column footer-text">
-        <h5>Policies</h5>
-      <p>Ethics</p>
-      <p>Terms of Use</p>
-      <p>Code of Conduct</p>
-    </div>
-
-
-    <div class="col-lg-3 footer-column footer-text">
-    <h5>About Us</h5>
-      <p>GitHub</p>
-      <p>Glossary</p>
-      <p>Publications</p>
-    </div>
+  {% endblock %}
   </div>
 
 </footer>

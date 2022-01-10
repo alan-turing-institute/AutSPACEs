@@ -1,4 +1,3 @@
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,87 +18,74 @@
 
   <title>View Experiences</title>
   <style>
-    * {
-      font-family: 'Open Sans', 'PT-Serif';
-      font-weight: 400;
-    }
+    <style>
+  * {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
 
-    body {
-      background: #E8F3FC;
-    }
+  /*Navigation*/
+  .navbar {
+    padding: 0 0 4rem;
+  }
+  .nav-content {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .nav-item {
+    padding: 0 25px;
+  }
+  .nav-link:hover {
+    color:#000 !important;
+  }
+  .log-link {
+    color: #fff;
+  }
 
-    .my-custom-card {
-      background: #C4C4C4;
-    }
+  /*Headings*/
+  .big-heading {
+    font-size: 5rem;
+    font-weight: bold;
+  }
+  .section-heading {
+    font-size: 3rem;
+    font-weight: bold;
+  }
 
-    .goals {
-      background: #EBF1F5;
+   /*Introduction Section*/
+  .container-fluid {
+    padding: 3% 5%;
+    background: #F1806F;
+    color: #fff;
+  }
 
-    }
-
-    .navbar {
-      font-size: 20px;
-      margin-bottom: 20px;
-      padding: 2px !important;
-    }
-
-    a:hover {
-      font-weight: 550 !important;
-      transition: 0.3s;
-    }
-
-    img {
-      margin: 2px 10px;
-    }
-
-    .btn {
-      font-size: 16px;
-      margin: 8px;
-    }
-
-    form {
-      text-align: center;
-      font-size: x-large;
-    }
-
-    .mysmallCcards {
-      background: #00B2FF;
-
-    }
+  .title-content {
+    padding: 3% 1%;
+  }
+  .title-text {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+  .title-image {
+    width: 65%;
+    margin-left: 35%;
+    border-radius: 5%;
+  }
   </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Institute Logo" />
-  </a>
-  <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-          data-target="#navbarText"
-          data-toggle="collapse" type="button">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      {% if user.is_authenticated %}
-      <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+<section id="title">
+  <div class="container-fluid">
+  {% include 'main/partials/navigation.html' %}
+  <div class="container-fluid">
+  {% block content %}
 
-      <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-      <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input class="btn btn-outline-primary" style="margin-top:6px;"
-                                                                                  type="submit"
-                                                                                  value="Log out">
-      </form>
-
-      {% endif %}
-    </div>
   </div>
-</nav>
+</section>
+
 <div class="container">
 
   <div class="row">
@@ -212,7 +198,17 @@
 <br><br><br>
 
 </div>
-<br><br>
+
+<!-- Footer-->
+<footer id="footer">
+  {% include 'main/partials/footer.html' %}
+  <div class="row">
+
+  {% endblock %}
+  </div>
+
+</footer>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -229,5 +225,3 @@
 </body>
 
 </html>
-
-{% endblock %}

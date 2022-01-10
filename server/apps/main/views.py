@@ -227,3 +227,9 @@ def about_us(request):
 
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
+
+def navigation(request):
+    return render(request, "main/navigation.html")
+
+def footer(request):
+    return render(request, "main/footer.html")

@@ -1,6 +1,5 @@
 from django.conf.urls import url
 from django.urls import path
-
 from server.apps.main import views
 
 app_name = 'main'
@@ -36,5 +35,7 @@ urlpatterns = [
     path('confirm_page/', views.confirmation_page, name="confirm_page"),
     path('about_us/', views.about_us, name="about_us"),
     path('what_autism_is/', views.what_autism_is, name="what_autism_is"),
+    path('navigation/', views.navigation, name="navigation"),
+    path('footer/', views.footer, name="footer"),
 
 ]
