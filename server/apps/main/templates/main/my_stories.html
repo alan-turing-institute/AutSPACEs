@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
+{% block content %}
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,146 +20,12 @@
     <title>My Stories</title>
 
   <!-- Favicon -->
-<style>
-  * {
-    font-family: 'Open Sans', 'PT-Serif';
-    font-weight: 400;
-  }
-
-  /* application.html inline styles */
-  body {
-      background: #E8F3FC;
-  }
-
-  .navbar {
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding: 2px !important;
-  }
-   img {
-      margin: 2px 10px;
-    }
-  /* Sticky footer styles
-  -------------------------------------------------- */
-  html {
-    position: relative;
-    min-height: 100%;
-  }
-
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f5;
-  }
-
-  .fcontainer .text-muted {
-    padding: 0 15px;
-    margin: 20px 0;
-  }
-
-  /* End of application.html inline styles */
-
-  a:hover {
-    font-weight: 550 !important;
-    transition: 0.3s;
-  }
-
-  section.stories_page {
-    text-align: center;
-    margin-top: 30px;
-    color: #000;
-  }
-
-  div.story_head p.h3,
-  div.story_body p.h3 {
-    font-weight: 550;
-    font-size: 38px;
-    margin-bottom: 20px;
-  }
-
-  span.p_page {
-    font-weight: 500;
-    font-size: 19px;
-  }
-
-  div.story_head p.h5 {
-    font-size: 22px;
-    margin-top: 40px;
-    font-weight: 550;
-  }
-
-  ul.can_do {
-    list-style: none;
-    max-width: 600px !important;
-    margin: auto;
-  }
-
-  ul.can_do li.do {
-    font-size: 19px;
-    text-align: left !important;
-  }
-
-  div.story_body {
-    margin-top: 60px;
-  }
-
-  .btn {
-    font-size: 16px;
-    margin: 8px;
-  }
-
-</style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <a class="navbar-brand" href="{% url 'main:index' %}">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Institute Logo" />
-  </a>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarText"
-          aria-expanded="false" aria-controls="navbarText">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="navbar-toggler-icon"></span>
-  </button>
+{% include 'main/partials/navigation.html' %}
 
-  <div id="navbarText" class="navbar-collapse collapse">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      {% if user.is_authenticated %}
-              <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-
-              <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-              <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-              <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                      style="margin-top:6px;"
-                                                                                      class="btn btn-outline-primary"></form>
-      {% endif %}
-    </div>
-  </div>
-</nav>
-
-<!-- Alert Messages -->
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-info" role="alert">
-  {{ message }}
-</div>
-{% endfor %}
-{% endif %}
-
-<!-- Section -->
 <section class="stories_page">
   <div class="container">
     <div class="story_head">
@@ -191,7 +59,9 @@
     </div>
   </div>
 </section>
-
+  <section id="footer">
+  {% include 'main/partials/footer.html'%}
+  </section>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -207,3 +77,4 @@
 </body>
 
 </html>
+{% endblock %}

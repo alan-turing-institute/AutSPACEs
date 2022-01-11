@@ -1,8 +1,9 @@
-{% block content %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
+{% block content %}
+
 
 <head>
   <!-- Required meta tags -->
@@ -17,96 +18,12 @@
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 
   <title>AutSPACEs Moderation Page</title>
-  <style>
-    * {
-      font-family: 'Open Sans', 'PT-Serif';
-      font-weight: 400;
-    }
-    body {
-      background: #E8F3FC;
-    }
-    .my-custom-card {
-      background: #C4C4C4;
-      height: 699px;
-    }
-    .goals {
-      background: #EBF1F5;
-    }
-  .navbar {
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding: 2px !important;
-  }
-    a:hover {
-    font-weight: 550 !important;
-    transition: 0.3;
-    }
-
-    img {
-      margin: 2px 10px;
-    }
-
-  .btn {
-    font-size: 16px;
-    margin: 8px;
-    }
-
-    form {
-      text-align: center;
-      font-size: x-large;
-    }
-
-    .mysmallCcards {
-      background: #00B2FF;
-
-    }
-
-    .button-icon {
-      padding: 0 5%;
-    }
-
-    .btn-colour {
-      height: 80.84px;
-      width: 200px;
-    }
-
-    .btn-colour:hover {
-      background: #7dce1b;
-      height: 80.84px;
-      width: 200px;
-    }
-  </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Institute Logo" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      {% if user.is_authenticated %}
-      <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-     <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                  style="margin-top:6px;"
-                                                                                  class="btn btn-outline-primary"></form>
-      {% endif %}
-    </div>
-  </div>
-</nav>
+  {% include 'main/partials/navigation.html' %}
+   <div class="container-fluid">
+   </div>
 <div class="container">
   <div class="row">
     <div class="col-sm-12" style="text-align: center; padding:3%">
@@ -167,66 +84,19 @@
   </tbody>
 </table>
 
-<!--
-  <div class="row my-custom-card">
-    <div class="col-sm-12 ">
-      <div class="card goals">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-2 col-sm-2 offset-sm-1">
-              <h3 class="card-text h3">DATE</h3>
-            </div>
-            <div class="col-2 col-sm-4">
-              <h3 class="card-text">PERSON'S <br/> AUTISM </br> CONNECTION </h3>
-            </div>
-          </div>
-          <br>
-
-        </div>
-
-      </div>
-      <br>
-      <br><br><br>
-      <div class="card mysmallCcards">
-        <div class="card mysmallCcards">
-          <div class="row">
-            <div class="col-2 col-sm-2 offset-sm-1">
-              <h3>July 21</h3>
-            </div>
-            <div class="col align-self-center ">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
-                diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
-                velit fermentum, egestas libero nec, faucibus tortor.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br><br>
-      <div class="row">
-        <div class="col-lg-6">
-          <button class="btn btn-colour btn-lg" style="background:#299C57">
-            <a style="color:#000000" href="{% url 'main:index' %}"> Approve </a>
-          </button>
-          <button class="btn btn-colour btn-lg" style="background:#DD2424">
-            <a style="color:#000000" href="{% url 'main:index' %}"> Decline </a>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
--->
 
 </div>
 
-<br><br><br>
+
 
 </div>
-<br><br>
+
+<!--Footer-->
+<section id="footer">
+  {% include 'main/partials/footer.html' %}
+   <div class="container-fluid">
+   </div>
+</section>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

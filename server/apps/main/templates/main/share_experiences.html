@@ -1,6 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+ {% block content %}
 
   <head>
     <!-- Required meta tags -->
@@ -18,98 +19,15 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 
     <title>Share Experiences</title>
-    <style>
-      * {
-        font-family: 'Open Sans', 'PT-Serif';
-        font-weight: 400;
-      }
-      body {
-        background: #e8f3fc;
-      }
-      .btn-colour {
-        background: #a0f832;
-        height: 70px;
-        width: 150px;
-      }
-      .btn-colour:hover {
-        background: #7dce1b;
-        height: 70px;
-        width: 150px;
-      }
-      .navbar {
-        font-size: 20px;
-        margin-bottom: 20px;
-        padding: 2px !important;
-      }
-      a:hover {
-      font-weight: 550 !important;
-      }
 
-      img {
-        margin: 2px 10px;
-      }
-      .btn {
-        font-size: 16px;
-        margin: 8px;
-      }
-      .form-control {
-        width: 50%;
-      }
-      .form-context {
-        padding: 3%;
-      }
-      .form-check-label {
-        font-size: 22px;
-        margin-left: 10px;
-      }
-      input.form-check-input {
-        width: 20px;
-        height: 20px;
-      }
-      textarea.form-control {
-        background-color: rgb(177, 200, 243);
-        color: #000;
-      }
-      textarea.form-control:focus {
-        background-color: rgb(177, 200, 243);
-        border-color: rgba(43, 117, 0, 0.6);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-          0 0 8px rgba(43, 117, 0, 0.6);
-        outline: 0 none;
-        color: #000;
-      }
-    </style>
   </head>
 
   <body>
- 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-          aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-        <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-       {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+<!--  Intro-->
+  <section id="intro">
+    {% include 'main/partials/navigation.html' %}
 
-                <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-                <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-                <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                  style="margin-top:6px;"
-                                                                                  class="btn btn-outline-primary"></form>
-              {% endif %}
-    </div>
-  </div>
-</nav>
-
+  </section>
     <form method="post" action="{% url 'main:upload' %}" class="form-context">
       {% csrf_token %}
       <div class="form-group">
@@ -178,6 +96,9 @@
       </div>
     </form>
 
+  <section id="footer">
+  {% include 'main/partials/footer.html'%}
+  </section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
@@ -186,3 +107,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
+
+{% endblock %}

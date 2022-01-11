@@ -7,9 +7,10 @@
         rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 <!--    Stylesheet-->
-  <link href="{% static '/css/navigation.css' %}" rel="stylesheet">
+  <link href="{% static '/css/navigation_light.css' %}" rel="stylesheet" id="mystylesheet">
 
-<nav class="navbar navbar-expand-xl navbar-dark">
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-xl navbar-dark">
       <a class="nav-content navbar-brand" href="#">AutSPACEs</a>
       <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
               data-target="#navbarText"
@@ -17,28 +18,52 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <div class="navbar-nav">
-          <a class="nav-content nav-item nav-link" href="{% url 'main:overview' %}">Home <span class="sr-only">(current)</span></a>
+        <ul class="navbar-nav">
+                <li class="nav-item">
+          <a class="nav-content nav-item nav-link" href="{% url 'main:overview' %}">Home</a>
+                </li>
+          <li/>
           <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
-          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
+            </li>
           {% if user.is_authenticated %}
+<!--
+             <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Experiences
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'main:view_experiences' %}">View Experiences</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+-->
+
+          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
           <a class="nav-content nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate
             Experiences</a>
-
+          <li>
           <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-          <a class="nav-content nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-          <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input class="btn btn-outline-primary"
-                                                                                      style="margin-top:6px;"
-                                                                                      type="submit"
-                                                                                      value="Log out">
-          </form>
+</li>
+          {% else %}
+          <li>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
+</li>
           {% endif %}
+          <li>
           <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
-        </div>
+          </li>
+        </ul>
       </div>
-      <a class="navbar-brand" href="#">
+
+      {% if user.is_authenticated %}
+        <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input
+            class="btn btn-light btn-lg"
+                                                                                      type="submit" value="Log out">
+          </form>
+     {% else %}
+          <a class="navbar-brand" href="#">
         <a class="nav-content nav-item nav-link log-link" style="color: #fff" href="{{ auth_url }}">Log In</a>
       </a>
 <!--      Update the link to Registration Instructions page-->
@@ -46,4 +71,9 @@
          <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience"
             class="nav-content nav-item btn btn-lg btn-light">Register</a>
       </a>
+    {% endif %}
+
+
     </nav>
+</div>
+

@@ -180,7 +180,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'main:overview' %}">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
       {% if user.is_authenticated %}
       <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
