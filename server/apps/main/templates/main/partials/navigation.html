@@ -19,12 +19,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav">
-                <li class="nav-item">
           <a class="nav-content nav-item nav-link" href="{% url 'main:overview' %}">Home</a>
-                </li>
-          <li/>
           <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
-            </li>
           {% if user.is_authenticated %}
 <!--
              <li class="nav-item dropdown">
