@@ -204,6 +204,11 @@ def make_research(request, oh_file_id, file_uuid):
 def signup(request):
     return render(request, "main/signup.html")
 
+def registration(request):
+    registration_status = True
+    print(registration_status)
+    return render(request, "main/registration.html", {'page_status': 'registration'})
+
 def signup_frame4_test(request):
     return render(request, "main/signup1.html")
 

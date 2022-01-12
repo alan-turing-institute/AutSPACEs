@@ -52,23 +52,17 @@
           </li>
         </ul>
       </div>
-
       {% if user.is_authenticated %}
         <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input
             class="btn btn-light btn-lg"
                                                                                       type="submit" value="Log out">
           </form>
-     {% else %}
-          <a class="navbar-brand" href="#">
+     {% elif not page_status == "registration" %}
         <a class="nav-content nav-item nav-link log-link" style="color: #fff" href="{{ auth_url }}">Log In</a>
       </a>
-<!--      Update the link to Registration Instructions page-->
-      <a class="navbar-brand" href="#">
-         <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience"
-            class="nav-content nav-item btn btn-lg btn-light">Register</a>
+         <a href="{% url 'main:registration' %}" class="nav-content nav-item btn btn-lg btn-light">Register</a>
       </a>
     {% endif %}
-
 
     </nav>
 </div>

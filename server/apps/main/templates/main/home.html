@@ -24,9 +24,7 @@
 <!--  Navigation-->
     {% include 'main/partials/navigation.html' %}
    <div class="container-fluid">
-
-    {% block content %}
-    <!--Introduction of AutSPACEs-->
+     <!--Introduction of AutSPACEs-->
     <div class="row intro">
       <div class="col-lg-6 text-left">
         <h1 class="big-heading">AutSPACEs</h1>
@@ -38,8 +36,10 @@
         <h3 class="title-text">Makes environments better for autistic people by sharing stories about how senses
           affect
           people</h3>
-        <!--    Direct to 'About Us' Page-->
-        <button class="btn btn-outline-light btn-lg float-left" type="button">Read More</button>
+         <a class="col-lg-12" href="{% url 'main:about_us' %}">
+       <button class="btn btn-outline-light btn-lg float-left" type="button">Read More</button>
+   </a>
+
       </div>
       <div class="col-lg-5">
         <img class="title-image" src="{% static '/images/animation_a.jpg' %}" alt="Illustration" />
@@ -79,8 +79,9 @@
         that
         they are
         better for autistic people.</h4>
-      <!--  Direct to 'What Autism Is Page-->
-      <button class="btn btn-outline-light btn-lg float-right" type="button">Read More</button>
+      <a class="col-lg-12" href="{% url 'main:what_autism_is' %}">
+       <button class="btn btn-outline-light btn-lg float-right" type="button">View More</button>
+   </a>
     </div>
   </div>
 <!--  Direct to 'What Autism Is Page-->
@@ -245,8 +246,6 @@
 <footer id="footer">
   {% include 'main/partials/footer.html' %}
   <div class="row">
-
-  {% endblock %}
   </div>
 
 </footer>

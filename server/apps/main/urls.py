@@ -37,5 +37,6 @@ urlpatterns = [
     path('what_autism_is/', views.what_autism_is, name="what_autism_is"),
     path('navigation/', views.navigation, name="navigation"),
     path('footer/', views.footer, name="footer"),
+    path('registration/', views.registration, name="registration"),
 
 ]

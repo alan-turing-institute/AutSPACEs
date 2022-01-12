@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{config.project_title |default:"AutSPACEs Registration on Open Humans" }}</title>
+   <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+  <!--Google Fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+<!--    Stylesheet-->
+    <link href="{% static '/css/registration.css' %}" rel="stylesheet">
+
+  <title>AutSPACEs Registration Page</title>
+
+</head>
+
+<body>
+ {% include 'main/partials/navigation.html' %}
+<!--  Intro: OS-->
+ <section id="intro">
+   <h3 class="section-heading">Welcome to AutSPACEs Registration</h3>
+  <div class="row">
+    <div class="col-lg-12">
+      <p class="intro-text">To share your stories using AutSPACEs, you must first register with Open Humans. This is to
+        give you
+        control over your data and make sure that your data is kept safe.
+        Open Humans have been working with The Alan Turing Institute to create AutSPACEs.
+      </p>
+      <p> OpenHumans is a non-profit organisation designed to help people access and understand their personal data, and to help them do and share things that use that data.
+        You can find out more about Open Humans on <a href="https://www.openhumans.org/about/"
+                                                      style="color: #ffff" class="stretched-link">their website</a>.
+      <p>We will never sell your data, and we will never share it without your consent.
+</p>
+    </div>
+  </div>
+ </section>
+  <section id="question">
+  <h3 class="section-heading">Questions for Registration</h3>
+  <div class="row">
+
+  </div>
+ </section>
+<!-- footer-->
+ {% include 'main/partials/footer.html' %}
+</body>
