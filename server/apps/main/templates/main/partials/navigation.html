@@ -22,23 +22,23 @@
           <a class="nav-content nav-item nav-link" href="{% url 'main:overview' %}">Home</a>
           <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
           {% if user.is_authenticated %}
-<!--
              <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Experiences
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'main:view_experiences' %}">View Experiences</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="{% url 'main:upload' %}">Share Experiences</a>
+          <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate
+            Experiences</a>
         </div>
       </li>
--->
-
+<!--
           <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
           <a class="nav-content nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
           <a class="nav-content nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate
-            Experiences</a>
+            Experiences</a>-->
           <li>
           <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
 </li>
@@ -66,4 +66,3 @@
 
     </nav>
 </div>
-
