@@ -9,92 +9,50 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+ <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
   <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-
+<!--    Stylesheet-->
+  <link href="{% static '/css/moderation.css' %}" rel="stylesheet">
   <title>AutSPACEs Moderation Page</title>
 </head>
 
 <body>
-  {% include 'main/partials/navigation.html' %}
-   <div class="container-fluid">
+{% include 'main/partials/navigation.html' %}
+<section id="intro">
+  <div class="row">
+   <div class="col-lg-12">
+     <div class="card-header"><h4>Moderator: </h4></div>
+     <div class="card-body">
+     <p>Moderated Experiences: </p>
+      <p>New Experiences in the Platform: </p>
+<!--    Google Form for Questions Collection-->
+         <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg "
+                                              type="button">Moderate New
+    Experiences</button>
+   </a>
+    <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg " type="button">Review
+      Moderated Experiences</button>
+   </a>
+        <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg " type="button">
+          Questions</button>
+   </a>
+     </div>
    </div>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12" style="text-align: center; padding:3%">
-      <h1>Moderate</h1>
-    </div>
   </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1 text-center">
-      <h4> Here you can moderate experiences shared by other people.
-      </h4>
-    </div>
+</section>
+<!--CTA-->
+<section id="cta">
 
-  </div>
-
-  <br><br><br>
-  <table class="table table-bordered table-striped table-hover">
-  <thead class="bg-primary" style="color: #ffffff; font-size: large;">
-    <tr>
-      <th scope="col">Number</th>
-      <th scope="col">Date</th>
-      <th scope="col">Experience</th>
-      <th scope="col">Suggestion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <th>July 21</th>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
-                diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
-                velit fermentum, egestas libero nec, faucibus tortor.</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec.</td>
-    </tr>
-      <tr>
-      <th scope="row">2</th>
-      <th>June 21</th>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
-                diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
-                velit fermentum, egestas libero nec, faucibus tortor.</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec.</td>
-    </tr>
-  </tbody>
-</table>
-
-
-</div>
-
-
-
-</div>
-
+</section>
 <!--Footer-->
 <section id="footer">
-  {% include 'main/partials/footer.html' %}
    <div class="container-fluid">
+       {% include 'main/partials/footer.html' %}
    </div>
 </section>
 
