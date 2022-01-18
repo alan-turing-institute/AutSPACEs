@@ -66,25 +66,38 @@
     </div>
     </div>
 </section>
-<!--  What Autism is-->
-<section id="autism">
-  <div class="row align-items-center">
-    <div class="col-lg-6">
-      <h2 class="section-heading">What Autism is</h2>
-    </div>
-    <div class="col-lg-6">
-      <h4 class="autism-text">Autistic people often have different sensory processing to people who are not autistic
-        .</h4>
-      <h4 class="autism-text">By collecting together lots of autistic people’s experiences, we can change spaces so
-        that
-        they are
-        better for autistic people.</h4>
-      <a class="col-lg-12" href="{% url 'main:what_autism_is' %}">
-       <button class="btn btn-outline-light btn-lg float-right" type="button">View More</button>
-   </a>
+<!--How to Use the Platform-->
+<section id="platform_usage">
+  <div class="row">
+      <div class="col-lg-12 platform-title">
+      <h2 class="section-heading">How to Use The Platform</h2>
     </div>
   </div>
-<!--  Direct to 'What Autism Is Page-->
+  <div class="row">
+  <div class="col-lg-2 platform-box platform-left-border">
+     <h3 class="usage-heading">Register<i class="arrow right platform-arrow"></i></h3>
+  </div>
+
+  <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Share<i class="arrow right platform-arrow"></i></h3>
+</div>
+
+  <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Choose<i class="arrow right platform-arrow"></i></h3>
+    </div>
+
+     <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Check<i class="arrow right platform-arrow"></i></h3>
+    </div>
+
+     <div class="col-lg-2 platform-box">
+  <h3 class="usage-heading">Change<i class="arrow right platform-arrow" style=" border-width: 0 0 0 0;"></i></h3>
+    </div>
+      <a class="col-lg-12" href="{{ auth_url }}">
+       <button class="btn btn-outline-light btn-lg float-right platform-button" type="button">Read More</button>
+   </a>
+    </div>
+
 </section>
 <!--  View Experiences -->
 <section id="experience">
@@ -153,59 +166,13 @@
         </div>
 
 </section>
-<!--How to Use the Platform-->
-<section id="platform_usage">
-  <div class="row">
-      <div class="col-lg-12 platform-title">
-      <h2 class="section-heading">How to Use the Platform</h2>
-    </div>
-  </div>
- <div class="row">
-  <div class="col-lg-6 platform-box">
-     <h3 class="usage-heading">1. Register</h3>
-  <p class="usage-text">an account on OpenHumans. When you register you create a private and anonymous account with Open Humans. We
-                                     work with Open Humans to make sure you have control over your data and that it is safe.
-  </p>
-  </div>
-
-  <div class="col-lg-6 platform-box">
-  <h3 class="usage-heading">2. Share</h3>
-  <p class="usage-text">a story abbout sensory experiences. Enter a description of how your senses affect you. For example: “I do not go
-    on trains because they are too loud”.</p>
-</div>
-
-  <div class="col-lg-6 platform-box">
-  <h3 class="usage-heading">3. Choose</h3>
-  <p class="usage-text">the viewing access of the stories. You can choose to share your story publicly or privately, for research. You can also share both publicly and with researchers if you prefer.
-  </p>
-    </div>
-
-     <div class="col-lg-6 platform-box">
-  <h3 class="usage-heading">4. Check</h3>
-  <p class="usage-text">shared stories. If you want to make your story public, it will first be checked to make sure it follows our code
-    of conduct. This is to keep AutSPACEs an autism-first, inclusive and welcoming space for all.
-  </p>
-    </div>
-     <div class="col-lg-6 platform-box">
-  <h3 class="usage-heading">5. Change</h3>
-  <p class="usage-text">your stories any time. You can view your own stories and edit them, or change who they are
-    shared with any
-    time,
-    even once they are submitted.</p>
-    </div>
-      <a class="col-lg-6" href="{{ auth_url }}">
-       <button class="btn btn-outline-light btn-lg float-right register-button" type="button">Register</button>
-   </a>
-    </div>
-
-</section>
 <!-- Call to Action-->
 <section id="cta">
   <h2 class="section-heading">Get Involved</h2>
      <div class="row">
        <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header" style="background-color: #1BB5AF">Management</h3>
+           <h3 class="card-header">Management</h3>
            <div class="card-body">
              <p class="card-text">Contribute to the GitHub repository.</p>
                 <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience" class="btn btn-primary">Contribute</a>
@@ -214,7 +181,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header" style="background-color: #1BB5AF">Development</h3>
+           <h3 class="card-header">Development</h3>
            <div class="card-body">
              <p class="card-text">Contribute to the GitHub repository.</p>
                 <a href="https://github.com/alan-turing-institute/AutSPACEs" class="btn btn-primary">Contribute</a>
@@ -223,7 +190,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header" style="background-color: #1BB5AF">Discussion</h3>
+           <h3 class="card-header">Discussion</h3>
            <div class="card-body">
              <p class="card-text">Join us on our public Slack Channel.</p>
                 <a href="https://slackin.openhumans.org" class="btn btn-primary">Join Us</a>
@@ -232,7 +199,7 @@
        </div>
               <div class="cta-card col-lg-3">
          <div class="card">
-           <h3 class="card-header" style="background-color: #1BB5AF">Updates</h3>
+           <h3 class="card-header" >Updates</h3>
            <div class="card-body">
              <p class="card-text">Subscribe to our monthly newsletter.</p>
                 <a href="https://tinyletter.com/AutisticaTuringCitizenScience" class="btn btn-primary">Subscribe</a>
@@ -241,6 +208,26 @@
        </div>
      </div>
 
+</section>
+<!--  What Autism is-->
+<section id="autism">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <h2 class="section-heading">What Autism Is</h2>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="autism-text">Autistic people often have different sensory processing to people who are not autistic
+        .</h4>
+      <h4 class="autism-text">By collecting together lots of autistic people’s experiences, we can change spaces so
+        that
+        they are
+        better for autistic people.</h4>
+      <a class="col-lg-12" href="{% url 'main:what_autism_is' %}">
+       <button class="btn btn-outline-dark btn-lg float-right" type="button">View More</button>
+   </a>
+    </div>
+  </div>
+<!--  Direct to 'What Autism Is Page-->
 </section>
 <!--Footer-->
 <footer id="footer">
