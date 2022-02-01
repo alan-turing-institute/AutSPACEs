@@ -15,14 +15,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
         rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-  <title>AutSPACEs What Autism Is Page</title>
+  <title>What Autism Is</title>
+    <!--    Stylesheet-->
+  <link href="{% static '/css/about_autism.css' %}" rel="stylesheet">
 </head>
-<style>
-  body  {
-    background: #F1806F;
-
-  }
-</style>
 <body>
 <!-- Navigation-->
 <section id="navigation">
@@ -32,7 +28,50 @@
 
   </div>
 </section>
+<!--Contents-->
+<section id="content">
+  <div class="row mx-0 py-4">
+    <div class="list-group col-lg-3 cotent-list" id="content-bar">
+      <h5 class="list-group-item content-title">Contents</h5>
+      <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+         href="#about-autspaces">About Autism<span class="badge badge-pill"></span></a>
+      <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+         href="#platform-usage">About Sensory Processing<span class="badge badge-pill"></span></a>
+    </div>
 
+    <div class="about-content col-9" data-offset="0" data-spy="scroll" data-target="#content-bar"
+         style="position: relative; height: 800px;overflow: auto; padding: 2% 8%">
+      <div class="about-autism">
+      <h5 class="text-info" id="about-autspaces"><em></em>About Autism</h5>
+      <p>Autism affects the way people communicate and experience the world around them.</p>
+
+      <p>Autism is a spectrum of developmental conditions, including Asperger’s Syndrome. Every autistic person is different. Some are able to learn, live and work independently, while many have learning differences or co-occurring health conditions that require specialist support.</p>
+
+      <p>"It’s just the way I process the world, it can give me challenges, but it gives me great joy too. I wouldn’t
+        be me without it!"</p>
+      <em>Rhi, autistic adult</em>
+     <a class="col-lg-12" href="https://www.autistica.org.uk/what-is-autism/what-is-autism">
+       <button class="btn btn-outline-dark float-right" type="button">Find Out More in Autistica</button>
+   </a>
+      </div>
+            <div class="about-autism">
+      <h5 class="text-info" id="platform-usage"><em></em>About Sensory Processing</h5>
+      <p>Sensory processing refers to the ways that our brains and bodies receive, sort, and respond to our environment using our senses. You might have heard of the five senses: touch, sight, hearing, smell and taste.</p>
+      <p>There are more senses than just these five. We also have a sense of our own body, we are moving it, and where it is in space. This sense is called proprioception. If you catch a ball or touch your nose, you are using proprioception.</p>
+
+      <p>There are lots of different opinions about how many senses there are. Other senses include: a sense of balance (equilibriocpetion), a sense of hot and cold (thermoception), a sense of your heart beating (cardioception), and a sense of time passing (chromoception).</p>
+
+      <p>A lot of autistic people (as many as 9/10 autistic people depending on the study) have sensory processing
+        differences compared to non-autistic people. This means that they might respond to their environments differently. Sometimes this can cause extra challenges and create barriers for autistic peeople compared to non-existent people when they navigate environments which were not build with autistic people in mind. For example, you might find lights brighter, noises louder, or busy spaces more overwhelming compared to non-autistic people. You may also experience positive differences.</p>
+           <a class="col-lg-12" href="https://www.autism.org.uk/advice-and-guidance/topics/sensory-differences/sensory-differences/all-audiences">
+       <button class="btn btn-outline-dark float-right" type="button">Find Out More in National
+         Autistic Society</button>
+   </a>
+    </div>
+    </div>
+  </div>
+
+</section>
 
 <!-- Footer-->
 <footer id="footer">
@@ -41,7 +80,6 @@
 
   {% endblock %}
   </div>
-
 </footer>
 
 <!-- Optional JavaScript -->
