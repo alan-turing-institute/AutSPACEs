@@ -1,0 +1,12 @@
+* {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
+
+.story-section {
+  padding: 3% 5%;
+}
+
+.form-group {
+  padding: 1% 0;
+}
