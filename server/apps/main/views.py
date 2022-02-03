@@ -229,12 +229,7 @@ def confirmation_page(request):
 
 
 def about_us(request):
-    auth_url = OpenHumansMember.get_auth_url()
-    context = {'auth_url': auth_url,
-               'oh_proj_page': settings.OH_PROJ_PAGE}
-    if request.user.is_authenticated:
-        return redirect('main:about_us')
-    return render(request, 'main/about_us.html', context=context)
+    return render(request, "main/about_us.html")
 
 # def what_autism_is(request):
 #     auth_url = OpenHumansMember.get_auth_url()

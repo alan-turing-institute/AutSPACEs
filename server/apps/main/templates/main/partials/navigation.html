@@ -1,11 +1,4 @@
  {% load static %}
-  <!-- Bootstrap CSS -->
-  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-  <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 <!--    Stylesheet-->
   <link href="{% static '/css/navigation_light.css' %}" rel="stylesheet" id="mystylesheet">
 
@@ -51,8 +44,6 @@
           </li>
         </ul>
       </div>
-
-
 <!--    <div class="btn-group btn-group-toggle" data-toggle="buttons">
       <label class="btn colorbutton active" style="background-color: #F9BB33">
         <input type="radio" name="options" id="option1" autocomplete="off" style="color: #F9BB33" checked>Color View
@@ -61,6 +52,8 @@
         <input type="radio" name="options" id="option2" autocomplete="off">Calm View
       </label>
     </div>-->
+
+
       {% if user.is_authenticated %}
         <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input
             class="btn btn-light btn-lg"
