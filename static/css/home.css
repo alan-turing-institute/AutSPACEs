@@ -3,34 +3,6 @@
     font-weight: 400;
   }
 
-  /*Arrows*/
-.arrow {
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 8px;
-  text-align: center;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
 
   /*Headings*/
   .big-heading {
@@ -59,6 +31,7 @@
     text-align: center;
   }
 
+
   /*Introduction Section*/
   .intro {
     padding: 2% 5% 3%;
@@ -84,7 +57,7 @@
   /*Value Section*/
   #value {
     padding: 4% 5%;
-    color: #F1806F;
+    color: #309FDC;
   }
   .value-text {
     line-height: 2;
@@ -98,7 +71,7 @@
   /*What Autism is Section*/
   #autism {
     padding: 3% 5%;
-    color: #F1806F;
+    color: #309FDC;
   }
   .autism-text {
     line-height: 2;
@@ -107,7 +80,7 @@
   /*Shared Experience Section*/
   #experience {
     padding:  4% 5%;
-    color: #F1806F;
+    color: #309FDC;
   }
   .experience-content {
     color: #8f8f8f;
@@ -143,7 +116,7 @@
 
   /*How to Use the Platform Section*/
   #platform_usage {
-    background: #309FDC;
+    background: #F1806F;
     padding: 4% 5%;
     color: #ffffff;
   }
