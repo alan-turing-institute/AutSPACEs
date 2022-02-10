@@ -19,7 +19,7 @@
           <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
           </li>
           {% if user.is_authenticated %}
-             <li class="nav-item dropdown">
+             <li class="nav-item dropdown" style="padding: 0 0">
         <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Experiences
@@ -27,8 +27,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'main:view_experiences' %}">View Stories</a>
           <a class="dropdown-item" href="{% url 'main:upload' %}">Share Stories</a>
-          <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate
-            Stories</a>
+<!--          <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate</a>-->
         </div>
       </li>
           <li>

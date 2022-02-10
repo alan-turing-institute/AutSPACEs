@@ -5,59 +5,53 @@
 {% block content %}
 
 <head>
+  <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-  <!--Bootstrap-->
-    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
   <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 
-
-    <title>My Stories</title>
-
-  <!-- Favicon -->
+  <!--  Stylesheet-->
+  <link href="{% static '/css/story.css' %}" rel="stylesheet">
+  <title>View Stories</title>
 </head>
 
 <body>
 
 {% include 'main/partials/navigation.html' %}
 
-<section class="stories_page">
-  <div class="container">
-    <div class="story_head">
-      <p class="h3">
+<section id="mystory">
+  <div class="story-container">
+      <p class="big-heading">
         My Stories
       </p>
 
-      <span class="p_page">
-          Welcome to your personal AutSPACEs page.
-        </span>
-
-      <p class="h5">
-        Here you can:
-      </p>
+      <p class="intro-text">
+          Welcome to your personal AutSPACEs page. Here you can:
+        </p>
 
       <ul class="can_do">
-        <li class="do">
-          <span class="asterik">*</span> See the experiences you have saved and submitted.
+        <li class="do">See the experiences you have saved and submitted.
         </li>
-        <li class="do">
-          <span class="asterik">*</span> Change sharing permissions for your experiences.
+        <li class="do">Change sharing permissions for your experiences.
         </li>
       </ul>
     </div>
 
-    <div class="story_body">
-      <p class="h3">
-        My Experiences
+    <div class="story-dashboard">
+      <p class="dashboard-heading">
+        My Stories Dashboard
       </p>
 
     </div>
-  </div>
+
 </section>
   <section id="footer">
   {% include 'main/partials/footer.html'%}

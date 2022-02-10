@@ -2,49 +2,33 @@
     font-family: 'Poppins', 'PT-Serif';
     font-weight: 400;
   }
+.story-container {
+  padding: 3% 5%;
+  background-color: #F9BB33;
+  color: #fff;
+}
   /*Texts*/
   .big-heading {
     font-size: 4rem;
     font-weight: bold;
   }
+
     .intro-text {
     font-size: 1.5rem;
     line-height: 2;
     font-weight: bold;
   }
 
-
-  .experience-intro {
-    background: #309FDC;
-    padding: 3% 5% 3%;
-    color: #fff;
+  ul {
+    padding-left: 20px;
   }
-
-  .search {
-    padding: 3% 0%;
+  li {
+        font-size: 1rem;
   }
-  .form-row {
-    position: relative;
+  .story-dashboard {
+    padding: 3% 5%;
   }
-
-.non-triggering-label{
-  font-size: 1rem;
-      font-weight: bold;
-}
-.story-text {
-  padding: 2% 11% 3%;
-    text-align: cetner;
-}
-
-.story {
-  padding: 2% 3%;
-  color: #309FDC;
-}
-
-.story-header {
-  color: #F1806F;
-  font-size: 2rem;
-  line-height: 2;
-  font-weight: bold;
-}
-
+  .dashboard-heading {
+    font-size: 3rem;
+    font-weight: bold;
+  }

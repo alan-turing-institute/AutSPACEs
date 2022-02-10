@@ -1,0 +1,53 @@
+* {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
+  /*Texts*/
+  .big-heading {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+    .intro-text {
+    font-size: 1.5rem;
+    line-height: 2;
+    font-weight: bold;
+  }
+
+
+  .experience-intro {
+    background: #309FDC;
+    padding: 3% 5% 3%;
+    color: #fff;
+  }
+  .story-card-text {
+    color: #000000;
+    line-height: 2;
+    padding: 0 2%;
+  }
+  .search {
+    padding: 3% 0%;
+  }
+  .form-row {
+    position: relative;
+  }
+
+.non-triggering-label{
+  font-size: 1rem;
+      font-weight: bold;
+}
+.story-text {
+  padding: 2% 11% 3%;
+    text-align: cetner;
+}
+
+.story {
+  padding: 2% 3%;
+  color: #309FDC;
+}
+
+.story-header {
+  color: #F1806F;
+  font-size: 2rem;
+  line-height: 2;
+  font-weight: bold;
+}
