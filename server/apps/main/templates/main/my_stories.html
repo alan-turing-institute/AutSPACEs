@@ -24,38 +24,132 @@
 </head>
 
 <body>
-
+<section id="intro">
 {% include 'main/partials/navigation.html' %}
+</section>
 
 <section id="mystory">
   <div class="story-container">
-      <p class="big-heading">
-        My Stories
-      </p>
+    <p class="big-heading">
+      My Stories
+    </p>
+    <p class="intro-text">
+      Welcome to your personal AutSPACEs page. Here you can:
+    </p>
 
-      <p class="intro-text">
-          Welcome to your personal AutSPACEs page. Here you can:
-        </p>
+    <ul class="can_do">
+      <li class="list-item">See the experiences you have saved and submitted.
+      </li>
+      <li class="list-item">Change sharing permissions for your experiences.
+      </li>
+    </ul>
+  </div>
 
-      <ul class="can_do">
-        <li class="do">See the experiences you have saved and submitted.
-        </li>
-        <li class="do">Change sharing permissions for your experiences.
-        </li>
-      </ul>
+  <div class="story-dashboard">
+    <p class="dashboard-heading">
+      Stories Dashboard
+    </p>
+
+    <div class="row story-card-row">
+      <div class="story-card col-lg-4">
+        <div class="card">
+          <h3 class="story-head card-header process">In Process</h3>
+          <div class="card-body">
+            <ul>
+              <li class="list-item"><p class="card-text">Waiting:<span> 2 stories</span></p></li>
+              <li class="list-item"><p class="card-text">Moderating:<span> 1 story</span></p></li>
+              <li class="list-item"><p class="card-text">Re-moderating<span> 0 story</span></p></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="story-card col-lg-4">
+        <div class="card">
+          <h3 class="story-head card-header submitted">Moderated</h3>
+          <div class="card-body">
+            <ul>
+              <li class="list-item"><p class="card-text">Moderated:<span> 3 stories</span></p></li>
+              <li class="list-item"><p class="card-text">Accepted:<span> 3 stories</span></p></li>
+              <li class="list-item"><p class="card-text">Rejected:<span> 0 story</span></p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="story-card col-lg-4 message-card">
+        <div class="card">
+          <h3 class="story-head card-header messages">Messages</h3>
+          <div class="card-body">
+            <ul>
+              <li><p class="card-text">Your story<span>"Traffic Lights"</span> have been accepted.</p></li>
+            </ul>
+            <a
+              class="btn btn-outline-info float-right view-btn"
+              href="{% url 'main:view_experiences' %}" rel="noopener noreferrer"
+              target="_blank">View Here
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="story-dashboard">
-      <p class="dashboard-heading">
-        My Stories Dashboard
-      </p>
-
-    </div>
+  </div>
+</section>
+<section id="story-table">
+  <div class="story-table-container">
+    <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
+      <thead>
+      <tr>
+        <th class="number-th" scope="col">Nr.</th>
+        <th class="title-th" scope="col">Title</th>
+        <th class="contributor-th" scope="col">Contributor</th>
+        <th class="submission-date-th" scope="col">Submission Date</th>
+        <th class="moderation-date-th" scope="col">Moderation Date</th>
+        <th class="status-th" scope="col">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Traffic Lights</td>
+        <td>Self</td>
+        <td>09-11-2021</td>
+        <td>14-11-2021</td>
+        <td>Accepted</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Taking subways in London</td>
+        <td>For autistic friend</td>
+        <td>09-11-2021</td>
+        <td>14-11-2021</td>
+        <td>Moderating</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Shopping in a market</td>
+        <td>Self</td>
+        <td>09-11-2021</td>
+        <td>14-11-2021</td>
+        <td>Re-moderating</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="contact-btn">
+    <a
+      class="btn btn-lg btn-outline-primary float-right"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
+      target="_blank">Contact Moderators
+    </a>
+      </div>
+          </div>
 
 </section>
-  <section id="footer">
+
+
+<section id="footer">
   {% include 'main/partials/footer.html'%}
-  </section>
+</section>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 {% include 'main/partials/jquery.html' %}

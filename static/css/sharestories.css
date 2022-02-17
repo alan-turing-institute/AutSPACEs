@@ -11,3 +11,9 @@
   padding: 1% 0;
 }
 
+  .read-before-container {
+    padding-top: 2%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
