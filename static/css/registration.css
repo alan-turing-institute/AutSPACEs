@@ -2,7 +2,9 @@
     font-family: 'Poppins', 'PT-Serif';
     font-weight: 400;
   }
-
+  html, body {
+     min-height: 100%;
+ }
   /*Headings*/
   .section-heading {
     font-size: 3rem;
@@ -16,8 +18,13 @@
     color: #fff;
   }
 
+  .intro-text-container {
+    margin: 4% 0;
+  }
   .intro-text {
     line-height: 2;
+    font-size: 20px;
+
   }
 
 /*Questions*/
