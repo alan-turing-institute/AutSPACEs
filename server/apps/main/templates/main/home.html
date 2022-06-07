@@ -1,262 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  {% load static %}
+{% load static %}
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>AutSPACEs Landing Page</title>
-    <style>
-        body {
-            background: #E8F3FC;
-        }
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <!--  Stylesheet-->
+  <link href="{% static " main
+  /css/home.css" %}" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+  <!-- Font Awesome icons (free version)-->
+  <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"></script>
+  <!--Google Fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+  <title>AutSPACEs Landing Page</title>
+<style>
 
-        .my-custom-card {
-            background: #C4D9E8;
-            width: 500px;
-            height: 400px;
+  * {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
 
-        }
+  /*Navigation*/
+  .navbar {
+    padding: 0 0 4rem;
+  }
+  .nav-content {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .nav-item {
+    padding: 0 25px;
+  }
+  .nav-link:hover {
+    color:#000 !important;
+  }
+  .log-link {
+    color: #fff;
+  }
 
-        .goals {
-            background: #C4D9E8;
-            height: 307.84px;
-        }
+  /*Headings*/
+  .big-heading {
+    font-size: 5rem;
+    font-weight: bold;
+  }
+  .section-heading {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .value-heading {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+  .experience-heading {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+  }
+  .usage-heading {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
 
-        .btn-colour {
-            background: #A0F832;
-            height: 80.84px;
-            width: 200px;
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
+  /*Introduction Section*/
+  .container-fluid {
+    padding: 3% 5%;
+    background: #F1806F;
+    color: #fff;
+  }
 
-        }
+  .title-content {
+    padding: 3% 1%;
+  }
+  .title-text {
+    font-size: 2rem;
+    line-height: 2;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+  .title-image {
+    width: 65%;
+    margin-left: 35%;
+    border-radius: 5%;
+  }
 
-        .btn-colour:hover {
-            background: #7dce1b;
-            height: 80.84px;
-            width: 200px;
 
-        }
+  /*Value Section*/
+  #value {
+    padding: 4% 5%;
+    color: #1BB5AF;
+  }
+  .value-text {
+    line-height: 2;
+    font-size: 20px;
+  }
+  .value-box {
+    text-align: center;
+    padding: 1%;
+  }
 
-        .navbar {
-            background: rgba(149, 239, 234, 0.42);
-        }
+  /*What Autism is Section*/
+  #autism {
+    background: #F9BB33;
+    padding: 3% 5%;
+    color: #fff;
+  }
+  .autism-text {
+    line-height: 2;
+  }
 
-        .tiny-letter {
-            background: #C4D9E8;
-            height: 307.84px;
+  /*Shared Experience Section*/
+  #experience {
+    padding:  4% 5%;
+    color: #1BB5AF;
+  }
+  .experience-content {
+    color: #8f8f8f;
+    line-height: 2;
+    font-size: 20px;
+  }
+  .experience-image {
+    width: 50%;
+    padding-right: 5%;
+    padding-left: 2%;
+  }
 
-        }
+  .carousel-item {
+    padding: 5% 5%;
+    height: 500px;
+  }
 
-        .newsletter-btn {
-            background: #A0F832;
-            height: 50px;
-            width: 150px;
+  .carousel-control-next,
+  .carousel-control-prev {
+    filter: invert(100%);
+    width: 5%
+  }
+  .carousel-control-prev-icon {
+    position: relative;
+    bottom: 20px;
+    left: 0px;
+}
 
-        }
+  .carousel-indicators {
+    filter: invert(100%);
+  }
 
-        .newsletter-btn:hover {
-            background: #7dce1b;
-            height: 50px;
-            width: 150px;
+  /*How to Use the Platform Section*/
+  #platform_usage {
+    background: #309FDC;
+    padding: 4% 5%;
+    color: #ffffff;
+  }
 
-        }
+  .platform-box {
+    text-align: left;
+    margin: 2% 0.5%;
+  }
 
-        form {
-            text-align: center;
-            font-size: x-large;
-        }
-    </style>
-</head>
+  .usage-text {
+    color: #ffffff;
+    text-align: left;
+    padding: 0 1%;
+    font-size: 20px;
+    line-height: 2;
+  }
+
+  .register-button {
+    margin-right: 2.5%
+  }
+  /*CTA Section*/
+  #cta {
+    padding: 4% 5%;
+    color: #1BB5AF;
+  }
+
+  .cta-card {
+    padding: 3% 2%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .card-header {
+    background-color: #1BB5AF;
+    color: #fff;
+  }
+
+  /*Footer*/
+  #footer {
+    background: #F2F2F2;
+    padding: 2% 5%;
+  }
+
+  .footer-column {
+    padding: 0% 3%;
+  }
+
+  .footer-image {
+    margin-bottom: 5%;
+  }
+
+  .footer-column p {
+    padding-top: 1%;
+    line-height: 0.5;
+  }
+
+  .footer-text {
+    padding: 0% 3%;
+    text-align: left;
+  }
+
+  .footer-text p {
+    padding-top: 1%;
+    line-height: 0.5;
+  }
+
+
+  /*Responsive Design*/
+  @media (max-width: 992px) {
+
+    .big-heading {
+      text-align: center;
+    }
+
+    .container-fluid {
+      padding-bottom: 10%;
+      text-align: center;
+    }
+
+    .title-image {
+      margin-left: 0;
+    }
+
+    #value {
+      padding: 2% 0;
+    }
+
+    .value-box {
+      padding: 2%;
+    }
+
+    .value-box p {
+      font-size: 1.5rem;
+    }
+  }
+  </style>
+  </head>
 
 <body>
-    <nav class="navbar navbar-expand">
-        <a class="navbar-brand" href="#">
-            <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
-            <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
-        </a>
-        <ul class="navbar-nav ">
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="{% url 'main:view_experiences' %}">View Experiences</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:my_stories' %}">My Stories</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="{% url 'main:upload' %}">Share Experiences</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="{% url 'main:logout' %}">Logout</a>
-            </li>
-            {% endif %}
-          </ul>
+<!--Navigation-->
+<section id="title">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-xl navbar-dark">
+      <a class="nav-content navbar-brand" href="#">AutSPACEs</a>
+      <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+              data-target="#navbarText"
+              data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <div class="navbar-nav">
+          <a class="nav-content nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
+          {% if user.is_authenticated %}
+          <a class="nav-content nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate
+            Experiences</a>
+
+          <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+
+          <a class="nav-content nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
+
+          <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input class="btn btn-outline-primary"
+                                                                                      style="margin-top:6px;"
+                                                                                      type="submit"
+                                                                                      value="Log out">
+          </form>
+          {% endif %}
+          <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
+        </div>
+      </div>
+      <a class="navbar-brand" href="#">
+        <a class="nav-content nav-item nav-link log-link" href="{{ auth_url }}">Log In</a>
+      </a>
+<!--      Update the link to Registration Instructions page-->
+      <a class="navbar-brand" href="#">
+         <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience"
+            class="nav-content nav-item btn btn-lg btn-light">Register</a>
+      </a>
     </nav>
-    <div class="container">
+    <!--Introduction of AutSPACEs-->
+    <div class="row autspaces">
+      <div class="col-lg-6 text-left">
+        <h1 class="big-heading">AutSPACEs</h1>
+      </div>
+    </div>
+    <div class="row autspaces">
+      <div class="title-content col-lg-6">
+        <h3 class="title-text">Makes environments better for autistic people by sharing stories about how senses
+          affect
+          people</h3>
+        <!--    Direct to 'About Us' Page-->
+            <button class="btn btn-outline-light btn-lg float-left" type="button">Read More</button>
 
+      </div>
+      <div class="col-lg-6">
+        <img class="title-image" src="{% static "animation_a.jpg" %}" alt="Illustration" />
+      </div>
+    </div>
+  </div>
+</section>
+<section id="value">
+  <div class="row">
+  <div class="col-lg-4 value-box">
+     <h3 class="value-heading">Increase</h3>
+  <p class="value-text">understanding of sensory processing</p>
+  </div>
+
+  <div class="col-lg-4 value-box">
+  <h3 class="value-heading">Share</h3>
+  <p class="value-text"> strategies and experiences of autistic people</p>
+</div>
+
+  <div class="col-lg-4 value-box">
+  <h3 class="value-heading">Advise</h3>
+  <p class="value-text">organisations how to create better environments for autistic people</p>
+    </div>
+    </div>
+</section>
+<!--  What Autism is-->
+<section id="autism">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <h2 class="section-heading">What Autism is</h2>
+    </div>
+    <div class="col-lg-6">
+      <h4 class="autism-text">Autistic people often have different sensory processing to people who are not autistic
+        .</h4>
+      <h4 class="autism-text">By collecting together lots of autistic people’s experiences, we can change spaces so
+        that
+        they are
+        better for autistic people.</h4>
+      <!--  Direct to 'What Autism Is Page-->
+      <button class="btn btn-outline-light btn-lg float-right" type="button">Read More</button>
+    </div>
+  </div>
+<!--  Direct to 'What Autism Is Page-->
+</section>
+<!--  View Experiences -->
+<section id="experience">
+  <div class="row">
+      <div class="col-lg-6 shared-experience">
+      <h2 class="section-heading">Shared Experiences</h2>
+    </div>
+  </div>
+  <div id="experience-carousel" class="carousel slide" data-ride="false" data-interval="false">
+    <ol class="carousel-indicators">
+      <li data-target="#experience-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#experience-carousel" data-slide-to="1"></li>
+      <li data-target="#experience-carousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
         <div class="row">
-            <div class="col-sm-12" style="text-align: center; padding:3%">
-                <h1>AutSPACE</h1>
-            </div>
-        </div>
+        <img class="experience-image float-left d-block w-50" src="{% static "animation_d.jpg" %}" width="150"
+          height="325"/ alt="First slide">
+        <div class="col-md-6">
+        <h3 class="experience-heading">Eating in a Restaurant</h3>
+        <p class="experience-content">...Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve
+          realised hunger exacerbates my sensory differences I know how to cope. I try to make sure I’ve eaten something before I go out and a while back I bought some earplugs which are great for small and bustling places.. </p>
+        <em small class="experience-content">Sdy</em>
+         </div>
+          </div>
+      </div>
+      <div class="carousel-item">
+                <div class="row">
+         <img class="experience-image float-left d-block w-50" src="{% static "animation_b.jpg" %}" width="150"
+                  height="325"/ alt="Second slide">
+                          <div class="col-md-6">
+
+         <h3 class="experience-heading">Ice cream</h3>
+         <p class="experience-content">...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+           et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co.... </p>
+        <em class="experience-content">Ali</em>
+                          </div>
+                  </div>
+      </div>
+      <div class="carousel-item">
         <div class="row">
-            <div class="col-sm-10 offset-sm-1 text-center">
-                <h4>AutSPACE is an online place where you can help make environments better for autistic people by
-                    sharing
-                    your stories about how your senses affect you.
-                </h4>
+         <img class="experience-image float-left d-block w-50" src="{% static "animation_c.jpg" %}"/ width="150"
+          height="325"  alt="Third slide">
+          <div class="col-md-6">
+         <h3 class="experience-heading">Traffic</h3>
+        <p class="experience-content">...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co .. </p>
+        <em class="experience-content">Jess</em>
             </div>
+          </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#experience-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#experience-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>
+<!--How to Use the Platform-->
+<section id="platform_usage">
+  <div class="row">
+      <div class="col-lg-6 platform-usage">
+      <h2 class="section-heading">How to Use the Platform</h2>
+    </div>
+  </div>
+ <div class="row">
+  <div class="col-lg-3 border border-light rounded platform-box">
+     <h3 class="usage-heading">Register</h3>
+  <p class="usage-text">an account on OpenHumans. When you register you create a private and anonymous account with Open Humans. We
+                                     work with Open Humans to make sure you have control over your data and that it is safe.
+  </p>
+  </div>
 
-        </div>
-        <br>
-        <br>
-        {% if user.is_authenticated %}
-            <div class="row my-custom-row">
-                <div class="col-sm-10 offset-sm-3">
-                    <div class="card my-custom-card">
-                        <div class="card-body">
-                            <h3 class="card-title text-center">How It Works</h3>
-                            <ol class="card-text h5">
-                                <li>Sign up</li>
-                                <li>Share a story about you</li>
-                                <li>Choose who gets to view your story</li>
-                                <li>Explore other people's stories</li>
-                            </ol>
+  <div class="col-lg-2 border border-light rounded platform-box">
+  <h3 class="usage-heading">Share</h3>
+  <p class="usage-text">a story abbout sensory experiences. Enter a description of how your senses affect you. For example: “I do not go
+    on trains because they are too loud”.</p>
+</div>
 
-                        </div>
+  <div class="col-lg-2 border border-light rounded platform-box">
+  <h3 class="usage-heading">Choose</h3>
+  <p class="usage-text">the viewing access of the stories. You can choose to share your story publicly or privately, for research. You can also share both publicly and with researchers if you prefer.
+  </p>
+    </div>
 
-                    </div>
-                </div>
+     <div class="col-lg-2 border border-light rounded platform-box">
+  <h3 class="usage-heading">Check</h3>
+  <p class="usage-text">shared stories. If you want to make your story public, it will first be checked to make sure it follows our code
+    of conduct. This is to keep AutSPACEs an autism-first, inclusive and welcoming space for all.
+  </p>
+    </div>
+     <div class="col-lg-2 border border-light rounded platform-box">
+  <h3 class="usage-heading">Change</h3>
+  <p class="usage-text">your stories any time. You can view your own stories and edit them, or change who they are
+    shared with any
+    time,
+    even once they are submitted.</p>
+    </div>
+      <a class="col-lg-12" href="{{ auth_url }}">
+       <button class="btn btn-outline-light btn-lg float-right register-button" type="button">Register</button>
+   </a>
+    </div>
 
-                <br>
+</section>
+<!-- Call to Action-->
+<section id="cta">
+  <h2 class="section-heading">Get Involved</h2>
+     <div class="row">
+       <div class="cta-card col-lg-3">
+         <div class="card">
+           <h3 class="card-header">Project Management</h3>
+           <div class="card-body">
+             <p class="card-text">Contribute to the <br> GitHub repository.</p>
+                <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience" class="btn btn-primary">Contribute</a>
+           </div>
+         </div>
+       </div>
+              <div class="cta-card col-lg-3">
+         <div class="card">
+           <h3 class="card-header">Project Development</h3>
+           <div class="card-body">
+             <p class="card-text">Contribute to the <br> GitHub repository.</p>
+                <a href="https://github.com/alan-turing-institute/AutSPACEs" class="btn btn-primary">Contribute</a>
+           </div>
+         </div>
+       </div>
+              <div class="cta-card col-lg-3">
+         <div class="card">
+           <h3 class="card-header">Project Discussion</h3>
+           <div class="card-body">
+             <p class="card-text">Join us on our public <br> Slack Channel.</p>
+                <a href="https://slackin.openhumans.org" class="btn btn-primary">Join Us</a>
+           </div>
+         </div>
+       </div>
+              <div class="cta-card col-lg-3">
+         <div class="card">
+           <h3 class="card-header">Project Updates</h3>
+           <div class="card-body">
+             <p class="card-text">Subscribe to our newsletter <br> for monthly updates.</p>
+                <a href="https://tinyletter.com/AutisticaTuringCitizenScience" class="btn btn-primary">Subscribe</a>
+           </div>
+         </div>
+       </div>
+     </div>
 
-            </div>
-            {% else %}
-        <div class="row my-custom-row">
-            <div class="card my-custom-card">
-                <div class="card-body">
-                    <h3 class="card-title text-center">How It Works</h3>
-                    <ol class="card-text h5">
-                        <li>Sign up</li>
-                        <li>Share a story about you</li>
-                        <li>Choose who gets to view your story</li>
-                        <li>Explore other people's stories</li>
-                    </ol>
+</section>
+<!--Footer-->
+<footer id="footer">
+  <div class="row">
+    <div class="col-lg-3 footer-column">
+      <img class="footer-image" src="{% static "autistica.png" %}" width="65" height="40" alt="Autistica Logo" />
+      <img class="footer-image" src="{% static "alanturing.png" %}" width="75" height="40" alt="Alan Turing Institute
+      Logo" />
+      <p>© Copyright 2021 AutSPACEs</p>
+      <p><a href="https://twitter.com/AutSpaces">@AutSpaces</a> at Twitter</p>
+    </div>
+    <div class="col-lg-3 footer-text">
+        <h5>Allied Organisations</h5>
+        <p>Autistica</p>
+      <p>National Autistic Society</p>
+      <p>Samaritans</p>
+    </div>
 
-                </div>
-
-            </div>
-            <br>
-            <div class="col-sm-2 offset-sm-3">
-                <br><br><br>
-                <a href="#" class="btn btn-default btn-colour btn-lg text-dark"
-                    role="button">Sign Up</a>
-                <br>
-                <a href="{{ auth_url }}" class="btn btn-colour btn-lg btn-block text-dark"
-                    role="button">Sign In</a>
-                <br>
-            </div>
-        </div>
-            {%endif%}
-        <br><br>
-        <div class="row">
-            <div class="col-sm-10 offset-sm-1 text-center">
-                <h4>Autistic people often have different sensory processing to people who are not autistic.
-                    By collecting together lots of autistic people’s experiences, we can change spaces so that they are
-                    better for autistic people.
-                </h4>
-            </div>
-        </div>
-        <br><br>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card goals">
-                    <div class="card-body">
-                        <h3 class="card-title text-center">Our Goals</h3>
-                        <ol class="card-text h5">
-                            <li>Research - increase understanding of sensory processing</li>
-                            <li>Share strategies and experiences of autistic people</li>
-                            <li>Advise organisations how to create better environments for autistic people</li>
-                        </ol>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <br><br><br>
-        <div class="row my-custom-row">
-            <div class="col-sm-8 offset-sm-2">
-                <div class="card tiny-letter">
-                    <div class="card-body">
-                        <form action="https://tinyletter.com/AutisticaTuringCitizenScience" method="POST"
-                            target="popupwindow" role="form" class="form-horizontal"
-                            onsubmit="window.open('https://tinyletter.com/AutisticaTuringCitizenScience', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Enter your email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" name="email"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                            <input type="hidden" value="1" name="embed" />
-                            <br>
-                            <div class="form-group">
-                                <button class="btn newsletter-btn btn-lg active" type="submit"
-                                    value="Subscribe">Subscribe</button>
-                                <br>
-                                <a style="font-size: medium;" href="https://tinyletter.com" target="_blank">powered by
-                                    TinyLetter</a>
-                            </div>
-
-                            <br>
+    <div class="col-lg-3 footer-column footer-text">
+        <h5>Policies</h5>
+      <p>Ethics</p>
+      <p>Terms of Use</p>
+      <p>Code of Conduct</p>
+    </div>
 
 
-                        </form>
+    <div class="col-lg-3 footer-column footer-text">
+    <h5>About Us</h5>
+      <p>GitHub</p>
+      <p>Glossary</p>
+      <p>Publications</p>
+    </div>
+  </div>
 
-                        </p>
-                        <p></p>
+</footer>
 
-
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-        <br><br>
-
-
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 
 </html>

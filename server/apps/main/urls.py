@@ -34,4 +34,7 @@ urlpatterns = [
          name='make_research'),
     path('my_stories/', views.my_stories, name="my_stories"),
     path('confirm_page/', views.confirmation_page, name="confirm_page"),
+    path('about_us/', views.about_us, name="about_us"),
+    path('what_autism_is/', views.what_autism_is, name="what_autism_is"),
+
 ]
