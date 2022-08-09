@@ -48,7 +48,7 @@ Users of the platform have the option to view other's stories or to submit their
 
 ### How it is built
 
-The platform is being developed using the Python/Django web development framework. Users will be able to share experiences through a website which will then be deposited into a backend database supported by [Open Humans.](https://github.com/OpenHumans). A demo website for data transfer based on Open Humans and deployed using Django, can be found in the [Filemanagement Demo Repository](https://github.com/alan-turing-institute/autistica-filemanagement-demo).
+The platform is being developed using the Python/Django web development framework. Users will be able to share experiences through a website which will then be deposited into a backend database supported by [Open Humans](https://github.com/OpenHumans). A demo website for data transfer based on Open Humans and deployed using Django, can be found in the [Filemanagement Demo Repository](https://github.com/alan-turing-institute/autistica-filemanagement-demo).
 
 The platform is entirely open source. All code is available to be used and adapted. Eveyone is invited to contribute. 
 
