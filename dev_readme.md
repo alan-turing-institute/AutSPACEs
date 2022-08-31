@@ -70,8 +70,8 @@ The project builds and runs in a self-contained environment called Docker. This 
 1. Open up Terminal or Command Line in the root level of the repository and execute the following command: `./docker-run.sh`
 
    If this step fails with the following error
-   ```qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
-   ```
+   ```qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory```
+   
    You may have an M1 chip in your computer. Try again after setting your local `DOCKER_DEFAULT_PLATFORM` to linux/amd64
    ```export DOCKER_DEFAULT_PLATFORM=linux/amd64```
 
