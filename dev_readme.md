@@ -72,7 +72,7 @@ The project builds and runs in a self-contained environment called Docker. This 
    If this step fails with the following error
    ```qemu-x86_64: Could not open '/lib64/ld-linux-x86-64.so.2': No such file or directory
    ```
-   You may have an M1 chip in your cimputer. Try again after setting your local `DOCKER_DEFAULT_PLATFORM` to linux/amd64
+   You may have an M1 chip in your computer. Try again after setting your local `DOCKER_DEFAULT_PLATFORM` to linux/amd64
    ```export DOCKER_DEFAULT_PLATFORM=linux/amd64```
 
 2. Open your browser to `http://localhost:8000`
