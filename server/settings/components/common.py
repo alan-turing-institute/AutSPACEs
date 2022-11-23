@@ -23,8 +23,8 @@ OPENHUMANS_APP_BASE_URL = config('OPENHUMANS_APP_BASE_URL')
 OPENHUMANS_CLIENT_ID = config('OPENHUMANS_CLIENT_ID')
 OPENHUMANS_CLIENT_SECRET = config('OPENHUMANS_CLIENT_SECRET')
 
-# After log in, send users to the confirm page.
-LOGIN_REDIRECT_URL = 'main:confirm_page'
+# After log in, send users to the home page.
+LOGIN_REDIRECT_URL = 'main:overview'
 
 # Project's page on Open Humans
 OH_PROJ_PAGE = config('OH_PROJ_PAGE')

@@ -204,6 +204,11 @@ def make_research(request, oh_file_id, file_uuid):
 def signup(request):
     return render(request, "main/signup.html")
 
+def registration(request):
+    registration_status = True
+    print(registration_status)
+    return render(request, "main/registration.html", {'page_status': 'registration'})
+
 def signup_frame4_test(request):
     return render(request, "main/signup1.html")
 
@@ -222,8 +227,26 @@ def confirmation_page(request):
     """
     return render(request, "main/confirmation_page.html")
 
+
 def about_us(request):
     return render(request, "main/about_us.html")
 
+# def what_autism_is(request):
+#     auth_url = OpenHumansMember.get_auth_url()
+#     context = {'auth_url': auth_url,
+#                'oh_proj_page': settings.OH_PROJ_PAGE}
+#     if request.user.is_authenticated:
+#         return redirect('main:what_autism_is')
+#     return render(request, 'main/what_autism_is.html', context=context)
+def navigation(request):
+    return render(request, "main/navigation.html")
+
+# def about_us(request):
+#     return render(request, "main/about_us.html")
+
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
+
+def footer(request):
+    return render(request, "main/footer.html")
+

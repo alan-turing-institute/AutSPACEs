@@ -1,244 +1,64 @@
-{% block content %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
+{% block content %}
+
 
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+ <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
   <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-
+<!--    Stylesheet-->
+  <link href="{% static '/css/moderation.css' %}" rel="stylesheet">
   <title>AutSPACEs Moderation Page</title>
-  <style>
-    * {
-      font-family: 'Open Sans', 'PT-Serif';
-      font-weight: 400;
-    }
-    body {
-      background: #E8F3FC;
-    }
-    .my-custom-card {
-      background: #C4C4C4;
-      height: 699px;
-    }
-    .goals {
-      background: #EBF1F5;
-    }
-  .navbar {
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding: 2px !important;
-  }
-    a:hover {
-    font-weight: 550 !important;
-    transition: 0.3;
-    }
-
-    img {
-      margin: 2px 10px;
-    }
-
-  .btn {
-    font-size: 16px;
-    margin: 8px;
-    }
-
-    form {
-      text-align: center;
-      font-size: x-large;
-    }
-
-    .mysmallCcards {
-      background: #00B2FF;
-
-    }
-
-    .button-icon {
-      padding: 0 5%;
-    }
-
-    .btn-colour {
-      height: 80.84px;
-      width: 200px;
-    }
-
-    .btn-colour:hover {
-      background: #7dce1b;
-      height: 80.84px;
-      width: 200px;
-    }
-  </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Institute Logo" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      {% if user.is_authenticated %}
-      <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-     <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                  style="margin-top:6px;"
-                                                                                  class="btn btn-outline-primary"></form>
-      {% endif %}
-    </div>
-  </div>
-</nav>
-<div class="container">
+{% include 'main/partials/navigation.html' %}
+<section id="intro">
   <div class="row">
-    <div class="col-sm-12" style="text-align: center; padding:3%">
-      <h1>Moderate</h1>
-    </div>
+   <div class="col-lg-12">
+     <div class="card-header"><h4>Moderator: </h4></div>
+     <div class="card-body">
+     <p>Moderated Experiences: </p>
+      <p>New Experiences in the Platform: </p>
+<!--    Google Form for Questions Collection-->
+         <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg "
+                                              type="button">Moderate New
+    Experiences</button>
+   </a>
+    <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg " type="button">Review
+      Moderated Experiences</button>
+   </a>
+        <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg " type="button">
+          Questions</button>
+   </a>
+     </div>
+   </div>
   </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1 text-center">
-      <h4> Here you can moderate experiences shared by other people.
-      </h4>
-    </div>
+</section>
+<!--CTA-->
+<section id="cta">
 
-  </div>
-
-  <br><br><br>
-  <table class="table table-bordered table-striped table-hover">
-  <thead class="bg-primary" style="color: #ffffff; font-size: large;">
-    <tr>
-      <th scope="col">Number</th>
-      <th scope="col">Date</th>
-      <th scope="col">Experience</th>
-      <th scope="col">Suggestion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <th>July 21</th>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
-                diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
-                velit fermentum, egestas libero nec, faucibus tortor.</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec.</td>
-    </tr>
-      <tr>
-      <th scope="row">2</th>
-      <th>June 21</th>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
-                diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
-                velit fermentum, egestas libero nec, faucibus tortor.</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec.</td>
-    </tr>
-  </tbody>
-</table>
-
-<!--
-  <div class="row my-custom-card">
-    <div class="col-sm-12 ">
-      <div class="card goals">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-2 col-sm-2 offset-sm-1">
-              <h3 class="card-text h3">DATE</h3>
-            </div>
-            <div class="col-2 col-sm-4">
-              <h3 class="card-text">PERSON'S <br/> AUTISM </br> CONNECTION </h3>
-            </div>
-          </div>
-          <br>
-
-        </div>
-
-      </div>
-      <br>
-      <br><br><br>
-      <div class="card mysmallCcards">
-        <div class="card mysmallCcards">
-          <div class="row">
-            <div class="col-2 col-sm-2 offset-sm-1">
-              <h3>July 21</h3>
-            </div>
-            <div class="col align-self-center ">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel iaculis metus,
-                non molestie enim. Morbi a nulla a sapien auctor auctor quis quis diam. Nunc efficitur
-                ultricies urna, vel pulvinar ex. Nunc eu lectus pellentesque, porttitor tortor vel,
-                consectetur tortor. Vivamus pretium elit tortor, sit amet blandit magna blandit eget.
-                Nulla ultrices lacus tortor, quis sodales nunc tempus nec. Aliquam suscipit accumsan
-                diam, eget auctor mauris posuere at. Donec cursus quam et auctor sodales. Morbi non
-                velit fermentum, egestas libero nec, faucibus tortor.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br><br>
-      <div class="row">
-        <div class="col-lg-6">
-          <button class="btn btn-colour btn-lg" style="background:#299C57">
-            <a style="color:#000000" href="{% url 'main:index' %}"> Approve </a>
-          </button>
-          <button class="btn btn-colour btn-lg" style="background:#DD2424">
-            <a style="color:#000000" href="{% url 'main:index' %}"> Decline </a>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
--->
-
-</div>
-
-<br><br><br>
-
-</div>
-<br><br>
+</section>
+<!--Footer-->
+<section id="footer">
+   <div class="container-fluid">
+       {% include 'main/partials/footer.html' %}
+   </div>
+</section>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+{% include 'main/partials/jquery.html' %}
 
 </body>
 

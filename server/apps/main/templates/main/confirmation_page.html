@@ -6,320 +6,93 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- Font Awesome Kit JS -->
-  <script src="https://kit.fontawesome.com/6e47be172b.js" crossorigin="anonymous"></script>
-  <title>AutSPACEs Confirmation Page</title>
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
   <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+
+  <!--  Stylesheet-->
+  <link href="{% static '/css/confirmation_page.css' %}" rel="stylesheet">
+  <title>View Stories</title>
 </head>
-
 <body>
+{% include 'main/partials/navigation.html' %}
 
-<style>
-  * {
-    font-family: 'Open Sans', 'PT-Serif';
-    font-weight: 400;
-  }
-  body {
-    background: #E8F3FC;
-  }
+<section class="confirmation">
+  <div class="confirmation-container">
+    <div class="confirm_success">
+      <h1 class="big-heading">
+        Success!
+      </h1>
 
-  .navbar {
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding: 2px !important;
-  }
-
-  a:hover {
-  font-weight: 550 !important;
-  transition: 0.3s;
-  }
-
-  img {
-    margin: 2px 10px;
-  }
-
-  .btn {
-    font-size: 16px;
-    margin: 8px;
-  }
-
-  section.confirmation {
-    margin-top: 60px;
-  }
-
-  div.confirmation_flex {
-    display: flex;
-    justify-content: center;
-  }
-
-  div.confirm_svg {
-    margin-right: 30px;
-  }
-
-  div.confirm_svg svg,
-  div.confirm_svg i {
-    color: #000 !important;
-    font-size: 10rem;
-    color: green !important;
-  }
-
-  div.confirm_success p.h3 {
-    text-transform: uppercase;
-    padding-bottom: 10px;
-  }
-
-  div.confirm_success p.h5 {
-    font-weight: 550;
-  }
-
-  div.confirm_success a.h5 {
-    float: right;
-  }
-
-  div.what_happens {
-    float: right;
-  }
-
-  div.what_happens a {
-    color: #000;
-    text-decoration: none;
-    font-size: 18px;
-  }
-
-  span.step {
-    font-size: 14px !important;
-  }
-
-  div.what_now {
-    text-align: center;
-    margin-top: 40px;
-  }
-
-  div.what_now p.h4 {
-    font-size: 1.4rem;
-    padding-bottom: 10px;
-    cursor: pointer;
-  }
-
-  div.what_now ul.texts {
-    padding-left: 0%;
-    padding: 20px;
-    background-color: #E8F3FC;
-  }
-
-  div.what_now ul.texts li.text {
-    list-style: none;
-  }
-
-  span.asterik {
-    font-weight: 600;
-  }
-
-  div.to_do_now {
-    text-align: center;
-    margin-top: 60px;
-    padding-bottom: 60px;
-  }
-
-  div.to_do_now p.h4 {
-    font-size: 1.5rem;
-    font-weight: 550;
-  }
-
-  div.btn_flex_one,
-  div.btn_flex_two {
-    display: flex;
-    max-width: 500px;
-    margin: auto;
-    justify-content: space-between;
-  }
-
-  div.btn_flex_one button,
-  div.btn_flex_two button {
-
-  }
-
-  div.btn_flex_one button a,
-  div.btn_flex_two button a {
-    color: #000;
-    text-decoration: none;
-  }
-
-  @media screen and (max-width: 750px) {
-    div.btn_flex_one,
-    div.btn_flex_two {
-      flex-direction: column;
-    }
-
-    div.btn_flex_one button,
-    div.btn_flex_two button {
-      margin-bottom: 10px;
-    }
-  }
-
-</style>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Logo" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      {% if user.is_authenticated %}
-      <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-      <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-
-     <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                    style="margin-top:6px;"
-                                                                                    class="btn btn-outline-primary"></form>
-      {% endif %}
-    </div>
-  </div>
-</nav>
-
-<div class="container">
-
-  <section class="confirmation">
-    <div class="confirmation_flex">
-
-      <div class="confirm_svg">
-        <i class="fa fa-check" aria-hidden="true"></i>
-      </div>
-
-      <div class="confirm_success">
-        <p class="h3 text-success">
-          Success!
-        </p>
-
-        <p class="h5">
-          Thank you for sharing your experience.
-        </p>
-
-        <!-- What Happens Next Dropdown Goes Here -->
-        <div class="dropdown show what_happens">
-          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            What happens next?
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-        <!-- What Happens Next Dropdown Ends Here -->
-      </div>
-    </div>
-
-    <div class="what_now">
-      <p class="h4" id="whatNow">
-        What Happens Now? <span class="step">(step by step)</span>
+      <p class="title-text">
+        Thank you for sharing your experience.
       </p>
-
-      <div class="what_now_texts">
-        <ul class="texts card" id="whatNowTexts">
-
-          <li class="text">
-            <span class="asterik">*</span> If you chose to share your experience with the world, an autistic moderator
-            will check that it
-            follows our code of conduct, and if it does, you will receive a confirmation and your experience
+    </div>
+ </div>
+    <div class="what-now-section">
+      <p class="section-heading">
+        What happens now ?</p>
+      <div class="what-now-text">
+          <ul>
+          <li><p class="text">
+           If you chose to share your experience with the world, an autistic moderator
+            will check that it follows our code of conduct, and if it does, you will receive a confirmation and your
+              experience
             will then be published on this website.
-          </li>
+          </p></li>
 
-          <hr>
-
-          <li class="text">
-            <span class="asterik">*</span> If you told us to share it only with people who have signed up and told us
-            they are autistic, an
-            autistic moderator will check that it follows our code of conduct, and if it does you will receive a
-            confirmation and your experience will then be published on our website. Only signed-in users who have
-            told us they are autistic will be shown your experience.
-          </li>
-
-          <hr>
-
-          <li class="text">
-            <span class="asterik">*</span> If you chose to share it with researchers, it will be saved into a
+          <li><p class="text">
+            If you chose to share it with researchers, it will be saved into a
             database, and researchers who follow
             our values will be able to use it for their research.
-          </li>
-        </ul>
+          </p></li>
+            </ul>
       </div>
     </div>
 
-    <div class="to_do_now">
-      <p class="h4 text-success">
-        What would you like to do now?
+    <div class="to-do-container">
+      <p class="to-do-heading">
+        What would you like to do next ?
       </p>
 
-      <div class="btn_flex_one mt-5">
-        <button class="btn btn-success">
-          <a href="{% url "main:upload" %}">
-          Enter Another Experience
-          </a>
-        </button>
+      <div class="btn-class">
+        <a href="{% url 'main:upload' %}">
+          <button class="btn btn-outline-primary btn-lg" type="button">Enter Another Experience</button>
+        </a>
 
-        <button class="btn btn-success">
-          <a href="{% url "main:my_stories" %}">
-          Go To My Stories
-          </a>
-        </button>
-      </div>
+        <a href="{% url 'main:my_stories' %}">
+          <button class="btn btn-outline-primary btn-lg" type="button">Go To My Stories</button>
+        </a>
 
-      <br>
+        <a href="{% url 'main:view_experiences' %}">
+          <button class="btn btn-outline-primary btn-lg" type="button">View Other Stories</button>
+        </a>
 
-      <div class="btn_flex_two">
-        <button class="btn btn-success">
-          <a href="{% url "main:view_experiences" %}">
-          View Other Experiences
-          </a>
-        </button>
+        <a href="{% url 'main:about_us' %}">
+          <button class="btn btn-outline-primary btn-lg" type="button">Find Out More About AutSPACEs</button>
+        </a>
 
-        <button class="btn btn-success">
-          <a href="{% url "main:index" %}">
-          Find Out More About AutSPACEs
-          </a>
-        </button>
       </div>
     </div>
+  </div>
 
-  </section>
+</section>
 </div>
-
+<!--Footer-->
+<section id="footer">
+  {% include 'main/partials/footer.html'%}
+</section>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+{% include 'main/partials/jquery.html' %}
 
-</body>
+</html>
 
 </html>

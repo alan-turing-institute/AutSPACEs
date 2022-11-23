@@ -1,0 +1,33 @@
+* {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
+  html, body {
+     min-height: 100%;
+ }
+  /*Headings*/
+  .section-heading {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+/*Intro*/
+  #intro {
+    padding: 3% 5%;
+    background-color: #F1806F;
+    color: #fff;
+  }
+
+  .intro-text-container {
+    margin: 4% 0;
+  }
+  .intro-text {
+    line-height: 2;
+    font-size: 20px;
+
+  }
+
+/*Questions*/
+  #question {
+    padding: 3% 5%;
+  }

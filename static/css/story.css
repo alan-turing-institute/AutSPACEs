@@ -1,0 +1,100 @@
+* {
+  font-family: 'Poppins', 'PT-Serif';
+  font-weight: 400;
+}
+
+.story-container {
+  padding: 3% 5%;
+  background-color: #F9BB33;
+  color: #fff;
+}
+
+/*Texts*/
+.big-heading {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.intro-text {
+  font-size: 1.5rem;
+  line-height: 2;
+  font-weight: bold;
+}
+
+.story-head {
+  color: #fff;
+  text-align: center !important;
+}
+
+.process {
+  background-color: #309FDC !important;
+}
+
+.submitted {
+  background-color: #F1806F !important;
+}
+
+.messages {
+  background-color: #1BB5AF !important;
+}
+
+span {
+  font-weight: bold;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.list-item {
+  line-height: 2;
+}
+
+.story-dashboard {
+  padding: 3% 5%;
+}
+
+.dashboard-heading {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.story-table-container {
+  padding: 3% 3%;
+  margin-bottom: 3%;
+}
+
+.table {
+  margin: 0 2%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+.number-th {
+  width: 5%;
+}
+
+.title-th {
+  width: 40% !important;
+}
+
+.contributor-th, .submission-date-th, .moderation-date-th {
+  width: 15%;
+}
+
+.view-btn {
+  margin-top: 6%;
+  margin-bottom: 2%;
+}
+
+.status-th {
+  width: 30%
+}
+
+.contact-btn {
+  padding: 3% 0;
+  margin-right: 2%;
+}

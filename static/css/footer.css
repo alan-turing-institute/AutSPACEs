@@ -1,0 +1,20 @@
+  #footer {
+    background: #F2F2F2;
+    padding: 2% 5%;
+    color:#000;
+  }
+
+  .footer-image {
+    margin-bottom: 7%;
+  }
+
+  .footer-text {
+    text-align: left;
+    padding-right: 2%;
+  }
+
+  .footer-text p {
+    padding-top: 1%;
+    line-height: 0.5;
+    font-size: 16px;
+  }

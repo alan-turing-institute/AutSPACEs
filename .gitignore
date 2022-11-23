@@ -212,10 +212,10 @@ fabric.properties
 #####=== Custom ===#####
 # Directories:
 media/
-.static/
-/static/
+#.static/
+#/static/
 
-# File types:
+# File types:GT
 *.sqlite3
 *.db
 

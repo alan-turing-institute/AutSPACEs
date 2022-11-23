@@ -1,209 +1,158 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block content %}
 
-  <!--Bootstrap-->
-    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
   <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 
-
-    <title>My Stories</title>
-
-  <!-- Favicon -->
-<style>
-  * {
-    font-family: 'Open Sans', 'PT-Serif';
-    font-weight: 400;
-  }
-
-  /* application.html inline styles */
-  body {
-      background: #E8F3FC;
-  }
-
-  .navbar {
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding: 2px !important;
-  }
-   img {
-      margin: 2px 10px;
-    }
-  /* Sticky footer styles
-  -------------------------------------------------- */
-  html {
-    position: relative;
-    min-height: 100%;
-  }
-
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f5;
-  }
-
-  .fcontainer .text-muted {
-    padding: 0 15px;
-    margin: 20px 0;
-  }
-
-  /* End of application.html inline styles */
-
-  a:hover {
-    font-weight: 550 !important;
-    transition: 0.3s;
-  }
-
-  section.stories_page {
-    text-align: center;
-    margin-top: 30px;
-    color: #000;
-  }
-
-  div.story_head p.h3,
-  div.story_body p.h3 {
-    font-weight: 550;
-    font-size: 38px;
-    margin-bottom: 20px;
-  }
-
-  span.p_page {
-    font-weight: 500;
-    font-size: 19px;
-  }
-
-  div.story_head p.h5 {
-    font-size: 22px;
-    margin-top: 40px;
-    font-weight: 550;
-  }
-
-  ul.can_do {
-    list-style: none;
-    max-width: 600px !important;
-    margin: auto;
-  }
-
-  ul.can_do li.do {
-    font-size: 19px;
-    text-align: left !important;
-  }
-
-  div.story_body {
-    margin-top: 60px;
-  }
-
-  .btn {
-    font-size: 16px;
-    margin: 8px;
-  }
-
-</style>
+  <!--  Stylesheet-->
+  <link href="{% static '/css/story.css' %}" rel="stylesheet">
+  <title>View Stories</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-  <a class="navbar-brand" href="{% url 'main:index' %}">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="Autistica Logo" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="Alan Turing Institute Logo" />
-  </a>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarText"
-          aria-expanded="false" aria-controls="navbarText">
-    <span class="sr-only">Toggle navigation</span>
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div id="navbarText" class="navbar-collapse collapse">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-      <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-      {% if user.is_authenticated %}
-              <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
-
-              <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-
-              <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
-              <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                      style="margin-top:6px;"
-                                                                                      class="btn btn-outline-primary"></form>
-      {% endif %}
-    </div>
-  </div>
-</nav>
-
-<!-- Alert Messages -->
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-info" role="alert">
-  {{ message }}
-</div>
-{% endfor %}
-{% endif %}
-
-<!-- Section -->
-<section class="stories_page">
-  <div class="container">
-    <div class="story_head">
-      <p class="h3">
-        My Stories
-      </p>
-
-      <span class="p_page">
-          Welcome to your personal AutSPACEs page.
-        </span>
-
-      <p class="h5">
-        Here you can:
-      </p>
-
-      <ul class="can_do">
-        <li class="do">
-          <span class="asterik">*</span> See the experiences you have saved and submitted.
-        </li>
-        <li class="do">
-          <span class="asterik">*</span> Change sharing permissions for your experiences.
-        </li>
-      </ul>
-    </div>
-
-    <div class="story_body">
-      <p class="h3">
-        My Experiences
-      </p>
-
-    </div>
-  </div>
+<section id="intro">
+{% include 'main/partials/navigation.html' %}
 </section>
 
+<section id="mystory">
+  <div class="story-container">
+    <p class="big-heading">
+      My Stories
+    </p>
+    <p class="intro-text">
+      Welcome to your personal AutSPACEs page. Here you can:
+    </p>
+
+    <ul class="can_do">
+      <li class="list-item">See the experiences you have saved and submitted.
+      </li>
+      <li class="list-item">Change sharing permissions for your experiences.
+      </li>
+    </ul>
+  </div>
+
+  <div class="story-dashboard">
+    <p class="dashboard-heading">
+      Stories Dashboard
+    </p>
+
+    <div class="row story-card-row">
+      <div class="story-card col-lg-4">
+        <div class="card">
+          <h3 class="story-head card-header process">In Process</h3>
+          <div class="card-body">
+            <ul>
+              <li class="list-item"><p class="card-text">Waiting:<span> 2 stories</span></p></li>
+              <li class="list-item"><p class="card-text">Moderating:<span> 1 story</span></p></li>
+              <li class="list-item"><p class="card-text">Re-moderating<span> 0 story</span></p></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="story-card col-lg-4">
+        <div class="card">
+          <h3 class="story-head card-header submitted">Moderated</h3>
+          <div class="card-body">
+            <ul>
+              <li class="list-item"><p class="card-text">Moderated:<span> 3 stories</span></p></li>
+              <li class="list-item"><p class="card-text">Accepted:<span> 3 stories</span></p></li>
+              <li class="list-item"><p class="card-text">Rejected:<span> 0 story</span></p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="story-card col-lg-4 message-card">
+        <div class="card">
+          <h3 class="story-head card-header messages">Messages</h3>
+          <div class="card-body">
+            <ul>
+              <li><p class="card-text">Your story<span>"Traffic Lights"</span> have been accepted.</p></li>
+            </ul>
+            <a
+              class="btn btn-outline-info float-right view-btn"
+              href="{% url 'main:view_experiences' %}" rel="noopener noreferrer"
+              target="_blank">View Here
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="story-table">
+  <div class="story-table-container">
+    <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
+      <thead>
+      <tr>
+        <th class="number-th" scope="col">Nr.</th>
+        <th class="title-th" scope="col">Title</th>
+        <th class="contributor-th" scope="col">Contributor</th>
+        <th class="submission-date-th" scope="col">Submission Date</th>
+        <th class="moderation-date-th" scope="col">Moderation Date</th>
+        <th class="status-th" scope="col">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Traffic Lights</td>
+        <td>Self</td>
+        <td>09-11-2021</td>
+        <td>14-11-2021</td>
+        <td>Accepted</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Taking subways in London</td>
+        <td>For autistic friend</td>
+        <td>09-11-2021</td>
+        <td>14-11-2021</td>
+        <td>Moderating</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Shopping in a market</td>
+        <td>Self</td>
+        <td>09-11-2021</td>
+        <td>14-11-2021</td>
+        <td>Re-moderating</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="contact-btn">
+    <a
+      class="btn btn-lg btn-outline-primary float-right"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
+      target="_blank">Contact Moderators
+    </a>
+      </div>
+          </div>
+
+</section>
+
+
+<section id="footer">
+  {% include 'main/partials/footer.html'%}
+</section>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script crossorigin="anonymous"
-          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-          src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script crossorigin="anonymous"
-          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-          src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script crossorigin="anonymous"
-          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-          src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
+{% include 'main/partials/jquery.html' %}
 
 </html>
+{% endblock %}

@@ -1,0 +1,72 @@
+ {% load static %}
+<!--    Stylesheet-->
+  <link href="{% static '/css/navigation_light.css' %}" rel="stylesheet" id="mystylesheet">
+
+  <div class="container-fluid nav-section">
+  <nav class="navbar navbar-expand-xl navbar-dark">
+      <a class="nav-content navbar-brand" href="#">AutSPACEs</a>
+      <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+              data-target="#navbarText"
+              data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav">
+          <li>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:overview' %}">Home</a>
+          </li>
+          <li>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
+          </li>
+          {% if user.is_authenticated %}
+             <li class="nav-item dropdown" style="padding: 0 0">
+        <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Experiences
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'main:view_experiences' %}">View Stories</a>
+          <a class="dropdown-item" href="{% url 'main:upload' %}">Share Stories</a>
+          <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate</a>
+        </div>
+      </li>
+          <li>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+</li>
+          {% else %}
+          <li>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Stories</a>
+</li>
+          {% endif %}
+          <li>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
+          </li>
+        </ul>
+      </div>
+<!--    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn colorbutton active" style="background-color: #F9BB33">
+        <input type="radio" name="options" id="option1" autocomplete="off" style="color: #F9BB33" checked>Color View
+      </label>
+      <label class="btn btn-outline-dark colorbutton">
+        <input type="radio" name="options" id="option2" autocomplete="off">Calm View
+      </label>
+    </div>-->
+
+
+      {% if user.is_authenticated %}
+        <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input
+            class="btn btn-light btn-lg"
+                                                                                      type="submit" value="Log out">
+          </form>
+     {% elif not page_status == "registration" %}
+        <a class="nav-content nav-item nav-link log-link" style="color: #fff" href="{{ auth_url }}">Log In</a>
+      </a>
+         <a href="{% url 'main:registration' %}" class="nav-content nav-item btn btn-lg btn-light">Register</a>
+      </a>
+    {% endif %}
+
+    </nav>
+</div>
+
+<!-- <script src="{% static '/js/colorswap.js' %}"></script>-->
+

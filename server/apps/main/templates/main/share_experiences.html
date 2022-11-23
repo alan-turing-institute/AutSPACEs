@@ -1,175 +1,307 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  {% load static %}
+{% block content %}
 
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8"/>
+  <meta
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    name="viewport"
+  />
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
-     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+  <!--Google Fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 
-    <title>Share Experiences</title>
-    <style>
-      * {
-        font-family: 'Open Sans', 'PT-Serif';
-        font-weight: 400;
-      }
-      body {
-        background: #e8f3fc;
-      }
-      .btn-colour {
-        background: #a0f832;
-        height: 70px;
-        width: 150px;
-      }
-      .btn-colour:hover {
-        background: #7dce1b;
-        height: 70px;
-        width: 150px;
-      }
-      .navbar {
-        font-size: 20px;
-        margin-bottom: 20px;
-        padding: 2px !important;
-      }
-      a:hover {
-      font-weight: 550 !important;
-      }
+  <!--    Stylesheet-->
+  <link href="{% static '/css/sharestories.css' %}" rel="stylesheet">
+  <title>Share Stories</title>
+</head>
 
-      img {
-        margin: 2px 10px;
-      }
-      .btn {
-        font-size: 16px;
-        margin: 8px;
-      }
-      .form-control {
-        width: 50%;
-      }
-      .form-context {
-        padding: 3%;
-      }
-      .form-check-label {
-        font-size: 22px;
-        margin-left: 10px;
-      }
-      input.form-check-input {
-        width: 20px;
-        height: 20px;
-      }
-      textarea.form-control {
-        background-color: rgb(177, 200, 243);
-        color: #000;
-      }
-      textarea.form-control:focus {
-        background-color: rgb(177, 200, 243);
-        border-color: rgba(43, 117, 0, 0.6);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-          0 0 8px rgba(43, 117, 0, 0.6);
-        outline: 0 none;
-        color: #000;
-      }
-    </style>
-  </head>
+<body>
+<!--  Intro-->
+<section id="intro">
+  {% include 'main/partials/navigation.html' %}
+</section>
 
-  <body>
- 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{% static "autistica.png" %}" width="65" height="35" alt="" />
-    <img src="{% static "alanturing.png" %}" width="75" height="35" alt="" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-          aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link" href="{% url 'main:index' %}">Home</a>
-        <a class="nav-item nav-link" href="{% url 'main:view_experiences' %}">View Experiences</a>
-       {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'main:moderate_public_experiences' %}">Moderate Experiences</a>
+<!--Share Experiences Form-->
+<section id="share-form">
+  <div class="row">
+    <div class="container read-before-container" id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button aria-controls="collapseOne" aria-expanded="false" class="btn btn-link collapsed"
+                    data-target="#collapseOne" data-toggle="collapse">
+              Read before
+            </button>
+          </h5>
+        </div>
+        <div aria-labelledby="headingOne" class="collapse" data-parent="#accordion" id="collapseOne">
+          <div class="card-body">
+            <p>The AutSPACEs platform is an online space which puts autistic people first. We are committed to
+              providing a safe and welcoming place for autistic people and their supporters to share experiences,
+              knowing their voices will be heard and their contributions recognised.</p>
+            <p>AutSPACEs allows users to share stories publicly with other users as well as privately with researchers.
+              In order
+              for the platform to be a respectful and welcoming place for autistic people and other members of the
+              community, everyone sharing a story publicly will be required to follow this code of conduct. Before they
+              are
+              published all stories will be reviewed by a moderator who will use this document as guidance when making
+              decisions as to whether a post can be approved or not.</p>
 
-                <a class="nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+            <strong>WHAT IS CONSIDERED TO BE SENSORY</strong>
+            <p>People with autism often have sensory differences. This means their senses may be weaker or stronger than
+              those who are neurotypical. This is why navigating and coping in the world can be very difficult for
+              people with autism.
+              </br>There are seven senses:
+            <ul>
+              <li>Sight</li>
+              <li>Hearing</li>
+              <li>Smell</li>
+              <li>Taste</li>
+              <li>Balance (Vestibular)</li>
+              <li>Body Awareness (Proprioception)</li>
+            </ul>
+            </p>
+<!--            Link to be updated-->
+              <a href="#"
+               target="_blank">
+              <button class="btn btn-outline-primary coc-btn float-right">Read More</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                    data-target="#collapseTwo" data-toggle="collapse">
+              Code of conduct
+            </button>
+          </h5>
+        </div>
+        <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordion" id="collapseTwo">
+          <div class="card-body">
+            <strong>The following stories will automatically be disapproved:</strong>
+            <ul>
+              <li>Neurodiversity</li>
+              <li>Gender Identity and/or Expression</li>
+              <li>Sexual Orientation</li>
+              <li>Disability and/or Health</li>
+              <li>Physical Appearance (eg. skin colour, body size, etc.)</li>
+              <li>Nationality, Citizenship and Ethnic or Social Origin</li>
+              <li>Religion/Belief (or lack thereof)</li>
+              <li>Pregnancy and/or Familial Status</li>
+              <li>Veteran Status</li>
+              <li>Genetic Information</li>
+              <li>Property and/or Socio-Economic Status</li>
+              <li>Technical Preferences</li>
+              <li>Experience Level</li>
+            </ul>
+            <p>Any post which discriminates or belittles anyone based on the below categories will be disapproved
+              .</p>
 
-                <a class="nav-item nav-link" href="{% url 'main:upload' %}">Share Experiences</a>
+            <strong>The following stories will be approved but may be
+              labelled as ‘triggering’ when posted on the platform:</strong>
+            <ul>
+              <li>Abuse (physical, sexual, emotional and verbal</li>
+              <li>Violence and Assault</li>
+              <li>Drug and/or Alcohol use</li>
+              <li>Mental Health Issues</li>
+              <li>Negative body image</li>
+            </ul>
+            <!--            Link to be updated-->
+            <a href="#"
+               target="_blank">
+              <button class="btn btn-outline-primary coc-btn float-right">Read More</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button aria-controls="collapseThree" aria-expanded="false" class="btn btn-link collapsed"
+                    data-target="#collapseThree" data-toggle="collapse">
+              Stories that break CoC
+            </button>
+          </h5>
+        </div>
+        <div aria-labelledby="headingThree" class="collapse" data-parent="#accordion" id="collapseThree">
+          <div class="card-body">
+            <strong>Personal Details</strong>
+            <p>Full Story</p>
+            <p>I always found it hard to cope at school. It’s so loud and busy and I got bullied loads. Even my teachers
+              were
+              assholes, especially my science teacher Mrs Coleman. She was an absolute bitch!</p>
 
-                <form action="{% url 'main:logout' %}" method="post">{% csrf_token %}<input type="submit" value="Log out"
-                                                                                  style="margin-top:6px;"
-                                                                                  class="btn btn-outline-primary"></form>
-              {% endif %}
+            <p></p>Recommendations</p>
+            <p>The school system is shit. Honestly, we should just kill Michael Gove and the rest of the government
+              too.</p>
+
+            <strong>Discrimination</strong>
+            <p>Story</p>
+            <p>I hate gay people. They think they’re the only ones with problems. Who even gives a shit if you can’t get
+              married. At least you have a community. I have no friends and no one cares about me. I spend my life in my
+              room because everywhere is so loud and I don’t have anyone to hang out with anyway.</p>
+
+            <p>Recommendations</p>
+            <p>I just wish there was one person who actually cared about me.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
-
-    <form method="post" action="{% url 'main:upload' %}" class="form-context">
+  <div class="container story-section">
+    <form action="{% url 'main:upload' %}" class="form-context" method="post">
       {% csrf_token %}
-      <div class="form-group">
-        <label for="experience"><h4>Please share your experience</h4></label>
+      <div class="form-group story-content row" id="content">
+        <label for="story">
+          <h3>Please share your story</h3></label>
         <textarea
           class="form-control"
-          id="experience"
-          name="experience"
-          placeholder="Write your experience here"
-          rows="6"
+          id="story"
+          name="story"
+          placeholder="Write your story here"
+          rows="4"
         ></textarea>
       </div>
-      <br />
-      <div class="form-group">
+
+      <div class="form-group suggestion-content row">
         <label for="wish_different"
-          ><h4>
-            Suggestions for what could have made your experience better
-          </h4></label
+        ><h3>
+          Suggestions for what could have made your story better
+        </h3></label
         >
         <textarea
           class="form-control"
           id="wish_different"
           name="wish_different"
           placeholder="Write your suggestions here"
-          rows="6"
+          rows="4"
         ></textarea>
       </div>
-      <br />
-      <h4>
-        You can choose who to share your experience with by selecting one or
-        more of the options below:
-      </h4>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value="viewable"
-          id="viewable"
-          name="viewable"
-        />
-        <label class="form-check-label" for="viewable">
-          Share with the world by publishing on the AutSPACE website.
-        </label>
+
+      <div class="form-group title-content row">
+        <label for="wish_different"
+        ><h3>
+          Choose a title for your story
+        </h3></label
+        >
+        <textarea
+          class="form-control"
+          id="wish_different"
+          name="wish_different"
+          placeholder="Title"
+          rows="1"
+        ></textarea>
       </div>
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value="research"
-          id="research"
-          name="research"
-        />
-        <label class="form-check-label" for="research">
-          Share for research
-        </label>
+
+      <!--        Triggering Contents-->
+      <div class="form-group row">
+        <label><h3>Triggering labels</h3></label>
+
+        <div class="row triggering-section">
+          <div class="col-lg-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="trigger-label1" name="inlineRadioOptions" type="checkbox"
+                     value="option1">
+              <label class="form-check-label" for="trigger-label1">Abuse (physical, sexual, emotional and
+                verbal)</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="trigger-label2" name="inlineRadioOptions" type="checkbox"
+                     value="option2">
+              <label class="form-check-label" for="trigger-label2">Violence and Assault</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="trigger-label3" name="inlineRadioOptions" type="checkbox"
+                     value="option3">
+              <label class="form-check-label" for="trigger-label3">Drug and/or Alcohol use</label>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="trigger-label4" name="inlineRadioOptions" type="checkbox"
+                     value="option3">
+              <label class="form-check-label" for="trigger-label4">Mental Health Issues</label>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="trigger-label5" name="inlineRadioOptions" type="checkbox"
+                     value="option3">
+              <label class="form-check-label" for="trigger-label5">Negative body image</label>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <input placeholder="Other" type="text">
+          </div>
+        </div>
       </div>
-      <br />
+      <!--        Sharing Options-->
+      <div class="form-group row">
+        <h3>Sharing options</h3>
+        <div class="container sharing-section" style="padding-left: 0px">
+          <div class="col-lg-12" style="padding-left: 0px">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                id="viewable"
+                name="viewable"
+                type="checkbox"
+                value="viewable"
+              />
+              <label class="form-check-label" for="viewable">
+                Sharing this story on someone else's behalf
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                id="viewable"
+                name="viewable"
+                type="checkbox"
+                value="viewable"
+              />
+              <label class="form-check-label" for="viewable">
+                Share with the world by publishing on the AutSPACE website
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                id="research"
+                name="research"
+                type="checkbox"
+                value="research"
+              />
+              <label class="form-check-label" for="research">
+                Share for research
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <button
-          class="btn btn-colour btn-lg active"
+          class="btn btn-outline-dark btn-lg float-right"
           type="submit"
           value="Submit"
         >
@@ -177,12 +309,18 @@
         </button>
       </div>
     </form>
+  </div>
+  </div>
+</section>
+<!--Footer-->
+<section id="footer">
+  {% include 'main/partials/footer.html'%}
+</section>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static '/js/sharestories.js' %}"></script>
+{% include 'main/partials/jquery.html' %}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
 </html>
+
+{% endblock %}
