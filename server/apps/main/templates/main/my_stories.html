@@ -109,6 +109,16 @@
       </tr>
       </thead>
       <tbody>
+      {% for file in files %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{% firstof file.metadata.title "notitle" %}</td>
+        <td>Self</td>
+        <td>{% firstof file.created "Creation date unknown" %}</td>
+        <td>14-11-2021</td>
+        <td>Re-moderating</td>
+      </tr>
+      {% empty %}
       <tr>
         <th scope="row">1</th>
         <td>Traffic Lights</td>
@@ -133,6 +143,7 @@
         <td>14-11-2021</td>
         <td>Re-moderating</td>
       </tr>
+      {% endfor %}
       </tbody>
     </table>
     <div class="contact-btn">

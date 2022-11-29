@@ -51,6 +51,7 @@ def upload(request):
         print(request.POST)
         experience_text = request.POST.get('experience')
         wish_different_text = request.POST.get('wish_different')
+        title_text = request.POST.get('title')
         viewable = request.POST.get('viewable')
         if not viewable:
             viewable = 'not public'
@@ -62,11 +63,15 @@ def upload(request):
             output_json = {
                 'text': experience_text,
                 'wish_different': wish_different_text,
+                'title': title_text,
                 'timestamp': str(datetime.datetime.now())}
             output = io.StringIO()
             output.write(json.dumps(output_json))
             output.seek(0)
             metadata = {'tags': [viewable, research],
+                        'text': experience_text,
+                        'wish_different': wish_different_text,
+                        'title': title_text,
                         'uuid': experience_id,
                         'description': 'this is a test file'}
             request.user.openhumansmember.upload(
@@ -77,6 +82,7 @@ def upload(request):
                 PublicExperience.objects.create(
                     experience_text=experience_text,
                     difference_text=wish_different_text,
+                    title_text=title_text,
                     open_humans_member=request.user.openhumansmember,
                     experience_id=experience_id)
         return redirect('main:confirm_page')
@@ -213,9 +219,9 @@ def signup_frame4_test(request):
     return render(request, "main/signup1.html")
 
 def my_stories(request):
-    context = {}
-
     if request.user.is_authenticated:
+        context = {'files': request.user.openhumansmember.list_files()}
+        print(context)
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
