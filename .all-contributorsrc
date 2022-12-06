@@ -172,6 +172,19 @@
         "code",
         "infra"
       ]
+    },
+    {
+      "login": "ThomasAJR",
+      "name": "ThomasAJR",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55509495?v=4",
+      "profile": "https://github.com/ThomasAJR",
+      "contributions": [
+        "ideas",
+        "review",
+        "doc",
+        "design",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
