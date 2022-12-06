@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -140,6 +140,7 @@ Full documentation is available here: [`docs/`](docs).
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/ThomasAJR"><img src="https://avatars.githubusercontent.com/u/55509495?v=4?s=100" width="100px;" alt="ThomasAJR"/><br /><sub><b>ThomasAJR</b></sub></a><br /><a href="#ideas-ThomasAJR" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3AThomasAJR" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=ThomasAJR" title="Documentation">📖</a> <a href="#design-ThomasAJR" title="Design">🎨</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=ThomasAJR" title="Tests">⚠️</a></td>
+      <td align="center"><a href="https://sgibson91.github.io/"><img src="https://avatars.githubusercontent.com/u/44771837?v=4?s=100" width="100px;" alt="Sarah Gibson"/><br /><sub><b>Sarah Gibson</b></sub></a><br /><a href="#ideas-sgibson91" title="Ideas, Planning, & Feedback">🤔</a> <a href="#question-sgibson91" title="Answering Questions">💬</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Asgibson91" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
 </table>
