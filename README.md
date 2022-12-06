@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -137,6 +137,9 @@ Full documentation is available here: [`docs/`](docs).
       <td align="center"><a href="https://github.com/soledadli"><img src="https://avatars.githubusercontent.com/u/67457005?v=4?s=100" width="100px;" alt="soledadli"/><br /><sub><b>soledadli</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=soledadli" title="Code">💻</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=soledadli" title="Documentation">📖</a> <a href="#design-soledadli" title="Design">🎨</a> <a href="#projectManagement-soledadli" title="Project Management">📆</a> <a href="#ideas-soledadli" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="http://www.badgermind.net"><img src="https://avatars.githubusercontent.com/u/1136671?v=4?s=100" width="100px;" alt="Robin Taylor"/><br /><sub><b>Robin Taylor</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=badgermind" title="Code">💻</a> <a href="#ideas-badgermind" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=badgermind" title="Documentation">📖</a> <a href="#design-badgermind" title="Design">🎨</a></td>
       <td align="center"><a href="https://github.com/israelvictory"><img src="https://avatars.githubusercontent.com/u/55067204?v=4?s=100" width="100px;" alt="Israel Abraham (~‾▿‾)~"/><br /><sub><b>Israel Abraham (~‾▿‾)~</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=israelvictory" title="Code">💻</a> <a href="#infra-israelvictory" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/ThomasAJR"><img src="https://avatars.githubusercontent.com/u/55509495?v=4?s=100" width="100px;" alt="ThomasAJR"/><br /><sub><b>ThomasAJR</b></sub></a><br /><a href="#ideas-ThomasAJR" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3AThomasAJR" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=ThomasAJR" title="Documentation">📖</a> <a href="#design-ThomasAJR" title="Design">🎨</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=ThomasAJR" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
