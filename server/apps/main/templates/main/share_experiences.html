@@ -1,4 +1,6 @@
 {% load static %}
+{% load custom_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 {% block content %}
@@ -159,12 +161,55 @@
       </div>
     </div>
   </div>
+
   <div class="container story-section">
-    <form action="{% url 'main:upload' %}" class="form-context" method="post">
+  <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
+    {% csrf_token %}
+    {% regroup form by field.group as field_groups %}
+    
+    {% for group in field_groups %}
+      {% if group.grouper == 1 %}
+  
+        {% for field in group.list %}
+        <div class="form-group">
+          <h3><label for="{{ field.auto_id }}">{{ field.label }}</label></h3>
+          {{ field }}
+        </div>
+        {% endfor %}
+
+      {% else %}
+        {% if group.grouper == 2 %}{% define "Triggering Labels" as label %} {% endif %}
+        {% if group.grouper == 3 %}{% define "Sharing Options" as label %} {% endif %}
+        <div class="form-group">
+          <h3><label>{{ label }}</label></label></h3>
+          <div class="row">
+          {% for field in group.list %}
+          
+            <div class="form-check col-lg-6">
+            {{ field }}    
+            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+            </div>
+         
+          {% endfor %}
+         </div>
+        </div>
+      
+      {% endif %}
+    {% endfor %}
+  
+    <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
+  
+
+  </form>
+  </div>
+
+  
+  <div class="container story-section">
+    <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
       {% csrf_token %}
       <div class="form-group story-content row" id="content">
         <label for="story">
-          <h3>Please share your story</h3></label>
+          <h3>Please share your story (old form!)</h3></label>
         <textarea
           class="form-control"
           id="experience"
