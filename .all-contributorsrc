@@ -23,7 +23,11 @@
       "profile": "https://github.com/GeorgiaHCA",
       "contributions": [
         "content",
-        "doc"
+        "doc",
+        "projectManagement",
+        "ideas",
+        "review",
+        "talk"
       ]
     },
     {
@@ -143,7 +147,7 @@
         "design",
         "projectManagement",
         "ideas"
-        ]
+      ]
     },
     {
       "login": "badgermind",
@@ -155,8 +159,8 @@
         "ideas",
         "doc",
         "design"
-        ]
-      },
+      ]
+    },
     {
       "login": "israelvictory",
       "name": "Israel Abraham (~‾▿‾)~",
@@ -173,5 +177,6 @@
   "projectOwner": "alan-turing-institute",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
