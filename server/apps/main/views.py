@@ -12,6 +12,8 @@ from openhumans.models import OpenHumansMember
 
 from .models import PublicExperience
 
+from .forms import ShareExperienceForm
+
 logger = logging.getLogger(__name__)
 
 
@@ -45,52 +47,77 @@ def logout_user(request):
         logout(request)
     return redirect('index')
 
-
-def upload(request):
+def share_experience(request, edit=False):
+    # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        print(request.POST)
-        experience_text = request.POST.get('experience')
-        wish_different_text = request.POST.get('wish_different')
-        title_text = request.POST.get('title')
-        viewable = request.POST.get('viewable')
-        if not viewable:
-            viewable = 'not public'
-        research = request.POST.get('research')
-        if not research:
-            research = 'non-research'
-        if experience_text:
-            experience_id = str(uuid.uuid1())
-            output_json = {
-                'text': experience_text,
-                'wish_different': wish_different_text,
-                'title': title_text,
-                'timestamp': str(datetime.datetime.now())}
-            output = io.StringIO()
-            output.write(json.dumps(output_json))
-            output.seek(0)
-            metadata = {'tags': [viewable, research],
-                        'text': experience_text,
-                        'wish_different': wish_different_text,
-                        'title': title_text,
-                        'uuid': experience_id,
-                        'description': 'this is a test file'}
-            request.user.openhumansmember.upload(
-                stream=output,
-                filename='testfile.json',
-                metadata=metadata)
-            if viewable == 'viewable':
-                PublicExperience.objects.create(
-                    experience_text=experience_text,
-                    difference_text=wish_different_text,
-                    title_text=title_text,
-                    open_humans_member=request.user.openhumansmember,
-                    experience_id=experience_id)
-        return redirect('main:confirm_page')
-    else:
-        if request.user.is_authenticated:
-            return render(request, 'main/share_experiences.html')
-    return redirect('index')
+        # create a form instance and populate it with data from the request:
+        form = ShareExperienceForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            if not edit:
+                upload(form.cleaned_data, request.user.openhumansmember)
+                # redirect to a new URL:
+                return redirect('main:confirm_page')
 
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ShareExperienceForm()
+
+    if request.user.is_authenticated:
+        return render(request, 'main/share_experiences.html', {'form': form})
+    else:    
+        return redirect('index')
+
+def upload(data, ohmember):
+    """Uploads a dictionary representation of an experience to open humans.
+    
+    If the experience is tagged as viewable, it is saved to the PublicExperiences database
+
+    Args:
+        data (dict): an experience
+        ohmember : request.user.openhumansmember
+    """
+    experience_text = data.get('experience')
+    wish_different_text = data.get('wish_different')
+    title_text = data.get('title')
+    viewable = data.get('viewable')
+    if not viewable:
+        viewable = 'not public'
+    research = data.get('research')
+    if not research:
+        research = 'non-research'
+    if experience_text:
+        experience_id = str(uuid.uuid1())
+        output_json = {
+            'text': experience_text,
+            'wish_different': wish_different_text,
+            'title': title_text,
+            'timestamp': str(datetime.datetime.now())}
+        output = io.StringIO()
+        output.write(json.dumps(output_json))
+        output.seek(0)
+        metadata = {
+            'uuid': experience_id,
+            'tags': [viewable, research],        
+            'description':'placeholder',
+            **output_json,
+            }
+            
+        ohmember.upload(
+            stream=output,
+            filename='testfile.json',
+            metadata=metadata)
+        
+        if viewable == 'viewable':
+            PublicExperience.objects.create(
+                experience_text=experience_text,
+                difference_text=wish_different_text,
+                title_text=title_text,
+                open_humans_member=ohmember,
+                experience_id=experience_id)
+    
+    
 
 def list_files(request):
     if request.user.is_authenticated:
@@ -206,6 +233,20 @@ def make_research(request, oh_file_id, file_uuid):
             request.user.openhumansmember.delete_single_file(
                 file_id=oh_file_id)
     return redirect('list')
+
+def edit_experience(request):
+    
+    print(request.POST)
+    return render(request, 'main/share_experiences.html')
+
+    # context = {}
+    # if request.method == 'POST':
+    #     print(request.POST)
+    #     return render(request, 'main/share_experiences.html', context)
+    # else:
+    #     if request.user.is_authenticated:
+    #         return render(request, 'main/share_experiences.html', context)
+    # redirect('main:my_stories')
 
 def signup(request):
     return render(request, "main/signup.html")
