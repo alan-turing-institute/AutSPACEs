@@ -98,7 +98,10 @@
       "contributions": [
         "ideas",
         "doc",
-        "projectManagement"
+        "projectManagement",
+        "review",
+        "mentoring",
+        "design"
       ]
     },
     {
@@ -133,7 +136,8 @@
       "profile": "http://anoura12.github.io",
       "contributions": [
         "code",
-        "ideas"
+        "ideas",
+        "doc"
       ]
     },
     {
