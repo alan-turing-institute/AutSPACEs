@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^moderate_public_experiences/?$', views.moderate_public_experiences,
         name='moderate_public_experiences'),
     url(r'^upload/?$', views.upload, name='upload'),
-    url(r'^share_exp/(?:(?P<edit>))?$', views.share_experience, name='share_exp'),
+    url(r'^share_exp(?:/(?P<edit>(True|False)))?/$', views.share_experience, name='share_exp'),
     url(r'^list/?$', views.list_files, name='list'),
     path('review_experience/<experience_id>/',
          views.review_experience,
