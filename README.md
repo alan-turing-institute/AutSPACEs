@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -141,6 +141,7 @@ Full documentation is available here: [`docs/`](docs).
     <tr>
       <td align="center"><a href="https://github.com/ThomasAJR"><img src="https://avatars.githubusercontent.com/u/55509495?v=4?s=100" width="100px;" alt="ThomasAJR"/><br /><sub><b>ThomasAJR</b></sub></a><br /><a href="#ideas-ThomasAJR" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3AThomasAJR" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=ThomasAJR" title="Documentation">📖</a> <a href="#design-ThomasAJR" title="Design">🎨</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=ThomasAJR" title="Tests">⚠️</a></td>
       <td align="center"><a href="http://malvikasharan.github.io/"><img src="https://avatars.githubusercontent.com/u/5370471?v=4?s=100" width="100px;" alt="Malvika Sharan"/><br /><sub><b>Malvika Sharan</b></sub></a><br /><a href="#ideas-malvikasharan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Amalvikasharan" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center"><a href="https://github.com/driscolle"><img src="https://avatars.githubusercontent.com/u/61194851?v=4?s=100" width="100px;" alt="driscolle"/><br /><sub><b>driscolle</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Adriscolle" title="Reviewed Pull Requests">👀</a> <a href="#projectManagement-driscolle" title="Project Management">📆</a></td>
     </tr>
   </tbody>
 </table>
