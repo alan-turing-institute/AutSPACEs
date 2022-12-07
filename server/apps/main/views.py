@@ -90,6 +90,7 @@ def upload(data, ohmember):
     metadata = {
         'uuid': str(uuid.uuid1()),   
         'description':'placeholder',
+        'tags': make_tags(data),
         **output_json,
         }
     
@@ -111,6 +112,22 @@ def upload(data, ohmember):
             open_humans_member=ohmember,
             experience_id=metadata['uuid'])
 
+def make_tags(data):
+    """builds list of tags based on data"""
+    
+    tag_map = {'viewable': {'True':'public',
+                            'False':'not public'},
+               'research': {'True':'research',
+                            'False':'non-research'}}
+    
+    # TODO: do we want to add tags for the triggering checkboxes herte?
+    
+    tags = [tag_map[k].get(str(v)) 
+            for k,v in data.items() 
+            if k in tag_map.keys()]
+    
+    return tags
+    
     
 
 def list_files(request):
