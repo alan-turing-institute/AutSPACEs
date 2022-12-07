@@ -56,7 +56,10 @@ def share_experience(request, edit=False):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             if not edit:
-                upload(form.cleaned_data, request.user.openhumansmember)
+                # here we need to catch whether the form is an 'edited' experience.
+                # a potential way of doing this is have a hidden form field 'experience_id', and, if that is populated (which we would make sure of when editing), delete a file.
+                
+                upload(form.cleaned_data, request.user.openhumansmember)                
                 # redirect to a new URL:
                 return redirect('main:confirm_page')
 
@@ -78,45 +81,36 @@ def upload(data, ohmember):
         data (dict): an experience
         ohmember : request.user.openhumansmember
     """
-    experience_text = data.get('experience')
-    wish_different_text = data.get('wish_different')
-    title_text = data.get('title')
-    viewable = data.get('viewable')
-    if not viewable:
-        viewable = 'not public'
-    research = data.get('research')
-    if not research:
-        research = 'non-research'
-    if experience_text:
-        experience_id = str(uuid.uuid1())
-        output_json = {
-            'text': experience_text,
-            'wish_different': wish_different_text,
-            'title': title_text,
-            'timestamp': str(datetime.datetime.now())}
-        output = io.StringIO()
-        output.write(json.dumps(output_json))
-        output.seek(0)
-        metadata = {
-            'uuid': experience_id,
-            'tags': [viewable, research],        
-            'description':'placeholder',
-            **output_json,
-            }
-            
-        ohmember.upload(
-            stream=output,
-            filename='testfile.json',
-            metadata=metadata)
-        
-        if viewable == 'viewable':
-            PublicExperience.objects.create(
-                experience_text=experience_text,
-                difference_text=wish_different_text,
-                title_text=title_text,
-                open_humans_member=ohmember,
-                experience_id=experience_id)
     
+    output_json = {
+            'data': data,
+            'timestamp': str(datetime.datetime.now())}
+    
+    # by saving the output json into metadata we can access the fields easily through request.user.openhumansmember.list_files().
+    metadata = {
+        'uuid': str(uuid.uuid1()),   
+        'description':'placeholder',
+        **output_json,
+        }
+    
+    # create stream for oh upload
+    output = io.StringIO()
+    output.write(json.dumps(output_json))
+    output.seek(0)
+            
+    ohmember.upload(
+        stream=output,
+        filename='testfile.json',
+        metadata=metadata)
+        
+    if data['viewable']:
+        PublicExperience.objects.create(
+            experience_text=data['experience'],
+            difference_text=data['wish_different'],
+            title_text=data['title'],
+            open_humans_member=ohmember,
+            experience_id=metadata['uuid'])
+
     
 
 def list_files(request):
