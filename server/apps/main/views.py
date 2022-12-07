@@ -48,6 +48,14 @@ def logout_user(request):
     return redirect('index')
 
 def share_experience(request, edit=False):
+    # print("in share experience - edit = ", edit)
+    # print("in share experience - request.method = ", request.method)
+    print("in share experience - request.post = ", request.POST)
+    # print("HERE-------", id)
+    # context = {'files': request.user.openhumansmember.list_files()}
+    # print("------------------")
+    # print(context)
+    # print("------------------")
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -239,7 +247,7 @@ def make_research(request, oh_file_id, file_uuid):
     return redirect('list')
 
 def edit_experience(request):
-    
+
     print(request.POST)
     return render(request, 'main/share_experiences.html')
 
