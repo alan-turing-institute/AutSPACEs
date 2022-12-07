@@ -81,7 +81,7 @@ body {
                     <a href="{% url 'main:index' %}">Home</a>
                   </li>
                   <li {% if section == 'main:public_experiences' %} class="active" {%endif%}>
-                    <a href="{% url 'main:public_experiences' %}">Public Experiences</a>
+                    <a href="{% url 'main:view_experiences' %}">Public Experiences</a>
                   </li>
                   <li {% if section == 'main:moderate_public_experiences' %} class="active" {%endif%}>
                     <a href="{% url 'main:moderate_public_experiences' %}">Moderate Public Experiences</a>
