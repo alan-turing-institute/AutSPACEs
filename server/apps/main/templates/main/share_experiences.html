@@ -178,10 +178,10 @@
         {% endfor %}
 
       {% else %}
-        {% if group.grouper == 2 %}{% define "Triggering Labels" as label %} {% endif %}
-        {% if group.grouper == 3 %}{% define "Sharing Options" as label %} {% endif %}
+        {% if group.grouper == 2 %}{% define "Triggering Labels" as header %} {% endif %}
+        {% if group.grouper == 3 %}{% define "Sharing Options" as header %} {% endif %}
         <div class="form-group">
-          <h3><label>{{ label }}</label></label></h3>
+          <h3><label>{{ header }}</label></label></h3>
           <div class="row">
           {% for field in group.list %}
           
@@ -196,166 +196,15 @@
       
       {% endif %}
     {% endfor %}
-  
-    <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
+    
+    <div class='form-group'>
+      <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
+    </div>
   
 
   </form>
   </div>
 
-  
-  <div class="container story-section">
-    <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
-      {% csrf_token %}
-      <div class="form-group story-content row" id="content">
-        <label for="story">
-          <h3>Please share your story (old form!)</h3></label>
-        <textarea
-          class="form-control"
-          id="experience"
-          name="experience"
-          placeholder="Write your story here"
-          rows="4"
-        ></textarea>
-      </div>
-
-      <div class="form-group suggestion-content row">
-        <label for="wish_different"
-        ><h3>
-          Suggestions for what could have made your story better
-        </h3></label
-        >
-        <textarea
-          class="form-control"
-          id="wish_different"
-          name="wish_different"
-          placeholder="Write your suggestions here"
-          rows="4"
-        ></textarea>
-      </div>
-
-      <div class="form-group title-content row">
-        <label for="wish_different"
-        ><h3>
-          Choose a title for your story
-        </h3></label
-        >
-        <textarea
-          class="form-control"
-          id="title"
-          name="title"
-          placeholder="Title"
-          rows="1"
-        ></textarea>
-      </div>
-
-      <!--        Triggering Contents-->
-      <div class="form-group row">
-        <label><h3>Triggering labels</h3></label>
-
-        <div class="row triggering-section">
-          <div class="col-lg-6">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" id="trigger-label1" name="inlineRadioOptions" type="checkbox"
-                     value="option1">
-              <label class="form-check-label" for="trigger-label1">Abuse (physical, sexual, emotional and
-                verbal)</label>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" id="trigger-label2" name="inlineRadioOptions" type="checkbox"
-                     value="option2">
-              <label class="form-check-label" for="trigger-label2">Violence and Assault</label>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" id="trigger-label3" name="inlineRadioOptions" type="checkbox"
-                     value="option3">
-              <label class="form-check-label" for="trigger-label3">Drug and/or Alcohol use</label>
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" id="trigger-label4" name="inlineRadioOptions" type="checkbox"
-                     value="option3">
-              <label class="form-check-label" for="trigger-label4">Mental Health Issues</label>
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" id="trigger-label5" name="inlineRadioOptions" type="checkbox"
-                     value="option3">
-              <label class="form-check-label" for="trigger-label5">Negative body image</label>
-            </div>
-          </div>
-
-          <div class="col-lg-6">
-            <input placeholder="Other" type="text">
-          </div>
-        </div>
-      </div>
-      <!--        Sharing Options-->
-      <div class="form-group row">
-        <h3>Sharing options</h3>
-        <div class="container sharing-section" style="padding-left: 0px">
-          <div class="col-lg-12" style="padding-left: 0px">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                id="viewable"
-                name="viewable"
-                type="checkbox"
-                value="viewable"
-              />
-              <label class="form-check-label" for="viewable">
-                Sharing this story on someone else's behalf
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                id="viewable"
-                name="viewable"
-                type="checkbox"
-                value="viewable"
-              />
-              <label class="form-check-label" for="viewable">
-                Share with the world by publishing on the AutSPACE website
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                id="research"
-                name="research"
-                type="checkbox"
-                value="research"
-              />
-              <label class="form-check-label" for="research">
-                Share for research
-              </label>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button
-          class="btn btn-outline-dark btn-lg float-right"
-          type="submit"
-          value="Submit"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  </div>
-  </div>
 </section>
 <!--Footer-->
 <section id="footer">
