@@ -105,6 +105,8 @@
         <th class="submission-date-th" scope="col">Creation Date</th>
         <th class="tags-th" scope="col">Tags</th>
         <th class="status-th" scope="col">Moderation Status</th>
+        <th class="status-th" scope="col">Triggering Labels</th>
+        <th class="status-th" scope="col" colspan="3">File Options</th>
       </tr>
       </thead>
       <tbody>
@@ -130,6 +132,9 @@
       </td>
       <td>
         status...
+      </td>
+      <td>
+        labels...
       </td>
       <td>
         <form action="{% url 'main:share_exp' True%}" method="post">{% csrf_token %}
