@@ -15,3 +15,6 @@ class PublicExperience(models.Model):
         blank=False,
         default='not reviewed',
         max_length=50)
+
+    def __str__(self):
+        return self.experience_text
