@@ -84,9 +84,13 @@ def upload(data, ohmember):
     viewable = data.get('viewable')
     if not viewable:
         viewable = 'not public'
+    else:
+        viewable = 'viewable'
     research = data.get('research')
     if not research:
         research = 'non-research'
+    else:
+        research = 'research'
     if experience_text:
         experience_id = str(uuid.uuid1())
         output_json = {
