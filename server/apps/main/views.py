@@ -50,8 +50,8 @@ def logout_user(request):
 def share_experience(request, edit=False):
     # print("in share experience - edit = ", edit)
     # print("in share experience - request.method = ", request.method)
-    print("in share experience - request.post = ", request.POST['file'])
-    print(request.POST["metadata_placeholder"])
+    # print("in share experience - request.post = ", request.POST['file'])
+    # print(request.POST["metadata_placeholder"])
     # if this is a POST request we need to process the form data
     
     if request.method == 'POST':
@@ -124,7 +124,18 @@ def make_tags(data):
     tag_map = {'viewable': {'True':'public',
                             'False':'not public'},
                'research': {'True':'research',
-                            'False':'non-research'}}
+                            'False':'non-research'},
+                'drug':    {'True': 'Drug and/or Alcohol misuse',
+                            'False': ''},
+                'abuse':    {'True': 'Abuse (physical, sexual, emotional and verbal)',
+                            'False': ''},
+                'negbody':  {'True': 'Negative body image',
+                            'False': ''},
+                'violence': {'True': 'Violence and Assualt',
+                            'False': ''},
+                'mentalhealth': {'True': 'Mental Health Issues',
+                            'False': ''},
+                            }
     
     # TODO: do we want to add tags for the triggering checkboxes herte?
     

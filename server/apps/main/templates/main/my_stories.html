@@ -117,23 +117,31 @@
         <td>{% firstof file.created "Creation date unknown" %}</td>
         <td>
           {% for tag in file.metadata.tags %}
-            {%if tag == 'viewable' %}
-            <a href="{%url 'main:make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%elif tag == 'not public'%}
-              <a href="{%url 'main:make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%elif tag == 'research'%}
-              <a href="{%url 'main:make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%elif tag == 'non-research'%}
-              <a href="{%url 'main:make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%else%}
-              <span class="badge">{{ tag }}</span>
+            {%if tag in 'viewable, not public, research, non-research'%}
+              {%if tag == 'viewable'%}
+              <a href="{%url 'main:make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+              {%elif tag == 'not public'%}
+                <a href="{%url 'main:make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+              {%elif tag == 'research'%}
+                <a href="{%url 'main:make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+              {%elif tag == 'non-research'%}
+                <a href="{%url 'main:make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+              {%else%}
+                <span class="badge">{{ tag }}</span>
+              {%endif%}
             {%endif%}
           {% endfor %}
       </td>
       <td>
         status...
       </td>
-      <td>{% firstof file.id "unknown ID" %}</td>
+      <td>
+        {% for tag in file.metadata.tags %}
+          {%if tag not in 'viewable, not public, research, non-research'%}
+          <span class="badge">{{ tag }}</span>
+          {%endif%}
+        {% endfor %}
+      </td>
       <td>
         <form action="{% url 'main:share_exp' True%}" method="post">{% csrf_token %}
           <input type="hidden" name="file_id" value="{{file.id}}"/>
