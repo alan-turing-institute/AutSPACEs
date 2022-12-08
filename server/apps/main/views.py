@@ -50,12 +50,8 @@ def logout_user(request):
 def share_experience(request, edit=False):
     # print("in share experience - edit = ", edit)
     # print("in share experience - request.method = ", request.method)
-    print("in share experience - request.post = ", request.POST)
-    # print("HERE-------", id)
-    # context = {'files': request.user.openhumansmember.list_files()}
-    # print("------------------")
-    # print(context)
-    # print("------------------")
+    print("in share experience - request.post = ", request.POST['file'])
+    print(request.POST["metadata_placeholder"])
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:

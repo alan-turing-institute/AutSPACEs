@@ -137,7 +137,7 @@
       <td>
         <form action="{% url 'main:share_exp' True %}" method="post">{% csrf_token %}
           <input type="text" name="file" value={{ file.id }}  style="display:none"/>
-          <input type="text" name="metadata_placeholder" value={{ file.id }}  style="display:none"/>
+          <input type="text" name="metadata_placeholder" value={{ file.metadata.data.items|default:"nothing" }}  style="display:none"/>
           <button type="submit" class="btn btn-primary">Edit</button>
         </form>
     </td>
