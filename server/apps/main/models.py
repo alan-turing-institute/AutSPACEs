@@ -5,6 +5,7 @@ from openhumans.models import OpenHumansMember
 class PublicExperience(models.Model):
     experience_text = models.TextField()
     difference_text = models.TextField(default="")
+    title_text = models.TextField(default="")
     created_at = models.DateTimeField(auto_now=True)
     experience_id = models.TextField()
     open_humans_member = models.ForeignKey(OpenHumansMember,
@@ -14,3 +15,6 @@ class PublicExperience(models.Model):
         blank=False,
         default='not reviewed',
         max_length=50)
+
+    def __str__(self):
+        return self.experience_text

@@ -102,37 +102,58 @@
       <tr>
         <th class="number-th" scope="col">Nr.</th>
         <th class="title-th" scope="col">Title</th>
-        <th class="contributor-th" scope="col">Contributor</th>
-        <th class="submission-date-th" scope="col">Submission Date</th>
-        <th class="moderation-date-th" scope="col">Moderation Date</th>
-        <th class="status-th" scope="col">Status</th>
+        <th class="submission-date-th" scope="col">Creation Date</th>
+        <th class="tags-th" scope="col">Tags</th>
+        <th class="status-th" scope="col">Moderation Status</th>
       </tr>
       </thead>
       <tbody>
+      {% for file in files %}
       <tr>
-        <th scope="row">1</th>
-        <td>Traffic Lights</td>
-        <td>Self</td>
-        <td>09-11-2021</td>
-        <td>14-11-2021</td>
-        <td>Accepted</td>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{% firstof file.metadata.data.title "notitle" %}</td>
+        <td>{% firstof file.created "Creation date unknown" %}</td>
+        <td>
+          {% for tag in file.metadata.tags %}
+            {%if tag == 'viewable' %}
+            <a href="{%url 'main:make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+            {%elif tag == 'not public'%}
+              <a href="{%url 'main:make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+            {%elif tag == 'research'%}
+              <a href="{%url 'main:make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+            {%elif tag == 'non-research'%}
+              <a href="{%url 'main:make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
+            {%else%}
+              <span class="badge">{{ tag }}</span>
+            {%endif%}
+          {% endfor %}
+      </td>
+      <td>
+        status...
+      </td>
+      <td>
+        <form action="{% url 'main:share_exp' True%}" method="post">{% csrf_token %}
+          <input type="hidden" name="file_id" value="{{file.id}}"/>
+          {% for key, val in file.metadata.data.items %}
+            <input type="hidden" name="{{key}}" value="{{val}}"/>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </td>
+      <td>
+          <a href="{{ file.download_url }}" class="btn btn-secondary btn-sm" target="_blank">Download</a>
+      </td>
+      <td>
+        <form action="{% url 'openhumans:delete_file'  %}" method="post">{% csrf_token %}
+          <input type="hidden" name="file_id" value="{{file.id}}"/>
+          <input type="hidden" name="next" value="{% url 'main:my_stories' %}" />
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Taking subways in London</td>
-        <td>For autistic friend</td>
-        <td>09-11-2021</td>
-        <td>14-11-2021</td>
-        <td>Moderating</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Shopping in a market</td>
-        <td>Self</td>
-        <td>09-11-2021</td>
-        <td>14-11-2021</td>
-        <td>Re-moderating</td>
-      </tr>
+      {% empty %}
+        {% include 'main/partials/dummy_stories.html'%}
+      {% endfor %}
       </tbody>
     </table>
     <div class="contact-btn">
