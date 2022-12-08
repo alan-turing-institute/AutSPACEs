@@ -46,3 +46,6 @@ class ShareExperienceForm(forms.Form):
     research = forms.BooleanField(label = "Share for research", required=False)
     research.group = 3
     
+    # hidden field that tracks openhumans file id when you're editing an experience
+    file_id = forms.CharField(required=False, widget=forms.HiddenInput())
+    

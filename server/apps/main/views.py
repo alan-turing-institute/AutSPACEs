@@ -49,16 +49,19 @@ def logout_user(request):
 
 def share_experience(request, edit=False):
     # if this is a POST request we need to process the form data
+    
     if request.method == 'POST':
+        
+        
         # create a form instance and populate it with data from the request:
         form = ShareExperienceForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
             if not edit:
-                # here we need to catch whether the form is an 'edited' experience.
-                # a potential way of doing this is have a hidden form field 'experience_id', and, if that is populated (which we would make sure of when editing), delete a file.
-                
+                if form.cleaned_data.pop("file_id", False):  
+                    request.user.openhumansmember.delete_single_file(file_id=request.POST.get("file_id"))
+
                 upload(form.cleaned_data, request.user.openhumansmember)                
                 # redirect to a new URL:
                 return redirect('main:confirm_page')
