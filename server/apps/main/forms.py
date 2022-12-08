@@ -48,4 +48,5 @@ class ShareExperienceForm(forms.Form):
     
     # hidden field that tracks openhumans file id when you're editing an experience
     file_id = forms.CharField(required=False, widget=forms.HiddenInput())
+    file_id.group = "hidden"
     

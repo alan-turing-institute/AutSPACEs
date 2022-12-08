@@ -52,7 +52,6 @@ def share_experience(request, edit=False):
     
     if request.method == 'POST':
         
-        
         # create a form instance and populate it with data from the request:
         form = ShareExperienceForm(request.POST)
         # check whether it's valid:
