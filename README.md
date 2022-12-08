@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-31-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-34-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -160,6 +160,9 @@ Full documentation is available here: [`docs/`](docs).
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sowmyaarajan"><img src="https://avatars.githubusercontent.com/u/55495129?v=4?s=100" width="100px;" alt="Sowmya"/><br /><sub><b>Sowmya</b></sub></a><br /><a href="#ideas-sowmyaarajan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=sowmyaarajan" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/skfantoni"><img src="https://avatars.githubusercontent.com/u/83018163?v=4?s=100" width="100px;" alt="skfantoni"/><br /><sub><b>skfantoni</b></sub></a><br /><a href="#ideas-skfantoni" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Askfantoni" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=skfantoni" title="Documentation">📖</a> <a href="#design-skfantoni" title="Design">🎨</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/akebu-simasiku-24186720a/?originalSubdomain=zm"><img src="https://avatars.githubusercontent.com/u/74776297?v=4?s=100" width="100px;" alt="Akebu"/><br /><sub><b>Akebu</b></sub></a><br /><a href="#content-akebu6" title="Content">🖋</a></td>
+      <td align="center" valign="top" width="14.28%"><img src="https://avatars1.githubusercontent.com/u/46889966?v=4?s=100" width="100px;" alt="Otis Smith"/><br /><sub><b>Otis Smith</b></sub><br /><a href="#ideas" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3A" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://gpst.me"><img src="https://avatars1.githubusercontent.com/u/3026030?v=4?s=100" width="100px;" alt="George Taylor"/><br /><sub><b>George Taylor</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=georgepstaylor" title="Code">💻</a> <a href="#ideas-georgepstaylor" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.talarify.co.za"><img src="https://avatars3.githubusercontent.com/u/7215014?v=4?s=100" width="100px;" alt="Anelda van der Walt"/><br /><sub><b>Anelda van der Walt</b></sub></a><br /><a href="#ideas-anelda" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=anelda" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
