@@ -136,9 +136,9 @@
       <td>{% firstof file.id "unknown ID" %}</td>
       <td>
         <form action="{% url 'main:share_exp' True%}" method="post">{% csrf_token %}
-          <input type="hidden" name="file_id" value={{ file.id }}/>
+          <input type="hidden" name="file_id" value="{{file.id}}"/>
           {% for key, val in file.metadata.data.items %}
-            <input type="hidden" name={{key}} value="{{val}}" />
+            <input type="hidden" name="{{key}}" value="{{val}}"/>
           {% endfor %}
           <button type="submit" class="btn btn-primary">Edit</button>
         </form>
@@ -148,8 +148,8 @@
       </td>
       <td>
         <form action="{% url 'openhumans:delete_file'  %}" method="post">{% csrf_token %}
-          <input type="text" name="file_id" value={{ file.id }}  style="display:none"/>
-          <input type="text" name="next" value="{% url 'main:list' %}" style="display:none"/>
+          <input type="hidden" name="file_id" value="{{file.id}}"/>
+          <input type="hidden" name="next" value="{% url 'main:my_stories' %}" />
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </td>

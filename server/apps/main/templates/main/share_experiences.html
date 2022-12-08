@@ -168,7 +168,9 @@
     {% regroup form by field.group as field_groups %}
     
     {% for group in field_groups %}
-      {% if group.grouper == 1 %}
+      {% if group.grouper == "hidden" %}
+        {% for field in group.list %} {{ field }} {% endfor %}
+      {% elif group.grouper == 1 %}
   
         {% for field in group.list %}
         <div class="form-group">
