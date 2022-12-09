@@ -290,7 +290,6 @@ def signup_frame4_test(request):
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
-        print(context)
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
