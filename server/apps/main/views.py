@@ -137,8 +137,6 @@ def make_tags(data):
                             'False': ''},
                             }
     
-    # TODO: do we want to add tags for the triggering checkboxes herte?
-    
     tags = [tag_map[k].get(str(v)) 
             for k,v in data.items() 
             if k in tag_map.keys()]
