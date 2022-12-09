@@ -48,10 +48,6 @@ def logout_user(request):
     return redirect('index')
 
 def share_experience(request, edit=False):
-    # print("in share experience - edit = ", edit)
-    # print("in share experience - request.method = ", request.method)
-    # print("in share experience - request.post = ", request.POST['file'])
-    # print(request.POST["metadata_placeholder"])
     # if this is a POST request we need to process the form data
     
     if request.method == 'POST':
