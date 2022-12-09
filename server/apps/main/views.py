@@ -142,6 +142,8 @@ def make_tags(data):
     tags = [tag_map[k].get(str(v)) 
             for k,v in data.items() 
             if k in tag_map.keys()]
+    if data["other"] != '':
+        tags.append("Other triggering label")
     
     return tags
     
