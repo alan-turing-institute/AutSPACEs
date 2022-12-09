@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,6 +97,7 @@
   </div>
 </section>
 <section id="story-table">
+  {% define 'viewable, public, not public, research, non-research' as sharing_tags %}
   <div class="story-table-container">
     <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
       <thead>
@@ -105,6 +107,8 @@
         <th class="submission-date-th" scope="col">Creation Date</th>
         <th class="tags-th" scope="col">Tags</th>
         <th class="status-th" scope="col">Moderation Status</th>
+        <th class="status-th" scope="col">Triggering Labels</th>
+        <th class="status-th" scope="col" colspan="3">File Options</th>
       </tr>
       </thead>
       <tbody>
@@ -115,21 +119,20 @@
         <td>{% firstof file.created "Creation date unknown" %}</td>
         <td>
           {% for tag in file.metadata.tags %}
-            {%if tag == 'viewable' %}
-            <a href="{%url 'main:make_non_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%elif tag == 'not public'%}
-              <a href="{%url 'main:make_viewable' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%elif tag == 'research'%}
-              <a href="{%url 'main:make_non_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%elif tag == 'non-research'%}
-              <a href="{%url 'main:make_research' file.id file.metadata.uuid%}"><span class="badge">{{ tag }}</span></a>
-            {%else%}
+            {% if tag in sharing_tags %}
               <span class="badge">{{ tag }}</span>
             {%endif%}
           {% endfor %}
       </td>
       <td>
         status...
+      </td>
+      <td>
+        {% for tag in file.metadata.tags %}
+          {% if tag not in sharing_tags %}
+            <span class="badge">{{ tag }}</span>
+          {%endif%}
+        {% endfor %}
       </td>
       <td>
         <form action="{% url 'main:share_exp' True%}" method="post">{% csrf_token %}
