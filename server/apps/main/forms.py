@@ -24,7 +24,7 @@ class ShareExperienceForm(forms.Form):
     # add triggering here
     abuse = forms.BooleanField(label = 'Abuse (physical, sexual, emotional and verbal)', required=False)
     abuse.group = 2
-    violence = forms.BooleanField(label = 'Violence and Assualt', required=False)
+    violence = forms.BooleanField(label = 'Violence and Assault', required=False)
     violence.group = 2
     drug = forms.BooleanField(label = 'Drug and/or Alcohol misuse', required=False)
     drug.group = 2
