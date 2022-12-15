@@ -131,6 +131,8 @@ def make_tags(data):
                             'False': ''},
                 'mentalhealth': {'True': 'mental health',
                             'False': ''},
+                'moderation_status': {'True': '',
+                            'False': 'unmoderated'}
                             }
     
     tags = [tag_map[k].get(str(v)) 
