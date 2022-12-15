@@ -91,7 +91,7 @@ def upload(data, ohmember):
     # by saving the output json into metadata we can access the fields easily through request.user.openhumansmember.list_files().
     metadata = {
         'uuid': str(uuid.uuid1()),   
-        'description':'placeholder',
+        'description': data.get('title'),
         'tags': make_tags(data),
         **output_json,
         }
@@ -103,7 +103,7 @@ def upload(data, ohmember):
             
     ohmember.upload(
         stream=output,
-        filename='testfile.json',
+        filename=f"{'_'.join((data.get('title')).lower().split()[:2])}_{str(datetime.datetime.now().isoformat(timespec='seconds'))}.json", #filename is Autspaces_timestamp
         metadata=metadata)
         
     if data['viewable']:
