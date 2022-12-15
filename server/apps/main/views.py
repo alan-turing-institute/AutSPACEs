@@ -52,7 +52,6 @@ def share_experience(request, edit=False):
     
     if request.method == 'POST':
         
-        
         # create a form instance and populate it with data from the request:
         form = ShareExperienceForm(request.POST)
         # check whether it's valid:
@@ -121,13 +120,24 @@ def make_tags(data):
     tag_map = {'viewable': {'True':'public',
                             'False':'not public'},
                'research': {'True':'research',
-                            'False':'non-research'}}
-    
-    # TODO: do we want to add tags for the triggering checkboxes herte?
+                            'False':'non-research'},
+                'drug':    {'True': 'drugs',
+                            'False': ''},
+                'abuse':    {'True': 'abuse',
+                            'False': ''},
+                'negbody':  {'True': 'negative body',
+                            'False': ''},
+                'violence': {'True': 'violence',
+                            'False': ''},
+                'mentalhealth': {'True': 'mental health',
+                            'False': ''},
+                            }
     
     tags = [tag_map[k].get(str(v)) 
             for k,v in data.items() 
             if k in tag_map.keys()]
+    if data["other"] != '':
+        tags.append("Other triggering label")
     
     return tags
     
@@ -249,7 +259,7 @@ def make_research(request, oh_file_id, file_uuid):
     return redirect('list')
 
 def edit_experience(request):
-    
+
     print(request.POST)
     return render(request, 'main/share_experiences.html')
 
@@ -276,7 +286,6 @@ def signup_frame4_test(request):
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
-        print(context)
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
