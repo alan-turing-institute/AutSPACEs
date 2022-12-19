@@ -107,7 +107,7 @@ When developing locally, we use:
 - [`poetry`](https://github.com/python-poetry/poetry) (**required**)
 - `pycharm 2017+` or `vscode`
 
-To get the current website to run on your local device please follow [these steps](/dev_readme.md).
+To get the current website to run on your local device please follow [these steps](/dev_readme.md) in the [`dev_readme.md`](/dev_readme.md). Most of the code lives in the [`server`](/server) folder in this repository. 
 
 ## Documentation
 
