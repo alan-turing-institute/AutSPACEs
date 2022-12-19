@@ -368,7 +368,7 @@
       "contributions": [
         "ideas",
         "review"
-        ]
+      ]
     },
     {
       "login": "georgepstaylor",
@@ -388,6 +388,17 @@
       "contributions": [
         "ideas",
         "test"
+      ]
+    },
+    {
+      "login": "callummole",
+      "name": "Callum Mole",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22677759?v=4",
+      "profile": "https://github.com/callummole",
+      "contributions": [
+        "ideas",
+        "code",
+        "review"
       ]
     }
   ],
