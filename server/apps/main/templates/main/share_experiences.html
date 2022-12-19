@@ -188,8 +188,14 @@
           {% for field in group.list %}
           
             <div class="form-check col-lg-6">
-            {{ field }}    
-            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+              {% if field.label == "Other"%}
+                <label for="{{ field.auto_id }}">{{ field.label }}:</label>
+                {{field}}
+              {% else %}
+                {{ field }}    
+                <label for="{{ field.auto_id }}">{{ field.label }}</label>
+              {% endif %}
+            
             </div>
          
           {% endfor %}
