@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-35-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-36-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -164,6 +164,9 @@ Full documentation is available here: [`docs/`](docs).
       <td align="center"><a href="http://gpst.me"><img src="https://avatars1.githubusercontent.com/u/3026030?v=4?s=100" width="100px;" alt="George Taylor"/><br /><sub><b>George Taylor</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=georgepstaylor" title="Code">💻</a> <a href="#ideas-georgepstaylor" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center"><a href="http://www.talarify.co.za"><img src="https://avatars3.githubusercontent.com/u/7215014?v=4?s=100" width="100px;" alt="Anelda van der Walt"/><br /><sub><b>Anelda van der Walt</b></sub></a><br /><a href="#ideas-anelda" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=anelda" title="Tests">⚠️</a></td>
       <td align="center"><a href="https://github.com/callummole"><img src="https://avatars.githubusercontent.com/u/22677759?v=4?s=100" width="100px;" alt="Callum Mole"/><br /><sub><b>Callum Mole</b></sub></a><br /><a href="#ideas-callummole" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=callummole" title="Code">💻</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Acallummole" title="Reviewed Pull Requests">👀</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/helendduncan"><img src="https://avatars.githubusercontent.com/u/46891265?v=4?s=100" width="100px;" alt="Helen Duncan"/><br /><sub><b>Helen Duncan</b></sub></a><br /><a href="#ideas-helendduncan" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=helendduncan" title="Code">💻</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Ahelendduncan" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
 </table>
