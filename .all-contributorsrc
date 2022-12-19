@@ -400,6 +400,17 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "helendduncan",
+      "name": "Helen Duncan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46891265?v=4",
+      "profile": "https://github.com/helendduncan",
+      "contributions": [
+        "ideas",
+        "code",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
