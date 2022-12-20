@@ -49,8 +49,14 @@ def logout_user(request):
 
 def share_experience(request, edit=False):
     # if this is a POST request we need to process the form data
+
+    tmp = OpenHumansMember.objects.all()
+    for i in tmp:
+        print(i)
     
     if request.method == 'POST':
+
+        print("HERE")
         
         # create a form instance and populate it with data from the request:
         form = ShareExperienceForm(request.POST)
@@ -101,18 +107,31 @@ def upload(data, ohmember):
     output.write(json.dumps(output_json))
     output.seek(0)
             
+
     ohmember.upload(
         stream=output,
         filename=f"{'_'.join((data.get('title')).lower().split()[:2])}_{str(datetime.datetime.now().isoformat(timespec='seconds'))}.json", #filename is Autspaces_timestamp
         metadata=metadata)
-        
+
+    # TODO only add once approved
     if data['viewable']:
+        if data["other"] != '':
+            other_warning = True
+        else:
+            other_warning = False
         PublicExperience.objects.create(
             experience_text=data['experience'],
             difference_text=data['wish_different'],
             title_text=data['title'],
             open_humans_member=ohmember,
-            experience_id=metadata['uuid'])
+            experience_id=metadata['uuid'],
+            abuse=data['abuse'],
+            violence=data['violence'],
+            drug=data['drug'],
+            mentalhealth=data['mentalhealth'],
+            negbody=data['negbody'],
+            other=other_warning
+            )
 
 def make_tags(data):
     """builds list of tags based on data"""
@@ -156,6 +175,7 @@ def list_files(request):
 def list_public_experiences(request):
     # experiences = PublicExperience.objects.filter(approved='approved')
     experiences = PublicExperience.objects.all()
+
     return render(
         request,
         'main/experiences_page.html',
