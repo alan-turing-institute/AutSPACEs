@@ -13,7 +13,8 @@
       "contributions": [
         "infra",
         "test",
-        "code"
+        "code",
+        "ideas"
       ]
     },
     {
@@ -76,7 +77,9 @@
       "contributions": [
         "infra",
         "test",
-        "code"
+        "code",
+        "ideas",
+        "doc"
       ]
     },
     {
@@ -97,9 +100,10 @@
       "contributions": [
         "ideas",
         "doc",
-        "design",
         "projectManagement",
-        "mentoring"
+        "review",
+        "mentoring",
+        "design"
       ]
     },
     {
@@ -193,6 +197,218 @@
       "profile": "http://malvikasharan.github.io/",
       "contributions": [
         "ideas",
+        "review"
+      ]
+    },
+    {
+      "login": "MaxwellRiess",
+      "name": "Maxwell Riess",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8421799?v=4",
+      "profile": "https://github.com/MaxwellRiess",
+      "contributions": [
+        "ideas",
+        "review"
+      ]
+    },
+    {
+      "login": "sgibson91",
+      "name": "Sarah Gibson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44771837?v=4",
+      "profile": "https://sgibson91.github.io/",
+      "contributions": [
+        "ideas",
+        "question",
+        "review"
+      ]
+    },
+    {
+      "login": "driscolle",
+      "name": "driscolle",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61194851?v=4",
+      "profile": "https://github.com/driscolle",
+      "contributions": [
+        "review",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "EllenDevereux",
+      "name": "EllenDevereux",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60144081?v=4",
+      "profile": "https://github.com/EllenDevereux",
+      "contributions": [
+        "review",
+        "projectManagement",
+        "question",
+        "ideas",
+        "content"
+      ]
+    },
+    {
+      "login": "LouiseABowler",
+      "name": "Louise Bowler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25640708?v=4",
+      "profile": "https://github.com/LouiseABowler",
+      "contributions": [
+        "ideas",
+        "review"
+      ]
+    },
+    {
+      "login": "fjThomasStanley",
+      "name": "fjThomasStanley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54365220?v=4",
+      "profile": "https://github.com/fjThomasStanley",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "aharding15",
+      "name": "Andrew Harding",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53296647?v=4",
+      "profile": "https://github.com/aharding15",
+      "contributions": [
+        "ideas",
+        "question",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "Ismael-KG",
+      "name": "Ismael-KG",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64027166?v=4",
+      "profile": "https://www.tiki-toki.com/timeline/entry/1753034/A-History-of-Research-Ethics/",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "ayrustogaru",
+      "name": "Surya Teja Togaru",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35329371?v=4",
+      "profile": "https://github.com/ayrustogaru",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "SuziQpid",
+      "name": "SuziQpid",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54582073?v=4",
+      "profile": "https://github.com/SuziQpid",
+      "contributions": [
+        "ideas",
+        "doc",
+        "review",
+        "talk"
+      ]
+    },
+    {
+      "login": "katoss",
+      "name": "Katharina Kloppenborg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23122159?v=4",
+      "profile": "https://github.com/katoss",
+      "contributions": [
+        "ideas",
+        "projectManagement",
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "pgc007",
+      "name": "pgc007",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64270473?v=4",
+      "profile": "https://github.com/pgc007",
+      "contributions": [
+        "code",
+        "ideas",
+        "doc",
+        "review",
+        "talk",
+        "test"
+      ]
+    },
+    {
+      "login": "sowmyaarajan",
+      "name": "Sowmya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55495129?v=4",
+      "profile": "https://github.com/sowmyaarajan",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
+    },
+    {
+      "login": "skfantoni",
+      "name": "skfantoni",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83018163?v=4",
+      "profile": "https://github.com/skfantoni",
+      "contributions": [
+        "ideas",
+        "review",
+        "doc",
+        "design"
+      ]
+    },
+    {
+      "login": "akebu6",
+      "name": "Akebu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74776297?v=4",
+      "profile": "https://www.linkedin.com/in/akebu-simasiku-24186720a/?originalSubdomain=zm",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "name": "Otis Smith",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/46889966?v=4",
+      "contributions": [
+        "ideas",
+        "review"
+      ]
+    },
+    {
+      "login": "georgepstaylor",
+      "name": "George Taylor",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3026030?v=4",
+      "profile": "http://gpst.me",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "anelda",
+      "name": "Anelda van der Walt",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/7215014?v=4",
+      "profile": "http://www.talarify.co.za",
+      "contributions": [
+        "ideas",
+        "test"
+      ]
+    },
+    {
+      "login": "callummole",
+      "name": "Callum Mole",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22677759?v=4",
+      "profile": "https://github.com/callummole",
+      "contributions": [
+        "ideas",
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "helendduncan",
+      "name": "Helen Duncan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46891265?v=4",
+      "profile": "https://github.com/helendduncan",
+      "contributions": [
+        "ideas",
+        "code",
         "review"
       ]
     }

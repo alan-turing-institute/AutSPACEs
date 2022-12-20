@@ -32,9 +32,11 @@ class ShareExperienceForm(forms.Form):
     mentalhealth.group = 2
     negbody = forms.BooleanField(label = 'Negative body image', required=False)
     negbody.group = 2
-    other = forms.CharField(label='',
+    
+    other = forms.CharField(label='Other',
+                            strip=True,
                             max_length=150,
-                            widget=forms.TextInput(attrs={'placeholder':'Other'}), required=False)
+                            widget=forms.TextInput(), required=False)
     other.group = 2
     
     
