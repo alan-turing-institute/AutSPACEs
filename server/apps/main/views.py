@@ -55,17 +55,18 @@ def share_experience(request, edit=False):
         print(i)
     
     if request.method == 'POST':
-
-        print("HERE")
-        
         # create a form instance and populate it with data from the request:
         form = ShareExperienceForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            if not edit:
+            
+            if not edit: # if edit=True, we render the share_experiences.html with form prepopulated.
+                # if edit=False, we check if there is a file_id (which there would be if this was a previously edited experience)
                 if form.cleaned_data.pop("file_id", False):  
-                    request.user.openhumansmember.delete_single_file(file_id=request.POST.get("file_id"))
+                    delete_single_file(file_id = request.POST.get("file_id"),
+                                       uuid = form.cleaned_data.pop("uuid", False),
+                                       ohmember = request.user.openhumansmember)
 
                 upload(form.cleaned_data, request.user.openhumansmember)                
                 # redirect to a new URL:
@@ -162,6 +163,23 @@ def make_tags(data):
     
     return tags
     
+def delete_single_file(file_id, uuid, ohmember):
+    """Deletes a given file id and uuid from openhumans and the local PublicExperiences database.
+    
+    uuid should be passed as False if experience does not exist in the PublicExperiences database (e.g. it is not viewable so was never added)
+
+    Args:
+        file_id (str): openhumans file id
+        uuid (str | bool): Either a uuid for the PublicExperience field 'experience id', or False if entry non-existent. 
+        ohmember : request.user.openhumansmember
+    """
+    # TODO: should add warning.
+    
+    ohmember.delete_single_file(file_id=file_id)
+    if uuid: 
+        pe = PublicExperience.objects.get(experience_id=uuid)
+        pe.delete()
+        
     
 
 def list_files(request):
@@ -308,6 +326,7 @@ def signup_frame4_test(request):
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
+        print(context)
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
