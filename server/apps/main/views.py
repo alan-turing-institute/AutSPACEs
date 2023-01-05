@@ -173,7 +173,8 @@ def delete_single_file(file_id, uuid, ohmember):
         uuid (str | bool): Either a uuid for the PublicExperience field 'experience id', or False if entry non-existent. 
         ohmember : request.user.openhumansmember
     """
-    # TODO: should add warning.
+    # Currently when edited a PublicExperience object we actually delete and recreate model, which OpenHumans uses.
+    # This is slower than updating. We could update but you need to watch out for the viewable tag changing. The delete and insert method is the simplest logic.
     
     ohmember.delete_single_file(file_id=file_id)
     if uuid: 
