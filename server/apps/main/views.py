@@ -163,12 +163,22 @@ def make_tags(data):
     
     return tags
     
-def delete_experience(request):
+def delete_experience(request, confirmed=False):
     if request.user.is_authenticated:
-        delete_single_file(file_id = request.POST.get("file_id"),
-                           uuid = request.POST.get("uuid"),
-                           ohmember = request.user.openhumansmember)
-        return render(request, 'main/deletion_confirmation_page.html', {'title': request.POST.get("title")})
+    
+        file_id = request.POST.get("file_id")
+        uuid = request.POST.get("uuid")
+        title = request.POST.get("title")
+        
+        if confirmed:
+            delete_single_file(file_id = file_id,
+                               uuid = uuid,
+                               ohmember = request.user.openhumansmember)
+            return render(request, 'main/deletion_success.html', {"title": title})
+        else:
+            return render(request, 'main/deletion_confirmation.html', {"title": title,
+                                                                       "file_id": file_id,
+                                                                       "uuid": uuid})
     else:    
         return redirect('index')
         
