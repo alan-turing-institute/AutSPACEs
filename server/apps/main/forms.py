@@ -49,6 +49,9 @@ class ShareExperienceForm(forms.Form):
     # hidden field that tracks openhumans file id when you're editing an experience
     file_id = forms.CharField(required=False, widget=forms.HiddenInput())
     file_id.group = "hidden"
+    # hidden field that tracks PublicExperience uuid (field in model is experience_id) when you're editing an experience
+    uuid = forms.CharField(required=False, widget=forms.HiddenInput())
+    uuid.group = "hidden"
     # hidden field for moderation status
     moderation_status = forms.BooleanField(widget = forms.HiddenInput(), required=False, initial=False)
     moderation_status.group = "hidden"
