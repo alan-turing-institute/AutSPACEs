@@ -163,6 +163,16 @@ def make_tags(data):
     
     return tags
     
+def delete_experience(request):
+    if request.user.is_authenticated:
+        delete_single_file(file_id = request.POST.get("file_id"),
+                           uuid = request.POST.get("uuid"),
+                           ohmember = request.user.openhumansmember)
+        return render(request, 'main/deletion_confirmation_page.html', {'title': request.POST.get("title")})
+    else:    
+        return redirect('index')
+        
+    
 def delete_single_file(file_id, uuid, ohmember):
     """Deletes a given file id and uuid from openhumans and the local PublicExperiences database.
     
@@ -172,14 +182,22 @@ def delete_single_file(file_id, uuid, ohmember):
         file_id (str): openhumans file id
         uuid (str | bool): Either a uuid for the PublicExperience field 'experience id', or False if entry non-existent. 
         ohmember : request.user.openhumansmember
+        
+    Notes:
+        if the file has already been deleted, which can occur if the user presses back and resubmits, then 
+        - ohmember.delete_single_file will silently fail
+        - PublicExperience.objects.get() will through a DoesNotExist exception
     """
     # Currently when edited a PublicExperience object we actually delete and recreate model, which OpenHumans uses.
     # This is slower than updating. We could update but you need to watch out for the viewable tag changing. The delete and insert method is the simplest logic.
     
     ohmember.delete_single_file(file_id=file_id)
     if uuid: 
-        pe = PublicExperience.objects.get(experience_id=uuid)
-        pe.delete()
+        try:
+            pe = PublicExperience.objects.get(experience_id=uuid)
+            pe.delete()
+        except PublicExperience.DoesNotExist:
+            pass
         
     
 
