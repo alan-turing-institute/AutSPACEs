@@ -170,11 +170,16 @@ def delete_experience(request, confirmed=False):
         uuid = request.POST.get("uuid")
         title = request.POST.get("title")
         
-        if confirmed:
-            delete_single_file(file_id = file_id,
+        if confirmed:   
+            delete = delete_single_file(file_id = file_id,
                                uuid = uuid,
                                ohmember = request.user.openhumansmember)
-            return render(request, 'main/deletion_success.html', {"title": title})
+            if delete:
+                msg = f"You successfully deleted experience: '{title}'"
+            else:
+                msg = f"Experience '{title}' not found for the current user"
+                
+            return render(request, 'main/deletion_success.html', {"msg": msg, "delete": delete})
         else:
             return render(request, 'main/deletion_confirmation.html', {"title": title,
                                                                        "file_id": file_id,
@@ -204,11 +209,11 @@ def delete_single_file(file_id, uuid, ohmember):
     ohmember.delete_single_file(file_id=file_id)
     if uuid: 
         try:
-            pe = PublicExperience.objects.get(experience_id=uuid)
+            pe = PublicExperience.objects.get(experience_id=uuid, open_humans_member=ohmember)
             pe.delete()
+            return True
         except PublicExperience.DoesNotExist:
-            pass
-        
+            return False
     
 
 def list_files(request):
@@ -355,7 +360,6 @@ def signup_frame4_test(request):
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
-        print(context)
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
