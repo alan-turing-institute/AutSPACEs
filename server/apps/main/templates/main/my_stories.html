@@ -136,7 +136,6 @@
       </td>
       <td>
         <form action="{% url 'main:share_exp' True%}" method="post">{% csrf_token %}
-          <input type="hidden" name="file_id" value="{{file.id}}"/>
           <input type="hidden" name="uuid" value="{{file.metadata.uuid}}"/>
           {% for key, val in file.metadata.data.items %}
             <input type="hidden" name="{{key}}" value="{{val}}"/>
@@ -149,7 +148,6 @@
       </td>
       <td>
         <form action="{% url 'main:delete_experience' %}" method="post">{% csrf_token %}
-          <input type="hidden" name="file_id" value="{{file.id}}"/>
           <input type="hidden" name="uuid" value="{{file.metadata.uuid}}"/>
           <input type="hidden" name="title" value="{{file.metadata.data.title}}"/>
           <button type="submit" class="btn btn-danger">Delete</button>
