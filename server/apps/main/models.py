@@ -7,7 +7,7 @@ class PublicExperience(models.Model):
     difference_text = models.TextField(default="")
     title_text = models.TextField(default="")
     created_at = models.DateTimeField(auto_now=True)
-    experience_id = models.TextField()
+    experience_id = models.TextField(primary_key=True) #if specified as primary key you cannot have duplicates.
     open_humans_member = models.ForeignKey(OpenHumansMember,
                                            blank=True, null=True,
                                            on_delete=models.CASCADE)

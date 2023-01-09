@@ -49,44 +49,95 @@ def logout_user(request):
 
 def share_experience(request, edit=False):
     # if this is a POST request we need to process the form data
-
-    tmp = OpenHumansMember.objects.all()
-    for i in tmp:
-        print(i)
-    
-    if request.method == 'POST':
-
-        print("HERE")
+    if request.user.is_authenticated: 
         
-        # create a form instance and populate it with data from the request:
-        form = ShareExperienceForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            if not edit:
-                if form.cleaned_data.pop("file_id", False):  
-                    request.user.openhumansmember.delete_single_file(file_id=request.POST.get("file_id"))
+        if request.method == 'POST':
+            # create a form instance and populate it with data from the request:
+            form = ShareExperienceForm(request.POST)
+            # check whether it's valid:
+            if edit:
+                # if edit=True, we render the share_experiences.html with form prepopulated.
+                return render(request, 'main/share_experiences.html', {'form': form})    
+            else:
+                # if edit=False, we proceed to submission.
+                if form.is_valid():
+                    
+                    # make a new uuid if doesn't already exist.
+                    uuid = form.cleaned_data.pop("uuid", False)
+                    
+                    if uuid: 
+                        # we will be here if we are editing a record already exists               
 
-                upload(form.cleaned_data, request.user.openhumansmember)                
-                # redirect to a new URL:
-                return redirect('main:confirm_page')
+                        # for OH we need to Delete before reupload.
+                        request.user.openhumansmember.delete_single_file(file_basename = f"{uuid}.json")
+                    
+                    else:
+                        uuid = make_uuid()
+                        
+                    upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)                
+                    
+                    # for Public Experience we need to check if it's viewable and update accordingly.
+                    update_public_experience_db(data=form.cleaned_data, uuid=uuid, ohmember=request.user.openhumansmember)                
+                    
+                    # redirect to a new URL:
+                    return redirect('main:confirm_page')
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = ShareExperienceForm()
-
-    if request.user.is_authenticated:
-        return render(request, 'main/share_experiences.html', {'form': form})
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            return render(request, 'main/share_experiences.html', {'form': ShareExperienceForm()})    
+    
     else:    
         return redirect('index')
 
-def upload(data, ohmember):
-    """Uploads a dictionary representation of an experience to open humans.
+def update_public_experience_db(data, uuid, ohmember, moderation_status = 'not reviewed'):
+    """Updates the public experience database for the given uuid.
     
-    If the experience is tagged as viewable, it is saved to the PublicExperiences database
+    If data is tagged as viewable, an experience will be updated or inserted.
+    If a data is tagged as not public, this function ensures that it is absent from the pe db.
 
     Args:
         data (dict): an experience
+        uuid (str): unique identifier
+        ohmember : request.user.openhumansmember
+        moderation_status (str, optional): Defaults to 'in review'.
+    """
+    
+    if data['viewable']:
+        
+        pe = PublicExperience(experience_text=data['experience'],
+            difference_text=data['wish_different'],
+            title_text=data['title'],
+            open_humans_member=ohmember,
+            experience_id=uuid,
+            abuse=data['abuse'],
+            violence=data['violence'],
+            drug=data['drug'],
+            mentalhealth=data['mentalhealth'],
+            negbody=data['negbody'],
+            other=True if data['other'] != '' else False,
+            approved=moderation_status
+        )
+        
+        # .save() updates if primary key exists, inserts otherwise. 
+        pe.save()        
+        
+    else:
+        delete_PE(uuid,ohmember)
+        
+            
+def delete_PE(uuid, ohmember):
+    if PublicExperience.objects.filter(experience_id=uuid, open_humans_member=ohmember).exists():
+            PublicExperience.objects.get(experience_id=uuid, open_humans_member=ohmember).delete()
+    
+def make_uuid():
+    return str(uuid.uuid1())
+
+def upload(data, uuid, ohmember):
+    """Uploads a dictionary representation of an experience to open humans.
+
+    Args:
+        data (dict): an experience
+        uuid (str): unique identifier
         ohmember : request.user.openhumansmember
     """
     
@@ -96,7 +147,7 @@ def upload(data, ohmember):
     
     # by saving the output json into metadata we can access the fields easily through request.user.openhumansmember.list_files().
     metadata = {
-        'uuid': str(uuid.uuid1()),   
+        'uuid': uuid,   
         'description': data.get('title'),
         'tags': make_tags(data),
         **output_json,
@@ -110,28 +161,8 @@ def upload(data, ohmember):
 
     ohmember.upload(
         stream=output,
-        filename=f"{'_'.join((data.get('title')).lower().split()[:2])}_{str(datetime.datetime.now().isoformat(timespec='seconds'))}.json", #filename is Autspaces_timestamp
+        filename=f"{uuid}.json", #filename is Autspaces_timestamp
         metadata=metadata)
-
-    # TODO only add once approved
-    if data['viewable']:
-        if data["other"] != '':
-            other_warning = True
-        else:
-            other_warning = False
-        PublicExperience.objects.create(
-            experience_text=data['experience'],
-            difference_text=data['wish_different'],
-            title_text=data['title'],
-            open_humans_member=ohmember,
-            experience_id=metadata['uuid'],
-            abuse=data['abuse'],
-            violence=data['violence'],
-            drug=data['drug'],
-            mentalhealth=data['mentalhealth'],
-            negbody=data['negbody'],
-            other=other_warning
-            )
 
 def make_tags(data):
     """builds list of tags based on data"""
@@ -162,6 +193,37 @@ def make_tags(data):
     
     return tags
     
+def delete_experience(request, confirmed=False):
+    if request.user.is_authenticated:
+    
+        uuid = request.POST.get("uuid")
+        title = request.POST.get("title")
+        
+        if confirmed:   
+            delete_single_file(uuid = uuid,
+                               ohmember = request.user.openhumansmember)
+            
+                
+            return render(request, 'main/deletion_success.html', {"title":title})
+        
+        else:
+            return render(request, 'main/deletion_confirmation.html', {"title": title,
+                                                                       "uuid": uuid})
+    else:    
+        return redirect('index')
+        
+    
+def delete_single_file(uuid, ohmember):
+    """Deletes a given file id and uuid from openhumans and ensures absence from local PublicExperiences database.
+
+    Args:
+        
+        uuid (str): unique identifier, used for PublicExperience primary key and for OpenHumans filename.
+        ohmember : request.user.openhumansmember
+    """
+
+    ohmember.delete_single_file(file_basename=f"{uuid}.json")
+    delete_PE(uuid,ohmember)
     
 
 def list_files(request):
