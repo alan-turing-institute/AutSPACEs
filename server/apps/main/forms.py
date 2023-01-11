@@ -40,15 +40,17 @@ class ShareExperienceForm(forms.Form):
     other.group = 2
     
     
-    
-    
     # sharing options
     viewable = forms.BooleanField(label = "Share on AutSPACE website", required=False)
     viewable.group = 3
     research = forms.BooleanField(label = "Share for research", required=False)
     research.group = 3
     
-    # hidden field that tracks openhumans file id when you're editing an experience
-    file_id = forms.CharField(required=False, widget=forms.HiddenInput())
-    file_id.group = "hidden"
+    
+    # hidden field that tracks PublicExperience uuid (which is also the OH filename) when you're editing an experience
+    uuid = forms.CharField(required=False, widget=forms.HiddenInput())
+    uuid.group = "hidden"
+    # hidden field for moderation status
+    moderation_status = forms.BooleanField(widget = forms.HiddenInput(), required=False, initial=False)
+    moderation_status.group = "hidden"
     
