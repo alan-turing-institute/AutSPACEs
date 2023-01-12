@@ -14,9 +14,12 @@ urlpatterns = [
         name='view_experiences'),
     url(r'^moderate_public_experiences/?$', views.moderate_public_experiences,
         name='moderate_public_experiences'),
-    url(r'^share_exp(?:/(?P<edit>(True|False)))?/$', views.share_experience, name='share_exp'),
-    url(r'^delete(?:/(?P<confirmed>(True)))?/', views.delete_experience, name="delete_experience"),
     url(r'^list/?$', views.list_files, name='list'),
+    
+    path('delete/<uuid>/', views.delete_experience, name='delete_exp'),
+    path('share_exp/', views.share_experience, name='share_exp'),
+    path('edit/<uuid>/', views.share_experience, name='edit_exp'),
+    
     path('review_experience/<experience_id>/',
          views.review_experience,
          name='review_experience'),
