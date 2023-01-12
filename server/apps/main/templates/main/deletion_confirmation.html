@@ -36,9 +36,7 @@
     
     <div class="row mx-0 py-4 justify-content-start">
       <div class="col-2">
-            <form action="{% url 'main:delete_experience' True %}" method="post">{% csrf_token %}
-              <input type="hidden" name="uuid" value="{{uuid}}"/>
-              <input type="hidden" name="title" value="{{title}}"/>
+            <form action="{% url 'main:delete_exp' uuid title %}" method="post">{% csrf_token %}
               <button type="submit" class="btn btn-danger btn-lg">Yes, Delete</button>
             </form>
       </div>

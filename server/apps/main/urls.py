@@ -15,7 +15,7 @@ urlpatterns = [
         name='moderate_public_experiences'),
     re_path(r'^list/?$', views.list_files, name='list'),
     
-    path('delete/<uuid>/', views.delete_experience, name='delete_exp'),
+    path('delete/<uuid>/<title>/', views.delete_experience, name='delete_exp'),
     path('share_exp/', views.share_experience, name='share_exp'),
     path('edit/<uuid>/', views.share_experience, name='edit_exp'),
     
