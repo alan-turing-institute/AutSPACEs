@@ -130,6 +130,7 @@ def update_public_experience_db(data, uuid, ohmember, moderation_status = 'not r
 def delete_PE(uuid, ohmember):
     if PublicExperience.objects.filter(experience_id=uuid, open_humans_member=ohmember).exists():
             PublicExperience.objects.get(experience_id=uuid, open_humans_member=ohmember).delete()
+        
     
 def make_uuid():
     return str(uuid.uuid1())
@@ -195,13 +196,13 @@ def make_tags(data):
     
     return tags
     
-def delete_experience(request, confirmed=False):
+def delete_experience(request, uuid, title):
+    # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
+    
     if request.user.is_authenticated:
     
-        uuid = request.POST.get("uuid")
-        title = request.POST.get("title")
+        if request.method == 'POST':
         
-        if confirmed:   
             delete_single_file(uuid = uuid,
                                ohmember = request.user.openhumansmember)
             
