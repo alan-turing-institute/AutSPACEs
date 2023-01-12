@@ -163,7 +163,11 @@
   </div>
 
   <div class="container story-section">
-  <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
+  {% if uuid %}
+    <form action="{% url 'main:edit_exp' uuid %}" class="form-context" method="post">
+  {% else %}
+    <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
+  {% endif %}
     {% csrf_token %}
     {% regroup form by field.group as field_groups %}
     
