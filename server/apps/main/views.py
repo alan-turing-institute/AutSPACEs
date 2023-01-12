@@ -225,6 +225,30 @@ def delete_single_file(uuid, ohmember):
     ohmember.delete_single_file(file_basename=f"{uuid}.json")
     delete_PE(uuid,ohmember)
     
+def get_oh_file(ohmember, uuid):
+    """Returns a single file from OpenHumans, filtered by uuid.
+
+    Args:
+        ohmember : request.user.openhumansmember
+        uuid (str): unique identifier
+
+    Raises:
+        Exception: If uuid belongs to more than one file.
+
+    Returns:
+        file (dict): dictionary representation of OpenHumans file. Returns None if uuid is not matched.
+    """
+    files = ohmember.list_files()
+    file = [f for f in files if f["metadata"]["uuid"]==uuid]
+    
+    if len(file)==0:
+        file=None
+    elif len(file)>1:
+        raise Exception("duplicate uuids in open humans")
+    
+    return file[0]
+    
+
 
 def list_files(request):
     if request.user.is_authenticated:
