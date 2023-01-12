@@ -1,20 +1,19 @@
-from django.conf.urls import url
-from django.urls import path
+from django.urls import path, re_path
 from server.apps.main import views
 
 app_name = 'main'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^signup/?$', views.signup, name='signup'),
-    url(r'^signup1/?$', views.signup_frame4_test, name='signup_frame4_test'),
-    url(r'^logout/?$', views.logout_user, name='logout'),
-    url(r'^overview/?$', views.overview, name='overview'),
-    url(r'^view_experiences/?$', views.list_public_experiences,
+    re_path(r'^$', views.index, name='index'),
+    re_path(r'^signup/?$', views.signup, name='signup'),
+    re_path(r'^signup1/?$', views.signup_frame4_test, name='signup_frame4_test'),
+    re_path(r'^logout/?$', views.logout_user, name='logout'),
+    re_path(r'^overview/?$', views.overview, name='overview'),
+    re_path(r'^view_experiences/?$', views.list_public_experiences,
         name='view_experiences'),
-    url(r'^moderate_public_experiences/?$', views.moderate_public_experiences,
+    re_path(r'^moderate_public_experiences/?$', views.moderate_public_experiences,
         name='moderate_public_experiences'),
-    url(r'^list/?$', views.list_files, name='list'),
+    re_path(r'^list/?$', views.list_files, name='list'),
     
     path('delete/<uuid>/', views.delete_experience, name='delete_exp'),
     path('share_exp/', views.share_experience, name='share_exp'),
