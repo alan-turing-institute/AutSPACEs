@@ -60,7 +60,6 @@ def share_experience(request, uuid=False):
 
             if form.is_valid():
                 
-                
                 if uuid: 
                     # we will be here if we are editing a record that already exists               
                     # for OH we need to Delete before reupload.
@@ -434,12 +433,14 @@ def footer(request):
     return render(request, "main/footer.html")
 
 def moderate_experience(request, uuid):
+    print("______________MOD_____________")
     model = PublicExperience.objects.get(experience_id = uuid)
     form = model_to_form(model)
-    return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid})  
+    return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
 
 def model_to_form(model):
     model_dict = model_to_dict(model)
+    print(model_dict)
 
     form = ShareExperienceForm({
         "experience": model_dict["experience_text"],

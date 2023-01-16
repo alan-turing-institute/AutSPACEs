@@ -65,12 +65,12 @@
           <tr>
             <th scope="row">{{ forloop.counter }}</th>
             <td>{% firstof experience.title_text "notitle" %}</td>
+            <td>
+              <a href="{% url 'main:moderate_exp' experience.experience_id %}">
+                <button class="btn btn-primary">Moderate</button>
+              </a>
+          </td>
           </tr>
-          <td>
-            <a href="{% url 'main:moderate_exp' experience.experience_id %}">
-              <button class="btn btn-primary">Edit</button>
-            </a>
-        </td>
           {% endfor %}
         </tbody>
           </table>
