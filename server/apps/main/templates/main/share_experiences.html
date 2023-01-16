@@ -173,7 +173,13 @@
     
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
-        {% for field in group.list %} {{ field }} {% endfor %}
+        {% if moderate %} 
+          <div class="form-group">
+            <h3><label>Moderation Status</label></label></h3>
+            <div class="row">
+            {% for field in group.list %} {{ field }}{% endfor %}
+           </div>
+        {% endif %}
       {% elif group.grouper == 1 %}
   
         {% for field in group.list %}
