@@ -67,7 +67,7 @@ def share_experience(request, uuid=False):
                 
                 else:
                     uuid = make_uuid()
-                    
+                                
                 upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)                
                 
                 # for Public Experience we need to check if it's viewable and update accordingly.
@@ -92,7 +92,7 @@ def share_experience(request, uuid=False):
     else:    
         return redirect('index')
 
-def update_public_experience_db(data, uuid, ohmember, moderation_status = 'not reviewed'):
+def update_public_experience_db(data, uuid, ohmember):
     """Updates the public experience database for the given uuid.
     
     If data is tagged as viewable, an experience will be updated or inserted.
@@ -117,8 +117,8 @@ def update_public_experience_db(data, uuid, ohmember, moderation_status = 'not r
             drug=data['drug'],
             mentalhealth=data['mentalhealth'],
             negbody=data['negbody'],
-            other=True if data['other'] != '' else False,
-            approved=moderation_status
+            other=data['other'],
+            approved=data['moderation_status']
         )
         
         # .save() updates if primary key exists, inserts otherwise. 
