@@ -10,6 +10,7 @@ from django.contrib.auth import login, logout
 from django.forms.models import model_to_dict 
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
+from django.db.models import Q
 
 
 from .models import PublicExperience
@@ -273,11 +274,16 @@ def list_public_experiences(request):
 
 
 def moderate_public_experiences(request):
-    experiences = PublicExperience.objects.filter(approved='not reviewed')
+
+    unreviewed_experiences = PublicExperience.objects.filter(approved='not reviewed')
+
+    previously_reviewed_experiences = PublicExperience.objects.filter(~Q(approved='not reviewed'))
+
     return render(
         request,
         'main/moderate_public_experiences.html',
-        context={'experiences': experiences})
+        context={"unreviewed_experiences": unreviewed_experiences,
+        "previously_reviewed_experiences": previously_reviewed_experiences})
 
 
 def review_experience(request, experience_id):
@@ -433,7 +439,6 @@ def footer(request):
     return render(request, "main/footer.html")
 
 def moderate_experience(request, uuid):
-    print("______________MOD_____________")
     model = PublicExperience.objects.get(experience_id = uuid)
     form = model_to_form(model)
     return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
