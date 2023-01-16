@@ -46,6 +46,20 @@ class ShareExperienceForm(forms.Form):
     research.group = 3
 
     # hidden field for moderation status
-    moderation_status = forms.BooleanField(widget = forms.HiddenInput(), required=False, initial=False)
+    statuses = [
+        ("not reviewed", "not reviewed"),
+        ("in review", "in review"),
+        ("approved", "approved"),
+        ("rejected", "rejected"),
+        ("", "not reviewed") # hack for default behavour
+    ]
+    moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
     
+    def clean_moderation_status(self):
+        mod_status = self.cleaned_data['moderation_status']
+        if not mod_status:
+            mod_status = 'not reviewed'
+            
+        return mod_status
+            
