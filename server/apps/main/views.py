@@ -47,7 +47,7 @@ def logout_user(request):
         logout(request)
     return redirect('index')
 
-def share_experience(request, edit=False):
+def share_experience(request, uuid=False):
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated: 
         
@@ -55,36 +55,38 @@ def share_experience(request, edit=False):
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
-            if edit:
-                # if edit=True, we render the share_experiences.html with form prepopulated.
-                return render(request, 'main/share_experiences.html', {'form': form})    
-            else:
-                # if edit=False, we proceed to submission.
-                if form.is_valid():
-                    
-                    # make a new uuid if doesn't already exist.
-                    uuid = form.cleaned_data.pop("uuid", False)
-                    
-                    if uuid: 
-                        # we will be here if we are editing a record already exists               
 
-                        # for OH we need to Delete before reupload.
-                        request.user.openhumansmember.delete_single_file(file_basename = f"{uuid}.json")
+            if form.is_valid():
+                
+                
+                if uuid: 
+                    # we will be here if we are editing a record that already exists               
+                    # for OH we need to Delete before reupload.
+                    request.user.openhumansmember.delete_single_file(file_basename = f"{uuid}.json")
+                
+                else:
+                    uuid = make_uuid()
                     
-                    else:
-                        uuid = make_uuid()
-                        
-                    upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)                
-                    
-                    # for Public Experience we need to check if it's viewable and update accordingly.
-                    update_public_experience_db(data=form.cleaned_data, uuid=uuid, ohmember=request.user.openhumansmember)                
-                    
-                    # redirect to a new URL:
-                    return redirect('main:confirm_page')
+                upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)                
+                
+                # for Public Experience we need to check if it's viewable and update accordingly.
+                update_public_experience_db(data=form.cleaned_data, uuid=uuid, ohmember=request.user.openhumansmember)                
+                
+                # redirect to a new URL:
+                return redirect('main:confirm_page')
 
         # if a GET (or any other method) we'll create a blank form
         else:
-            return render(request, 'main/share_experiences.html', {'form': ShareExperienceForm()})    
+            
+            if uuid:
+                # return data from oh.
+                data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
+                form = ShareExperienceForm(data["metadata"]["data"])
+                
+            else:
+                form = ShareExperienceForm()
+                
+            return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid})    
     
     else:    
         return redirect('index')
@@ -128,6 +130,7 @@ def update_public_experience_db(data, uuid, ohmember, moderation_status = 'not r
 def delete_PE(uuid, ohmember):
     if PublicExperience.objects.filter(experience_id=uuid, open_humans_member=ohmember).exists():
             PublicExperience.objects.get(experience_id=uuid, open_humans_member=ohmember).delete()
+        
     
 def make_uuid():
     return str(uuid.uuid1())
@@ -193,13 +196,13 @@ def make_tags(data):
     
     return tags
     
-def delete_experience(request, confirmed=False):
+def delete_experience(request, uuid, title):
+    # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
+    
     if request.user.is_authenticated:
     
-        uuid = request.POST.get("uuid")
-        title = request.POST.get("title")
+        if request.method == 'POST':
         
-        if confirmed:   
             delete_single_file(uuid = uuid,
                                ohmember = request.user.openhumansmember)
             
@@ -225,6 +228,30 @@ def delete_single_file(uuid, ohmember):
     ohmember.delete_single_file(file_basename=f"{uuid}.json")
     delete_PE(uuid,ohmember)
     
+def get_oh_file(ohmember, uuid):
+    """Returns a single file from OpenHumans, filtered by uuid.
+
+    Args:
+        ohmember : request.user.openhumansmember
+        uuid (str): unique identifier
+
+    Raises:
+        Exception: If uuid belongs to more than one file.
+
+    Returns:
+        file (dict): dictionary representation of OpenHumans file. Returns None if uuid is not matched.
+    """
+    files = ohmember.list_files()
+    file = [f for f in files if f["metadata"]["uuid"]==uuid]
+    
+    if len(file)==0:
+        file=None
+    elif len(file)>1:
+        raise Exception("duplicate uuids in open humans")
+    
+    return file[0]
+    
+
 
 def list_files(request):
     if request.user.is_authenticated:
