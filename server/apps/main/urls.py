@@ -18,7 +18,8 @@ urlpatterns = [
     path('delete/<uuid>/<title>/', views.delete_experience, name='delete_exp'),
     path('share_exp/', views.share_experience, name='share_exp'),
     path('edit/<uuid>/', views.share_experience, name='edit_exp'),
-    
+    path('moderate/<uuid>/', views.moderate_experience, name='moderate_exp'),
+
     path('review_experience/<experience_id>/',
          views.review_experience,
          name='review_experience'),

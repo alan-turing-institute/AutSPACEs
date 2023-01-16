@@ -7,8 +7,10 @@ import uuid
 import requests
 from django.conf import settings
 from django.contrib.auth import login, logout
+from django.forms.models import model_to_dict 
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
+
 
 from .models import PublicExperience
 
@@ -430,4 +432,27 @@ def what_autism_is(request):
 
 def footer(request):
     return render(request, "main/footer.html")
+
+def moderate_experience(request, uuid):
+    model = PublicExperience.objects.get(experience_id = uuid)
+    form = model_to_form(model)
+    return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid})  
+
+def model_to_form(model):
+    model_dict = model_to_dict(model)
+
+    form = ShareExperienceForm({
+        "experience": model_dict["experience_text"],
+        "wish_different": model_dict["difference_text"],
+        "title":model_dict["title_text"],
+        "abuse":model_dict["abuse"],
+        "violence":model_dict["violence"],
+        "drug":model_dict["drug"],
+        "mentalhealth":model_dict["mentalhealth"],
+        "negbody":model_dict["negbody"],
+        "other":model_dict["other"],
+        "approved":model_dict["approved"]
+    })
+
+    return form
 

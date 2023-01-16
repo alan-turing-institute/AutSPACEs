@@ -49,6 +49,36 @@
 <section id="cta">
 
 </section>
+
+
+<!-- Helen Faff -->
+<section id="in-review-public-experiences">
+  <div class="in-review-table-container">
+    <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
+      <thead><tr>
+        <th class="number-th" scope="col">Nr.</th>
+        <th class="title-th" scope="col">Title</th>
+        <th class="title-th" scope="col">Moderate</th>
+        </tr></thead>
+        <tbody>
+          {% for experience in experiences %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{% firstof experience.title_text "notitle" %}</td>
+          </tr>
+          <td>
+            <a href="{% url 'main:moderate_exp' experience.experience_id %}">
+              <button class="btn btn-primary">Edit</button>
+            </a>
+        </td>
+          {% endfor %}
+        </tbody>
+          </table>
+
+  </div>
+</section>
+
+
 <!--Footer-->
 <section id="footer">
    <div class="container-fluid">
