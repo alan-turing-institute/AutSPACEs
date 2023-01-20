@@ -401,9 +401,29 @@ def registration(request):
 def signup_frame4_test(request):
     return render(request, "main/signup1.html")
 
+def get_review_status(context):
+        not_reviewed = 0
+        approved = 0
+        rejected = 0
+        for item in context['files']:
+            if item['metadata']['data']['viewable']:
+                if item['metadata']['data']['moderation_status'] == "not reviewed":
+                    not_reviewed += 1
+                elif item['metadata']['data']['moderation_status'] == 'approved':
+                    approved += 1
+                elif item['metadata']['data']['moderation_status'] == 'rejected':
+                    rejected += 1
+        viewable = not_reviewed + approved + rejected
+        return viewable, not_reviewed, approved, rejected
+    
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
+        viewable, not_reviewed, approved, rejected = get_review_status(context)
+        context['n_viewable'] = viewable
+        context["n_not_reviewed"] = not_reviewed
+        context['n_approved'] = approved
+        context['n_rejected'] = rejected
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
