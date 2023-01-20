@@ -405,6 +405,7 @@ def get_review_status(context):
         not_reviewed = 0
         approved = 0
         rejected = 0
+        in_review = 0
         for item in context['files']:
             if item['metadata']['data']['viewable']:
                 if item['metadata']['data']['moderation_status'] == "not reviewed":
@@ -413,17 +414,23 @@ def get_review_status(context):
                     approved += 1
                 elif item['metadata']['data']['moderation_status'] == 'rejected':
                     rejected += 1
-        viewable = not_reviewed + approved + rejected
-        return viewable, not_reviewed, approved, rejected
+                elif item['metadata']['data']['moderation_status'] == 'in review':
+                    in_review += 1
+        moderated = approved + rejected
+        viewable = moderated + not_reviewed + in_review
+
+        return viewable, not_reviewed, approved, rejected, in_review, moderated
     
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
-        viewable, not_reviewed, approved, rejected = get_review_status(context)
+        viewable, not_reviewed, approved, rejected, in_review, moderated = get_review_status(context)
         context['n_viewable'] = viewable
         context["n_not_reviewed"] = not_reviewed
         context['n_approved'] = approved
         context['n_rejected'] = rejected
+        context['n_in_review'] = in_review
+        context["n_moderated"] = moderated
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
@@ -465,7 +472,6 @@ def moderate_experience(request, uuid):
 
 def model_to_form(model):
     model_dict = model_to_dict(model)
-    print(model_dict)
 
     form = ShareExperienceForm({
         "experience": model_dict["experience_text"],
