@@ -468,10 +468,10 @@ def footer(request):
 
 def moderate_experience(request, uuid):
     model = PublicExperience.objects.get(experience_id = uuid)
-    form = model_to_form(model)
+    form = model_to_form(model, moderate=True)
     return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
 
-def model_to_form(model):
+def model_to_form(model, moderate = False):
     model_dict = model_to_dict(model)
 
     form = ShareExperienceForm({
@@ -487,7 +487,7 @@ def model_to_form(model):
         "viewable":True, #we only moderate public experiences
         "research":model_dict["research"],
         "moderation_status":model_dict["approved"]
-    })
+    }, moderate=moderate)
 
     return form
 
