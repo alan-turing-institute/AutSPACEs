@@ -11,6 +11,7 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 from django.db.models import Q
+from django.contrib.auth.models import Group
 
 
 from .models import PublicExperience
@@ -274,15 +275,18 @@ def list_public_experiences(request):
 
 
 def moderate_public_experiences(request):
+    user_status = Group.objects.get(user=request.user).name
+    if user_status == "Moderators":
+        unreviewed_experiences = PublicExperience.objects.filter(moderation_status='not reviewed')
+        previously_reviewed_experiences = PublicExperience.objects.filter(~Q(moderation_status='not reviewed'))
+        return render(
+            request,
+            'main/moderate_public_experiences.html',
+            context={"unreviewed_experiences": unreviewed_experiences,
+            "previously_reviewed_experiences": previously_reviewed_experiences})
+    else:
+        return redirect("main:overview")
 
-    unreviewed_experiences = PublicExperience.objects.filter(approved='not reviewed')
-    previously_reviewed_experiences = PublicExperience.objects.filter(~Q(approved='not reviewed'))
-
-    return render(
-        request,
-        'main/moderate_public_experiences.html',
-        context={"unreviewed_experiences": unreviewed_experiences,
-        "previously_reviewed_experiences": previously_reviewed_experiences})
 
 
 def review_experience(request, experience_id):
