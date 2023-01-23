@@ -483,7 +483,8 @@ def model_to_form(model):
         "mentalhealth":model_dict["mentalhealth"],
         "negbody":model_dict["negbody"],
         "other":model_dict["other"],
-        "approved":model_dict["approved"]
+        "viewable":True, #we only moderate public experiences
+        "moderation_status":model_dict["approved"]
     })
 
     return form
