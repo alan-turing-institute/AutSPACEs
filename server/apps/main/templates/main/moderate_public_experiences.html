@@ -54,7 +54,6 @@
                 </tr></thead>
                 <tbody>
                   {% for experience in unreviewed_experiences %}
-                    {% if experience.approved == "not reviewed" %}
                   <tr>
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>{% firstof experience.title_text "notitle" %}</td>
@@ -69,7 +68,6 @@
                       </a>
                   </td>
                   </tr>
-                    {% endif %}
                   {% endfor %}
                 </tbody>
               </table>
@@ -99,7 +97,6 @@
                 </tr></thead>
                 <tbody>
                   {% for experience in previously_reviewed_experiences %}
-                    {% if experience.approved != "not reviewed" %}
                   <tr>
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>{% firstof experience.title_text "notitle" %}</td>
@@ -108,14 +105,13 @@
                         <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
                       {% endif %}
                     </td>
-                    <td>{{ experience.approved }}</td>
+                    <td>{{ experience.moderation_status }}</td>
                     <td>
                       <a href="{% url 'main:moderate_exp' experience.experience_id %}">
                         <button class="btn btn-primary">Review Moderated Experience</button>
                       </a>
                   </td>
                   </tr>
-                    {% endif %}
                   {% endfor %}
                 </tbody>
               </table>

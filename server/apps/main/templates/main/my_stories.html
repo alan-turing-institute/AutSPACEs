@@ -57,21 +57,11 @@
           <h3 class="story-head card-header process">In Process</h3>
           <div class="card-body">
             <ul>
-              <li class="list-item"><p class="card-text">Waiting:<span> {{ n_not_reviewed }}
-              {% if n_not_reviewed == 1 %}
-                story
-              {% else %}
-                stories
-              {%endif%}
+              <li class="list-item"><p class="card-text">Waiting:<span> {% firstof n_not_reviewed 0|floatformat %} {% toggle_story n_not_reviewed %}
               </span></p></li>
-              <li class="list-item"><p class="card-text">Moderating:<span> {{ n_in_review }}
-              {% if n_in_review == 1 %}
-                story
-              {% else %}
-                stories
-              {%endif%}
+              <li class="list-item"><p class="card-text">Moderating:<span> {% firstof n_in_review 0|floatformat %} {% toggle_story n_in_review %}
               </span></p></li>
-              <li class="list-item"><p class="card-text">Re-moderating<span> 0 story</span></p></li>
+              
 
             </ul>
           </div>
@@ -82,26 +72,11 @@
           <h3 class="story-head card-header submitted">Moderated</h3>
           <div class="card-body">
             <ul>
-              <li class="list-item"><p class="card-text">Moderated:<span> {{ n_moderated }}
-              {% if n_moderated == 1 %}
-                story
-              {% else %}
-                stories
-              {%endif%}
+              <li class="list-item"><p class="card-text">Moderated:<span> {% firstof n_moderated 0|floatformat %} {% toggle_story n_moderated %}
               </span></p></li>
-              <li class="list-item"><p class="card-text">Approved:<span> {{ n_approved }} 
-              {% if n_accepted == 1 %}
-                story
-              {% else %}
-                stories
-              {%endif%}
+              <li class="list-item"><p class="card-text">Approved:<span> {% firstof n_approved 0|floatformat %} {% toggle_story n_approved %}
               </span></p></li>
-              <li class="list-item"><p class="card-text">Rejected:<span> {{ n_rejected }}
-              {% if n_rejected == 1 %}
-                story
-              {% else %}
-                stories
-              {%endif%}
+              <li class="list-item"><p class="card-text">Rejected:<span> {% firstof n_rejected 0|floatformat %} {% toggle_story n_rejected %}
               </span></p></li>
             </ul>
           </div>

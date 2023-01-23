@@ -1,6 +1,7 @@
 from django import forms
 
 class ShareExperienceForm(forms.Form):
+        
     experience = forms.CharField(label='Please share your story', max_length=500, strip=True,
                                  widget=forms.Textarea(attrs={'placeholder':'Write your story here',
                                                               'rows':'4',
@@ -54,6 +55,14 @@ class ShareExperienceForm(forms.Form):
     ]
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
+    
+    def __init__(self, *args, **kwargs):
+        """ Disable free text fields to the moderator """
+        moderate = kwargs.pop('moderate', False)
+        super(ShareExperienceForm, self).__init__(*args, **kwargs)
+    
+        for field in ['experience','wish_different','title']: 
+            self.fields[field].widget.attrs['readonly']=moderate
     
     def clean_moderation_status(self):
         mod_status = self.cleaned_data['moderation_status']

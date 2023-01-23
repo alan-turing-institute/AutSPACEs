@@ -11,7 +11,7 @@ class PublicExperience(models.Model):
     open_humans_member = models.ForeignKey(OpenHumansMember,
                                            blank=True, null=True,
                                            on_delete=models.CASCADE)
-    approved = models.CharField(
+    moderation_status = models.CharField(
         blank=False,
         default='not reviewed',
         max_length=50)
@@ -21,7 +21,9 @@ class PublicExperience(models.Model):
     drug = models.BooleanField(default=False)
     mentalhealth = models.BooleanField(default=False)
     negbody = models.BooleanField(default=False)
-    other = models.BooleanField(default=False)
+    other = models.TextField(default="")
+    
+    research = models.BooleanField(default=False)
 
     def __str__(self):
         return self.experience_text
