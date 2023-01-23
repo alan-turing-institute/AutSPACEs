@@ -21,7 +21,7 @@ class PublicExperience(models.Model):
     drug = models.BooleanField(default=False)
     mentalhealth = models.BooleanField(default=False)
     negbody = models.BooleanField(default=False)
-    other = models.BooleanField(default=False)
+    other = models.TextField(default="")
 
     def __str__(self):
         return self.experience_text
