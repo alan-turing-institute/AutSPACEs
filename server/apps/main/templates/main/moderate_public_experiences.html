@@ -99,7 +99,6 @@
                 </tr></thead>
                 <tbody>
                   {% for experience in previously_reviewed_experiences %}
-                    {% if experience.approved != "not reviewed" %}
                   <tr>
                     <th scope="row">{{ forloop.counter }}</th>
                     <td>{% firstof experience.title_text "notitle" %}</td>
@@ -115,7 +114,6 @@
                       </a>
                   </td>
                   </tr>
-                    {% endif %}
                   {% endfor %}
                 </tbody>
               </table>
