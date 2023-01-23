@@ -119,7 +119,7 @@ def update_public_experience_db(data, uuid, ohmember):
             mentalhealth=data['mentalhealth'],
             negbody=data['negbody'],
             other=data['other'],
-            approved=data['moderation_status'],
+            moderation_status=data['moderation_status'],
             research = data['research']
         )
         
@@ -265,7 +265,6 @@ def list_files(request):
 
 
 def list_public_experiences(request):
-    # experiences = PublicExperience.objects.filter(approved='approved')
     experiences = PublicExperience.objects.all()
 
     return render(
@@ -486,7 +485,7 @@ def model_to_form(model, moderate = False):
         "other":model_dict["other"],
         "viewable":True, #we only moderate public experiences
         "research":model_dict["research"],
-        "moderation_status":model_dict["approved"]
+        "moderation_status":model_dict["moderation_status"]
     }, moderate=moderate)
 
     return form
