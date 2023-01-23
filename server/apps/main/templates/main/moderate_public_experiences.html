@@ -28,20 +28,133 @@
    <div class="col-lg-12">
      <div class="card-header"><h4>Moderator: </h4></div>
      <div class="card-body">
-     <p>Moderated Experiences: </p>
-      <p>New Experiences in the Platform: </p>
+      <!-- new_experiences = filter(lambda x: x.attr0 == attr0 and x.attr1 == attr1, lst) -->
+     <p>Moderated Experiences: {{ previously_reviewed_experiences.count }} </p>
+     <p>New Experiences in the Platform: {{ unreviewed_experiences.count }} </p>
+     <!-- Accordian Option -->
+     <div id="accordion-moderation">
+      <div class="card">
+        <div class="card-header" id="moderate_new">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_moderate_new" aria-expanded="true" aria-controls="collapse_moderate_new">
+              Moderate New Experiences
+            </button>
+          </h5>
+        </div>
+    
+        <div id="collapse_moderate_new" class="collapse" aria-labelledby="moderate_new" data-parent="#accordion-moderation">
+          <div class="card-body">
+            
+            <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
+              <thead><tr>
+                <th class="number-th" scope="col">Nr.</th>
+                <th class="title-th" scope="col">Title</th>
+                <th class="triggering-label" scope="col">Triggering Labels</th>
+                <th class="title-th" scope="col">Moderate</th>
+                </tr></thead>
+                <tbody>
+                  {% for experience in unreviewed_experiences %}
+                    {% if experience.approved == "not reviewed" %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{% firstof experience.title_text "notitle" %}</td>
+                    <td>
+                      {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
+                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <a href="{% url 'main:moderate_exp' experience.experience_id %}">
+                        <button class="btn btn-primary">Moderate New Experience</button>
+                      </a>
+                  </td>
+                  </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="review_moderated">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_review_moderated" aria-expanded="true" aria-controls="collapse_review_moderated">
+              Review Moderated Experiences
+            </button>
+          </h5>
+        </div>
+    
+        <div id="collapse_review_moderated" class="collapse" aria-labelledby="review_moderated" data-parent="#accordion-moderation">
+          <div class="card-body">
+            
+            <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
+              <thead><tr>
+                <th class="number-th" scope="col">Nr.</th>
+                <th class="title-th" scope="col">Title</th>
+                <th class="triggering-label" scope="col">Triggering Labels</th>
+                <th class="moderation-status" scope="col">Moderation Status</th>
+                <th class="title-th" scope="col">Moderate</th>
+                </tr></thead>
+                <tbody>
+                  {% for experience in previously_reviewed_experiences %}
+                    {% if experience.approved != "not reviewed" %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{% firstof experience.title_text "notitle" %}</td>
+                    <td>
+                      {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
+                        <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+                      {% endif %}
+                    </td>
+                    <td>{{ experience.approved }}</td>
+                    <td>
+                      <a href="{% url 'main:moderate_exp' experience.experience_id %}">
+                        <button class="btn btn-primary">Review Moderated Experience</button>
+                      </a>
+                  </td>
+                  </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-header" id="questions">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_questions" aria-expanded="true" aria-controls="collapse_questions">
+              Questions
+            </button>
+          </h5>
+        </div>
+    
+        <div id="collapse_questions" class="collapse" aria-labelledby="questions" data-parent="#accordion-moderation">
+          <div class="card-body">
+            Google Form for Questions Collection
+          </div>
+        </div>
+      </div>
+
+
+      </div>
 <!--    Google Form for Questions Collection-->
-         <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg "
-                                              type="button">Moderate New
-    Experiences</button>
-   </a>
-    <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg " type="button">Review
-      Moderated Experiences</button>
-   </a>
-        <a class="col-lg-4" href="#"><button class="btn btn-outline-primary btn-lg " type="button">
-          Questions</button>
-   </a>
+      <!-- <a class="col-lg-4" href="#">
+      <button class="btn btn-outline-primary btn-lg "ntype="button">Moderate New Experiences
+      </button></a>
+      <a class="col-lg-4" href="#">
+      <button class="btn btn-outline-primary btn-lg " type="button">Review Moderated Experiences
+      </button></a>
+      <a class="col-lg-4" href="#">
+      <button class="btn btn-outline-primary btn-lg " type="button"> Questions
+      </button></a> -->
+
      </div>
+
    </div>
   </div>
 </section>
@@ -49,6 +162,8 @@
 <section id="cta">
 
 </section>
+
+
 <!--Footer-->
 <section id="footer">
    <div class="container-fluid">
