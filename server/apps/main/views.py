@@ -411,7 +411,7 @@ def get_review_status(files):
     """
         
         
-    status_list = [f['metadata']['data']['moderation_status'] for f in files if f['metadata']['data']['viewable']]
+    status_list = [f['metadata']['data']['moderation_status'].replace(' ','_') for f in files if f['metadata']['data']['viewable']]
         
     statuses = {f"n_{s}":status_list.count(s) for s in set(status_list)}
     
