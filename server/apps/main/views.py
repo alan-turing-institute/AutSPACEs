@@ -119,7 +119,8 @@ def update_public_experience_db(data, uuid, ohmember):
             mentalhealth=data['mentalhealth'],
             negbody=data['negbody'],
             other=data['other'],
-            approved=data['moderation_status']
+            approved=data['moderation_status'],
+            research = data['research']
         )
         
         # .save() updates if primary key exists, inserts otherwise. 
@@ -484,6 +485,7 @@ def model_to_form(model):
         "negbody":model_dict["negbody"],
         "other":model_dict["other"],
         "viewable":True, #we only moderate public experiences
+        "research":model_dict["research"],
         "moderation_status":model_dict["approved"]
     })
 

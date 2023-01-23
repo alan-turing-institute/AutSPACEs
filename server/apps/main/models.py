@@ -22,6 +22,8 @@ class PublicExperience(models.Model):
     mentalhealth = models.BooleanField(default=False)
     negbody = models.BooleanField(default=False)
     other = models.TextField(default="")
+    
+    research = models.BooleanField(default=False)
 
     def __str__(self):
         return self.experience_text
