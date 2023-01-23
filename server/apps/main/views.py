@@ -276,7 +276,6 @@ def list_public_experiences(request):
 def moderate_public_experiences(request):
 
     unreviewed_experiences = PublicExperience.objects.filter(approved='not reviewed')
-
     previously_reviewed_experiences = PublicExperience.objects.filter(~Q(approved='not reviewed'))
 
     return render(
@@ -401,36 +400,33 @@ def registration(request):
 def signup_frame4_test(request):
     return render(request, "main/signup1.html")
 
-def get_review_status(context):
-        not_reviewed = 0
-        approved = 0
-        rejected = 0
-        in_review = 0
-        for item in context['files']:
-            if item['metadata']['data']['viewable']:
-                if item['metadata']['data']['moderation_status'] == "not reviewed":
-                    not_reviewed += 1
-                elif item['metadata']['data']['moderation_status'] == 'approved':
-                    approved += 1
-                elif item['metadata']['data']['moderation_status'] == 'rejected':
-                    rejected += 1
-                elif item['metadata']['data']['moderation_status'] == 'in review':
-                    in_review += 1
-        moderated = approved + rejected
-        viewable = moderated + not_reviewed + in_review
+def get_review_status(files):
+    """Given a list of files, count the number of each moderation status of the publicly viewable files
 
-        return viewable, not_reviewed, approved, rejected, in_review, moderated
+    Args:
+        files (dict): list of files, which are dictionaries. See `upload()`.
+
+    Returns:
+        statuses (dict): counts of moderation statuses
+    """
+        
+        
+    status_list = [f['metadata']['data']['moderation_status'] for f in files if f['metadata']['data']['viewable']]
+        
+    statuses = {f"n_{s}":status_list.count(s) for s in set(status_list)}
+    
+    statuses["n_viewable"] = len(status_list)
+    statuses["n_moderated"] = statuses.pop("n_approved", False) + statuses.pop("n_rejected", False)
+        
+
+    return statuses
+
     
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
-        viewable, not_reviewed, approved, rejected, in_review, moderated = get_review_status(context)
-        context['n_viewable'] = viewable
-        context["n_not_reviewed"] = not_reviewed
-        context['n_approved'] = approved
-        context['n_rejected'] = rejected
-        context['n_in_review'] = in_review
-        context["n_moderated"] = moderated
+        statuses = get_review_status(context['files'])
+        context = {**context, **statuses}
         return render(request, "main/my_stories.html", context)
     else:
         return redirect("main:overview")
