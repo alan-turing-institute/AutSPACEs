@@ -51,7 +51,6 @@ class ShareExperienceForm(forms.Form):
         ("in review", "in review"),
         ("approved", "approved"),
         ("rejected", "rejected"),
-        ("", "not reviewed") # hack for default behavour
     ]
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
