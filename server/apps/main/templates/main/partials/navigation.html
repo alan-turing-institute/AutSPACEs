@@ -1,4 +1,6 @@
  {% load static %}
+ {% load custom_tags %}
+
 <!--    Stylesheet-->
   <link href="{% static '/css/navigation_light.css' %}" rel="stylesheet" id="mystylesheet">
 
@@ -27,7 +29,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'main:view_experiences' %}">View Stories</a>
           <a class="dropdown-item" href="{% url 'main:share_exp' %}">Share Stories</a>
-          <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate</a>
+          {% is_moderator user as moderator %}
+          {% if moderator %}
+            <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate</a>
+          {% endif %}
           <a class="dropdown-item" href="{% url 'main:list' %}">File list</a>
         </div>
       </li>
