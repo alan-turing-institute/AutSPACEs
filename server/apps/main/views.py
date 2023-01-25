@@ -266,12 +266,12 @@ def list_files(request):
 
 
 def list_public_experiences(request):
-    experiences = PublicExperience.objects.all()
+    approved_experiences = PublicExperience.objects.filter(moderation_status='approved')
 
     return render(
         request,
         'main/experiences_page.html',
-        context={'experiences': experiences})
+        context={'experiences': approved_experiences})
 
 
 def moderate_public_experiences(request):
