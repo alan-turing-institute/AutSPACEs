@@ -275,8 +275,7 @@ def list_public_experiences(request):
 
 
 def moderate_public_experiences(request):
-    user_status = Group.objects.get(user=request.user).name
-    if user_status == "Moderators":
+    if request.user.is_authenticated and is_moderator(request.user):
         unreviewed_experiences = PublicExperience.objects.filter(moderation_status='not reviewed')
         previously_reviewed_experiences = PublicExperience.objects.filter(~Q(moderation_status='not reviewed'))
         return render(
@@ -466,9 +465,12 @@ def footer(request):
     return render(request, "main/footer.html")
 
 def moderate_experience(request, uuid):
-    model = PublicExperience.objects.get(experience_id = uuid)
-    form = model_to_form(model, moderate=True)
-    return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
+    if request.user.is_authenticated and is_moderator(request.user):
+        model = PublicExperience.objects.get(experience_id = uuid)
+        form = model_to_form(model, moderate=True)
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
+    else:
+        redirect('index')
 
 def model_to_form(model, moderate = False):
     model_dict = model_to_dict(model)
@@ -490,3 +492,15 @@ def model_to_form(model, moderate = False):
 
     return form
 
+
+def is_moderator(user):
+  """return membership of moderator group"""
+  
+  try:
+    group = Group.objects.get(user=user)
+    return (group.name == "Moderators")
+  
+  except Group.DoesNotExist:
+    return False
+
+    

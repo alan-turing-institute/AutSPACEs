@@ -1,5 +1,6 @@
 from django import template
-from django.contrib.auth.models import Group
+# from django.contrib.auth.models import Group
+from ..views import is_moderator
 
 register = template.Library()
 
@@ -14,17 +15,5 @@ def toggle_story(val):
   else:
     return 'stories'
   
-@register.simple_tag
-def is_moderator(user):
-  """return boolean if membership of moderator group"""
-  
-  try:
-    group = Group.objects.get(user=user)
-    return (group.name == "Moderators")
-  
-  except Group.DoesNotExist:
-    return False
-
-  
-  
+register.simple_tag(is_moderator)  
   
