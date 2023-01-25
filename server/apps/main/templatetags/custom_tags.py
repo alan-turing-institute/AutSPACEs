@@ -1,4 +1,7 @@
 from django import template
+# from django.contrib.auth.models import Group
+from ..views import is_moderator
+
 register = template.Library()
 
 @register.simple_tag
@@ -11,3 +14,6 @@ def toggle_story(val):
     return 'story'
   else:
     return 'stories'
+  
+register.simple_tag(is_moderator)  
+  
