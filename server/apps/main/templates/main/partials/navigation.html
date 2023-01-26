@@ -27,7 +27,7 @@
           Experiences
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{% url 'main:view_experiences' %}">View Stories</a>
+          <a class="dropdown-item" href="{% url 'main:public_experiences' %}">View Stories</a>
           <a class="dropdown-item" href="{% url 'main:share_exp' %}">Share Stories</a>
           {% is_moderator user as moderator %}
           {% if moderator %}
@@ -41,7 +41,7 @@
 </li>
           {% else %}
           <li>
-          <a class="nav-content nav-item nav-link" href="{% url 'main:view_experiences' %}">View Stories</a>
+          <a class="nav-content nav-item nav-link" href="{% url 'main:public_experiences' %}">View Stories</a>
 </li>
           {% endif %}
           <li>
