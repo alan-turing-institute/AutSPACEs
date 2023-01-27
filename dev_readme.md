@@ -110,6 +110,13 @@ Note: Please note that certain aspects of the website may not be fully functiona
 1. Type `git config --global alias.root 'rev-parse --show-toplevel` into your terminal. This will create a simpler command to take you to the root repository. 
 2. Type `cd $(git root)` into your terminal. This will take you to the root of the repository you are in. 
 
+#### Accessing the database
+
+To access the PostgreSQL database:
+
+1. Run `docker exec -it autspaces_db_1 bash`
+2. In the subsequent terminal, run `psql --username=autspaces`
+
 ### Docker overview 
 
 You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in _The Turing Way_ useful!
