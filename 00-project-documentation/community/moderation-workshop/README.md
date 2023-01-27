@@ -1,6 +1,6 @@
 # Moderation Workshop
 
-This folder contains a [report](/moderation-co-creation-report) consisting of comments and recommendations from the AutSPACEs community concerning how we should moderate the AutSPACEs platform.
+This folder contains a [report](/moderation-report) consisting of comments and recommendations from the AutSPACEs community concerning how we should moderate the AutSPACEs platform.
 The dataset was created by organising the comments made during an online co-creation workshop to understand better the relevant issues around moderating an online citizen science platform (AutSPACEs) for research into sensory processing differences experienced by Autistic people and the effect this has on their daily lives as they navigate different environments.
 
 ## Contents of this document
