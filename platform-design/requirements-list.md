@@ -18,16 +18,25 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 ## Contents
 
 *Platform pages and page-flows: content, community evidence, sources and resources*
-- [Landing Page](#landing-page)
-- [Sign-up flow](#sign-up-flow)
-- [Sign-in](#sign-in)
-- [Enter experiences flow](#enter-experiences-flow)
-- [View other experiences page](#view-other-experiences=page)
-- [View own experiences page](#view-own-experiences-page)
-- [Moderation flow](#moderation-flow)
-- [Settings page](#settings-page)
-- [About page](#about-page)
-- [Crisis support page](#crisis-support-page)
+- [AutSPACEs Requirements List](#autspaces-requirements-list)
+	- [Contents](#contents)
+- [](#)
+	- [Platform pages and page-flows: content, community evidence, sources and resources](#platform-pages-and-page-flows-content-community-evidence-sources-and-resources)
+		- [Landing Page](#landing-page)
+		- [Sign-up flow](#sign-up-flow)
+		- [Sign-up flow resources](#sign-up-flow-resources)
+		- [Sign-in](#sign-in)
+		- [Enter experiences flow](#enter-experiences-flow)
+		- [Enter experiences flow: resources](#enter-experiences-flow-resources)
+		- [View other experiences page](#view-other-experiences-page)
+		- [View own experiences page](#view-own-experiences-page)
+		- [Moderation flow](#moderation-flow)
+		- [Settings page](#settings-page)
+		- [About page](#about-page)
+		- [Crisis Support Page](#crisis-support-page)
+- [](#-1)
+		- [Additional design considerations](#additional-design-considerations)
+		- [Additional design considerations: resources](#additional-design-considerations-resources)
  
 *General design features* 
 - [Additional design considerations](#additional-design-considerations)
@@ -53,7 +62,7 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 	* sign up
 	* enter experience
 	* read experiences
-	* fInd out more
+	* Find out more
 * Information on:
 	* Project summary (inc. sensory processing)
 	* How it works – step by step
