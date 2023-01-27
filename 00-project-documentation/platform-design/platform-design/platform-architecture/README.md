@@ -1,6 +1,6 @@
 # Design Architecture 
 
-This folder contains key information about how the pages of the AutSPACEs platform fit together and how someone can navigate the platform. To go the repository where the code for the AutSPACEs citizen science platform is being developed, click here: [AutSPACEs](https://github.com/alan-turing-institute/AutSPACEs). 
+This folder contains key information about how the pages of the AutSPACEs platform fit together and how someone can navigate the platform. 
 
 ## [Information Architecture](autspaces-ia-diagram-15-11-2021.md) 
 
@@ -49,11 +49,6 @@ The diagram reads as a hierarchy from top to bottom with each layer starting wit
     * Added What Autism Is and About Us pages
 * Previous diagrams can be found on the same folder. 
 
-
-## [User Flow](https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/platform-designs/design-architecture/user-flow) diagram for the platform's prototype.
-A user flow is a visual representation, either written out or made digitally, of the many avenues that can be taken when using an app or website.
-
-You can find the user flow diagram for the platform prototype in the project's design archives. 
 
 
 
