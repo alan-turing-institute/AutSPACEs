@@ -30,7 +30,7 @@ An agenda for each session was written to loosely guide the discussions.
 These were based on researcher knowledge of what was important to investigate and determine from a developer and researcher prespective, as well as from the input of autistic poeple, their relatives and carers, in earlier focus groups.
 A presentation was created by a researcher which included comments from autistic participants about their priorities, in order to guide the discussions. 
 
-### 2. Run moderation session <img src="./images/noun-project-icons/noun_Conversation_2041500.png" width="150" align="right"/>
+### 2. Run moderation session <img src="../images/noun-project-icons/noun_Conversation_2041500.png" width="150" align="right"/>
 
 
 Participants came to an online session run over Zoom to discuss how to moderate the AutSPACEs platform and to help co-create a code of conduct for the platform. 
@@ -39,7 +39,7 @@ All participants from Autistica's Insight Group were paid in line with Autistica
 
 The session was recorded.
 
-### 2. Transcribe discussion <img src="./images/noun-project-icons/noun_transcript_532343.png" width="150" align="right"/>
+### 2. Transcribe discussion <img src="../images/noun-project-icons/noun_transcript_532343.png" width="150" align="right"/>
 
 All data from the focus groups were collected and processed in accordance with the project's data management protocols for in-person sessions.
 
@@ -53,7 +53,7 @@ Personally identifying information includes:
 
 The recordings were then deleted.
 
-### 3. Collect anonymised quotes <img src="./images/noun-project-icons/noun_Document_188540.png" width="150" align="right"/>
+### 3. Collect anonymised quotes <img src="../images/noun-project-icons/noun_Document_188540.png" width="150" align="right"/>
 
 Quotations were taken from the document, shortened, and organised into groups based on common themes.
 
@@ -63,7 +63,7 @@ This labelling system was co-designed by a researcher and an autistic collaborat
 
 The resulting, organised and labelled insights were sent to participants.
 
-### 4. Review the summary document <img src="./images/noun-project-icons/noun_Eye_2040041.png" width="150" align="right"/>
+### 4. Review the summary document <img src="../images/noun-project-icons/noun_Eye_2040041.png" width="150" align="right"/>
 
 All participants had a chance to review the summary document and make changes.
 They were given 14 days to do this. All participants from Autistica's Insight group were paid £30 for this additional work.
@@ -79,7 +79,7 @@ The document was then changed on the basis of this feeback. Additionally, some q
 
 ## How will the Moderation Report be used?
 
-### Publish insights online <img src="./images/noun-project-icons/noun_online_1632606.png" width="150" align="right"/>
+### Publish insights online <img src="../images/noun-project-icons/noun_online_1632606.png" width="150" align="right"/>
 
 The moderation report is published online at: https://github.com/alan-turing-institute/AutisticaCitizenScience/blob/master/community-recommendations/moderation-co-creation/moderation-report.md.
 
@@ -92,7 +92,7 @@ Potential users include:
 * Autism researchers and advocates who want to make sure they are serving the needs of autistic people.
 * Parents, friends and colleagues who want to better understand how to support an autistic person they know.
 
-### Write down platform requirements <img src="./images/noun-project-icons/noun_todolist_1128326.png" width="150" align="right"/>
+### Write down platform requirements <img src="../images/noun-project-icons/noun_todolist_1128326.png" width="150" align="right"/>
 
 The suggestions from the moderation session are being used to create a moderation proceess, code of conduct, and guidelines for reporting on behalf of others. This process is being led by two participatory researchers.
 Work relating to moderation can be found under the "Moderation" Milestone in this repository. 

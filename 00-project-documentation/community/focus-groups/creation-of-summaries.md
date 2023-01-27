@@ -37,7 +37,9 @@ An agenda for each session was written to loosely guide the focus group discussi
 These were based on researcher knowledge of what was important to investigate and determine from a developer and researcher prespective, as well as from the input of autistic poeple, their relatives and carers, in earlier, informal scoping sessions.
 The request for potential questions was also sent out to subscribers of the project's mailing list, and autistic collaborators input suggestions.
 
-### 2. Run focus group <img src="../../images/noun-project-icons/noun_Conversation_2041500.png" width="150" align="right"/>
+### 2. Run focus group <img src="../images/noun-project-icons/noun_Conversation_2041500.png" width="150" align="right"/>
+
+
 
 Participants came to a focus group at Fujitsu to talk about a project to design a platform to use for autism research.
 
@@ -51,7 +53,7 @@ All participants from Autistica's Insight Group were paid in line with Autistica
 
 The focus group was recorded.
 
-### 2. Transcribe discussion <img src="../../images/noun-project-icons/noun_transcript_532343.png" width="150" align="right"/>
+### 2. Transcribe discussion <img src="../images/noun-project-icons/noun_transcript_532343.png" width="150" align="right"/>
 
 All data from the focus groups were collected and processed in accordance with the project's data management protocols for in-person sessions, which can be found in oour [archived repository](https://github.com/alan-turing-institute/AutisticaCitizenScience).
 The focus group was written down word-for-word. No personally identifying information was included in this document.
@@ -64,7 +66,7 @@ Personally identifying information includes:
 
 The recordings were then deleted.
 
-### 3. Collect anonymised quotes <img src="../../images/noun-project-icons/noun_Document_188540.png" width="150" align="right"/>
+### 3. Collect anonymised quotes <img src="../images/noun-project-icons/noun_Document_188540.png" width="150" align="right"/>
 
 Quotations were taken from the document, shortened, and organised into groups based on common themes.
 
@@ -74,7 +76,7 @@ This labelling system was co-designed by a researcher and an autistic collaborat
 
 The resulting, organised and labelled insights were sent to participants.
 
-### 4. Review the summary document <img src="../../images/noun-project-icons/noun_Eye_2040041.png" width="150" align="right"/>
+### 4. Review the summary document <img src="../images/noun-project-icons/noun_Eye_2040041.png" width="150" align="right"/>
 
 All participants had a chance to review the summary document and make changes.
 They were given 14 days to do this. All participants from Autistica's Insight group were paid £30 for this additional work.
@@ -93,7 +95,7 @@ The document was then changed on the basis of this feeback.
 
 ## How will the summary documents be used?
 
-### Publish insights online <img src="../../images/noun-project-icons/noun_online_1632606.png" width="150" align="right"/>
+### Publish insights online <img src="../images/noun-project-icons/noun_online_1632606.png" width="150" align="right"/>
 
 The summary documents are published online at: [https://github.com/alan-turing-institute/AutSPACEs](https://github.com/alan-turing-institute/AutSPACEs). 
 
@@ -106,7 +108,7 @@ Potential users include:
 * Autism researchers and advocates who want to make sure they are serving the needs of autistic people.
 * Parents, friends and colleagues who want to better understand how to support an autistic person they know.
 
-### Write down platform requirements <img src="../../images/noun-project-icons/noun_todolist_1128326.png" width="150" align="right"/>
+### Write down platform requirements <img src="../images/noun-project-icons/noun_todolist_1128326.png" width="150" align="right"/>
 
 The suggestions from the focus group will be turned into a to-do list for the project team of researchers, developers, and designers, and for the wider community.
 
