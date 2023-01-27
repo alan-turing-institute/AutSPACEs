@@ -95,7 +95,7 @@ The document was then changed on the basis of this feeback.
 
 ### Publish insights online <img src="../../images/noun-project-icons/noun_online_1632606.png" width="150" align="right"/>
 
-The summary documents are published online at: [https://github.com/alan-turing-institute/AutisticaCitizenScience]([https://github.com/alan-turing-institute/AutSPACEs)](https://github.com/alan-turing-institute/AutisticaCitizenScience](https://github.com/alan-turing-institute/AutSPACEs)).
+The summary documents are published online at: [https://github.com/alan-turing-institute/AutisticaCitizenScience](https://github.com/alan-turing-institute/AutSPACEs).
 
 The quotes from the focus groups can be used by anyone and for any purpose.
 Anyone using the information must credit the Autistica/Citizen Science community.
