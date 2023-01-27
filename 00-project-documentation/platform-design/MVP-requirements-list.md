@@ -1,6 +1,6 @@
 # AutSPACEs MVP Requirements List
 
-This is a requirement list which can be used to see the most basiic, MVP structure of the platform. 
+This is a requirement list which can be used to see the most basic, MVP structure of the platform. 
 
 This file lists every page/page-flow of the AutSPACEs platform which has to be built for the platform to be functional, along with essential components.
 Creating a platform prototype which meets all these requirements completes Milestone 2.
@@ -8,7 +8,6 @@ This folder also contains a more complete requirements list. Not all requirement
 Another essential requirement of the MVP is that it meets GDS accessibility standards, ensuring they are 'baked in' to the earliest designs. 
 These are on the repository as separate issues. Completing these issues completes Milestone 3. 
 
-A wireframe mockup of the platform is is available on [Figma](https://www.figma.com/file/HxqTSdeyAUNMualnBV0PET/Autspace-(WIP)?node-id=1%3A111). The MVP pages are those prefaced by "simplified".
 
 *The content is based on preferences and needs emerging from the Autistic/Turing Citizen Science community in discussion sessions and co-working sesssions. 
 You can view all the gathered recommendations from the community in the [community-recommendations folder](https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/community-recommendations) of the project management reepository.
