@@ -6,9 +6,9 @@ This folder contains summaries and quotations from three focus group sessions he
 
 * [Creation of focus group summary documents](creation-of-summaries.md)
 * Focus Group Summaries:
-  * [18 September 2019](20190918_summary-18-September-2019.md)
-  * [24 September 2019](20190924_summary-24-September-2019.md)
-  * [4 October 2019](20191004_summary-4-October-2019.md)
+  * [18 September 2019](18-september-2019.md)
+  * [24 September 2019](24-september-2019.md)
+  * [4 October 2019](04-october-2019.md)
 
 ## Key
 
