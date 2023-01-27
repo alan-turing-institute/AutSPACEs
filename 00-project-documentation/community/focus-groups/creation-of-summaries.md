@@ -41,12 +41,11 @@ The request for potential questions was also sent out to subscribers of the proj
 
 Participants came to a focus group at Fujitsu to talk about a project to design a platform to use for autism research.
 
-These sessions were run according to the project's study protocol for in-person sessions, detailed in the [study protocol](/project-management/ethics-applications/stage-1-co-design-phase/A9_StudyProtocol.pdf)
-
+These sessions were run according to the project's study protocol for in-person sessions, detailed in the study protocol, which can be found in our [archived repository](https://github.com/alan-turing-institute/AutisticaCitizenScience).
 In line with Autistica's policy, all sessions were held outside of rush hour.
 The sessions were held in Fujitsu's offices in Baker Street, London. Refreshments including vegan and gluten free options were provided after the request of some participants, and a quiet room was available.
 There were always multiple facilitators present.
-All participants were talked through a schedule agenda and a [consent form](/project-management/ethics-applications/stage-1-co-design-phase/A6_ConsentForm.pdf), as well as a [participant information sheet](/project-management/ethics-applications/stage-1-co-design-phase/A7_ParticipantInformationSheet.pdf)
+All participants were talked through a schedule agenda and a consent form, as well as a participant information sheet. These can be found in our [archived repository](https://github.com/alan-turing-institute/AutisticaCitizenScience).
 
 All participants from Autistica's Insight Group were paid in line with Autistica's policy and involve guidelines.
 
@@ -54,8 +53,7 @@ The focus group was recorded.
 
 ### 2. Transcribe discussion <img src="../../images/noun-project-icons/noun_transcript_532343.png" width="150" align="right"/>
 
-All data from the focus groups were collected and processed in accordance with the project's [data management protocols for in-person sessions](/project-management/ethics-applications/stage-1-co-design-phase/A8_DataManagement.pdf)
-
+All data from the focus groups were collected and processed in accordance with the project's data management protocols for in-person sessions, which can be found in oour [archived repository](https://github.com/alan-turing-institute/AutisticaCitizenScience).
 The focus group was written down word-for-word. No personally identifying information was included in this document.
 
 Personally identifying information includes:
@@ -88,7 +86,7 @@ We asked them to:
 3. Ensure the information is appropriately anonymised.
 4. Send us any requested changes.
 
-All participants were emailed [review guidelines](/community-recommendations/focus-groups/creation-summary-documents.md)
+All participants were emailed review guidelines. See our [archived repository](https://github.com/alan-turing-institute/AutisticaCitizenScience).
 
 There were no requested changes to the content of the documents, however there were some suggested improvements to the layout, formatting, and labelling of the documents.
 The document was then changed on the basis of this feeback.
@@ -97,7 +95,7 @@ The document was then changed on the basis of this feeback.
 
 ### Publish insights online <img src="../../images/noun-project-icons/noun_online_1632606.png" width="150" align="right"/>
 
-The summary documents are published online at: [https://github.com/alan-turing-institute/AutisticaCitizenScience](https://github.com/alan-turing-institute/AutisticaCitizenScience).
+The summary documents are published online at: [https://github.com/alan-turing-institute/AutSPACEs](https://github.com/alan-turing-institute/AutSPACEs). 
 
 The quotes from the focus groups can be used by anyone and for any purpose.
 Anyone using the information must credit the Autistica/Citizen Science community.
@@ -119,4 +117,4 @@ The issues will be used to help build the citizen science platform.
 We can't do everything, but we will try our best to follow the suggestions included in the summaries.
 
 
-Please email [gaitkenhead@turing.ac.uk](mailto:gaitkenhead@turing.ac.uk) with any feedback or requests for changes, or add them to our "always open" Google Form at [https://bit.ly/AutisticaTuringCitSciForm](https://bit.ly/AutisticaTuringCitSciForm)
+Please email [gaitkenhead@turing.ac.uk](mailto:gaitkenhead@turing.ac.uk) with any feedback or requests for changes.
