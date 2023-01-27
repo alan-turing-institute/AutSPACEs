@@ -57,9 +57,9 @@ class ShareExperienceForm(forms.Form):
     moderation_status.group = "hidden"
     
     def __init__(self, *args, **kwargs):
-        """ Disable free text fields to the moderator, or all fields in 'read only view mode' """
+        """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
         
-        readonly = kwargs.pop('readonly', False) #disable everything
+        disabled = kwargs.pop('disabled', False) #disable everything
         moderate = kwargs.pop('moderate', False) # only the free text fields
         
         super(ShareExperienceForm, self).__init__(*args, **kwargs)
@@ -67,9 +67,9 @@ class ShareExperienceForm(forms.Form):
                 
         for field in self.fields:
             if field in ['experience','wish_different','title']: 
-                self.fields[field].widget.attrs['disabled']= moderate or readonly
+                self.fields[field].widget.attrs['disabled']= moderate or disabled
             else:
-                self.fields[field].widget.attrs['disabled']= readonly
+                self.fields[field].widget.attrs['disabled']= disabled
                 
     
     def clean_moderation_status(self):

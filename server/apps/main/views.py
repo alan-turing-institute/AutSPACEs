@@ -98,10 +98,9 @@ def view_experience(request, uuid):
     
     if request.user.is_authenticated:        
         # return data from oh.
-        print("VIEW ONLY")
         data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
-        form = ShareExperienceForm(data["metadata"]["data"], readonly=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True})  
+        form = ShareExperienceForm(data["metadata"]["data"], disabled=True)
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'disabled':True})  
     else:
         redirect('index')
 
