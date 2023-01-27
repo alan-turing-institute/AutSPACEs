@@ -17,4 +17,18 @@ Please copy this [template Google Doc](https://docs.google.com/document/d/1utjgM
 
 ## Notes from Previous Sessions
 
+### 2023
+
 [12-01-2023](https://docs.google.com/document/d/1wu0LULOY6k-jbbYwZwuZmwDyI7cBa0zPc2shramRWkM/edit?usp=sharing)
+
+### 2022
+
+[24-03-2022](https://docs.google.com/document/d/1zlznkUp273-j3hot2YDvQVHj9h-fY-gMKyggNYSbdMY/edit?usp=sharing)
+[10-03-2022](https://docs.google.com/document/d/1ohi4gwmj8BmxlHstahkX20WDCsxB-wJP60HRGSN4TJ8/edit?usp=sharing)
+[24-02-2022](https://docs.google.com/document/d/1q0KBqx_X9Eh6i3x9kSzVVS8bIbBg6ucVkFLnkxLkDEQ/edit?usp=sharing)
+
+### 2021
+
+[25-11-2021](https://docs.google.com/document/d/1V8jYBZGhSLEcfTXfYGb-L-TtnXL7TqTa0KCK8eLMwSA/edit?usp=sharing)
+[28-10-2021](https://docs.google.com/document/d/19gUHi1yKhVpcpDZwoS9AgWwGhbbM0vc-aemUzbSYhEs/edit?usp=sharing)
+[08-07-2021](https://docs.google.com/document/d/13FaiZLn8bqsFhTeEAPooFGFxwndpSeuw2zQhsCLjS2E/edit?usp=sharing)
