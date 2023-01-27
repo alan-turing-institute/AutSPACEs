@@ -1,26 +1,17 @@
 # AutSPACEs Requirements List
 
-This is a requirement list which can be used to see the basic structure of the platform. 
+This is a requirement list which can be used alongside wireframes to understand the basic structure of the the AutSPACEs platform.
 
 This file lists every page/page-flow of the AutSPACEs platform which has to be built for the platform to be functional, along with a list of desired features on each page. These will eventually be turned into issues on the main repository. For now we are working on a simplified MVP version of the platform.  
 It also includes some additional features to be used throughout the platform.  
 
-This list can be used to 
-
-*The content is based on preferences and needs emerging from the Autistic/Turing Citizen Science community in discussion sessions and co-working sesssions. 
-You can view all the gathered recommendations from the community in the [community-recommendations folder](https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/community-recommendations) of the project management reepository.
-
-A complete board of issues is available on the AutSPACEs issues board on [Trello](https://trello.com/b/w2XLjB9g/issues).
-Issues will be migrated gradually as the platform progresses, to make sure priority milestones are met and the supporting platform infrastructure is in place.
-
-A wireframe mockup of the platform is is available on [Figma](https://www.figma.com/file/HxqTSdeyAUNMualnBV0PET/Autspace-(WIP)?node-id=1%3A111). The MVP pages are those prefaced by "simplified".
+* The content is based on preferences and needs emerging from the AutSPACEs community in discussion sessions and co-working sesssions. 
 
 ## Contents
 
 *Platform pages and page-flows: content, community evidence, sources and resources*
 - [AutSPACEs Requirements List](#autspaces-requirements-list)
 	- [Contents](#contents)
-- [](#)
 	- [Platform pages and page-flows: content, community evidence, sources and resources](#platform-pages-and-page-flows-content-community-evidence-sources-and-resources)
 		- [Landing Page](#landing-page)
 		- [Sign-up flow](#sign-up-flow)
@@ -34,14 +25,12 @@ A wireframe mockup of the platform is is available on [Figma](https://www.figma.
 		- [Settings page](#settings-page)
 		- [About page](#about-page)
 		- [Crisis Support Page](#crisis-support-page)
-- [](#-1)
 		- [Additional design considerations](#additional-design-considerations)
 		- [Additional design considerations: resources](#additional-design-considerations-resources)
  
 *General design features* 
 - [Additional design considerations](#additional-design-considerations)
 
-# 
 
 ## Platform pages and page-flows: content, community evidence, sources and resources
 
@@ -241,8 +230,6 @@ N.B. jiraslama has already done a lot of design work on this which is available 
 	* diagnostic issues
 	* anxiety issues
 	* general autism information (Autistica)
-
-# 
 
 *General design features* 
 
