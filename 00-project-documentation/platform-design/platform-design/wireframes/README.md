@@ -18,4 +18,4 @@ There are many ways to get involved with the AutSPACEs project and we would love
 	- the changes that you are suggesting
 	- how these changes improve the usability and accessibility of the platform for the autistic community. 
 
-You can find instructions on how to use Pull Requests and Issues in our [Contributors Guidelines]() as well as other information about how to contribute to this project. 
+You can find instructions on how to use Pull Requests and Issues in our [Contributing Guidelines](/contributing-guidelines.md) as well as other information about how to contribute to this project. 
