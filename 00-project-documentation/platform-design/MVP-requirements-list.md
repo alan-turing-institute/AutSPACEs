@@ -21,7 +21,6 @@ Issues will be migrated gradually as the platform progresses, to make sure prior
 *Platform pages and page-flows: content, community evidence, sources and resources*
 - [AutSPACEs MVP Requirements List](#autspaces-mvp-requirements-list)
 	- [Contents](#contents)
-- [](#)
 	- [Platform pages and page-flows: content, community evidence, sources and resources](#platform-pages-and-page-flows-content-community-evidence-sources-and-resources)
 		- [Landing Page](#landing-page)
 		- [Sign-up flow](#sign-up-flow)
@@ -37,8 +36,6 @@ Issues will be migrated gradually as the platform progresses, to make sure prior
  
 *General design features* 
 - [Additional design considerations](#additional-design-considerations)
-
-# 
 
 ## Platform pages and page-flows: content, community evidence, sources and resources
 
@@ -74,7 +71,6 @@ Issues will be migrated gradually as the platform progresses, to make sure prior
 
 ### Sign-up flow resources
 
-* Fujitsu have created an integration with the Open Humans signup process which collects email and password for login purposes
 * Gov.uk has open source code freely available for individual, well-evidenced and user-tested components that could be used for the sign-up flow
 
 ![](https://i.imgur.com/J6LKVL8.png)
