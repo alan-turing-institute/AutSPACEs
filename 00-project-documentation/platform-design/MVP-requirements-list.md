@@ -10,8 +10,6 @@ These are on the repository as separate issues. Completing these issues complete
 
 A wireframe mockup of the platform is is available on [Figma](https://www.figma.com/file/HxqTSdeyAUNMualnBV0PET/Autspace-(WIP)?node-id=1%3A111). The MVP pages are those prefaced by "simplified".
 
-This list can be used to 
-
 *The content is based on preferences and needs emerging from the Autistic/Turing Citizen Science community in discussion sessions and co-working sesssions. 
 You can view all the gathered recommendations from the community in the [community-recommendations folder](https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/community-recommendations) of the project management reepository.
 
@@ -21,13 +19,21 @@ Issues will be migrated gradually as the platform progresses, to make sure prior
 ## Contents
 
 *Platform pages and page-flows: content, community evidence, sources and resources*
-- [Landing Page](#landing-page)
-- [Sign-up flow](#sign-up-flow)
-- [Sign-in](#sign-in)
-- [Enter experiences flow](#enter-experiences-flow)
-- [View other experiences page](#view-other-experiences=page)
-- [View own experiences page](#view-own-experiences-page)
-- [Moderation flow](#moderation-flow)
+- [AutSPACEs MVP Requirements List](#autspaces-mvp-requirements-list)
+	- [Contents](#contents)
+- [](#)
+	- [Platform pages and page-flows: content, community evidence, sources and resources](#platform-pages-and-page-flows-content-community-evidence-sources-and-resources)
+		- [Landing Page](#landing-page)
+		- [Sign-up flow](#sign-up-flow)
+		- [Sign-up flow resources](#sign-up-flow-resources)
+		- [Sign-in](#sign-in)
+		- [Enter experiences flow](#enter-experiences-flow)
+		- [Enter experiences flow: resources](#enter-experiences-flow-resources)
+		- [View other experiences page](#view-other-experiences-page)
+		- [View own experiences page](#view-own-experiences-page)
+		- [Moderation flow](#moderation-flow)
+		- [Additional design considerations](#additional-design-considerations)
+		- [Additional design considerations: resources](#additional-design-considerations-resources)
  
 *General design features* 
 - [Additional design considerations](#additional-design-considerations)
