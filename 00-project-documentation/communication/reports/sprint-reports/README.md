@@ -1,8 +1,6 @@
 # Fujitsu sprint report
 
-This file contains reports of work completed during Fujitsu team sprints.
-
-More details about this process can be found in the [agile-opensource-workflow.md](project-management/agile-opensource-workflow.md) and [sprint-demo-requirements.md](project-management/sprint-demo-requirements.md) files in the [project-management](project-management) directory.
+This file contains reports of work completed during Fujitsu team sprints. Since 2020 no more of these sprints are being done. 
 
 Sprints are added in reverse order, and a template is available at the end of this file: [Sprint `N`](#sprint-n).
 
@@ -82,4 +80,3 @@ Feedback is requested from the community on the following tasks.
   * Link to sprint report: [SPRINTREPORT.md#`N`](SPRINTREPORT.md#sprint-`N`)
 *
 *
-
