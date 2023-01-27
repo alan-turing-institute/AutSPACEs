@@ -1,6 +1,8 @@
 # Community meet-up sessions
 
 This folder contains information and resources relating to AutSPACEs commmunity meet-up sessions, as well as previous notes.
+AutSPACEs meet-up sessions are open to everyone, and are a place to discuss anything relating to AutSPACEs and to work together on the project. 
+They take place online via. Zoom and are hosted by AutSPACEs researchers. 
 
 ## Meet-up Checklist
 
