@@ -93,6 +93,18 @@ def share_experience(request, uuid=False):
     
     else:    
         return redirect('index')
+    
+def view_experience(request, uuid):
+    
+    if request.user.is_authenticated:        
+        # return data from oh.
+        print("VIEW ONLY")
+        data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
+        form = ShareExperienceForm(data["metadata"]["data"], readonly=True)
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True})  
+    else:
+        redirect('index')
+
 
 def update_public_experience_db(data, uuid, ohmember):
     """Updates the public experience database for the given uuid.
@@ -463,6 +475,7 @@ def what_autism_is(request):
 
 def footer(request):
     return render(request, "main/footer.html")
+
 
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):

@@ -19,6 +19,7 @@ urlpatterns = [
     path('share_exp/', views.share_experience, name='share_exp'),
     path('edit/<uuid>/', views.share_experience, name='edit_exp'),
     path('moderate/<uuid>/', views.moderate_experience, name='moderate_exp'),
+    path('view/<uuid>/', views.view_experience, name='view_exp'),
 
     path('review_experience/<experience_id>/',
          views.review_experience,
