@@ -100,7 +100,7 @@ def view_experience(request, uuid):
         # return data from oh.
         data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
         form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True, 'show_moderation_stats':True})  
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True, 'show_moderation_status':True})  
     else:
         redirect('index')
 
