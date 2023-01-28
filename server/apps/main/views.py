@@ -55,7 +55,7 @@ def share_experience(request, uuid=False):
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated: 
         
-        if request.method == 'POST':
+        if request.method == 'POST':    
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
@@ -80,7 +80,7 @@ def share_experience(request, uuid=False):
 
         # if a GET (or any other method) we'll create a blank form
         else:
-            
+        
             if uuid:
                 # return data from oh.
                 data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
@@ -99,8 +99,8 @@ def view_experience(request, uuid):
     if request.user.is_authenticated:        
         # return data from oh.
         data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
-        form = ShareExperienceForm(data["metadata"]["data"], disabled=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'disabled':True})  
+        form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True, 'show_moderation_stats':True})  
     else:
         redirect('index')
 
@@ -479,12 +479,12 @@ def footer(request):
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):
         model = PublicExperience.objects.get(experience_id = uuid)
-        form = model_to_form(model, moderate=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
+        form = model_to_form(model, disable_text=True)
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'show_moderation_status':True})  
     else:
         redirect('index')
 
-def model_to_form(model, moderate = False):
+def model_to_form(model, disable_text = False):
     model_dict = model_to_dict(model)
 
     form = ShareExperienceForm({
@@ -500,7 +500,7 @@ def model_to_form(model, moderate = False):
         "viewable":True, #we only moderate public experiences
         "research":model_dict["research"],
         "moderation_status":model_dict["moderation_status"]
-    }, moderate=moderate)
+    }, disable_text=disable_text)
 
     return form
 
