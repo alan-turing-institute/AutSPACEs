@@ -60,14 +60,15 @@ class ShareExperienceForm(forms.Form):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
         
         disable_all = kwargs.pop('disable_all', False) #disable everything
-        disable_text = kwargs.pop('disable_text', False) # only the free text fields
+        disable_moderator = kwargs.pop('disable_moderator', False) # only the free text fields
         
         super(ShareExperienceForm, self).__init__(*args, **kwargs)
 
                 
         for field in self.fields:
-            if field in ['experience','wish_different','title']: 
-                self.fields[field].widget.attrs['disabled']= disable_text or disable_all
+            print(field)
+            if field in ['experience','wish_different','title','research','viewable']: 
+                self.fields[field].widget.attrs['disabled']= disable_moderator or disable_all
             else:
                 self.fields[field].widget.attrs['disabled']= disable_all
                 
