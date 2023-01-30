@@ -91,7 +91,7 @@
             </ul>
             <a
               class="btn btn-outline-info float-right view-btn"
-              href="{% url 'main:view_experiences' %}" rel="noopener noreferrer"
+              href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
               target="_blank">View Here
             </a>
           </div>
@@ -113,7 +113,7 @@
         <th class="tags-th" scope="col">Tags</th>
         <th class="status-th" scope="col">Moderation Status</th>
         <th class="status-th" scope="col">Triggering Labels</th>
-        <th class="status-th" scope="col" colspan="3">File Options</th>
+        <th class="status-th" scope="col" colspan="4">File Options</th>
       </tr>
       </thead>
       <tbody>
@@ -139,6 +139,11 @@
           {%endif%}
         {% endfor %}
       </td>
+      <td>
+        <a href="{% url 'main:view_exp' file.metadata.uuid %}">
+          <button class="btn btn-light">View</button>
+        </a>
+    </td>
       <td>
         <a href="{% url 'main:edit_exp' file.metadata.uuid %}">
           <button class="btn btn-primary">Edit</button>

@@ -9,8 +9,8 @@ urlpatterns = [
     re_path(r'^signup1/?$', views.signup_frame4_test, name='signup_frame4_test'),
     re_path(r'^logout/?$', views.logout_user, name='logout'),
     re_path(r'^overview/?$', views.overview, name='overview'),
-    re_path(r'^view_experiences/?$', views.list_public_experiences,
-        name='view_experiences'),
+    re_path(r'^public_experiences/?$', views.list_public_experiences,
+        name='public_experiences'),
     re_path(r'^moderate_public_experiences/?$', views.moderate_public_experiences,
         name='moderate_public_experiences'),
     re_path(r'^list/?$', views.list_files, name='list'),
@@ -19,6 +19,7 @@ urlpatterns = [
     path('share_exp/', views.share_experience, name='share_exp'),
     path('edit/<uuid>/', views.share_experience, name='edit_exp'),
     path('moderate/<uuid>/', views.moderate_experience, name='moderate_exp'),
+    path('view/<uuid>/', views.view_experience, name='view_exp'),
 
     path('review_experience/<experience_id>/',
          views.review_experience,

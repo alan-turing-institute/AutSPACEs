@@ -55,7 +55,7 @@ def share_experience(request, uuid=False):
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated: 
         
-        if request.method == 'POST':
+        if request.method == 'POST':    
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
@@ -80,7 +80,7 @@ def share_experience(request, uuid=False):
 
         # if a GET (or any other method) we'll create a blank form
         else:
-            
+        
             if uuid:
                 # return data from oh.
                 data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
@@ -93,6 +93,17 @@ def share_experience(request, uuid=False):
     
     else:    
         return redirect('index')
+    
+def view_experience(request, uuid):
+    
+    if request.user.is_authenticated:        
+        # return data from oh.
+        data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
+        form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
+        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True, 'show_moderation_status':True})  
+    else:
+        redirect('index')
+
 
 def update_public_experience_db(data, uuid, ohmember):
     """Updates the public experience database for the given uuid.
@@ -464,15 +475,44 @@ def what_autism_is(request):
 def footer(request):
     return render(request, "main/footer.html")
 
+def process_enabled_form_keys(form):
+    """the validation overwrites some keys with defaults, so to avoid errors we only take keys that are enabled in the form"""
+
+    form.is_valid()
+    print(form.data.keys())
+    return {k: form.cleaned_data[k] for k in form.data.keys() if k != 'csrfmiddlewaretoken'}
+
+    
+
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):
         model = PublicExperience.objects.get(experience_id = uuid)
-        form = model_to_form(model, moderate=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'moderate':True})  
+        if request.method == "POST":
+            # get the data from the model
+            moderated_form = ShareExperienceForm(request.POST)
+            unmoderated_form = model_to_form(model, disable_moderator=False)
+
+            # override appropriate fields in the form
+            changed_keys = process_enabled_form_keys(moderated_form)
+            # validate
+            data = {**unmoderated_form.data, **changed_keys}
+            # get the users OH member id from the model
+            user_OH_member = model.open_humans_member
+            user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
+            upload(data, uuid, ohmember=user_OH_member)
+            # update the PE object 
+            update_public_experience_db(data, uuid, ohmember=user_OH_member)
+
+            # redirect to a new URL:
+            return redirect('main:confirm_page')
+            
+        else:
+            form = model_to_form(model, disable_moderator=True)
+            return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'show_moderation_status':True})  
     else:
         redirect('index')
 
-def model_to_form(model, moderate = False):
+def model_to_form(model, disable_moderator = False):
     model_dict = model_to_dict(model)
 
     form = ShareExperienceForm({
@@ -488,7 +528,7 @@ def model_to_form(model, moderate = False):
         "viewable":True, #we only moderate public experiences
         "research":model_dict["research"],
         "moderation_status":model_dict["moderation_status"]
-    }, moderate=moderate)
+    }, disable_moderator=disable_moderator)
 
     return form
 

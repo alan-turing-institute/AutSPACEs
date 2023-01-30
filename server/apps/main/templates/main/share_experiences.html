@@ -164,7 +164,15 @@
 
   <div class="container story-section">
   {% if uuid %}
-    <form action="{% url 'main:edit_exp' uuid %}" class="form-context" method="post">
+    {% if readonly %}
+      <form action="" class="form-context" method="get">
+    {% else %}
+        {% if show_moderation_status %}
+          <form action="{% url 'main:moderate_exp' uuid %}" class="form-context" method="post">
+        {% else %}
+          <form action="{% url 'main:edit_exp' uuid %}" class="form-context" method="post">
+        {% endif %}
+    {% endif %}
   {% else %}
     <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
   {% endif %}
@@ -173,7 +181,7 @@
     
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
-        {% if moderate %} 
+        {% if show_moderation_status %} 
           <div class="form-group">
             <h3><label>Moderation Status</label></label></h3>
             <div class="row">
@@ -215,12 +223,19 @@
       {% endif %}
     {% endfor %}
     
-    <div class='form-group'>
-      <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
-    </div>
-  
-
-  </form>
+    {% if readonly %}
+      </form>
+      <div class="form-group">  
+        <a href="{% url 'main:edit_exp' uuid %}">
+          <button class="btn btn-primary btn-lg float-right">Edit</button>
+        </a>
+      </div>    
+    {% else %}
+      <div class='form-group'>  
+        <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
+      </div>
+    </form>    
+    {% endif %}
   </div>
 
 </section>
