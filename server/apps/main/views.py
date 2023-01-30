@@ -475,12 +475,40 @@ def what_autism_is(request):
 def footer(request):
     return render(request, "main/footer.html")
 
+def process_enabled_form_keys(form):
+    """the validation overwrites some keys with defaults, so to avoid errors we only take keys that are enabled in the form"""
+
+    form.is_valid()
+    print(form.data.keys())
+    return {k: form.cleaned_data[k] for k in form.data.keys() if k != 'csrfmiddlewaretoken'}
+
+    
 
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):
         model = PublicExperience.objects.get(experience_id = uuid)
-        form = model_to_form(model, disable_moderator=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'show_moderation_status':True})  
+        if request.method == "POST":
+            # get the data from the model
+            moderated_form = ShareExperienceForm(request.POST)
+            unmoderated_form = model_to_form(model, disable_moderator=False)
+
+            # override appropriate fields in the form
+            changed_keys = process_enabled_form_keys(moderated_form)
+            # validate
+            data = {**unmoderated_form.data, **changed_keys}
+            # get the users OH member id from the model
+            user_OH_member = model.open_humans_member
+            user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
+            upload(data, uuid, ohmember=user_OH_member)
+            # update the PE object 
+            update_public_experience_db(data, uuid, ohmember=user_OH_member)
+
+            # redirect to a new URL:
+            return redirect('main:confirm_page')
+            
+        else:
+            form = model_to_form(model, disable_moderator=True)
+            return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'show_moderation_status':True})  
     else:
         redirect('index')
 

@@ -167,7 +167,11 @@
     {% if readonly %}
       <form action="" class="form-context" method="get">
     {% else %}
-      <form action="{% url 'main:edit_exp' uuid %}" class="form-context" method="post">
+        {% if show_moderation_status %}
+          <form action="{% url 'main:moderate_exp' uuid %}" class="form-context" method="post">
+        {% else %}
+          <form action="{% url 'main:edit_exp' uuid %}" class="form-context" method="post">
+        {% endif %}
     {% endif %}
   {% else %}
     <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
