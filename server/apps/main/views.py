@@ -426,12 +426,11 @@ def get_review_status(files):
         
         
     status_list = [f['metadata']['data']['moderation_status'].replace(' ','_') for f in files if f['metadata']['data']['viewable']]
-        
+
     statuses = {f"n_{s}":status_list.count(s) for s in set(status_list)}
     
     statuses["n_viewable"] = len(status_list)
-    statuses["n_moderated"] = statuses.pop("n_approved", False) + statuses.pop("n_rejected", False)
-        
+    statuses["n_moderated"] = status_list.count('approved') + status_list.count('rejected')
 
     return statuses
 
