@@ -66,7 +66,6 @@ class ShareExperienceForm(forms.Form):
 
                 
         for field in self.fields:
-            print(field)
             if field in ['experience','wish_different','title','research','viewable']: 
                 self.fields[field].widget.attrs['disabled']= disable_moderator or disable_all
             else:
