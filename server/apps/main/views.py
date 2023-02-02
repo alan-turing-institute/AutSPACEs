@@ -277,12 +277,25 @@ def list_files(request):
 
 
 def list_public_experiences(request):
+    
     approved_experiences = PublicExperience.objects.filter(moderation_status='approved')
-
-    return render(
-        request,
-        'main/experiences_page.html',
-        context={'experiences': approved_experiences})
+    
+    if request.method == "POST":
+        # Search results version - only search through approved stories
+        searched = request.POST["searched"]
+        search_results = approved_experiences.filter(Q(title_text__icontains = searched) | 
+                                                Q(experience_text__icontains = searched) |
+                                                Q(difference_text__icontains = searched))
+        return render(
+            request,
+            'main/experiences_page.html',
+            context={'experiences': search_results})
+    else:
+        # Standard page showing all moderated stories
+        return render(
+            request,
+            'main/experiences_page.html',
+            context={'experiences': approved_experiences})
 
 
 def moderate_public_experiences(request):
