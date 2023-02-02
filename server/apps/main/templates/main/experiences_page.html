@@ -42,11 +42,17 @@
 
 <section id="search-section">
   <div class="container search">
-    <form>
+    <form method="POST" action="{% url 'main:public_experiences' %}">
+      {% csrf_token %}
       <div class="form-row align-items-center" style="left: 0px">
         <div class="col-lg-8">
           <label class="sr-only" for="inlineFormInput">Name</label>
-          <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" type="text">
+          <input class="form-control mb-2" 
+                  id="inlineFormInput" 
+                  placeholder="Search Stories" 
+                  type="text"
+                  name="searched"
+                  >
         </div>
 
         <div class="col-auto">
