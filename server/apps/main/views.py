@@ -434,10 +434,20 @@ def get_review_status(files):
 
     return statuses
 
+def reformat_date_string(context):
+    """
+    Reformat the sting that contains the datetime to a more usable format
+    """
+    old_format = '%Y-%m-%dT%H:%M:%S.%fZ'
+    new_format = '%d-%b-%Y %H:%M'
+    for file in context['files']:
+        file['created'] = datetime.datetime.strptime(file['created'], old_format).strftime(new_format)
+    return context
     
 def my_stories(request):
     if request.user.is_authenticated:
         context = {'files': request.user.openhumansmember.list_files()}
+        context = reformat_date_string(context)
         statuses = get_review_status(context['files'])
         context = {**context, **statuses}
         return render(request, "main/my_stories.html", context)
