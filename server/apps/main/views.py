@@ -280,12 +280,30 @@ def list_public_experiences(request):
     
     approved_experiences = PublicExperience.objects.filter(moderation_status='approved')
     
-    if request.method == "POST":
-        # Search results version - only search through approved stories
-        searched = request.POST["searched"]
-        search_results = approved_experiences.filter(Q(title_text__icontains = searched) | 
-                                                Q(experience_text__icontains = searched) |
-                                                Q(difference_text__icontains = searched))
+    # Check to see if a search has been performed
+    searching = request.GET.get('searched', False)
+
+    # Only search through approved stories
+    if searching != False:
+
+        searched = request.GET["searched"]
+
+        # If the triggering stories flag is checked - perform an additional filter to remove triggering stories
+        trigger_label = request.GET.get('triggering_stories', False)
+        if trigger_label:
+            
+            non_triggering_experiences = approved_experiences.filter(Q(abuse = False) & Q(violence = False)
+                                                            & Q(drug = False) & Q(mentalhealth = False)
+                                                            & Q(negbody = False) & Q(other = ""))
+            
+            search_results = non_triggering_experiences.filter(Q(title_text__icontains = searched) | 
+                                                    Q(experience_text__icontains = searched) |
+                                                    Q(difference_text__icontains = searched))
+        else:
+            # search within all approved stories regardless of triggering status
+            search_results = approved_experiences.filter(Q(title_text__icontains = searched) | 
+                                                    Q(experience_text__icontains = searched) |
+                                                    Q(difference_text__icontains = searched))
         return render(
             request,
             'main/experiences_page.html',
