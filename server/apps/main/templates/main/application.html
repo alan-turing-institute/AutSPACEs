@@ -14,6 +14,8 @@
 
     {% load static %}
 
+    <link href="{% static '/css/navigation_light.css' %}" rel="stylesheet" id="mystylesheet">
+
     <!-- Page specific CSS -->
 
     {%block page_css%} {% endblock %}
@@ -44,10 +46,9 @@
         {% block content %}
         {% endblock %}
 
-        </div> <!-- /container -->
-
-            {% include 'main/partials/footer.html' %}
-        </footer>
+        <section id="footer">
+          {% include 'main/partials/footer.html'%}
+        </section>
   </body>
   {% include 'main/partials/jquery.html' %}
 </html>
