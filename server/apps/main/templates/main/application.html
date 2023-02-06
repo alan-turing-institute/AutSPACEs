@@ -11,21 +11,17 @@
     <!-- Bootstrap CSS -->
 
 
-
-    {% load static %}
-    {%block page_css%} {% endblock %}
-    <link href="{% static '/css/footer.css' %}" rel="stylesheet">
-
-    <!-- Page specific CSS -->
-
-
-
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
 
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
 
+    {% load static %}
+    <link href="{% static '/css/main.css' %}" rel="stylesheet">
+    {%block page_css%} {% endblock %}
 
   </head>
 
@@ -48,9 +44,12 @@
         {% block content %}
         {% endblock %}
 
-        <section id="footer">
-          {% include 'main/partials/footer.html'%}
-        </section>
+    <section id="footer">
+      {% include 'main/partials/footer.html'%}
+    </section>
+
+    {% include 'main/partials/jquery.html' %}
+    <script src="{% static '/js/main.js' %}"></script>
+
   </body>
-  {% include 'main/partials/jquery.html' %}
 </html>
