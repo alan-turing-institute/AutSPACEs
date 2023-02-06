@@ -1,27 +1,27 @@
 from django import forms
 
 class ShareExperienceForm(forms.Form):
-
-    experience = forms.CharField(label='Please share your experience', max_length=500, strip=True,
+        
+    experience_text = forms.CharField(label='Please share your experience', max_length=500, strip=True,
                                  widget=forms.Textarea(attrs={'placeholder':'Write your experience here, you can take as much or little space as you need.',
                                                               'rows':'4',
                                                               'class':'form-control'}))
-    experience.group = 1
-    wish_different = forms.CharField(label='What could have made your experience better?',
+    experience_text.group = 1
+    difference_text = forms.CharField(label='What could have made your experience better?',
                                      strip=True, max_length=500,
                                      widget=forms.Textarea(attrs={'placeholder':'Do you have anything that you would want to have changed to make it better? Or do you have any tips for others who may experience the same thing?',
                                                               'rows':'4',
                                                               'class':'form-control'}))
-    wish_different.group = 1
-    title = forms.CharField(label='Choose a title for your story',
+    difference_text.group = 1
+    title_text = forms.CharField(label='Choose a title for your story', 
                             strip=True,
                             max_length=150,
                             widget=forms.TextInput(attrs={'placeholder':'Title',
                                                           'class':'form-control'}))
-    title.group = 1
-
-
-
+    title_text.group = 1
+    
+    
+    
     # add triggering here
     abuse = forms.BooleanField(label = 'Abuse (physical, sexual, emotional and verbal)', required=False)
     abuse.group = 2
@@ -66,7 +66,7 @@ class ShareExperienceForm(forms.Form):
 
 
         for field in self.fields:
-            if field in ['experience','wish_different','title','research','viewable']:
+            if field in ['experience_text','difference_text','title_text','research','viewable']: 
                 self.fields[field].widget.attrs['disabled']= disable_moderator or disable_all
             else:
                 self.fields[field].widget.attrs['disabled']= disable_all
