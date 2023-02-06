@@ -9,7 +9,7 @@ class ShareExperienceForm(forms.Form):
     experience_text.group = 1
     difference_text = forms.CharField(label='Suggestions for what could have made your story better',
                                      strip=True, max_length=500,
-                                     widget=forms.Textarea(attrs={'placeholder':'Write your story here',
+                                     widget=forms.Textarea(attrs={'placeholder':'Do you have anything that you would want to have changed to make it better? Or do you have any tips for others who may experience the same thing?',
                                                               'rows':'4',
                                                               'class':'form-control'}))
     difference_text.group = 1
@@ -33,13 +33,13 @@ class ShareExperienceForm(forms.Form):
     mentalhealth.group = 2
     negbody = forms.BooleanField(label = 'Negative body image', required=False)
     negbody.group = 2
-    
+
     other = forms.CharField(label='Other',
                             strip=True,
                             max_length=150,
                             widget=forms.TextInput(), required=False)
     other.group = 2
-    
+
     # sharing options
     viewable = forms.BooleanField(label = "Share on AutSPACE website", required=False)
     viewable.group = 3
@@ -55,27 +55,26 @@ class ShareExperienceForm(forms.Form):
     ]
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
-    
+
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
-        
+
         disable_all = kwargs.pop('disable_all', False) #disable everything
         disable_moderator = kwargs.pop('disable_moderator', False) # only the free text fields
-        
+
         super(ShareExperienceForm, self).__init__(*args, **kwargs)
 
-                
+
         for field in self.fields:
             if field in ['experience_text','difference_text','title_text','research','viewable']: 
                 self.fields[field].widget.attrs['disabled']= disable_moderator or disable_all
             else:
                 self.fields[field].widget.attrs['disabled']= disable_all
-                
-    
+
+
     def clean_moderation_status(self):
         mod_status = self.cleaned_data['moderation_status']
         if not mod_status:
             mod_status = 'not reviewed'
-            
+
         return mod_status
-            
