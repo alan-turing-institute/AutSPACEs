@@ -277,12 +277,42 @@ def list_files(request):
 
 
 def list_public_experiences(request):
-    approved_experiences = PublicExperience.objects.filter(moderation_status='approved')
+    """
+    
+    Returns, in the context, experiences that are 1) listed public, 2) approved, 3) searched, 4) abide by triggering label toggle.
+    
+    """
+    
+    experiences = PublicExperience.objects.filter(moderation_status='approved')
+    
+    # Check to see if a search has been performed
+    searched = request.GET.get('searched', False)
 
+    # Only search through approved stories
+    if searched:
+            
+        # search within all approved stories regardless of triggering status    
+        
+        experiences = experiences.filter(Q(title_text__icontains = searched) |
+                                         Q(experience_text__icontains = searched) | 
+                                         Q(difference_text__icontains = searched))  
+        
+    # If the triggering stories flag is checked - perform an additional filter to remove triggering stories
+    trigger_label = request.GET.get('triggering_stories', False)
+    
+    if trigger_label:    
+        experiences = experiences.filter(Q(abuse = False) & 
+                                         Q(violence = False) & 
+                                         Q(drug = False) & 
+                                         Q(mentalhealth = False) & 
+                                         Q(negbody = False) & 
+                                         Q(other = ""))
+    
+    # Standard page showing all moderated stories
     return render(
         request,
         'main/experiences_page.html',
-        context={'experiences': approved_experiences})
+        context={'experiences': experiences})
 
 
 def moderate_public_experiences(request):

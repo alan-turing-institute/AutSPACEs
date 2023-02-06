@@ -42,16 +42,21 @@
 
 <section id="search-section">
   <div class="container search">
-    <form>
+    <form method="GET" action="{% url 'main:public_experiences' %}">
       <div class="form-row align-items-center" style="left: 0px">
         <div class="col-lg-8">
           <label class="sr-only" for="inlineFormInput">Name</label>
-          <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" type="text">
+          <input class="form-control mb-2" 
+                  id="inlineFormInput" 
+                  placeholder="Search Stories" 
+                  type="text"
+                  name="searched"
+                  >
         </div>
 
         <div class="col-auto">
           <div class="form-check mb-2">
-            <input class="form-check-input" id="autoSizingCheck" type="checkbox">
+            <input class="form-check-input" id="autoSizingCheck" type="checkbox" name="triggering_stories" value="True">
             <label class="form-check-label" for="autoSizingCheck">
               Non-Triggering Stories
             </label>
