@@ -73,10 +73,180 @@ body {
    font-size: 1.3rem;
  }
 
-
  .nav-item {
    padding: 0 25px;
  }
  .nav-link:hover {
    color:#000 !important;
+ }
+
+
+ /* LANDING PAGE */
+ /*Headings*/
+ .big-heading {
+   font-size: 5rem;
+   font-weight: bold;
+ }
+ .section-heading {
+   font-size: 3rem;
+   font-weight: bold;
+ }
+ .value-heading {
+   font-size: 2rem;
+   line-height: 2;
+   font-weight: bold;
+   padding-bottom: 3%;
+ }
+ .experience-heading {
+   font-size: 2rem;
+   line-height: 2;
+   font-weight: bold;
+ }
+ .usage-heading {
+   font-size: 2rem;
+   line-height: 1.5;
+   font-weight: bold;
+   text-align: center;
+ }
+
+ /*Introduction Section*/
+ .intro {
+   padding: 2% 5% 3%;
+      background: #1BB5AF;
+   color: #fff;
+ }
+
+ .title-text {
+   font-size: 2rem;
+   line-height: 2;
+   font-weight: bold;
+   padding-bottom: 3%;
+ }
+ .title-image {
+   padding-top: 2%;
+   width: 75%;
+   margin-left: 25%;
+   border-radius: 5%;
+ }
+
+
+ /*Value Section*/
+ #value {
+   padding: 4% 5%;
+   color: #309FDC;
+ }
+ .value-text {
+   line-height: 2;
+   font-size: 20px;
+ }
+ .value-box {
+   text-align: center;
+   padding: 1%;
+ }
+
+ /*What Autism is Section*/
+ #autism {
+   padding: 3% 5%;
+   color: #309FDC;
+ }
+ .autism-text {
+   line-height: 2;
+ }
+
+ /*Shared Experience Section*/
+ #experience {
+   padding:  4% 5%;
+   color: #309FDC;
+ }
+ .experience-content {
+   color: #8f8f8f;
+   line-height: 1.5;
+   font-size: 20px;
+ }
+ .experience-image {
+   width: 50%;
+   padding-top: 2%;
+   padding-right: 5%;
+   padding-left: 6%;
+ }
+
+ .carousel-item {
+   padding: 5% 5%;
+   height: 500px;
+ }
+
+ .carousel-control-next,
+ .carousel-control-prev {
+   filter: invert(100%);
+   width: 5%
+ }
+ .carousel-control-prev-icon {
+   position: relative;
+   bottom: 20px;
+   left: 0px;
+}
+
+ .carousel-indicators {
+   filter: invert(100%);
+ }
+
+ /*How to Use the Platform Section*/
+ #platform_usage {
+   background: #F1806F;
+   padding: 4% 5%;
+   color: #ffffff;
+ }
+ .platform-title  {
+   padding-bottom: 5%;
+ }
+
+
+ .platform-left-border {
+   margin-left: 8%;
+ }
+.usage-icon{
+  color: #fff;
+}
+ .platform-button {
+   margin-top: 5%;
+  }
+ /*CTA Section*/
+ #cta {
+   background: #F9BB33;
+   padding: 4% 5%;
+   color: #fff;
+ }
+
+ .cta-card {
+   padding: 3% 2%;
+   text-align: center;
+   font-size: 18px;
+   line-height: 1.5;
+ }
+
+ .cta-header, .card-text {
+   color: #000;
+ }
+
+ /*Responsive Design*/
+ @media (max-width: 992px) {
+
+   .big-heading {
+     text-align: center;
+   }
+   .title-image {
+     margin-left: 0;
+   }
+
+   #value {
+     padding: 2% 0;
+   }
+
+   .value-box {
+     padding: 2%;
+   }
+
+   .value-box p {
+     font-size: 1.5rem;
+   }
  }

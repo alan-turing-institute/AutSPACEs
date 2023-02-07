@@ -1,31 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'main/application.html' %}
 {% load static %}
+{% block title %}AutSPACEs - What is Autism? {% endblock %}
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <!-- Bootstrap CSS -->
-  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-  <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-<!--    Stylesheet-->
-  <link href="{% static '/css/home.css' %}" rel="stylesheet">
-  <!-- Icon-->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+{% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
 
-  <title>AutSPACEs Landing Page</title>
-  </head>
+  {% block content %}
 
-<body>
 <!--Navigation-->
 <section id="title">
 <!--  Navigation-->
-    {% include 'main/partials/navigation.html' %}
    <div class="container-fluid">
      <!--Introduction of AutSPACEs-->
     <div class="row intro">
@@ -242,18 +225,5 @@
   </div>
 <!--  Direct to 'What Autism Is Page-->
 </section>
-<!--Footer-->
-<footer id="footer">
-  {% include 'main/partials/footer.html' %}
-  <div class="row">
-  </div>
 
-</footer>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-{% include 'main/partials/jquery.html' %}
-</body>
-
-
-</html>
+{% endblock %}
