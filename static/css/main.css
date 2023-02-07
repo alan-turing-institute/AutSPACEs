@@ -335,3 +335,53 @@ body {
 .mystory-table {
   margin: 0 2%;
 }
+
+
+/*PUBLIC EXPERIENCES INDEX*/
+
+
+.experience-intro {
+  background: #309FDC;
+  padding: 3% 5% 3%;
+  color: #fff;
+}
+
+.story-header {
+  color: #F1806F;
+  font-size: 2rem;
+  line-height: 2;
+  font-weight: bold;
+}
+
+.search {
+  padding: 3% 0%;
+}
+
+
+.story-card-title {
+  color: #F1806F;
+  line-height: 2;
+  padding: 0 2%;
+}
+
+.story-card-text {
+  color: #000000;
+  line-height: 2;
+  padding: 0 2%;
+}
+
+.story-text {
+  padding: 2% 11% 3%;
+    text-align: cetner;
+}
+
+.story {
+  padding: 2% 3%;
+  color: #309FDC;
+}
+
+
+.non-triggering-label{
+  font-size: 1rem;
+      font-weight: bold;
+}
