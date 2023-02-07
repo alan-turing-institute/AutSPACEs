@@ -121,21 +121,21 @@
         {% endfor %}
       </td>
       <td>
-        <a href="{% url 'main:view_exp' file.metadata.uuid %}">
-          <button class="btn btn-light">View</button>
+        <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
+          View
         </a>
     </td>
       <td>
-        <a href="{% url 'main:edit_exp' file.metadata.uuid %}">
-          <button class="btn btn-primary">Edit</button>
+        <a href="{% url 'main:edit_exp' file.metadata.uuid %}" class="btn btn-primary">
+          Edit
         </a>
     </td>
       <td>
           <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
       </td>
       <td>
-        <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.data.title %}">
-          <button class="btn btn-danger">Delete</button>
+        <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.data.title %}" class="btn btn-danger">
+          Delete
         </a>
 
       </td>
