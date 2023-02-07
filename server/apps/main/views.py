@@ -123,26 +123,14 @@ def update_public_experience_db(data, uuid, ohmember):
         moderation_status (str, optional): Defaults to 'in review'.
     """
 
-    if data['viewable']:
-
-        pe = PublicExperience(experience_text=data['experience'],
-            difference_text=data['wish_different'],
-            title_text=data['title'],
-            open_humans_member=ohmember,
-            experience_id=uuid,
-            abuse=data['abuse'],
-            violence=data['violence'],
-            drug=data['drug'],
-            mentalhealth=data['mentalhealth'],
-            negbody=data['negbody'],
-            other=data['other'],
-            moderation_status=data['moderation_status'],
-            research = data['research']
-        )
-
-        # .save() updates if primary key exists, inserts otherwise.
-        pe.save()
-
+    if data.pop('viewable',False):
+        
+        pe = PublicExperience( open_humans_member=ohmember,
+            experience_id=uuid, **data)
+        
+        # .save() updates if primary key exists, inserts otherwise. 
+        pe.save()     
+        
     else:
         delete_PE(uuid,ohmember)
 
@@ -170,8 +158,9 @@ def upload(data, uuid, ohmember):
 
     # by saving the output json into metadata we can access the fields easily through request.user.openhumansmember.list_files().
     metadata = {
-        'uuid': uuid,
-        'description': data.get('title'),
+
+        'uuid': uuid,   
+        'description': data.get('title_text'),
         'tags': make_tags(data),
         **output_json,
         }
@@ -559,19 +548,8 @@ def moderate_experience(request, uuid):
 def model_to_form(model, disable_moderator = False):
     model_dict = model_to_dict(model)
 
-    form = ShareExperienceForm({
-        "experience": model_dict["experience_text"],
-        "wish_different": model_dict["difference_text"],
-        "title":model_dict["title_text"],
-        "abuse":model_dict["abuse"],
-        "violence":model_dict["violence"],
-        "drug":model_dict["drug"],
-        "mentalhealth":model_dict["mentalhealth"],
-        "negbody":model_dict["negbody"],
-        "other":model_dict["other"],
-        "viewable":True, #we only moderate public experiences
-        "research":model_dict["research"],
-        "moderation_status":model_dict["moderation_status"]
+    form = ShareExperienceForm({**model_dict,
+        "viewable":True #we only moderate public experiences
     }, disable_moderator=disable_moderator)
 
     return form

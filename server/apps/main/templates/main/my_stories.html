@@ -101,7 +101,7 @@
       {% for file in files %}
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{% firstof file.metadata.data.title "notitle" %}</td>
+        <td>{% firstof file.metadata.description "notitle" %}</td>
         <td>{% firstof file.created|naturaltime "Creation date unknown" %}</td>
         <td>
           {% for tag in file.metadata.tags %}
@@ -134,10 +134,7 @@
           <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
       </td>
       <td>
-        <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.data.title %}" class="btn btn-danger">
-          Delete
-        </a>
-
+        <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.description %}" class="btn btn-danger">Delete</a>
       </td>
       </tr>
       {% empty %}
