@@ -464,3 +464,19 @@ body {
 #moderation-intro {
   padding: 3% 5% ;
 }
+
+/* REGISTRATION PAGE */
+#registration-intro {
+  padding: 3% 5%;
+  background-color: #F1806F;
+  color: #fff;
+}
+
+.registration-text-container {
+  margin: 4% 0;
+}
+.registration-text {
+  line-height: 2;
+  font-size: 20px;
+
+}
