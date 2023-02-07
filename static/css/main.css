@@ -458,3 +458,9 @@ body {
   width: autho;
   margin: 0 1%;
 }
+
+/* MODERATION PAGE */
+
+#moderation-intro {
+  padding: 3% 5% ;
+}
