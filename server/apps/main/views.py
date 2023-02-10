@@ -14,7 +14,7 @@ from django.db.models import Q
 from django.contrib.auth.models import Group
 
 
-from .models import PublicExperience
+from .models import PublicExperience, ExperienceHistory
 
 from .forms import ShareExperienceForm
 
@@ -105,7 +105,7 @@ def view_experience(request, uuid):
         redirect('index')
 
 
-def update_public_experience_db(data, uuid, ohmember):
+def update_public_experience_db(data, uuid, ohmember, change_type="Edit"):
     """Updates the public experience database for the given uuid.
     
     If data is tagged as viewable, an experience will be updated or inserted.
@@ -119,6 +119,7 @@ def update_public_experience_db(data, uuid, ohmember):
     """
     
     if data['viewable']:
+
         
         pe = PublicExperience(experience_text=data['experience'],
             difference_text=data['wish_different'],
@@ -136,8 +137,27 @@ def update_public_experience_db(data, uuid, ohmember):
         )
         
         # .save() updates if primary key exists, inserts otherwise. 
-        pe.save()        
+        pe.save()
+
+        print(pe.experiencehistory_set.count())
+        if pe.experiencehistory_set.count() == 0:
+            change_type = "Make Public"
+
+        # Produce and add the ExperienceHistory object to the public experience
+        eh = ExperienceHistory(experience=pe,
+                                change_type = change_type, 
+                                changed_at = datetime.datetime.now(),
+                                changed_by = "ABC123",
+                                change_comments = "The quick brown fox jumps over the lazy dog")
+
+        eh.save()
+        # change_type = models.TextField()
+        # changed_at = models.DateTimeField(auto_now=True)
+        # changed_by = models.TextField()
+        # change_comments = models.TextField(default="")  
         
+        print("NEW??", datetime.datetime.now())
+        print("CHANGE TYPE = ", change_type)
     else:
         delete_PE(uuid,ohmember)
         
@@ -538,7 +558,7 @@ def moderate_experience(request, uuid):
             user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
             upload(data, uuid, ohmember=user_OH_member)
             # update the PE object 
-            update_public_experience_db(data, uuid, ohmember=user_OH_member)
+            update_public_experience_db(data, uuid, ohmember=user_OH_member, change_type="Moderate")
 
             # redirect to a new URL:
             return redirect('main:confirm_page')
