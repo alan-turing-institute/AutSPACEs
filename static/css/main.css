@@ -1,0 +1,486 @@
+/* GENERAL DECLARATIONS */
+
+* {
+    font-family: 'Poppins', 'PT-Serif';
+    font-weight: 400;
+  }
+
+body {
+    position: relative;
+}
+
+
+/* ABOUT US PAGE */
+
+#content-bar {
+ padding: 2% 0 0% 5%;
+ position: fixed;
+}
+
+.content-tile {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.list-group-item-action{
+  font-size: 1em;
+}
+
+.text-info {
+    font-size: 2.5em;
+    font-weight: bold;
+  padding-bottom: 2%;
+}
+
+.platform-list-title {
+  font-size: 1.5rem;
+}
+
+
+/* FOOTER */
+
+#footer {
+  background: #F2F2F2;
+  padding: 2% 5%;
+  color:#000;
+}
+
+.footer-image {
+  margin-bottom: 7%;
+}
+
+.footer-text {
+  text-align: left;
+  padding-right: 2%;
+}
+
+.footer-text p {
+  padding-top: 1%;
+  line-height: 0.5;
+  font-size: 16px;
+}
+
+
+/* NAVIGATION BAR */
+
+.nav-section {
+  padding-top: 1%;
+  background: #1BB5AF;
+}
+
+ .nav-content {
+   font-weight: bold;
+
+   font-size: 1.3rem;
+ }
+
+ .nav-item {
+   padding: 0 25px;
+ }
+ .nav-link:hover {
+   color:#000 !important;
+ }
+
+
+ /* LANDING PAGE */
+ /*Headings*/
+ .big-heading {
+   font-size: 5rem;
+   font-weight: bold;
+ }
+ .section-heading {
+   font-size: 3rem;
+   font-weight: bold;
+ }
+ .value-heading {
+   font-size: 2rem;
+   line-height: 2;
+   font-weight: bold;
+   padding-bottom: 3%;
+ }
+ .experience-heading {
+   font-size: 2rem;
+   line-height: 2;
+   font-weight: bold;
+ }
+ .usage-heading {
+   font-size: 2rem;
+   line-height: 1.5;
+   font-weight: bold;
+   text-align: center;
+ }
+
+ /*Introduction Section*/
+ .intro {
+   padding: 2% 5% 3%;
+      background: #1BB5AF;
+   color: #fff;
+ }
+
+ .title-text {
+   font-size: 2rem;
+   line-height: 2;
+   font-weight: bold;
+   padding-bottom: 3%;
+ }
+ .title-image {
+   padding-top: 2%;
+   width: 75%;
+   margin-left: 25%;
+   border-radius: 5%;
+ }
+
+
+ /*Value Section*/
+ #value {
+   padding: 4% 5%;
+   color: #309FDC;
+ }
+ .value-text {
+   line-height: 2;
+   font-size: 20px;
+ }
+ .value-box {
+   text-align: center;
+   padding: 1%;
+ }
+
+ /*What Autism is Section*/
+ #autism {
+   padding: 3% 5%;
+   color: #309FDC;
+ }
+ .autism-text {
+   line-height: 2;
+ }
+
+ /*Shared Experience Section*/
+ #experience {
+   padding:  4% 5%;
+   color: #309FDC;
+ }
+ .experience-content {
+   color: #8f8f8f;
+   line-height: 1.5;
+   font-size: 20px;
+ }
+ .experience-image {
+   width: 50%;
+   padding-top: 2%;
+   padding-right: 5%;
+   padding-left: 6%;
+ }
+
+ .carousel-item {
+   padding: 5% 5%;
+   height: 500px;
+ }
+
+ .carousel-control-next,
+ .carousel-control-prev {
+   filter: invert(100%);
+   width: 5%
+ }
+ .carousel-control-prev-icon {
+   position: relative;
+   bottom: 20px;
+   left: 0px;
+}
+
+ .carousel-indicators {
+   filter: invert(100%);
+ }
+
+ /*How to Use the Platform Section*/
+ #platform_usage {
+   background: #F1806F;
+   padding: 4% 5%;
+   color: #ffffff;
+ }
+ .platform-title  {
+   padding-bottom: 5%;
+ }
+
+
+ .platform-left-border {
+   margin-left: 8%;
+ }
+.usage-icon{
+  color: #fff;
+}
+ .platform-button {
+   margin-top: 5%;
+  }
+ /*CTA Section*/
+ #cta {
+   background: #F9BB33;
+   padding: 4% 5%;
+   color: #fff;
+ }
+
+ .cta-card {
+   padding: 3% 2%;
+   text-align: center;
+   font-size: 18px;
+   line-height: 1.5;
+ }
+
+ .cta-header, .card-text {
+   color: #000;
+ }
+
+ /*Responsive Design*/
+ @media (max-width: 992px) {
+
+   .big-heading {
+     text-align: center;
+   }
+   .title-image {
+     margin-left: 0;
+   }
+
+   #value {
+     padding: 2% 0;
+   }
+
+   .value-box {
+     padding: 2%;
+   }
+
+   .value-box p {
+     font-size: 1.5rem;
+   }
+ }
+
+
+/*MY STORIES PAGE*/
+
+.story-container {
+  padding: 3% 5%;
+  background-color: #F9BB33;
+  color: #fff;
+}
+
+.intro-text {
+  font-size: 1.5rem;
+  line-height: 2;
+  font-weight: bold;
+}
+
+.story-head {
+  color: #fff;
+  text-align: center !important;
+}
+
+.list-item {
+  line-height: 2;
+}
+
+.process {
+  background-color: #309FDC !important;
+}
+
+.submitted {
+  background-color: #F1806F !important;
+}
+
+.messages {
+  background-color: #1BB5AF !important;
+}
+
+.story-dashboard {
+  padding: 3% 5%;
+}
+
+.dashboard-heading {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.story-table-container {
+  padding: 3% 3%;
+  margin-bottom: 3%;
+}
+
+
+.contact-btn {
+  padding: 3% 0;
+  margin-right: 2%;
+}
+
+.number-th {
+  width: 5%;
+}
+
+.title-th {
+  width: 40% !important;
+}
+
+.contributor-th, .submission-date-th, .moderation-date-th {
+  width: 15%;
+}
+
+.view-btn {
+  margin-top: 6%;
+  margin-bottom: 2%;
+}
+
+.status-th {
+  width: 30%
+}
+
+.mystory-ul {
+  padding-left: 20px;
+}
+
+.mystory-table {
+  margin: 0 2%;
+}
+
+
+/*PUBLIC EXPERIENCES INDEX*/
+
+
+.experience-intro {
+  background: #309FDC;
+  padding: 3% 5% 3%;
+  color: #fff;
+}
+
+.story-header {
+  color: #F1806F;
+  font-size: 2rem;
+  line-height: 2;
+  font-weight: bold;
+}
+
+.search {
+  padding: 3% 0%;
+}
+
+
+.story-card-title {
+  color: #F1806F;
+  line-height: 2;
+  padding: 0 2%;
+}
+
+.story-card-text {
+  color: #000000;
+  line-height: 2;
+  padding: 0 2%;
+}
+
+.story-text {
+  padding: 2% 11% 3%;
+    text-align: cetner;
+}
+
+.story {
+  padding: 2% 3%;
+  color: #309FDC;
+}
+
+
+.non-triggering-label{
+  font-size: 1rem;
+      font-weight: bold;
+}
+
+/* SHARE STORY PAGE */
+
+.story-section {
+  padding: 3% 5%;
+}
+
+.form-group {
+  padding: 1% 0;
+}
+
+  .read-before-container {
+    padding-top: 2%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+.coc-btn {
+  margin-bottom: 3%;
+}
+
+/* SHARING CONFIRMATION */
+
+.what-now-section {
+  background-color: #309FDC;
+}
+
+.what-now-text {
+  padding: 2% 5%;
+  line-height: 1.5;
+  font-size: 18px;
+  color: #fff;
+}
+
+.confirmation-container {
+  padding: 3% 5% 1% 5%;
+}
+
+.to-do-container {
+  padding: 3% 5% 1% 5%;
+}
+
+.to-do-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1BB5AF;
+}
+
+.confirmation-title-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 1%;
+  color: #F9BB33;
+}
+
+.title-text-yellow {
+  color: #F9BB33;
+}
+
+.confirmation-section-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 2% 5% 0% 5%;
+  color: #fff;
+}
+
+
+
+.btn-class-confirmationpage {
+  padding: 2% 0;
+}
+
+
+.btn-confirmationpage {
+  width: autho;
+  margin: 0 1%;
+}
+
+/* MODERATION PAGE */
+
+#moderation-intro {
+  padding: 3% 5% ;
+}
+
+/* REGISTRATION PAGE */
+#registration-intro {
+  padding: 3% 5%;
+  background-color: #F1806F;
+  color: #fff;
+}
+
+.registration-text-container {
+  margin: 4% 0;
+}
+.registration-text {
+  line-height: 2;
+  font-size: 20px;
+
+}

@@ -7,7 +7,7 @@ import uuid
 import requests
 from django.conf import settings
 from django.contrib.auth import login, logout
-from django.forms.models import model_to_dict 
+from django.forms.models import model_to_dict
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 from django.db.models import Q
@@ -53,61 +53,66 @@ def logout_user(request):
 
 def share_experience(request, uuid=False):
     # if this is a POST request we need to process the form data
-    if request.user.is_authenticated: 
-        
-        if request.method == 'POST':    
+    if request.user.is_authenticated:
+
+        if request.method == 'POST':
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
 
             if form.is_valid():
-                
-                if uuid: 
-                    # we will be here if we are editing a record that already exists               
+
+                if uuid:
+                    # we will be here if we are editing a record that already exists
                     # for OH we need to Delete before reupload.
                     request.user.openhumansmember.delete_single_file(file_basename = f"{uuid}.json")
-                
+
                 else:
                     uuid = make_uuid()
-                                
-                upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)                
-                
+
+                upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)
+
                 # for Public Experience we need to check if it's viewable and update accordingly.
-                update_public_experience_db(data=form.cleaned_data, uuid=uuid, ohmember=request.user.openhumansmember)                
-                
+                update_public_experience_db(data=form.cleaned_data, uuid=uuid, ohmember=request.user.openhumansmember)
+
                 # redirect to a new URL:
                 return redirect('main:confirm_page')
 
         # if a GET (or any other method) we'll create a blank form
         else:
-        
+
             if uuid:
                 # return data from oh.
                 data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
                 form = ShareExperienceForm(data["metadata"]["data"])
-                
+                title = "Edit experience"
+
             else:
                 form = ShareExperienceForm()
-                
-            return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid})    
-    
-    else:    
+                title = "Share experience"
+
+            return render(request, 'main/share_experiences.html',
+                        {'form': form, 'uuid':uuid, 'title': title})
+
+    else:
         return redirect('index')
-    
+
 def view_experience(request, uuid):
-    
-    if request.user.is_authenticated:        
+
+    if request.user.is_authenticated:
         # return data from oh.
         data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
         form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
-        return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'readonly':True, 'show_moderation_status':True})  
+        return render(request, 'main/share_experiences.html',
+            {'form': form, 'uuid':uuid,
+            'readonly':True, 'show_moderation_status':True, 'title': 'View experience'})
     else:
         redirect('index')
 
 
 def update_public_experience_db(data, uuid, ohmember):
     """Updates the public experience database for the given uuid.
-    
+
     If data is tagged as viewable, an experience will be updated or inserted.
     If a data is tagged as not public, this function ensures that it is absent from the pe db.
 
@@ -117,24 +122,24 @@ def update_public_experience_db(data, uuid, ohmember):
         ohmember : request.user.openhumansmember
         moderation_status (str, optional): Defaults to 'in review'.
     """
-    
+
     if data.pop('viewable',False):
         data.pop('open_humans_member', None) # Remove from dict as needs to be an object not string
         
         pe = PublicExperience( open_humans_member=ohmember, **data)
         
         # .save() updates if primary key exists, inserts otherwise. 
-        pe.save()        
+        pe.save()     
         
     else:
         delete_PE(uuid,ohmember)
-        
-            
+
+
 def delete_PE(uuid, ohmember):
     if PublicExperience.objects.filter(experience_id=uuid, open_humans_member=ohmember).exists():
             PublicExperience.objects.get(experience_id=uuid, open_humans_member=ohmember).delete()
-        
-    
+
+
 def make_uuid():
     return str(uuid.uuid1())
 
@@ -146,24 +151,25 @@ def upload(data, uuid, ohmember):
         uuid (str): unique identifier
         ohmember : request.user.openhumansmember
     """
-    
+
     output_json = {
             'data': data,
             'timestamp': str(datetime.datetime.now())}
-    
+
     # by saving the output json into metadata we can access the fields easily through request.user.openhumansmember.list_files().
     metadata = {
+
         'uuid': uuid,   
         'description': data.get('title_text'),
         'tags': make_tags(data),
         **output_json,
         }
-    
+
     # create stream for oh upload
     output = io.StringIO()
     output.write(json.dumps(output_json))
     output.seek(0)
-            
+
 
     ohmember.upload(
         stream=output,
@@ -172,7 +178,7 @@ def upload(data, uuid, ohmember):
 
 def make_tags(data):
     """builds list of tags based on data"""
-    
+
     tag_map = {'viewable': {'True':'public',
                             'False':'not public'},
                'research': {'True':'research',
@@ -190,47 +196,47 @@ def make_tags(data):
                 'moderation_status': {'True': '',
                             'False': 'in review'}
                             }
-    
-    tags = [tag_map[k].get(str(v)) 
-            for k,v in data.items() 
+
+    tags = [tag_map[k].get(str(v))
+            for k,v in data.items()
             if k in tag_map.keys()]
     if data["other"] != '':
         tags.append("Other triggering label")
-    
+
     return tags
-    
+
 def delete_experience(request, uuid, title):
     # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
-    
+
     if request.user.is_authenticated:
-    
+
         if request.method == 'POST':
-        
+
             delete_single_file(uuid = uuid,
                                ohmember = request.user.openhumansmember)
-            
-                
+
+
             return render(request, 'main/deletion_success.html', {"title":title})
-        
+
         else:
             return render(request, 'main/deletion_confirmation.html', {"title": title,
                                                                        "uuid": uuid})
-    else:    
+    else:
         return redirect('index')
-        
-    
+
+
 def delete_single_file(uuid, ohmember):
     """Deletes a given file id and uuid from openhumans and ensures absence from local PublicExperiences database.
 
     Args:
-        
+
         uuid (str): unique identifier, used for PublicExperience primary key and for OpenHumans filename.
         ohmember : request.user.openhumansmember
     """
 
     ohmember.delete_single_file(file_basename=f"{uuid}.json")
     delete_PE(uuid,ohmember)
-    
+
 def get_oh_file(ohmember, uuid):
     """Returns a single file from OpenHumans, filtered by uuid.
 
@@ -246,14 +252,14 @@ def get_oh_file(ohmember, uuid):
     """
     files = ohmember.list_files()
     file = [f for f in files if f["metadata"]["uuid"]==uuid]
-    
+
     if len(file)==0:
         file=None
     elif len(file)>1:
         raise Exception("duplicate uuids in open humans")
-    
+
     return file[0]
-    
+
 
 
 def list_files(request):
@@ -266,36 +272,36 @@ def list_files(request):
 
 def list_public_experiences(request):
     """
-    
+
     Returns, in the context, experiences that are 1) listed public, 2) approved, 3) searched, 4) abide by triggering label toggle.
-    
+
     """
-    
+
     experiences = PublicExperience.objects.filter(moderation_status='approved')
-    
+
     # Check to see if a search has been performed
     searched = request.GET.get('searched', False)
 
     # Only search through approved stories
     if searched:
-            
-        # search within all approved stories regardless of triggering status    
-        
+
+        # search within all approved stories regardless of triggering status
+
         experiences = experiences.filter(Q(title_text__icontains = searched) |
-                                         Q(experience_text__icontains = searched) | 
-                                         Q(difference_text__icontains = searched))  
-        
+                                         Q(experience_text__icontains = searched) |
+                                         Q(difference_text__icontains = searched))
+
     # If the triggering stories flag is checked - perform an additional filter to remove triggering stories
     trigger_label = request.GET.get('triggering_stories', False)
-    
-    if trigger_label:    
-        experiences = experiences.filter(Q(abuse = False) & 
-                                         Q(violence = False) & 
-                                         Q(drug = False) & 
-                                         Q(mentalhealth = False) & 
-                                         Q(negbody = False) & 
+
+    if trigger_label:
+        experiences = experiences.filter(Q(abuse = False) &
+                                         Q(violence = False) &
+                                         Q(drug = False) &
+                                         Q(mentalhealth = False) &
+                                         Q(negbody = False) &
                                          Q(other = ""))
-    
+
     # Standard page showing all moderated stories
     return render(
         request,
@@ -441,12 +447,12 @@ def get_review_status(files):
     Returns:
         statuses (dict): counts of moderation statuses
     """
-        
-        
+
+
     status_list = [f['metadata']['data']['moderation_status'].replace(' ','_') for f in files if f['metadata']['data']['viewable']]
 
     statuses = {f"n_{s}":status_list.count(s) for s in set(status_list)}
-    
+
     statuses["n_viewable"] = len(status_list)
     statuses["n_moderated"] = status_list.count('approved') + status_list.count('rejected')
 
@@ -507,7 +513,7 @@ def process_enabled_form_keys(form):
     print(form.data.keys())
     return {k: form.cleaned_data[k] for k in form.data.keys() if k != 'csrfmiddlewaretoken'}
 
-    
+
 
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):
@@ -525,15 +531,17 @@ def moderate_experience(request, uuid):
             user_OH_member = model.open_humans_member
             user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
             upload(data, uuid, ohmember=user_OH_member)
-            # update the PE object 
+            # update the PE object
             update_public_experience_db(data, uuid, ohmember=user_OH_member)
 
             # redirect to a new URL:
             return redirect('main:confirm_page')
-            
+
         else:
             form = model_to_form(model, disable_moderator=True)
-            return render(request, 'main/share_experiences.html', {'form': form, 'uuid':uuid, 'show_moderation_status':True})  
+            return render(request, 'main/share_experiences.html',
+                {'form': form, 'uuid':uuid,
+                'show_moderation_status':True, 'title': "Moderate experience"})
     else:
         redirect('index')
 
@@ -549,12 +557,10 @@ def model_to_form(model, disable_moderator = False):
 
 def is_moderator(user):
   """return membership of moderator group"""
-  
+
   try:
     group = Group.objects.get(user=user)
     return (group.name == "Moderators")
-  
+
   except Group.DoesNotExist:
     return False
-
-    
