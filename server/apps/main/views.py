@@ -125,8 +125,9 @@ def update_public_experience_db(data, uuid, ohmember):
 
     if data.pop('viewable',False):
         data.pop('open_humans_member', None) # Remove from dict as needs to be an object not string
+        data.pop('experience_id', None) # Remove from dict as needs to be an object not string
         
-        pe = PublicExperience( open_humans_member=ohmember, **data)
+        pe = PublicExperience(open_humans_member=ohmember, experience_id=uuid, **data)
         
         # .save() updates if primary key exists, inserts otherwise. 
         pe.save()     
