@@ -1,43 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - Experience saved! 🎉 {% endblock %}
 
 {% load static %}
+{% load custom_tags %}
+{% load humanize %}
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+{% block content %}
 
-  <!-- Bootstrap CSS -->
-  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-
-  <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-
-  <!--  Stylesheet-->
-  <link href="{% static '/css/confirmation_page.css' %}" rel="stylesheet">
-  <title>View Stories</title>
-</head>
-<body>
-{% include 'main/partials/navigation.html' %}
 
 <section class="confirmation">
   <div class="confirmation-container">
     <div class="confirm_success">
-      <h1 class="big-heading">
+      <h1 class="big-heading title-text-yellow">
         Success!
       </h1>
 
-      <p class="title-text">
+      <p class="confirmation-title-text">
         Thank you for sharing your experience.
       </p>
     </div>
  </div>
     <div class="what-now-section">
-      <p class="section-heading">
+      <p class="confirmation-section-heading">
         What happens now ?</p>
       <div class="what-now-text">
           <ul>
@@ -62,21 +47,21 @@
         What would you like to do next ?
       </p>
 
-      <div class="btn-class">
+      <div class="btn-class btn-class-confirmationpage">
         <a href="{% url 'main:share_exp' %}">
-          <button class="btn btn-outline-primary btn-lg" type="button">Enter Another Experience</button>
+          <button class="btn btn-outline-primary btn-lg btn-confirmationpage" type="button">Enter Another Experience</button>
         </a>
 
         <a href="{% url 'main:my_stories' %}">
-          <button class="btn btn-outline-primary btn-lg" type="button">Go To My Stories</button>
+          <button class="btn btn-outline-primary btn-lg btn-confirmationpage" type="button">Go To My Stories</button>
         </a>
 
         <a href="{% url 'main:public_experiences' %}">
-          <button class="btn btn-outline-primary btn-lg" type="button">View Other Stories</button>
+          <button class="btn btn-outline-primary btn-lg btn-confirmationpage" type="button">View Other Stories</button>
         </a>
 
         <a href="{% url 'main:about_us' %}">
-          <button class="btn btn-outline-primary btn-lg" type="button">Find Out More About AutSPACEs</button>
+          <button class="btn btn-outline-primary btn-lg btn-confirmationpage" type="button">Find Out More About AutSPACEs</button>
         </a>
 
       </div>
@@ -85,14 +70,5 @@
 
 </section>
 </div>
-<!--Footer-->
-<section id="footer">
-  {% include 'main/partials/footer.html'%}
-</section>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-{% include 'main/partials/jquery.html' %}
 
-</html>
-
-</html>
+{% endblock %}

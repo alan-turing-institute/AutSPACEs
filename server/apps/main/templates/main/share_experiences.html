@@ -1,36 +1,12 @@
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - {{title}} {% endblock %}
+
 {% load static %}
 {% load custom_tags %}
+{% load humanize %}
 
-<!DOCTYPE html>
-<html lang="en">
 {% block content %}
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8"/>
-  <meta
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    name="viewport"
-  />
-  <!-- Bootstrap CSS -->
-  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-
-  <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-
-  <!--    Stylesheet-->
-  <link href="{% static '/css/sharestories.css' %}" rel="stylesheet">
-  <title>Share Stories</title>
-</head>
-
-<body>
-<!--  Intro-->
-<section id="intro">
-  {% include 'main/partials/navigation.html' %}
-</section>
 
 <!--Share Experiences Form-->
 <section id="share-form">
@@ -178,18 +154,18 @@
   {% endif %}
     {% csrf_token %}
     {% regroup form by field.group as field_groups %}
-    
+
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
-        {% if show_moderation_status %} 
+        {% if show_moderation_status %}
           <div class="form-group">
-            <h3><label>Moderation Status</label></label></h3>
+            <h3><label>Moderation Status</label></h3>
             <div class="row">
             {% for field in group.list %} {{ field }}{% endfor %}
            </div>
         {% endif %}
       {% elif group.grouper == 1 %}
-  
+
         {% for field in group.list %}
         <div class="form-group">
           <h3><label for="{{ field.auto_id }}">{{ field.label }}</label></h3>
@@ -198,56 +174,57 @@
         {% endfor %}
 
       {% else %}
-        {% if group.grouper == 2 %}{% define "Triggering Labels" as header %} {% endif %}
-        {% if group.grouper == 3 %}{% define "Sharing Options" as header %} {% endif %}
+        {% if group.grouper == 2 %}
+          {% define "Sensitive topics" as header %}
+          {% define "Please indicate if your experience covers a sensitive topic by selecting from the trigger labels below" as subheader %}
+        {% endif %}
+        {% if group.grouper == 3 %}
+          {% define "Sharing Options" as header %}
+          {% define "Please indicate if you want to share your experience" as subheader %}
+        {% endif %}
         <div class="form-group">
-          <h3><label>{{ header }}</label></label></h3>
+          <h3><label>{{ header }}</label></h3>
+
+          <h5>{{ subheader }}</h5>
+
           <div class="row">
           {% for field in group.list %}
-          
+
             <div class="form-check col-lg-6">
               {% if field.label == "Other"%}
                 <label for="{{ field.auto_id }}">{{ field.label }}:</label>
                 {{field}}
               {% else %}
-                {{ field }}    
+                {{ field }}
                 <label for="{{ field.auto_id }}">{{ field.label }}</label>
               {% endif %}
-            
+
             </div>
-         
+
           {% endfor %}
          </div>
         </div>
-      
+
       {% endif %}
     {% endfor %}
-    
+
     {% if readonly %}
       </form>
-      <div class="form-group">  
-        <a href="{% url 'main:edit_exp' uuid %}">
-          <button class="btn btn-primary btn-lg float-right">Edit</button>
-        </a>
-      </div>    
+    </div>
+    <div class="form-group">
+      <a href="{% url 'main:edit_exp' uuid %}">
+        <button class="btn btn-primary btn-lg float-right">Edit</button>
+      </a>
+    </div>
     {% else %}
-      <div class='form-group'>  
+      <div class='form-group'>
         <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
       </div>
-    </form>    
-    {% endif %}
+    </form>
   </div>
+    {% endif %}
+
 
 </section>
-<!--Footer-->
-<section id="footer">
-  {% include 'main/partials/footer.html'%}
-</section>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="{% static '/js/sharestories.js' %}"></script>
-{% include 'main/partials/jquery.html' %}
-
-</html>
 
 {% endblock %}

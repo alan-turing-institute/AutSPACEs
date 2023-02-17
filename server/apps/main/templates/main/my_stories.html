@@ -1,111 +1,91 @@
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - My Experiences {% endblock %}
+
 {% load static %}
 {% load custom_tags %}
 {% load humanize %}
-<!DOCTYPE html>
-<html lang="en">
 
 {% block content %}
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-
-  <!-- Bootstrap CSS -->
-  <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
-
-  <!--Google Fonts-->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
-        rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-
-  <!--  Stylesheet-->
-  <link href="{% static '/css/story.css' %}" rel="stylesheet">
-  <title>View Stories</title>
-</head>
-
-<body>
-<section id="intro">
-{% include 'main/partials/navigation.html' %}
-</section>
-
 <section id="mystory">
-  <div class="story-container">
-    <p class="big-heading">
-      My Stories
-    </p>
-    <p class="intro-text">
-      Welcome to your personal AutSPACEs page. Here you can:
-    </p>
 
-    <ul class="can_do">
-      <li class="list-item">See the experiences you have saved and submitted.
-      </li>
-      <li class="list-item">Change sharing permissions for your experiences.
-      </li>
-    </ul>
-  </div>
 
-  <div class="story-dashboard">
-    <p class="dashboard-heading">
-      Stories Dashboard
-    </p>
+      <div class="story-container">
+        <p class="big-heading">
+          My Stories
+        </p>
+        <p class="intro-text">
+          Welcome to your personal AutSPACEs page. Here you can:
+        </p>
 
-    <div class="row story-card-row">
-      <div class="story-card col-lg-4">
-        <div class="card">
-          <h3 class="story-head card-header process">In Process</h3>
-          <div class="card-body">
-            <ul>
-              <li class="list-item"><p class="card-text">Waiting:<span> {% firstof n_not_reviewed 0|floatformat %} {% toggle_story n_not_reviewed %}
-              </span></p></li>
-              <li class="list-item"><p class="card-text">Moderating:<span> {% firstof n_in_review 0|floatformat %} {% toggle_story n_in_review %}
-              </span></p></li>
-              
+        <ul class="mystory-ul" class="can_do">
+          <li class="list-item">See the experiences you have saved and submitted.
+          </li>
+          <li class="list-item">Change sharing permissions for your experiences.
+          </li>
+        </ul>
+      </div>
 
-            </ul>
+      <div class="story-dashboard">
+        <p class="dashboard-heading">
+          Stories Dashboard
+        </p>
+
+        <div class="row story-card-row">
+          <div class="story-card col-lg-4">
+            <div class="card">
+              <h3 class="story-head card-header process">In Process</h3>
+              <div class="card-body">
+                <ul class="mystory-ul">
+                  <li class="list-item"><p class="card-text">Waiting:<strong> {% firstof n_not_reviewed 0|floatformat %} {% toggle_story n_not_reviewed %}
+                  </strong></p></li>
+                  <li class="list-item"><p class="card-text">Moderating:<strong> {% firstof n_in_review 0|floatformat %} {% toggle_story n_in_review %}
+                  </strong></p></li>
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="story-card col-lg-4">
+            <div class="card">
+              <h3 class="story-head card-header submitted">Moderated</h3>
+              <div class="card-body">
+                <ul class="mystory-ul">
+                  <li class="list-item"><p class="card-text">Moderated:<strong> {% firstof n_moderated 0|floatformat %} {% toggle_story n_moderated %}
+                  </strong></p></li>
+                  <li class="list-item"><p class="card-text">Approved:<strong> {% firstof n_approved 0|floatformat %} {% toggle_story n_approved %}
+                  </strong></p></li>
+                  <li class="list-item"><p class="card-text">Rejected:<strong> {% firstof n_rejected 0|floatformat %} {% toggle_story n_rejected %}
+                  </strong></p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="story-card col-lg-4 message-card">
+            <div class="card">
+              <h3 class="story-head card-header messages">Messages</h3>
+              <div class="card-body">
+                <ul class="mystory-ul">
+                  <li><p class="card-text">Your story<strong>"Traffic Lights"</strong> have been accepted.</p></li>
+                </ul>
+                <a
+                  class="btn btn-outline-info float-right view-btn"
+                  href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
+                  target="_blank">View Here
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="story-card col-lg-4">
-        <div class="card">
-          <h3 class="story-head card-header submitted">Moderated</h3>
-          <div class="card-body">
-            <ul>
-              <li class="list-item"><p class="card-text">Moderated:<span> {% firstof n_moderated 0|floatformat %} {% toggle_story n_moderated %}
-              </span></p></li>
-              <li class="list-item"><p class="card-text">Approved:<span> {% firstof n_approved 0|floatformat %} {% toggle_story n_approved %}
-              </span></p></li>
-              <li class="list-item"><p class="card-text">Rejected:<span> {% firstof n_rejected 0|floatformat %} {% toggle_story n_rejected %}
-              </span></p></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="story-card col-lg-4 message-card">
-        <div class="card">
-          <h3 class="story-head card-header messages">Messages</h3>
-          <div class="card-body">
-            <ul>
-              <li><p class="card-text">Your story<span>"Traffic Lights"</span> have been accepted.</p></li>
-            </ul>
-            <a
-              class="btn btn-outline-info float-right view-btn"
-              href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
-              target="_blank">View Here
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </section>
+
 <section id="story-table">
   {% define 'viewable, public, not public, research, non-research' as sharing_tags %}
   <div class="story-table-container">
-    <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
+    <table class="table table-responsive-lg table-hover table-striped mystory-table" style="width:auto">
       <thead>
       <tr>
         <th class="number-th" scope="col">Nr.</th>
@@ -121,12 +101,12 @@
       {% for file in files %}
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{% firstof file.metadata.data.title "notitle" %}</td>
+        <td>{% firstof file.metadata.description "notitle" %}</td>
         <td>{% firstof file.created|naturaltime "Creation date unknown" %}</td>
         <td>
           {% for tag in file.metadata.tags %}
             {% if tag in sharing_tags %}
-              <span class="badge">{{ tag }}</span>
+              <strong class="badge">{{ tag }}</strong>
             {%endif%}
           {% endfor %}
       </td>
@@ -136,28 +116,25 @@
       <td>
         {% for tag in file.metadata.tags %}
           {% if tag not in sharing_tags %}
-            <span class="badge">{{ tag }}</span>
+            <strong class="badge">{{ tag }}</strong>
           {%endif%}
         {% endfor %}
       </td>
       <td>
-        <a href="{% url 'main:view_exp' file.metadata.uuid %}">
-          <button class="btn btn-light">View</button>
+        <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
+          View
         </a>
     </td>
       <td>
-        <a href="{% url 'main:edit_exp' file.metadata.uuid %}">
-          <button class="btn btn-primary">Edit</button>
+        <a href="{% url 'main:edit_exp' file.metadata.uuid %}" class="btn btn-primary">
+          Edit
         </a>
     </td>
       <td>
-          <a href="{{ file.download_url }}" class="btn btn-secondary btn-sm" target="_blank">Download</a>
+          <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
       </td>
       <td>
-        <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.data.title %}">
-          <button class="btn btn-danger">Delete</button>
-        </a>
-
+        <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.description %}" class="btn btn-danger">Delete</a>
       </td>
       </tr>
       {% empty %}
@@ -175,14 +152,4 @@
           </div>
 
 </section>
-
-
-<section id="footer">
-  {% include 'main/partials/footer.html'%}
-</section>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-{% include 'main/partials/jquery.html' %}
-
-</html>
 {% endblock %}
