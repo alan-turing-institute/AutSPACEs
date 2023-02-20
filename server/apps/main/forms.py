@@ -82,27 +82,7 @@ class ShareExperienceForm(forms.Form):
 
 class ModerateExperienceForm(forms.Form):
         
-    experience_text = forms.CharField(label='Please share your experience', max_length=500, strip=True,
-                                 widget=forms.Textarea(attrs={'placeholder':'Write your experience here, you can take as much or little space as you need.',
-                                                              'rows':'4',
-                                                              'class':'form-control'}))
-    experience_text.group = 1
-    difference_text = forms.CharField(label='What could have made your experience better?',
-                                     strip=True, max_length=500,
-                                     widget=forms.Textarea(attrs={'placeholder':'Do you have anything that you would want to have changed to make it better? Or do you have any tips for others who may experience the same thing?',
-                                                              'rows':'4',
-                                                              'class':'form-control'}))
-    difference_text.group = 1
-    title_text = forms.CharField(label='Choose a title for your story', 
-                            strip=True,
-                            max_length=150,
-                            widget=forms.TextInput(attrs={'placeholder':'Title',
-                                                          'class':'form-control'}))
-    title_text.group = 1
-    
-    
-    
-    # add triggering here
+    # trigger labels
     abuse = forms.BooleanField(label = 'Abuse (physical, sexual, emotional and verbal)', required=False)
     abuse.group = 2
     violence = forms.BooleanField(label = 'Violence and Assault', required=False)
@@ -120,13 +100,7 @@ class ModerateExperienceForm(forms.Form):
                             widget=forms.TextInput(), required=False)
     other.group = 2
 
-    # sharing options
-    viewable = forms.BooleanField(label = "Share on AutSPACE website", required=False)
-    viewable.group = 3
-    research = forms.BooleanField(label = "Share for research", required=False)
-    research.group = 3
-
-    # hidden field for moderation status
+    # moderation options 
     statuses = [
         ("not reviewed", "not reviewed"),
         ("in review", "in review"),

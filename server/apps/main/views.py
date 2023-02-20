@@ -572,9 +572,16 @@ def moderate_experience(request, uuid):
             return redirect('main:confirm_page')
 
         else:
+            experience_title = model.title_text
+            experience_text = model.experience_text
+            experience_difference = model.difference_text
+            experience_history = model.experiencehistory_set.all().order_by('changed_at')
+
             form = model_to_form(model, disable_moderator=True)
-            return render(request, 'main/share_experiences.html',
-                {'form': form, 'uuid':uuid,
+            return render(request, 'main/moderate_experience.html',
+                {'form': form, 'uuid':uuid, "experience_title": experience_title,
+                 'experience_text': experience_text, 'experience_difference': experience_difference,
+                 'experience_history': experience_history,
                 'show_moderation_status':True, 'title': "Moderate experience"})
     else:
         redirect('index')
