@@ -56,12 +56,6 @@ class ShareExperienceForm(forms.Form):
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
 
-    moderation_comments = forms.CharField(label='Moderator comments', max_length=500, strip=True, required=False,
-                                 widget=forms.Textarea(attrs={'placeholder':'Moderator comments go here',
-                                                              'rows':'4',
-                                                              'class':'form-control'}))
-    moderation_comments.group = "hidden"
-
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
 
@@ -142,11 +136,11 @@ class ModerateExperienceForm(forms.Form):
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
 
-    # moderation_comments = forms.CharField(label='Moderator comments', max_length=500, strip=True, required=False,
-    #                              widget=forms.Textarea(attrs={'placeholder':'Moderator comments go here',
-    #                                                           'rows':'4',
-    #                                                           'class':'form-control'}))
-    # moderation_comments.group = "hidden"
+    moderation_comments = forms.CharField(label='Moderator comments', max_length=500, strip=True, required=False,
+                                 widget=forms.Textarea(attrs={'placeholder':'Moderator comments go here',
+                                                              'rows':'4',
+                                                              'class':'form-control'}))
+    moderation_comments.group = "hidden"
 
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""

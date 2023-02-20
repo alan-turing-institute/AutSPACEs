@@ -582,7 +582,7 @@ def moderate_experience(request, uuid):
 def model_to_form(model, disable_moderator = False):
     model_dict = model_to_dict(model)
 
-    form = ShareExperienceForm({**model_dict,
+    form = ModerateExperienceForm({**model_dict,
         "viewable":True #we only moderate public experiences
     }, disable_moderator=disable_moderator)
 
