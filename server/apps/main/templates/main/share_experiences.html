@@ -158,11 +158,12 @@
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
         {% if show_moderation_status %}
+          {% for field in group.list %}
           <div class="form-group">
-            <h3><label>Moderation Status</label></h3>
-            <div class="row">
-            {% for field in group.list %} {{ field }}{% endfor %}
+            <h3><label for="{{ field.auto_id}}">{{ field.label }}</label></h3>
+            {{ field }}
            </div>
+           {% endfor %}
         {% endif %}
       {% elif group.grouper == 1 %}
 
