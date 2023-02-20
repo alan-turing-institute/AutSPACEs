@@ -14,9 +14,9 @@ from django.db.models import Q
 from django.contrib.auth.models import Group
 
 
-from .models import PublicExperience
+from .models import PublicExperience, ExperienceHistory
 
-from .forms import ShareExperienceForm
+from .forms import ShareExperienceForm, ModerateExperienceForm
 
 logger = logging.getLogger(__name__)
 
@@ -105,12 +105,12 @@ def view_experience(request, uuid):
         form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
         return render(request, 'main/share_experiences.html',
             {'form': form, 'uuid':uuid,
-            'readonly':True, 'show_moderation_status':True, 'title': 'View experience'})
+            'readonly':True, 'show_moderation_status':False, 'title': 'View experience'})
     else:
         redirect('index')
 
 
-def update_public_experience_db(data, uuid, ohmember):
+def update_public_experience_db(data, uuid, ohmember, change_type="Edit", change_comments=None):
     """Updates the public experience database for the given uuid.
 
     If data is tagged as viewable, an experience will be updated or inserted.
@@ -126,11 +126,34 @@ def update_public_experience_db(data, uuid, ohmember):
     if data.pop('viewable',False):
         data.pop('open_humans_member', None) # Remove from dict as needs to be an object not string
         data.pop('experience_id', None) # Remove from dict as needs to be an object not string
+        data.pop('moderation_comments', None) # Only need when moderating
         
         pe = PublicExperience(open_humans_member=ohmember, experience_id=uuid, **data)
         
         # .save() updates if primary key exists, inserts otherwise. 
-        pe.save()     
+        pe.save()
+
+        print(pe.experiencehistory_set.count())
+        if pe.experiencehistory_set.count() == 0:
+            change_type = "Make Public"
+            change_comments = "Story flagged to be shared on AutSPACE website"
+        elif change_comments == None:
+            change_comments = "Story edited"
+        print("---------------------------")
+        print(change_type, change_comments)
+        print("---------------------------")
+        # Produce and add the ExperienceHistory object to the public experience
+        eh = ExperienceHistory(experience=pe,
+                                change_type = change_type, 
+                                changed_at = datetime.datetime.now(),
+                                changed_by = str(ohmember),
+                                change_comments = change_comments)
+
+        eh.save()
+        # change_type = models.TextField()
+        # changed_at = models.DateTimeField(auto_now=True)
+        # changed_by = models.TextField()
+        # change_comments = models.TextField(default="")  
         
     else:
         delete_PE(uuid,ohmember)
@@ -312,6 +335,7 @@ def list_public_experiences(request):
 
 def moderate_public_experiences(request):
     if request.user.is_authenticated and is_moderator(request.user):
+        print(PublicExperience.objects.all())
         unreviewed_experiences = PublicExperience.objects.filter(moderation_status='not reviewed')
         previously_reviewed_experiences = PublicExperience.objects.filter(~Q(moderation_status='not reviewed'))
         return render(
@@ -512,7 +536,9 @@ def process_enabled_form_keys(form):
 
     form.is_valid()
     print(form.data.keys())
-    return {k: form.cleaned_data[k] for k in form.data.keys() if k != 'csrfmiddlewaretoken'}
+    print(form.data)
+
+    return {k: form.cleaned_data[k] for k in form.data.keys() if k not in ['csrfmiddlewaretoken', 'moderation_comments']}
 
 
 
@@ -521,7 +547,11 @@ def moderate_experience(request, uuid):
         model = PublicExperience.objects.get(experience_id = uuid)
         if request.method == "POST":
             # get the data from the model
-            moderated_form = ShareExperienceForm(request.POST)
+            moderated_form = ModerateExperienceForm(request.POST)
+            moderated_form.is_valid()
+            moderation_comments = moderated_form.data['moderation_comments']
+
+
             unmoderated_form = model_to_form(model, disable_moderator=False)
 
             # override appropriate fields in the form
@@ -532,8 +562,11 @@ def moderate_experience(request, uuid):
             user_OH_member = model.open_humans_member
             user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
             upload(data, uuid, ohmember=user_OH_member)
-            # update the PE object
-            update_public_experience_db(data, uuid, ohmember=user_OH_member)
+
+            print(ExperienceHistory.objects.filter(experience__experience_id=uuid))
+            print(f"Moderation comments = {moderation_comments}")
+            # update the PE object 
+            update_public_experience_db(data, uuid, ohmember=user_OH_member, change_type="Moderate", change_comments = moderation_comments)
 
             # redirect to a new URL:
             return redirect('main:confirm_page')
@@ -549,7 +582,7 @@ def moderate_experience(request, uuid):
 def model_to_form(model, disable_moderator = False):
     model_dict = model_to_dict(model)
 
-    form = ShareExperienceForm({**model_dict,
+    form = ModerateExperienceForm({**model_dict,
         "viewable":True #we only moderate public experiences
     }, disable_moderator=disable_moderator)
 
