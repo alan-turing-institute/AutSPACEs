@@ -105,7 +105,7 @@ def view_experience(request, uuid):
         form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
         return render(request, 'main/share_experiences.html',
             {'form': form, 'uuid':uuid,
-            'readonly':True, 'show_moderation_status':True, 'title': 'View experience'})
+            'readonly':True, 'show_moderation_status':False, 'title': 'View experience'})
     else:
         redirect('index')
 
