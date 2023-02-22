@@ -133,15 +133,11 @@ def update_public_experience_db(data, uuid, ohmember, change_type="Edit", change
         # .save() updates if primary key exists, inserts otherwise. 
         pe.save()
 
-        print(pe.experiencehistory_set.count())
         if pe.experiencehistory_set.count() == 0:
             change_type = "Make Public"
             change_comments = "Story flagged to be shared on AutSPACE website"
         elif change_comments == None:
             change_comments = "Story edited"
-        print("---------------------------")
-        print(change_type, change_comments)
-        print("---------------------------")
         # Produce and add the ExperienceHistory object to the public experience
         eh = ExperienceHistory(experience=pe,
                                 change_type = change_type, 
@@ -335,7 +331,6 @@ def list_public_experiences(request):
 
 def moderate_public_experiences(request):
     if request.user.is_authenticated and is_moderator(request.user):
-        print(PublicExperience.objects.all())
         unreviewed_experiences = PublicExperience.objects.filter(moderation_status='not reviewed')
         previously_reviewed_experiences = PublicExperience.objects.filter(~Q(moderation_status='not reviewed'))
         return render(
@@ -350,10 +345,8 @@ def moderate_public_experiences(request):
 
 def review_experience(request, experience_id):
     experience = PublicExperience.objects.get(experience_id=experience_id)
-    print(experience)
     experience.approved = 'approved'
     experience.save()
-    print(experience.approved)
     return redirect('moderate_public_experiences')
 
 
@@ -531,16 +524,33 @@ def what_autism_is(request):
 def footer(request):
     return render(request, "main/footer.html")
 
-def process_enabled_form_keys(form):
-    """the validation overwrites some keys with defaults, so to avoid errors we only take keys that are enabled in the form"""
-
+def process_trigger_warnings(form):
+    """
+    Get the mutable trigger warnings from the data
+    """
     form.is_valid()
-    print(form.data.keys())
-    print(form.data)
+    # Populate with values from moderation form
+    trigger_warning_dict = {k: form.cleaned_data[k] for k in form.data.keys() if k not in ['csrfmiddlewaretoken', 'research']}
 
-    return {k: form.cleaned_data[k] for k in form.data.keys() if k not in ['csrfmiddlewaretoken', 'moderation_comments']}
+    # Set all others as False
+    for key in ['abuse', 'violence', 'drug', 'mentalhealth', 'negbody']:
+        if key not in trigger_warning_dict.keys():
+            trigger_warning_dict[key] = False
+    
+    return trigger_warning_dict
+    
 
+def extract_experience_details(model):
+    """
+    Extract the immutable details of the story and the sharing options only
+    """
+    model_dict = model_to_dict(model)
 
+    for key in ['abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other', 'moderation_status']:
+        model_dict.pop(key, None)
+    model_dict['viewable'] = True # Only moderate viewable experiences
+
+    return model_dict
 
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):
@@ -549,17 +559,20 @@ def moderate_experience(request, uuid):
             # get the data from the model
             moderated_form = ModerateExperienceForm(request.POST)
             moderated_form.is_valid()
-            moderation_comments = moderated_form.data['moderation_comments']
 
+            # Get the (immutable) experience data
+            unchanged_experience_details = extract_experience_details(model)
+            # Get the (mutable) trigger warnings
+            trigger_details = process_trigger_warnings(moderated_form)
 
-            unmoderated_form = model_to_form(model, disable_moderator=False)
-
-            # override appropriate fields in the form
-            changed_keys = process_enabled_form_keys(moderated_form)
             # validate
-            data = {**unmoderated_form.data, **changed_keys}
+            data = {**unchanged_experience_details, **trigger_details}
+
+            moderation_comments = data.pop('moderation_comments', None)
+
             # get the users OH member id from the model
             user_OH_member = model.open_humans_member
+
             # wrap in try/except in case user writing experience originally has left AutSPACEs
             try:
                 user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
@@ -571,7 +584,6 @@ def moderate_experience(request, uuid):
             except Exception:
                 # if user writing E has deauthorized autspaces, delete public experience
                 delete_PE(uuid=uuid, ohmember=user_OH_member)
-
             # redirect to a new URL:
             return redirect('main:moderate_public_experiences')
 
