@@ -560,16 +560,20 @@ def moderate_experience(request, uuid):
             data = {**unmoderated_form.data, **changed_keys}
             # get the users OH member id from the model
             user_OH_member = model.open_humans_member
-            user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
-            upload(data, uuid, ohmember=user_OH_member)
+            # wrap in try/except in case user writing experience originally has left AutSPACEs
+            try:
+                user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
+                upload(data, uuid, ohmember=user_OH_member)
 
-            print(ExperienceHistory.objects.filter(experience__experience_id=uuid))
-            print(f"Moderation comments = {moderation_comments}")
-            # update the PE object 
-            update_public_experience_db(data, uuid, ohmember=user_OH_member, change_type="Moderate", change_comments = moderation_comments)
+                print(ExperienceHistory.objects.filter(experience__experience_id=uuid))
+                # update the PE object 
+                update_public_experience_db(data, uuid, ohmember=user_OH_member, change_type="Moderate", change_comments = moderation_comments)
+            except Exception:
+                # if user writing E has deauthorized autspaces, delete public experience
+                delete_PE(uuid=uuid, ohmember=user_OH_member)
 
             # redirect to a new URL:
-            return redirect('main:confirm_page')
+            return redirect('main:moderate_public_experiences')
 
         else:
             experience_title = model.title_text
