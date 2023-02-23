@@ -10,6 +10,7 @@
 
 <!--Share Experiences Form-->
 <section id="share-form">
+
   <div class="row">
     <div class="container read-before-container" id="accordion">
       <div class="card">
@@ -139,40 +140,57 @@
   </div>
 
   <div class="container story-section">
-  {% if uuid %}
-    {% if readonly %}
-      <form action="" class="form-context" method="get">
-    {% else %}
-        {% if show_moderation_status %}
-          <form action="{% url 'main:moderate_exp' uuid %}" class="form-context" method="post">
-        {% else %}
-          <form action="{% url 'main:edit_exp' uuid %}" class="form-context" method="post">
-        {% endif %}
-    {% endif %}
-  {% else %}
-    <form action="{% url 'main:share_exp' %}" class="form-context" method="post">
-  {% endif %}
+
+    <h1>Experience</h1>
+
+    <h2>Title:<i> {{experience_title}}</i></h2>
+
+    <h3>Experience</h3>
+    <p><i>{{experience_text}}</i></p>
+
+    <h3>What could have made the experience better?</h3>
+    <p><i>{{experience_difference}}</i></p>
+
+    <hr/>
+
+    <h1>Experience history</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Type</th>
+            <th scope="col">Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for history_item in experience_history %}
+          <tr>
+            <th scope="row">{{history_item.changed_at|naturaltime}}</th>
+            <td>{{history_item.change_type}}</td>
+            <td>{{history_item.change_comments}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <h1>Moderation</h1>
+
+    <form action="{% url 'main:moderate_exp' uuid %}" class="form-context" method="post">
     {% csrf_token %}
     {% regroup form by field.group as field_groups %}
 
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
-        {% if show_moderation_status %}
+        
           {% for field in group.list %}
           <div class="form-group">
             <h3><label for="{{ field.auto_id}}">{{ field.label }}</label></h3>
             {{ field }}
            </div>
            {% endfor %}
-        {% endif %}
-      {% elif group.grouper == 1 %}
-
-        {% for field in group.list %}
-        <div class="form-group">
-          <h3><label for="{{ field.auto_id }}">{{ field.label }}</label></h3>
-          {{ field }}
-        </div>
-        {% endfor %}
+        
 
       {% else %}
         {% if group.grouper == 2 %}
@@ -209,20 +227,12 @@
       {% endif %}
     {% endfor %}
 
-    {% if readonly %}
-      </form>
-    <div class="form-group">
-      <a href="{% url 'main:edit_exp' uuid %}">
-        <button class="btn btn-primary btn-lg float-right">Edit</button>
-      </a>
-    </div>
-    {% else %}
+
       <div class='form-group'>
         <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
       </div>
     </form>
   </div>
-    {% endif %}
 
 
 </section>
