@@ -157,7 +157,7 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">Date</th>
+            <th scope="col"></th>
             <th scope="col">Type</th>
             <th scope="col">Comment</th>
           </tr>
@@ -165,7 +165,7 @@
         <tbody>
             {% for history_item in experience_history %}
           <tr>
-            <th scope="row">{{history_item.changed_at}}</th>
+            <th scope="row">{{history_item.changed_at|naturaltime}}</th>
             <td>{{history_item.change_type}}</td>
             <td>{{history_item.change_comments}}</td>
           </tr>
