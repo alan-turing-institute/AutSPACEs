@@ -10,22 +10,24 @@ from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 from django.db.models import Q
 
-from .models import PublicExperience, ExperienceHistory
+from .models import PublicExperience
 
 from .forms import ShareExperienceForm, ModerateExperienceForm
 
-from .helpers import (is_moderator,
-                        model_to_form,
-                        extract_experience_details,
-                        reformat_date_string,
-                        get_review_status,
-                        get_oh_file,
-                        delete_single_file,
-                        upload,
-                        make_uuid,
-                        delete_PE,
-                        update_public_experience_db,
-                        process_trigger_warnings)
+from .helpers import (
+    is_moderator,
+    model_to_form,
+    extract_experience_details,
+    reformat_date_string,
+    get_review_status,
+    get_oh_file,
+    delete_single_file,
+    upload,
+    make_uuid,
+    delete_PE,
+    update_public_experience_db,
+    process_trigger_warnings,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -35,21 +37,22 @@ def index(request):
     Starting page for app.
     """
     auth_url = OpenHumansMember.get_auth_url()
-    context = {'auth_url': auth_url,
-               'oh_proj_page': settings.OH_PROJ_PAGE}
+    context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
     if request.user.is_authenticated:
-        return redirect('main:overview')
-    return render(request, 'main/home.html', context=context)
+        return redirect("main:overview")
+    return render(request, "main/home.html", context=context)
 
 
 def overview(request):
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
-        context = {'oh_id': oh_member.oh_id,
-                   'oh_member': oh_member,
-                   'oh_proj_page': settings.OH_PROJ_PAGE}
-        return render(request, 'main/home.html', context=context)
-    return redirect('index')
+        context = {
+            "oh_id": oh_member.oh_id,
+            "oh_member": oh_member,
+            "oh_proj_page": settings.OH_PROJ_PAGE,
+        }
+        return render(request, "main/home.html", context=context)
+    return redirect("index")
 
 
 def logout_user(request):
@@ -58,13 +61,14 @@ def logout_user(request):
     """
     if request.user.is_authenticated:
         logout(request)
-    return redirect('index')
+    return redirect("index")
+
 
 def share_experience(request, uuid=False):
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated:
 
-        if request.method == 'POST':
+        if request.method == "POST":
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
@@ -74,18 +78,28 @@ def share_experience(request, uuid=False):
                 if uuid:
                     # we will be here if we are editing a record that already exists
                     # for OH we need to Delete before reupload.
-                    request.user.openhumansmember.delete_single_file(file_basename = f"{uuid}.json")
+                    request.user.openhumansmember.delete_single_file(
+                        file_basename=f"{uuid}.json"
+                    )
 
                 else:
                     uuid = make_uuid()
 
-                upload(data = form.cleaned_data, uuid = uuid, ohmember = request.user.openhumansmember)
+                upload(
+                    data=form.cleaned_data,
+                    uuid=uuid,
+                    ohmember=request.user.openhumansmember,
+                )
 
                 # for Public Experience we need to check if it's viewable and update accordingly.
-                update_public_experience_db(data=form.cleaned_data, uuid=uuid, ohmember=request.user.openhumansmember)
+                update_public_experience_db(
+                    data=form.cleaned_data,
+                    uuid=uuid,
+                    ohmember=request.user.openhumansmember,
+                )
 
                 # redirect to a new URL:
-                return redirect('main:confirm_page')
+                return redirect("main:confirm_page")
 
         # if a GET (or any other method) we'll create a blank form
         else:
@@ -100,11 +114,15 @@ def share_experience(request, uuid=False):
                 form = ShareExperienceForm()
                 title = "Share experience"
 
-            return render(request, 'main/share_experiences.html',
-                        {'form': form, 'uuid':uuid, 'title': title})
+            return render(
+                request,
+                "main/share_experiences.html",
+                {"form": form, "uuid": uuid, "title": title},
+            )
 
     else:
-        return redirect('index')
+        return redirect("index")
+
 
 def view_experience(request, uuid):
 
@@ -112,11 +130,19 @@ def view_experience(request, uuid):
         # return data from oh.
         data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
         form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
-        return render(request, 'main/share_experiences.html',
-            {'form': form, 'uuid':uuid,
-            'readonly':True, 'show_moderation_status':False, 'title': 'View experience'})
+        return render(
+            request,
+            "main/share_experiences.html",
+            {
+                "form": form,
+                "uuid": uuid,
+                "readonly": True,
+                "show_moderation_status": False,
+                "title": "View experience",
+            },
+        )
     else:
-        redirect('index')
+        redirect("index")
 
 
 def delete_experience(request, uuid, title):
@@ -124,27 +150,27 @@ def delete_experience(request, uuid, title):
 
     if request.user.is_authenticated:
 
-        if request.method == 'POST':
+        if request.method == "POST":
 
-            delete_single_file(uuid = uuid,
-                               ohmember = request.user.openhumansmember)
+            delete_single_file(uuid=uuid, ohmember=request.user.openhumansmember)
 
-
-            return render(request, 'main/deletion_success.html', {"title":title})
+            return render(request, "main/deletion_success.html", {"title": title})
 
         else:
-            return render(request, 'main/deletion_confirmation.html', {"title": title,
-                                                                       "uuid": uuid})
+            return render(
+                request,
+                "main/deletion_confirmation.html",
+                {"title": title, "uuid": uuid},
+            )
     else:
-        return redirect('index')
+        return redirect("index")
 
 
 def list_files(request):
     if request.user.is_authenticated:
-        context = {'files': request.user.openhumansmember.list_files()}
-        return render(request, 'main/list.html',
-                      context=context)
-    return redirect('index')
+        context = {"files": request.user.openhumansmember.list_files()}
+        return render(request, "main/list.html", context=context)
+    return redirect("index")
 
 
 def list_public_experiences(request):
@@ -154,57 +180,66 @@ def list_public_experiences(request):
 
     """
 
-    experiences = PublicExperience.objects.filter(moderation_status='approved')
+    experiences = PublicExperience.objects.filter(moderation_status="approved")
 
     # Check to see if a search has been performed
-    searched = request.GET.get('searched', False)
+    searched = request.GET.get("searched", False)
 
     # Only search through approved stories
     if searched:
 
         # search within all approved stories regardless of triggering status
 
-        experiences = experiences.filter(Q(title_text__icontains = searched) |
-                                         Q(experience_text__icontains = searched) |
-                                         Q(difference_text__icontains = searched))
+        experiences = experiences.filter(
+            Q(title_text__icontains=searched)
+            | Q(experience_text__icontains=searched)
+            | Q(difference_text__icontains=searched)
+        )
 
     # If the triggering stories flag is checked - perform an additional filter to remove triggering stories
-    trigger_label = request.GET.get('triggering_stories', False)
+    trigger_label = request.GET.get("triggering_stories", False)
 
     if trigger_label:
-        experiences = experiences.filter(Q(abuse = False) &
-                                         Q(violence = False) &
-                                         Q(drug = False) &
-                                         Q(mentalhealth = False) &
-                                         Q(negbody = False) &
-                                         Q(other = ""))
+        experiences = experiences.filter(
+            Q(abuse=False)
+            & Q(violence=False)
+            & Q(drug=False)
+            & Q(mentalhealth=False)
+            & Q(negbody=False)
+            & Q(other="")
+        )
 
     # Standard page showing all moderated stories
     return render(
-        request,
-        'main/experiences_page.html',
-        context={'experiences': experiences})
+        request, "main/experiences_page.html", context={"experiences": experiences}
+    )
 
 
 def moderate_public_experiences(request):
     if request.user.is_authenticated and is_moderator(request.user):
-        unreviewed_experiences = PublicExperience.objects.filter(moderation_status='not reviewed')
-        previously_reviewed_experiences = PublicExperience.objects.filter(~Q(moderation_status='not reviewed'))
+        unreviewed_experiences = PublicExperience.objects.filter(
+            moderation_status="not reviewed"
+        )
+        previously_reviewed_experiences = PublicExperience.objects.filter(
+            ~Q(moderation_status="not reviewed")
+        )
         return render(
             request,
-            'main/moderate_public_experiences.html',
-            context={"unreviewed_experiences": unreviewed_experiences,
-            "previously_reviewed_experiences": previously_reviewed_experiences})
+            "main/moderate_public_experiences.html",
+            context={
+                "unreviewed_experiences": unreviewed_experiences,
+                "previously_reviewed_experiences": previously_reviewed_experiences,
+            },
+        )
     else:
         return redirect("main:overview")
 
 
-
 def review_experience(request, experience_id):
     experience = PublicExperience.objects.get(experience_id=experience_id)
-    experience.approved = 'approved'
+    experience.approved = "approved"
     experience.save()
-    return redirect('moderate_public_experiences')
+    return redirect("moderate_public_experiences")
 
 
 def make_non_viewable(request, oh_file_id, file_uuid):
@@ -212,101 +247,100 @@ def make_non_viewable(request, oh_file_id, file_uuid):
     pe.delete()
     oh_files = request.user.openhumansmember.list_files()
     for f in oh_files:
-        if str(f['id']) == str(oh_file_id):
-            experience = requests.get(f['download_url']).json()
-            new_metadata = f['metadata']
-            new_metadata['tags'] = ['not public'] + f['metadata']['tags'][1:]
+        if str(f["id"]) == str(oh_file_id):
+            experience = requests.get(f["download_url"]).json()
+            new_metadata = f["metadata"]
+            new_metadata["tags"] = ["not public"] + f["metadata"]["tags"][1:]
             output = io.StringIO()
             output.write(json.dumps(experience))
             output.seek(0)
             request.user.openhumansmember.upload(
-                stream=output,
-                filename='testfile.json',
-                metadata=new_metadata)
+                stream=output, filename="testfile.json", metadata=new_metadata
+            )
             request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
-    return redirect('main:list')
+    return redirect("main:list")
 
 
 def make_viewable(request, oh_file_id, file_uuid):
     oh_files = request.user.openhumansmember.list_files()
     for f in oh_files:
-        if str(f['id']) == str(oh_file_id):
-            experience = requests.get(f['download_url']).json()
-            new_metadata = f['metadata']
-            new_metadata['tags'] = ['viewable'] + f['metadata']['tags'][1:]
+        if str(f["id"]) == str(oh_file_id):
+            experience = requests.get(f["download_url"]).json()
+            new_metadata = f["metadata"]
+            new_metadata["tags"] = ["viewable"] + f["metadata"]["tags"][1:]
             output = io.StringIO()
             output.write(json.dumps(experience))
             output.seek(0)
             request.user.openhumansmember.upload(
-                stream=output,
-                filename='testfile.json',
-                metadata=new_metadata)
-            request.user.openhumansmember.delete_single_file(
-                file_id=oh_file_id)
+                stream=output, filename="testfile.json", metadata=new_metadata
+            )
+            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
             PublicExperience.objects.create(
-                experience_text=experience['text'],
-                difference_text=experience['wish_different'],
+                experience_text=experience["text"],
+                difference_text=experience["wish_different"],
                 open_humans_member=request.user.openhumansmember,
-                experience_id=file_uuid)
-    return redirect('list')
+                experience_id=file_uuid,
+            )
+    return redirect("list")
 
 
 def make_non_research(request, oh_file_id, file_uuid):
     oh_files = request.user.openhumansmember.list_files()
     for f in oh_files:
-        if str(f['id']) == str(oh_file_id):
-            experience = requests.get(f['download_url']).json()
-            new_metadata = f['metadata']
-            new_metadata['tags'] = f['metadata']['tags'][:-1] + ['non-research']
+        if str(f["id"]) == str(oh_file_id):
+            experience = requests.get(f["download_url"]).json()
+            new_metadata = f["metadata"]
+            new_metadata["tags"] = f["metadata"]["tags"][:-1] + ["non-research"]
             output = io.StringIO()
             output.write(json.dumps(experience))
             output.seek(0)
             request.user.openhumansmember.upload(
-                stream=output,
-                filename='testfile.json',
-                metadata=new_metadata)
-            request.user.openhumansmember.delete_single_file(
-                file_id=oh_file_id)
-    return redirect('list')
+                stream=output, filename="testfile.json", metadata=new_metadata
+            )
+            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
+    return redirect("list")
 
 
 def make_research(request, oh_file_id, file_uuid):
     oh_files = request.user.openhumansmember.list_files()
     for f in oh_files:
-        if str(f['id']) == str(oh_file_id):
-            experience = requests.get(f['download_url']).json()
-            new_metadata = f['metadata']
-            new_metadata['tags'] = f['metadata']['tags'][:-1] + ['research']
+        if str(f["id"]) == str(oh_file_id):
+            experience = requests.get(f["download_url"]).json()
+            new_metadata = f["metadata"]
+            new_metadata["tags"] = f["metadata"]["tags"][:-1] + ["research"]
             output = io.StringIO()
             output.write(json.dumps(experience))
             output.seek(0)
             request.user.openhumansmember.upload(
-                stream=output,
-                filename='testfile.json',
-                metadata=new_metadata)
-            request.user.openhumansmember.delete_single_file(
-                file_id=oh_file_id)
-    return redirect('list')
+                stream=output, filename="testfile.json", metadata=new_metadata
+            )
+            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
+    return redirect("list")
+
 
 def edit_experience(request):
-    return render(request, 'main/share_experiences.html')
+    return render(request, "main/share_experiences.html")
+
 
 def signup(request):
     return render(request, "main/signup.html")
 
+
 def registration(request):
     registration_status = True
     print(registration_status)
-    return render(request, "main/registration.html", {'page_status': 'registration'})
+    return render(request, "main/registration.html", {"page_status": "registration"})
+
 
 def signup_frame4_test(request):
     return render(request, "main/signup1.html")
 
+
 def my_stories(request):
     if request.user.is_authenticated:
-        context = {'files': request.user.openhumansmember.list_files()}
+        context = {"files": request.user.openhumansmember.list_files()}
         context = reformat_date_string(context)
-        statuses = get_review_status(context['files'])
+        statuses = get_review_status(context["files"])
         context = {**context, **statuses}
         return render(request, "main/my_stories.html", context)
     else:
@@ -323,28 +357,22 @@ def confirmation_page(request):
 def about_us(request):
     return render(request, "main/about_us.html")
 
-## def what_autism_is(request):
-##     auth_url = OpenHumansMember.get_auth_url()
-##     context = {'auth_url': auth_url,
-##                'oh_proj_page': settings.OH_PROJ_PAGE}
-##     if request.user.is_authenticated:
-##         return redirect('main:what_autism_is')
-##     return render(request, 'main/what_autism_is.html', context=context)
+
 def navigation(request):
     return render(request, "main/navigation.html")
 
-## def about_us(request):
-##     return render(request, "main/about_us.html")
 
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
 
+
 def footer(request):
     return render(request, "main/footer.html")
 
+
 def moderate_experience(request, uuid):
     if request.user.is_authenticated and is_moderator(request.user):
-        model = PublicExperience.objects.get(experience_id = uuid)
+        model = PublicExperience.objects.get(experience_id=uuid)
         if request.method == "POST":
             # get the data from the model
             moderated_form = ModerateExperienceForm(request.POST)
@@ -355,40 +383,54 @@ def moderate_experience(request, uuid):
             # Get the (mutable) trigger warnings
             trigger_details = process_trigger_warnings(moderated_form)
 
-            # validate
+            # validate
             data = {**unchanged_experience_details, **trigger_details}
 
-            moderation_comments = data.pop('moderation_comments', None)
+            moderation_comments = data.pop("moderation_comments", None)
 
             # get the users OH member id from the model
             user_OH_member = model.open_humans_member
 
             # wrap in try/except in case user writing experience originally has left AutSPACEs
             try:
-                user_OH_member.delete_single_file(file_basename = f"{uuid}.json")
+                user_OH_member.delete_single_file(file_basename=f"{uuid}.json")
                 upload(data, uuid, ohmember=user_OH_member)
-
-                print(ExperienceHistory.objects.filter(experience__experience_id=uuid))
                 # update the PE object
-                change_info = {"type": "Moderate", "comments": moderation_comments}
-                update_public_experience_db(data, uuid, ohmember=user_OH_member, change_type="Moderate", change_comments = moderation_comments)
+                update_public_experience_db(
+                    data,
+                    uuid,
+                    ohmember=user_OH_member,
+                    change_type="Moderate",
+                    change_comments=moderation_comments,
+                )
             except Exception:
                 # if user writing E has deauthorized autspaces, delete public experience
                 delete_PE(uuid=uuid, ohmember=user_OH_member)
             # redirect to a new URL:
-            return redirect('main:moderate_public_experiences')
+            return redirect("main:moderate_public_experiences")
 
         else:
             experience_title = model.title_text
             experience_text = model.experience_text
             experience_difference = model.difference_text
-            experience_history = model.experiencehistory_set.all().order_by('changed_at')
+            experience_history = model.experiencehistory_set.all().order_by(
+                "changed_at"
+            )
 
             form = model_to_form(model, disable_moderator=True)
-            return render(request, 'main/moderate_experience.html',
-                {'form': form, 'uuid':uuid, "experience_title": experience_title,
-                 'experience_text': experience_text, 'experience_difference': experience_difference,
-                 'experience_history': experience_history,
-                'show_moderation_status':True, 'title': "Moderate experience"})
+            return render(
+                request,
+                "main/moderate_experience.html",
+                {
+                    "form": form,
+                    "uuid": uuid,
+                    "experience_title": experience_title,
+                    "experience_text": experience_text,
+                    "experience_difference": experience_difference,
+                    "experience_history": experience_history,
+                    "show_moderation_status": True,
+                    "title": "Moderate experience",
+                },
+            )
     else:
-        redirect('index')
+        redirect("index")
