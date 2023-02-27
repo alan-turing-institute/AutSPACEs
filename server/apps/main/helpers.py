@@ -250,6 +250,8 @@ def update_public_experience_db(data, uuid, ohmember, **change_info):
         else:
             change_type = change_info.get("change_type", "Unknown Change")
             change_comments = change_info.get("change_comments", "No Comment Made")
+            if change_comments == "":
+                change_comments = "No Comment Made"
 
         # Produce and add the ExperienceHistory object to the public experience
         eh = ExperienceHistory(
