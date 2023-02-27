@@ -1,11 +1,10 @@
-import datetime
 import io
 import json
 import logging
 
 import requests
 from django.conf import settings
-from django.contrib.auth import login, logout
+from django.contrib.auth import logout
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 from django.db.models import Q
@@ -65,6 +64,9 @@ def logout_user(request):
 
 
 def share_experience(request, uuid=False):
+    """
+    Form where users can share details of their experiences.
+    """
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated:
 
