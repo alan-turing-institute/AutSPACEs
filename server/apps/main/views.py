@@ -42,20 +42,8 @@ def about_us(request):
     return render(request, "main/about_us.html")
 
 
-def navigation(request):
-    return render(request, "main/navigation.html")
-
-
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
-
-
-def footer(request):
-    return render(request, "main/footer.html")
-
-
-def signup_frame4_test(request):
-    return render(request, "main/signup1.html")
 
 
 def edit_experience(request):

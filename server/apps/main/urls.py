@@ -6,7 +6,6 @@ app_name = "main"
 urlpatterns = [
     re_path(r"^$", views.index, name="index"),
     re_path(r"^signup/?$", views.signup, name="signup"),
-    re_path(r"^signup1/?$", views.signup_frame4_test, name="signup_frame4_test"),
     re_path(r"^logout/?$", views.logout_user, name="logout"),
     re_path(r"^overview/?$", views.overview, name="overview"),
     re_path(
@@ -28,7 +27,5 @@ urlpatterns = [
     path("confirm_page/", views.confirmation_page, name="confirm_page"),
     path("about_us/", views.about_us, name="about_us"),
     path("what_autism_is/", views.what_autism_is, name="what_autism_is"),
-    path("navigation/", views.navigation, name="navigation"),
-    path("footer/", views.footer, name="footer"),
     path("registration/", views.registration, name="registration"),
 ]
