@@ -133,7 +133,7 @@ def get_oh_file(ohmember, uuid):
     return file[0]
 
 
-def delete_single_file(uuid, ohmember):
+def delete_single_file_and_pe(uuid, ohmember):
     """Deletes a given file id and uuid from openhumans and ensures absence from local PublicExperiences database.
 
     Args:

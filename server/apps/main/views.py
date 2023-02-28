@@ -20,7 +20,7 @@ from .helpers import (
     reformat_date_string,
     get_review_status,
     get_oh_file,
-    delete_single_file,
+    delete_single_file_and_pe,
     upload,
     make_uuid,
     delete_PE,
@@ -154,7 +154,7 @@ def delete_experience(request, uuid, title):
 
         if request.method == "POST":
 
-            delete_single_file(uuid=uuid, ohmember=request.user.openhumansmember)
+            delete_single_file_and_pe(uuid=uuid, ohmember=request.user.openhumansmember)
 
             return render(request, "main/deletion_success.html", {"title": title})
 
