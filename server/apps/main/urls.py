@@ -24,11 +24,6 @@ urlpatterns = [
     path("edit/<uuid>/", views.share_experience, name="edit_exp"),
     path("moderate/<uuid>/", views.moderate_experience, name="moderate_exp"),
     path("view/<uuid>/", views.view_experience, name="view_exp"),
-    path(
-        "review_experience/<experience_id>/",
-        views.review_experience,
-        name="review_experience",
-    ),
     path("my_stories/", views.my_stories, name="my_stories"),
     path("confirm_page/", views.confirmation_page, name="confirm_page"),
     path("about_us/", views.about_us, name="about_us"),

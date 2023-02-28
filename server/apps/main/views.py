@@ -284,13 +284,6 @@ def moderate_public_experiences(request):
         return redirect("main:overview")
 
 
-def review_experience(request, experience_id):
-    experience = PublicExperience.objects.get(experience_id=experience_id)
-    experience.approved = "approved"
-    experience.save()
-    return redirect("moderate_public_experiences")
-
-
 def my_stories(request):
     """
     List all stories that are associated with the OpenHumans proejct page.
