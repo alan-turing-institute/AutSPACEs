@@ -31,6 +31,56 @@ from .helpers import (
 logger = logging.getLogger(__name__)
 
 
+def confirmation_page(request):
+    """
+    Confirmation Page For App.
+    """
+    return render(request, "main/confirmation_page.html")
+
+
+def about_us(request):
+    return render(request, "main/about_us.html")
+
+
+def navigation(request):
+    return render(request, "main/navigation.html")
+
+
+def what_autism_is(request):
+    return render(request, "main/what_autism_is.html")
+
+
+def footer(request):
+    return render(request, "main/footer.html")
+
+
+def signup_frame4_test(request):
+    return render(request, "main/signup1.html")
+
+
+def edit_experience(request):
+    return render(request, "main/share_experiences.html")
+
+
+def signup(request):
+    return render(request, "main/signup.html")
+
+
+def registration(request):
+    registration_status = True
+    print(registration_status)
+    return render(request, "main/registration.html", {"page_status": "registration"})
+
+
+def logout_user(request):
+    """
+    Logout user
+    """
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect("index")
+
+
 def index(request):
     """
     Starting page for app.
@@ -43,6 +93,9 @@ def index(request):
 
 
 def overview(request):
+    """
+    Overview page for logged in users directs to home, otherwise to index.
+    """
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
         context = {
@@ -51,15 +104,6 @@ def overview(request):
             "oh_proj_page": settings.OH_PROJ_PAGE,
         }
         return render(request, "main/home.html", context=context)
-    return redirect("index")
-
-
-def logout_user(request):
-    """
-    Logout user
-    """
-    if request.user.is_authenticated:
-        logout(request)
     return redirect("index")
 
 
@@ -127,7 +171,9 @@ def share_experience(request, uuid=False):
 
 
 def view_experience(request, uuid):
-
+    """
+    Show a read-only view of the story in a form.
+    """
     if request.user.is_authenticated:
         # return data from oh.
         data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
@@ -148,6 +194,9 @@ def view_experience(request, uuid):
 
 
 def delete_experience(request, uuid, title):
+    """
+    Delete experience from PE databacse and OH
+    """
     # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
 
     if request.user.is_authenticated:
@@ -168,18 +217,13 @@ def delete_experience(request, uuid, title):
         return redirect("index")
 
 
-def list_files(request):
-    if request.user.is_authenticated:
-        context = {"files": request.user.openhumansmember.list_files()}
-        return render(request, "main/list.html", context=context)
-    return redirect("index")
-
-
 def list_public_experiences(request):
     """
-
-    Returns, in the context, experiences that are 1) listed public, 2) approved, 3) searched, 4) abide by triggering label toggle.
-
+    Returns, in the context, experiences that are
+    1) listed public,
+    2) approved,
+    3) searched,
+    4) abide by triggering label toggle.
     """
 
     experiences = PublicExperience.objects.filter(moderation_status="approved")
@@ -218,6 +262,9 @@ def list_public_experiences(request):
 
 
 def moderate_public_experiences(request):
+    """
+    View containing lists of all Public Experiences with their applicable moderation status
+    """
     if request.user.is_authenticated and is_moderator(request.user):
         unreviewed_experiences = PublicExperience.objects.filter(
             moderation_status="not reviewed"
@@ -244,101 +291,11 @@ def review_experience(request, experience_id):
     return redirect("moderate_public_experiences")
 
 
-def make_non_viewable(request, oh_file_id, file_uuid):
-    pe = PublicExperience.objects.get(experience_id=file_uuid)
-    pe.delete()
-    oh_files = request.user.openhumansmember.list_files()
-    for f in oh_files:
-        if str(f["id"]) == str(oh_file_id):
-            experience = requests.get(f["download_url"]).json()
-            new_metadata = f["metadata"]
-            new_metadata["tags"] = ["not public"] + f["metadata"]["tags"][1:]
-            output = io.StringIO()
-            output.write(json.dumps(experience))
-            output.seek(0)
-            request.user.openhumansmember.upload(
-                stream=output, filename="testfile.json", metadata=new_metadata
-            )
-            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
-    return redirect("main:list")
-
-
-def make_viewable(request, oh_file_id, file_uuid):
-    oh_files = request.user.openhumansmember.list_files()
-    for f in oh_files:
-        if str(f["id"]) == str(oh_file_id):
-            experience = requests.get(f["download_url"]).json()
-            new_metadata = f["metadata"]
-            new_metadata["tags"] = ["viewable"] + f["metadata"]["tags"][1:]
-            output = io.StringIO()
-            output.write(json.dumps(experience))
-            output.seek(0)
-            request.user.openhumansmember.upload(
-                stream=output, filename="testfile.json", metadata=new_metadata
-            )
-            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
-            PublicExperience.objects.create(
-                experience_text=experience["text"],
-                difference_text=experience["wish_different"],
-                open_humans_member=request.user.openhumansmember,
-                experience_id=file_uuid,
-            )
-    return redirect("list")
-
-
-def make_non_research(request, oh_file_id, file_uuid):
-    oh_files = request.user.openhumansmember.list_files()
-    for f in oh_files:
-        if str(f["id"]) == str(oh_file_id):
-            experience = requests.get(f["download_url"]).json()
-            new_metadata = f["metadata"]
-            new_metadata["tags"] = f["metadata"]["tags"][:-1] + ["non-research"]
-            output = io.StringIO()
-            output.write(json.dumps(experience))
-            output.seek(0)
-            request.user.openhumansmember.upload(
-                stream=output, filename="testfile.json", metadata=new_metadata
-            )
-            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
-    return redirect("list")
-
-
-def make_research(request, oh_file_id, file_uuid):
-    oh_files = request.user.openhumansmember.list_files()
-    for f in oh_files:
-        if str(f["id"]) == str(oh_file_id):
-            experience = requests.get(f["download_url"]).json()
-            new_metadata = f["metadata"]
-            new_metadata["tags"] = f["metadata"]["tags"][:-1] + ["research"]
-            output = io.StringIO()
-            output.write(json.dumps(experience))
-            output.seek(0)
-            request.user.openhumansmember.upload(
-                stream=output, filename="testfile.json", metadata=new_metadata
-            )
-            request.user.openhumansmember.delete_single_file(file_id=oh_file_id)
-    return redirect("list")
-
-
-def edit_experience(request):
-    return render(request, "main/share_experiences.html")
-
-
-def signup(request):
-    return render(request, "main/signup.html")
-
-
-def registration(request):
-    registration_status = True
-    print(registration_status)
-    return render(request, "main/registration.html", {"page_status": "registration"})
-
-
-def signup_frame4_test(request):
-    return render(request, "main/signup1.html")
-
-
 def my_stories(request):
+    """
+    List all stories that are associated with the OpenHumans proejct page.
+    Including those which are not-shareable on the website
+    """
     if request.user.is_authenticated:
         context = {"files": request.user.openhumansmember.list_files()}
         context = reformat_date_string(context)
@@ -349,30 +306,8 @@ def my_stories(request):
         return redirect("main:overview")
 
 
-def confirmation_page(request):
-    """
-    Confirmation Page For App
-    """
-    return render(request, "main/confirmation_page.html")
-
-
-def about_us(request):
-    return render(request, "main/about_us.html")
-
-
-def navigation(request):
-    return render(request, "main/navigation.html")
-
-
-def what_autism_is(request):
-    return render(request, "main/what_autism_is.html")
-
-
-def footer(request):
-    return render(request, "main/footer.html")
-
-
 def moderate_experience(request, uuid):
+    """Moderate a single experience."""
     if request.user.is_authenticated and is_moderator(request.user):
         model = PublicExperience.objects.get(experience_id=uuid)
         if request.method == "POST":
