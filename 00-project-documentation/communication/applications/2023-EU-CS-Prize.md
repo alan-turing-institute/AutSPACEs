@@ -1,11 +1,5 @@
 # EU Prize for Citizen Science: AutSPACEs submission
 
-
-# <p style="text-align: right">
-Main submission</p>
-
-
-
 ## Timeframe
 
 Started in 2019, still ongoing as of 2023
