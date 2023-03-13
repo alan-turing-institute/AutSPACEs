@@ -1,6 +1,7 @@
 import io
 import json
 import logging
+import vcr
 
 import requests
 from django.conf import settings
@@ -68,7 +69,6 @@ def logout_user(request):
         logout(request)
     return redirect("index")
 
-
 def index(request):
     """
     Starting page for app.
@@ -79,7 +79,7 @@ def index(request):
         return redirect("main:overview")
     return render(request, "main/home.html", context=context)
 
-
+# @vcr.use_cassette("tmp/overview.yaml", filter_query_parameters=['access_token'])
 def overview(request):
     """
     Overview page for logged in users directs to home, otherwise to index.
@@ -94,7 +94,7 @@ def overview(request):
         return render(request, "main/home.html", context=context)
     return redirect("index")
 
-
+# @vcr.use_cassette("tmp/share_experience.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
     """
     Form where users can share details of their experiences.
@@ -180,7 +180,7 @@ def view_experience(request, uuid):
     else:
         redirect("index")
 
-
+# @vcr.use_cassette("tmp/delete.yaml", filter_query_parameters=['access_token'])
 def delete_experience(request, uuid, title):
     """
     Delete experience from PE databacse and OH
@@ -271,7 +271,7 @@ def moderate_public_experiences(request):
     else:
         return redirect("main:overview")
 
-
+# @vcr.use_cassette('tmp/my_stories.yaml', filter_query_parameters=['access_token'])
 def my_stories(request):
     """
     List all stories that are associated with the OpenHumans proejct page.
