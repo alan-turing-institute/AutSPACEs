@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
+          - ubuntu-20.04
         python-version:
           - 3.8.8
       fail-fast: false
