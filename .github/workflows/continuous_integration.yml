@@ -35,6 +35,13 @@ jobs:
           python -m poetry config virtualenvs.in-project true
           python -m poetry config virtualenvs.create true
 
+      - name: Set up cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}-${{ hashFiles('**/pyproject.toml') }}
+
       - name: Display Python version
         run: poetry run python -c "import sys; print(sys.version)"
 
