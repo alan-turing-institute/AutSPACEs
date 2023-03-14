@@ -2,7 +2,7 @@ import vcr
 import urllib.request
 import json
 
-@ vcr.use_cassette('./fixtures/share_experience.yaml')
+@ vcr.use_cassette('server/apps/main/tests/fixtures/share_experience.yaml')
 def test_share_experience():
     r = urllib.request.urlopen('https://www.openhumans.org/api/direct-sharing/project/exchange-member/').read().decode()
     r_json = json.loads(r)
