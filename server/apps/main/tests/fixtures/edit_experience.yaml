@@ -1,0 +1,272 @@
+interactions:
+- request:
+    body: project_member_id=40945085&file_basename=ebad2890-bc43-11ed-95a4-0242ac130003.json
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '82'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/delete/
+  response:
+    body:
+      string: '{"ids":[62938588]}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '18'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 14 Mar 2023 11:46:24 GMT
+      Expires:
+      - Tue, 14 Mar 2023 11:46:24 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/
+  response:
+    body:
+      string: "{\"count\":4,\"next\":null,\"previous\":null,\"created\":\"2022-11-11T10:55:22.058691Z\",\"project_member_id\":\"40945085\",\"sources_shared\":[],\"data\":[{\"id\":62938625,\"basename\":\"296683b6-bc44-11ed-b1d0-0242ac130003.json\",\"created\":\"2023-03-06T17:27:26.395856Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/62938625/?key=174dcb42-7bfe-47b3-8423-db08065d0dbf\",\"metadata\":{\"data\":{\"drug\":false,\"abuse\":false,\"other\":\"\",\"negbody\":false,\"research\":false,\"viewable\":true,\"violence\":false,\"title_text\":\"The
+        second of the stories\",\"mentalhealth\":true,\"difference_text\":\"Mr. Bennet
+        replied that he had not.\",\"experience_text\":\"\u201CMy dear Mr. Bennet,\u201D
+        said his lady to him one day, \u201Chave you heard that Netherfield Park is
+        let at last?\u201D\",\"moderation_status\":\"not reviewed\"},\"tags\":[\"\",\"\",\"\",\"mental
+        health\",\"\",\"public\",\"non-research\",null],\"uuid\":\"296683b6-bc44-11ed-b1d0-0242ac130003\",\"timestamp\":\"2023-03-06
+        17:27:25.680349\",\"description\":\"The second of the stories\"},\"source\":\"direct-sharing-1111\",\"source_project\":\"https://www.openhumans.org/api/public/project/1111/\"},{\"id\":62938647,\"basename\":\"5a46a614-bc44-11ed-9c51-0242ac130003.json\",\"created\":\"2023-03-06T17:28:48.384197Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/62938647/?key=8a83af54-f4b2-4974-b08b-3f21341b4ac6\",\"metadata\":{\"data\":{\"drug\":true,\"abuse\":false,\"other\":\"Mrs
+        Bennet\",\"negbody\":false,\"research\":false,\"viewable\":true,\"violence\":false,\"title_text\":\"The
+        third story\",\"mentalhealth\":false,\"difference_text\":\"\u201CDo not you
+        want to know who has taken it?\u201D cried his wife, impatiently.\\r\\n\u201CYou
+        want to tell me, and I have no objection to hearing it.\u201D\",\"experience_text\":\"\u201CBut
+        it is,\u201D returned she; \u201Cfor Mrs. Long has just been here, and she
+        told me all about it.\u201D\\r\\nMr. Bennet made no answer.\",\"moderation_status\":\"not
+        reviewed\"},\"tags\":[\"\",\"\",\"drugs\",\"\",\"\",\"public\",\"non-research\",null,\"Other
+        triggering label\"],\"uuid\":\"5a46a614-bc44-11ed-9c51-0242ac130003\",\"timestamp\":\"2023-03-06
+        17:28:47.679860\",\"description\":\"The third story\"},\"source\":\"direct-sharing-1111\",\"source_project\":\"https://www.openhumans.org/api/public/project/1111/\"},{\"id\":62938757,\"basename\":\"24040f8c-bc45-11ed-b184-0242ac130003.json\",\"created\":\"2023-03-06T17:34:26.868599Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/62938757/?key=57b99c07-4495-4fdd-a002-ce829abcbee7\",\"metadata\":{\"data\":{\"drug\":false,\"abuse\":false,\"other\":\"\",\"negbody\":false,\"research\":false,\"viewable\":true,\"violence\":true,\"title_text\":\"Fifth
+        of the stories\",\"mentalhealth\":false,\"difference_text\":\"\u201CWhat is
+        his name?\u201D\\r\\n\\r\\n\u201CBingley.\u201D\\r\\n\\r\\n\u201CIs he married
+        or single?\u201D\\r\\n\\r\\n\u201COh, single, my dear, to be sure! A single
+        man of large fortune; four or five thousand a year. What a fine thing for
+        our girls!\u201D\",\"experience_text\":\"This was invitation enough.\\r\\n\u201CWhy,
+        my dear, you must know, Mrs. Long says that Netherfield is taken by a young
+        man of large fortune from the north of England; that he came down on Monday
+        in a chaise and four to see the place, and was so much delighted with it that
+        he agreed with Mr. Morris immediately; that he is to take possession before
+        Michaelmas, and some of his servants are to be in the house by the end of
+        next week.\u201D\",\"moderation_status\":\"not reviewed\"},\"tags\":[\"\",\"violence\",\"\",\"\",\"\",\"public\",\"non-research\",null],\"uuid\":\"24040f8c-bc45-11ed-b184-0242ac130003\",\"timestamp\":\"2023-03-06
+        17:34:26.145139\",\"description\":\"Fifth of the stories\"},\"source\":\"direct-sharing-1111\",\"source_project\":\"https://www.openhumans.org/api/public/project/1111/\"},{\"id\":62938816,\"basename\":\"8b4770bc-bc45-11ed-ae3f-0242ac130003.json\",\"created\":\"2023-03-06T17:37:20.220308Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/62938816/?key=d934e2ca-29ce-4940-853a-8872643f8061\",\"metadata\":{\"data\":{\"drug\":false,\"abuse\":true,\"other\":\"\",\"negbody\":false,\"research\":true,\"viewable\":true,\"violence\":false,\"title_text\":\"Story
+        Six\",\"mentalhealth\":false,\"difference_text\":\"\u201CDesign? Nonsense,
+        how can you talk so! But it is very likely that he may fall in love with one
+        of them, and therefore you must visit him as soon as he comes.\u201D\",\"experience_text\":\"\u201CHow
+        so? how can it affect them?\u201D\\r\\n\\r\\n\u201CMy dear Mr. Bennet,\u201D
+        replied his wife, \u201Chow can you be so tiresome? You must know that I am
+        thinking of his marrying one of them.\u201D\\r\\n\\r\\n\u201CIs that his design
+        in settling here?\u201D\",\"moderation_status\":\"not reviewed\"},\"tags\":[\"abuse\",\"\",\"\",\"\",\"\",\"public\",\"research\",null],\"uuid\":\"8b4770bc-bc45-11ed-ae3f-0242ac130003\",\"timestamp\":\"2023-03-06
+        17:37:19.390828\",\"description\":\"Story Six\"},\"source\":\"direct-sharing-1111\",\"source_project\":\"https://www.openhumans.org/api/public/project/1111/\"}]}"
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4826'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 14 Mar 2023 11:46:25 GMT
+      Expires:
+      - Tue, 14 Mar 2023 11:46:25 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: project_member_id=40945085&metadata=%7B%22uuid%22%3A+%22ebad2890-bc43-11ed-95a4-0242ac130003%22%2C+%22description%22%3A+%22Story+the+first+-+now+edited%22%2C+%22tags%22%3A+%5B%22%22%2C+%22%22%2C+%22drugs%22%2C+%22%22%2C+%22%22%2C+%22public%22%2C+%22research%22%2C+null%5D%2C+%22data%22%3A+%7B%22experience_text%22%3A+%22It+is+a+truth+universally+acknowledged%2C+that+a+single+man+in+possession+of+a+good+fortune+must+be+in+want+of+a+wife.%22%2C+%22difference_text%22%3A+%22However+little+known+the+feelings+or+views+of+such+a+man+may+be+on+his+first+entering+a+neighbourhood%2C+this+truth+is+so+well+fixed+in+the+minds+of+the+surrounding+families%2C+that+he+is+considered+as+the+rightful+property+of+some+one+or+other+of+their+daughters.%22%2C+%22title_text%22%3A+%22Story+the+first+-+now+edited%22%2C+%22abuse%22%3A+false%2C+%22violence%22%3A+false%2C+%22drug%22%3A+true%2C+%22mentalhealth%22%3A+false%2C+%22negbody%22%3A+false%2C+%22other%22%3A+%22%22%2C+%22viewable%22%3A+true%2C+%22research%22%3A+true%2C+%22moderation_status%22%3A+%22not+reviewed%22%7D%2C+%22timestamp%22%3A+%222023-03-14+11%3A46%3A24.831814%22%7D&filename=ebad2890-bc43-11ed-95a4-0242ac130003.json
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1170'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/upload/direct/
+  response:
+    body:
+      string: '{"id":63199447,"url":"https://open-humans-production.s3.amazonaws.com:443/member-files/direct-sharing-1111/d98bad56-c25d-11ed-a847-bad5fec1b3f2/ebad2890-bc43-11ed-95a4-0242ac130003.json?Signature=0dRY5hmSbklhciBsGE3GwLMUMx8%3D&Expires=1678815985&AWSAccessKeyId=123456"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '283'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 14 Mar 2023 11:46:25 GMT
+      Expires:
+      - Tue, 14 Mar 2023 11:46:25 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 201
+      message: Created
+- request:
+    body: !!python/object/new:_io.BytesIO
+      state: !!python/tuple
+      - !!binary |
+        eyJkYXRhIjogeyJleHBlcmllbmNlX3RleHQiOiAiSXQgaXMgYSB0cnV0aCB1bml2ZXJzYWxseSBh
+        Y2tub3dsZWRnZWQsIHRoYXQgYSBzaW5nbGUgbWFuIGluIHBvc3Nlc3Npb24gb2YgYSBnb29kIGZv
+        cnR1bmUgbXVzdCBiZSBpbiB3YW50IG9mIGEgd2lmZS4iLCAiZGlmZmVyZW5jZV90ZXh0IjogIkhv
+        d2V2ZXIgbGl0dGxlIGtub3duIHRoZSBmZWVsaW5ncyBvciB2aWV3cyBvZiBzdWNoIGEgbWFuIG1h
+        eSBiZSBvbiBoaXMgZmlyc3QgZW50ZXJpbmcgYSBuZWlnaGJvdXJob29kLCB0aGlzIHRydXRoIGlz
+        IHNvIHdlbGwgZml4ZWQgaW4gdGhlIG1pbmRzIG9mIHRoZSBzdXJyb3VuZGluZyBmYW1pbGllcywg
+        dGhhdCBoZSBpcyBjb25zaWRlcmVkIGFzIHRoZSByaWdodGZ1bCBwcm9wZXJ0eSBvZiBzb21lIG9u
+        ZSBvciBvdGhlciBvZiB0aGVpciBkYXVnaHRlcnMuIiwgInRpdGxlX3RleHQiOiAiU3RvcnkgdGhl
+        IGZpcnN0IC0gbm93IGVkaXRlZCIsICJhYnVzZSI6IGZhbHNlLCAidmlvbGVuY2UiOiBmYWxzZSwg
+        ImRydWciOiB0cnVlLCAibWVudGFsaGVhbHRoIjogZmFsc2UsICJuZWdib2R5IjogZmFsc2UsICJv
+        dGhlciI6ICIiLCAidmlld2FibGUiOiB0cnVlLCAicmVzZWFyY2giOiB0cnVlLCAibW9kZXJhdGlv
+        bl9zdGF0dXMiOiAibm90IHJldmlld2VkIn0sICJ0aW1lc3RhbXAiOiAiMjAyMy0wMy0xNCAxMTo0
+        NjoyNC44MzE4MTQifQ==
+      - 0
+      - null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '697'
+      User-Agent:
+      - python-requests/2.25.1
+    method: PUT
+    uri: https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1111/d98bad56-c25d-11ed-a847-bad5fec1b3f2/ebad2890-bc43-11ed-95a4-0242ac130003.json?Expires=1678815985&Signature=0dRY5hmSbklhciBsGE3GwLMUMx8%3D
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 14 Mar 2023 11:46:27 GMT
+      ETag:
+      - '"9f3e1c6452102d4016a976ee39b5b7c6"'
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - K48r/j/hNLv6BOsIsptfM8e0Yr9ea0NU8z6Kl2AoBD+9IGp1vWBwI2tv4rA/GxWeBpUU+0QMMSTzfWhW9uwapw==
+      x-amz-request-id:
+      - MT9Y3VHEFWBGEEYA
+      x-amz-server-side-encryption:
+      - AES256
+      x-amz-version-id:
+      - EDHhbrh0AAOwgSpAO7234MWTF.Fwrjvo
+    status:
+      code: 200
+      message: OK
+- request:
+    body: project_member_id=40945085&file_id=63199447
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '43'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/upload/complete/
+  response:
+    body:
+      string: '{"status":"ok","size":697}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '26'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 14 Mar 2023 11:46:26 GMT
+      Expires:
+      - Tue, 14 Mar 2023 11:46:26 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
