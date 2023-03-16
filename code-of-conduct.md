@@ -86,17 +86,17 @@ If a participant engages in behaviour that violates this Code of Conduct, any me
 ### 2.4 Feedback
 
 This Code of Conduct is not intended as a static set of rules by which everyone must abide.
-Rather, you are invited to make suggestions for updates or clarifications by contacting Bastian Greshake Tzovaras at [kwhitaker@turing.ac.uk](mailto:kwhitaker@turing.ac.uk) or by making a pull request to this document on GitHub.
+Rather, you are invited to make suggestions for updates or clarifications by contacting Bastian Greshake Tzovaras at [bgreshaketzovaras@turing.ac.uk](mailto:(bgreshaketzovaras@turing.ac.uk) or by making a pull request to this document on GitHub.
 
 ## 3 Incident Reporting Guidelines
 
 ### 3.1 Contact points
 
-If you feel able to, please contact Kirstie Whitaker by email at [bgreshaketzovaras@turing.ac.uk](mailto:bgreshaketzovaras@turing.ac.uk).
+ If you feel able to, please contact Bastian Greshake Tzovaras by email at [bgreshaketzovaras@turing.ac.uk](mailto:bgreshaketzovaras@turing.ac.uk).
 
 ### 3.2 Alternate contact points
 
-If you do not feel comfortable contacting Kirstie Whitaker, please report an incident to James Cusack by email at [james.cusack@autistica.org.uk](mailto:james.cusack@autistica.org.uk).
+If you do not feel comfortable contacting Bastian Greshake Tzovaras, please report an incident to James Cusack by email at [james.cusack@autistica.org.uk](mailto:james.cusack@autistica.org.uk).
 
 ### 3.3 What to do if someone is in physical danger
 
@@ -131,7 +131,7 @@ In situations where an individual community member acts unilaterally, they must 
 
 ### 4.3 Less-Urgent Situations
 
-Upon receiving a report of an incident, Kirstie Whitaker will review the incident and determine, to the best of her ability:
+Upon receiving a report of an incident, Bastian Greshake Tzovaras will review the incident and determine, to the best of her ability:
 
 - whether this is an ongoing situation
 - whether there is a threat to anyone's physical safety
@@ -149,7 +149,7 @@ In the event that a resolution can't be determined in that time, Bastian Greshak
 
 ### 4.4 Resolutions
 
-At the time of writing Dr Whitaker is the only enforcing member of the Code of Conduct reporting team.
+At the time of writing Bastian Greshake Tzovaras is the only enforcing member of the Code of Conduct reporting team.
 
 Once a committee has been formed, the committee will agree on a resolution by consensus of all members investigating the report in question.
 If the committee cannot reach consensus and deadlocks for over a week, Bastian Greshake Tzovaras, as lead investigator of the Autistica/Turing citizen science project, will break the tie.
@@ -172,7 +172,7 @@ Possible responses may include:
   The research team will maintain records of all such bans so that they may be reviewed in the future, extended to a Code of Conduct safety team as it is built, or otherwise maintained.
   If a member of the community is removed from an event they will not be reimbursed for any part of the event that they miss.
 
-Once a resolution is agreed upon, but before it is enacted, Kirstie Whitaker will contact the original reporter and any other affected parties and explain the proposed resolution.
+Once a resolution is agreed upon, but before it is enacted, Bastian Greshake Tzovaras will contact the original reporter and any other affected parties and explain the proposed resolution.
 Bastian Greshake Tzovaras will ask if this resolution is acceptable, and must note feedback for the record.
 However, she is not required to act on this feedback.
 
