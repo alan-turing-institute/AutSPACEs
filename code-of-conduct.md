@@ -29,8 +29,8 @@ All participants in our in-person events and online communications are expected 
 To make clear what is expected, everyone participating in activities associated with the Autistica/Turing citizen science project is required to conform to this Code of Conduct.
 This Code of Conduct applies to all spaces managed by the Autistica/Turing citizen science project including, but not limited to, in-person focus groups and workshops, and communications online via GitHub.
 
-The lead investigator of the Autistica/Turing citizen science project - Dr Kirstie Whitaker - is responsible for enforcing the Code of Conduct.
-She can be contacted by emailing [kwhitaker@turing.ac.uk](mailto:kwhitaker@turing.ac.uk).
+The lead investigator of the Autistica/Turing citizen science project - Bastian Greshake Tzovaras - is responsible for enforcing the Code of Conduct.
+She can be contacted by emailing [bgreshaketzovaras@turing.ac.uk](bgreshaketzovaras@turing.ac.uk).
 Reports may be reviewed by other members of the research team, unless there is a conflict of interest, and will be kept confidential.
 
 ## 2 Code of Conduct
@@ -86,13 +86,13 @@ If a participant engages in behaviour that violates this Code of Conduct, any me
 ### 2.4 Feedback
 
 This Code of Conduct is not intended as a static set of rules by which everyone must abide.
-Rather, you are invited to make suggestions for updates or clarifications by contacting Dr Kirstie Whitaker at [kwhitaker@turing.ac.uk](mailto:kwhitaker@turing.ac.uk) or by making a pull request to this document on GitHub.
+Rather, you are invited to make suggestions for updates or clarifications by contacting Bastian Greshake Tzovaras at [kwhitaker@turing.ac.uk](mailto:kwhitaker@turing.ac.uk) or by making a pull request to this document on GitHub.
 
 ## 3 Incident Reporting Guidelines
 
 ### 3.1 Contact points
 
-If you feel able to, please contact Kirstie Whitaker by email at [kwhitaker@turing.ac.uk](mailto:kwhitaker@turing.ac.uk).
+If you feel able to, please contact Kirstie Whitaker by email at [bgreshaketzovaras@turing.ac.uk](mailto:bgreshaketzovaras@turing.ac.uk).
 
 ### 3.2 Alternate contact points
 
@@ -140,19 +140,19 @@ Upon receiving a report of an incident, Kirstie Whitaker will review the inciden
 - who, if anyone, was the bad actor
 
 This information will be collected either in person or in writing.
-Kirstie Whitaker will provide a written summary of the information surrounding the incident.
+Bastian Greshake Tzovaras will provide a written summary of the information surrounding the incident.
 All participants will be anonymised in the summary report, referred to as "Community Member 1", "Community Member 2", or "Research Team Member 1".
 The "de-anonymising key" will be kept in a separate file and only accessed to link repeated reports against the same person over time.
 
-Kirstie Whitaker will aim to have a resolution agreed upon within one week.
-In the event that a resolution can't be determined in that time, Kirstie will respond to the reporter(s) with an update and projected timeline for resolution.
+Bastian Greshake Tzovaras will aim to have a resolution agreed upon within one week.
+In the event that a resolution can't be determined in that time, Bastian Greshake Tzovaras will respond to the reporter(s) with an update and projected timeline for resolution.
 
 ### 4.4 Resolutions
 
 At the time of writing Dr Whitaker is the only enforcing member of the Code of Conduct reporting team.
 
 Once a committee has been formed, the committee will agree on a resolution by consensus of all members investigating the report in question.
-If the committee cannot reach consensus and deadlocks for over a week, Dr Whitaker, as lead investigator of the Autistica/Turing citizen science project, will break the tie.
+If the committee cannot reach consensus and deadlocks for over a week, Bastian Greshake Tzovaras, as lead investigator of the Autistica/Turing citizen science project, will break the tie.
 
 Possible responses may include:
 
@@ -163,22 +163,22 @@ Possible responses may include:
 * A private in-person conversation between a member of the research team and the individual(s) involved.
   In this case, the person who has the conversation will provide a written summary for record keeping.
 * A private written reprimand from a member of the research team to the individual(s) involved.
-  In this case, the research team member will deliver that reprimand to the individual(s) over email, cc'ing Kirstie Whitaker for record keeping.
+  In this case, the research team member will deliver that reprimand to the individual(s) over email, cc'ing Bastian Greshake Tzovaras for record keeping.
 * A public announcement of an incident, ideally in the same venue that the violation occurred (i.e. on the listserv for a listserv violation; GitHub for a GitHub violation, etc.).
   The committee may choose to publish this message elsewhere for posterity.
 * An imposed "time out" from online spaces.
-  Kirstie Whitaker will communicate this "time out" to the individual(s) involved.
+  Bastian Greshake Tzovaras will communicate this "time out" to the individual(s) involved.
 * A permanent or temporary ban from some or all Autistica/Turing citizen science project spaces (GitHub, in-person events etc).
   The research team will maintain records of all such bans so that they may be reviewed in the future, extended to a Code of Conduct safety team as it is built, or otherwise maintained.
   If a member of the community is removed from an event they will not be reimbursed for any part of the event that they miss.
 
 Once a resolution is agreed upon, but before it is enacted, Kirstie Whitaker will contact the original reporter and any other affected parties and explain the proposed resolution.
-Kirstie Whitaker will ask if this resolution is acceptable, and must note feedback for the record.
+Bastian Greshake Tzovaras will ask if this resolution is acceptable, and must note feedback for the record.
 However, she is not required to act on this feedback.
 
 ### 4.5 Conflicts of Interest
 
-In the event of any conflict of interest such that Dr Whitaker is not able to evaluate or enforce the reported violation, Jon Spiers will take Kirstie's place.
+In the event of any conflict of interest such that Bastian Greshake Tzovaras is not able to evaluate or enforce the reported violation, James Cusack will take Kirstie's place.
 
 ## 5. Acknowledgements
 
