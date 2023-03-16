@@ -30,7 +30,7 @@ To make clear what is expected, everyone participating in activities associated 
 This Code of Conduct applies to all spaces managed by the Autistica/Turing citizen science project including, but not limited to, in-person focus groups and workshops, and communications online via GitHub.
 
 The lead investigator of the Autistica/Turing citizen science project - Bastian Greshake Tzovaras - is responsible for enforcing the Code of Conduct.
-She can be contacted by emailing [bgreshaketzovaras@turing.ac.uk](bgreshaketzovaras@turing.ac.uk).
+He can be contacted by emailing [bgreshaketzovaras@turing.ac.uk](bgreshaketzovaras@turing.ac.uk).
 Reports may be reviewed by other members of the research team, unless there is a conflict of interest, and will be kept confidential.
 
 ## 2 Code of Conduct
@@ -115,7 +115,7 @@ Enforcement of the Code of Conduct should be respectful and not include any hara
 ### 4.1 The Code of Conduct Committee
 
 At time of writing the research team is small and therefore we do not have a Code of Conduct Committee.
-Dr Kirstie Whitaker, as lead investigator of the Autistica/Turing citizen science research project will handle any Code of Conduct reports herself.
+Bastian Greshake Tzovaras, as lead investigator of the Autistica/Turing citizen science research project will handle any Code of Conduct reports himself.
 
 As the community grows, we will seek to build a committee of research team members and members of the autistic community.
 
@@ -127,7 +127,7 @@ This can include contacting law enforcement (or other local personnel) and speak
 If the act is ongoing, any community member may act immediately, before reaching consensus, to diffuse the situation.
 In ongoing situations, any member may at their discretion employ any of the tools available in this enforcement manual, including bans and blocks online, or removal from a physical space.
 
-In situations where an individual community member acts unilaterally, they must inform Kirstie Whitaker as soon as possible, and report their actions for review within 24 hours.
+In situations where an individual community member acts unilaterally, they must inform Bastian as soon as possible, and report their actions for review within 24 hours.
 
 ### 4.3 Less-Urgent Situations
 
@@ -174,11 +174,11 @@ Possible responses may include:
 
 Once a resolution is agreed upon, but before it is enacted, Bastian Greshake Tzovaras will contact the original reporter and any other affected parties and explain the proposed resolution.
 Bastian Greshake Tzovaras will ask if this resolution is acceptable, and must note feedback for the record.
-However, she is not required to act on this feedback.
+However, he is not required to act on this feedback.
 
 ### 4.5 Conflicts of Interest
 
-In the event of any conflict of interest such that Bastian Greshake Tzovaras is not able to evaluate or enforce the reported violation, James Cusack will take Kirstie's place.
+In the event of any conflict of interest such that Bastian Greshake Tzovaras is not able to evaluate or enforce the reported violation, James Cusack will take Bastian's place.
 
 ## 5. Acknowledgements
 
