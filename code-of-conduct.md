@@ -86,7 +86,7 @@ If a participant engages in behaviour that violates this Code of Conduct, any me
 ### 2.4 Feedback
 
 This Code of Conduct is not intended as a static set of rules by which everyone must abide.
-Rather, you are invited to make suggestions for updates or clarifications by contacting Bastian Greshake Tzovaras at [bgreshaketzovaras@turing.ac.uk](mailto:(bgreshaketzovaras@turing.ac.uk) or by making a pull request to this document on GitHub.
+Rather, you are invited to make suggestions for updates or clarifications by contacting Bastian Greshake Tzovaras at [bgreshaketzovaras@turing.ac.uk](mailto:bgreshaketzovaras@turing.ac.uk) or by making a pull request to this document on GitHub.
 
 ## 3 Incident Reporting Guidelines
 
