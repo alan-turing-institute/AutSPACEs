@@ -33,6 +33,7 @@ python-decouple = "^3.3"
 bcrypt = "^3.2"
 structlog = "^20.1"
 django-open-humans = "^0.1.6"
+vcrpy = "^4.2.1"
 
 
 [tool.poetry.dev-dependencies]

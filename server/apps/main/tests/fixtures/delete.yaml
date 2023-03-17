@@ -1,0 +1,48 @@
+interactions:
+- request:
+    body: project_member_id=40945085&file_basename=8b4770bc-bc45-11ed-ae3f-0242ac130003.json
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '82'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/delete/
+  response:
+    body:
+      string: '{"ids":[62938816]}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '18'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 14 Mar 2023 12:06:41 GMT
+      Expires:
+      - Tue, 14 Mar 2023 12:06:41 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
