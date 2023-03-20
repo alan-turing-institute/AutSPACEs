@@ -11,6 +11,16 @@ jobs:
           - ubuntu-20.04
         python-version:
           - 3.8.6
+        database-name:
+          - django_actions
+        database-password:
+          - postgres
+        database-user:
+          - postgres
+        database-host:
+          - 127.0.0.1
+        database-port:
+          - 5432
       fail-fast: false
 
 
@@ -34,6 +44,22 @@ jobs:
           python -m pip install poetry
           python -m poetry config virtualenvs.in-project true
           python -m poetry config virtualenvs.create true
+
+      services:
+        postgres:
+          image: postgres:latest
+          env:
+            POSTGRES_DB: ${{ matrix.database-name }}
+            POSTGRES_USER: ${{ matrix.database-user }}
+            POSTGRES_PASSWORD: ${{ matrix.database-password }}
+          ports:
+            - 5432:5432
+          # Set health checks to wait until postgres has started
+          options:
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
 
       - name: Set up cache
         uses: actions/cache@v3
