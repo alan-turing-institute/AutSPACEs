@@ -55,4 +55,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          python -m poetry run pytest ./server/apps/main/tests/tests_2023.py -vv
+          python manage.py test
