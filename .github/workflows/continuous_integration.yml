@@ -55,7 +55,7 @@ jobs:
 
       - name: make .env file
         run: |
-          cp .env.template .env
+          cp config/.env.template config/.env
 
       - name: Run Tests
         run: |
