@@ -12,8 +12,8 @@ def is_moderator(user):
     """Return membership of moderator group."""
 
     try:
-        group = Group.objects.get(user=user)
-        return group.name == "Moderators"
+        group = Group.objects.get(user=user,name='Moderators')
+        return bool(group)
 
     except Group.DoesNotExist:
         return False
