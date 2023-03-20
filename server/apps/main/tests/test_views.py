@@ -19,3 +19,6 @@ class ViewTest(TestCase):
                             refresh_token='bar',
                             expires_in=36000)
         self.oh_member.save()
+
+    def test_tests():
+        assert 1==1
