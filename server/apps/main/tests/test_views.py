@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory, Client
 from django.conf import settings
-from open_humans.models import OpenHumansMember
+from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience
 
 
