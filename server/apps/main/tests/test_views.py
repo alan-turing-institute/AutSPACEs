@@ -32,6 +32,9 @@ class Views(TestCase):
                       "created_at": models.DateTimeField(auto_now=True)}
         self.pe_a = PublicExperience(open_humans_member=self.user_a, **pe_example)
 
+        print(self.pe_a)
+
+        assert isinstance(self.pe_a, PublicExperience)
         # data = {"access_token": "foo", "refresh_token": "bar", "expires_in": 36000}
         # self.non_moderator_user = OpenHumansMember.create(oh_id=12345678, data=data)
         # self.moderator_user = OpenHumansMember.create(oh_id=23456789, data=data)
