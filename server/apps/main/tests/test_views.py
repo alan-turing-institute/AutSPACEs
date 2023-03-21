@@ -35,7 +35,7 @@ class Views(TestCase):
 
 
     def test_PE(self):
-        print(self.pe_a)
+        # print(self.pe_a)
 
         assert isinstance(self.pe_a, PublicExperience)
         # data = {"access_token": "foo", "refresh_token": "bar", "expires_in": 36000}
