@@ -16,11 +16,13 @@ class Models(TestCase):
         """
         # One user 
         self.user_a = OpenHumansMember.create(oh_id=1234, access_token="abc", refresh_token="def", expires_in=1000)
+
         pe_data = {"experience_text": "a",
                    "difference_text": "b",
                    "title_text": "c"}
-        self.public_experience = PublicExperience(open_humans_member = self.user_a, **pe_data)
+        PublicExperience.objects.create(open_humans_member = self.user_a, **pe_data)
 
     def test_model_str(self):
-        assert self.public_experience.__str__() == "c"
+        story_a = PublicExperience.objects.get(title_text = "c")
+        assert story_a .__str__() == "c"
 
