@@ -22,5 +22,5 @@ class Models(TestCase):
         self.public_experience = PublicExperience(open_humans_member = self.user_a, **pe_data)
 
     def test_model_str(self):
-        pass
+        assert self.public_experience.__str__() == "c"
 
