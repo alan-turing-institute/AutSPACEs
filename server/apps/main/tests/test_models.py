@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.db import models
 from server.apps.main.models import PublicExperience
 
 from openhumans.models import OpenHumansMember
@@ -10,7 +9,7 @@ class Models(TestCase):
     Tests the views function
     """
 
-    def SetUp(self):
+    def setUp(self):
         """
         Set-up for test with two users
         """
