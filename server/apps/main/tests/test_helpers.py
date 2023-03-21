@@ -22,8 +22,11 @@ class StoryHelper(TestCase):
         "expires_in": 36000}
         self.non_moderator_user = OpenHumansMember.create(oh_id=12345678,data=data)
         self.moderator_user = OpenHumansMember.create(oh_id=23456789,data=data)
-        self.moderator_group = Group.objects.create(name='SecondGroup')
-        self.moderator_group.user_set.add(self.moderator_user.user)
+        # create second group for moderator user to create edge-case
+        self.other_group = Group.objects.create(name='SecondGroup')
+        # add moderator to second group
+        self.other_group.user_set.add(self.moderator_user.user)
+        # create moderator group and add moderator user
         self.moderator_group = Group.objects.create(name='Moderators')
         self.moderator_group.user_set.add(self.moderator_user.user)
 
