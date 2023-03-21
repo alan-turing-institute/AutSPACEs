@@ -32,6 +32,9 @@ class Views(TestCase):
                       "created_at": models.DateTimeField(auto_now=True)}
         self.pe_a = PublicExperience(open_humans_member=self.user_a, **pe_example)
 
+
+
+    def test_PE(self):
         print(self.pe_a)
 
         assert isinstance(self.pe_a, PublicExperience)
