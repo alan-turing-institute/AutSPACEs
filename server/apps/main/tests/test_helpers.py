@@ -1,8 +1,10 @@
 from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
-from server.apps.main.helpers import reformat_date_string, get_review_status, is_moderator, get_oh_file, make_tags
-from openhumans.models import OpenHumansMember
+from server.apps.main.helpers import reformat_date_string, get_review_status, \
+    is_moderator, get_oh_file, make_tags, extract_experience_details
+from openhumans.models import OpenHumansMember 
+from server.apps.main.models import PublicExperience
 import vcr
 
 class StoryHelper(TestCase):
@@ -30,6 +32,7 @@ class StoryHelper(TestCase):
         # create moderator group and add moderator user
         self.moderator_group = Group.objects.create(name='Moderators')
         self.moderator_group.user_set.add(self.moderator_user.user)
+        self.moderator_user.save()
 
 
     def test_reformat_date(self):
@@ -82,7 +85,9 @@ class StoryHelper(TestCase):
 
 
     def test_make_tags(self):
-
+        """
+        Test make_tags function
+        """
         # Create mock set of tags 
         # Mock tags include 3 true items from the list, 2 false items from the list
         tag_data = {'abuse': True, 'violence': True,
@@ -92,7 +97,38 @@ class StoryHelper(TestCase):
                     'moderation_comments': ''
                     }
         returned_data = make_tags(tag_data)
-        print(returned_data)
         self.assertIn('abuse',returned_data)
         self.assertIn('negative body', returned_data)
         self.assertNotIn('mental health', returned_data)
+        #### COMMENT:
+        ## MIGHT WANT TO CHANGE make_tags TO ONLY RETURN PRESENT TAGS, 
+        ## CAN THEN TEST FOR LEN of LIST=3
+
+
+    def test_extract_experience_details(self):
+        """
+        Test that extraction of fixed information works. 
+        """
+        # Expected keys that should be returned
+        expected_keys = ['difference_text', 'experience_id', 'experience_text',
+                        'open_humans_member','research', 'title_text', 'viewable']
+        # create public experience
+        self.public_experience = PublicExperience.objects.create(
+            experience_text = 'EXP_TEXT', 
+            difference_text = 'DIFF_TEXT', 
+            title_text = 'TITLE',
+            experience_id = 'TEST_ID',
+            open_humans_member = self.moderator_user,
+            abuse = True, 
+            violence = True,
+        )
+        self.public_experience.save()
+        # get experience results
+        exp_details = extract_experience_details(self.public_experience)
+        # check all keys are there
+        returned_keys = list(exp_details.keys())
+        returned_keys.sort()
+        self.assertEqual(expected_keys, returned_keys)
+        # check relevant data is returned correctly
+        self.assertEqual(exp_details['experience_id'], "TEST_ID")
+        self.assertEqual(exp_details['open_humans_member'], self.moderator_user.oh_id)
