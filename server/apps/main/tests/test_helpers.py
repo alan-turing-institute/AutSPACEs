@@ -1,7 +1,7 @@
 from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
-from server.apps.main.helpers import reformat_date_string, get_review_status, is_moderator, get_oh_file
+from server.apps.main.helpers import reformat_date_string, get_review_status, is_moderator, get_oh_file, make_tags
 from openhumans.models import OpenHumansMember
 import vcr
 
@@ -79,3 +79,20 @@ class StoryHelper(TestCase):
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
         with self.assertRaises(Exception): 
             get_oh_file(self.moderator_user, target_uuid)
+
+
+    def test_make_tags(self):
+
+        # Create mock set of tags 
+        # Mock tags include 3 true items from the list, 2 false items from the list
+        tag_data = {'abuse': True, 'violence': True,
+                    'drug': False, 'mentalhealth': False,'negbody': True,
+                    'other': '',
+                    'moderation_status': 'approved',
+                    'moderation_comments': ''
+                    }
+        returned_data = make_tags(tag_data)
+        print(returned_data)
+        self.assertIn('abuse',returned_data)
+        self.assertIn('negative body', returned_data)
+        self.assertNotIn('mental health', returned_data)
