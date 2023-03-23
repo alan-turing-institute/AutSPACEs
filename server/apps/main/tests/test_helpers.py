@@ -1,8 +1,9 @@
 from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
-from server.apps.main.helpers import reformat_date_string, get_review_status, is_moderator
+from server.apps.main.helpers import reformat_date_string, get_review_status, is_moderator, get_oh_file
 from openhumans.models import OpenHumansMember
+import vcr
 
 class StoryHelper(TestCase):
     """
@@ -55,3 +56,26 @@ class StoryHelper(TestCase):
         """
         self.assertFalse(is_moderator(self.non_moderator_user.user)) # non-moderator should be false
         self.assertTrue(is_moderator(self.moderator_user.user)) # moderator user should be true
+
+    @vcr.use_cassette('server/apps/main/tests/fixtures/my_stories.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])
+    def test_fetch_by_uuid_sucesss(self):
+        """
+        Test that fetching an OH file by UUID works. 
+        Should succeed if no duplicate UUID in account
+        """
+        target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
+        response = get_oh_file(self.moderator_user, target_uuid)
+        self.assertEqual(response['id'], 63199447)
+
+
+    @vcr.use_cassette('server/apps/main/tests/fixtures/my_stories_duplicate_uuid.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])
+    def test_fetch_by_uuid_failure(self):
+        """
+        Test that fetching an OH file by UUID works. 
+        Should faile due to duplicate UUID in account
+        """
+        target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
+        with self.assertRaises(Exception): 
+            get_oh_file(self.moderator_user, target_uuid)
