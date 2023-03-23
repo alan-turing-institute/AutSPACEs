@@ -29,4 +29,13 @@ class ModelsTest(TestCase):
     def test_model_str(self):
         story_a = PublicExperience.objects.get(title_text = "c")
         assert story_a.__str__() == "a"
+    
+    def test_model_defaults(self):
+        story_a = PublicExperience.objects.get(title_text = "c")
+        assert story_a.abuse == False
+        assert story_a.drug == False
+        assert story_a.mentalhealth == False
+        assert story_a.negbody == False
+        assert story_a.violence == False
+        assert story_a.other == ""
 
