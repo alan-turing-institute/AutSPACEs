@@ -43,9 +43,18 @@ class Views(TestCase):
         # Check that a non-logged in user cannot share an experience
         # An unlogged in user should get redirected to the index (302 response)
         non_logged_in_user = Client()
-        # non_logged_in_user.login(username='fred', password='secret')
         response = non_logged_in_user.get('/main/share_exp/')
         print(response.status_code)
+
+        print("*********")
+        
+        from django.contrib.auth.models import User
+        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        user.save()
+        logged_in_user = Client()
+        logged_in_user.force_login(user)
+        response_l = logged_in_user.get('/main/share_exp/')
+        print("Logged in ", response_l.status_code)
         # print(self.pe_a)
 
         # assert isinstance(self.pe_a, PublicExperience)
