@@ -15,12 +15,15 @@ class Views(TestCase):
         """
         Set-up for test with two users
         """
+        user_a = auth.get_user(self.client)
+        assert user_a.is_authenticated
+        
         # # Two users 
         data = {"access_token": 'foo',
         "refresh_token": 'bar',
         "expires_in": 36000}
-        self.user_a = OpenHumansMember.create(oh_id=12345678,data=data)
-        self.user_b = OpenHumansMember.create(oh_id=87654321,data=data)
+        self.oh_a = OpenHumansMember.create(oh_id=12345678,data=data)
+        self.oh_b = OpenHumansMember.create(oh_id=87654321,data=data)
 
         
 
@@ -28,12 +31,12 @@ class Views(TestCase):
         pe_data = {"experience_text": "Here is some experience text",
                       "difference_text": "Here is some difference text",
                       "title_text": "Here is the title"}
-        self.pe_a = PublicExperience(open_humans_member=self.user_a, experience_id="1234", **pe_data)
-        self.pe_b = PublicExperience(open_humans_member=self.user_b, experience_id="8765", **pe_data)
+        self.pe_a = PublicExperience(open_humans_member=self.oh_a, experience_id="1234", **pe_data)
+        self.pe_b = PublicExperience(open_humans_member=self.oh_b, experience_id="8765", **pe_data)
 
 
 
-    def test_PE(self):
+    def test_view_experience(self):
         # print(self.pe_a)
 
         # assert isinstance(self.pe_a, PublicExperience)
