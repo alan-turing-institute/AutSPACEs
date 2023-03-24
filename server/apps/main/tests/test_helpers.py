@@ -104,9 +104,8 @@ class StoryHelper(TestCase):
         self.assertIn('abuse',returned_data)
         self.assertIn('negative body', returned_data)
         self.assertNotIn('mental health', returned_data)
-        #### COMMENT:
-        ## MIGHT WANT TO CHANGE make_tags TO ONLY RETURN PRESENT TAGS, 
-        ## CAN THEN TEST FOR LEN of LIST=3
+        self.assertEqual(len(returned_data), 3)
+        
 
 
     def test_extract_experience_details(self):
