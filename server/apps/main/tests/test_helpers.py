@@ -2,7 +2,7 @@ from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
-    is_moderator, get_oh_file, make_tags, extract_experience_details
+    is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE
 from openhumans.models import OpenHumansMember 
 from server.apps.main.models import PublicExperience
 import vcr
@@ -132,3 +132,48 @@ class StoryHelper(TestCase):
         # check relevant data is returned correctly
         self.assertEqual(exp_details['experience_id'], "TEST_ID")
         self.assertEqual(exp_details['open_humans_member'], self.moderator_user.oh_id)
+
+
+    @vcr.use_cassette('server/apps/main/tests/fixtures/delete.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])    
+    def test_delete_file_and_pe(self):
+        """
+        Test that deleting a public experience through 
+        delete_single_file_and_pe deletes both oh OH & local
+        """
+        self.public_experience = PublicExperience.objects.create(
+            experience_text = 'EXP_TEXT', 
+            difference_text = 'DIFF_TEXT', 
+            title_text = 'TITLE',
+            experience_id = 'TEST_ID',
+            open_humans_member = self.moderator_user,
+            abuse = True, 
+            violence = True,
+        )
+        self.public_experience.save()
+        self.assertEqual(1,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
+        delete_single_file_and_pe("TEST_ID",self.moderator_user)
+        self.assertEqual(0,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
+
+    def test_delete_pe(self):
+        """
+        Test that deleting a public experience locally works
+        """
+        self.public_experience = PublicExperience.objects.create(
+            experience_text = 'EXP_TEXT', 
+            difference_text = 'DIFF_TEXT', 
+            title_text = 'TITLE',
+            experience_id = 'TEST_ID',
+            open_humans_member = self.moderator_user,
+            abuse = True, 
+            violence = True,
+        )
+        self.public_experience.save()
+        # Assert PE exists        
+        self.assertEqual(1,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
+        # Try deleting PE from third party, should not delete!
+        delete_PE("TEST_ID",self.non_moderator_user)
+        self.assertEqual(1,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
+        # Try deleting PE from third party, should not delete!
+        delete_PE("TEST_ID",self.moderator_user)
+        self.assertEqual(0,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
