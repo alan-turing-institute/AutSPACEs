@@ -216,8 +216,6 @@ class StoryHelper(TestCase):
             self.assertIn(k, trigger_keys)
 
 
-    @vcr.use_cassette('server/apps/main/tests/fixtures/delete.yaml',
-                      record_mode='none', filter_query_parameters=['access_token'])    
     def test_update_public_experience(self):
         """
         Test update PE in DB function
