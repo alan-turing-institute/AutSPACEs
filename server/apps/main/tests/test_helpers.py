@@ -28,6 +28,7 @@ class StoryHelper(TestCase):
         "refresh_token": 'bar',
         "expires_in": 36000}
         self.non_moderator_user = OpenHumansMember.create(oh_id=12345678,data=data)
+        self.non_moderator_user.save()
         self.moderator_user = OpenHumansMember.create(oh_id=23456789,data=data)
         # create second group for moderator user to create edge-case
         self.other_group = Group.objects.create(name='SecondGroup')
@@ -233,7 +234,7 @@ class StoryHelper(TestCase):
         self.assertEqual(len(PublicExperience.objects.all()),0)
         self.assertEqual(len(ExperienceHistory.objects.all()),0)
         # create new PE
-        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user)
+        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
         # check that PE exists 
         self.assertEqual(len(PublicExperience.objects.all()),1)
         pe = PublicExperience.objects.get(experience_id='foobar_id')
@@ -250,7 +251,7 @@ class StoryHelper(TestCase):
         # make new edit, should reset moderation status
         self.pe_data['experience_id'] = 'foobar_id'
         self.pe_data['viewable'] = True
-        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user)
+        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
         # check moderation did reset properly
         pe = PublicExperience.objects.get(experience_id='foobar_id')
         self.assertEqual(pe.moderation_status, 'not reviewed')
@@ -262,7 +263,7 @@ class StoryHelper(TestCase):
         # test moderatation edit
         self.pe_data['viewable'] = True
         self.pe_data['moderation_status'] = 'approved'
-        update_public_experience_db(self.pe_data, "foobar_id" ,self.moderator_user, 
+        update_public_experience_db(self.pe_data, "foobar_id", self.non_moderator_user, self.moderator_user, 
                                     change_type='Moderate',change_comments='I left a comment')
         # check updated PE & latest PEH object
         pe = PublicExperience.objects.get(experience_id='foobar_id')
@@ -270,7 +271,10 @@ class StoryHelper(TestCase):
         self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),3) # got 3 history entries now
         peh = ExperienceHistory.objects.all().order_by('changed_at')[2] 
         # check details of PEH & PE
-        self.assertEqual(pe.open_humans_member.oh_id,self.non_moderator_user.oh_id) # exp owned by owner
-        self.assertEqual(peh.changed_by.oh_id,self.moderator_user.oh_id) # exp last changed by moderator
+        self.assertEqual(pe.open_humans_member.oh_id,str(self.non_moderator_user.oh_id)) # exp owned by owner
+        self.assertEqual(peh.changed_by,str(self.moderator_user)) # exp last changed by moderator
         self.assertEqual(peh.change_type,'Moderate') # last operation was moderate
-        
+        # check everything gets deleted if user makes story non-public
+        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
+        self.assertEqual(len(PublicExperience.objects.all()),0) # should be no public experience
+        self.assertEqual(len(ExperienceHistory.objects.all()),0) # should be no history

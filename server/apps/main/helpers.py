@@ -214,7 +214,7 @@ def delete_PE(uuid, ohmember):
         ).delete()
 
 
-def update_public_experience_db(data, uuid, ohmember, **change_info):
+def update_public_experience_db(data, uuid, ohmember, editing_user, **change_info):
     """Updates the public experience database for the given uuid.
 
     If data is tagged as viewable, an experience will be updated or inserted.
@@ -259,7 +259,7 @@ def update_public_experience_db(data, uuid, ohmember, **change_info):
             experience=pe,
             change_type=change_type,
             changed_at=datetime.datetime.now(),
-            changed_by=str(ohmember),
+            changed_by=str(editing_user),
             change_comments=change_comments,
         )
 
