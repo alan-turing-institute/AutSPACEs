@@ -63,4 +63,4 @@ jobs:
           cp config/.env.template config/.env
       - name: Run Tests
         run: |
-          poetry run python manage.py test
+          poetry run python manage.py test --verbosity 3
