@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib import auth
+from django.test import Client
 from django.db import models
 from server.apps.main.models import PublicExperience
 
@@ -17,7 +18,7 @@ class Views(TestCase):
         """
         user_a = auth.get_user(self.client)
         assert user_a.is_authenticated
-        
+
         # # Two users 
         data = {"access_token": 'foo',
         "refresh_token": 'bar',
@@ -37,6 +38,9 @@ class Views(TestCase):
 
 
     def test_view_experience(self):
+
+        c = Client()
+        c.get('/share_exp/')
         # print(self.pe_a)
 
         # assert isinstance(self.pe_a, PublicExperience)
