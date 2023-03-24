@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
-    model_to_form
+    model_to_form, process_trigger_warnings
     
 
 from openhumans.models import OpenHumansMember 
@@ -186,6 +186,7 @@ class StoryHelper(TestCase):
     def test_model_to_form(self):
         """
         Test that turning a PE object into a moderation form works
+        Also test that subsequent processing of trigger warnings works!
         """
         self.public_experience = PublicExperience.objects.create(
             experience_text = 'EXP_TEXT', 
@@ -200,3 +201,16 @@ class StoryHelper(TestCase):
         self.form = model_to_form(self.public_experience)
         # assert returned form is of right class
         self.assertIsInstance(self.form, ModerateExperienceForm)
+        # test processing of trigger warnings
+        # remove things which wouldn't be submitted in actual form:
+        self.form.data.pop('experience_text')
+        self.form.data.pop('difference_text')
+        self.form.data.pop('title_text')
+        self.form.data.pop('experience_id')
+        self.form.data.pop('open_humans_member')
+        self.form.data.pop('viewable')
+        processed_triggers = process_trigger_warnings(self.form)
+        trigger_keys = list(processed_triggers.keys())
+        expected_keys = ['abuse','drug', 'mentalhealth', 'negbody', 'other', 'violence']
+        for k in expected_keys:
+            self.assertIn(k, trigger_keys)
