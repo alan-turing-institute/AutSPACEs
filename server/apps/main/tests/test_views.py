@@ -1,13 +1,8 @@
 from django.test import TestCase
-from django.db import models
 from django.contrib import auth
-from django.contrib.auth.models import Group
+from django.db import models
 from server.apps.main.models import PublicExperience
-from server.apps.main.helpers import (
-    reformat_date_string,
-    get_review_status,
-    is_moderator,
-)
+
 from openhumans.models import OpenHumansMember
 
 
@@ -20,17 +15,21 @@ class Views(TestCase):
         """
         Set-up for test with two users
         """
-        # Two users 
-        self.user_a = OpenHumansMember.create(oh_id=1234, access_token="abc", refresh_token="def", expires_in=1000)
-        self.user_b = OpenHumansMember.create(oh_id=9876, access_token="xyz", refresh_token="xyz", expires_in=1000)
+        # # Two users 
+        data = {"access_token": 'foo',
+        "refresh_token": 'bar',
+        "expires_in": 36000}
+        self.user_a = OpenHumansMember.create(oh_id=12345678,data=data)
+        self.user_b = OpenHumansMember.create(oh_id=87654321,data=data)
+
+        
 
         # Each with a public experience
-        pe_example = {"experience_text": "Here is some experience text",
+        pe_data = {"experience_text": "Here is some experience text",
                       "difference_text": "Here is some difference text",
-                      "title_text": "Here is the title",
-                      "experience_id": "123_abc",
-                      "created_at": models.DateTimeField(auto_now=True)}
-        self.pe_a = PublicExperience(open_humans_member=self.user_a, **pe_example)
+                      "title_text": "Here is the title"}
+        self.pe_a = PublicExperience(open_humans_member=self.user_a, experience_id="1234", **pe_data)
+        self.pe_b = PublicExperience(open_humans_member=self.user_b, experience_id="8765", **pe_data)
 
 
 
