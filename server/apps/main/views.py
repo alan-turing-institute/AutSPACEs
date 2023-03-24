@@ -118,6 +118,7 @@ def share_experience(request, uuid=False):
 
                 else:
                     uuid = make_uuid()
+                    print("UUID MADE")
 
                 upload(
                     data=form.cleaned_data,
