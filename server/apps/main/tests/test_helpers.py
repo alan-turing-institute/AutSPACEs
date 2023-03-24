@@ -2,9 +2,13 @@ from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
-    is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE
+    is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
+    model_to_form
+    
+
 from openhumans.models import OpenHumansMember 
 from server.apps.main.models import PublicExperience
+from server.apps.main.forms import ModerateExperienceForm
 import vcr
 
 class StoryHelper(TestCase):
@@ -177,3 +181,22 @@ class StoryHelper(TestCase):
         # Try deleting PE from third party, should not delete!
         delete_PE("TEST_ID",self.moderator_user)
         self.assertEqual(0,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
+
+
+    def test_model_to_form(self):
+        """
+        Test that turning a PE object into a moderation form works
+        """
+        self.public_experience = PublicExperience.objects.create(
+            experience_text = 'EXP_TEXT', 
+            difference_text = 'DIFF_TEXT', 
+            title_text = 'TITLE',
+            experience_id = 'TEST_ID',
+            open_humans_member = self.moderator_user,
+            abuse = True, 
+            violence = True,
+        )
+        self.public_experience.save()
+        self.form = model_to_form(self.public_experience)
+        # assert returned form is of right class
+        self.assertIsInstance(self.form, ModerateExperienceForm)
