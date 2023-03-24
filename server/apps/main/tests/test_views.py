@@ -44,6 +44,7 @@ class Views(TestCase):
         # An unlogged in user should get redirected to the index (302 response)
         non_logged_in_user = Client()
         response = non_logged_in_user.get('/main/share_exp/')
+        assert response.status_code == 302
         print(response.status_code)
 
         print("*********")
