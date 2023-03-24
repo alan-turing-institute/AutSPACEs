@@ -40,7 +40,8 @@ class Views(TestCase):
     def test_view_experience(self):
 
         c = Client()
-        c.get('/main/share_exp/', {"uuid": "1234", "bob": "abc"})
+        response = c.get('/main/share_exp/', {"uuid": "1234", "bob": "abc"})
+        print(response)
         # print(self.pe_a)
 
         # assert isinstance(self.pe_a, PublicExperience)
