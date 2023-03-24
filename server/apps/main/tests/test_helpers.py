@@ -3,11 +3,11 @@ import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
-    model_to_form, process_trigger_warnings
+    model_to_form, process_trigger_warnings, update_public_experience_db
     
 
 from openhumans.models import OpenHumansMember 
-from server.apps.main.models import PublicExperience
+from server.apps.main.models import PublicExperience, ExperienceHistory
 from server.apps.main.forms import ModerateExperienceForm
 import vcr
 
@@ -213,3 +213,64 @@ class StoryHelper(TestCase):
         expected_keys = ['abuse','drug', 'mentalhealth', 'negbody', 'other', 'violence']
         for k in expected_keys:
             self.assertIn(k, trigger_keys)
+
+
+    @vcr.use_cassette('server/apps/main/tests/fixtures/delete.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])    
+    def test_update_public_experience(self):
+        """
+        Test update PE in DB function
+        """
+        # data dict for creating PE
+        self.pe_data = {
+            'experience_text': "foo",
+            'difference_text': "bar",
+            'title_text': 'title',
+            'experience_id': 'foobar_id',
+            'viewable': True 
+        }
+        # assert no PE and PEH objects exist so far
+        self.assertEqual(len(PublicExperience.objects.all()),0)
+        self.assertEqual(len(ExperienceHistory.objects.all()),0)
+        # create new PE
+        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user)
+        # check that PE exists 
+        self.assertEqual(len(PublicExperience.objects.all()),1)
+        pe = PublicExperience.objects.get(experience_id='foobar_id')
+        # check that moderation status is "in review"
+        self.assertEqual(pe.moderation_status, 'not reviewed')
+        # check that this and only this PEH object exists 
+        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),1)
+        # check that EH object marks creation
+        peh = ExperienceHistory.objects.filter(experience=pe)[0]
+        self.assertEqual(peh.change_type,"Make Public")
+        # mark experience as moderation-approved
+        pe.moderation_status = 'approved'
+        pe.save()
+        # make new edit, should reset moderation status
+        self.pe_data['experience_id'] = 'foobar_id'
+        self.pe_data['viewable'] = True
+        update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user)
+        # check moderation did reset properly
+        pe = PublicExperience.objects.get(experience_id='foobar_id')
+        self.assertEqual(pe.moderation_status, 'not reviewed')
+        # check that two history objects exists
+        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),2)
+        # get newest PEH object, check it's "Edit"
+        peh = ExperienceHistory.objects.all().order_by('changed_at')[1]
+        self.assertEqual(peh.change_type,"Edit")
+        # test moderatation edit
+        self.pe_data['viewable'] = True
+        self.pe_data['moderation_status'] = 'approved'
+        update_public_experience_db(self.pe_data, "foobar_id" ,self.moderator_user, 
+                                    change_type='Moderate',change_comments='I left a comment')
+        # check updated PE & latest PEH object
+        pe = PublicExperience.objects.get(experience_id='foobar_id')
+        self.assertEqual(pe.moderation_status, 'approved') # is now approved
+        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),3) # got 3 history entries now
+        peh = ExperienceHistory.objects.all().order_by('changed_at')[2] 
+        # check details of PEH & PE
+        self.assertEqual(pe.open_humans_member.oh_id,self.non_moderator_user.oh_id) # exp owned by owner
+        self.assertEqual(peh.changed_by.oh_id,self.moderator_user.oh_id) # exp last changed by moderator
+        self.assertEqual(peh.change_type,'Moderate') # last operation was moderate
+        
