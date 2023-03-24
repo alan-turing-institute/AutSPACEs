@@ -40,7 +40,7 @@ class Views(TestCase):
     def test_view_experience(self):
 
         c = Client()
-        c.get('/share_exp/')
+        c.get('/main/share_exp/')
         # print(self.pe_a)
 
         # assert isinstance(self.pe_a, PublicExperience)
