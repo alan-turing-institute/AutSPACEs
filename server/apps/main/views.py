@@ -99,6 +99,7 @@ def share_experience(request, uuid=False):
     """
     Form where users can share details of their experiences.
     """
+    print("SHARE EXP FOR TESTING")
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated:
 
