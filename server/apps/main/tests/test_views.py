@@ -37,11 +37,13 @@ class Views(TestCase):
 
 
 
-    def test_view_experience(self):
-
-        c = Client()
-        response = c.get('/main/share_exp/', {"uuid": "1234", "bob": "abc"})
-        print(response)
+    def test_share_exp(self):
+        # Check that a non-logged in user cannot share an experience
+        # An unlogged in user should get redirected to the index (302 response)
+        non_logged_in_user = Client()
+        non_logged_in_user.login(username='fred', password='secret')
+        response = non_logged_in_user.get('/main/share_exp/')
+        print(response.status_code)
         # print(self.pe_a)
 
         # assert isinstance(self.pe_a, PublicExperience)
