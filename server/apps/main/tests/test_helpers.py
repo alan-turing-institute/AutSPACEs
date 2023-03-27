@@ -27,9 +27,9 @@ class StoryHelper(TestCase):
         data = {"access_token": 'foo',
         "refresh_token": 'bar',
         "expires_in": 36000}
-        self.non_moderator_user = OpenHumansMember.create(oh_id=12345678,data=data)
+        self.non_moderator_user = OpenHumansMember.create(oh_id="12345678",data=data)
         self.non_moderator_user.save()
-        self.moderator_user = OpenHumansMember.create(oh_id=23456789,data=data)
+        self.moderator_user = OpenHumansMember.create(oh_id="23456789",data=data)
         # create second group for moderator user to create edge-case
         self.other_group = Group.objects.create(name='SecondGroup')
         # add moderator to second group
@@ -270,7 +270,7 @@ class StoryHelper(TestCase):
         peh = ExperienceHistory.objects.all().order_by('changed_at')[2] 
         # check details of PEH & PE
         self.assertEqual(pe.open_humans_member.oh_id,str(self.non_moderator_user.oh_id)) # exp owned by owner
-        self.assertEqual(peh.changed_by,str(self.moderator_user)) # exp last changed by moderator
+        self.assertEqual(peh.changed_by.oh_id,self.moderator_user.oh_id) # exp last changed by moderator
         self.assertEqual(peh.change_type,'Moderate') # last operation was moderate
         # check everything gets deleted if user makes story non-public
         update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)

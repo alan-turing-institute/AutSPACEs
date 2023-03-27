@@ -32,7 +32,10 @@ class ExperienceHistory(models.Model):
     experience = models.ForeignKey(PublicExperience, on_delete=models.CASCADE)
     change_type = models.TextField()
     changed_at = models.DateTimeField(auto_now=True)
-    changed_by = models.TextField()
+    changed_by = models.ForeignKey(OpenHumansMember, 
+                                   blank=False,
+                                   null=False,
+                                   on_delete=models.CASCADE)
     change_comments = models.TextField(default="")
 
     def __str__(self):

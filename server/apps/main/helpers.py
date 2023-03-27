@@ -259,7 +259,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
             experience=pe,
             change_type=change_type,
             changed_at=datetime.datetime.now(),
-            changed_by=str(editing_user),
+            changed_by=editing_user,
             change_comments=change_comments,
         )
 
