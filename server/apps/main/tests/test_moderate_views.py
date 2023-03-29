@@ -40,18 +40,33 @@ class ModerationViewTests(TestCase):
         self.moderator_group.user_set.add(self.moderator_user)
         self.moderator_user.save()
 
-
     def test_view_moderate_list_logged_out(self):
+        """
+        Test moderate overview page is not accessible by logged-out users
+        """
         c = Client()
         response = c.get("/main/moderate_public_experiences", follow=True)
         self.assertRedirects(response, "/", 
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
-    def test_view_moderate_list_non_moderator_nonfact(self):
+    def test_view_moderate_list_non_moderator(self):
+        """
+        Test moderate overview page is not accessible by non-moderator users
+        """
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderate_public_experiences", follow=True)
         self.assertRedirects(response, "/main/overview", 
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
+
+    def test_view_moderate_list_moderator(self):
+        """
+        Test moderate overview page is accessible by moderators
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderate_public_experiences", follow=True)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderate_public_experiences.html')
