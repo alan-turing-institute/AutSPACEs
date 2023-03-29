@@ -353,4 +353,4 @@ def moderate_experience(request, uuid):
                 },
             )
     else:
-        redirect("index")
+        return redirect("index")

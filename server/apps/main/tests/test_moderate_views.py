@@ -1,5 +1,6 @@
 from django.test import TestCase, Client, RequestFactory
 from openhumans.models import OpenHumansMember
+from server.apps.main.models import PublicExperience
 from django.contrib.auth.models import Group
 
 from server.apps.main.views import moderate_public_experiences
@@ -39,6 +40,15 @@ class ModerationViewTests(TestCase):
         self.moderator_group = Group.objects.create(name='Moderators')
         self.moderator_group.user_set.add(self.moderator_user)
         self.moderator_user.save()
+        # create public expierence that needs review
+        pe_data = {
+            'experience_text': "test",
+            'open_humans_member': self.non_moderator_ohmember,
+            'experience_id': 'test-test-test'
+        }
+        self.pe_object = PublicExperience.objects.create(**pe_data)
+
+    # test moderation pages as logged-out user
 
     def test_view_moderate_list_logged_out(self):
         """
@@ -49,6 +59,18 @@ class ModerationViewTests(TestCase):
         self.assertRedirects(response, "/", 
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
+
+    def test_single_moderation_view_as_guest_get(self):
+        """
+        Test moderate single experience page isn't accessible to logged-out users
+        """
+        c = Client()
+        response = c.get("/main/moderate/test-test-test/", follow=True)
+        self.assertRedirects(response, "/",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+
+    # test moderation pages as logged-in but non-moderator user
 
     def test_view_moderate_list_non_moderator(self):
         """
@@ -61,6 +83,19 @@ class ModerationViewTests(TestCase):
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
+    def test_single_moderation_view_as_non_moderator_get(self):
+        """
+        Test moderate single experience page isn't accessible by non-moderators
+        """
+        c = Client()
+        c.force_login(self.non_moderator_user)
+        response = c.get("/main/moderate/test-test-test/", follow=True)
+        self.assertRedirects(response, "/main/overview",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+
+    # test moderation pages as logged-in moderator
+
     def test_view_moderate_list_moderator(self):
         """
         Test moderate overview page is accessible by moderators
@@ -70,3 +105,13 @@ class ModerationViewTests(TestCase):
         response = c.get("/main/moderate_public_experiences", follow=True)
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'main/moderate_public_experiences.html')
+
+    def test_single_moderation_view_as_moderator_get(self):
+        """
+        Test moderate single experience page is accessible by moderators
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderate/test-test-test/", follow=True)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderate_experience.html')
