@@ -67,7 +67,9 @@ jobs:
 
       - name: Run Tests
         run: |
-          poetry run coverage run --data-file=.coverage.${{ matrix.python_version }} manage.py test
+          poetry run coverage run manage.py test
+        env: 
+          COVERAGE_FILE: ".coverage.${{ matrix.python_version }}"
 
       - name: Store coverage file
         uses: actions/upload-artifact@v3
