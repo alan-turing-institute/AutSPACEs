@@ -34,6 +34,7 @@ bcrypt = "^3.2"
 structlog = "^20.1"
 django-open-humans = "^0.1.6"
 vcrpy = "^4.2.1"
+coverage = "^7.2.2"
 
 
 [tool.poetry.dev-dependencies]
