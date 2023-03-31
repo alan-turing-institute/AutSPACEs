@@ -4,6 +4,7 @@ from django.test import Client
 from django.db import models
 from server.apps.main.models import PublicExperience
 from django.contrib.auth.models import User
+from server.apps.main.views import share_experience
 
 
 from openhumans.models import OpenHumansMember
@@ -42,7 +43,6 @@ class Views(TestCase):
         self.user_b.save()
 
     
-
         
         # Each with a public experience
         pe_data = {"experience_text": "Here is some experience text",
@@ -53,7 +53,7 @@ class Views(TestCase):
 
 
     def test_share_exp(self):
-        """Check that no-authorised users are redirected (to index, then home) - get"""
+        """Check that non-authorised users are redirected (to index, then home) - get"""
         # c = Client()
         # logged_in = c.login(username='testuser', password='12345')
         # Check that a non-logged in user cannot share an experience
@@ -65,13 +65,14 @@ class Views(TestCase):
 
         print("*********")
         
+    def test_share_exp_logged_in(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get('/main/share_exp/')
+        print("logged in - ", response.status_code)
         # from django.contrib.auth.models import User
         # user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
         # user.save()
-        d = Client()
-        d.force_login(self.user_a)
-        response_d = d.get('/main/share_exp/')
-        print("logged in - ", response_d.status_code)
         # logged_in_user = Client()
         # logged_in_user.force_login(user)
         # response_l = logged_in_user.get('/main/share_exp/')
