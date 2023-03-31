@@ -10,7 +10,9 @@ import json
 
 class ModerationViewTests(TestCase):
     """
-    Test that the moderation views work as expected
+    Test that all moderation views work as expected
+    Also account for cases that should fail, e.g. 
+    non-logged in users
     """
 
     def setUp(self):
@@ -171,6 +173,7 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.moderator_user)
         self.assertEqual(len(PublicExperience.objects.all()),1)
+        # ideally would add a cassette here too which returns a "permission denied"
         response = c.post("/main/moderate/test-test-test/",
                           {"mentalhealth": True, "other":"New trigger",
                            },
