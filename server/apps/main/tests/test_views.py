@@ -19,10 +19,7 @@ class Views(TestCase):
         """
         Set-up for test with two users
         """
-        # user_a = auth.get_user(self.client)
-        # assert user_a.is_authenticated
-
-        # # Two users 
+        # Placeholder data
         data = {"access_token": 'foo',
         "refresh_token": 'bar',
         "expires_in": 36000}
@@ -41,10 +38,7 @@ class Views(TestCase):
         self.user_b.openhumansmember = self.oh_a
         self.user_b.set_password('password_a')
         self.user_b.save()
-        print("Created Users")
 
-    
-        
         # Each with a public experience
         pe_data = {"experience_text": "Here is some experience text",
                       "difference_text": "Here is some difference text",
@@ -52,34 +46,89 @@ class Views(TestCase):
         self.pe_a = PublicExperience(open_humans_member=self.oh_a, experience_id="1234", **pe_data)
         self.pe_b = PublicExperience(open_humans_member=self.oh_b, experience_id="8765", **pe_data)
 
-
+    # For the tests for share_exp the plan is to go through the if statements sequentially
+    # and put in tests for each eventuality - hence editing an experience may come before writing one
     def test_share_exp(self):
-        """Check that non-authorised users are redirected (to index, then home) - get"""
-        # c = Client()
-        # logged_in = c.login(username='testuser', password='12345')
-        # Check that a non-logged in user cannot share an experience
-        # An unlogged in user should get redirected to the index (302 response)
+        """
+        Check that non-authorised users are redirected (to index, then home) - get
+        logic:
+            request.user.is_authenticated == False
+        """
         c = Client()
         response = c.get('/main/share_exp/')
         assert response.status_code == 302
-        print(response.status_code)
-
-        print("*********")
         
     def test_share_exp_logged_in(self):
+        """
+        Test that logged in members are taken to the correct page
+        logic:
+            request.user.is_authenticated == True
+        """
         c = Client()
         c.force_login(self.user_a)
         response = c.get('/main/share_exp/')
-        print("logged in - ", response.status_code)
-        # from django.contrib.auth.models import User
-        # user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-        # user.save()
-        # logged_in_user = Client()
-        # logged_in_user.force_login(user)
-        # response_l = logged_in_user.get('/main/share_exp/')
-        # print("Logged in ", response_l.status_code)
-        # print(self.pe_a)
+        assert response.status_code == 200
 
-        # assert isinstance(self.pe_a, PublicExperience)
-        assert 1==1
+    # TODO - there is no contingency for form.is_valid() == False at the moment
+    # Does there need to be?
+    def test_share_exp_submitting_edited_experience(self):
+        """
+        Test that user can submit an edited a story of their own
+        logic:
+            request.user.is_authenticated == True
+            request.method == "POST"
+            form.is_valid() == True
+            uuid == True
+        """
+        # Need to confirm that the call is made to open humans to delete the single file with the given uuid
+        # Need to confirm upload of the (cleaned) data to that user's OH account
+        # Need to confirm update of the PE database
+        # Need to confirm redirection to confirm page
+        pass
+
+    def test_share_exp_submit_new_experience(self):
+        """
+        Test that user can submit a new experience of their own
+        logic:
+            request.user.is_authenticated == True
+            request.method == "POST"
+            form.is_valid() == True
+            uuid == False
+
+        """
+        # Need to confirm creation of a new UUID
+        # Need to confirm upload of the (cleaned) data to that user's OH account
+        # Need to confirm update of the PE database 
+        # Need to confirm redirection to confirm page
+        pass
+
+    def test_share_exp_load_existing_experience_for_editing(self):
+        """
+        Test that the share experience form is populated with the appropriate fields
+        from that user's specific PublicExperience.
+        logic:
+            request.user.is_authenticated == True
+            request.method == "GET"
+            uuid == True
+        """
+        # Need to confirm that the PublicExperience object exists
+        # Need to confirm that the contents of the sharedExperienceForm metadata aligns with the contents of the PublicExperience object
+        # Need to make a small change
+        # Need to ensure that small change is present in the context sent to "main/share_experiences.html"
+        pass
+
+    def test_share_exp_load_blank_form(self):
+        """
+        Test that a blank share experience form is loaded.
+        logic:
+            request.user.is_authenticated == True
+            request.method == "GET"
+            uuid == False
+        """
+        # Need to confirm that the SharedExperienceForm is empty
+        # Need to populate with minimal example
+        # Need to ensure that small change is present in the context sent to "main/share_experiences.html"
+        pass
+
+
 
