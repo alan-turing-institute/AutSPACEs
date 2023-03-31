@@ -1,6 +1,8 @@
 # Safeguarding risks & mitigation strategies
 
-Collectively, the AutSPACEs team together with the larger community have identified a number of potential risks that participating in different AutSPACEs events that could particularly affect vulnerable adults (e.g. autistic and co-occuring conditions). Jointly we have developed a wide range of mitigation strategies to minimize those risks. The team of AutSPACEs event organisers and faciliators (in particular Sophia Batchelor, Georgia Aitkenhead & Bastian Greshake Tzovaras) are responsible for the implementation of these actions.
+Collectively, the AutSPACEs team together with the larger community have identified a number of potential risks that participating in different AutSPACEs events that could particularly affect vulnerable adults (e.g. autistic and co-occuring conditions). Jointly we have developed a wide range of mitigation strategies to minimize those risks. 
+
+The team of AutSPACEs event organisers and faciliators (in particular Sophia Batchelor, Georgia Aitkenhead & Bastian Greshake Tzovaras) are responsible for the implementation of these actions.
 
 
 ## Risks
