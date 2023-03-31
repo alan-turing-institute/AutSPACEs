@@ -134,6 +134,7 @@ def share_experience(request, uuid=False):
                     data=form.cleaned_data,
                     uuid=uuid,
                     ohmember=request.user.openhumansmember,
+                    editing_user=request.user.openhumansmember,
                 )
 
                 # redirect to a new URL:
@@ -322,6 +323,7 @@ def moderate_experience(request, uuid):
                     data,
                     uuid,
                     ohmember=user_OH_member,
+                    editing_user=request.user.openhumansmember,
                     change_type="Moderate",
                     change_comments=moderation_comments,
                 )
@@ -355,4 +357,4 @@ def moderate_experience(request, uuid):
                 },
             )
     else:
-        redirect("index")
+        return redirect("index")

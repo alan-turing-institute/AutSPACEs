@@ -1,0 +1,275 @@
+interactions:
+- request:
+    body: project_member_id=12345678&file_basename=test-test-test.json
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '82'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/delete/
+  response:
+    body:
+      string: '{"ids":[63683438]}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '18'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Mar 2023 16:44:27 GMT
+      Expires:
+      - Wed, 29 Mar 2023 16:44:27 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/
+  response:
+    body:
+      string: "{\"count\":4,\"next\":null,\"previous\":null,\"created\":\"2023-01-13T11:49:13.359805Z\",\"project_member_id\":\"12345678\",\"sources_shared\":[],\"data\":[{\"id\":61962363,\"basename\":\"cb7c2e3a-ac81-11ed-90bb-0242ac120003.json\",\"created\":\"2023-02-14T16:11:41.232780Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/61962363/?key=0f59dda3-db62-4f58-b314-f1a3e3bfc43f\",\"metadata\":{\"data\":{\"drug\":false,\"abuse\":false,\"other\":\"\",\"negbody\":false,\"research\":false,\"viewable\":true,\"violence\":false,\"title_text\":\"Hotdesking
+        is terrible\",\"mentalhealth\":false,\"experience_id\":\"cb7c2e3a-ac81-11ed-90bb-0242ac120003\",\"difference_text\":\"I
+        try to get in early so that I can get my regular desk which is more in the
+        corner away from the bright lights.  I also often wear my headphones whilst
+        working.  I sometimes try and work non-standard hours to avoid the big crowds.
+        \ And also walk instead of taking the underground.\",\"experience_text\":\"Working
+        in the office can often be difficult.  We have hot desking so I never know
+        where I\u2019m going to be sitting or who else will be there.  The lights
+        are very bright as well which can be difficult as it gives me headaches.  It
+        can also be loud which makes it difficult to concentrate on my work.  The
+        commute can also be stressful if the trains are crowded and I have to take
+        the underground.\",\"moderation_status\":\"approved\",\"open_humans_member\":\"12345678\"},\"tags\":[null,\"\",\"\",\"\",\"\",\"\",\"non-research\",\"public\"],\"uuid\":\"cb7c2e3a-ac81-11ed-90bb-0242ac120003\",\"timestamp\":\"2023-02-14
+        16:11:37.827979\",\"description\":\"Hotdesking is terrible\"},\"source\":\"direct-sharing-171\",\"source_project\":\"https://www.openhumans.org/api/public/project/171/\"},{\"id\":61962368,\"basename\":\"0025530a-ac82-11ed-8e82-0242ac120003.json\",\"created\":\"2023-02-14T16:11:46.232150Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/61962368/?key=0d4533a2-9640-43fc-897c-bab80639a6c1\",\"metadata\":{\"data\":{\"drug\":false,\"abuse\":false,\"other\":\"\",\"negbody\":false,\"research\":false,\"viewable\":true,\"violence\":false,\"title_text\":\"Spatial
+        awareness\",\"mentalhealth\":false,\"experience_id\":\"0025530a-ac82-11ed-8e82-0242ac120003\",\"difference_text\":\"I
+        think shops need to be more aware of spatial issues. Stop putting piles of
+        things in the middle of aisles! In social situations, I just wish people were
+        more aware. If I\u2019m playing football and you\u2019re on my team, tell
+        me where the opponents are.\",\"experience_text\":\"My lack of spatial awareness
+        is probably the most debilitating part of my autism. I\u2019m constantly walking
+        into door frames and tripping over the corners of furniture even in my own
+        home. And have a terrible habit of walking backwards into old women in shopping
+        aisles. It\u2019s been super hard with COVID as I\u2019ve had to be in full
+        \u2018defensive mode\u2019 whenever I go out, making sure I\u2019m not too
+        near to anyone.\",\"moderation_status\":\"approved\",\"open_humans_member\":\"12345678\"},\"tags\":[null,\"\",\"\",\"\",\"\",\"\",\"non-research\",\"public\"],\"uuid\":\"0025530a-ac82-11ed-8e82-0242ac120003\",\"timestamp\":\"2023-02-14
+        16:11:42.928976\",\"description\":\"Spatial awareness\"},\"source\":\"direct-sharing-171\",\"source_project\":\"https://www.openhumans.org/api/public/project/171/\"},{\"id\":63538881,\"basename\":\"2057bdfc-ac82-11ed-919b-0242ac120003.json\",\"created\":\"2023-03-24T16:33:51.249903Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/63538881/?key=33b94dc3-ab7b-4c70-a5fc-715ca84d3532\",\"metadata\":{\"data\":{\"drug\":true,\"abuse\":true,\"other\":\"\",\"negbody\":true,\"research\":false,\"viewable\":true,\"violence\":true,\"title_text\":\"Self-medication\",\"mentalhealth\":true,\"experience_id\":\"2057bdfc-ac82-11ed-919b-0242ac120003\",\"difference_text\":\"Now,
+        whenever I\u2019m around lots of people and feel overwhelmed I make sure I
+        have a zute with me.\",\"experience_text\":\"I once went to a party that was
+        really loud. I was so uncomfortable there. Everyone was getting drunk and
+        smoking weed and I felt pressured to join in. To be honest, I think the weed
+        actually helped. It definely calmed me down and I was able to relax more.
+        I also felt normal.\",\"moderation_status\":\"not reviewed\",\"open_humans_member\":\"12345678\"},\"tags\":[\"non-research\",\"public\",\"abuse\",\"violence\",\"drugs\",\"mental
+        health\",\"negative body\"],\"uuid\":\"2057bdfc-ac82-11ed-919b-0242ac120003\",\"timestamp\":\"2023-03-24
+        16:33:50.133123\",\"description\":\"Self-medication\"},\"source\":\"direct-sharing-171\",\"source_project\":\"https://www.openhumans.org/api/public/project/171/\"},{\"id\":63614178,\"basename\":\"d8c34e52-ccac-11ed-b58a-0242ac130003.json\",\"created\":\"2023-03-27T14:39:04.730570Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/63614178/?key=bd33a523-e5e6-484e-9387-e46cf245c171\",\"metadata\":{\"data\":{\"drug\":true,\"abuse\":true,\"other\":\"\",\"negbody\":false,\"research\":false,\"viewable\":true,\"violence\":false,\"title_text\":\"S1T\",\"mentalhealth\":true,\"experience_id\":\"d8c34e52-ccac-11ed-b58a-0242ac130003\",\"difference_text\":\"S1D\",\"experience_text\":\"S1S\",\"moderation_status\":\"approved\",\"open_humans_member\":\"12345678\"},\"tags\":[\"non-research\",\"public\",\"abuse\",\"drugs\",\"mental
+        health\"],\"uuid\":\"d8c34e52-ccac-11ed-b58a-0242ac130003\",\"timestamp\":\"2023-03-27
+        14:39:03.455911\",\"description\":\"S1T\"},\"source\":\"direct-sharing-171\",\"source_project\":\"https://www.openhumans.org/api/public/project/171/\"}]}"
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5359'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Mar 2023 16:44:27 GMT
+      Expires:
+      - Wed, 29 Mar 2023 16:44:27 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: project_member_id=12345678&metadata=%7B%22uuid%22%3A+%22test-test-test%22%2C+%22description%22%3A+%22Noisy+bars%22%2C+%22tags%22%3A+%5B%22non-research%22%2C+%22public%22%5D%2C+%22data%22%3A+%7B%22experience_text%22%3A+%22I+enjoy+meeting+friends+and+people%2C+but+a+lot+of+places+are+not+designed+for+me+to+enjoy+this%3A+At+cafes%2C+bars%2C+restaurants+there+are+too+many+people+at+the+same+time%2C+the+lights+are+too+dim+for+me+to+see+comfortably+and+the+noise+level+is+so+high+that+I+can+not+understand+what+people+say.%22%2C+%22difference_text%22%3A+%22What+could+be+different%3A+I+wish+people+would+design+places+for+lower+noise+levels+and+with+better+lighting.+Or+that+my+friends+understood+that+those+places+are+not+fun+for+me+to+meet+them.+I+try+to+meet+up+with+my+friends+1%3A1+in+places+that+work+better+for+me.%22%2C+%22title_text%22%3A+%22Noisy+bars%22%2C+%22experience_id%22%3A+%22test-test-test%22%2C+%22open_humans_member%22%3A+%2212345678%22%2C+%22research%22%3A+false%2C+%22viewable%22%3A+true%2C+%22other%22%3A+%22%22%2C+%22moderation_status%22%3A+%22not+reviewed%22%2C+%22abuse%22%3A+false%2C+%22violence%22%3A+false%2C+%22drug%22%3A+false%2C+%22mentalhealth%22%3A+false%2C+%22negbody%22%3A+false%7D%2C+%22timestamp%22%3A+%222023-03-29+16%3A44%3A27.076781%22%7D&filename=test-test-test.json
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1373'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/upload/direct/
+  response:
+    body:
+      string: '{"id":63683553,"url":"https://open-humans-production.s3.amazonaws.com:443/member-files/direct-sharing-171/f89d6fc8-ce50-11ed-8fda-424477daf07e/test-test-test.json?Signature=FzOxcp%2BKVQekpTD2T0pEGmSZRqA%3D&Expires=1680129868&AWSAccessKeyId=AKIAIKNTFUJJTNS6N7HA"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '284'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Mar 2023 16:44:28 GMT
+      Expires:
+      - Wed, 29 Mar 2023 16:44:28 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 201
+      message: Created
+- request:
+    body: !!python/object/new:_io.BytesIO
+      state: !!python/tuple
+      - !!binary |
+        eyJkYXRhIjogeyJleHBlcmllbmNlX3RleHQiOiAiSSBlbmpveSBtZWV0aW5nIGZyaWVuZHMgYW5k
+        IHBlb3BsZSwgYnV0IGEgbG90IG9mIHBsYWNlcyBhcmUgbm90IGRlc2lnbmVkIGZvciBtZSB0byBl
+        bmpveSB0aGlzOiBBdCBjYWZlcywgYmFycywgcmVzdGF1cmFudHMgdGhlcmUgYXJlIHRvbyBtYW55
+        IHBlb3BsZSBhdCB0aGUgc2FtZSB0aW1lLCB0aGUgbGlnaHRzIGFyZSB0b28gZGltIGZvciBtZSB0
+        byBzZWUgY29tZm9ydGFibHkgYW5kIHRoZSBub2lzZSBsZXZlbCBpcyBzbyBoaWdoIHRoYXQgSSBj
+        YW4gbm90IHVuZGVyc3RhbmQgd2hhdCBwZW9wbGUgc2F5LiIsICJkaWZmZXJlbmNlX3RleHQiOiAi
+        V2hhdCBjb3VsZCBiZSBkaWZmZXJlbnQ6IEkgd2lzaCBwZW9wbGUgd291bGQgZGVzaWduIHBsYWNl
+        cyBmb3IgbG93ZXIgbm9pc2UgbGV2ZWxzIGFuZCB3aXRoIGJldHRlciBsaWdodGluZy4gT3IgdGhh
+        dCBteSBmcmllbmRzIHVuZGVyc3Rvb2QgdGhhdCB0aG9zZSBwbGFjZXMgYXJlIG5vdCBmdW4gZm9y
+        IG1lIHRvIG1lZXQgdGhlbS4gSSB0cnkgdG8gbWVldCB1cCB3aXRoIG15IGZyaWVuZHMgMToxIGlu
+        IHBsYWNlcyB0aGF0IHdvcmsgYmV0dGVyIGZvciBtZS4iLCAidGl0bGVfdGV4dCI6ICJOb2lzeSBi
+        YXJzIiwgImV4cGVyaWVuY2VfaWQiOiAiYjkzNzQwZjItYWM4MS0xMWVkLWE2NDUtMDI0MmFjMTIw
+        MDAzIiwgIm9wZW5faHVtYW5zX21lbWJlciI6ICI2MjYyMDY0MiIsICJyZXNlYXJjaCI6IGZhbHNl
+        LCAidmlld2FibGUiOiB0cnVlLCAib3RoZXIiOiAiIiwgIm1vZGVyYXRpb25fc3RhdHVzIjogIm5v
+        dCByZXZpZXdlZCIsICJhYnVzZSI6IGZhbHNlLCAidmlvbGVuY2UiOiBmYWxzZSwgImRydWciOiBm
+        YWxzZSwgIm1lbnRhbGhlYWx0aCI6IGZhbHNlLCAibmVnYm9keSI6IGZhbHNlfSwgInRpbWVzdGFt
+        cCI6ICIyMDIzLTAzLTI5IDE2OjQ0OjI3LjA3Njc4MSJ9
+      - 0
+      - null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '945'
+      User-Agent:
+      - python-requests/2.25.1
+    method: PUT
+    uri: https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-171/f89d6fc8-ce50-11ed-8fda-424477daf07e/test-test-test.json?AWSAccessKeyId=AKIAIKNTFUJJTNS6N7HA&Expires=1680129868&Signature=FzOxcp%2BKVQekpTD2T0pEGmSZRqA%3D
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Wed, 29 Mar 2023 16:44:29 GMT
+      ETag:
+      - '"e063c7f4eedbbb67e077bd7960033ceb"'
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - AjVUdTXMGt2yPf/9sgKwVgukaWV6NGQQWIlmGVEd6HmPcJM3xs95r4n8MNMWD37IZcJzOmzybv0=
+      x-amz-request-id:
+      - GP8PS6M6XEAX9E24
+      x-amz-server-side-encryption:
+      - AES256
+      x-amz-version-id:
+      - VxW1nEBRuOxZlFdUrLdGB3WFNvRTZOgE
+    status:
+      code: 200
+      message: OK
+- request:
+    body: project_member_id=12345678&file_id=63683553
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '43'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://www.openhumans.org/api/direct-sharing/project/files/upload/complete/
+  response:
+    body:
+      string: '{"status":"ok","size":945}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '26'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 29 Mar 2023 16:44:29 GMT
+      Expires:
+      - Wed, 29 Mar 2023 16:44:29 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1

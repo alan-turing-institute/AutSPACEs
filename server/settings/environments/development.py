@@ -15,6 +15,9 @@ from server.settings.components.common import INSTALLED_APPS, MIDDLEWARE
 
 DEBUG = True
 
+# Disable axis in development (which is also used for testing!)
+AXES_ENABLED = False
+
 ALLOWED_HOSTS = [
     config('DOMAIN_NAME'),
     'localhost',
