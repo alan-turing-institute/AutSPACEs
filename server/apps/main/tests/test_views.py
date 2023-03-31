@@ -70,7 +70,7 @@ class Views(TestCase):
         # user.save()
         d = Client()
         d.force_login(self.user_a)
-        response_d = d.get('/msin/share_exp/')
+        response_d = d.get('/main/share_exp/')
         print("logged in - ", response_d.status_code)
         # logged_in_user = Client()
         # logged_in_user.force_login(user)
