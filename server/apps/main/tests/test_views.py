@@ -15,7 +15,7 @@ class Views(TestCase):
     Tests the views function
     """
 
-    def SetUp(self):
+    def setUp(self):
         """
         Set-up for test with two users
         """
@@ -41,6 +41,7 @@ class Views(TestCase):
         self.user_b.openhumansmember = self.oh_a
         self.user_b.set_password('password_a')
         self.user_b.save()
+        print("Created Users")
 
     
         
