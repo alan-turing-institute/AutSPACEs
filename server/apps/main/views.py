@@ -20,9 +20,10 @@ from .helpers import (
     extract_experience_details,
     reformat_date_string,
     get_review_status,
-    get_oh_file,
+    get_oh_combined,
     delete_single_file_and_pe,
     upload,
+    rebuild_experience_data,
     make_uuid,
     delete_PE,
     update_public_experience_db,
@@ -141,8 +142,8 @@ def share_experience(request, uuid=False):
 
             if uuid:
                 # return data from oh.
-                data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
-                form = ShareExperienceForm(data["metadata"]["data"])
+                data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
+                form = ShareExperienceForm(data)
                 title = "Edit experience"
 
             else:
@@ -165,8 +166,8 @@ def view_experience(request, uuid):
     """
     if request.user.is_authenticated:
         # return data from oh.
-        data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
-        form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
+        data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
+        form = ShareExperienceForm(data, disable_all=True)
         return render(
             request,
             "main/share_experiences.html",
@@ -275,7 +276,7 @@ def moderate_public_experiences(request):
 # @vcr.use_cassette('tmp/my_stories.yaml', filter_query_parameters=['access_token'])
 def my_stories(request):
     """
-    List all stories that are associated with the OpenHumans proejct page.
+    List all stories that are associated with the OpenHumans project page.
     Including those which are not-shareable on the website
     """
     if request.user.is_authenticated:

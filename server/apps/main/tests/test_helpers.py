@@ -2,7 +2,7 @@ from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
-    is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
+    is_moderator, get_oh_metadata, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
     model_to_form, process_trigger_warnings, update_public_experience_db
     
 
@@ -67,13 +67,13 @@ class StoryHelper(TestCase):
 
     @vcr.use_cassette('server/apps/main/tests/fixtures/my_stories.yaml',
                       record_mode='none', filter_query_parameters=['access_token'])
-    def test_fetch_by_uuid_sucesss(self):
+    def test_fetch_by_uuid_successs(self):
         """
         Test that fetching an OH file by UUID works. 
         Should succeed if no duplicate UUID in account
         """
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
-        response = get_oh_file(self.moderator_user, target_uuid)
+        response = get_oh_metadata(self.moderator_user, target_uuid)
         self.assertEqual(response['id'], 63199447)
 
 
@@ -86,8 +86,7 @@ class StoryHelper(TestCase):
         """
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
         with self.assertRaises(Exception): 
-            get_oh_file(self.moderator_user, target_uuid)
-
+            get_oh_metadata(self.moderator_user, target_uuid)
 
     def test_make_tags(self):
         """
@@ -99,15 +98,17 @@ class StoryHelper(TestCase):
                     'drug': False, 'mentalhealth': False,'negbody': True,
                     'other': '',
                     'moderation_status': 'approved',
-                    'moderation_comments': ''
+                    'moderation_comments': '',
+                    'viewable': False,
+                    'research': False,
                     }
         returned_data = make_tags(tag_data)
-        self.assertIn('abuse',returned_data)
-        self.assertIn('negative body', returned_data)
+        self.assertNotIn('abuse',returned_data)
+        self.assertNotIn('negative body', returned_data)
         self.assertNotIn('mental health', returned_data)
-        self.assertEqual(len(returned_data), 3)
-        
-
+        self.assertIn('not public',returned_data)
+        self.assertIn('non-research',returned_data)
+        self.assertEqual(len(returned_data), 2)
 
     def test_extract_experience_details(self):
         """
