@@ -2,8 +2,9 @@ from django.test import TestCase
 import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
-    is_moderator, get_oh_file, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
-    model_to_form, process_trigger_warnings, update_public_experience_db
+    is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
+    model_to_form, process_trigger_warnings, update_public_experience_db, \
+    get_oh_metadata, get_oh_file, get_oh_combined
     
 
 from openhumans.models import OpenHumansMember 
@@ -67,13 +68,13 @@ class StoryHelper(TestCase):
 
     @vcr.use_cassette('server/apps/main/tests/fixtures/my_stories.yaml',
                       record_mode='none', filter_query_parameters=['access_token'])
-    def test_fetch_by_uuid_sucesss(self):
+    def test_fetch_by_uuid_successs(self):
         """
         Test that fetching an OH file by UUID works. 
         Should succeed if no duplicate UUID in account
         """
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
-        response = get_oh_file(self.moderator_user, target_uuid)
+        response = get_oh_metadata(self.moderator_user, target_uuid)
         self.assertEqual(response['id'], 63199447)
 
 
@@ -86,8 +87,53 @@ class StoryHelper(TestCase):
         """
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
         with self.assertRaises(Exception): 
-            get_oh_file(self.moderator_user, target_uuid)
+            get_oh_metadata(self.moderator_user, target_uuid)
 
+    @vcr.use_cassette('server/apps/main/tests/fixtures/get_oh_file.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])
+    def test_fetch_oh_file(self):
+        """
+        Test that fetching an OH file.
+        """
+        target_url = "https://www.openhumans.org/data-management/datafile-download/63968911/?key=8859abff-0967-4a0d-8196-cbda2dc8224f"
+        response = get_oh_file(target_url)
+        self.assertIn("data", response)
+        self.assertEqual(response["data"]["experience_text"],"Experience text")
+        self.assertEqual(response["data"]["difference_text"],"Difference text")
+        self.assertEqual(response["data"]["title_text"],"Title text")
+        self.assertEqual(response["data"].get("description"),None)
+        self.assertEqual(response["data"].get("research"),False)
+        self.assertEqual(response["data"].get("viewable"),False)
+        self.assertNotIn("tags", response)
+        self.assertNotIn("metadata", response)
+
+    @vcr.use_cassette('server/apps/main/tests/fixtures/get_oh_combined.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])
+    def test_fetch_oh_combined(self):
+        """
+        Test that fetching an OH file in combined form works.
+        """
+        target_uuid = "e2ba9bd8-d2ea-11ed-99e8-0242ac140003"
+        response = get_oh_combined(self.moderator_user, target_uuid)
+        # Content extracted from the file
+        self.assertEqual(response["experience_text"],"Experience text")
+        self.assertEqual(response["difference_text"],"Difference text")
+        self.assertEqual(response["title_text"],"Title text")
+        # Content extracted from the metadata
+        self.assertEqual(response["research"],False)
+        self.assertEqual(response["viewable"],False)
+        self.assertEqual(response["moderation_status"],"not reviewed")
+        self.assertEqual(response["drug"],False)
+        self.assertEqual(response["abuse"],False)
+        self.assertEqual(response["negbody"],False)
+        self.assertEqual(response["violence"],False)
+        self.assertEqual(response["mentalhealth"],False)
+        self.assertEqual(response["other"],"Topic")
+        # Content that shouldn't be present
+        self.assertNotIn("descriptions", response)
+        self.assertNotIn("tags", response)
+        self.assertNotIn("metadata", response)
+        self.assertNotIn("data", response)
 
     def test_make_tags(self):
         """
@@ -99,15 +145,17 @@ class StoryHelper(TestCase):
                     'drug': False, 'mentalhealth': False,'negbody': True,
                     'other': '',
                     'moderation_status': 'approved',
-                    'moderation_comments': ''
+                    'moderation_comments': '',
+                    'viewable': False,
+                    'research': False,
                     }
         returned_data = make_tags(tag_data)
-        self.assertIn('abuse',returned_data)
-        self.assertIn('negative body', returned_data)
+        self.assertNotIn('abuse',returned_data)
+        self.assertNotIn('negative body', returned_data)
         self.assertNotIn('mental health', returned_data)
-        self.assertEqual(len(returned_data), 3)
-        
-
+        self.assertIn('not public',returned_data)
+        self.assertIn('non-research',returned_data)
+        self.assertEqual(len(returned_data), 2)
 
     def test_extract_experience_details(self):
         """

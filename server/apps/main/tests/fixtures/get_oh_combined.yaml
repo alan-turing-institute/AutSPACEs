@@ -1,0 +1,124 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/
+  response:
+    body:
+      string: '{"count":4,"next":null,"previous":null,"created":"2023-04-03T14:09:46.906398Z","project_member_id":"39896706","sources_shared":[],"data":[{"id":63958265,"basename":"c72743e2-d229-11ed-99b0-0242ac140003.json","created":"2023-04-04T08:18:13.696771Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/63958265/?key=0512b6e2-8e71-4ae2-aa77-cc2fb5148652","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"c72743e2-d229-11ed-99b0-0242ac140003","moderation_status":"approved","open_humans_member":"39896706"},"tags":["non-research","public"],"uuid":"c72743e2-d229-11ed-99b0-0242ac140003","timestamp":"2023-04-04
+        08:18:12.889809","description":"Experiences"},"source":"direct-sharing-1330","source_project":"https://www.openhumans.org/api/public/project/1330/"},{"id":63958266,"basename":"be683784-d23d-11ed-becb-0242ac140003.json","created":"2023-04-04T08:18:24.980311Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/63958266/?key=cffb6bcc-b05e-4584-9c21-98da6c85cb9f","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":true,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"be683784-d23d-11ed-becb-0242ac140003","moderation_status":"approved","open_humans_member":"39896706"},"tags":["non-research","public"],"uuid":"be683784-d23d-11ed-becb-0242ac140003","timestamp":"2023-04-04
+        08:18:24.182982","description":"Experience"},"source":"direct-sharing-1330","source_project":"https://www.openhumans.org/api/public/project/1330/"},{"id":63963887,"basename":"2f9d9644-d2d7-11ed-9338-0242ac140003.json","created":"2023-04-04T10:55:18.520710Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/63963887/?key=35f3088c-a729-4ecd-8788-e7e41917fd53","metadata":{"data":{"drug":true,"abuse":false,"other":"topic","negbody":false,"research":false,"viewable":false,"violence":false,"mentalhealth":true,"moderation_status":"not
+        reviewed"},"tags":["not public","non-research","Other triggering label"],"uuid":"2f9d9644-d2d7-11ed-9338-0242ac140003","timestamp":"2023-04-04
+        10:55:17.707917","description":"Experiences 4"},"source":"direct-sharing-1330","source_project":"https://www.openhumans.org/api/public/project/1330/"},{"id":63969007,"basename":"e2ba9bd8-d2ea-11ed-99e8-0242ac140003.json","created":"2023-04-04T13:19:51.399031Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/63969007/?key=851fe98f-9d29-475d-ac05-5b6428e25309","metadata":{"data":{"drug":false,"abuse":false,"other":"Topic","negbody":false,"research":false,"viewable":false,"violence":false,"mentalhealth":false,"moderation_status":"not
+        reviewed"},"tags":["not public","non-research","Other triggering label"],"uuid":"e2ba9bd8-d2ea-11ed-99e8-0242ac140003","timestamp":"2023-04-04
+        13:19:50.571267","description":"Title text"},"source":"direct-sharing-1330","source_project":"https://www.openhumans.org/api/public/project/1330/"}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '3120'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 04 Apr 2023 13:25:08 GMT
+      Expires:
+      - Tue, 04 Apr 2023 13:25:08 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://www.openhumans.org/data-management/datafile-download/63969007/?key=851fe98f-9d29-475d-ac05-5b6428e25309
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Tue, 04 Apr 2023 13:25:08 GMT
+      Location:
+      - https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1330/01234567-89ab-cdef-0123-456789abcdef/01234567-89ab-cdef-0123-456789abcdef.json?AWSAccessKeyId=ABCDEFGHIJKLMNOPQRST&Signature=43gw66thjfgdget34DFe1b%2F5G6FDd7H%3D&Expires=1680617915&x-oh-key=01234567-89ab-cdef-0123-456789abcdef
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Authorization, Cookie
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1330/01234567-89ab-cdef-0123-456789abcdef/01234567-89ab-cdef-0123-456789abcdef.json?AWSAccessKeyId=ABCDEFGHIJKLMNOPQRST&Signature=43gw66thjfgdget34DFe1b%2F5G6FDd7H%3D&Expires=1680617915&x-oh-key=01234567-89ab-cdef-0123-456789abcdef
+  response:
+    body:
+      string: '{"data": {"experience_text": "Experience text", "difference_text":
+        "Difference text", "title_text": "Title text", "abuse": false, "violence":
+        false, "drug": false, "mentalhealth": false, "negbody": false, "other": "Topic",
+        "viewable": false, "research": false, "moderation_status": "not reviewed"},
+        "timestamp": "2023-04-04 13:19:50.571267"}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '341'
+      Content-Type:
+      - binary/octet-stream
+      Date:
+      - Tue, 04 Apr 2023 13:25:10 GMT
+      Last-Modified:
+      - Tue, 04 Apr 2023 13:19:52 GMT
+      Server:
+      - AmazonS3
+    status:
+      code: 200
+      message: OK
+version: 1
