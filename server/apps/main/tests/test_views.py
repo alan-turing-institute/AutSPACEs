@@ -5,6 +5,8 @@ from django.db import models
 from server.apps.main.models import PublicExperience
 from django.contrib.auth.models import User
 from server.apps.main.views import share_experience
+import vcr
+import urllib
 
 
 from openhumans.models import OpenHumansMember
@@ -85,7 +87,9 @@ class Views(TestCase):
         # Need to confirm update of the PE database
         # Need to confirm redirection to confirm page
         pass
-
+    
+    @vcr.use_cassette('server/apps/main/tests/fixtures/share_experiences.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'])
     def test_share_exp_submit_new_experience(self):
         """
         Test that user can submit a new experience of their own
@@ -100,6 +104,9 @@ class Views(TestCase):
         # Need to confirm upload of the (cleaned) data to that user's OH account
         # Need to confirm update of the PE database 
         # Need to confirm redirection to confirm page
+        response = urllib.request.urlopen('https://www.openhumans.org/api/direct-sharing/project/files/upload/direct/').read()
+        print(response)
+    
         pass
 
     def test_share_exp_load_existing_experience_for_editing(self):
