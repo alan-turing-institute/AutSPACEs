@@ -39,7 +39,7 @@ We have implemented a number of actions to minimize and mitigate those risks:
 | H | Keep to schedule as closely as possible. | R3 |
 | I | Ask group what support or adjustments they need to feel comfortable, such as dimmed lights, and follow their suggestions where possible. | R3|
 | J | Check in frequently to make sure participants feel comfortable and their needs are met. |R3, R5| 
-| K | Have autistic co-researchers actively involved in setting agendas and priorities to ensure alignment of goals with both participant needs and EDI strategy of the Institute | R4 |
+| K | Have autistic co-researchers actively involved in setting agendas and priorities to ensure alignment of goals with both participant needs and the EDI strategy of the Institute | R4 |
 | L | We establish a safe, trusted and respectful environment for participants to share their experiences in an appropriate way. Where needed, we can direct participants to external support at the Autistica Foundation | R6 |
 | M | Show all participants how to message facilitators directly and anonymously if they wish to raise something privately | R3, R5 | 
 | N | Provide all attendees with a schedule in advance including frequent breaks with zoom camera and microphone switched off. | R3 | 
