@@ -110,6 +110,7 @@ def get_review_status(files):
     return statuses
 
 
+# @vcr.use_cassette("tmp/get_oh_metadata.yaml", filter_query_parameters=['access_token'])
 def get_oh_metadata(ohmember, uuid):
     """Returns the metadata for a single file from OpenHumans, filtered by uuid.
 
@@ -133,6 +134,7 @@ def get_oh_metadata(ohmember, uuid):
 
     return file[0]
 
+# @vcr.use_cassette("tmp/get_oh_file.yaml", filter_query_parameters=['access_token'])
 def get_oh_file(url):
     """Returns a single file from OpenHumans.
 
@@ -150,6 +152,7 @@ def get_oh_file(url):
 
     return data
 
+# @vcr.use_cassette("tmp/get_oh_combined.yaml", filter_query_parameters=['access_token'])
 def get_oh_combined(ohmember, uuid):
     """Returns a dictionary combining file and metadata from OpenHumans, filtered by uuid.
 
