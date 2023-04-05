@@ -151,15 +151,20 @@ def share_experience(request, uuid=False):
                 data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
                 form = ShareExperienceForm(data)
                 title = "Edit experience"
+                viewable = data["metadata"]["data"].get("viewable", False)
+                moderation_status = data["metadata"]["data"].get("moderation_status", "not reviewed")
 
             else:
                 form = ShareExperienceForm()
                 title = "Share experience"
+                viewable = False
+                moderation_status = "not reviewed"
 
             return render(
                 request,
                 "main/share_experiences.html",
-                {"form": form, "uuid": uuid, "title": title},
+                {"form": form, "uuid": uuid, "title": title,
+                 "viewable": viewable, "moderation_status": moderation_status}
             )
 
     else:

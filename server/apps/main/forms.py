@@ -41,7 +41,9 @@ class ShareExperienceForm(forms.Form):
     other.group = 2
 
     # sharing options
-    viewable = forms.BooleanField(label = "Share on AutSPACE website", required=False)
+    viewable = forms.BooleanField(label = "Share on AutSPACE website", 
+                                  required=False,
+                                  widget=forms.CheckboxInput(attrs={'id':'shareOnAutSPACEs'}))
     viewable.group = 3
     research = forms.BooleanField(label = "Share for research", required=False)
     research.group = 3
