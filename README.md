@@ -30,7 +30,7 @@
 | server/apps/main/tests/test\_moderate\_views.py                           |      100 |        0 |    100% |           |
 | server/apps/main/tests/tests\_2023.py                                     |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                  |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                 |      124 |       55 |     56% |40, 44, 48, 52, 56, 60-62, 69-71, 104-160, 167-183, 192-207, 219-249, 282-289 |
+| server/apps/main/views.py                                                 |      128 |       57 |     55% |40, 44, 48, 51, 54, 58, 62, 66-68, 75-77, 110-166, 173-189, 198-213, 225-255, 288-295 |
 | server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
@@ -41,7 +41,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       11 |        0 |    100% |           |
-|                                                                 **TOTAL** |  **781** |   **84** | **89%** |           |
+|                                                                 **TOTAL** |  **785** |   **86** | **89%** |           |
 
 
 ## Setup coverage badge
