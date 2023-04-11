@@ -27,5 +27,7 @@ urlpatterns = [
     path("confirm_page/", views.confirmation_page, name="confirm_page"),
     path("about_us/", views.about_us, name="about_us"),
     path("what_autism_is/", views.what_autism_is, name="what_autism_is"),
+    path("help/", views.help, name="help"),
+    path("code_of_conduct/", views.code_of_conduct, name="code_of_conduct"),
     path("registration/", views.registration, name="registration"),
 ]

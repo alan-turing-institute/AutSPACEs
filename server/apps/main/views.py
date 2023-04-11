@@ -47,6 +47,12 @@ def about_us(request):
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
 
+def help(request):
+    return render(request, "main/help.html")
+
+def code_of_conduct(request):
+    return render(request, "main/code_of_conduct.html")
+
 
 def edit_experience(request):
     return render(request, "main/share_experiences.html")
