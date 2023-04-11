@@ -1,0 +1,45 @@
+{% extends 'main/application.html' %}
+{% load static %}
+{% block title %}AutSPACEs - Help {% endblock %}
+
+{% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
+
+  {% block content %}
+
+<!--Contents-->
+<section id="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <div class="list-group col-lg-3 cotent-list" id="content-bar">
+          <h5 class="list-group-item content-title">Contents</h5>
+          <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#placeholder_1">Placeholder 1<span class="badge badge-pill"></span></a>
+          <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#placeholder_2">Placeholder 2<span class="badge badge-pill"></span></a>
+        </div>
+      </div>
+
+
+    <div class="topic-content col-9" data-offset="0" data-target="#content-bar"
+         style="padding: 2% 8%">
+      <div class="placeholder-1-class">
+        <h5 class="text-info" id="placeholder_1"><em></em>Title for placeholder 1</h5>
+        <p>Lorem ipsum</p>
+
+        <p>Two households both alike in dignity, in fair Verona where we lay our scene. I can't remember the rest. Something about civil blood
+          and civil hands being unclean?</p>
+
+      </div>
+      <div class="placeholder-2-class">
+        <h5 class="text-info" id="placeholder_2"><em></em>Title for placeholder 2</h5>
+        <p>The quick brown fox jumps over the lazy dog.</p>
+
+       </div>
+     </div>
+  </div>
+</div>
+
+</section>
+
+{%endblock%}
