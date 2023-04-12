@@ -4,7 +4,7 @@
 
 {% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
 
-  {% block content %}
+{% block content %}
 
 <!--Contents-->
 <section id="content">
@@ -14,118 +14,131 @@
         <div class="list-group col-lg-3 cotent-list" id="content-bar">
           <h5 class="list-group-item content-title">Contents</h5>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#what_stories">What stories should I share on AutSPACEs?<span class="badge badge-pill"></span></a>
+            href="#what_stories">What stories should I share on AutSPACEs?<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#who_can_share">Who can share stories on AutSPACEs?<span class="badge badge-pill"></span></a>
+            href="#who_can_share">Who can share stories on AutSPACEs?<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#what_happens_to_stories">What happens to the stories I share on AutSPACEs?<span class="badge badge-pill"></span></a>
+            href="#what_happens_to_stories">What happens to the stories I share on AutSPACEs?<span
+              class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#how_to_decide">How do you decide which stories to publish on the AutSPACEs website?<span class="badge badge-pill"></span></a>
+            href="#how_to_decide">How do you decide which stories to publish on the AutSPACEs website?<span
+              class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#what_if_not_accepted">What can I do if I want my story to be published but it wasn’t accepted?<span class="badge badge-pill"></span></a>
+            href="#what_if_not_accepted">What can I do if I want my story to be published but it wasn’t accepted?<span
+              class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#what_if_change_mind">What if I change my mind about my story?<span class="badge badge-pill"></span></a>
+            href="#what_if_change_mind">What if I change my mind about my story?<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-              href="#share_someone_else">Can I share a story about someone else?<span class="badge badge-pill"></span></a>
+            href="#share_someone_else">Can I share a story about someone else?<span class="badge badge-pill"></span></a>
         </div>
       </div>
 
 
-    <div class="topic-content col-9" data-offset="0" data-target="#content-bar"
-         style="padding: 2% 8%">
-      <div class="faq-class">
-        <h5 class="text-info" id="what_stories"><em></em>What stories should I share on AutSPACEs?</h5>
-        <p>
-          AutSPACEs is a website to collect stories about how autistic people’s sensory processing affects us 
-          in our daily lives. Please share any experiences you have had where your senses have affected you, or 
-          tell us about how you feel in different places. For instance, you could tell us about an office which 
-          is too bright, a train station which is confusing, or a walk which you found calming. 
-        </p>
-        <p>
-          If you have any solutions, strategies, recommendations or tips which makes or would have made your 
-          experience better please also share them. For instance, ‘there should be more arrows to show which way 
-          to go’, or ‘noise-canceling headphones help to make train journeys more comfortable’. 
-        </p>
-        <p>
-          Please follow our <a href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
-        </p>
-      </div>
-      <div class="faq-class">
-        <h5 class="text-info" id="who_can_share"><em></em>Who can share stories on AutSPACEs?</h5>
-        <p>Anyone can share stories on AutSPACEs. You do not have to be autistic to share stories on AutSPACEs, but we 
-          are looking for stories to help understand autism and sensory processing, and to make spaces better for 
-          autistic people.
-        </p>
-        <p>You can help an autistic person to share experiences or share stories about someone who is unable to do so 
-          themselves as long as you follow our code of conduct and guidelines.</p>
-          <a class="col-lg-12" href="{% url 'main:code_of_conduct' %}" >
+      <div class="topic-content col-9" data-offset="0" data-target="#content-bar" style="padding: 2% 8%">
+        <div class="faq-class">
+          <h5 class="text-info" id="what_stories"><em></em>What stories should I share on AutSPACEs?</h5>
+          <p>
+            AutSPACEs is a website to collect stories about how autistic people’s sensory processing affects us in our daily
+            lives. Please share any experiences you have had where your senses have affected you, or tell us about how you
+            feel in different places. For instance, you could tell us about an office which is too bright, a train station
+            which is confusing, or a walk which you found calming.
+          </p>
+          <p>
+            If you have any solutions, strategies, recommendations or tips which makes or would have made your experience
+            better please also share them. For instance, ‘there should be more arrows to show which way to go’, or
+            ‘noise-canceling headphones help to make train journeys more comfortable’.
+          </p>
+          <p>
+            Please follow our <a href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
+          </p>
+        </div>
+        <div class="faq-class">
+          <h5 class="text-info" id="who_can_share"><em></em>Who can share stories on AutSPACEs?</h5>
+          <p>Anyone can share stories on AutSPACEs. You do not have to be autistic to share stories on AutSPACEs, but we
+            are looking for stories to help understand autism and sensory processing, and to make spaces better for
+            autistic people.
+          </p>
+          <p>You can help an autistic person to share experiences or share stories about someone who is unable to do so
+            themselves as long as you follow our code of conduct and guidelines.</p>
+          <a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
             <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button>
           </a>
-      </div>
-      <div class="faq-class">
-        <h5 class="text-info" id="what_happens_to_stories"><em></em>What happens to the stories I share on AutSPACEs?</h5>
-        <p>You can decide who can see any story you share on AutSPACEs. You have four options. </p>
- 
-        <p>
+        </div>
+        <div class="faq-class">
+          <h5 class="text-info" id="what_happens_to_stories"><em></em>What happens to the stories I share on AutSPACEs?
+          </h5>
+          <p>You can decide who can see any story you share on AutSPACEs. You have four options. </p>
+
+          <p>
           <ol>
-            <li><b>Keep the story private</b> If you keep the story private, we will hold it securely in a database (via Open Humans) 
-              and won’t share it with anyone else. You will be able to view it when you login to your account.</li>
+            <li><b>Keep the story private</b> If you keep the story private, we will hold it securely in a database (via
+              Open Humans) and won’t share it with anyone else. You will be able to view it when you login to your account.
+            </li>
 
-            <li><b>Share the story with researchers</b> If you choose to share the story with researchers, we will hold it securely in 
-              a database. We will share it with researchers who have applied to access the AutSPACEs data. We will only allow 
-              researchers to access the data if they are accepted by a panel and if they agree to our terms and values.</li>
+            <li><b>Share the story with researchers</b> If you choose to share the story with researchers, we will hold it
+              securely in a database. We will share it with researchers who have applied to access the AutSPACEs data. We
+              will only allow researchers to access the data if they are accepted by a panel and if they agree to our terms
+              and values.
+            </li>
 
-            <li><b>Share the story publicly</b> If you choose to share the story publicly, we will hold it securely in a database. 
-              We will first check it to make sure it follows our code of conduct LINK. If we decide to publish it, you will get 
-              a notification on your account and it will be posted publicly on the AutSPACEs website. If it includes potentially 
-              upsetting or triggering content, it will be published with a trigger warning. 
-              Anyone will be able to read the story. If we decide not to publish it, you will get a notification on your account. 
-              Please be aware we cannot control who will read the story once it is published online.</li>
+            <li><b>Share the story publicly</b> If you choose to share the story publicly, we will hold it securely in a
+              database. We will first check it to make sure it follows our code of conduct LINK. If we decide to publish it,
+              you will get a notification on your account and it will be posted publicly on the AutSPACEs website. If it
+              includes potentially upsetting or triggering content, it will be published with a trigger warning.
+              Anyone will be able to read the story. If we decide not to publish it, you will get a notification on your
+              account. Please be aware we cannot control who will read the story once it is published online.</li>
 
             <li><b>Share with researchers and publicly</b></li>
           </ol>
-        </p>
-          
-        <p>We will never sell your data, or share your stories with anyone without your permission.</p>
+          </p>
 
+          <p>We will never sell your data, or share your stories with anyone without your permission.</p>
+
+        </div>
+        <div class="faq-class">
+          <h5 class="text-info" id="how_to_decide"><em></em>How do you decide which stories to publish on the AutSPACEs
+            website?</h5>
+          <p>We publish all stories that follow our code of conduct LINK and that we have permission from the writer of
+            the story to share publicly.</p>
+        </div>
+        <div class="faq-class">
+          <h5 class="text-info" id="what_if_not_accepted"><em></em>What can I do if I want my story to be published but
+            it wasn’t accepted?</h5>
+          <p>You can change your story and submit it again. Please make sure your story follows our code of conduct
+            LINK.</p>
+        </div>
+        <div class="faq-class">
+          <h5 class="text-info" id="what_if_change_mind"><em></em>What if I change my mind about my story?</h5>
+          <p>If you change your mind about who you want to see your story, you can go to the story on your account and
+            change your sharing permissions.</p>
+          <p>If you no longer want to share it with researchers, we will not share it with any further researchers,
+            and we will notify existing researchers to remove it from their data.
+            <br>It may not always be possible to remove your story from the data, for instance if a paper has already
+            been published using the data.
+          </p>
+          <p>If you no longer want it to be shared publicly, it will be immediately removed from the website. You can
+            change your sharing permissions at any time by logging into your account.</p>
+          <p>If you change your mind about what you want to include in your story, you can edit it and submit it again.
+            It will be immediately changed in the database. We will need to check it again to make sure it follows our code
+            of conduct before we publish it. You can edit your story anytime by logging into your account.</p>
+          <p>You can also delete your story at any time and it will be immediately removed from the website and the
+            database. You can delete your story at any time by logging into your account.</p>
+        </div>
+        <div class="faq-class">
+          <h5 class="text-info" id="share_someone_else"><em></em>Can I share a story about someone else?</h5>
+          <p>Yes, but please be respectful when you share someone else’s story. You are welcome to help someone else to
+            use the platform. For example, you can help someone to put their story into writing if they are unable to do it
+            themselves, or if they find it hard to do without help. Please ask for their permission and check they are happy
+            with what you have written if they are able to do so.</p>
+          <p>We want to include as many people as possible, so you can also share a story about someone else if they
+            cannot do so for themselves and they cannot give explicit permission. In that case, please keep the story as
+            neutral as possible, and make observations instead of assumptions or inferences. Please read and follow our
+            guidelines LINK on sharing stories about someone else. AutSPACEs is not a place to complain, rant or vent about
+            autistic people. It exists to understand autistic people better and to promote our wellbeing.</p>
+        </div>
       </div>
-      <div class="faq-class">
-        <h5 class="text-info" id="how_to_decide"><em></em>How do you decide which stories to publish on the AutSPACEs website?</h5>
-        <p>We publish all stories that follow our code of conduct LINK and that we have permission from the writer of the story to share publicly.</p>
-      </div>
-      <div class="faq-class">
-        <h5 class="text-info" id="what_if_not_accepted"><em></em>What can I do if I want my story to be published but it wasn’t accepted?</h5>
-        <p>You can change your story and submit it again. Please make sure your story follows our code of conduct LINK.</p>
-       </div>
-       <div class="faq-class">
-        <h5 class="text-info" id="what_if_change_mind"><em></em>What if I change my mind about my story?</h5>
-        <p>If you change your mind about who you want to see your story, you can go to the story on your account and 
-          change your sharing permissions.</p>
-        <p>If you no longer want to share it with researchers, we will not share it with any further researchers, 
-          and we will notify existing researchers to remove it from their data. 
-          <br>It may not always be possible to remove your story from the data, for instance if a paper has already been published 
-          using the data.</p>
-        <p>If you no longer want it to be shared publicly, it will be immediately removed from the website. You can change your sharing 
-          permissions at any time by logging into your account.</p>
-        <p>If you change your mind about what you want to include in your story, you can edit it and submit it again. It will be immediately 
-          changed in the database. We will need to check it again to make sure it follows our code of conduct before we publish it. You can 
-          edit your story anytime by logging into your account.</p>
-        <p>You can also delete your story at any time and it will be immediately removed from the website and the database. 
-          You can delete your story at any time by logging into your account.</p>
-       </div>
-       <div class="faq-class">
-        <h5 class="text-info" id="share_someone_else"><em></em>Can I share a story about someone else?</h5>
-        <p>Yes, but please be respectful when you share someone else’s story. You are welcome to help someone else to use the platform. 
-          For example, you can help someone to put their story into writing if they are unable to do it themselves, or if they find it hard to 
-          do without help. Please ask for their permission and check they are happy with what you have written if they are able to do so.</p>
-        <p>We want to include as many people as possible, so you can also share a story about someone else if they cannot do so for themselves 
-          and they cannot give explicit permission. In that case, please keep the story as neutral as possible, and make observations instead 
-          of assumptions or inferences. Please read and follow our guidelines LINK on sharing stories about someone else. AutSPACEs is not a 
-          place to complain, rant or vent about autistic people. It exists to understand autistic people better and to promote our wellbeing.</p>
-       </div>
-     </div>
+    </div>
   </div>
-</div>
 
 </section>
 
