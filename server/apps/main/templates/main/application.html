@@ -6,6 +6,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>{% block title %}AutSPACEs{% endblock %}</title>
 
+    <!-- jQuery -->
+    {% include 'main/partials/jquery.html' %}
+    
     <!-- Bootstrap CSS -->
 
 
@@ -48,7 +51,6 @@
       {% include 'main/partials/footer.html'%}
     </section>
 
-    {% include 'main/partials/jquery.html' %}
     <script src="{% static '/js/main.js' %}"></script>
 
   </body>
