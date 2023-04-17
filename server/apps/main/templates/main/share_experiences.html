@@ -218,13 +218,39 @@
     </div>
     {% else %}
       <div class='form-group'>
-        <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
+        <!-- Add an id and data attributes to the submit button -->
+          <button type="button" class="btn btn-outline-dark btn-lg float-right" id="submitBtn" 
+          data-uuid="{{ uuid }}" data-moderation-status="{{ moderation_status }}">Submit</button>
       </div>
     </form>
   </div>
     {% endif %}
 
 
-</section>
+  </section>
+
+  <!-- Modal for the submit button -->
+  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="submitModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Submitting your edited story will send it for moderation again. Do you want to proceed?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="submitForm">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/submit-warning.js' %}"></script>
 
 {% endblock %}
+
