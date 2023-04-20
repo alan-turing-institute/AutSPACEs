@@ -104,8 +104,17 @@ class Views(TestCase):
         # Need to confirm upload of the (cleaned) data to that user's OH account
         # Need to confirm update of the PE database 
         # Need to confirm redirection to confirm page
-        response = urllib.request.urlopen('https://www.openhumans.org/api/direct-sharing/project/files/upload/direct/').read()
-        print(response)
+
+        c = Client()
+        c.force_login(self.user_a)
+        
+        response = c.post("/main/share_exp/",
+                          {"experience_text": "Here is some experience text", 
+                           "difference_text": "Here is some difference text", 
+                           "open_humans_member": self.oh_a},
+                        follow=True)
+        
+
     
         pass
 
