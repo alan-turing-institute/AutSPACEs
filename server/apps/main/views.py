@@ -228,6 +228,19 @@ def list_public_experiences(request):
 
     experiences = PublicExperience.objects.filter(moderation_status="approved")
 
+    # Default is to show non-triggering content only
+    show_triggering = request.GET.get("triggering_stories", False)
+
+    if not show_triggering:
+        experiences = experiences.filter(Q(abuse=False)
+                & Q(violence=False)
+                & Q(drug=False)
+                & Q(mentalhealth=False)
+                & Q(negbody=False)
+                & Q(other="")
+            )
+
+
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
 
@@ -235,25 +248,12 @@ def list_public_experiences(request):
     if searched:
 
         # search within all approved stories regardless of triggering status
-
         experiences = experiences.filter(
             Q(title_text__icontains=searched)
             | Q(experience_text__icontains=searched)
             | Q(difference_text__icontains=searched)
         )
 
-    # If the triggering stories flag is checked - perform an additional filter to remove triggering stories
-    trigger_label = request.GET.get("triggering_stories", False)
-
-    if trigger_label:
-        experiences = experiences.filter(
-            Q(abuse=False)
-            & Q(violence=False)
-            & Q(drug=False)
-            & Q(mentalhealth=False)
-            & Q(negbody=False)
-            & Q(other="")
-        )
 
     # Standard page showing all moderated stories
     return render(
