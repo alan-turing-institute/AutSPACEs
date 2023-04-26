@@ -226,6 +226,8 @@ def list_public_experiences(request):
     4) abide by triggering label toggle.
     """
 
+    all_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
+
     experiences = PublicExperience.objects.filter(moderation_status="approved")
 
     # Default is to show non-triggering content only
@@ -240,6 +242,12 @@ def list_public_experiences(request):
                 & Q(other="")
             )
 
+    # Check the allowed triggers
+    allowed_triggers = request.GET.keys()
+    triggers_to_show = list(all_triggers.intersection(allowed_triggers))
+    print("____________________")
+    print(triggers_to_show)
+    print("____________________")
 
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
