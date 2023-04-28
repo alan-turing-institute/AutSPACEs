@@ -9,6 +9,7 @@
 | server/apps/\_\_init\_\_.py                                               |        0 |        0 |    100% |           |
 | server/apps/main/\_\_init\_\_.py                                          |        0 |        0 |    100% |           |
 | server/apps/main/admin.py                                                 |        4 |        0 |    100% |           |
+| server/apps/main/apps.py                                                  |        3 |        0 |    100% |           |
 | server/apps/main/context\_processors.py                                   |        4 |        0 |    100% |           |
 | server/apps/main/forms.py                                                 |       71 |       12 |     83% |64-74, 78-82, 132 |
 | server/apps/main/helpers.py                                               |      113 |        3 |     97% |131, 301, 352 |
@@ -34,14 +35,14 @@
 | server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
-| server/settings/components/common.py                                      |       38 |        0 |    100% |           |
+| server/settings/components/common.py                                      |       37 |        0 |    100% |           |
 | server/settings/components/csp.py                                         |        5 |        0 |    100% |           |
 | server/settings/components/logging.py                                     |        3 |        0 |    100% |           |
 | server/settings/environments/\_\_init\_\_.py                              |        1 |        0 |    100% |           |
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       11 |        0 |    100% |           |
-|                                                                 **TOTAL** |  **789** |   **90** | **89%** |           |
+|                                                                 **TOTAL** |  **791** |   **90** | **89%** |           |
 
 
 ## Setup coverage badge
