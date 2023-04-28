@@ -41,6 +41,8 @@ from .helpers import (
     filter_by_moderation_status,
     filter_in_review,
     paginate_my_stories,
+    get_latest_change_reply,
+    structure_change_reply,
 )
 
 logger = logging.getLogger(__name__)
@@ -121,7 +123,6 @@ def overview(request):
         return render(request, "main/home.html", context=context)
     return redirect("index")
 
-
 # @vcr.use_cassette("server/apps/main/tests/fixtures/share_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
     """
@@ -174,9 +175,12 @@ def share_experience(request, uuid=False):
                         experience_id=uuid
                     ).moderation_status
                     title = "Edit experience"
+                    change_reply, changed_at = get_latest_change_reply(uuid)
                 else:  # or creating new one
                     moderation_status = "not reviewed"
                     title = "Share experience"
+                    change_reply = ""
+                    changed_at = None
                 return render(
                     request,
                     "main/share_experiences.html",
@@ -185,6 +189,8 @@ def share_experience(request, uuid=False):
                         "uuid": uuid,
                         "title": title,
                         "moderation_status": moderation_status,
+                        "change_reply": change_reply,
+                        "changed_at": changed_at,
                     },
                 )
         # if a GET (or any other method) we'll either create a blank form or
@@ -198,10 +204,13 @@ def share_experience(request, uuid=False):
                 form = ShareExperienceForm(data)
                 title = "Edit experience"
                 moderation_status = data.get("moderation_status", "not reviewed")
+                change_reply, changed_at = get_latest_change_reply(uuid)
             else:
                 form = ShareExperienceForm()
                 title = "Share experience"
                 moderation_status = "not reviewed"
+                change_reply = ""
+                changed_at = None
 
             return render(
                 request,
@@ -211,6 +220,8 @@ def share_experience(request, uuid=False):
                     "uuid": uuid,
                     "title": title,
                     "moderation_status": moderation_status,
+                    "change_reply": change_reply,
+                    "changed_at": changed_at,
                 },
             )
 
@@ -227,6 +238,7 @@ def view_experience(request, uuid):
         # return data from oh.
         data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
         form = ShareExperienceForm(data, disable_all=True)
+        change_reply, changed_at = get_latest_change_reply(uuid)
         return render(
             request,
             "main/share_experiences.html",
@@ -234,6 +246,8 @@ def view_experience(request, uuid):
                 "form": form,
                 "uuid": uuid,
                 "readonly": True,
+                "change_reply": change_reply,
+                "changed_at": changed_at,
                 "show_moderation_status": False,
                 "title": "View experience",
             },
@@ -438,7 +452,6 @@ def my_stories(request):
     else:
         return redirect("main:overview")
 
-
 def moderate_experience(request, uuid):
     """Moderate a single experience."""
     if request.user.is_authenticated and is_moderator(request.user):
@@ -457,6 +470,7 @@ def moderate_experience(request, uuid):
             data = {**unchanged_experience_details, **trigger_details}
 
             moderation_comments = data.pop("moderation_comments", None)
+            moderation_reply = data.pop("moderation_reply", "")
             moderation_prior = data.pop("moderation_prior", "not moderated")
 
             # get the users OH member id from the model
@@ -474,6 +488,7 @@ def moderate_experience(request, uuid):
                     editing_user=request.user.openhumansmember,
                     change_type="Moderate",
                     change_comments=moderation_comments,
+                    change_reply=moderation_reply,
                 )
             except Exception:
                 # if user writing E has deauthorized autspaces, delete public experience
@@ -491,6 +506,8 @@ def moderate_experience(request, uuid):
             experience_history = model.experiencehistory_set.all().order_by(
                 "changed_at"
             )
+            for history_item in experience_history:
+                history_item.change_reply = structure_change_reply(history_item.change_reply)
 
             form = model_to_form(model, disable_moderator=True)
             return render(

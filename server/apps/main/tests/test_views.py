@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib import auth
 from django.test import Client
 from django.db import models
-from server.apps.main.models import PublicExperience
+from server.apps.main.models import PublicExperience, ExperienceHistory
 from django.contrib.auth.models import User
 import vcr
 import urllib
@@ -65,24 +65,58 @@ class Views(TestCase):
             "moderation_status": "rejected",
             "mentalhealth": True,
         }
+        with_history = {
+            "experience_text": "This is a story with moderation history",
+            "difference_text": "This is some moderated difference text",
+            "title_text": "A moderated title",
+            "moderation_status": "rejected",
+        }
+        moderation_history = {
+            "changed_by": self.oh_a,
+            "change_comments": "Local moderation comment",
+            "change_reply": "Local moderation reply",
+        }
+        moderation_history_empty = {
+            "changed_by": self.oh_a,
+            "change_comments": "Local moderation comment",
+            "change_reply": "",
+        }
         self.pe_a = PublicExperience.objects.create(
             open_humans_member=self.oh_a, experience_id="1234_1", **pe_data
         )
-        self.pe_a = PublicExperience.objects.create(
+        self.pe_b = PublicExperience.objects.create(
             open_humans_member=self.oh_a, experience_id="1234_2", **pe_data
         )
-        self.pe_b = PublicExperience.objects.create(
+        self.pe_c = PublicExperience.objects.create(
             open_humans_member=self.oh_b, experience_id="8765_1", **approved
         )
-        self.pe_b = PublicExperience.objects.create(
+        self.pe_d = PublicExperience.objects.create(
             open_humans_member=self.oh_b,
             experience_id="8765_2",
             **approved_with_trigger
         )
-        self.pe_b = PublicExperience.objects.create(
+        self.pe_e = PublicExperience.objects.create(
             open_humans_member=self.oh_b,
             experience_id="8765_3",
             **rejected_with_trigger
+        )
+        self.pe_f = PublicExperience.objects.create(
+            open_humans_member=self.oh_b,
+            experience_id="33b30e22-f950-11ed-8488-0242ac140004",
+            **with_history
+        )
+        self.eh_a = ExperienceHistory.objects.create(
+            experience = self.pe_f,
+            **moderation_history
+        )
+        self.pe_g = PublicExperience.objects.create(
+            open_humans_member=self.oh_b,
+            experience_id="33b30e22-f950-11ed-8488-0242ac140005",
+            **with_history
+        )
+        self.eh_b = ExperienceHistory.objects.create(
+            experience = self.pe_g,
+            **moderation_history_empty
         )
 
     def test_confirm_page(self):
@@ -285,7 +319,7 @@ class Views(TestCase):
         assert len(pe_db_after) == 0
 
         # Check that is no new story for user A
-        assert user_a_stories_after == user_a_stories_before 
+        assert user_a_stories_after == user_a_stories_before
 
         # Check that there is a redirect after
         assert response.status_code == 200
@@ -300,10 +334,83 @@ class Views(TestCase):
         filter_query_parameters=["access_token"],
         match_on=["path"],
     )
-    def test_share_exp_load_to_edit(self):
+    def test_share_exp_load_to_edit_local_only(self):
         """
         Test that the share experience form is populated with the appropriate fields
         from that user's specific PublicExperience.
+        Tests a story that exists in the database locally but not
+        on OpenHumans.
+        logic:
+            request.user.is_authenticated == True
+            request.method == "GET"
+            uuid == True
+        """
+
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get(
+            "/main/edit/33b30e22-f950-11ed-8488-0242ac140004/", follow=True
+        )
+        # The moderation reply should be shown
+        self.assertContains(
+            response, "Local moderation reply", status_code=200
+        )
+        # The moderation comment should *not* be shown
+        self.assertNotContains(response, "Local moderation comment")
+        # The text should come from OpenHumans, so the local title
+        # shouldn't appear
+        self.assertNotContains(response, "This is a story with moderation history")
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/load_to_edit_exists.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
+    def test_share_exp_load_to_edit_local_and_remote(self):
+        """
+        Test that the share experience form is populated with the appropriate fields
+        from that user's specific PublicExperience.
+        Tests a story that exists in the database locally as well
+        as on OpenHumans.
+        logic:
+            request.user.is_authenticated == True
+            request.method == "GET"
+            uuid == True
+        """
+
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get(
+            "/main/edit/33b30e22-f950-11ed-8488-0242ac140004/", follow=True
+        )
+        # The text obtained from OpenHumans *should* appear in this case
+        self.assertContains(
+            response, "This is a local and remote short story for testing", status_code=200
+        )
+        # The moderation reply should be shown
+        self.assertContains(
+            response, "Response from moderators", status_code=200
+        )
+        self.assertContains(response, "Local moderation reply")
+        # The moderation comment should *not* be shown
+        self.assertNotContains(response, "Local moderation comment")
+        # The text should come from OpenHumans, so the local title
+        # shouldn't appear
+        self.assertNotContains(response, "This is a story with moderation history")
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/load_to_edit.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
+    def test_share_exp_load_to_edit_remote_only(self):
+        """
+        Test that the share experience form is populated with the appropriate fields
+        from that user's specific PublicExperience.
+        Tests a story that exists on OpenHumans but is missing from the
+        local database.
         logic:
             request.user.is_authenticated == True
             request.method == "GET"
@@ -320,17 +427,57 @@ class Views(TestCase):
         )
         self.assertNotContains(response, "It is certainly an unpleasant thing,")
 
+        # No moderation reply should be shown
+        self.assertNotContains(response, "Local moderation reply")
+        # No moderation comment should be shown
+        self.assertNotContains(response, "Local moderation comment")
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/load_to_edit_noreply.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
+    def test_share_exp_load_to_edit_local_and_remote_empty_reply(self):
+        """
+        Test that the share experience form is populated with the appropriate fields
+        from that user's specific PublicExperience.
+        Tests a story that exists in the database locally as well
+        as on OpenHumans, but with an empty moderation reply.
+        logic:
+            request.user.is_authenticated == True
+            request.method == "GET"
+            uuid == True
+        """
+
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get(
+            "/main/edit/33b30e22-f950-11ed-8488-0242ac140005/", follow=True
+        )
+        # The text obtained from OpenHumans *should* appear in this case
+        self.assertContains(
+            response, "This is a local and remote short story for testing", status_code=200
+        )
+        # The moderation reply should not be shown
+        self.assertNotContains(response, "Response from moderators")
+        self.assertNotContains(response, "Local moderation reply")
+        # No moderation comment to show
+        self.assertNotContains(response, "Local moderation comment")
+        # The text should come from OpenHumans, so the local title
+        # shouldn't appear
+        self.assertNotContains(response, "This is a story with moderation history")
 
     def test_edit_exp_missing_data(self):
         """
-        Test that editing an existing experience also fails gracefully 
+        Test that editing an existing experience also fails gracefully
         if there's missing data
         """
 
         c = Client()
         c.force_login(self.user_a)
         response = c.post(
-            "/main/edit/1234_1/", 
+            "/main/edit/1234_1/",
                    {
                 "experience_text": "",
                 "difference_text": "",
@@ -348,6 +495,7 @@ class Views(TestCase):
         filter_query_parameters=["access_token"],
         match_on=["path"],
     )
+
     def test_delete_experience(self):
         c = Client()
         c.force_login(self.user_a)
