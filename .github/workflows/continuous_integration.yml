@@ -10,7 +10,7 @@ jobs:
         os:
           - ubuntu-20.04
         python-version:
-          - 3.8.6
+          - 3.9.16
       fail-fast: false
     services:
       postgres:
