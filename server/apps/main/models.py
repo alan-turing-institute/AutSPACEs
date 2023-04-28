@@ -37,6 +37,7 @@ class ExperienceHistory(models.Model):
                                    null=False,
                                    on_delete=models.CASCADE)
     change_comments = models.TextField(default="")
+    change_reply = models.TextField(default="")
 
     def __str__(self):
         return self.change_type

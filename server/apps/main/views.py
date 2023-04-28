@@ -152,21 +152,40 @@ def share_experience(request, uuid=False):
             if uuid:
                 # return data from oh.
                 data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
+                model = PublicExperience.objects.get(experience_id=uuid)
                 form = ShareExperienceForm(data)
                 title = "Edit experience"
                 viewable = data.get("viewable", False)
                 moderation_status = data.get("moderation_status", "not reviewed")
+                if model.experiencehistory_set.count() > 0:
+                    latest = model.experiencehistory_set.order_by(
+                        "-changed_at"
+                    )[0]
+                    change_reply = latest.change_reply
+                    changed_at = latest.changed_at
+                else:
+                    change_reply = ""
+                    changed_at = None
             else:
                 form = ShareExperienceForm()
                 title = "Share experience"
                 viewable = False
                 moderation_status = "not reviewed"
+                change_reply = ""
+                changed_at = None
 
             return render(
                 request,
                 "main/share_experiences.html",
-                {"form": form, "uuid": uuid, "title": title,
-                 "viewable": viewable, "moderation_status": moderation_status}
+                {
+                    "form": form,
+                    "uuid": uuid,
+                    "title": title,
+                    "viewable": viewable,
+                    "moderation_status": moderation_status,
+                    "change_reply": change_reply,
+                    "changed_at": changed_at,
+                }
             )
 
     else:
@@ -356,6 +375,7 @@ def moderate_experience(request, uuid):
             data = {**unchanged_experience_details, **trigger_details}
 
             moderation_comments = data.pop("moderation_comments", None)
+            moderation_reply = data.pop("moderation_reply", "")
             moderation_prior = data.pop("moderation_prior", "not moderated")
 
             # get the users OH member id from the model
@@ -373,6 +393,7 @@ def moderate_experience(request, uuid):
                     editing_user=request.user.openhumansmember,
                     change_type="Moderate",
                     change_comments=moderation_comments,
+                    change_reply=moderation_reply,
                 )
             except Exception:
                 # if user writing E has deauthorized autspaces, delete public experience

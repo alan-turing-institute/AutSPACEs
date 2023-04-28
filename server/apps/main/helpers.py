@@ -343,6 +343,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
 
         # If no change info has been sent then it's either new or being edited by user
         if not change_info:
+            change_reply = ""
             if pe.experiencehistory_set.count() == 0:
                 change_type = "Make Public"
                 change_comments = "Story flagged to be shared on AutSPACE website"
@@ -354,6 +355,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
             change_comments = change_info.get("change_comments", "No Comment Made")
             if change_comments == "":
                 change_comments = "No Comment Made"
+            change_reply = change_info.get("change_reply", "")
 
         # Produce and add the ExperienceHistory object to the public experience
         eh = ExperienceHistory(
@@ -362,6 +364,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
             changed_at=datetime.datetime.now(),
             changed_by=editing_user,
             change_comments=change_comments,
+            change_reply=change_reply,
         )
 
         eh.save()
