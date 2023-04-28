@@ -209,6 +209,20 @@
       {% endif %}
     {% endfor %}
 
+    {% if change_reply %}
+        <div class="form-group">
+          <h3><label>Response from moderators</h3>
+          <h5>An explanation of any changes, visible only to you and the moderators</h5>
+          <p>
+            Time of reply: {{ changed_at|naturaltime }}
+          </p>
+          <div class="form-control mw-100 textbox-fixed">
+            <p>
+              {{ change_reply }}
+            </p>
+          </div>
+        </div>
+    {% endif %}
     {% if readonly %}
       </form>
     <div class="form-group">
@@ -219,7 +233,7 @@
     {% else %}
       <div class='form-group'>
         <!-- Add an id and data attributes to the submit button -->
-          <button type="button" class="btn btn-outline-dark btn-lg float-right" id="submitBtn" 
+          <button type="button" class="btn btn-outline-dark btn-lg float-right" id="submitBtn"
           data-uuid="{{ uuid }}" data-moderation-status="{{ moderation_status }}">Submit</button>
       </div>
     </form>

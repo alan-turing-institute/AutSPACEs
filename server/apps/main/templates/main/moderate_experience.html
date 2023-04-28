@@ -154,24 +154,46 @@
     <hr/>
 
     <h1>Experience history</h1>
+    <div class="table-responsive">
     <table class="table">
         <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Type</th>
-            <th scope="col">Comment</th>
+          <tr class="d-flex">
+            <th class="col-2"></th>
+            <th class="col-2">Type</th>
+            <th class="col-4">Reply</th>
+            <th class="col-4">Comment</th>
           </tr>
         </thead>
         <tbody>
-            {% for history_item in experience_history %}
-          <tr>
-            <th scope="row">{{history_item.changed_at|naturaltime}}</th>
-            <td>{{history_item.change_type}}</td>
-            <td>{{history_item.change_comments}}</td>
+          {% for history_item in experience_history %}
+          <tr class="d-flex">
+            <td class="col-2" scope="row">{{history_item.changed_at|naturaltime}}</td>
+            <td class="col-2">{{history_item.change_type}}</td>
+            <td class="col-4">
+              <div class="collapsablecell">
+                <a class="collapsed" data-toggle="collapse" href="#replycell{{ forloop.counter0 }}"
+                  aria-expanded="false" aria-controls="collapseSummary">
+                  <p class="collapse" id="replycell{{ forloop.counter0 }}">
+                    {{history_item.change_reply}}
+                  </p>
+                </a>
+              </div>
+            </td>
+            <td class="col-4">
+              <div class="collapsablecell">
+                <a class="collapsed" data-toggle="collapse" href="#commentcell{{ forloop.counter0 }}"
+                  aria-expanded="false" aria-controls="collapseSummary">
+                  <p class="collapse" id="commentcell{{ forloop.counter0 }}">
+                    {{history_item.change_comments}}
+                  </p>
+                </a>
+              </div>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
     </table>
+    </div>
 
     <hr/>
 
@@ -184,49 +206,56 @@
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
 
-          {% for field in group.list %}
+        {% for field in group.list %}
           {% if field.is_hidden %}
-          {{ field }}
-          {% else %}
+        {{ field }}
+        {% else %}
           <div class="form-group">
             <h3><label for="{{ field.auto_id}}">{{ field.label }}</label></h3>
             {{ field }}
           </div>
           {% endif %}
-          {% endfor %}
+        {% endfor %}
 
 
       {% else %}
         {% if group.grouper == 2 %}
           {% define "Sensitive topics" as header %}
           {% define "Please indicate if your experience covers a sensitive topic by selecting from the trigger labels below" as subheader %}
+          {% define "col-lg-6" as columns %}
         {% endif %}
         {% if group.grouper == 3 %}
           {% define "Sharing Options" as header %}
+          {% define "col-lg-6" as columns %}
           {% define "Please indicate if you want to share your experience" as subheader %}
         {% endif %}
-        <div class="form-group">
-          <h3><label>{{ header }}</label></h3>
+        {% if group.grouper == 4 %}
+          {% define "Comments" as header %}
+          {% define "Earlier comments can be viewed in the Experience history" as subheader %}
+          {% define "col-lg-12" as columns %}
+        {% endif %}
+      <div class="form-group">
+        <h3><label>{{ header }}</label></h3>
 
-          <h5>{{ subheader }}</h5>
+        <h5>{{ subheader }}</h5>
 
-          <div class="row">
-          {% for field in group.list %}
+        <div class="row">
+        {% for field in group.list %}
 
-            <div class="form-check col-lg-6">
-              {% if field.label == "Other"%}
-                <label for="{{ field.auto_id }}">{{ field.label }}:</label>
-                {{field}}
-              {% else %}
-                {{ field }}
-                <label for="{{ field.auto_id }}">{{ field.label }}</label>
-              {% endif %}
+          <div class="form-check {{ columns }}">
+            {% if field.label == "Other"%}
+            <label for="{{ field.auto_id }}">{{ field.label }}:</label>
+            {{field}}
+            {% else %}
+            {{ field }}
+            <label for="{{ field.auto_id }}">{{ field.label }}</label>
+            {% endif %}
 
-            </div>
+          </div>
 
-          {% endfor %}
-         </div>
-        </div>
+        {% endfor %}
+       </div>
+      </div>
 
       {% endif %}
     {% endfor %}
