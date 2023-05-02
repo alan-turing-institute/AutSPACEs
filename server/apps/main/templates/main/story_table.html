@@ -54,8 +54,12 @@
       <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.description %}" class="btn btn-danger">Delete</a>
     </td>
     </tr>
-    {% empty %}
-      {% include 'main/partials/dummy_stories.html'%}
+    {% comment %} {% empty %}
+      {% include 'main/partials/dummy_stories.html'%} {% endcomment %}
     {% endfor %}
     </tbody>
   </table>
+
+{% if not files %}
+<p>There are no stories to display.</p>
+{% endif %}

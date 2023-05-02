@@ -5,6 +5,7 @@
 {% load static %}
 {% load custom_tags %}
 {% load humanize %}
+{% load story_filters %} 
 
 {% block content %}
 
@@ -102,16 +103,23 @@
     <!-- Add the tab content -->
     <div class="tab-content" id="storyTabsContent">
     <div class="tab-pane fade show active" id="public" role="tabpanel" aria-labelledby="public-tab">
-         <!-- Include the table for public stories -->
-     
-        {% include 'main/story_table.html'%}
-    
+      <!-- Table for public stories -->
+    {% with public_approved_stories=files|filter_by_tag:"public"|filter_by_moderation_status:"approved" %}
+      {% include 'main/story_table.html' with files=public_approved_stories %}
+    {% endwith %}
+
     </div>
     <div class="tab-pane fade" id="in-review" role="tabpanel" aria-labelledby="in-review-tab">
-      <!-- Add the table for in review stories here -->
+      <!-- Table for `in review` stories -->
+      {% with in_review_stories=files|filter_by_moderation_status:"in review" %}
+        {% include 'main/story_table.html' with files=in_review_stories %}
+      {% endwith %}
     </div>
     <div class="tab-pane fade" id="private" role="tabpanel" aria-labelledby="private-tab">
-      <!-- Add the table for private stories here -->
+      <!-- Table for private stories -->
+      {% with private_stories=files|filter_by_tag:"not public" %}
+        {% include 'main/story_table.html' with files=private_stories %}
+      {% endwith %}
     </div>
   </div>
 
