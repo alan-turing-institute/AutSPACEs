@@ -484,3 +484,12 @@ body {
   font-size: 20px;
 
 }
+
+/* Remove second line under tabs */
+.nav-tabs {
+  border-bottom: none !important;
+}
+
+.nav-tabs .nav-link.active {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+}
