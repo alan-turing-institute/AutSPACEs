@@ -183,14 +183,18 @@
 
     {% for group in field_groups %}
       {% if group.grouper == "hidden" %}
-        
+
           {% for field in group.list %}
+          {% if field.is_hidden %}
+          {{ field }}
+          {% else %}
           <div class="form-group">
             <h3><label for="{{ field.auto_id}}">{{ field.label }}</label></h3>
             {{ field }}
-           </div>
-           {% endfor %}
-        
+          </div>
+          {% endif %}
+          {% endfor %}
+
 
       {% else %}
         {% if group.grouper == 2 %}

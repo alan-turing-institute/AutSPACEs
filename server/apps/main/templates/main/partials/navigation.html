@@ -26,12 +26,24 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'main:public_experiences' %}">View Stories</a>
               <a class="dropdown-item" href="{% url 'main:share_exp' %}">Share Stories</a>
-              {% is_moderator user as moderator %}
-              {% if moderator %}
               <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate</a>
-              {% endif %}
             </div>
           </li>
+          {% is_moderator user as moderator %}
+          {% if moderator %}
+          <li class="nav-item dropdown" style="padding: 0 0">
+            <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0 25px">
+            Moderation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=pending">Pending</a>
+              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=approved">Approved</a>
+              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=rejected">Rejected</a>
+            </div>
+          </li>
+
+          {% endif %}
           <li>
             <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
           </li>

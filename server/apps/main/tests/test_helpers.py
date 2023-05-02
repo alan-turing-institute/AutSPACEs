@@ -4,10 +4,9 @@ from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
     model_to_form, process_trigger_warnings, update_public_experience_db, \
-    get_oh_metadata, get_oh_file, get_oh_combined
-    
+    get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect
 
-from openhumans.models import OpenHumansMember 
+from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
 from server.apps.main.forms import ModerateExperienceForm
 import vcr
@@ -60,7 +59,7 @@ class StoryHelper(TestCase):
 
     def test_moderator_check(self):
         """
-        Test that only users in moderator-group return True. 
+        Test that only users in moderator-group return True.
         Also ensure that it works for users in >1 group
         """
         self.assertFalse(is_moderator(self.non_moderator_user.user)) # non-moderator should be false
@@ -70,7 +69,7 @@ class StoryHelper(TestCase):
                       record_mode='none', filter_query_parameters=['access_token'])
     def test_fetch_by_uuid_successs(self):
         """
-        Test that fetching an OH file by UUID works. 
+        Test that fetching an OH file by UUID works.
         Should succeed if no duplicate UUID in account
         """
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
@@ -82,11 +81,11 @@ class StoryHelper(TestCase):
                       record_mode='none', filter_query_parameters=['access_token'])
     def test_fetch_by_uuid_failure(self):
         """
-        Test that fetching an OH file by UUID works. 
+        Test that fetching an OH file by UUID works.
         Should faile due to duplicate UUID in account
         """
         target_uuid = "ebad2890-bc43-11ed-95a4-0242ac130003"
-        with self.assertRaises(Exception): 
+        with self.assertRaises(Exception):
             get_oh_metadata(self.moderator_user, target_uuid)
 
     @vcr.use_cassette('server/apps/main/tests/fixtures/get_oh_file.yaml',
@@ -139,7 +138,7 @@ class StoryHelper(TestCase):
         """
         Test make_tags function
         """
-        # Create mock set of tags 
+        # Create mock set of tags
         # Mock tags include 3 true items from the list, 2 false items from the list
         tag_data = {'abuse': True, 'violence': True,
                     'drug': False, 'mentalhealth': False,'negbody': True,
@@ -159,19 +158,19 @@ class StoryHelper(TestCase):
 
     def test_extract_experience_details(self):
         """
-        Test that extraction of fixed information works. 
+        Test that extraction of fixed information works.
         """
         # Expected keys that should be returned
         expected_keys = ['difference_text', 'experience_id', 'experience_text',
                         'open_humans_member','research', 'title_text', 'viewable']
         # create public experience
         self.public_experience = PublicExperience.objects.create(
-            experience_text = 'EXP_TEXT', 
-            difference_text = 'DIFF_TEXT', 
+            experience_text = 'EXP_TEXT',
+            difference_text = 'DIFF_TEXT',
             title_text = 'TITLE',
             experience_id = 'TEST_ID',
             open_humans_member = self.moderator_user,
-            abuse = True, 
+            abuse = True,
             violence = True,
         )
         self.public_experience.save()
@@ -187,19 +186,19 @@ class StoryHelper(TestCase):
 
 
     @vcr.use_cassette('server/apps/main/tests/fixtures/delete.yaml',
-                      record_mode='none', filter_query_parameters=['access_token'])    
+                      record_mode='none', filter_query_parameters=['access_token'])
     def test_delete_file_and_pe(self):
         """
-        Test that deleting a public experience through 
+        Test that deleting a public experience through
         delete_single_file_and_pe deletes both oh OH & local
         """
         self.public_experience = PublicExperience.objects.create(
-            experience_text = 'EXP_TEXT', 
-            difference_text = 'DIFF_TEXT', 
+            experience_text = 'EXP_TEXT',
+            difference_text = 'DIFF_TEXT',
             title_text = 'TITLE',
             experience_id = 'TEST_ID',
             open_humans_member = self.moderator_user,
-            abuse = True, 
+            abuse = True,
             violence = True,
         )
         self.public_experience.save()
@@ -212,16 +211,16 @@ class StoryHelper(TestCase):
         Test that deleting a public experience locally works
         """
         self.public_experience = PublicExperience.objects.create(
-            experience_text = 'EXP_TEXT', 
-            difference_text = 'DIFF_TEXT', 
+            experience_text = 'EXP_TEXT',
+            difference_text = 'DIFF_TEXT',
             title_text = 'TITLE',
             experience_id = 'TEST_ID',
             open_humans_member = self.moderator_user,
-            abuse = True, 
+            abuse = True,
             violence = True,
         )
         self.public_experience.save()
-        # Assert PE exists        
+        # Assert PE exists
         self.assertEqual(1,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
         # Try deleting PE from third party, should not delete!
         delete_PE("TEST_ID",self.non_moderator_user)
@@ -237,12 +236,12 @@ class StoryHelper(TestCase):
         Also test that subsequent processing of trigger warnings works!
         """
         self.public_experience = PublicExperience.objects.create(
-            experience_text = 'EXP_TEXT', 
-            difference_text = 'DIFF_TEXT', 
+            experience_text = 'EXP_TEXT',
+            difference_text = 'DIFF_TEXT',
             title_text = 'TITLE',
             experience_id = 'TEST_ID',
             open_humans_member = self.moderator_user,
-            abuse = True, 
+            abuse = True,
             violence = True,
         )
         self.public_experience.save()
@@ -274,19 +273,19 @@ class StoryHelper(TestCase):
             'difference_text': "bar",
             'title_text': 'title',
             'experience_id': 'foobar_id',
-            'viewable': True 
+            'viewable': True
         }
         # assert no PE and PEH objects exist so far
         self.assertEqual(len(PublicExperience.objects.all()),0)
         self.assertEqual(len(ExperienceHistory.objects.all()),0)
         # create new PE
         update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
-        # check that PE exists 
+        # check that PE exists
         self.assertEqual(len(PublicExperience.objects.all()),1)
         pe = PublicExperience.objects.get(experience_id='foobar_id')
         # check that moderation status is "in review"
         self.assertEqual(pe.moderation_status, 'not reviewed')
-        # check that this and only this PEH object exists 
+        # check that this and only this PEH object exists
         self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),1)
         # check that EH object marks creation
         peh = ExperienceHistory.objects.filter(experience=pe)[0]
@@ -309,13 +308,13 @@ class StoryHelper(TestCase):
         # test moderatation edit
         self.pe_data['viewable'] = True
         self.pe_data['moderation_status'] = 'approved'
-        update_public_experience_db(self.pe_data, "foobar_id", self.non_moderator_user, self.moderator_user, 
+        update_public_experience_db(self.pe_data, "foobar_id", self.non_moderator_user, self.moderator_user,
                                     change_type='Moderate',change_comments='I left a comment')
         # check updated PE & latest PEH object
         pe = PublicExperience.objects.get(experience_id='foobar_id')
         self.assertEqual(pe.moderation_status, 'approved') # is now approved
         self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),3) # got 3 history entries now
-        peh = ExperienceHistory.objects.all().order_by('changed_at')[2] 
+        peh = ExperienceHistory.objects.all().order_by('changed_at')[2]
         # check details of PEH & PE
         self.assertEqual(pe.open_humans_member.oh_id,str(self.non_moderator_user.oh_id)) # exp owned by owner
         self.assertEqual(peh.changed_by.oh_id,self.moderator_user.oh_id) # exp last changed by moderator
@@ -324,3 +323,24 @@ class StoryHelper(TestCase):
         update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
         self.assertEqual(len(PublicExperience.objects.all()),0) # should be no public experience
         self.assertEqual(len(ExperienceHistory.objects.all()),0) # should be no history
+
+    def test_moderation_redirect(self):
+        result = choose_moderation_redirect("not moderated")
+        self.assertEqual(result, "pending")
+
+        result = choose_moderation_redirect("in review")
+        self.assertEqual(result, "pending")
+
+        result = choose_moderation_redirect("approved")
+        self.assertEqual(result, "approved")
+
+        result = choose_moderation_redirect("rejected")
+        self.assertEqual(result, "rejected")
+
+        result = choose_moderation_redirect("something else")
+        self.assertEqual(result, "pending")
+
+        result = choose_moderation_redirect(None)
+        self.assertEqual(result, "pending")
+
+

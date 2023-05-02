@@ -225,3 +225,7 @@ METADATA_MASK = [
     "title_text"
 ]
 
+# The number of experiences to show on the moderation pages
+EXPERIENCES_PER_PAGE = 10
+
+

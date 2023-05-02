@@ -18,6 +18,7 @@ urlpatterns = [
         views.moderate_public_experiences,
         name="moderate_public_experiences",
     ),
+    re_path(r"moderation_list/?$", views.moderation_list, name="moderation_list"),
     path("delete/<uuid>/<title>/", views.delete_experience, name="delete_exp"),
     path("share_exp/", views.share_experience, name="share_exp"),
     path("edit/<uuid>/", views.share_experience, name="edit_exp"),
