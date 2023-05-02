@@ -28,6 +28,8 @@ from .helpers import (
     delete_PE,
     update_public_experience_db,
     process_trigger_warnings,
+    extract_triggers_to_show,
+    expand_filter,
 )
 
 logger = logging.getLogger(__name__)
@@ -226,28 +228,20 @@ def list_public_experiences(request):
     4) abide by triggering label toggle.
     """
 
-    all_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
-
     experiences = PublicExperience.objects.filter(moderation_status="approved")
 
     # Default is to show non-triggering content only
     show_triggering = request.GET.get("triggering_stories", False)
+    if show_triggering:
+        allowed_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
+    else:
+        # Check the allowed triggers
+        allowed_triggers = request.GET.keys()
 
-    if not show_triggering:
-        experiences = experiences.filter(Q(abuse=False)
-                & Q(violence=False)
-                & Q(drug=False)
-                & Q(mentalhealth=False)
-                & Q(negbody=False)
-                & Q(other="")
-            )
+    triggers_to_show = extract_triggers_to_show(allowed_triggers)
 
-    # Check the allowed triggers
-    allowed_triggers = request.GET.keys()
-    triggers_to_show = list(all_triggers.intersection(allowed_triggers))
-    print("____________________")
-    print(triggers_to_show)
-    print("____________________")
+    experiences = expand_filter(experiences, triggers_to_show)
+
 
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)

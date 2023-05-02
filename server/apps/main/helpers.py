@@ -8,6 +8,7 @@ from django.forms.models import model_to_dict
 from django.conf import settings
 from .forms import ModerateExperienceForm
 from .models import PublicExperience, ExperienceHistory
+from django.db.models import Q
 
 def is_moderator(user):
     """Return membership of moderator group."""
@@ -364,3 +365,54 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
 
     else:
         delete_PE(uuid, ohmember)
+
+def extract_triggers_to_show(allowed_triggers):
+    """
+    Generate a list of triggering labels that the user has opted in to seeing
+    """
+
+    all_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
+    triggers_to_show = list(all_triggers.intersection(allowed_triggers))
+
+    # t_list = [PublicExperience._meta.get_field(trigger) for trigger in triggers_to_show]
+
+    return(triggers_to_show)
+
+def expand_filter(experiences, triggers_to_show):
+    """
+    Expand the QuerySet. 
+    Recieves the filtered(allowed) stories and filters by the model fields which
+    correspond to the triggering content labels
+    """
+
+    if "abuse" in triggers_to_show:
+        experiences = experiences.filter(Q(abuse=True) | Q(abuse=False))
+    else:
+        experiences = experiences.filter(Q(abuse=False))
+
+    if "violence" in triggers_to_show:
+        experiences =  experiences.filter(Q(violence=True) | Q(violence=False))
+    else:
+        experiences = experiences.filter(Q(violence=False))
+
+    if "drug" in triggers_to_show:
+        experiences =  experiences.filter(Q(drug=True) | Q(drug=False))
+    else:
+        experiences = experiences.filter(Q(drug=False))
+
+    if "mentalhealth" in triggers_to_show:
+        experiences =  experiences.filter(Q(mentalhealth=True) | Q(mentalhealth=False))
+    else:
+        experiences = experiences.filter(Q(mentalhealth=False))
+
+    if "negbody" in triggers_to_show:
+        experiences =  experiences.filter(Q(negbody=True) | Q(negbody=False))
+    else:
+        experiences = experiences.filter(Q(negbody=False))
+
+    if "other" in triggers_to_show:
+        experiences = experiences.filter(~Q(other="") | Q(other=""))
+    else:
+        experiences = experiences.filter(Q(other=""))
+
+    return experiences
