@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for server/apps/main/forms.py: 83%</title>
+    <title>Coverage for server/apps/main/forms.py: 84%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="coverage_html.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>server/apps/main/forms.py</b>:
-            <span class="pc_cov">83%</span>
+            <span class="pc_cov">84%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -54,8 +54,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">71 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">59<span class="text"> run</span></button>
+            <span class="text">73 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">61<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">12<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
@@ -64,8 +64,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="d_48d8fd1d7c4b9e0e_helpers_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.4">coverage.py v7.2.4</a>,
-            created at 2023-04-28 17:22 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.5">coverage.py v7.2.5</a>,
+            created at 2023-05-02 09:14 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -200,28 +200,31 @@
     <p class="pln"><span class="n"><a id="t118" href="#t118">118</a></span><span class="t">                                                              <span class="str">'class'</span><span class="op">:</span><span class="str">'form-control'</span><span class="op">}</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t119" href="#t119">119</a></span><span class="t">    <span class="nam">moderation_comments</span><span class="op">.</span><span class="nam">group</span> <span class="op">=</span> <span class="str">"hidden"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t120" href="#t120">120</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t121" href="#t121">121</a></span><span class="t">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="op">*</span><span class="nam">args</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t122" href="#t122">122</a></span><span class="t">        <span class="str">""" Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t121" href="#t121">121</a></span><span class="t">    <span class="nam">moderation_prior</span> <span class="op">=</span> <span class="nam">forms</span><span class="op">.</span><span class="nam">CharField</span><span class="op">(</span><span class="nam">widget</span><span class="op">=</span><span class="nam">forms</span><span class="op">.</span><span class="nam">HiddenInput</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t122" href="#t122">122</a></span><span class="t">    <span class="nam">moderation_prior</span><span class="op">.</span><span class="nam">group</span> <span class="op">=</span> <span class="str">"hidden"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t123" href="#t123">123</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t124" href="#t124">124</a></span><span class="t">        <span class="nam">disable_all</span> <span class="op">=</span> <span class="nam">kwargs</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'disable_all'</span><span class="op">,</span> <span class="key">False</span><span class="op">)</span> <span class="com">#disable everything</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t125" href="#t125">125</a></span><span class="t">        <span class="nam">disable_moderator</span> <span class="op">=</span> <span class="nam">kwargs</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'disable_moderator'</span><span class="op">,</span> <span class="key">False</span><span class="op">)</span> <span class="com"># only the free text fields</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t124" href="#t124">124</a></span><span class="t">    <span class="key">def</span> <span class="nam">__init__</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="op">*</span><span class="nam">args</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t125" href="#t125">125</a></span><span class="t">        <span class="str">""" Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t126" href="#t126">126</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t127" href="#t127">127</a></span><span class="t">        <span class="nam">super</span><span class="op">(</span><span class="nam">ModerateExperienceForm</span><span class="op">,</span> <span class="nam">self</span><span class="op">)</span><span class="op">.</span><span class="nam">__init__</span><span class="op">(</span><span class="op">*</span><span class="nam">args</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t128" href="#t128">128</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t127" href="#t127">127</a></span><span class="t">        <span class="nam">disable_all</span> <span class="op">=</span> <span class="nam">kwargs</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'disable_all'</span><span class="op">,</span> <span class="key">False</span><span class="op">)</span> <span class="com">#disable everything</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t128" href="#t128">128</a></span><span class="t">        <span class="nam">disable_moderator</span> <span class="op">=</span> <span class="nam">kwargs</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'disable_moderator'</span><span class="op">,</span> <span class="key">False</span><span class="op">)</span> <span class="com"># only the free text fields</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t129" href="#t129">129</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t130" href="#t130">130</a></span><span class="t">        <span class="key">for</span> <span class="nam">field</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">fields</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t131" href="#t131">131</a></span><span class="t">            <span class="key">if</span> <span class="nam">field</span> <span class="key">in</span> <span class="op">[</span><span class="str">'experience_text'</span><span class="op">,</span><span class="str">'difference_text'</span><span class="op">,</span><span class="str">'title_text'</span><span class="op">,</span><span class="str">'research'</span><span class="op">,</span><span class="str">'viewable'</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t132" href="#t132">132</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">fields</span><span class="op">[</span><span class="nam">field</span><span class="op">]</span><span class="op">.</span><span class="nam">widget</span><span class="op">.</span><span class="nam">attrs</span><span class="op">[</span><span class="str">'disabled'</span><span class="op">]</span><span class="op">=</span> <span class="nam">disable_moderator</span> <span class="key">or</span> <span class="nam">disable_all</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t133" href="#t133">133</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t134" href="#t134">134</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">fields</span><span class="op">[</span><span class="nam">field</span><span class="op">]</span><span class="op">.</span><span class="nam">widget</span><span class="op">.</span><span class="nam">attrs</span><span class="op">[</span><span class="str">'disabled'</span><span class="op">]</span><span class="op">=</span> <span class="nam">disable_all</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t135" href="#t135">135</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t136" href="#t136">136</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t137" href="#t137">137</a></span><span class="t">    <span class="key">def</span> <span class="nam">clean_moderation_status</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t">        <span class="nam">mod_status</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cleaned_data</span><span class="op">[</span><span class="str">'moderation_status'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t139" href="#t139">139</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">mod_status</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">            <span class="nam">mod_status</span> <span class="op">=</span> <span class="str">'not reviewed'</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t142" href="#t142">142</a></span><span class="t">        <span class="key">return</span> <span class="nam">mod_status</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t130" href="#t130">130</a></span><span class="t">        <span class="nam">super</span><span class="op">(</span><span class="nam">ModerateExperienceForm</span><span class="op">,</span> <span class="nam">self</span><span class="op">)</span><span class="op">.</span><span class="nam">__init__</span><span class="op">(</span><span class="op">*</span><span class="nam">args</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t131" href="#t131">131</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t132" href="#t132">132</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t133" href="#t133">133</a></span><span class="t">        <span class="key">for</span> <span class="nam">field</span> <span class="key">in</span> <span class="nam">self</span><span class="op">.</span><span class="nam">fields</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t134" href="#t134">134</a></span><span class="t">            <span class="key">if</span> <span class="nam">field</span> <span class="key">in</span> <span class="op">[</span><span class="str">'experience_text'</span><span class="op">,</span><span class="str">'difference_text'</span><span class="op">,</span><span class="str">'title_text'</span><span class="op">,</span><span class="str">'research'</span><span class="op">,</span><span class="str">'viewable'</span><span class="op">]</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t135" href="#t135">135</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">fields</span><span class="op">[</span><span class="nam">field</span><span class="op">]</span><span class="op">.</span><span class="nam">widget</span><span class="op">.</span><span class="nam">attrs</span><span class="op">[</span><span class="str">'disabled'</span><span class="op">]</span><span class="op">=</span> <span class="nam">disable_moderator</span> <span class="key">or</span> <span class="nam">disable_all</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t136" href="#t136">136</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t137" href="#t137">137</a></span><span class="t">                <span class="nam">self</span><span class="op">.</span><span class="nam">fields</span><span class="op">[</span><span class="nam">field</span><span class="op">]</span><span class="op">.</span><span class="nam">widget</span><span class="op">.</span><span class="nam">attrs</span><span class="op">[</span><span class="str">'disabled'</span><span class="op">]</span><span class="op">=</span> <span class="nam">disable_all</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t138" href="#t138">138</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t139" href="#t139">139</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t140" href="#t140">140</a></span><span class="t">    <span class="key">def</span> <span class="nam">clean_moderation_status</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t141" href="#t141">141</a></span><span class="t">        <span class="nam">mod_status</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">cleaned_data</span><span class="op">[</span><span class="str">'moderation_status'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t142" href="#t142">142</a></span><span class="t">        <span class="key">if</span> <span class="key">not</span> <span class="nam">mod_status</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t143" href="#t143">143</a></span><span class="t">            <span class="nam">mod_status</span> <span class="op">=</span> <span class="str">'not reviewed'</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t144" href="#t144">144</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t145" href="#t145">145</a></span><span class="t">        <span class="key">return</span> <span class="nam">mod_status</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -230,8 +233,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="d_48d8fd1d7c4b9e0e_helpers_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.4">coverage.py v7.2.4</a>,
-            created at 2023-04-28 17:22 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.5">coverage.py v7.2.5</a>,
+            created at 2023-05-02 09:14 +0000
         </p>
     </div>
 </footer>
