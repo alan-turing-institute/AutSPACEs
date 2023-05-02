@@ -1,0 +1,61 @@
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+<table class="table table-responsive-lg table-hover table-striped mystory-table" style="width:auto">
+    <thead>
+    <tr>
+      <th class="number-th" scope="col">Nr.</th>
+      <th class="title-th" scope="col">Title</th>
+      <th class="submission-date-th" scope="col">Creation Date</th>
+      <th class="tags-th" scope="col">Tags</th>
+      <th class="status-th" scope="col">Moderation Status</th>
+      <th class="status-th" scope="col">Triggering Labels</th>
+      <th class="status-th" scope="col" colspan="4">File Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for file in files %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{% firstof file.metadata.description "notitle" %}</td>
+      <td>{% firstof file.created|naturaltime "Creation date unknown" %}</td>
+      <td>
+        {% for tag in file.metadata.tags %}
+          {% if tag in sharing_tags %}
+            <strong class="badge">{{ tag }}</strong>
+          {%endif%}
+        {% endfor %}
+    </td>
+    <td>
+      {% firstof file.metadata.data.moderation_status "Moderation Status Unknown" %}
+    </td>
+    <td>
+      {% for tag in file.metadata.tags %}
+        {% if tag not in sharing_tags %}
+          <strong class="badge">{{ tag }}</strong>
+        {%endif%}
+      {% endfor %}
+    </td>
+    <td>
+      <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
+        View
+      </a>
+  </td>
+    <td>
+      <a href="{% url 'main:edit_exp' file.metadata.uuid %}" class="btn btn-primary">
+        Edit
+      </a>
+  </td>
+    <td>
+        <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
+    </td>
+    <td>
+      <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.description %}" class="btn btn-danger">Delete</a>
+    </td>
+    </tr>
+    {% empty %}
+      {% include 'main/partials/dummy_stories.html'%}
+    {% endfor %}
+    </tbody>
+  </table>
