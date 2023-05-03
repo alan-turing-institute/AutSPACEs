@@ -100,28 +100,35 @@ class Views(TestCase):
             uuid == False
 
         """
-        # Need to confirm creation of a new UUID
-        # Need to confirm upload of the (cleaned) data to that user's OH account
-        # Need to confirm update of the PE database 
+        # Cannot confirm creation of a new UUID
+        # Need to confirm upload of the (cleaned) data to that user's OH account [X]
+        # Need to confirm update of the PE database [X]
         # Need to confirm redirection to confirm page
 
         c = Client()
         c.force_login(self.user_a)
+
+        pe_db_before = PublicExperience.objects.filter(title_text = "A new story added")
         
         response = c.post("/main/share_exp/",
                           {"experience_text": "Here is some experience text", 
                            "difference_text": "Here is some difference text",
-                           "title_text": "Title text here",
+                           "title_text": "A new story added",
                            "viewable": "True",
                            "open_humans_member": self.oh_a},
                         follow=True)
         
-        qs = PublicExperience.objects.filter(title_text = "Title text here")
-        assert len(qs)==1
+        pe_db_after = PublicExperience.objects.filter(title_text = "A new story added")
+
+        # Check that a story with the title didn't exist in the database before 
+        # the post but does after
+        assert len(pe_db_before) == 0
+        assert len(pe_db_after) == 1
+
+        # Check that there is a redirect after
+        assert response.status_code == 200
         
 
-    
-        pass
 
     def test_share_exp_load_existing_experience_for_editing(self):
         """
