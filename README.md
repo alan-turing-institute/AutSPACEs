@@ -26,9 +26,11 @@
 | server/apps/main/models.py                                                |       27 |        2 |     93% |    29, 42 |
 | server/apps/main/templatetags/\_\_init\_\_.py                             |        0 |        0 |    100% |           |
 | server/apps/main/templatetags/custom\_tags.py                             |       12 |        3 |     75% |     13-16 |
+| server/apps/main/templatetags/story\_filters.py                           |       11 |        0 |    100% |           |
 | server/apps/main/tests/\_\_init\_\_.py                                    |        0 |        0 |    100% |           |
 | server/apps/main/tests/test\_helpers.py                                   |      173 |        0 |    100% |           |
 | server/apps/main/tests/test\_moderate\_views.py                           |      168 |        0 |    100% |           |
+| server/apps/main/tests/test\_story\_filters.py                            |       16 |        0 |    100% |           |
 | server/apps/main/tests/tests\_2023.py                                     |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                  |        4 |        0 |    100% |           |
 | server/apps/main/views.py                                                 |      147 |       61 |     59% |43, 47, 51, 54, 57, 61, 65, 69-71, 78-80, 113-173, 180-196, 205-220, 232-262, 331-338 |
@@ -42,7 +44,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       11 |        0 |    100% |           |
-|                                                                 **TOTAL** |  **911** |   **90** | **90%** |           |
+|                                                                 **TOTAL** |  **938** |   **90** | **90%** |           |
 
 
 ## Setup coverage badge
