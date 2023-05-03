@@ -88,7 +88,7 @@ class Views(TestCase):
         # Need to confirm redirection to confirm page
         pass
     
-    @vcr.use_cassette('server/apps/main/tests/fixtures/share_experiences.yaml',
+    @vcr.use_cassette('server/apps/main/tests/fixtures/share_experience.yaml',
                       record_mode='none', filter_query_parameters=['access_token'])
     def test_share_exp_submit_new_experience(self):
         """
