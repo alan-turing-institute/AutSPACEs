@@ -108,8 +108,6 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
 
-        pe_db_before = PublicExperience.objects.filter(title_text = "A new story added")
-        print(pe_db_before)
         
         response = c.post("/main/share_exp/",
                           {"experience_text": "Here is some experience text", 
@@ -121,13 +119,15 @@ class Views(TestCase):
         
         pe_db_after = PublicExperience.objects.filter(title_text = "A new story added")
 
-        # Check that a story with the title didn't exist in the database before 
-        # the post but does after
-        assert len(pe_db_before)==0
+        # Check that a story with the title now exists in the database
         assert len(pe_db_after)==1
 
         # Check that there is a redirect after
         assert response.status_code == 200
+
+        # assert ending up on right page
+        self.assertRedirects(response, "/main/confirm",
+                             status_code=302, target_status_code=200)
         
 
 
