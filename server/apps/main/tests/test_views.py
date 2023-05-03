@@ -109,6 +109,7 @@ class Views(TestCase):
         c.force_login(self.user_a)
 
         pe_db_before = PublicExperience.objects.filter(title_text = "A new story added")
+        print(pe_db_before)
         
         response = c.post("/main/share_exp/",
                           {"experience_text": "Here is some experience text", 
