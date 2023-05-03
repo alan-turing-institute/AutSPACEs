@@ -22,7 +22,7 @@ class Views(TestCase):
         Set-up for test with two users
         """
         # Placeholder data
-        data = {"access_token": 'foo',
+        data = {"access_token": '123456',
         "refresh_token": 'bar',
         "expires_in": 36000}
 
