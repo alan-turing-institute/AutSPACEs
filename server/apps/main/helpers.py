@@ -6,6 +6,9 @@ import requests
 from django.contrib.auth.models import Group
 from django.forms.models import model_to_dict
 from django.conf import settings
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.shortcuts import redirect, render
 from .forms import ModerateExperienceForm
 from .models import PublicExperience, ExperienceHistory
 from django.db.models import Q
@@ -24,6 +27,7 @@ def is_moderator(user):
 def model_to_form(model, disable_moderator=False):
     """Converts Model to form."""
     model_dict = model_to_dict(model)
+    model_dict["moderation_prior"] = model_dict["moderation_status"]
 
     form = ModerateExperienceForm(
         {**model_dict, "viewable": True},  # we only moderate public experiences
@@ -365,6 +369,76 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
 
     else:
         delete_PE(uuid, ohmember)
+
+def moderate_page(request, status, experiences):
+    """
+    View containing lists of the given Public Experiences
+
+    A helper function for generating the Moderation pages.
+    """
+    # Check to see if a search has been performed
+    searched = request.GET.get("searched", False)
+
+    if searched:
+        # If there's a search term, additionally filter on it too
+        experiences = experiences.filter(
+            Q(title_text__icontains=searched)
+            | Q(experience_text__icontains=searched)
+            | Q(difference_text__icontains=searched)
+        )
+
+    paginator = Paginator(experiences, settings.EXPERIENCES_PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    page_obj.page_range = paginator.get_elided_page_range(page_obj.number, on_each_side=2, on_ends=1)
+    page_obj.offset = page_obj.start_index() - 1
+
+    unreviewed = PublicExperience.objects.filter(
+        Q(moderation_status="not reviewed")
+    ).count()
+    inreview = PublicExperience.objects.filter(
+        Q(moderation_status="in review")
+    ).count()
+    approved = PublicExperience.objects.filter(
+        Q(moderation_status="approved")
+    ).count()
+    rejected = PublicExperience.objects.filter(
+        Q(moderation_status="rejected")
+    ).count()
+
+    subtitle = {
+        "pending": "Experiences for Moderation",
+        "approved": "Approved Experiences",
+        "rejected": "Rejected Experiences",
+    }.get(status, "Moderation")
+
+    return render(
+        request,
+        "main/moderation_list.html",
+        context={
+            "subtitle": subtitle,
+            "status": status,
+            "page_obj": page_obj,
+            "unreviewed": unreviewed,
+            "inreview": inreview,
+            "approved": approved,
+            "rejected": rejected,
+            "searched": searched if searched else "",
+            "params": "?status=" + status + (("&searched=" + searched) if searched else ""),
+        },
+    )
+
+def choose_moderation_redirect(moderation_prior):
+    """
+    Selects an appropriate redirect from the moderate story form
+
+    When a moderator submits a story moderation, the form redirects
+    to different places depending on where the user requested the
+    moderation from. This helper function returns the place to
+    redurect to.
+    """
+    return moderation_prior if moderation_prior in ["approved", "rejected"] else "pending"
+
 
 def extract_triggers_to_show(allowed_triggers):
     """
