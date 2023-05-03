@@ -452,6 +452,50 @@ def extract_triggers_to_show(allowed_triggers):
 
     return(triggers_to_show)
 
+def show_filiter(experiences, triggers_to_show):
+    """
+    Explicitly look for experiences with the trigger tags from the triggers_to_show list
+    """
+    for trigger in triggers_to_show:
+        if trigger == "abuse":
+            experiences = experiences.filter(Q(abuse=True) | Q(abuse=False))
+        if trigger == "violence":
+            experiences =  experiences.filter(Q(violence=True) | Q(violence=False))
+        if trigger == "drug":
+            experiences =  experiences.filter(Q(drug=True) | Q(drug=False))
+        if trigger == "mentalhealth":
+            experiences =  experiences.filter(Q(mentalhealth=True) | Q(mentalhealth=False))
+        if trigger == "negbody":
+            experiences =  experiences.filter(Q(negbody=True) | Q(negbody=False))
+        if trigger == "other":
+            experiences = experiences.filter(~Q(other="") | Q(other=""))
+    
+    return experiences
+
+def no_show_filer(experiences, triggers_to_show):
+    """
+    Explicitly omit stories that aren't in the triggers_to_show list
+    This coupled with the show_filter function allows for experiences with multiple 
+    trigger warnings to be shown
+    """
+    if "abuse" not in triggers_to_show:
+        experiences = experiences.filter(Q(abuse=False))
+    if "violence" not in triggers_to_show:
+        experiences = experiences.filter(Q(violence=False))
+    if "drug" not in triggers_to_show:
+        experiences = experiences.filter(Q(drug=False))
+    if "mentalhealth" not in triggers_to_show:
+        experiences = experiences.filter(Q(mentalhealth=False))
+    if "negbody" not in triggers_to_show:
+        experiences = experiences.filter(Q(negbody=False))
+    if "other" not in triggers_to_show:
+        experiences = experiences.filter(Q(other=""))
+
+    return experiences
+
+
+
+
 def expand_filter(experiences, triggers_to_show):
     """
     Expand the QuerySet. 
@@ -459,34 +503,7 @@ def expand_filter(experiences, triggers_to_show):
     correspond to the triggering content labels
     """
 
-    if "abuse" in triggers_to_show:
-        experiences = experiences.filter(Q(abuse=True) | Q(abuse=False))
-    else:
-        experiences = experiences.filter(Q(abuse=False))
-
-    if "violence" in triggers_to_show:
-        experiences =  experiences.filter(Q(violence=True) | Q(violence=False))
-    else:
-        experiences = experiences.filter(Q(violence=False))
-
-    if "drug" in triggers_to_show:
-        experiences =  experiences.filter(Q(drug=True) | Q(drug=False))
-    else:
-        experiences = experiences.filter(Q(drug=False))
-
-    if "mentalhealth" in triggers_to_show:
-        experiences =  experiences.filter(Q(mentalhealth=True) | Q(mentalhealth=False))
-    else:
-        experiences = experiences.filter(Q(mentalhealth=False))
-
-    if "negbody" in triggers_to_show:
-        experiences =  experiences.filter(Q(negbody=True) | Q(negbody=False))
-    else:
-        experiences = experiences.filter(Q(negbody=False))
-
-    if "other" in triggers_to_show:
-        experiences = experiences.filter(~Q(other="") | Q(other=""))
-    else:
-        experiences = experiences.filter(Q(other=""))
+    experiences = show_filiter(experiences, triggers_to_show)
+    experiences = no_show_filer(experiences, triggers_to_show)
 
     return experiences
