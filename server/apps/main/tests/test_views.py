@@ -126,7 +126,7 @@ class Views(TestCase):
         assert response.status_code == 200
 
         # assert ending up on right page
-        self.assertRedirects(response, "/main/confirm_page",
+        self.assertRedirects(response, "/main/confirm_page/",
                              status_code=302, target_status_code=200)
         
 
