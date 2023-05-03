@@ -109,7 +109,7 @@ def share_experience(request, uuid=False):
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
-
+            print(f"Form validity {form.is_valid}")
             if form.is_valid():
 
                 if uuid:

@@ -110,7 +110,8 @@ class Views(TestCase):
         
         response = c.post("/main/share_exp/",
                           {"experience_text": "Here is some experience text", 
-                           "difference_text": "Here is some difference text", 
+                           "difference_text": "Here is some difference text",
+                           "title_text": "Title text here",
                            "open_humans_member": self.oh_a},
                         follow=True)
         
