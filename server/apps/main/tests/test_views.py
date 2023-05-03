@@ -112,8 +112,12 @@ class Views(TestCase):
                           {"experience_text": "Here is some experience text", 
                            "difference_text": "Here is some difference text",
                            "title_text": "Title text here",
+                           "viewable": "True",
                            "open_humans_member": self.oh_a},
                         follow=True)
+        
+        qs = PublicExperience.objects.filter(title_text = "Title text here")
+        assert len(qs)==1
         
 
     

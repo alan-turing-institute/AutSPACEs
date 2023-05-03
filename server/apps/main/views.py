@@ -136,7 +136,7 @@ def share_experience(request, uuid=False):
                     ohmember=request.user.openhumansmember,
                     editing_user=request.user.openhumansmember,
                 )
-
+            
                 # redirect to a new URL:
                 return redirect("main:confirm_page")
 
