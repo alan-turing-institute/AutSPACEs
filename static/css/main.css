@@ -528,3 +528,14 @@ body {
   color: #17a2b8;
 }
 
+/* Remove grey line on top of table to make tabs work properly */
+.mystory-table thead th {
+  border-top: none;
+}
+
+.no-stories-message {
+  font-style: italic;
+  color: #999;
+  margin-top: 1em;
+  margin-left: 20px;
+}
