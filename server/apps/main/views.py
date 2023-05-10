@@ -58,7 +58,6 @@ def help(request):
 def code_of_conduct(request):
     return render(request, "main/code_of_conduct.html")
 
-
 def edit_experience(request):
     return render(request, "main/share_experiences.html")
 
@@ -222,6 +221,20 @@ def delete_experience(request, uuid, title):
         return redirect("index")
 
 
+def bob(request):
+    experiences = PublicExperience.objects.filter(moderation_status="approved")
+    allowed_triggers = request.GET.keys()
+    print("******************")
+    print(allowed_triggers)
+    print("******************")
+    context = {}
+    for trigger in allowed_triggers:
+        context[trigger] = True
+    return render(
+        request,
+        "main/bob.html",
+        context)
+
 def list_public_experiences(request):
     """
     Returns, in the context, experiences that are
@@ -241,7 +254,14 @@ def list_public_experiences(request):
         # Check the allowed triggers
         allowed_triggers = request.GET.keys()
 
+
+
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
+
+    tts = {}
+    for trigger in triggers_to_show:
+        trigger_check = f"check{trigger}"
+        tts[trigger_check] = True
 
     experiences = expand_filter(experiences, triggers_to_show)
 
@@ -258,11 +278,14 @@ def list_public_experiences(request):
             | Q(experience_text__icontains=searched)
             | Q(difference_text__icontains=searched)
         )
-
+    context={"experiences": experiences}
+    hd_context = {**tts, **context}
 
     # Standard page showing all moderated stories
     return render(
-        request, "main/experiences_page.html", context={"experiences": experiences}
+        request, 
+        "main/experiences_page.html",
+        context=hd_context
     )
 
 

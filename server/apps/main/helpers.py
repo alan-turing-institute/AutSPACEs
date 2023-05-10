@@ -447,15 +447,27 @@ def extract_triggers_to_show(allowed_triggers):
 
     all_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
     triggers_to_show = list(all_triggers.intersection(allowed_triggers))
+    # invert this to get triggers to hide
 
     # t_list = [PublicExperience._meta.get_field(trigger) for trigger in triggers_to_show]
 
     return(triggers_to_show)
 
+def active_exlusion(experiences):
+    # Use the exclude method
+    pass
+
 def show_filiter(experiences, triggers_to_show):
     """
     Explicitly look for experiences with the trigger tags from the triggers_to_show list
     """
+    tmp_dict = {}
+    for t in triggers_to_show:
+        tmp_dict[t] = True
+    
+    
+    experiences.filter(Q(**tmp_dict) | Q(abuse=False))
+
     for trigger in triggers_to_show:
         if trigger == "abuse":
             experiences = experiences.filter(Q(abuse=True) | Q(abuse=False))
