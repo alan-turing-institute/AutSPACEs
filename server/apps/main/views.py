@@ -155,6 +155,7 @@ def share_experience(request, uuid=False):
 
             if uuid:
                 # return data from oh.
+                print("In the GET with UUID")
                 data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
                 form = ShareExperienceForm(data)
                 title = "Edit experience"

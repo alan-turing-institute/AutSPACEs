@@ -130,7 +130,8 @@ class Views(TestCase):
                              status_code=302, target_status_code=200)
         
 
-
+    @vcr.use_cassette('server/apps/main/tests/fixtures/share_experience.yaml',
+                      record_mode='none', filter_query_parameters=['access_token'], match_on=['path'])
     def test_share_exp_load_existing_experience_for_editing(self):
         """
         Test that the share experience form is populated with the appropriate fields
@@ -144,7 +145,16 @@ class Views(TestCase):
         # Need to confirm that the contents of the sharedExperienceForm metadata aligns with the contents of the PublicExperience object
         # Need to make a small change
         # Need to ensure that small change is present in the context sent to "main/share_experiences.html"
-        pass
+        c = Client()
+        c.force_login(self.user_a)
+        
+        response = c.get("/main/share_exp/", uuid="1234")
+                        #   {"experience_text": "Here is some experience text", 
+                        #    "difference_text": "Here is some difference text",
+                        #    "title_text": "A new story added",
+                        #    "viewable": "True",
+                        #    "open_humans_member": self.oh_a},
+                        # follow=True)
 
     def test_share_exp_load_blank_form(self):
         """
