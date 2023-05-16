@@ -16,9 +16,9 @@ authors = ["test.com"]
 
 
 [tool.poetry.dependencies]
-python = "3.8.6"
+python = "3.9.16"
 
-django = "^2.2.16"
+django = "^4.2"
 django-split-settings = "^1.0"
 django-axes = "^5.10"
 django-csp = "^3.7"
@@ -75,4 +75,4 @@ dotenv-linter = "^0.2"
 polint = "^0.4"
 dennis = "^0.9"
 dump-env = "^1.2"
-ipython = "^7.19"
+ipython = "^8.10"

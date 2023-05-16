@@ -1,37 +1,44 @@
  {% load static %}
  {% load custom_tags %}
-<link href="{% static '/css/navigation_light.css' %}" rel="stylesheet" id="mystylesheet">
-  <div class="container-fluid nav-section">
+  <div class="nav-section">
   <nav class="navbar navbar-expand-xl navbar-dark">
-      <a class="nav-content navbar-brand" href="#">AutSPACEs</a>
+      <a class="nav-content navbar-brand" href="{% url 'main:overview' %}">AutSPACEs</a>
       <button aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
               data-target="#navbarText"
               data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:overview' %}">Home</a>
-          </li>
-          <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What Autism is</a>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What is Autism</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item dropdown" style="padding: 0 0">
-            <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0 25px">
+            <a class="nav-link dropdown-toggle nav-content" href="#" id="experienceDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Experiences
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="experienceDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'main:public_experiences' %}">View Stories</a>
               <a class="dropdown-item" href="{% url 'main:share_exp' %}">Share Stories</a>
-              {% is_moderator user as moderator %}
-              {% if moderator %}
-              <a class="dropdown-item" href="{% url 'main:moderate_public_experiences' %}">Moderate</a>
-              {% endif %}
             </div>
           </li>
+          {% is_moderator user as moderator %}
+          {% if moderator %}
+          <li class="nav-item dropdown" style="padding: 0 0">
+            <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Moderation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=pending">Pending</a>
+              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=approved">Approved</a>
+              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=rejected">Rejected</a>
+            </div>
+          </li>
+
+          {% endif %}
           <li>
             <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
           </li>
@@ -43,18 +50,25 @@
           <li>
             <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
           </li>
+          <li>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
+          </li>
+          <li>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:help' %}">Help</a>
+          </li>
         </ul>
+
+
+
+        {% if user.is_authenticated %}
+          <form class="form-inline my-2 my-lg-0" action="{% url 'main:logout' %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-light btn-lg my-2 mr-sm-0" type="submit">Log out</button>
+          </form>
+        {% elif not page_status == "registration" %}
+          <a class="nav-content nav-item nav-link log-link" style="color: #fff" href="{{ auth_url }}">Log In</a>
+          <a href="{% url 'main:registration' %}" class="nav-content nav-item btn btn-lg btn-light">Register</a>
+        {% endif %}
       </div>
-
-
-      {% if user.is_authenticated %}
-        <form action="{% url 'main:logout' %}" method="post">
-          {% csrf_token %}
-          <input class="nav-content nav-item btn btn-light btn-lg" type="submit" value="Log out">
-        </form>
-      {% elif not page_status == "registration" %}
-        <a class="nav-content nav-item nav-link log-link" style="color: #fff" href="{{ auth_url }}">Log In</a>
-        <a href="{% url 'main:registration' %}" class="nav-content nav-item btn btn-lg btn-light">Register</a>
-      {% endif %}
     </nav>
 </div>

@@ -63,7 +63,6 @@ body {
 /* NAVIGATION BAR */
 
 .nav-section {
-  padding-top: 1%;
   background: #1BB5AF;
 }
 
@@ -73,9 +72,7 @@ body {
    font-size: 1.3rem;
  }
 
- .nav-item {
-   padding: 0 25px;
- }
+ 
  .nav-link:hover {
    color:#000 !important;
  }
@@ -482,5 +479,60 @@ body {
 .registration-text {
   line-height: 2;
   font-size: 20px;
+}
 
+/* CODE OF CONDUCT */
+
+.word-red {
+  color: #cc0000;
+}
+
+.word-amber {
+  color: #e69138;
+}
+
+.callout {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e9ecef;
+  border-left-width: .25rem;
+  border-radius: .25rem
+}
+
+.callout h5 {
+  margin-bottom: .25rem
+}
+
+.callout p:last-child {
+  margin-bottom: 0
+}
+
+.callout+.callout {
+  margin-top: -.25rem
+}
+
+.callout-red {
+  border-left-color: #cc0000
+}
+
+.callout-amber {
+  border-left-color: #e69138;
+}
+
+.guideline-header {
+  font-weight: bold;
+  color: #17a2b8;
+}
+
+/* Remove grey line on top of table to make tabs work properly */
+.mystory-table thead th {
+  border-top: none;
+}
+
+.no-stories-message {
+  font-style: italic;
+  color: #999;
+  margin-top: 1em;
+  margin-left: 20px;
 }

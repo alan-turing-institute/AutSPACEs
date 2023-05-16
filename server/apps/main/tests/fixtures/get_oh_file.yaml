@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://www.openhumans.org/data-management/datafile-download/63968911/?key=8859abff-0967-4a0d-8196-cbda2dc8224f
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Tue, 04 Apr 2023 13:18:35 GMT
+      Location:
+      - https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1330/01234567-89ab-cdef-0123-456789abcdef/01234567-89ab-cdef-0123-456789abcdef.json?AWSAccessKeyId=ABCDEFGHIJKLMNOPQRST&Signature=43gw66thjfgdget34DFe1b%2F5G6FDd7H%3D&Expires=1680617915&x-oh-key=01234567-89ab-cdef-0123-456789abcdef
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Authorization, Cookie
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1330/01234567-89ab-cdef-0123-456789abcdef/01234567-89ab-cdef-0123-456789abcdef.json?AWSAccessKeyId=ABCDEFGHIJKLMNOPQRST&Signature=43gw66thjfgdget34DFe1b%2F5G6FDd7H%3D&Expires=1680617915&x-oh-key=01234567-89ab-cdef-0123-456789abcdef
+  response:
+    body:
+      string: '{"data": {"experience_text": "Experience text", "difference_text":
+        "Difference text", "title_text": "Title text", "abuse": false, "violence":
+        false, "drug": false, "mentalhealth": false, "negbody": false, "other": "Topic",
+        "viewable": false, "research": false, "moderation_status": "not reviewed"},
+        "timestamp": "2023-04-04 13:16:18.647417"}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '341'
+      Content-Type:
+      - binary/octet-stream
+      Date:
+      - Tue, 04 Apr 2023 13:18:36 GMT
+      Last-Modified:
+      - Tue, 04 Apr 2023 13:16:20 GMT
+      Server:
+      - AmazonS3
+    status:
+      code: 200
+      message: OK
+version: 1

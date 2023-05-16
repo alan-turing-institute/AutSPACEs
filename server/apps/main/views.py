@@ -9,6 +9,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 from django.db.models import Q
+from django.urls import reverse
 
 from .models import PublicExperience
 
@@ -20,13 +21,16 @@ from .helpers import (
     extract_experience_details,
     reformat_date_string,
     get_review_status,
-    get_oh_file,
+    get_oh_combined,
     delete_single_file_and_pe,
     upload,
+    rebuild_experience_data,
     make_uuid,
     delete_PE,
     update_public_experience_db,
     process_trigger_warnings,
+    moderate_page,
+    choose_moderation_redirect,
 )
 
 logger = logging.getLogger(__name__)
@@ -45,6 +49,12 @@ def about_us(request):
 
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
+
+def help(request):
+    return render(request, "main/help.html")
+
+def code_of_conduct(request):
+    return render(request, "main/code_of_conduct.html")
 
 
 def edit_experience(request):
@@ -145,18 +155,22 @@ def share_experience(request, uuid=False):
 
             if uuid:
                 # return data from oh.
-                data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
-                form = ShareExperienceForm(data["metadata"]["data"])
+                data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
+                form = ShareExperienceForm(data)
                 title = "Edit experience"
-
+                viewable = data.get("viewable", False)
+                moderation_status = data.get("moderation_status", "not reviewed")
             else:
                 form = ShareExperienceForm()
                 title = "Share experience"
+                viewable = False
+                moderation_status = "not reviewed"
 
             return render(
                 request,
                 "main/share_experiences.html",
-                {"form": form, "uuid": uuid, "title": title},
+                {"form": form, "uuid": uuid, "title": title,
+                 "viewable": viewable, "moderation_status": moderation_status}
             )
 
     else:
@@ -169,8 +183,8 @@ def view_experience(request, uuid):
     """
     if request.user.is_authenticated:
         # return data from oh.
-        data = get_oh_file(ohmember=request.user.openhumansmember, uuid=uuid)
-        form = ShareExperienceForm(data["metadata"]["data"], disable_all=True)
+        data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
+        form = ShareExperienceForm(data, disable_all=True)
         return render(
             request,
             "main/share_experiences.html",
@@ -276,10 +290,46 @@ def moderate_public_experiences(request):
     else:
         return redirect("main:overview")
 
+def moderation_list(request):
+    """
+    View containing lists of Public Experiences with a given status
+
+    When status is "pending" this includes experiences marked as "unmoderated"
+    or "in review".
+
+    When status is "approved" it includes experiences marked as "approved".
+
+    When status is "rejected" it includes experiences marked as "rejected".
+    """
+    if request.user.is_authenticated and is_moderator(request.user):
+        status = request.GET.get("status", "pending")
+        if status not in ["pending", "approved", "rejected"]:
+            status = "pending"
+
+        if status == "approved":
+            # Search through approved experiences
+            experiences = PublicExperience.objects.filter(
+                moderation_status="approved"
+            ).order_by("created_at")
+        elif status == "rejected":
+            # Search through rejected experiences
+            experiences = PublicExperience.objects.filter(
+                moderation_status="rejected"
+            ).order_by("created_at")
+        else:
+            # Search through unreviewed or in review experiences
+            experiences = PublicExperience.objects.filter(
+                Q(moderation_status="not reviewed") | Q(moderation_status="in review")
+            ).order_by("created_at")
+
+        return moderate_page(request, status, experiences)
+    else:
+        return redirect("main:overview")
+
 # @vcr.use_cassette('tmp/my_stories.yaml', filter_query_parameters=['access_token'])
 def my_stories(request):
     """
-    List all stories that are associated with the OpenHumans proejct page.
+    List all stories that are associated with the OpenHumans project page.
     Including those which are not-shareable on the website
     """
     if request.user.is_authenticated:
@@ -310,6 +360,7 @@ def moderate_experience(request, uuid):
             data = {**unchanged_experience_details, **trigger_details}
 
             moderation_comments = data.pop("moderation_comments", None)
+            moderation_prior = data.pop("moderation_prior", "not moderated")
 
             # get the users OH member id from the model
             user_OH_member = model.open_humans_member
@@ -331,7 +382,8 @@ def moderate_experience(request, uuid):
                 # if user writing E has deauthorized autspaces, delete public experience
                 delete_PE(uuid=uuid, ohmember=user_OH_member)
             # redirect to a new URL:
-            return redirect("main:moderate_public_experiences")
+            status = choose_moderation_redirect(moderation_prior)
+            return redirect("{}?status={}".format(reverse("main:moderation_list"), status))
 
         else:
             experience_title = model.title_text

@@ -2,11 +2,15 @@ import datetime
 import json
 import io
 import uuid
+import requests
 from django.contrib.auth.models import Group
 from django.forms.models import model_to_dict
+from django.conf import settings
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.shortcuts import redirect, render
 from .forms import ModerateExperienceForm
 from .models import PublicExperience, ExperienceHistory
-
 
 def is_moderator(user):
     """Return membership of moderator group."""
@@ -22,6 +26,7 @@ def is_moderator(user):
 def model_to_form(model, disable_moderator=False):
     """Converts Model to form."""
     model_dict = model_to_dict(model)
+    model_dict["moderation_prior"] = model_dict["moderation_status"]
 
     form = ModerateExperienceForm(
         {**model_dict, "viewable": True},  # we only moderate public experiences
@@ -109,8 +114,9 @@ def get_review_status(files):
     return statuses
 
 
-def get_oh_file(ohmember, uuid):
-    """Returns a single file from OpenHumans, filtered by uuid.
+# @vcr.use_cassette("tmp/get_oh_metadata.yaml", filter_query_parameters=['access_token'])
+def get_oh_metadata(ohmember, uuid):
+    """Returns the metadata for a single file from OpenHumans, filtered by uuid.
 
     Args:
         ohmember : request.user.openhumansmember
@@ -120,7 +126,7 @@ def get_oh_file(ohmember, uuid):
         Exception: If uuid belongs to more than one file.
 
     Returns:
-        file (dict): dictionary representation of OpenHumans file. Returns None if uuid is not matched.
+        metadata (dict): dictionary representation of OpenHumans file metadata. Returns None if uuid is not matched.
     """
     files = ohmember.list_files()
     file = [f for f in files if f["metadata"]["uuid"] == uuid]
@@ -132,6 +138,48 @@ def get_oh_file(ohmember, uuid):
 
     return file[0]
 
+# @vcr.use_cassette("tmp/get_oh_file.yaml", filter_query_parameters=['access_token'])
+def get_oh_file(url):
+    """Returns a single file from OpenHumans.
+
+    Args:
+        url (str): the url of the file
+
+    Returns:
+        file (dict): dictionary representation of OpenHumans file. Returns an empty dict if the file can't be accessed.
+    """
+    data = {}
+    # Download the file from OpenHumans
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+
+    return data
+
+# @vcr.use_cassette("tmp/get_oh_combined.yaml", filter_query_parameters=['access_token'])
+def get_oh_combined(ohmember, uuid):
+    """Returns a dictionary combining file and metadata from OpenHumans, filtered by uuid.
+
+    Args:
+        ohmember : request.user.openhumansmember
+        uuid (str): unique identifier
+
+    Raises:
+        Exception: If uuid belongs to more than one file.
+
+    Returns:
+        combined (dict): dictionary representation of combined OpenHumans file and metadata. Returns an empty dict if uuid is not matched.
+    """
+    metadata = get_oh_metadata(ohmember, uuid)
+
+    data = {}
+    url = metadata.get('download_url') if metadata else None
+    # Should we do more sanity checking of the URL?
+    # E.g. check it starts with https://www.openhumans.org/... ?
+    if url:
+        data = get_oh_file(url)
+
+    return rebuild_experience_data(data, metadata)
 
 def delete_single_file_and_pe(uuid, ohmember):
     """Deletes a given file id and uuid from openhumans and ensures absence from local PublicExperiences database.
@@ -152,12 +200,6 @@ def make_tags(data):
     tag_map = {
         "viewable": {"True": "public", "False": "not public"},
         "research": {"True": "research", "False": "non-research"},
-        "drug": {"True": "drugs", "False": ""},
-        "abuse": {"True": "abuse", "False": ""},
-        "negbody": {"True": "negative body", "False": ""},
-        "violence": {"True": "violence", "False": ""},
-        "mentalhealth": {"True": "mental health", "False": ""},
-        "moderation_status": {"True": "", "False": "in review"},
     }
 
     tags = [tag_map[k].get(str(v)) for k, v in data.items() if k in tag_map.keys()]
@@ -167,6 +209,16 @@ def make_tags(data):
     tags = [tag for tag in tags if bool(tag) == True]
     return tags
 
+def prepare_metadata(uuid, timestring, data):
+    # The description is truncated to DESCRIPTION_LEN_MAX (100) characters as
+    # this is the maximum supported by OpenHumans
+    return {
+        "uuid": uuid,
+        "description": data.get("title_text")[:settings.DESCRIPTION_LEN_MAX],
+        "tags": make_tags(data),
+        "timestamp": timestring,
+        "data": {k: v for k, v in data.items() if k not in settings.METADATA_MASK},
+    }
 
 def upload(data, uuid, ohmember):
     """Uploads a dictionary representation of an experience to open humans.
@@ -177,15 +229,11 @@ def upload(data, uuid, ohmember):
         ohmember : request.user.openhumansmember
     """
 
-    output_json = {"data": data, "timestamp": str(datetime.datetime.now())}
+    timestring = str(datetime.datetime.now())
+    output_json = {"data": data, "timestamp": timestring}
 
     # by saving the output json into metadata we can access the fields easily through request.user.openhumansmember.list_files().
-    metadata = {
-        "uuid": uuid,
-        "description": data.get("title_text"),
-        "tags": make_tags(data),
-        **output_json,
-    }
+    metadata = prepare_metadata(uuid, timestring, data)
 
     # create stream for OH upload
     output = io.StringIO()
@@ -198,6 +246,59 @@ def upload(data, uuid, ohmember):
         metadata=metadata,
     )
 
+def rebuild_experience_data(data, metadata):
+    """Combines file data with metadata into a consistent format.
+
+    In case values appear in both the file data and metadata, the
+    metadata values will take priority.
+
+    The file data should be in the following form:
+    {
+        "data": {
+            "experience_text": "...",
+            "difference_text": "...",
+            "title_text": "...",
+            ...
+        },
+        ...
+    }
+
+    The metadata should be in the following form:
+    {
+        "download_url": "https://www.openhumans.org/..",
+        "metadata": {
+            "data": {
+                "other": ...,
+                ...
+            },
+            "tags": [...],
+            ...
+          },
+          ...
+    }
+
+    The returned structure will be in the following form:
+    {
+        "experience_text": "...",
+        "difference_text": "...",
+        "title_text": "...",
+        "other": "...",
+        "moderation_status": "..."
+        ...
+    }
+
+    Args:
+        data (dict): the file data
+        metadata (dict): the metadata
+
+    Returns:
+        combined (dict): combined file and metadata dictionary
+    """
+
+    combined = {k: v for k, v in data["data"].items() if k in settings.METADATA_MASK}
+    # Using dict.update the metadata values will take priority
+    combined.update(metadata["metadata"]["data"])
+    return combined
 
 def make_uuid():
     """Create a Universal Unique Identifier."""
@@ -267,3 +368,73 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
 
     else:
         delete_PE(uuid, ohmember)
+
+def moderate_page(request, status, experiences):
+    """
+    View containing lists of the given Public Experiences
+
+    A helper function for generating the Moderation pages.
+    """
+    # Check to see if a search has been performed
+    searched = request.GET.get("searched", False)
+
+    if searched:
+        # If there's a search term, additionally filter on it too
+        experiences = experiences.filter(
+            Q(title_text__icontains=searched)
+            | Q(experience_text__icontains=searched)
+            | Q(difference_text__icontains=searched)
+        )
+
+    paginator = Paginator(experiences, settings.EXPERIENCES_PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    page_obj.page_range = paginator.get_elided_page_range(page_obj.number, on_each_side=2, on_ends=1)
+    page_obj.offset = page_obj.start_index() - 1
+
+    unreviewed = PublicExperience.objects.filter(
+        Q(moderation_status="not reviewed")
+    ).count()
+    inreview = PublicExperience.objects.filter(
+        Q(moderation_status="in review")
+    ).count()
+    approved = PublicExperience.objects.filter(
+        Q(moderation_status="approved")
+    ).count()
+    rejected = PublicExperience.objects.filter(
+        Q(moderation_status="rejected")
+    ).count()
+
+    subtitle = {
+        "pending": "Experiences for Moderation",
+        "approved": "Approved Experiences",
+        "rejected": "Rejected Experiences",
+    }.get(status, "Moderation")
+
+    return render(
+        request,
+        "main/moderation_list.html",
+        context={
+            "subtitle": subtitle,
+            "status": status,
+            "page_obj": page_obj,
+            "unreviewed": unreviewed,
+            "inreview": inreview,
+            "approved": approved,
+            "rejected": rejected,
+            "searched": searched if searched else "",
+            "params": "?status=" + status + (("&searched=" + searched) if searched else ""),
+        },
+    )
+
+def choose_moderation_redirect(moderation_prior):
+    """
+    Selects an appropriate redirect from the moderate story form
+
+    When a moderator submits a story moderation, the form redirects
+    to different places depending on where the user requested the
+    moderation from. This helper function returns the place to
+    redurect to.
+    """
+    return moderation_prior if moderation_prior in ["approved", "rejected"] else "pending"
+

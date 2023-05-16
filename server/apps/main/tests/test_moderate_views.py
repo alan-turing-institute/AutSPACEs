@@ -11,13 +11,13 @@ import json
 class ModerationViewTests(TestCase):
     """
     Test that all moderation views work as expected
-    Also account for cases that should fail, e.g. 
+    Also account for cases that should fail, e.g.
     non-logged in users
     """
 
     def setUp(self):
         '''
-        shared user setup for all moderation tests. 
+        shared user setup for all moderation tests.
         requires at least 2 users (moderator, regular user)
         '''
         # shared token data for all test users
@@ -59,7 +59,7 @@ class ModerationViewTests(TestCase):
         """
         c = Client()
         response = c.get("/main/moderate_public_experiences", follow=True)
-        self.assertRedirects(response, "/", 
+        self.assertRedirects(response, "/",
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -77,8 +77,8 @@ class ModerationViewTests(TestCase):
         """
         Test moderating single experience page fails when done by non-autenticated user
         """
-        
-        c = Client()        
+
+        c = Client()
         response = c.post("/main/moderate/test-test-test/",
                         {"mentalhealth": True, "other":"New trigger",
                         "moderation_status":"approved",
@@ -104,7 +104,40 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderate_public_experiences", follow=True)
-        self.assertRedirects(response, "/main/overview", 
+        self.assertRedirects(response, "/main/overview",
+                             status_code=302,target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+
+    def test_view_moderate_list_pending_non_moderator(self):
+        """
+        Test moderate pending overview page is not accessible by non-moderator users
+        """
+        c = Client()
+        c.force_login(self.non_moderator_user)
+        response = c.get("/main/moderation_list", {"status": "pending"}, follow=True)
+        self.assertRedirects(response, "/main/overview",
+                             status_code=302,target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+
+    def test_view_moderate_list_approved_non_moderator(self):
+        """
+        Test moderate approved overview page is not accessible by non-moderator users
+        """
+        c = Client()
+        c.force_login(self.non_moderator_user)
+        response = c.get("/main/moderation_list", {"status": "approved"}, follow=True)
+        self.assertRedirects(response, "/main/overview",
+                             status_code=302,target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+
+    def test_view_moderate_list_rejected_non_moderator(self):
+        """
+        Test moderate rejected overview page is not accessible by non-moderator users
+        """
+        c = Client()
+        c.force_login(self.non_moderator_user)
+        response = c.get("/main/moderation_list", {"status": "rejected"}, follow=True)
+        self.assertRedirects(response, "/main/overview",
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -119,17 +152,65 @@ class ModerationViewTests(TestCase):
                              status_code=302, target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
-    def test_single_moderation_view_as_non_moderator_post(self):
+    def test_single_moderation_view_as_non_moderator_post_pending(self):
         """
         Test moderating single experience page fails when done by non-moderator
         """
-        
+
         c = Client()
         c.force_login(self.non_moderator_user)
-        
+
+        response = c.post("/main/moderate/test-test-test/",
+                        {"mentalhealth": True, "other":"New trigger",
+                        "moderation_status":"not moderated",
+                        "moderation_comments":"amazing story!",
+                        },
+                        follow=True)
+        # assert ending up on right page
+        self.assertRedirects(response, "/main/overview",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+        # test that no changes were made
+        pe = PublicExperience.objects.get(experience_id='test-test-test')
+        self.assertEqual(pe.mentalhealth,False)
+        self.assertEqual(pe.other,"")
+        self.assertEqual(pe.moderation_status,"not reviewed")
+
+    def test_single_moderation_view_as_non_moderator_post_approved(self):
+        """
+        Test moderating single experience page fails when done by non-moderator
+        """
+
+        c = Client()
+        c.force_login(self.non_moderator_user)
+
         response = c.post("/main/moderate/test-test-test/",
                         {"mentalhealth": True, "other":"New trigger",
                         "moderation_status":"approved",
+                        "moderation_comments":"amazing story!",
+                        },
+                        follow=True)
+        # assert ending up on right page
+        self.assertRedirects(response, "/main/overview",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+        # test that no changes were made
+        pe = PublicExperience.objects.get(experience_id='test-test-test')
+        self.assertEqual(pe.mentalhealth,False)
+        self.assertEqual(pe.other,"")
+        self.assertEqual(pe.moderation_status,"not reviewed")
+
+    def test_single_moderation_view_as_non_moderator_post_rejected(self):
+        """
+        Test moderating single experience page fails when done by non-moderator
+        """
+
+        c = Client()
+        c.force_login(self.non_moderator_user)
+
+        response = c.post("/main/moderate/test-test-test/",
+                        {"mentalhealth": True, "other":"New trigger",
+                        "moderation_status":"rejected",
                         "moderation_comments":"amazing story!",
                         },
                         follow=True)
@@ -155,6 +236,59 @@ class ModerationViewTests(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'main/moderate_public_experiences.html')
 
+    def test_view_moderate_pending_list_moderator(self):
+        """
+        Test moderate pending overview page is accessible by moderators
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderation_list", {"status": "pending"}, follow=True)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
+    def test_view_moderate_approved_list_moderator(self):
+        """
+        Test moderate approved overview page is accessible by moderators
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderation_list", {"status": "approved"}, follow=True)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
+    def test_view_moderate_rejected_list_moderator(self):
+        """
+        Test moderate rejected overview page is accessible by moderators
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderation_list", {"status": "rejected"}, follow=True)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
+    def test_view_moderate_invalid_list_moderator(self):
+        """
+        Test moderate overview page is accessible by moderators when the status is invalid
+
+        It should default to the "pending" view.
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderation_list", {"status": "unknown"}, follow=True)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
+    def test_view_moderate_pending_list_search_moderator(self):
+        """
+        Test moderate pending overview page with a search parameter
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        response = c.get("/main/moderation_list", {"status": "pending", "searched": "something"}, follow=True)
+        # TODO: Check that the search returns sensible results
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
     def test_single_moderation_view_as_moderator_get(self):
         """
         Test moderate single experience page is accessible by moderators
@@ -176,10 +310,11 @@ class ModerationViewTests(TestCase):
         # ideally would add a cassette here too which returns a "permission denied"
         response = c.post("/main/moderate/test-test-test/",
                           {"mentalhealth": True, "other":"New trigger",
-                           },
+                          "moderation_prior":"approved",
+                          },
                           follow=True)
         self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response, 'main/moderate_public_experiences.html')
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
         # Public experience should be deleted as no longer access on OH
         self.assertEqual(len(PublicExperience.objects.all()),0)
 
@@ -187,7 +322,7 @@ class ModerationViewTests(TestCase):
         """
         Test moderate single experience page is successfully accessible and editable by moderators
         """
-        
+
         c = Client()
         c.force_login(self.moderator_user)
         # Test uses cassette to allow fake-upload to OH
@@ -197,17 +332,18 @@ class ModerationViewTests(TestCase):
                             {"mentalhealth": True, "other":"New trigger",
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
+                            "moderation_prior":"not moderated",
                             },
                             follow=True)
         # assert ending up on right page
         self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response, 'main/moderate_public_experiences.html')
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
         # test that all changes were made
         pe = PublicExperience.objects.get(experience_id='test-test-test')
         self.assertEqual(pe.mentalhealth,True)
         self.assertEqual(pe.other,"New trigger")
         self.assertEqual(pe.moderation_status,"approved")
-        # Try injecting additional information that should be immutable 
+        # Try injecting additional information that should be immutable
         # Should raise KeyError in form
         with self.assertRaises(KeyError) as ce:
             response = c.post("/main/moderate/test-test-test/",
@@ -219,4 +355,4 @@ class ModerationViewTests(TestCase):
                             follow=True)
         # Check that key-error was caused by title text
         self.assertEqual(str(ce.exception),"'title_text'")
-            
+

@@ -9,8 +9,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 from typing import Dict, List, Tuple, Union
-
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from server.settings.components import BASE_DIR, config
 
@@ -115,7 +114,6 @@ DATABASES = {
 LANGUAGE_CODE = 'en-us'
 
 USE_I18N = True
-USE_L10N = True
 
 LANGUAGES = (
     ('en', _('English')),
@@ -214,3 +212,20 @@ FEATURE_POLICY: Dict[str, Union[str, List[str]]] = {}  # noqa: WPS234
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-EMAIL_TIMEOUT
 
 EMAIL_TIMEOUT = 5
+
+# OpenHumans interaction
+# The maximum length allowed by OpenHumans for the descripition field
+DESCRIPTION_LEN_MAX = 100
+
+# The following items will be stripped from the metadata dictionary before
+# uploading to OpenHumans, since it's stored in the uploaded file itself
+METADATA_MASK = [
+    "experience_text",
+    "difference_text",
+    "title_text"
+]
+
+# The number of experiences to show on the moderation pages
+EXPERIENCES_PER_PAGE = 10
+
+

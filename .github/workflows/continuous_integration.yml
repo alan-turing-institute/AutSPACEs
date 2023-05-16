@@ -10,11 +10,11 @@ jobs:
         os:
           - ubuntu-20.04
         python-version:
-          - 3.8.6
+          - 3.9.16
       fail-fast: false
     services:
       postgres:
-        image: postgres:11
+        image: postgres:12
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
