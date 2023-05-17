@@ -103,8 +103,7 @@ Note: Please note that certain aspects of the website may not be fully functiona
 
 To access the PostgreSQL database:
 
-1. Run `docker exec -it autspaces_db_1 bash`
-2. In the subsequent terminal, run `psql --username=autspaces`
+Make sure that the docker container runs (`./docker-run.sh`) and then use `docker exec -it autspaces-db-1 psql --username=autspaces` to access the database shell. 
 
 ### Accessing the Django shell
 
@@ -117,6 +116,14 @@ Django provides a way to load a Python shell that has pre-loaded all Django sett
 The easiest way to run the tests locally is to run them inside the Docker container. While the container is running via `./docker-run.sh`, run the following command to run all tests:
 
 `docker exec -it autspaces-web-1 python manage.py test`
+
+If you also want to locally run the `coverage` command to see if/how your changes have affected how much of the AutSPACEs code is covered by tests, you can use the following: 
+
+```
+docker exec -it autspaces-web-1 coverage run manage.py test
+docker exec -it autspaces-web-1 coverage html
+# You can now open the newly-generated htmlcov/index.html
+```
 
 ### Making an admin/superuser
 
