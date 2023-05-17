@@ -112,6 +112,12 @@ Django provides a way to load a Python shell that has pre-loaded all Django sett
 
 `docker exec -it autspaces-web-1 python manage.py shell`
 
+### Running tests locally
+
+The easiest way to run the tests locally is to run them inside the Docker container. While the container is running via `./docker-run.sh`, run the following command to run all tests:
+
+`docker exec -it autspaces-web-1 python manage.py test`
+
 ### Making an admin/superuser
 
 AutSPACEs comes with the default Django `admin` backend activated. This admin backend can be accessed at `http://localhost:8000/admin`. To use this backend, an admin account is needed. The account can be created using the Django management command `createsuperuser`. While the `./docker-run.sh` is still running, run the following command in another terminal: `docker exec -it autspaces-web-1 python manage.py createsuperuser`
