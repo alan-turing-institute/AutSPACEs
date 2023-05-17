@@ -99,20 +99,52 @@ Note: Please note that certain aspects of the website may not be fully functiona
   >$ git clone https://github.com/YOUR-USERNAME/AutSPACEs
   7. Press enter. Your local clone will be created. 
 
-### Extra Tips
+### Accessing the database
+
+To access the PostgreSQL database:
+
+Make sure that the docker container runs (`./docker-run.sh`) and then use `docker exec -it autspaces-db-1 psql --username=autspaces` to access the database shell. 
+
+### Accessing the Django shell
+
+Django provides a way to load a Python shell that has pre-loaded all Django settings. This allows loading models, executing database queries etc. for testing purposes. To access the shell run the following command while the `./docker-run.sh` is still active in a different terminal:
+
+`docker exec -it autspaces-web-1 python manage.py shell`
+
+### Running tests locally
+
+The easiest way to run the tests locally is to run them inside the Docker container. While the container is running via `./docker-run.sh`, run the following command to run all tests:
+
+`docker exec -it autspaces-web-1 python manage.py test`
+
+If you also want to locally run the `coverage` command to see if/how your changes have affected how much of the AutSPACEs code is covered by tests, you can use the following: 
+
+```
+docker exec -it autspaces-web-1 coverage run manage.py test
+docker exec -it autspaces-web-1 coverage html
+# You can now open the newly-generated htmlcov/index.html
+```
+
+### Making an admin/superuser
+
+AutSPACEs comes with the default Django `admin` backend activated. This admin backend can be accessed at `http://localhost:8000/admin`. To use this backend, an admin account is needed. The account can be created using the Django management command `createsuperuser`. While the `./docker-run.sh` is still running, run the following command in another terminal: `docker exec -it autspaces-web-1 python manage.py createsuperuser`
+
+### Making a user a moderator
+
+User accounts are made moderators by being added to the `Moderators` group. The easiest way to do this is through the admin backend at `http://localhost:8000/admin/auth/user/` (note that you will need to be logged in with an admin account, see above). 
+
+Select the user account you would like to be a moderator. On the resulting page you can see the current groups the user is a member off. By default there are no groups and the user belongs to no groups. Click the little green plus sign and on the resulting page use "Moderators" as the _Name_ and save both that "add group" dialogue and the user account. 
+
+From now on the user should be able to see the Moderator pages in the front-end of AutSPACEs.
+
+
+## Extra Tips
 
 *If you aren't sure how to get to the root repository, you can find it more easily by following these steps:* 
 
 1. Type `git config --global alias.root 'rev-parse --show-toplevel` into your terminal. This will create a simpler command to take you to the root repository. 
 2. Type `cd $(git root)` into your terminal. This will take you to the root of the repository you are in. 
 
-#### Accessing the database
-
-To access the PostgreSQL database:
-
-1. Run `docker exec -it autspaces_db_1 bash`
-2. In the subsequent terminal, run `psql --username=autspaces`
-
-### Docker overview 
+## Docker overview 
 
 You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in _The Turing Way_ useful!
