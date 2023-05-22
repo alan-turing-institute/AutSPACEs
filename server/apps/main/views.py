@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 from openhumans.models import OpenHumansMember
 from django.db.models import Q
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 from .models import PublicExperience
 
@@ -31,6 +32,10 @@ from .helpers import (
     process_trigger_warnings,
     moderate_page,
     choose_moderation_redirect,
+    filter_by_tag,
+    filter_by_moderation_status,
+    filter_in_review,
+    paginate_my_stories,
 )
 
 logger = logging.getLogger(__name__)
@@ -322,20 +327,45 @@ def moderation_list(request):
     else:
         return redirect("main:overview")
 
-# @vcr.use_cassette('tmp/my_stories.yaml', filter_query_parameters=['access_token'])
+
 def my_stories(request):
     """
     List all stories that are associated with the OpenHumans project page.
     Including those which are not-shareable on the website
     """
     if request.user.is_authenticated:
-        context = {"files": request.user.openhumansmember.list_files()}
+        files = request.user.openhumansmember.list_files()
+        context = {"files": files}
         context = reformat_date_string(context)
-        statuses = get_review_status(context["files"])
-        context = {**context, **statuses}
-        return render(request, "main/my_stories.html", context)
+
+        # Define the number of items per page
+        items_per_page = settings.EXPERIENCES_PER_PAGE
+
+        # For each category, filter stories and create pagination
+        paginator_public = Paginator(filter_by_tag(filter_by_moderation_status(files, "approved"), "public"), items_per_page)
+        public_stories = paginate_my_stories(request, paginator_public, 'page_public')
+       
+        paginator_review = Paginator(filter_in_review(filter_by_tag(files, "public")), items_per_page)
+        in_review_stories = paginate_my_stories(request, paginator_review, 'page_review')
+        
+        paginator_rejected = Paginator(filter_by_moderation_status(files, "rejected"), items_per_page)
+        rejected_stories = paginate_my_stories(request, paginator_rejected, 'page_rejected')
+        
+        paginator_private = Paginator(filter_by_tag(files, "not public"), items_per_page)
+        private_stories = paginate_my_stories(request, paginator_private, 'page_private')
+        
+        return render(request,
+                      "main/my_stories.html", 
+                      context={
+                            "public_stories": public_stories,
+                            "in_review_stories": in_review_stories,
+                            "rejected_stories": rejected_stories,
+                            "private_stories": private_stories,
+                        }
+                      )
     else:
         return redirect("main:overview")
+
 
 
 def moderate_experience(request, uuid):
