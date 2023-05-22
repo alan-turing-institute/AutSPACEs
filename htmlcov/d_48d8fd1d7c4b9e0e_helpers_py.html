@@ -54,8 +54,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">134 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">131<span class="text"> run</span></button>
+            <span class="text">146 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">143<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">3<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_b172dc9ee102875b_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.5">coverage.py v7.2.5</a>,
-            created at 2023-05-22 10:48 +0000
+            created at 2023-05-22 13:36 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -520,6 +520,27 @@
     <p class="pln"><span class="n"><a id="t438" href="#t438">438</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t439" href="#t439">439</a></span><span class="t">    <span class="key">return</span> <span class="nam">moderation_prior</span> <span class="key">if</span> <span class="nam">moderation_prior</span> <span class="key">in</span> <span class="op">[</span><span class="str">"approved"</span><span class="op">,</span> <span class="str">"rejected"</span><span class="op">]</span> <span class="key">else</span> <span class="str">"pending"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t440" href="#t440">440</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t441" href="#t441">441</a></span><span class="t"><span class="key">def</span> <span class="nam">filter_by_tag</span><span class="op">(</span><span class="nam">files</span><span class="op">,</span> <span class="nam">tag</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t442" href="#t442">442</a></span><span class="t">    <span class="str">""" Filter stories by tag """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t443" href="#t443">443</a></span><span class="t">    <span class="key">return</span> <span class="op">[</span><span class="nam">file</span> <span class="key">for</span> <span class="nam">file</span> <span class="key">in</span> <span class="nam">files</span> <span class="key">if</span> <span class="nam">tag</span> <span class="key">in</span> <span class="nam">file</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'tags'</span><span class="op">]</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t444" href="#t444">444</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t445" href="#t445">445</a></span><span class="t"><span class="key">def</span> <span class="nam">filter_by_moderation_status</span><span class="op">(</span><span class="nam">files</span><span class="op">,</span> <span class="nam">status</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t446" href="#t446">446</a></span><span class="t">    <span class="str">""" Filter stories by moderation status """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t447" href="#t447">447</a></span><span class="t">    <span class="key">return</span> <span class="op">[</span><span class="nam">file</span> <span class="key">for</span> <span class="nam">file</span> <span class="key">in</span> <span class="nam">files</span> <span class="key">if</span> <span class="nam">file</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'data'</span><span class="op">]</span><span class="op">[</span><span class="str">'moderation_status'</span><span class="op">]</span> <span class="op">==</span> <span class="nam">status</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t448" href="#t448">448</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t449" href="#t449">449</a></span><span class="t"><span class="key">def</span> <span class="nam">filter_in_review</span><span class="op">(</span><span class="nam">files</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t450" href="#t450">450</a></span><span class="t">    <span class="str">""" Filter stories that are in review """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t451" href="#t451">451</a></span><span class="t">    <span class="key">return</span> <span class="op">[</span><span class="nam">file</span> <span class="key">for</span> <span class="nam">file</span> <span class="key">in</span> <span class="nam">files</span> <span class="key">if</span> <span class="nam">file</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'data'</span><span class="op">]</span><span class="op">[</span><span class="str">'moderation_status'</span><span class="op">]</span> <span class="op">==</span> <span class="str">"in review"</span> <span class="key">or</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t452" href="#t452">452</a></span><span class="t">            <span class="op">(</span><span class="nam">file</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'data'</span><span class="op">]</span><span class="op">[</span><span class="str">'moderation_status'</span><span class="op">]</span> <span class="op">==</span> <span class="str">"not reviewed"</span> <span class="key">and</span> <span class="str">"public"</span> <span class="key">in</span> <span class="nam">file</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'tags'</span><span class="op">]</span><span class="op">)</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t453" href="#t453">453</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t454" href="#t454">454</a></span><span class="t"><span class="key">def</span> <span class="nam">paginate_my_stories</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="nam">paginator</span><span class="op">,</span> <span class="nam">page</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t455" href="#t455">455</a></span><span class="t">    <span class="str">""" Paginate stories """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t456" href="#t456">456</a></span><span class="t">    <span class="nam">stories_page</span> <span class="op">=</span> <span class="nam">request</span><span class="op">.</span><span class="nam">GET</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">page</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t457" href="#t457">457</a></span><span class="t">    <span class="nam">stories</span> <span class="op">=</span> <span class="nam">paginator</span><span class="op">.</span><span class="nam">get_page</span><span class="op">(</span><span class="nam">stories_page</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t458" href="#t458">458</a></span><span class="t">    <span class="com"># show ... when there are too many pages</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t459" href="#t459">459</a></span><span class="t">    <span class="nam">stories</span><span class="op">.</span><span class="nam">page_range</span> <span class="op">=</span> <span class="nam">paginator</span><span class="op">.</span><span class="nam">get_elided_page_range</span><span class="op">(</span><span class="nam">stories</span><span class="op">.</span><span class="nam">number</span><span class="op">,</span> <span class="nam">on_each_side</span><span class="op">=</span><span class="num">2</span><span class="op">,</span> <span class="nam">on_ends</span><span class="op">=</span><span class="num">1</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t460" href="#t460">460</a></span><span class="t">    <span class="nam">stories</span><span class="op">.</span><span class="nam">offset</span> <span class="op">=</span> <span class="nam">stories</span><span class="op">.</span><span class="nam">start_index</span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t461" href="#t461">461</a></span><span class="t">    <span class="key">return</span> <span class="nam">stories</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -529,7 +550,7 @@
             <a id="nextFileLink" class="nav" href="d_b172dc9ee102875b_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.5">coverage.py v7.2.5</a>,
-            created at 2023-05-22 10:48 +0000
+            created at 2023-05-22 13:36 +0000
         </p>
     </div>
 </footer>
