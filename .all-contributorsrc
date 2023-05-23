@@ -28,7 +28,8 @@
         "projectManagement",
         "ideas",
         "review",
-        "talk"
+        "talk",
+        "audio"
       ]
     },
     {
@@ -66,7 +67,8 @@
         "code",
         "design",
         "question",
-        "mentoring"
+        "mentoring",
+        "talk"
       ]
     },
     {
@@ -79,7 +81,10 @@
         "test",
         "code",
         "ideas",
-        "doc"
+        "doc", 
+        "talk",
+        "audio",
+        "review"
       ]
     },
     {
@@ -350,7 +355,8 @@
         "ideas",
         "review",
         "doc",
-        "design"
+        "design",
+        "audio"
       ]
     },
     {
@@ -367,7 +373,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/46889966?v=4",
       "contributions": [
         "ideas",
-        "review"
+        "review",
+        "talk"
       ]
     },
     {
@@ -409,6 +416,31 @@
       "contributions": [
         "ideas",
         "code",
+        "review",
+        "infra",
+        "talk"
+      ]
+    },
+    {
+      "login": "mastoffel",
+      "name": "martin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7348440?v=4",
+      "profile": "https://github.com/mastoffel",
+      "contributions": [
+        "code",
+        "test",
+        "ideas"
+      ]
+    },
+    {
+      "login": "llewelld",
+      "name": "David Llewellyn-Jones",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1446122?v=4",
+      "profile": "https://www.flypig.co.uk/",
+      "contributions": [
+        "code",
+        "test",
+        "ideas",
         "review"
       ]
     }
