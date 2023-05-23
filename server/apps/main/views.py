@@ -171,7 +171,7 @@ def share_experience(request, uuid=False):
     else:
         return redirect("index")
 
-
+#@vcr.use_cassette("server/apps/main/tests/fixtures/view_exp2.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def view_experience(request, uuid):
     """
     Show a read-only view of the story in a form.
@@ -192,7 +192,7 @@ def view_experience(request, uuid):
             },
         )
     else:
-        redirect("index")
+        return redirect("main:overview")
 
 # @vcr.use_cassette("tmp/delete.yaml", filter_query_parameters=['access_token'])
 def delete_experience(request, uuid, title):

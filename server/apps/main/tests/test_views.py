@@ -60,8 +60,26 @@ class Views(TestCase):
         logged_out_response = c.post("/main/logout/")
         assert logged_out_response.status_code == 302
 
+    # def test_view_exp_logged_out(self):
+    #     c = Client()
+    #     unauthorised_response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/')
+    #     assert unauthorised_response.status_code == 302
+        
 
-    
+    @vcr.use_cassette('server/apps/main/tests/fixtures/view_exp.yaml',
+                      record_mode='none',
+                      filter_query_parameters=['access_token'],
+                      match_on=['path'])
+    def test_view_exp_logged_in(self):
+        c = Client()
+        unauthorised_response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/')
+        assert unauthorised_response.status_code == 302
+        c.force_login(self.user_a)
+        response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/', follow=True)
+        self.assertContains(response,
+                            "This is a simple short story for testing",
+                            status_code=200)
+
     def test_share_exp(self):
         """
         Check that non-authorised users are redirected (to index, then home) - get
@@ -122,7 +140,6 @@ class Views(TestCase):
 
         # Check that there is one new story for user A
         assert user_a_stories_after == user_a_stories_before + 1
-
 
         # Check that there is a redirect after
         assert response.status_code == 200
