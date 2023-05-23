@@ -4,7 +4,6 @@ from django.test import Client
 from django.db import models
 from server.apps.main.models import PublicExperience
 from django.contrib.auth.models import User
-from server.apps.main.views import share_experience
 import vcr
 import urllib
 from server.apps.main.forms import ShareExperienceForm
@@ -50,6 +49,19 @@ class Views(TestCase):
         self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_2", **pe_data)
         self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **pe_data)
 
+    def test_logout_user(self):
+        """
+        Test that a user can log themselves out
+        """
+        c = Client()
+        c.force_login(self.user_a)
+        logged_in_response = c.get('/main/share_exp/')
+        assert logged_in_response.status_code == 200
+        logged_out_response = c.post("/main/logout/")
+        assert logged_out_response.status_code == 302
+
+
+    
     def test_share_exp(self):
         """
         Check that non-authorised users are redirected (to index, then home) - get
