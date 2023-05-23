@@ -45,7 +45,10 @@ def confirmation_page(request):
     """
     Confirmation Page For App.
     """
-    return render(request, "main/confirmation_page.html")
+    if request.user.is_authenticated:
+        return render(request, "main/confirmation_page.html")
+    else:
+        return redirect("main:overview")
 
 
 def about_us(request):
