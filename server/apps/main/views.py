@@ -104,14 +104,11 @@ def overview(request):
         return render(request, "main/home.html", context=context)
     return redirect("index")
 
-# @vcr.use_cassette("tmp/share_experience.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
+# @vcr.use_cassette("server/apps/main/tests/fixtures/bob.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
     """
     Form where users can share details of their experiences.
     """
-    print("SHARE EXP FOR TESTING")
-    print(request.user.is_authenticated)
-    print("__________________________")
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated:
 
@@ -119,7 +116,6 @@ def share_experience(request, uuid=False):
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
-            print(f"Form validity {form.is_valid()}")
             if form.is_valid():
 
                 if uuid:
@@ -128,7 +124,7 @@ def share_experience(request, uuid=False):
                     request.user.openhumansmember.delete_single_file(
                         file_basename=f"{uuid}.json"
                     )
-
+                    print("REQUESTING DELETION HERE")
                 else:
                     uuid = make_uuid()
                     print("UUID MADE")
@@ -152,10 +148,8 @@ def share_experience(request, uuid=False):
 
         # if a GET (or any other method) we'll create a blank form
         else:
-
             if uuid:
                 # return data from oh.
-                print("In the GET with UUID")
                 data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
                 form = ShareExperienceForm(data)
                 title = "Edit experience"

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from server.apps.main.views import share_experience
 import vcr
 import urllib
+from server.apps.main.forms import ShareExperienceForm
 
 
 from openhumans.models import OpenHumansMember
@@ -45,11 +46,10 @@ class Views(TestCase):
         pe_data = {"experience_text": "Here is some experience text",
                       "difference_text": "Here is some difference text",
                       "title_text": "Here is the title"}
-        self.pe_a = PublicExperience(open_humans_member=self.oh_a, experience_id="1234", **pe_data)
-        self.pe_b = PublicExperience(open_humans_member=self.oh_b, experience_id="8765", **pe_data)
+        self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_1", **pe_data)
+        self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_2", **pe_data)
+        self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **pe_data)
 
-    # For the tests for share_exp the plan is to go through the if statements sequentially
-    # and put in tests for each eventuality - hence editing an experience may come before writing one
     def test_share_exp(self):
         """
         Check that non-authorised users are redirected (to index, then home) - get
@@ -71,23 +71,6 @@ class Views(TestCase):
         response = c.get('/main/share_exp/')
         assert response.status_code == 200
 
-    # TODO - there is no contingency for form.is_valid() == False at the moment
-    # Does there need to be?
-    def test_share_exp_submitting_edited_experience(self):
-        """
-        Test that user can submit an edited a story of their own
-        logic:
-            request.user.is_authenticated == True
-            request.method == "POST"
-            form.is_valid() == True
-            uuid == True
-        """
-        # Need to confirm that the call is made to open humans to delete the single file with the given uuid
-        # Need to confirm upload of the (cleaned) data to that user's OH account
-        # Need to confirm update of the PE database
-        # Need to confirm redirection to confirm page
-        pass
-    
     @vcr.use_cassette('server/apps/main/tests/fixtures/share_experience.yaml',
                       record_mode='none', filter_query_parameters=['access_token'], match_on=['path'])
     def test_share_exp_submit_new_experience(self):
@@ -108,7 +91,8 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
 
-        
+        user_a_stories_before = len(PublicExperience.objects.filter(open_humans_member=self.oh_a))
+
         response = c.post("/main/share_exp/",
                           {"experience_text": "Here is some experience text", 
                            "difference_text": "Here is some difference text",
@@ -117,22 +101,26 @@ class Views(TestCase):
                            "open_humans_member": self.oh_a},
                         follow=True)
         
+        user_a_stories_after = len(PublicExperience.objects.filter(open_humans_member=self.oh_a))
+        
         pe_db_after = PublicExperience.objects.filter(title_text = "A new story added")
 
         # Check that a story with the title now exists in the database
         assert len(pe_db_after)==1
 
+        # Check that there is one new story for user A
+        assert user_a_stories_after == user_a_stories_before + 1
+
+
         # Check that there is a redirect after
         assert response.status_code == 200
 
-        # assert ending up on right page
-        self.assertRedirects(response, "/main/confirm_page/",
-                             status_code=302, target_status_code=200)
         
-
-    @vcr.use_cassette('server/apps/main/tests/fixtures/share_experience.yaml',
-                      record_mode='none', filter_query_parameters=['access_token'], match_on=['path'])
-    def test_share_exp_load_existing_experience_for_editing(self):
+    @vcr.use_cassette('server/apps/main/tests/fixtures/load_to_edit.yaml',
+                      record_mode='none',
+                      filter_query_parameters=['access_token'],
+                      match_on=['path'])
+    def test_share_exp_load_to_edit(self):
         """
         Test that the share experience form is populated with the appropriate fields
         from that user's specific PublicExperience.
@@ -141,33 +129,18 @@ class Views(TestCase):
             request.method == "GET"
             uuid == True
         """
-        # Need to confirm that the PublicExperience object exists
-        # Need to confirm that the contents of the sharedExperienceForm metadata aligns with the contents of the PublicExperience object
-        # Need to make a small change
-        # Need to ensure that small change is present in the context sent to "main/share_experiences.html"
+
         c = Client()
         c.force_login(self.user_a)
+        response = c.get("/main/edit/33b30e22-f950-11ed-8488-0242ac140003/",
+                        follow=True)
+        print(response.status_code)
+        self.assertContains(response,
+                            "This is a simple short story for testing",
+                            status_code=200)
+        self.assertNotContains(response,
+                               "It is certainly an unpleasant thing,")
         
-        response = c.get("/main/share_exp/", uuid="1234")
-                        #   {"experience_text": "Here is some experience text", 
-                        #    "difference_text": "Here is some difference text",
-                        #    "title_text": "A new story added",
-                        #    "viewable": "True",
-                        #    "open_humans_member": self.oh_a},
-                        # follow=True)
-
-    def test_share_exp_load_blank_form(self):
-        """
-        Test that a blank share experience form is loaded.
-        logic:
-            request.user.is_authenticated == True
-            request.method == "GET"
-            uuid == False
-        """
-        # Need to confirm that the SharedExperienceForm is empty
-        # Need to populate with minimal example
-        # Need to ensure that small change is present in the context sent to "main/share_experiences.html"
-        pass
 
 
 
