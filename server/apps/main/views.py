@@ -129,10 +129,8 @@ def share_experience(request, uuid=False):
                     request.user.openhumansmember.delete_single_file(
                         file_basename=f"{uuid}.json"
                     )
-                    print("REQUESTING DELETION HERE")
                 else:
                     uuid = make_uuid()
-                    print("UUID MADE")
 
                 upload(
                     data=form.cleaned_data,

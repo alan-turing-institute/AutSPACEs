@@ -49,6 +49,12 @@ class Views(TestCase):
         self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_2", **pe_data)
         self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **pe_data)
 
+    def test_confirm_page(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/confirm_page/")
+        assert response.status_code == 200
+
     def test_logout_user(self):
         """
         Test that a user can log themselves out
@@ -60,17 +66,14 @@ class Views(TestCase):
         logged_out_response = c.post("/main/logout/")
         assert logged_out_response.status_code == 302
 
-    # def test_view_exp_logged_out(self):
-    #     c = Client()
-    #     unauthorised_response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/')
-    #     assert unauthorised_response.status_code == 302
-        
-
     @vcr.use_cassette('server/apps/main/tests/fixtures/view_exp.yaml',
                       record_mode='none',
                       filter_query_parameters=['access_token'],
                       match_on=['path'])
     def test_view_exp_logged_in(self):
+        """
+        Test that a user can view their experience when logged in and gets redirected to overview when not
+        """
         c = Client()
         unauthorised_response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/')
         assert unauthorised_response.status_code == 302
