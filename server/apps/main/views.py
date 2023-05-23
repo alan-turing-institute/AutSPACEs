@@ -61,11 +61,6 @@ def help(request):
 def code_of_conduct(request):
     return render(request, "main/code_of_conduct.html")
 
-
-def edit_experience(request):
-    return render(request, "main/share_experiences.html")
-
-
 def signup(request):
     return render(request, "main/signup.html")
 
