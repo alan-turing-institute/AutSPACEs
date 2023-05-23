@@ -55,6 +55,30 @@ class Views(TestCase):
         response = c.get("/main/confirm_page/")
         assert response.status_code == 200
 
+    def test_about_us(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/about_us/")
+        assert response.status_code == 200
+
+    def test_what_autism_is(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/what_autism_is/")
+        assert response.status_code == 200
+
+    def test_help(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/help/")
+        assert response.status_code == 200
+
+    def test_code_of_conduct(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/code_of_conduct/")
+        assert response.status_code == 200
+
     def test_logout_user(self):
         """
         Test that a user can log themselves out
