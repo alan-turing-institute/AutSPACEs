@@ -60,7 +60,7 @@ jobs:
       - name: Install Tools
         run: |
           python -m pip install pytest
-          
+
       - name: make .env file
         run: |
           cp config/.env.actions config/.env
