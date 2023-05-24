@@ -50,20 +50,26 @@ def confirmation_page(request):
     else:
         return redirect("main:overview")
 
+
 def about_us(request):
     return render(request, "main/about_us.html")
+
 
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
 
+
 def help(request):
     return render(request, "main/help.html")
+
 
 def code_of_conduct(request):
     return render(request, "main/code_of_conduct.html")
 
+
 def signup(request):
     return render(request, "main/signup.html")
+
 
 def registration(request):
     registration_status = True
@@ -79,6 +85,7 @@ def logout_user(request):
         logout(request)
     return redirect("index")
 
+
 def index(request):
     """
     Starting page for app.
@@ -88,6 +95,7 @@ def index(request):
     if request.user.is_authenticated:
         return redirect("main:overview")
     return render(request, "main/home.html", context=context)
+
 
 # @vcr.use_cassette("tmp/overview.yaml", filter_query_parameters=['access_token'])
 def overview(request):
@@ -104,6 +112,7 @@ def overview(request):
         return render(request, "main/home.html", context=context)
     return redirect("index")
 
+
 # @vcr.use_cassette("server/apps/main/tests/fixtures/share_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
     """
@@ -111,13 +120,11 @@ def share_experience(request, uuid=False):
     """
     # if this is a POST request we need to process the form data
     if request.user.is_authenticated:
-
         if request.method == "POST":
             # create a form instance and populate it with data from the request:
             form = ShareExperienceForm(request.POST)
             # check whether it's valid:
             if form.is_valid():
-
                 if uuid:
                     # we will be here if we are editing a record that already exists
                     # for OH we need to Delete before reupload.
@@ -140,7 +147,7 @@ def share_experience(request, uuid=False):
                     ohmember=request.user.openhumansmember,
                     editing_user=request.user.openhumansmember,
                 )
-            
+
                 # redirect to a new URL:
                 return redirect("main:confirm_page")
 
@@ -148,7 +155,9 @@ def share_experience(request, uuid=False):
         else:
             if uuid:
                 # return data from oh.
-                data = get_oh_combined(ohmember=request.user.openhumansmember, uuid=uuid)
+                data = get_oh_combined(
+                    ohmember=request.user.openhumansmember, uuid=uuid
+                )
                 form = ShareExperienceForm(data)
                 title = "Edit experience"
                 viewable = data.get("viewable", False)
@@ -162,14 +171,20 @@ def share_experience(request, uuid=False):
             return render(
                 request,
                 "main/share_experiences.html",
-                {"form": form, "uuid": uuid, "title": title,
-                 "viewable": viewable, "moderation_status": moderation_status}
+                {
+                    "form": form,
+                    "uuid": uuid,
+                    "title": title,
+                    "viewable": viewable,
+                    "moderation_status": moderation_status,
+                },
             )
 
     else:
         return redirect("index")
 
-#@vcr.use_cassette("server/apps/main/tests/fixtures/view_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
+
+# @vcr.use_cassette("server/apps/main/tests/fixtures/view_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def view_experience(request, uuid):
     """
     Show a read-only view of the story in a form.
@@ -192,7 +207,8 @@ def view_experience(request, uuid):
     else:
         return redirect("main:overview")
 
-#@vcr.use_cassette("server/apps/main/tests/fixtures/delete_exp.yaml", filter_query_parameters=['access_token'])
+
+# @vcr.use_cassette("server/apps/main/tests/fixtures/delete_exp.yaml", filter_query_parameters=['access_token'])
 def delete_experience(request, uuid, title):
     """
     Delete experience from PE databacse and OH
@@ -200,9 +216,7 @@ def delete_experience(request, uuid, title):
     # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
 
     if request.user.is_authenticated:
-
         if request.method == "POST":
-
             delete_single_file_and_pe(uuid=uuid, ohmember=request.user.openhumansmember)
 
             return render(request, "main/deletion_success.html", {"title": title})
@@ -233,7 +247,6 @@ def list_public_experiences(request):
 
     # Only search through approved stories
     if searched:
-
         # search within all approved stories regardless of triggering status
 
         experiences = experiences.filter(
@@ -282,6 +295,7 @@ def moderate_public_experiences(request):
         )
     else:
         return redirect("main:overview")
+
 
 def moderation_list(request):
     """
@@ -334,30 +348,45 @@ def my_stories(request):
         items_per_page = settings.EXPERIENCES_PER_PAGE
 
         # For each category, filter stories and create pagination
-        paginator_public = Paginator(filter_by_tag(filter_by_moderation_status(files, "approved"), "public"), items_per_page)
-        public_stories = paginate_my_stories(request, paginator_public, 'page_public')
-       
-        paginator_review = Paginator(filter_in_review(filter_by_tag(files, "public")), items_per_page)
-        in_review_stories = paginate_my_stories(request, paginator_review, 'page_review')
-        
-        paginator_rejected = Paginator(filter_by_moderation_status(files, "rejected"), items_per_page)
-        rejected_stories = paginate_my_stories(request, paginator_rejected, 'page_rejected')
-        
-        paginator_private = Paginator(filter_by_tag(files, "not public"), items_per_page)
-        private_stories = paginate_my_stories(request, paginator_private, 'page_private')
-        
-        return render(request,
-                      "main/my_stories.html", 
-                      context={
-                            "public_stories": public_stories,
-                            "in_review_stories": in_review_stories,
-                            "rejected_stories": rejected_stories,
-                            "private_stories": private_stories,
-                        }
-                      )
+        paginator_public = Paginator(
+            filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
+            items_per_page,
+        )
+        public_stories = paginate_my_stories(request, paginator_public, "page_public")
+
+        paginator_review = Paginator(
+            filter_in_review(filter_by_tag(files, "public")), items_per_page
+        )
+        in_review_stories = paginate_my_stories(
+            request, paginator_review, "page_review"
+        )
+
+        paginator_rejected = Paginator(
+            filter_by_moderation_status(files, "rejected"), items_per_page
+        )
+        rejected_stories = paginate_my_stories(
+            request, paginator_rejected, "page_rejected"
+        )
+
+        paginator_private = Paginator(
+            filter_by_tag(files, "not public"), items_per_page
+        )
+        private_stories = paginate_my_stories(
+            request, paginator_private, "page_private"
+        )
+
+        return render(
+            request,
+            "main/my_stories.html",
+            context={
+                "public_stories": public_stories,
+                "in_review_stories": in_review_stories,
+                "rejected_stories": rejected_stories,
+                "private_stories": private_stories,
+            },
+        )
     else:
         return redirect("main:overview")
-
 
 
 def moderate_experience(request, uuid):
@@ -401,7 +430,9 @@ def moderate_experience(request, uuid):
                 delete_PE(uuid=uuid, ohmember=user_OH_member)
             # redirect to a new URL:
             status = choose_moderation_redirect(moderation_prior)
-            return redirect("{}?status={}".format(reverse("main:moderation_list"), status))
+            return redirect(
+                "{}?status={}".format(reverse("main:moderation_list"), status)
+            )
 
         else:
             experience_title = model.title_text
