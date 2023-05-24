@@ -49,9 +49,15 @@ class Views(TestCase):
                       "difference_text": "This is some approved difference text",
                       "title_text": "An approved title",
                       "moderation_status": "approved"}
+        approved_with_trigger = {"experience_text": "This is an approved story with caramel",
+                      "difference_text": "This is some approved difference text",
+                      "title_text": "An approved title",
+                      "moderation_status": "approved",
+                      "abuse": True}
         self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_1", **pe_data)
         self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_2", **pe_data)
         self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **approved)
+        self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_2", **approved_with_trigger)
 
     def test_confirm_page(self):
         c = Client()
@@ -221,12 +227,12 @@ class Views(TestCase):
         c.force_login(self.user_a)
         response = c.post("/main/public_experiences")
 
-        # Check that there is one story visisble - the approved one
+        # Check that there are two stories visible
         experiences = next((item for item in response.context[0] if item["experiences"]), None)
-        assert experiences["experiences"].count() == 1
+        assert experiences["experiences"].count() == 2
 
-        # Results for story containing approved is one
-        search_response_a = c.get("/main/public_experiences/", {"searched": "approved"})
+        # Results for story containing caramel is one
+        search_response_a = c.get("/main/public_experiences/", {"searched": "caramel"})
         for item in search_response_a.context[0]:
             if item.keys().__contains__("experiences"):
                 assert list(item.values())[0].count() == 1
@@ -237,4 +243,8 @@ class Views(TestCase):
             if item.keys().__contains__("experiences"):
                 assert list(item.values())[0].count() == 0
 
-        
+        # One triggering story visible
+        search_response_t = c.get("/main/public_experiences/", {"searched": "", "triggering_stories": "True"})
+        for item in search_response_t.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert list(item.values())[0].count() == 1
