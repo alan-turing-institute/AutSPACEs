@@ -45,9 +45,13 @@ class Views(TestCase):
         pe_data = {"experience_text": "Here is some experience text",
                       "difference_text": "Here is some difference text",
                       "title_text": "Here is the title"}
+        approved = {"experience_text": "This is an approved story",
+                      "difference_text": "This is some approved difference text",
+                      "title_text": "An approved title",
+                      "moderation_status": "approved"}
         self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_1", **pe_data)
         self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_2", **pe_data)
-        self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **pe_data)
+        self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **approved)
 
     def test_confirm_page(self):
         c = Client()
@@ -211,3 +215,26 @@ class Views(TestCase):
         c.force_login(self.user_a)
         response = c.post("/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/")
         assert response.status_code == 200
+
+    def test_list_public_exp(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.post("/main/public_experiences")
+
+        # Check that there is one story visisble - the approved one
+        experiences = next((item for item in response.context[0] if item["experiences"]), None)
+        assert experiences["experiences"].count() == 1
+
+        # Results for story containing approved is one
+        search_response_a = c.get("/main/public_experiences/", {"searched": "approved"})
+        for item in search_response_a.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert list(item.values())[0].count() == 1
+
+        # Results for story containing sausages is no stories
+        search_response = c.get("/main/public_experiences/", {"searched": "sausages"})
+        for item in search_response.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert list(item.values())[0].count() == 0
+
+        
