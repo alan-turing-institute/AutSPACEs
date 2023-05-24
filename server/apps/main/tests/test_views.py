@@ -51,33 +51,39 @@ class Views(TestCase):
 
     def test_confirm_page(self):
         c = Client()
+        unauthorised_response = c.get("/main/confirm_page/")
+        # Redirect when logged out
+        assert unauthorised_response.status_code == 302
         c.force_login(self.user_a)
         response = c.get("/main/confirm_page/")
         assert response.status_code == 200
 
     def test_about_us(self):
         c = Client()
-        c.force_login(self.user_a)
         response = c.get("/main/about_us/")
         assert response.status_code == 200
 
     def test_what_autism_is(self):
         c = Client()
-        c.force_login(self.user_a)
         response = c.get("/main/what_autism_is/")
         assert response.status_code == 200
 
     def test_help(self):
         c = Client()
-        c.force_login(self.user_a)
         response = c.get("/main/help/")
         assert response.status_code == 200
 
     def test_code_of_conduct(self):
         c = Client()
-        c.force_login(self.user_a)
         response = c.get("/main/code_of_conduct/")
         assert response.status_code == 200
+
+    def test_registration(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/registration/")
+        assert response.status_code == 200
+
 
     def test_logout_user(self):
         """
@@ -190,13 +196,18 @@ class Views(TestCase):
         c.force_login(self.user_a)
         response = c.get("/main/edit/33b30e22-f950-11ed-8488-0242ac140003/",
                         follow=True)
-        print(response.status_code)
         self.assertContains(response,
                             "This is a simple short story for testing",
                             status_code=200)
         self.assertNotContains(response,
                                "It is certainly an unpleasant thing,")
         
-
-
-
+    @vcr.use_cassette('server/apps/main/tests/fixtures/delete_exp.yaml',
+                      record_mode='none',
+                      filter_query_parameters=['access_token'],
+                      match_on=['path'])
+    def test_delete_experience(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.post("/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/")
+        assert response.status_code == 200

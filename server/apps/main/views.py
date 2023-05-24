@@ -50,10 +50,8 @@ def confirmation_page(request):
     else:
         return redirect("main:overview")
 
-
 def about_us(request):
     return render(request, "main/about_us.html")
-
 
 def what_autism_is(request):
     return render(request, "main/what_autism_is.html")
@@ -66,7 +64,6 @@ def code_of_conduct(request):
 
 def signup(request):
     return render(request, "main/signup.html")
-
 
 def registration(request):
     registration_status = True
@@ -107,7 +104,7 @@ def overview(request):
         return render(request, "main/home.html", context=context)
     return redirect("index")
 
-# @vcr.use_cassette("server/apps/main/tests/fixtures/bob.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
+# @vcr.use_cassette("server/apps/main/tests/fixtures/share_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
     """
     Form where users can share details of their experiences.
@@ -172,7 +169,7 @@ def share_experience(request, uuid=False):
     else:
         return redirect("index")
 
-#@vcr.use_cassette("server/apps/main/tests/fixtures/view_exp2.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
+#@vcr.use_cassette("server/apps/main/tests/fixtures/view_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def view_experience(request, uuid):
     """
     Show a read-only view of the story in a form.
@@ -195,7 +192,7 @@ def view_experience(request, uuid):
     else:
         return redirect("main:overview")
 
-# @vcr.use_cassette("tmp/delete.yaml", filter_query_parameters=['access_token'])
+#@vcr.use_cassette("server/apps/main/tests/fixtures/delete_exp.yaml", filter_query_parameters=['access_token'])
 def delete_experience(request, uuid, title):
     """
     Delete experience from PE databacse and OH
