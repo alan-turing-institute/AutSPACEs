@@ -22,42 +22,56 @@ class Views(TestCase):
         Set-up for test with two users
         """
         # Placeholder data
-        data = {"access_token": '123456',
-        "refresh_token": 'bar',
-        "expires_in": 36000}
+        data = {"access_token": "123456", "refresh_token": "bar", "expires_in": 36000}
 
         # Create user A
-        self.oh_a = OpenHumansMember.create(oh_id=12345678,data=data)
+        self.oh_a = OpenHumansMember.create(oh_id=12345678, data=data)
         self.oh_a.save()
         self.user_a = self.oh_a.user
         self.user_a.openhumansmember = self.oh_a
-        self.user_a.set_password('password_a')
+        self.user_a.set_password("password_a")
         self.user_a.save()
         # Create user B
-        self.oh_b = OpenHumansMember.create(oh_id=87654321,data=data)
+        self.oh_b = OpenHumansMember.create(oh_id=87654321, data=data)
         self.oh_b.save()
         self.user_b = self.oh_a.user
         self.user_b.openhumansmember = self.oh_a
-        self.user_b.set_password('password_a')
+        self.user_b.set_password("password_a")
         self.user_b.save()
 
-        # Each with a public experience
-        pe_data = {"experience_text": "Here is some experience text",
-                      "difference_text": "Here is some difference text",
-                      "title_text": "Here is the title"}
-        approved = {"experience_text": "This is an approved story",
-                      "difference_text": "This is some approved difference text",
-                      "title_text": "An approved title",
-                      "moderation_status": "approved"}
-        approved_with_trigger = {"experience_text": "This is an approved story with caramel",
-                      "difference_text": "This is some approved difference text",
-                      "title_text": "An approved title",
-                      "moderation_status": "approved",
-                      "abuse": True}
-        self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_1", **pe_data)
-        self.pe_a = PublicExperience.objects.create(open_humans_member=self.oh_a, experience_id="1234_2", **pe_data)
-        self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_1", **approved)
-        self.pe_b = PublicExperience.objects.create(open_humans_member=self.oh_b, experience_id="8765_2", **approved_with_trigger)
+        # Each with a public experience
+        pe_data = {
+            "experience_text": "Here is some experience text",
+            "difference_text": "Here is some difference text",
+            "title_text": "Here is the title",
+        }
+        approved = {
+            "experience_text": "This is an approved story",
+            "difference_text": "This is some approved difference text",
+            "title_text": "An approved title",
+            "moderation_status": "approved",
+        }
+        approved_with_trigger = {
+            "experience_text": "This is an approved story with caramel",
+            "difference_text": "This is some approved difference text",
+            "title_text": "An approved title",
+            "moderation_status": "approved",
+            "abuse": True,
+        }
+        self.pe_a = PublicExperience.objects.create(
+            open_humans_member=self.oh_a, experience_id="1234_1", **pe_data
+        )
+        self.pe_a = PublicExperience.objects.create(
+            open_humans_member=self.oh_a, experience_id="1234_2", **pe_data
+        )
+        self.pe_b = PublicExperience.objects.create(
+            open_humans_member=self.oh_b, experience_id="8765_1", **approved
+        )
+        self.pe_b = PublicExperience.objects.create(
+            open_humans_member=self.oh_b,
+            experience_id="8765_2",
+            **approved_with_trigger
+        )
 
     def test_confirm_page(self):
         c = Client()
@@ -94,34 +108,48 @@ class Views(TestCase):
         response = c.get("/main/registration/")
         assert response.status_code == 200
 
-
     def test_logout_user(self):
         """
         Test that a user can log themselves out
         """
         c = Client()
-        c.force_login(self.user_a)
-        logged_in_response = c.get('/main/share_exp/')
-        assert logged_in_response.status_code == 200
-        logged_out_response = c.post("/main/logout/")
-        assert logged_out_response.status_code == 302
 
-    @vcr.use_cassette('server/apps/main/tests/fixtures/view_exp.yaml',
-                      record_mode='none',
-                      filter_query_parameters=['access_token'],
-                      match_on=['path'])
+        # Pre-login. Get redirected to home
+        pre_login = c.get("/main/share_exp/", follow=True)
+        self.assertTemplateUsed(pre_login, "main/home.html")
+
+        # Logged in go to the share experiences page
+        c.force_login(self.user_a)
+        logged_in_response = c.get("/main/share_exp/", follow=True)
+        self.assertTemplateUsed(logged_in_response, "main/share_experiences.html")
+
+        # Log out the user using AutSPACEs. Get redirected to home
+        c.post("/main/logout/")
+        logged_out_response = c.get("/main/share_exp/", follow=True)
+        self.assertTemplateUsed(logged_out_response, "main/home.html")
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/view_exp.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
     def test_view_exp_logged_in(self):
         """
         Test that a user can view their experience when logged in and gets redirected to overview when not
         """
         c = Client()
-        unauthorised_response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/')
+        unauthorised_response = c.get(
+            "/main/view/33b30e22-f950-11ed-8488-0242ac140003/"
+        )
         assert unauthorised_response.status_code == 302
         c.force_login(self.user_a)
-        response = c.get('/main/view/33b30e22-f950-11ed-8488-0242ac140003/', follow=True)
-        self.assertContains(response,
-                            "This is a simple short story for testing",
-                            status_code=200)
+        response = c.get(
+            "/main/view/33b30e22-f950-11ed-8488-0242ac140003/", follow=True
+        )
+        self.assertContains(
+            response, "This is a simple short story for testing", status_code=200
+        )
 
     def test_share_exp(self):
         """
@@ -130,9 +158,9 @@ class Views(TestCase):
             request.user.is_authenticated == False
         """
         c = Client()
-        response = c.get('/main/share_exp/')
+        response = c.get("/main/share_exp/")
         assert response.status_code == 302
-        
+
     def test_share_exp_logged_in(self):
         """
         Test that logged in members are taken to the correct page
@@ -141,11 +169,15 @@ class Views(TestCase):
         """
         c = Client()
         c.force_login(self.user_a)
-        response = c.get('/main/share_exp/')
+        response = c.get("/main/share_exp/")
         assert response.status_code == 200
 
-    @vcr.use_cassette('server/apps/main/tests/fixtures/share_experience.yaml',
-                      record_mode='none', filter_query_parameters=['access_token'], match_on=['path'])
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/share_experience.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
     def test_share_exp_submit_new_experience(self):
         """
         Test that user can submit a new experience of their own
@@ -164,22 +196,30 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
 
-        user_a_stories_before = len(PublicExperience.objects.filter(open_humans_member=self.oh_a))
+        user_a_stories_before = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
 
-        response = c.post("/main/share_exp/",
-                          {"experience_text": "Here is some experience text", 
-                           "difference_text": "Here is some difference text",
-                           "title_text": "A new story added",
-                           "viewable": "True",
-                           "open_humans_member": self.oh_a},
-                        follow=True)
-        
-        user_a_stories_after = len(PublicExperience.objects.filter(open_humans_member=self.oh_a))
-        
-        pe_db_after = PublicExperience.objects.filter(title_text = "A new story added")
+        response = c.post(
+            "/main/share_exp/",
+            {
+                "experience_text": "Here is some experience text",
+                "difference_text": "Here is some difference text",
+                "title_text": "A new story added",
+                "viewable": "True",
+                "open_humans_member": self.oh_a,
+            },
+            follow=True,
+        )
+
+        user_a_stories_after = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        pe_db_after = PublicExperience.objects.filter(title_text="A new story added")
 
         # Check that a story with the title now exists in the database
-        assert len(pe_db_after)==1
+        assert len(pe_db_after) == 1
 
         # Check that there is one new story for user A
         assert user_a_stories_after == user_a_stories_before + 1
@@ -187,11 +227,12 @@ class Views(TestCase):
         # Check that there is a redirect after
         assert response.status_code == 200
 
-        
-    @vcr.use_cassette('server/apps/main/tests/fixtures/load_to_edit.yaml',
-                      record_mode='none',
-                      filter_query_parameters=['access_token'],
-                      match_on=['path'])
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/load_to_edit.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
     def test_share_exp_load_to_edit(self):
         """
         Test that the share experience form is populated with the appropriate fields
@@ -204,22 +245,26 @@ class Views(TestCase):
 
         c = Client()
         c.force_login(self.user_a)
-        response = c.get("/main/edit/33b30e22-f950-11ed-8488-0242ac140003/",
-                        follow=True)
-        self.assertContains(response,
-                            "This is a simple short story for testing",
-                            status_code=200)
-        self.assertNotContains(response,
-                               "It is certainly an unpleasant thing,")
-        
-    @vcr.use_cassette('server/apps/main/tests/fixtures/delete_exp.yaml',
-                      record_mode='none',
-                      filter_query_parameters=['access_token'],
-                      match_on=['path'])
+        response = c.get(
+            "/main/edit/33b30e22-f950-11ed-8488-0242ac140003/", follow=True
+        )
+        self.assertContains(
+            response, "This is a simple short story for testing", status_code=200
+        )
+        self.assertNotContains(response, "It is certainly an unpleasant thing,")
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/delete_exp.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
     def test_delete_experience(self):
         c = Client()
         c.force_login(self.user_a)
-        response = c.post("/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/")
+        response = c.post(
+            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/"
+        )
         assert response.status_code == 200
 
     def test_list_public_exp(self):
@@ -228,7 +273,9 @@ class Views(TestCase):
         response = c.post("/main/public_experiences")
 
         # Check that there are two stories visible
-        experiences = next((item for item in response.context[0] if item["experiences"]), None)
+        experiences = next(
+            (item for item in response.context[0] if item["experiences"]), None
+        )
         assert experiences["experiences"].count() == 2
 
         # Results for story containing caramel is one
@@ -244,7 +291,9 @@ class Views(TestCase):
                 assert list(item.values())[0].count() == 0
 
         # One triggering story visible
-        search_response_t = c.get("/main/public_experiences/", {"searched": "", "triggering_stories": "True"})
+        search_response_t = c.get(
+            "/main/public_experiences/", {"searched": "", "triggering_stories": "True"}
+        )
         for item in search_response_t.context[0]:
             if item.keys().__contains__("experiences"):
                 assert list(item.values())[0].count() == 1
