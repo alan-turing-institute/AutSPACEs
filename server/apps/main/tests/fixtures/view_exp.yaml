@@ -1,0 +1,151 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.29.0
+    method: GET
+    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/
+  response:
+    body:
+      string: '{"count":15,"next":null,"previous":null,"created":"2022-11-11T10:55:22.058691Z","project_member_id":"40945085","sources_shared":[],"data":[{"id":65477136,"basename":"7edf04cc-e9fc-11ed-924d-0242ac140003.json","created":"2023-05-03T22:04:14.980274Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477136/?key=eff7de42-9610-4ac3-b54c-187055d0ac22","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"7edf04cc-e9fc-11ed-924d-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public"],"uuid":"7edf04cc-e9fc-11ed-924d-0242ac140003","timestamp":"2023-05-03
+        22:04:14.087956","description":"Eating in a restaurant"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477143,"basename":"8c094f30-e9fd-11ed-ae23-0242ac140003.json","created":"2023-05-03T22:04:32.757127Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477143/?key=803ab5e8-e528-40f3-9e5d-e0dd4af20f5e","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"8c094f30-e9fd-11ed-ae23-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public"],"uuid":"8c094f30-e9fd-11ed-ae23-0242ac140003","timestamp":"2023-05-03
+        22:04:31.895385","description":"Spatial awareness"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477164,"basename":"64037000-e9fe-11ed-9764-0242ac140003.json","created":"2023-05-03T22:04:49.162669Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477164/?key=7df8d124-10bb-4a0e-892d-64f3229aba18","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"64037000-e9fe-11ed-9764-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public"],"uuid":"64037000-e9fe-11ed-9764-0242ac140003","timestamp":"2023-05-03
+        22:04:48.275381","description":"Television"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477382,"basename":"7ce6b806-e9ff-11ed-8ef7-0242ac140003.json","created":"2023-05-03T22:13:52.978547Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477382/?key=e3c7c8a9-3d88-4302-b736-ed3bc66c3592","metadata":{"data":{"drug":false,"abuse":true,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"7ce6b806-e9ff-11ed-8ef7-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public"],"uuid":"7ce6b806-e9ff-11ed-8ef7-0242ac140003","timestamp":"2023-05-03
+        22:13:51.116581","description":"A story with the abuse tag used"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477386,"basename":"98a7448e-e9ff-11ed-bc0a-0242ac140003.json","created":"2023-05-03T22:14:06.410666Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477386/?key=7d39405c-3b26-436a-9f43-f92d83e2e377","metadata":{"data":{"drug":true,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"98a7448e-e9ff-11ed-bc0a-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["research","public"],"uuid":"98a7448e-e9ff-11ed-bc0a-0242ac140003","timestamp":"2023-05-03
+        22:14:05.486696","description":"An experience including drugs"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477387,"basename":"b5a4f2c0-e9ff-11ed-a388-0242ac140003.json","created":"2023-05-03T22:14:24.023539Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477387/?key=eab70e76-51f8-4c28-ac83-bf5d3044650b","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":true,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"b5a4f2c0-e9ff-11ed-a388-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public"],"uuid":"b5a4f2c0-e9ff-11ed-a388-0242ac140003","timestamp":"2023-05-03
+        22:14:23.167536","description":"An experience including negative body image"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477486,"basename":"f63bbeea-e9ff-11ed-9041-0242ac140003.json","created":"2023-05-03T22:18:08.252143Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477486/?key=fb436bc0-c7d6-4541-85ea-11b59adcc41c","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":true,"mentalhealth":false,"experience_id":"f63bbeea-e9ff-11ed-9041-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["research","public"],"uuid":"f63bbeea-e9ff-11ed-9041-0242ac140003","timestamp":"2023-05-03
+        22:18:07.390185","description":"Violence in this experience"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477488,"basename":"23cec71c-ea00-11ed-98f8-0242ac140003.json","created":"2023-05-03T22:18:42.617372Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477488/?key=b0caaf3a-6e4f-4dfa-90f5-f49b4d2fe504","metadata":{"data":{"drug":false,"abuse":false,"other":"Something
+        else","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"23cec71c-ea00-11ed-98f8-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public","Other
+        triggering label"],"uuid":"23cec71c-ea00-11ed-98f8-0242ac140003","timestamp":"2023-05-03
+        22:18:41.737172","description":"A story that uses the \"other\" flag"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65477708,"basename":"420679d2-ea00-11ed-8bff-0242ac140003.json","created":"2023-05-03T22:26:41.979991Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65477708/?key=22a5b8b7-a616-4bd1-89c6-b34c0112c0d8","metadata":{"data":{"drug":true,"abuse":true,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":false,"experience_id":"420679d2-ea00-11ed-8bff-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["non-research","public"],"uuid":"420679d2-ea00-11ed-8bff-0242ac140003","timestamp":"2023-05-03
+        22:26:41.111532","description":"User adding abuse, moderator adding drugs"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65479181,"basename":"75842f5a-ea07-11ed-9c02-0242ac140003.json","created":"2023-05-03T23:09:15.285914Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65479181/?key=789833f3-ebbd-4ae9-bd7d-79693cedc829","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":true,"mentalhealth":false,"experience_id":"75842f5a-ea07-11ed-9c02-0242ac140003","moderation_status":"approved","open_humans_member":"40945085"},"tags":["research","public"],"uuid":"75842f5a-ea07-11ed-9c02-0242ac140003","timestamp":"2023-05-03
+        23:09:14.298225","description":"An experience that should have the violence
+        tag"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65504544,"basename":"9def1ea0-ea66-11ed-b333-0242ac140003.json","created":"2023-05-04T10:30:00.121660Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65504544/?key=2d9a4fd2-2a7f-492e-a750-36e84ec9cbe1","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":false,"mentalhealth":false,"moderation_status":"not
+        reviewed"},"tags":["public","research"],"uuid":"9def1ea0-ea66-11ed-b333-0242ac140003","timestamp":"2023-05-04
+        10:29:57.569331","description":"A story that will be rejected"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":65504666,"basename":"0fc9d7e0-ea67-11ed-8139-0242ac140003.json","created":"2023-05-04T10:33:09.404885Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/65504666/?key=c09a2c5f-f726-40d2-99fa-5b79f39a94e5","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":false,"mentalhealth":false,"moderation_status":"not
+        reviewed"},"tags":["public","research"],"uuid":"0fc9d7e0-ea67-11ed-8139-0242ac140003","timestamp":"2023-05-04
+        10:33:08.583298","description":"A story that needs to be moderated"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":66139897,"basename":"0c18a14c-ea00-11ed-82b0-0242ac140003.json","created":"2023-05-23T09:34:20.824281Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/66139897/?key=ea7c416c-ae71-4757-b48e-2de1a0fc3089","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":false,"viewable":true,"violence":false,"mentalhealth":true,"moderation_status":"not
+        reviewed"},"tags":["public","non-research"],"uuid":"0c18a14c-ea00-11ed-82b0-0242ac140003","timestamp":"2023-05-23
+        09:34:18.448589","description":"Mental health issues edited title"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":66141099,"basename":"33b30e22-f950-11ed-8488-0242ac140003.json","created":"2023-05-23T10:27:59.531189Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/66141099/?key=a3ea3330-c9e8-42af-ba18-6b37f63e9f27","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":false,"mentalhealth":false,"moderation_status":"not
+        reviewed"},"tags":["public","research"],"uuid":"33b30e22-f950-11ed-8488-0242ac140003","timestamp":"2023-05-23
+        10:27:58.599419","description":"And a simple title edited"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"},{"id":66141444,"basename":"3653328c-f956-11ed-9803-0242ac140003.json","created":"2023-05-23T10:42:13.018301Z","datatypes":[],"download_url":"https://www.openhumans.org/data-management/datafile-download/66141444/?key=b81e8bdc-031a-4f33-a20c-d83816f7d205","metadata":{"data":{"drug":false,"abuse":false,"other":"","negbody":false,"research":true,"viewable":true,"violence":false,"mentalhealth":false,"moderation_status":"not
+        reviewed"},"tags":["public","research"],"uuid":"3653328c-f956-11ed-9803-0242ac140003","timestamp":"2023-05-23
+        10:42:12.005739","description":"Placeholder text"},"source":"direct-sharing-1111","source_project":"https://www.openhumans.org/api/public/project/1111/"}]}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '11546'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 23 May 2023 12:42:13 GMT
+      Expires:
+      - Tue, 23 May 2023 12:42:13 GMT
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Accept, Authorization, Cookie, Origin
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.29.0
+    method: GET
+    uri: https://www.openhumans.org/data-management/datafile-download/66141099/?key=a3ea3330-c9e8-42af-ba18-6b37f63e9f27
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Tue, 23 May 2023 12:42:13 GMT
+      Location:
+      - https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1111/7d6dfcb2-f954-11ed-b20c-ee1a327c313c/33b30e22-f950-11ed-8488-0242ac140003.json?AWSAccessKeyId=AKIAIKNTFUJJTNS6N7HA&Signature=HLrExVYYhmGBDalQWARZGeWcl%2BU%3D&Expires=1684849333&x-oh-key=a3ea3330-c9e8-42af-ba18-6b37f63e9f27
+      Server:
+      - gunicorn/20.0.4
+      Vary:
+      - Authorization, Cookie
+      Via:
+      - 1.1 vegur
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.29.0
+    method: GET
+    uri: https://open-humans-production.s3.amazonaws.com/member-files/direct-sharing-1111/7d6dfcb2-f954-11ed-b20c-ee1a327c313c/33b30e22-f950-11ed-8488-0242ac140003.json?Expires=1684849333&Signature=HLrExVYYhmGBDalQWARZGeWcl%2BU%3D&x-oh-key=a3ea3330-c9e8-42af-ba18-6b37f63e9f27
+  response:
+    body:
+      string: '{"data": {"experience_text": "This is a simple short story for testing",
+        "difference_text": "With few words", "title_text": "And a simple title edited",
+        "abuse": false, "violence": false, "drug": false, "mentalhealth": false, "negbody":
+        false, "other": "", "viewable": true, "research": true, "moderation_status":
+        "not reviewed"}, "timestamp": "2023-05-23 10:27:58.599419"}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '373'
+      Content-Type:
+      - binary/octet-stream
+      Date:
+      - Tue, 23 May 2023 12:42:14 GMT
+      ETag:
+      - '"fa66df4766ff9565714d0343651a94a6"'
+      Last-Modified:
+      - Tue, 23 May 2023 10:28:01 GMT
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - OzxtCozPr8swqkgRIodYXMfXxH23YoEs9W+HMHekCZrNNV1nRV9WQuulXVQ93pX4Rz3OMUSl/86srGn82EtnrLVQKjCAeKNPbUzf4Y2f9T0=
+      x-amz-request-id:
+      - ZQTDK2TFXB5KN6V5
+      x-amz-server-side-encryption:
+      - AES256
+      x-amz-version-id:
+      - Xxslxbo_bi8S9pS44_XPBqjhJxFLBZst
+    status:
+      code: 200
+      message: OK
+version: 1
