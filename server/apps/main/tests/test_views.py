@@ -34,8 +34,8 @@ class Views(TestCase):
         # Create user B
         self.oh_b = OpenHumansMember.create(oh_id=87654321, data=data)
         self.oh_b.save()
-        self.user_b = self.oh_a.user
-        self.user_b.openhumansmember = self.oh_a
+        self.user_b = self.oh_b.user
+        self.user_b.openhumansmember = self.oh_b
         self.user_b.set_password("password_a")
         self.user_b.save()
 
@@ -143,6 +143,10 @@ class Views(TestCase):
             "/main/view/33b30e22-f950-11ed-8488-0242ac140003/"
         )
         assert unauthorised_response.status_code == 302
+        unauthorised_response_f = c.get(
+            "/main/view/33b30e22-f950-11ed-8488-0242ac140003/", follow=True
+        )
+        self.assertTemplateUsed(unauthorised_response_f, "main/home.html")
         c.force_login(self.user_a)
         response = c.get(
             "/main/view/33b30e22-f950-11ed-8488-0242ac140003/", follow=True
