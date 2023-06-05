@@ -333,6 +333,15 @@ body {
   margin: 0 2%;
 }
 
+.mystory-pagination {
+  margin-right: 2%  !important;
+}
+
+.mystory-tabs{
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
 
 /*PUBLIC EXPERIENCES INDEX*/
 

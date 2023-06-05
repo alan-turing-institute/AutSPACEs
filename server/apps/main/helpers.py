@@ -519,3 +519,25 @@ def expand_filter(experiences, triggers_to_show):
     experiences = no_show_filer(experiences, triggers_to_show)
 
     return experiences
+
+def filter_by_tag(files, tag):
+    """ Filter stories by tag """
+    return [file for file in files if tag in file['metadata']['tags']]
+
+def filter_by_moderation_status(files, status):
+    """ Filter stories by moderation status """
+    return [file for file in files if file['metadata']['data']['moderation_status'] == status]
+
+def filter_in_review(files):
+    """ Filter stories that are in review """
+    return [file for file in files if file['metadata']['data']['moderation_status'] == "in review" or
+            (file['metadata']['data']['moderation_status'] == "not reviewed" and "public" in file['metadata']['tags'])]
+    
+def paginate_my_stories(request, paginator, page):
+    """ Paginate stories """
+    stories_page = request.GET.get(page)
+    stories = paginator.get_page(stories_page)
+    # show ... when there are too many pages
+    stories.page_range = paginator.get_elided_page_range(stories.number, on_each_side=2, on_ends=1)
+    stories.offset = stories.start_index() - 1
+    return stories

@@ -1,0 +1,42 @@
+<!-- pagination.html -->
+<div class="d-flex justify-content-end mt-3 mystory-pagination">
+  <div class="pagination">
+    <ul class="pagination">
+      {% if stories.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?{{ page_query_param }}={{ stories.previous_page_number }}">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" href="#">Previous</a>
+        </li>
+      {% endif %}
+
+      {% for i in stories.page_range %}
+        {% if stories.number == i %}
+          <li class="page-item active">
+            <a class="page-link" href="?{{ page_query_param }}={{ i }}">{{ i }}</a>
+          </li>
+          {% elif i == '...' %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#">&hellip;</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?{{ page_query_param }}={{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if stories.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?{{ page_query_param }}={{ stories.next_page_number }}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

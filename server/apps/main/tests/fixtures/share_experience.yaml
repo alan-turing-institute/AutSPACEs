@@ -11,7 +11,7 @@ interactions:
       User-Agent:
       - python-requests/2.25.1
     method: GET
-    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/
+    uri: https://www.openhumans.org/api/direct-sharing/project/exchange-member/?access_token=123456
   response:
     body:
       string: "{\"count\":4,\"next\":null,\"previous\":null,\"created\":\"2022-11-11T10:55:22.058691Z\",\"project_member_id\":\"40945085\",\"sources_shared\":[],\"data\":[{\"id\":62938588,\"basename\":\"ebad2890-bc43-11ed-95a4-0242ac130003.json\",\"created\":\"2023-03-06T17:25:42.873596Z\",\"datatypes\":[],\"download_url\":\"https://www.openhumans.org/data-management/datafile-download/62938588/?key=d353f887-e3c5-4442-a807-94882623bbff\",\"metadata\":{\"data\":{\"drug\":false,\"abuse\":false,\"other\":\"\",\"negbody\":false,\"research\":true,\"viewable\":true,\"violence\":false,\"title_text\":\"Story
