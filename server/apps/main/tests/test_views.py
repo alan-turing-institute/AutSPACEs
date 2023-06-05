@@ -274,25 +274,44 @@ class Views(TestCase):
     def test_list_public_exp(self):
         c = Client()
         c.force_login(self.user_a)
-        response = c.post("/main/public_experiences")
+        response = c.post("/main/public_experiences/")
 
-        # Check that there are two stories visible
+        # Check that there is only one story visible - the one with no triggering labels
         experiences = next(
             (item for item in response.context[0] if item["experiences"]), None
         )
-        assert experiences["experiences"].count() == 2
+        assert experiences["experiences"].count() == 1
 
-        # Results for story containing caramel is one
-        search_response_a = c.get("/main/public_experiences/", {"searched": "caramel"})
-        for item in search_response_a.context[0]:
+        # If you allow the abuse tag there should be 2 stories
+        search_response_abuse = c.get("/main/public_experiences/", {"searched": "", "abuse": True})
+        print(search_response_abuse.context[0])
+        for item in search_response_abuse.context[0]:
             if item.keys().__contains__("experiences"):
-                assert list(item.values())[0].count() == 1
+                assert item['experiences'].count() == 2
+
+        # Results for story containing caramel is none as there is no triggering warning tag used
+        search_response_c = c.get("/main/public_experiences/", {"searched": "caramel"})
+        for item in search_response_c.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert item['experiences'].count() ==  0
+
+        # Results for story containing caramel when the wrong trigger label is used is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "negbody": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert item['experiences'].count() ==  0
+
+        # Results for story containing caramel is 1 when there is no triggering warning tag used
+        search_response_c = c.get("/main/public_experiences/", {"searched": "caramel", "all_triggers": True})
+        for item in search_response_c.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert item['experiences'].count() ==  1
 
         # Results for story containing sausages is no stories
         search_response = c.get("/main/public_experiences/", {"searched": "sausages"})
         for item in search_response.context[0]:
             if item.keys().__contains__("experiences"):
-                assert list(item.values())[0].count() == 0
+                assert item['experiences'].count() ==  0
 
         # One triggering story visible
         search_response_t = c.get(
@@ -300,4 +319,4 @@ class Views(TestCase):
         )
         for item in search_response_t.context[0]:
             if item.keys().__contains__("experiences"):
-                assert list(item.values())[0].count() == 1
+                assert item['experiences'].count() == 1
