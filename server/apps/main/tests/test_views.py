@@ -282,7 +282,7 @@ class Views(TestCase):
         )
         assert experiences["experiences"].count() == 1
 
-        # If you allow the abuse tag there should be 2 stories
+        # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
         search_response_abuse = c.get("/main/public_experiences/", {"searched": "", "abuse": True})
         print(search_response_abuse.context[0])
         for item in search_response_abuse.context[0]:

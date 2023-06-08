@@ -260,6 +260,7 @@ def list_public_experiences(request):
     4) abide by triggering label toggle.
     """
 
+    # Find all approved stories
     experiences = PublicExperience.objects.filter(moderation_status="approved")
 
     # Default is to show non-triggering content only
@@ -270,6 +271,7 @@ def list_public_experiences(request):
         # Check the allowed triggers
         allowed_triggers = request.GET.keys()
 
+    # Get a list of allowed triggers
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
 
     tts = {}
@@ -283,6 +285,7 @@ def list_public_experiences(request):
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
 
+    search_context = {}
     # Only search through approved stories
     if searched:
         # search within all approved stories regardless of triggering status
@@ -291,23 +294,18 @@ def list_public_experiences(request):
             | Q(experience_text__icontains=searched)
             | Q(difference_text__icontains=searched)
         )
-
-        search_context = {}
         search_context["searched"] = searched
 
     
-    context={"experiences": experiences}
+    exp_context={"experiences": experiences}
 
-    if searched:
-        hd_context = {**tts, **context, **search_context}
-    else:
-        hd_context = {**tts, **context}
+    context = {**tts, **exp_context, **search_context}
 
     # Standard page showing all moderated stories
     return render(
         request, 
         "main/experiences_page.html",
-        context=hd_context
+        context=context
     )
 
 

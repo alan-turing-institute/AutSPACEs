@@ -447,10 +447,6 @@ def extract_triggers_to_show(allowed_triggers):
 
     all_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
     triggers_to_show = list(all_triggers.intersection(allowed_triggers))
-    # invert this to get triggers to hide
-
-    # t_list = [PublicExperience._meta.get_field(trigger) for trigger in triggers_to_show]
-
     return(triggers_to_show)
 
 def active_exlusion(experiences):
