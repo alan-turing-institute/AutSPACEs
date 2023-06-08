@@ -14,6 +14,11 @@ urlpatterns = [
         name="public_experiences",
     ),
     re_path(
+        r"^public_experiences_toggle/?$",
+        views.list_public_experiences_toggle,
+        name="public_experiences_toggle",
+    ),
+    re_path(
         r"^moderate_public_experiences/?$",
         views.moderate_public_experiences,
         name="moderate_public_experiences",
