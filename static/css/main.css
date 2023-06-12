@@ -151,6 +151,11 @@ body {
  }
 
  /*Shared Experience Section*/
+
+ .alert-container {
+  padding-top: 10px;
+ } 
+
  #experience {
    padding:  4% 5%;
    color: #309FDC;
@@ -396,6 +401,7 @@ body {
 
 .story-section {
   padding: 3% 5%;
+  padding-bottom: 50px;
 }
 
 .form-group {

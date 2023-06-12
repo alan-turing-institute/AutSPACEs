@@ -33,15 +33,17 @@
     {% include 'main/partials/navigation.html' %}
     </section>
 
+        <div class="container alert-container">
           {% if messages %}
 
             {% for message in messages %}
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-{{message.tags}}" role="alert">
             {{ message }}
             </div>
             {% endfor %}
 
-        {% endif %}
+          {% endif %}
+        </div>
 
         {% block content %}
         {% endblock %}

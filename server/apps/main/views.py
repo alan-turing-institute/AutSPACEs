@@ -16,6 +16,8 @@ from .models import PublicExperience
 
 from .forms import ShareExperienceForm, ModerateExperienceForm
 
+from django.contrib import messages
+
 from .helpers import (
     is_moderator,
     model_to_form,
@@ -150,7 +152,31 @@ def share_experience(request, uuid=False):
 
                 # redirect to a new URL:
                 return redirect("main:confirm_page")
-
+            # If form is invalid raise errors back to user
+            else:             
+                print(form.errors)
+                for field in form:
+                    for error in field.errors:
+                        if field != '__all__':
+                            print(field.label)
+                            messages.add_message(request, messages.WARNING, "{}: {}".format(field.label, error))
+                if uuid: # check if editing existing exp
+                    moderation_status = PublicExperience.objects.get(experience_id=uuid).moderation_status
+                    title = "Edit experience"
+                else: # or creating new one
+                    moderation_status = "not reviewed"
+                    title = "Share experience"
+                return render(
+                    request,
+                    "main/share_experiences.html",
+                    {
+                        "form": form,
+                        "uuid": uuid,
+                        "title": title,
+                        "moderation_status": moderation_status,
+                        "viewable": False,
+                    },
+                )            
         # if a GET (or any other method) we'll create a blank form
         else:
             if uuid:

@@ -2,13 +2,13 @@ from django import forms
 
 class ShareExperienceForm(forms.Form):
         
-    experience_text = forms.CharField(label='Please share your experience', max_length=500, strip=True,
+    experience_text = forms.CharField(label='Please share your experience', strip=True,
                                  widget=forms.Textarea(attrs={'placeholder':'Write your experience here, you can take as much or little space as you need.',
                                                               'rows':'4',
                                                               'class':'form-control'}))
     experience_text.group = 1
     difference_text = forms.CharField(label='What could have made your experience better?',
-                                     strip=True, max_length=500,
+                                     strip=True,
                                      widget=forms.Textarea(attrs={'placeholder':'Do you have anything that you would want to have changed to make it better? Or do you have any tips for others who may experience the same thing?',
                                                               'rows':'4',
                                                               'class':'form-control'}))
