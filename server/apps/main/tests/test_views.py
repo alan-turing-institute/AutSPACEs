@@ -306,6 +306,28 @@ class Views(TestCase):
         )
         self.assertNotContains(response, "It is certainly an unpleasant thing,")
 
+
+    def test_edit_exp_missing_data(self):
+        """
+        Test that editing an existing experience also fails gracefully 
+        if there's missing data
+        """
+
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.post(
+            "/main/edit/1234_1/", 
+                   {
+                "experience_text": "",
+                "difference_text": "",
+                "title_text": "",
+                "viewable": "True",
+                "open_humans_member": self.oh_a,
+            },
+            follow=True
+        )
+        self.assertIn("This field is required",str(response.content))
+
     @vcr.use_cassette(
         "server/apps/main/tests/fixtures/delete_exp.yaml",
         record_mode="none",
