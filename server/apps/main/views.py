@@ -154,11 +154,9 @@ def share_experience(request, uuid=False):
                 return redirect("main:confirm_page")
             # If form is invalid raise errors back to user
             else:             
-                print(form.errors)
                 for field in form:
                     for error in field.errors:
                         if field != '__all__':
-                            print(field.label)
                             messages.add_message(request, messages.WARNING, "{}: {}".format(field.label, error))
                 if uuid: # check if editing existing exp
                     moderation_status = PublicExperience.objects.get(experience_id=uuid).moderation_status
