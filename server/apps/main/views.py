@@ -172,7 +172,6 @@ def share_experience(request, uuid=False):
                         "uuid": uuid,
                         "title": title,
                         "moderation_status": moderation_status,
-                        "viewable": False,
                     },
                 )            
         # if a GET (or any other method) we'll create a blank form
