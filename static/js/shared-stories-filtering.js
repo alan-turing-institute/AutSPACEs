@@ -16,6 +16,17 @@ mentalhealth.addEventListener("change", pressSubmit);
 other.addEventListener("change", pressSubmit);
 all.addEventListener("change", isAllChecked)
 
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+    var scrollpos = localStorage.getItem('scrollpos');
+    if (scrollpos) window.scrollTo(0, scrollpos);
+});
+
+window.onbeforeunload = function(e) {
+    localStorage.setItem('scrollpos', window.scrollY);
+};
+
+
 function isAllChecked(){
     if(all.checked){
         pressSubmit();
@@ -25,3 +36,4 @@ function isAllChecked(){
 function pressSubmit() {
     searchForm.submit();
 }
+  
