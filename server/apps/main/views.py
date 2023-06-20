@@ -236,6 +236,7 @@ def delete_experience(request, uuid, title):
     else:
         return redirect("index")
 
+
 def list_public_experiences(request):
     """
     Returns, in the context, experiences that are
@@ -251,7 +252,14 @@ def list_public_experiences(request):
     # Default is to show non-triggering content only
     all_triggers = request.GET.get("all_triggers", False)
     if all_triggers:
-        allowed_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
+        allowed_triggers = {
+            "abuse",
+            "violence",
+            "drug",
+            "mentalhealth",
+            "negbody",
+            "other",
+        }
     else:
         # Check the allowed triggers
         allowed_triggers = request.GET.keys()
@@ -265,7 +273,6 @@ def list_public_experiences(request):
         tts[trigger_check] = True
 
     experiences = expand_filter(experiences, triggers_to_show)
-
 
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
@@ -281,17 +288,12 @@ def list_public_experiences(request):
         )
         search_context["searched"] = searched
 
-    
-    exp_context={"experiences": experiences}
+    exp_context = {"experiences": experiences}
 
     context = {**tts, **exp_context, **search_context}
 
     # Standard page showing all moderated stories
-    return render(
-        request, 
-        "main/experiences_page.html",
-        context=context
-    )
+    return render(request, "main/experiences_page.html", context=context)
 
 
 def moderate_public_experiences(request):
@@ -479,4 +481,3 @@ def moderate_experience(request, uuid):
             )
     else:
         return redirect("index")
-    
