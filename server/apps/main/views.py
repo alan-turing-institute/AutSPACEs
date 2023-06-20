@@ -236,21 +236,6 @@ def delete_experience(request, uuid, title):
     else:
         return redirect("index")
 
-
-def bob(request):
-    experiences = PublicExperience.objects.filter(moderation_status="approved")
-    allowed_triggers = request.GET.keys()
-    print("******************")
-    print(allowed_triggers)
-    print("******************")
-    context = {}
-    for trigger in allowed_triggers:
-        context[trigger] = True
-    return render(
-        request,
-        "main/bob.html",
-        context)
-
 def list_public_experiences(request):
     """
     Returns, in the context, experiences that are
