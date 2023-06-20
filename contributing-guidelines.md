@@ -61,9 +61,9 @@ Remember that you can ask us any questions you need to along the way.
 
 GitHub has a helpful page on [getting started with writing and formatting on GitHub](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github).
 
-Most of the writing that you'll do will be in [Markdown][markdown].
+Most of the writing that you'll do will be in [Markdown](https://www.markdownguide.org).
 You can think of Markdown as a few little symbols around your text that will allow GitHub to render the text with a little bit of formatting.
-For example, you could write words as **bold** (`**bold**`), or in _italics_ (`_italics_`), or as a [link][rick-roll] (`[link](https://youtu.be/dQw4w9WgXcQ)`) to another webpage.
+For example, you could write words as **bold** (`**bold**`), or in _italics_ (`_italics_`), or as a [link](https://youtu.be/dQw4w9WgXcQ) (`[link](https://youtu.be/dQw4w9WgXcQ)`) to another webpage.
 
 Also when writing in Markdown, please start each new sentence on a new line.
 While these formats in the same way as if the new line wasn't included, it makes the [diffs produced during the pull request](https://help.github.com/en/articles/about-comparing-branches-in-pull-requests) review easier to read! :sparkles:
@@ -92,7 +92,7 @@ This allows other members of the _AutSPACEs_ team to confirm that you aren't ove
 This is now your own unique copy of _AutSPACEs_.
 Changes here won't affect anyone else's work, so it's a safe space to explore edits to the code!
 
-Make sure to [keep your fork up to date][github-syncfork] with the master repository, otherwise, you can end up with lots of dreaded [merge conflicts][github-mergeconflicts].
+Make sure to [keep your fork up to date](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) with the main repository, otherwise, you can end up with lots of dreaded [merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/about-merge-conflicts).
 If you prefer working in the browser, [these instructions](https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser) describe how to sync your fork to the original repository via GitHub.
 
 ### 3. Make the changes you've discussed
@@ -106,7 +106,9 @@ While making your changes, commit often and write good, detailed commit messages
 It is also perfectly fine to have a lot of commits - including ones that break code.
 A good rule of thumb is to push up to GitHub when you _do_ have passing tests then the continuous integration (CI) has a good chance of passing everything. 😸
 
-If you feel tempted to "branch out" then please make a [new branch][github-branches] and a [new issue][turing-way-issues] to go with it. [This blog](https://nvie.com/posts/a-successful-git-branching-model/) details the different Git branching models.
+If editing or updating the code, the aim is to write code that is readable, via sensible function names, and helpful documentation and comments. Ideally new (python) code will follow the [PEP8](https://peps.python.org/pep-0008/) coding style and be formatted though a tool such as [black](https://black.readthedocs.io/en/stable/).
+
+If you feel tempted to "branch out" then please make a [new branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches) and a [new issue](https://the-turing-way.netlify.app/communication/os-comms/os-comms-issue-tracking.html) to go with it. [This blog](https://nvie.com/posts/a-successful-git-branching-model/) details the different Git branching models.
 
 Please do not re-write history!
 That is, please do not use the [rebase](https://help.github.com/en/articles/about-git-rebase) command to edit previous commit messages, combine multiple commits into one, or delete or revert commits that are no longer necessary.
@@ -123,17 +125,17 @@ If you have opened the pull request early and know that its contents are not rea
 When you are happy with it and are happy for it to be merged into the main repository, change the "[WIP]" in the title of the pull request to "[Ready for review]".
 
 A member of _AutSPACEs_ community will then review your changes to confirm that they can be merged into the main repository.
-A [review][github-review] will probably consist of a few questions to help clarify the work you've done.
+A [review](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews) will probably consist of a few questions to help clarify the work you've done.
 Keep an eye on your GitHub notifications and be prepared to join in that conversation.
 
-You can update your [fork][github-fork] of _AutSPACEs_ and the pull request will automatically update with those changes.
+You can update your fork of _AutSPACEs_ and the pull request will automatically update with those changes.
 You don't need to submit a new pull request when you make a change in response to a review.
 
 You can also submit pull requests to other contributors' branches!
-Do you see an open pull requeset that you find interesting and want to contribute to?
+Do you see an open pull request that you find interesting and want to contribute to?
 Simply make your edits on their files and open a pull request to their branch!
 
-GitHub has a [nice introduction][github-flow] to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions :balloon:.
+GitHub has a [nice introduction](https://docs.github.com/en/get-started/quickstart/github-flow) to the pull request workflow, but please [get in touch](#get-in-touch) if you have any questions :balloon:.
 
 ## Recognising Contributions
 
