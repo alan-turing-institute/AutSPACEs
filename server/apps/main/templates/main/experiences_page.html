@@ -17,7 +17,7 @@
       </div>
       <div class="col-lg-12 text-left">
         <p class="intro-text">Autistic people often have different sensory processing to people who are not autistic.
-          By collecting together lots of autistic people’s experiences, we can change spaces so that they are
+          By collecting together lots of autistic people's experiences, we can change spaces so that they are
           better for autistic people.
         </p>
       </div>
@@ -42,59 +42,66 @@
       </div>
       <div class="form-check mb-2">
         <div class="custom-control custom-switch">
-        {% if checkall %}
-        <input class="custom-control-input" type="checkbox" id="all-checkbox" name="all_triggers" value="True" checked>
-        {% else %}
-        <input class="custom-control-input" type="checkbox" id="all-checkbox" name="all_triggers" value="True">
-        {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="all-checkbox"
+          name="all_triggers"
+          value="True"
+          {{ checkall|yesno:"checked,unchecked" }}>
         <label class="custom-control-label" for="all-checkbox">Allow all triggering content</label>
       </div>
         <div class="custom-control custom-control custom-switch">
-          {% if checkabuse %}
-            <input class="custom-control-input" type="checkbox" id="abuse-checkbox" name="abuse" value="True" checked>
-          {% else %}
-            <input class="custom-control-input" type="checkbox" id="abuse-checkbox" name="abuse" value="True">
-          {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="abuse-checkbox"
+          name="abuse"
+          value="True"
+          {{ checkabuse|yesno:"checked,unchecked" }}>
           <label class="custom-control-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
         </div>
         <div class="custom-control custom-control custom-switch">
-          {% if checkdrug %}
-            <input class="custom-control-input" type="checkbox" id="drug-checkbox" name="drug" value="True" checked>
-          {% else %}
-            <input class="custom-control-input" type="checkbox" id="drug-checkbox" name="drug" value="True">
-          {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="drug-checkbox"
+          name="drug"
+          value="True"
+          {{ checkdrug|yesno:"checked,unchecked" }}>
           <label class="custom-control-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
         </div>
         <div class="custom-control custom-control custom-switch">
-          {% if checknegbody %}
-            <input class="custom-control-input" type="checkbox" id="negbody-checkbox" name="negbody" value="True" checked>
-          {% else %}
-            <input class="custom-control-input" type="checkbox" id="negbody-checkbox" name="negbody" value="True">
-          {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="negbody-checkbox"
+          name="negbody"
+          value="True"
+          {{ checknegbody|yesno:"checked,unchecked" }}>
           <label class="custom-control-label" for="negbody-checkbox">Negative body image</label>
         </div>
         <div class="custom-control custom-control custom-switch">
-          {% if checkviolence %}
-          <input class="custom-control-input" type="checkbox" id="violence-checkbox" name="violence" value="True" checked>
-          {% else %}
-          <input class="custom-control-input" type="checkbox" id="violence-checkbox" name="violence" value="True">
-          {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="violence-checkbox"
+          name="violence"
+          value="True"
+          {{ checkviolence|yesno:"checked,unchecked" }}>
           <label class="custom-control-label" for="violence-checkbox">Violence and Assault</label>
         </div>
         <div class="custom-control custom-control custom-switch">
-          {% if checkmentalhealth %}
-            <input class="custom-control-input" type="checkbox" id="mentalhealth-checkbox" name="mentalhealth" value="True" checked>
-          {% else %}
-            <input class="custom-control-input" type="checkbox" id="mentalhealth-checkbox" name="mentalhealth" value="True">
-          {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="mentalhealth-checkbox"
+          name="mentalhealth"
+          value="True"
+          {{ checkmentalhealth|yesno:"checked,unchecked" }}>
           <label class="custom-control-label" for="mentalhealth-checkbox">Mental Health Issues</label>
         </div>
         <div class="custom-control custom-control custom-switch">
-          {% if checkother %}
-            <input class="custom-control-input" type="checkbox" id="other-checkbox" name="other" value="True" checked>
-          {% else %}
-            <input class="custom-control-input" type="checkbox" id="other-checkbox" name="other" value="True">
-          {% endif %}
+          <input class="custom-control-input"
+          type="checkbox"
+          id="other-checkbox"
+          name="other"
+          value="True"
+          {{ checkother|yesno:"checked,unchecked" }}>
           <label class="custom-control-label" for="other-checkbox">Other</label>
         </div>
       </div>
