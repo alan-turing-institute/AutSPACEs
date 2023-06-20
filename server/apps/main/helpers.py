@@ -449,11 +449,7 @@ def extract_triggers_to_show(allowed_triggers):
     triggers_to_show = list(all_triggers.intersection(allowed_triggers))
     return(triggers_to_show)
 
-def active_exlusion(experiences):
-    # Use the exclude method
-    pass
-
-def show_filiter(experiences, triggers_to_show):
+def show_filter(experiences, triggers_to_show):
     """
     Explicitly look for experiences with the trigger tags from the triggers_to_show list
     """
@@ -480,7 +476,7 @@ def show_filiter(experiences, triggers_to_show):
     
     return experiences
 
-def no_show_filer(experiences, triggers_to_show):
+def no_show_filter(experiences, triggers_to_show):
     """
     Explicitly omit stories that aren't in the triggers_to_show list
     This coupled with the show_filter function allows for experiences with multiple 
@@ -511,8 +507,8 @@ def expand_filter(experiences, triggers_to_show):
     correspond to the triggering content labels
     """
 
-    experiences = show_filiter(experiences, triggers_to_show)
-    experiences = no_show_filer(experiences, triggers_to_show)
+    experiences = show_filter(experiences, triggers_to_show)
+    experiences = no_show_filter(experiences, triggers_to_show)
 
     return experiences
 
