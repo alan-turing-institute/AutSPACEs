@@ -11,7 +11,7 @@
 | server/apps/main/admin.py                                                 |        4 |        0 |    100% |           |
 | server/apps/main/apps.py                                                  |        3 |        0 |    100% |           |
 | server/apps/main/context\_processors.py                                   |        4 |        0 |    100% |           |
-| server/apps/main/forms.py                                                 |       73 |        1 |     99% |       135 |
+| server/apps/main/forms.py                                                 |       73 |        1 |     99% |       137 |
 | server/apps/main/helpers.py                                               |      188 |        2 |     99% |  136, 357 |
 | server/apps/main/migrations/0001\_initial.py                              |        6 |        0 |    100% |           |
 | server/apps/main/migrations/0002\_add\_fields\_to\_public\_experiences.py |        4 |        0 |    100% |           |
@@ -31,10 +31,10 @@
 | server/apps/main/tests/test\_models.py                                    |       25 |        0 |    100% |           |
 | server/apps/main/tests/test\_moderate\_views.py                           |      168 |        0 |    100% |           |
 | server/apps/main/tests/test\_my\_stories.py                               |       28 |        0 |    100% |           |
-| server/apps/main/tests/test\_views.py                                     |      144 |        0 |    100% |           |
+| server/apps/main/tests/test\_views.py                                     |      163 |        0 |    100% |           |
 | server/apps/main/tests/tests\_2023.py                                     |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                  |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                 |      169 |       20 |     88% |73, 77, 137, 231-237, 364-411 |
+| server/apps/main/views.py                                                 |      180 |       20 |     89% |75, 79, 139, 254-260, 387-434 |
 | server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
@@ -45,7 +45,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       11 |        0 |    100% |           |
-|                                                                 **TOTAL** | **1189** |   **36** | **97%** |           |
+|                                                                 **TOTAL** | **1219** |   **36** | **97%** |           |
 
 
 ## Setup coverage badge
