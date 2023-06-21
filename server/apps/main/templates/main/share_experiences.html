@@ -161,7 +161,7 @@
         {% if show_moderation_status %}
           {% for field in group.list %}
           <div class="form-group">
-            <h3><label for="{{ field.auto_id}}">{{ field.label }}</label></h3>
+            <h3><label for="{{ field.id_for_label}}">{{ field.label }}</label></h3>
             {{ field }}
            </div>
            {% endfor %}
@@ -170,7 +170,7 @@
 
         {% for field in group.list %}
         <div class="form-group">
-          <h3><label for="{{ field.auto_id }}">{{ field.label }}</label></h3>
+          <h3><label for="{{ field.id_for_label }}">{{ field.label }}</label></h3>
           {{ field }}
         </div>
         {% endfor %}
@@ -194,7 +194,7 @@
 
             <div class="form-check col-lg-6">
               {% if field.label == "Other"%}
-                <label for="{{ field.auto_id }}">{{ field.label }}:</label>
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                 {{field}}
               {% else %}
                 {{ field }}
