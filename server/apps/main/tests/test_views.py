@@ -269,7 +269,7 @@ class Views(TestCase):
 
         pe_db_after = PublicExperience.objects.filter(title_text="A new story added")
 
-        # Check that a story with the title now exists in the database
+        # Check that story has not been added to the database
         assert len(pe_db_after) == 0
 
         # Check that there is one new story for user A
