@@ -525,7 +525,7 @@ def filter_in_review(files):
     return [file for file in files if file['metadata']['data']['moderation_status'] == "in review" or
             (file['metadata']['data']['moderation_status'] == "not reviewed" and "public" in file['metadata']['tags'])]
     
-def paginate_my_stories(request, paginator, page):
+def paginate_stories(request, paginator, page):
     """ Paginate stories """
     stories_page = request.GET.get(page)
     stories = paginator.get_page(stories_page)

@@ -40,7 +40,7 @@ from .helpers import (
     filter_by_tag,
     filter_by_moderation_status,
     filter_in_review,
-    paginate_my_stories,
+    paginate_stories,
 )
 
 logger = logging.getLogger(__name__)
@@ -279,6 +279,7 @@ def list_public_experiences(request):
 
     # Default is to show non-triggering content only
     all_triggers = request.GET.get("all_triggers", False)
+   
     if all_triggers:
         allowed_triggers = {
             "abuse",
@@ -291,10 +292,10 @@ def list_public_experiences(request):
     else:
         # Check the allowed triggers
         allowed_triggers = request.GET.keys()
-
+        
     # Get a list of allowed triggers
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
-
+    
     tts = {}
     for trigger in triggers_to_show:
         trigger_check = f"check{trigger}"
@@ -316,7 +317,22 @@ def list_public_experiences(request):
         )
         search_context["searched"] = searched
 
-    exp_context = {"experiences": experiences}
+    #  Define the number of experiences to show per page
+    items_per_page = settings.EXPERIENCES_PER_PAGE
+    
+    # Create a Paginator object, order by time of creation to avoid pagination issues
+    paginator = Paginator(experiences.order_by("created_at"), items_per_page)
+    # Paginate experiences
+    page_experiences = paginate_stories(request, paginator, "page")
+  
+    # Set numbers so that stories have continous numbering across pages
+    # Calculate the start index for the current page
+    start_index = (page_experiences.number - 1) * items_per_page
+    # Add the start index to each experience in page_experiences
+    for i, experience in enumerate(page_experiences, start=start_index):
+        experience.number = i + 1
+    
+    exp_context = {"experiences": page_experiences}
 
     context = {**tts, **exp_context, **search_context}
 
@@ -402,26 +418,26 @@ def my_stories(request):
             filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
             items_per_page,
         )
-        public_stories = paginate_my_stories(request, paginator_public, "page_public")
+        public_stories = paginate_stories(request, paginator_public, "page_public")
 
         paginator_review = Paginator(
             filter_in_review(filter_by_tag(files, "public")), items_per_page
         )
-        in_review_stories = paginate_my_stories(
+        in_review_stories = paginate_stories(
             request, paginator_review, "page_review"
         )
 
         paginator_rejected = Paginator(
             filter_by_moderation_status(files, "rejected"), items_per_page
         )
-        rejected_stories = paginate_my_stories(
+        rejected_stories = paginate_stories(
             request, paginator_rejected, "page_rejected"
         )
 
         paginator_private = Paginator(
             filter_by_tag(files, "not public"), items_per_page
         )
-        private_stories = paginate_my_stories(
+        private_stories = paginate_stories(
             request, paginator_private, "page_private"
         )
 
