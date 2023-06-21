@@ -13,7 +13,13 @@
   <div class="container story-section">
 
     {% for experience in experiences %}
+    <div class="container story-section">
+    {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
+    <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+    {% endif %}
+    </div>
 
+    <div class="container story-section">
     <h2>Title: <i>{% firstof experience.title_text "No Title Given" %}</i></h2>
 
     <h3>Experience</h3>
@@ -21,6 +27,7 @@
 
     <h3>What could have made the experience better?</h3>
     <p><i>{% firstof experience.difference_text "No Difference Text Given" %}</i></p>
+    </div>
 
     {% endfor %}
   </div>
