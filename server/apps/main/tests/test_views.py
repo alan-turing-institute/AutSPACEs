@@ -272,13 +272,15 @@ class Views(TestCase):
         # Check that story has not been added to the database
         assert len(pe_db_after) == 0
 
-# Check that is no new story for user A
+        # Check that is no new story for user A
         assert user_a_stories_after == user_a_stories_before 
 
         # Check that there is a redirect after
         assert response.status_code == 200
 
-        self.assertIn("This field is required",str(response.content))
+        self.assertIn("Choose a title for your story: This field is required.",str(response.content))
+        self.assertIn("What could have made your experience better?: This field is required.",str(response.content))
+        self.assertIn("Please share your experience: This field is required.",str(response.content))
 
     @vcr.use_cassette(
         "server/apps/main/tests/fixtures/load_to_edit.yaml",
