@@ -34,6 +34,8 @@ from .helpers import (
     process_trigger_warnings,
     moderate_page,
     choose_moderation_redirect,
+    extract_triggers_to_show,
+    expand_filter,
     filter_by_tag,
     filter_by_moderation_status,
     filter_in_review,
@@ -67,6 +69,10 @@ def help(request):
 
 def code_of_conduct(request):
     return render(request, "main/code_of_conduct.html")
+
+
+def edit_experience(request):
+    return render(request, "main/share_experiences.html")
 
 
 def signup(request):
@@ -263,38 +269,54 @@ def list_public_experiences(request):
     4) abide by triggering label toggle.
     """
 
+    # Find all approved stories
     experiences = PublicExperience.objects.filter(moderation_status="approved")
+
+    # Default is to show non-triggering content only
+    all_triggers = request.GET.get("all_triggers", False)
+    if all_triggers:
+        allowed_triggers = {
+            "abuse",
+            "violence",
+            "drug",
+            "mentalhealth",
+            "negbody",
+            "other",
+        }
+    else:
+        # Check the allowed triggers
+        allowed_triggers = request.GET.keys()
+
+    # Get a list of allowed triggers
+    triggers_to_show = extract_triggers_to_show(allowed_triggers)
+
+    tts = {}
+    for trigger in triggers_to_show:
+        trigger_check = f"check{trigger}"
+        tts[trigger_check] = True
+
+    experiences = expand_filter(experiences, triggers_to_show)
 
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
 
+    search_context = {}
     # Only search through approved stories
     if searched:
         # search within all approved stories regardless of triggering status
-
         experiences = experiences.filter(
             Q(title_text__icontains=searched)
             | Q(experience_text__icontains=searched)
             | Q(difference_text__icontains=searched)
         )
+        search_context["searched"] = searched
 
-    # If the triggering stories flag is checked - perform an additional filter to remove triggering stories
-    trigger_label = request.GET.get("triggering_stories", False)
+    exp_context = {"experiences": experiences}
 
-    if trigger_label:
-        experiences = experiences.filter(
-            Q(abuse=False)
-            & Q(violence=False)
-            & Q(drug=False)
-            & Q(mentalhealth=False)
-            & Q(negbody=False)
-            & Q(other="")
-        )
+    context = {**tts, **exp_context, **search_context}
 
     # Standard page showing all moderated stories
-    return render(
-        request, "main/experiences_page.html", context={"experiences": experiences}
-    )
+    return render(request, "main/experiences_page.html", context=context)
 
 
 def moderate_public_experiences(request):

@@ -11,6 +11,7 @@ from django.db.models import Q
 from django.shortcuts import redirect, render
 from .forms import ModerateExperienceForm
 from .models import PublicExperience, ExperienceHistory
+from django.db.models import Q
 
 def is_moderator(user):
     """Return membership of moderator group."""
@@ -437,6 +438,79 @@ def choose_moderation_redirect(moderation_prior):
     redurect to.
     """
     return moderation_prior if moderation_prior in ["approved", "rejected"] else "pending"
+
+
+def extract_triggers_to_show(allowed_triggers):
+    """
+    Generate a list of triggering labels that the user has opted in to seeing
+    """
+
+    all_triggers = {'abuse', 'violence', 'drug', 'mentalhealth', 'negbody', 'other'}
+    triggers_to_show = list(all_triggers.intersection(allowed_triggers))
+    return(triggers_to_show)
+
+def show_filter(experiences, triggers_to_show):
+    """
+    Explicitly look for experiences with the trigger tags from the triggers_to_show list
+    """
+    tmp_dict = {}
+    for t in triggers_to_show:
+        tmp_dict[t] = True
+    
+    
+    experiences.filter(Q(**tmp_dict) | Q(abuse=False))
+
+    for trigger in triggers_to_show:
+        if trigger == "abuse":
+            experiences = experiences.filter(Q(abuse=True) | Q(abuse=False))
+        if trigger == "violence":
+            experiences =  experiences.filter(Q(violence=True) | Q(violence=False))
+        if trigger == "drug":
+            experiences =  experiences.filter(Q(drug=True) | Q(drug=False))
+        if trigger == "mentalhealth":
+            experiences =  experiences.filter(Q(mentalhealth=True) | Q(mentalhealth=False))
+        if trigger == "negbody":
+            experiences =  experiences.filter(Q(negbody=True) | Q(negbody=False))
+        if trigger == "other":
+            experiences = experiences.filter(~Q(other="") | Q(other=""))
+    
+    return experiences
+
+def no_show_filter(experiences, triggers_to_show):
+    """
+    Explicitly omit stories that aren't in the triggers_to_show list
+    This coupled with the show_filter function allows for experiences with multiple 
+    trigger warnings to be shown
+    """
+    if "abuse" not in triggers_to_show:
+        experiences = experiences.filter(Q(abuse=False))
+    if "violence" not in triggers_to_show:
+        experiences = experiences.filter(Q(violence=False))
+    if "drug" not in triggers_to_show:
+        experiences = experiences.filter(Q(drug=False))
+    if "mentalhealth" not in triggers_to_show:
+        experiences = experiences.filter(Q(mentalhealth=False))
+    if "negbody" not in triggers_to_show:
+        experiences = experiences.filter(Q(negbody=False))
+    if "other" not in triggers_to_show:
+        experiences = experiences.filter(Q(other=""))
+
+    return experiences
+
+
+
+
+def expand_filter(experiences, triggers_to_show):
+    """
+    Expand the QuerySet. 
+    Recieves the filtered(allowed) stories and filters by the model fields which
+    correspond to the triggering content labels
+    """
+
+    experiences = show_filter(experiences, triggers_to_show)
+    experiences = no_show_filter(experiences, triggers_to_show)
+
+    return experiences
 
 def filter_by_tag(files, tag):
     """ Filter stories by tag """

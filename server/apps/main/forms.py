@@ -2,7 +2,9 @@ from django import forms
 
 class ShareExperienceForm(forms.Form):
         
+
     experience_text = forms.CharField(label='Please share your experience', strip=True,
+
                                  widget=forms.Textarea(attrs={'placeholder':'Write your experience here, you can take as much or little space as you need.',
                                                               'rows':'4',
                                                               'class':'form-control'}))
