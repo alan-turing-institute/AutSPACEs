@@ -1,0 +1,31 @@
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - {{title}} {% endblock %}
+
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block content %}
+
+<section id="single_story">
+
+  <div class="container story-section">
+
+    {% for experience in experiences %}
+
+    <h2>Title: <i>{% firstof experience.title_text "No Title Given" %}</i></h2>
+
+    <h3>Experience</h3>
+    <p><i>{% firstof experience.experience_text "No Experience Text Given" %}</i></p>
+
+    <h3>What could have made the experience better?</h3>
+    <p><i>{% firstof experience.difference_text "No Difference Text Given" %}</i></p>
+
+    {% endfor %}
+  </div>
+
+
+</section>
+
+{% endblock %}
