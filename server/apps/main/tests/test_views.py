@@ -232,6 +232,57 @@ class Views(TestCase):
         assert response.status_code == 200
 
     @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/share_experience.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
+    def test_share_exp_missing_data(self):
+        """
+        Test that user cannot submit a new experience if required data is missing
+        """
+        # Check that redirects back to form with alerts displayed
+        # Check that no experience is created
+
+        c = Client()
+        c.force_login(self.user_a)
+
+        user_a_stories_before = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        response = c.post(
+            "/main/share_exp/",
+            {
+                "experience_text": "",
+                "difference_text": "",
+                "title_text": "",
+                "viewable": "True",
+                "open_humans_member": self.oh_a,
+            },
+            follow=True,
+        )
+
+        user_a_stories_after = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        pe_db_after = PublicExperience.objects.filter(title_text="A new story added")
+
+        # Check that story has not been added to the database
+        assert len(pe_db_after) == 0
+
+        # Check that is no new story for user A
+        assert user_a_stories_after == user_a_stories_before 
+
+        # Check that there is a redirect after
+        assert response.status_code == 200
+
+        self.assertIn("Choose a title for your story: This field is required.",str(response.content))
+        self.assertIn("What could have made your experience better?: This field is required.",str(response.content))
+        self.assertIn("Please share your experience: This field is required.",str(response.content))
+
+    @vcr.use_cassette(
         "server/apps/main/tests/fixtures/load_to_edit.yaml",
         record_mode="none",
         filter_query_parameters=["access_token"],
@@ -256,6 +307,28 @@ class Views(TestCase):
             response, "This is a simple short story for testing", status_code=200
         )
         self.assertNotContains(response, "It is certainly an unpleasant thing,")
+
+
+    def test_edit_exp_missing_data(self):
+        """
+        Test that editing an existing experience also fails gracefully 
+        if there's missing data
+        """
+
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.post(
+            "/main/edit/1234_1/", 
+                   {
+                "experience_text": "",
+                "difference_text": "",
+                "title_text": "",
+                "viewable": "True",
+                "open_humans_member": self.oh_a,
+            },
+            follow=True
+        )
+        self.assertIn("This field is required",str(response.content))
 
     @vcr.use_cassette(
         "server/apps/main/tests/fixtures/delete_exp.yaml",
