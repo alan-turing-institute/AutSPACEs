@@ -17,7 +17,7 @@
       </div>
       <div class="col-lg-12 text-left">
         <p class="intro-text">Autistic people often have different sensory processing to people who are not autistic.
-          By collecting together lots of autistic people’s experiences, we can change spaces so that they are
+          By collecting together lots of autistic people's experiences, we can change spaces so that they are
           better for autistic people.
         </p>
       </div>
@@ -25,35 +25,97 @@
   </div>
 </div>
 
-<section id="search-section">
-  <div class="container search">
-    <form method="GET" action="{% url 'main:public_experiences' %}">
-      <div class="form-row align-items-center" style="left: 0px">
-        <div class="col-lg-8">
-          <label class="sr-only" for="inlineFormInput">Name</label>
-          <input class="form-control mb-2"
-                  id="inlineFormInput"
-                  placeholder="Search Stories"
-                  type="text"
-                  name="searched"
-                  >
-        </div>
-
-        <div class="col-auto">
-          <div class="form-check mb-2">
-            <input class="form-check-input" id="autoSizingCheck" type="checkbox" name="triggering_stories" value="True">
-            <label class="form-check-label" for="autoSizingCheck">
-              Non-Triggering Stories
-            </label>
+<section id="hd-section">
+  <div class="container">
+    <form id=search-form method="GET" action="{% url 'main:public_experiences' %}">
+          <div class="form-row">
+            <div class="form-group col-md-10">
+              <label class="sr-only" for="inlineFormInput">Name</label>
+                <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" value="{{ searched }}" type="text" name="searched">
+            </div>
+            <div class="form-group col-md-2">
+              <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
+            </div>
           </div>
+
+          <div class="trigger-warning-message"> We have excluded potentially triggering content, if you would like to see more content please choose which categories you would like to see</div>
+
+
+      <div class="form-check mb-2">
+        <div class="custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="all-checkbox"
+          name="all_triggers"
+          value="True"
+          {{ checkall|yesno:"checked,unchecked" }}>
+        <label class="custom-control-label" for="all-checkbox">Allow all triggering content</label>
+      </div>
+        <div class="custom-control custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="abuse-checkbox"
+          name="abuse"
+          value="True"
+          {{ checkabuse|yesno:"checked,unchecked" }}>
+          <label class="custom-control-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
         </div>
-        <div class="col-auto">
-          <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
+        <div class="custom-control custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="drug-checkbox"
+          name="drug"
+          value="True"
+          {{ checkdrug|yesno:"checked,unchecked" }}>
+          <label class="custom-control-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
+        </div>
+        <div class="custom-control custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="negbody-checkbox"
+          name="negbody"
+          value="True"
+          {{ checknegbody|yesno:"checked,unchecked" }}>
+          <label class="custom-control-label" for="negbody-checkbox">Negative body image</label>
+        </div>
+        <div class="custom-control custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="violence-checkbox"
+          name="violence"
+          value="True"
+          {{ checkviolence|yesno:"checked,unchecked" }}>
+          <label class="custom-control-label" for="violence-checkbox">Violence and Assault</label>
+        </div>
+        <div class="custom-control custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="mentalhealth-checkbox"
+          name="mentalhealth"
+          value="True"
+          {{ checkmentalhealth|yesno:"checked,unchecked" }}>
+          <label class="custom-control-label" for="mentalhealth-checkbox">Mental Health Issues</label>
+        </div>
+        <div class="custom-control custom-control custom-switch">
+          <input class="custom-control-input"
+          type="checkbox"
+          id="other-checkbox"
+          name="other"
+          value="True"
+          {{ checkother|yesno:"checked,unchecked" }}>
+          <label class="custom-control-label" for="other-checkbox">Other</label>
         </div>
       </div>
+
     </form>
   </div>
+  {% if searched %}
+    <div class="container-fluidr story-text">
+    <p class="story-header">Search results for '{{ searched }}'</p>
+    </div>
+  {% endif %}
 </section>
+
 
 <section id="stories-post">
   <div class="container-fluidr story-text">
@@ -91,8 +153,11 @@
       </div>
     </div>
     {% endfor %}
+    {% if not experiences %}
+      <div class="no-stories-message text-center">There are no stories that match the criteria.</div>
+    {% endif %}
   </div>
 </section>
 
-
+<script src="{% static 'js/shared-stories-filtering.js' %}"></script>
 {% endblock %}

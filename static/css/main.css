@@ -359,11 +359,6 @@ body {
   font-weight: bold;
 }
 
-.search {
-  padding: 3% 0%;
-}
-
-
 .story-card-title {
   color: #F1806F;
   line-height: 2;
@@ -544,4 +539,11 @@ body {
   color: #999;
   margin-top: 1em;
   margin-left: 20px;
+}
+
+.trigger-warning-message {
+  font-style: italic;
+  color: #999;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }

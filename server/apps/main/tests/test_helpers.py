@@ -4,7 +4,8 @@ from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
     model_to_form, process_trigger_warnings, update_public_experience_db, \
-    get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect
+    get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect, \
+    extract_triggers_to_show
 
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
@@ -343,4 +344,10 @@ class StoryHelper(TestCase):
         result = choose_moderation_redirect(None)
         self.assertEqual(result, "pending")
 
-
+    def test_extract_triggers_to_show(self):
+        # Test the right trigger warnings are allowed
+        allowed_triggers = {'abuse', 'violet', 'dasies', 'mentalhealth', 'nigella', 'orchids'}
+        trigger_list = extract_triggers_to_show(allowed_triggers)
+        assert('abuse' in trigger_list and 'mentalhealth' in trigger_list)
+        assert('violence' not in trigger_list and 'drugs' not in trigger_list 
+               and 'negbody' not in trigger_list and 'other' not in trigger_list)
