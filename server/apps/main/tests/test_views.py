@@ -272,7 +272,7 @@ class Views(TestCase):
         # Check that story has not been added to the database
         assert len(pe_db_after) == 0
 
-        # Check that there is one new story for user A
+# Check that is no new story for user A
         assert user_a_stories_after == user_a_stories_before 
 
         # Check that there is a redirect after
