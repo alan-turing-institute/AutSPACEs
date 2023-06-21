@@ -26,23 +26,21 @@
 </div>
 
 <section id="hd-section">
-  <div class="container search">
+  <div class="container">
     <form id=search-form method="GET" action="{% url 'main:public_experiences' %}">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="form-row align-items-center" style="left: 0px">
-            <div class="col-lg-10">
+          <div class="form-row">
+            <div class="form-group col-md-10">
               <label class="sr-only" for="inlineFormInput">Name</label>
                 <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" value="{{ searched }}" type="text" name="searched">
             </div>
-            <div class="col-auto">
+            <div class="form-group col-md-2">
               <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
             </div>
           </div>
 
           <div class="trigger-warning-message"> We have excluded potentially triggering content, if you would like to see more content please choose which categories you would like to see</div>
-        </div>
-    </div>
+
+
       <div class="form-check mb-2">
         <div class="custom-control custom-switch">
           <input class="custom-control-input"
