@@ -58,6 +58,13 @@ class Views(TestCase):
             "moderation_status": "approved",
             "abuse": True,
         }
+        rejected_with_trigger = {
+            "experience_text": "This is a rejected story with sundaes",
+            "difference_text": "This is some rejected difference text",
+            "title_text": "A rejected title",
+            "moderation_status": "rejected",
+            "mentalhealth": True,
+        }
         self.pe_a = PublicExperience.objects.create(
             open_humans_member=self.oh_a, experience_id="1234_1", **pe_data
         )
@@ -71,6 +78,11 @@ class Views(TestCase):
             open_humans_member=self.oh_b,
             experience_id="8765_2",
             **approved_with_trigger
+        )
+        self.pe_b = PublicExperience.objects.create(
+            open_humans_member=self.oh_b,
+            experience_id="8765_3",
+            **rejected_with_trigger
         )
 
     def test_confirm_page(self):
@@ -357,7 +369,6 @@ class Views(TestCase):
 
         # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
         search_response_abuse = c.get("/main/public_experiences/", {"searched": "", "abuse": True})
-        print(search_response_abuse.context[0])
         for item in search_response_abuse.context[0]:
             if item.keys().__contains__("experiences"):
                 assert item['experiences'].count() == 2
@@ -393,3 +404,24 @@ class Views(TestCase):
         for item in search_response_t.context[0]:
             if item.keys().__contains__("experiences"):
                 assert item['experiences'].count() == 1
+
+    def test_single_story(self):
+        c = Client()
+        c.force_login(self.user_a)
+
+        # Check redirect if invalid UUID given
+        r_bad_uuid = c.post("/main/single_story/invalid-uuid-goes-here/", follow=True)
+        self.assertRedirects(r_bad_uuid, "/main/overview")
+
+        # Check approved story is shown
+        r_approved_story = c.post("/main/single_story/8765_1/")
+        assert r_approved_story.status_code == 200
+        for item in r_approved_story.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert item["experiences"].count() == 1
+                for experience in item["experiences"]:
+                    assert experience.title_text == "An approved title"
+
+        # Check that rejected story isn't shown
+        r_rejected_story = c.post("/main/single_story/8765_3/")
+        self.assertRedirects(r_rejected_story, "/main/overview")
