@@ -505,17 +505,14 @@ def moderate_experience(request, uuid):
     else:
         return redirect("index")
 
-def single_story(request, uuid=None):
+def single_story(request, uuid):
     """
     Returns a single page with one story on it
     """
-    if uuid:
-        # Must have both the specified UUID and be approved otherwise will redirect
-        experiences = PublicExperience.objects.filter(experience_id=uuid, moderation_status="approved")
-        # Should only be one result if not redirect
-        if experiences.count() != 1:
-            return redirect("main:overview")
-        exp_context = {"experiences": experiences}
-        return render(request, "main/single_story.html", context=exp_context)
-    else:
+    # Must have both the specified UUID and be approved otherwise will redirect
+    experiences = PublicExperience.objects.filter(experience_id=uuid, moderation_status="approved")
+    # Should only be one result if not redirect
+    if experiences.count() != 1:
         return redirect("main:overview")
+    exp_context = {"experiences": experiences}
+    return render(request, "main/single_story.html", context=exp_context)
