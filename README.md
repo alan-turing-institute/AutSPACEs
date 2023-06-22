@@ -31,10 +31,10 @@
 | server/apps/main/tests/test\_models.py                                    |       25 |        0 |    100% |           |
 | server/apps/main/tests/test\_moderate\_views.py                           |      168 |        0 |    100% |           |
 | server/apps/main/tests/test\_my\_stories.py                               |       28 |        0 |    100% |           |
-| server/apps/main/tests/test\_views.py                                     |      163 |        0 |    100% |           |
+| server/apps/main/tests/test\_views.py                                     |      178 |        3 |     98% |   417-419 |
 | server/apps/main/tests/tests\_2023.py                                     |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                  |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                 |      178 |       20 |     89% |75, 79, 139, 252-258, 385-432 |
+| server/apps/main/views.py                                                 |      189 |       20 |     89% |76, 80, 140, 259-265, 392-439 |
 | server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
@@ -45,7 +45,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       11 |        0 |    100% |           |
-|                                                                 **TOTAL** | **1217** |   **36** | **97%** |           |
+|                                                                 **TOTAL** | **1243** |   **39** | **97%** |           |
 
 
 ## Setup coverage badge
