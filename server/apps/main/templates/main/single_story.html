@@ -12,8 +12,6 @@
 
   <div class="container story-section">
 
-    {% for experience in experiences %}
-
     {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
     <div class="container story-section">
     <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
@@ -31,7 +29,6 @@
     <p><i>{% firstof experience.difference_text "No Difference Text Given" %}</i></p>
     </div>
 
-    {% endfor %}
   </div>
 
 

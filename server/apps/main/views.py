@@ -11,7 +11,7 @@ from openhumans.models import OpenHumansMember
 from django.db.models import Q
 from django.urls import reverse
 from django.core.paginator import Paginator
-from django.core.exceptions import EmptyResultSet, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import PublicExperience
 
@@ -518,13 +518,13 @@ def single_story(request, uuid):
     # Must have both the specified UUID and be approved otherwise will redirect
     # Should only be one result if not redirect
     try:
-        experiences = PublicExperience.objects.filter(
+        experience = PublicExperience.objects.get(
             experience_id=uuid, moderation_status="approved"
         )
-        title = experiences.values_list("title_text", flat=True)[0]
-        exp_context = {"experiences": experiences}
+        title = experience.title_text
+        exp_context = {"experience": experience}
         title_context = {"title": title}
         context = {**exp_context, **title_context}
         return render(request, "main/single_story.html", context=context)
-    except:
+    except ObjectDoesNotExist:
         return redirect("main:overview")
