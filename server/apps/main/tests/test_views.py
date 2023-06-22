@@ -409,19 +409,19 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
 
-        # Check redirect if invalid UUID given
-        r_bad_uuid = c.post("/main/single_story/invalid-uuid-goes-here/", follow=True)
-        self.assertRedirects(r_bad_uuid, "/main/overview")
-
         # Check approved story is shown
-        r_approved_story = c.post("/main/single_story/8765_1/")
+        r_approved_story = c.get("/main/single_story/8765_1/")
         assert r_approved_story.status_code == 200
         for item in r_approved_story.context[0]:
-            if item.keys().__contains__("experiences"):
+            if "experiences" in item:
                 assert item["experiences"].count() == 1
                 for experience in item["experiences"]:
                     assert experience.title_text == "An approved title"
 
+        # Check redirect if invalid UUID given
+        r_bad_uuid = c.get("/main/single_story/this-is-an-invalid-uuid/", follow=True)
+        self.assertRedirects(r_bad_uuid, "/main/overview")
+
         # Check that rejected story isn't shown
-        r_rejected_story = c.post("/main/single_story/8765_3/")
+        r_rejected_story = c.get("/main/single_story/8765_3/")
         self.assertRedirects(r_rejected_story, "/main/overview")
