@@ -517,11 +517,12 @@ def single_story(request, uuid):
     """
     # Must have both the specified UUID and be approved otherwise will redirect
     # Should only be one result if not redirect
-    experiences = PublicExperience.objects.filter(experience_id=uuid, moderation_status="approved")
-    if experiences.exists():
+    try:
+        experiences = PublicExperience.objects.filter(experience_id=uuid, moderation_status="approved")
+        title = experiences.values_list('title_text', flat=True)[0]
         exp_context = {"experiences": experiences}
-        title_context = {"title": experiences.values_list('title_text', flat=True)[0]}
+        title_context = {"title": title}
         context = {**exp_context, **title_context}
         return render(request, "main/single_story.html", context=context)
-    else:
+    except:
         return redirect("main:overview")
