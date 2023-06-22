@@ -185,8 +185,9 @@ def share_experience(request, uuid=False):
                         "title": title,
                         "moderation_status": moderation_status,
                     },
-                )
-        # if a GET (or any other method) we'll create a blank form
+                )            
+        # if a GET (or any other method) we'll either create a blank form or
+        # prepopulate form based on existing data. 
         else:
             if uuid:
                 # return data from oh.
@@ -195,12 +196,10 @@ def share_experience(request, uuid=False):
                 )
                 form = ShareExperienceForm(data)
                 title = "Edit experience"
-                viewable = data.get("viewable", False)
                 moderation_status = data.get("moderation_status", "not reviewed")
             else:
                 form = ShareExperienceForm()
                 title = "Share experience"
-                viewable = False
                 moderation_status = "not reviewed"
 
             return render(
@@ -210,7 +209,6 @@ def share_experience(request, uuid=False):
                     "form": form,
                     "uuid": uuid,
                     "title": title,
-                    "viewable": viewable,
                     "moderation_status": moderation_status,
                 },
             )
