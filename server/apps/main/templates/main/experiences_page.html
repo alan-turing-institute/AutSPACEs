@@ -144,6 +144,18 @@
           <div
           class="collapse"
           id="exp{{ experience.experience_id }}">
+          <div class="pull-right">
+          <div class="card-body story">
+          <a
+          class="btn btn-primary collapsed float-right"
+          href="{% url 'main:single_story' experience.experience_id %}" 
+          aria-expanded="false"
+          aria-controls="single{{ experience.experience_id }}"
+          style="text-align: right">
+          Read Story on Single Page
+          </a>
+          </div>
+          </div>
           <h4 class="story-card-title">Full Story</h4>
           <p class="story-card-text">{% firstof experience.experience_text "no experience text given" %} </p>
           <h4 class="story-card-title">Recommendation</h4>

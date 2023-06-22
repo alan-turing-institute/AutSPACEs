@@ -11,6 +11,7 @@ from openhumans.models import OpenHumansMember
 from django.db.models import Q
 from django.urls import reverse
 from django.core.paginator import Paginator
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import PublicExperience
 
@@ -159,15 +160,21 @@ def share_experience(request, uuid=False):
                 # redirect to a new URL:
                 return redirect("main:confirm_page")
             # If form is invalid raise errors back to user
-            else:             
+            else:
                 for field in form:
                     for error in field.errors:
-                        if field != '__all__':
-                            messages.add_message(request, messages.WARNING, "{}: {}".format(field.label, error))
-                if uuid: # check if editing existing exp
-                    moderation_status = PublicExperience.objects.get(experience_id=uuid).moderation_status
+                        if field != "__all__":
+                            messages.add_message(
+                                request,
+                                messages.WARNING,
+                                "{}: {}".format(field.label, error),
+                            )
+                if uuid:  # check if editing existing exp
+                    moderation_status = PublicExperience.objects.get(
+                        experience_id=uuid
+                    ).moderation_status
                     title = "Edit experience"
-                else: # or creating new one
+                else:  # or creating new one
                     moderation_status = "not reviewed"
                     title = "Share experience"
                 return render(
@@ -179,9 +186,9 @@ def share_experience(request, uuid=False):
                         "title": title,
                         "moderation_status": moderation_status,
                     },
-                )            
+                )
         # if a GET (or any other method) we'll either create a blank form or
-        # prepopulate form based on existing data. 
+        # prepopulate form based on existing data.
         else:
             if uuid:
                 # return data from oh.
@@ -502,3 +509,22 @@ def moderate_experience(request, uuid):
             )
     else:
         return redirect("index")
+
+
+def single_story(request, uuid):
+    """
+    Returns a single page with one story on it
+    """
+    # Must have both the specified UUID and be approved otherwise will redirect
+    # Should only be one result if not redirect
+    try:
+        experience = PublicExperience.objects.get(
+            experience_id=uuid, moderation_status="approved"
+        )
+        title = experience.title_text
+        exp_context = {"experience": experience}
+        title_context = {"title": title}
+        context = {**exp_context, **title_context}
+        return render(request, "main/single_story.html", context=context)
+    except ObjectDoesNotExist:
+        return redirect("main:overview")
