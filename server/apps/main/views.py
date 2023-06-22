@@ -186,9 +186,9 @@ def share_experience(request, uuid=False):
                         "title": title,
                         "moderation_status": moderation_status,
                     },
-                )            
+                )
         # if a GET (or any other method) we'll either create a blank form or
-        # prepopulate form based on existing data. 
+        # prepopulate form based on existing data.
         else:
             if uuid:
                 # return data from oh.
@@ -518,8 +518,10 @@ def single_story(request, uuid):
     # Must have both the specified UUID and be approved otherwise will redirect
     # Should only be one result if not redirect
     try:
-        experiences = PublicExperience.objects.filter(experience_id=uuid, moderation_status="approved")
-        title = experiences.values_list('title_text', flat=True)[0]
+        experiences = PublicExperience.objects.filter(
+            experience_id=uuid, moderation_status="approved"
+        )
+        title = experiences.values_list("title_text", flat=True)[0]
         exp_context = {"experiences": experiences}
         title_context = {"title": title}
         context = {**exp_context, **title_context}
