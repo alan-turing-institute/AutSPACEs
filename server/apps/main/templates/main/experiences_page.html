@@ -125,9 +125,28 @@
         <div class="card w-100">
           <div class="card-body story">
             <h5 class="card-title story-header">{{ forloop.counter }}. {% firstof experience.title_text "no title given" %}
-              {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
-                <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
-              {% endif %}
+              {% if experience.abuse and experience.violence and experience.drug and experience.mentalhealth and experience.negbody and experience.other %}
+                <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">All trigger warnings selected</span>
+              {% else %}
+                {% if experience.other %}
+                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Other</span>
+                {% endif %}
+                {% if experience.mentalhealth %}
+                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Mental Health issues</span>
+                {% endif %}
+                {% if experience.violence %}
+                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Violence</span>
+                {% endif %}
+                {% if experience.negbody %}
+                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Negative body image</span>
+                {% endif %}
+                {% if experience.drug %}
+                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Drug and/or Alcohol misuse</span>
+                {% endif %}
+                {% if experience.abuse %}
+                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Abuse</span>
+                {% endif %}
+            {% endif %}        
             </h5>
               <p class="card-text">{% firstof experience.experience_text|truncatechars:100 "no experience text given" %}</p>
               <em>AutSPACEs Contributor</em>
