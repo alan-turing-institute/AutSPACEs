@@ -19,30 +19,34 @@
     </div>
     {% endif %} -->
 
-    <div class="container story-section">
+    {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
+    <div class="row">
+    <div class="col-lg-12 float-right ">
     {% if experience.abuse and experience.violence and experience.drug and experience.mentalhealth and experience.negbody and experience.other %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">All trigger warnings selected</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%;">All trigger warnings selected</span>
     {% else %}
       {% if experience.other %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Other</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Other</span>
       {% endif %}
       {% if experience.mentalhealth %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Mental Health issues</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Mental Health issues</span>
       {% endif %}
       {% if experience.violence %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Violence</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Violence</span>
       {% endif %}
       {% if experience.negbody %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Negative body image</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Negative body image</span>
       {% endif %}
       {% if experience.drug %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Drug and/or Alcohol misuse</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Drug and/or Alcohol misuse</span>
       {% endif %}
       {% if experience.abuse %}
-      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Abuse</span>
+      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Abuse</span>
       {% endif %}
     {% endif %}
     </div>
+    </div>
+    {% endif %}
 
 
 
