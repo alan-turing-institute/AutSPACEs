@@ -1,6 +1,9 @@
 from django import template
 # from django.contrib.auth.models import Group
 from ..views import is_moderator
+from django.template.defaultfilters import register
+from urllib.parse import unquote 
+
 
 register = template.Library()
 
@@ -17,3 +20,7 @@ def toggle_story(val):
   
 register.simple_tag(is_moderator)  
   
+
+@register.filter
+def unquote_html(value):
+    return unquote(value)
