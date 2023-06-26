@@ -25,7 +25,7 @@
 | server/apps/main/migrations/\_\_init\_\_.py                               |        0 |        0 |    100% |           |
 | server/apps/main/models.py                                                |       27 |        1 |     96% |        42 |
 | server/apps/main/templatetags/\_\_init\_\_.py                             |        0 |        0 |    100% |           |
-| server/apps/main/templatetags/custom\_tags.py                             |       12 |        3 |     75% |     13-16 |
+| server/apps/main/templatetags/custom\_tags.py                             |       17 |        3 |     82% |     16-19 |
 | server/apps/main/tests/\_\_init\_\_.py                                    |        0 |        0 |    100% |           |
 | server/apps/main/tests/test\_helpers.py                                   |      178 |        0 |    100% |           |
 | server/apps/main/tests/test\_models.py                                    |       25 |        0 |    100% |           |
@@ -45,7 +45,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       11 |        0 |    100% |           |
-|                                                                 **TOTAL** | **1243** |   **39** | **97%** |           |
+|                                                                 **TOTAL** | **1248** |   **39** | **97%** |           |
 
 
 ## Setup coverage badge
