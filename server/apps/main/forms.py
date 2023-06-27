@@ -114,11 +114,14 @@ class ModerateExperienceForm(forms.Form):
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
 
-    moderation_comments = forms.CharField(label='Moderator comments', max_length=500, strip=True, required=False,
-                                 widget=forms.Textarea(attrs={'placeholder':'Moderator comments go here',
+    moderation_comments = forms.CharField(label='Moderation comment', max_length=500, strip=True, required=False,
+                                 widget=forms.Textarea(attrs={'placeholder':'These comments will only be visible to other moderators',
                                                               'rows':'4',
                                                               'class':'form-control'}))
-    moderation_comments.group = "hidden"
+    moderation_comments.group = 4
+
+    moderation_reply = forms.CharField(widget=forms.HiddenInput())
+    moderation_reply.group = "hidden"
 
     moderation_prior = forms.CharField(widget=forms.HiddenInput())
     moderation_prior.group = "hidden"

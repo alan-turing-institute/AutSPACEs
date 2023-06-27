@@ -1,6 +1,6 @@
 from django.test import RequestFactory, TestCase, Client
 from django.core.paginator import Paginator
-from server.apps.main.helpers import filter_by_tag, filter_by_moderation_status, filter_in_review, paginate_my_stories
+from server.apps.main.helpers import filter_by_tag, filter_by_moderation_status, filter_in_review, paginate_stories
 
 # ------ test story filters -------- #
 
@@ -70,13 +70,13 @@ class TestPaginateMyStories(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
-    def test_paginate_my_stories(self):
+    def test_paginate_stories(self):
         request = self.factory.get('/my-stories/?page_test=2')  # mimic a request for the second page
         files = list(range(100))  # use simple list for testing
         paginator = Paginator(files, 10)  # 10 items per page
         page_key = 'page_test'  # the GET parameter to check in the request
 
-        stories = paginate_my_stories(request, paginator, page_key)
+        stories = paginate_stories(request, paginator, page_key)
 
         # Is the function correctly getting the page number from the request?
         self.assertEqual(stories.number, 2)
