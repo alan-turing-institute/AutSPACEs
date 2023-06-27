@@ -510,40 +510,39 @@ class Views(TestCase):
         response = c.post("/main/public_experiences/")
 
         # Check that there is only one story visible - the one with no triggering labels
-        experiences = next(
-            (item for item in response.context[0] if item["experiences"]), None
-        )
-        assert experiences["experiences"].count() == 1
+        for item in response.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
 
         # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
         search_response_abuse = c.get("/main/public_experiences/", {"searched": "", "abuse": True})
         for item in search_response_abuse.context[0]:
             if item.keys().__contains__("experiences"):
-                assert item['experiences'].count() == 2
+                assert len(item['experiences']) == 2
 
         # Results for story containing caramel is none as there is no triggering warning tag used
         search_response_c = c.get("/main/public_experiences/", {"searched": "caramel"})
         for item in search_response_c.context[0]:
             if item.keys().__contains__("experiences"):
-               assert item['experiences'].count() ==  0
+               assert len(item['experiences'])==  0
 
         # Results for story containing caramel when the wrong trigger label is used is 0
         search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "negbody": True})
         for item in search_response_c_nb.context[0]:
             if item.keys().__contains__("experiences"):
-               assert item['experiences'].count() ==  0
+               assert len(item['experiences']) ==  0
 
         # Results for story containing caramel is 1 when there is no triggering warning tag used
         search_response_c = c.get("/main/public_experiences/", {"searched": "caramel", "all_triggers": True})
         for item in search_response_c.context[0]:
             if item.keys().__contains__("experiences"):
-               assert item['experiences'].count() ==  1
+               assert len(item['experiences']) ==  1
 
         # Results for story containing sausages is no stories
         search_response = c.get("/main/public_experiences/", {"searched": "sausages"})
         for item in search_response.context[0]:
             if item.keys().__contains__("experiences"):
-                assert item['experiences'].count() ==  0
+                assert len(item['experiences']) ==  0
 
         # One triggering story visible
         search_response_t = c.get(
@@ -551,7 +550,7 @@ class Views(TestCase):
         )
         for item in search_response_t.context[0]:
             if item.keys().__contains__("experiences"):
-                assert item['experiences'].count() == 1
+                assert len(item['experiences']) == 1
 
     def test_single_story(self):
         c = Client()
@@ -573,3 +572,41 @@ class Views(TestCase):
         # Check that rejected story isn't shown
         r_rejected_story = c.get("/main/single_story/8765_3/")
         self.assertRedirects(r_rejected_story, "/main/overview")
+     
+    def test_list_public_exp_pagination(self):
+        c = Client()
+        c.force_login(self.user_a)
+
+        # Creating 15 more experiences to have a total of 16 public, non-triggering experiences. 
+        # Assuming items_per_page = 10, we should have 2 pages.
+        pe_data = {
+        "experience_text": "This is my experience",
+        "difference_text": "Here what could have made a difference",
+        "title_text": "Here is the title",
+        "moderation_status": "approved",
+        }
+        for i in range(15):
+            PublicExperience.objects.create(
+                open_humans_member=self.oh_a,
+                experience_id=f"1234_{i+3}",  # increment the id to make it unique
+                **pe_data
+            )
+
+        # Accessing the first page
+        response = c.get("/main/public_experiences/?page=1")
+
+        # The first page should have 10 experiences
+        assert len(response.context["experiences"]) == 10
+
+        # The first item on the first page should be the 1st item overall
+        assert response.context["experiences"][0].number == 1
+
+        # Accessing the second page
+        response = c.get("/main/public_experiences/?page=2")
+
+        # The second page should have 6 experiences
+        print(f'length of experiences: {len(response.context["experiences"])}')
+        assert len(response.context["experiences"]) == 6
+
+        # The first item on the second page should be the 11th item overall
+        assert response.context["experiences"][0].number == 11
