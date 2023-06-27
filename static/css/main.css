@@ -72,7 +72,7 @@ body {
    font-size: 1.3rem;
  }
 
- 
+
  .nav-link:hover {
    color:#000 !important;
  }
@@ -553,3 +553,57 @@ body {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+.textbox-fixed {
+  overflow: auto;
+  height: 125px;
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+/* COLLAPSABLE CELLS ON THE MODERATION PAGE */
+/* See https://stackoverflow.com/a/47642880 */
+
+.collapsablecell {
+  min-height: 24px;
+}
+
+.collapsablecell a {
+  text-decoration: none;
+  color: #000;
+}
+
+.collapsablecell p.collapse:not(.show) {
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.collapsablecell p.collapsing {
+  min-height: 24px;
+}
+
+/* MODERATOR SELECTION */
+/* See https://css-tricks.com/how-to-create-actions-for-selected-text-with-the-selection-api/ */
+
+.control {
+  cursor: pointer;
+  position: absolute;
+}
+
+:target {
+	background-color: #fcf2b0;
+}
+
+.moderation-red:before {
+  content: "⏺⠀";
+  color: #fc7e7e;
+}
+
+.moderation-amber:before {
+  content: "⏺⠀";
+  color: #fcbd7e;
+}
+

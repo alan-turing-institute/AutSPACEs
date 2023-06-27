@@ -1,6 +1,6 @@
 from django.test import TestCase, Client, RequestFactory
 from openhumans.models import OpenHumansMember
-from server.apps.main.models import PublicExperience
+from server.apps.main.models import PublicExperience, ExperienceHistory
 from django.contrib.auth.models import Group
 
 from server.apps.main.views import moderate_public_experiences
@@ -49,7 +49,19 @@ class ModerationViewTests(TestCase):
             'open_humans_member': self.non_moderator_ohmember,
             'experience_id': 'test-test-test'
         }
-        self.pe_object = PublicExperience.objects.create(**pe_data)
+        self.pe_a = PublicExperience.objects.create(**pe_data)
+
+        moderation_history = {
+            "changed_by": self.moderator_oh_user,
+            "change_comments": "Local moderation comment",
+            "change_reply": "Moderation comment",
+        }
+        self.eh_a = ExperienceHistory.objects.create(
+            experience = self.pe_a,
+            **moderation_history
+        )
+
+
 
     # test moderation pages as logged-out user
 
@@ -350,9 +362,40 @@ class ModerationViewTests(TestCase):
                             {"mentalhealth": True, "other":"New trigger",
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
+                            "moderation_reply":"Moderation reply",
                             "title_text": 'try injection!'
                             },
                             follow=True)
         # Check that key-error was caused by title text
         self.assertEqual(str(ce.exception),"'title_text'")
+
+    def test_single_moderation_view_as_moderator_post_empty_comment(self):
+        """
+        Test moderate single experience page is successfully accessible and editable by moderators
+        """
+
+        c = Client()
+        c.force_login(self.moderator_user)
+        # Test uses cassette to allow fake-upload to OH
+        with vcr.use_cassette('server/apps/main/tests/fixtures/moderate_experience.yaml',
+                      filter_query_parameters=['access_token'],match_on=['path']):
+            response = c.post("/main/moderate/test-test-test/",
+                            {"mentalhealth": True, "other":"New trigger",
+                            "moderation_status":"approved",
+                            "moderation_comments":"",
+                            "moderation_prior":"not moderated",
+                            },
+                            follow=True)
+        # assert ending up on right page
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+        # test that all changes were made
+        pe = PublicExperience.objects.get(experience_id='test-test-test')
+        self.assertEqual(pe.mentalhealth,True)
+        self.assertEqual(pe.other,"New trigger")
+        self.assertEqual(pe.moderation_status,"approved")
+        eh = ExperienceHistory.objects.filter(experience=pe)
+        self.assertEqual(len(eh), 2)
+        self.assertEqual(eh[1].change_comments, "No Comment Made")
+        self.assertEqual(eh[1].change_reply, "")
 
