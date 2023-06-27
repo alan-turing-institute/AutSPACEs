@@ -19,8 +19,16 @@ def toggle_story(val):
     return 'stories'
   
 register.simple_tag(is_moderator)  
-  
 
 @register.filter
 def unquote_html(value):
     return unquote(value)
+
+# for keeping toggles while moving between pagination pages
+# idea is to replace only the page number in the url, keep the rest
+@register.simple_tag
+def url_replace(request, field, value):
+    """Replace or add a specific query parameter to the current request's url"""
+    query = request.GET.copy()
+    query[field] = value
+    return '?{}'.format(query.urlencode())
