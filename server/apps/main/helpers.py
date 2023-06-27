@@ -133,7 +133,7 @@ def get_oh_metadata(ohmember, uuid):
     file = [f for f in files if f["metadata"]["uuid"] == uuid]
 
     if len(file) == 0:
-        file = None
+        file = [None]
     elif len(file) > 1:
         raise Exception("duplicate uuids in open humans")
 
@@ -296,9 +296,13 @@ def rebuild_experience_data(data, metadata):
         combined (dict): combined file and metadata dictionary
     """
 
-    combined = {k: v for k, v in data["data"].items() if k in settings.METADATA_MASK}
+    if "data" in data:
+        combined = {k: v for k, v in data["data"].items() if k in settings.METADATA_MASK}
+    else:
+        combined = {}
     # Using dict.update the metadata values will take priority
-    combined.update(metadata["metadata"]["data"])
+    if metadata:
+        combined.update(metadata["metadata"]["data"])
     return combined
 
 def make_uuid():
@@ -344,6 +348,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
 
         # If no change info has been sent then it's either new or being edited by user
         if not change_info:
+            change_reply = ""
             if pe.experiencehistory_set.count() == 0:
                 change_type = "Make Public"
                 change_comments = "Story flagged to be shared on AutSPACE website"
@@ -355,6 +360,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
             change_comments = change_info.get("change_comments", "No Comment Made")
             if change_comments == "":
                 change_comments = "No Comment Made"
+            change_reply = change_info.get("change_reply", "")
 
         # Produce and add the ExperienceHistory object to the public experience
         eh = ExperienceHistory(
@@ -363,6 +369,7 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
             changed_at=datetime.datetime.now(),
             changed_by=editing_user,
             change_comments=change_comments,
+            change_reply=change_reply,
         )
 
         eh.save()
@@ -456,8 +463,8 @@ def show_filter(experiences, triggers_to_show):
     tmp_dict = {}
     for t in triggers_to_show:
         tmp_dict[t] = True
-    
-    
+
+
     experiences.filter(Q(**tmp_dict) | Q(abuse=False))
 
     for trigger in triggers_to_show:
@@ -473,13 +480,13 @@ def show_filter(experiences, triggers_to_show):
             experiences =  experiences.filter(Q(negbody=True) | Q(negbody=False))
         if trigger == "other":
             experiences = experiences.filter(~Q(other="") | Q(other=""))
-    
+
     return experiences
 
 def no_show_filter(experiences, triggers_to_show):
     """
     Explicitly omit stories that aren't in the triggers_to_show list
-    This coupled with the show_filter function allows for experiences with multiple 
+    This coupled with the show_filter function allows for experiences with multiple
     trigger warnings to be shown
     """
     if "abuse" not in triggers_to_show:
@@ -502,7 +509,7 @@ def no_show_filter(experiences, triggers_to_show):
 
 def expand_filter(experiences, triggers_to_show):
     """
-    Expand the QuerySet. 
+    Expand the QuerySet.
     Recieves the filtered(allowed) stories and filters by the model fields which
     correspond to the triggering content labels
     """
@@ -524,7 +531,7 @@ def filter_in_review(files):
     """ Filter stories that are in review """
     return [file for file in files if file['metadata']['data']['moderation_status'] == "in review" or
             (file['metadata']['data']['moderation_status'] == "not reviewed" and "public" in file['metadata']['tags'])]
-    
+
 def paginate_stories(request, paginator, page):
     """ Paginate stories """
     stories_page = request.GET.get(page)
@@ -533,3 +540,34 @@ def paginate_stories(request, paginator, page):
     stories.page_range = paginator.get_elided_page_range(stories.number, on_each_side=2, on_ends=1)
     stories.offset = stories.start_index() - 1
     return stories
+
+def structure_change_reply(reply):
+    structured = None
+    try:
+        structured = json.loads(reply)
+    except json.JSONDecodeError:
+        if reply != "":
+            text = '[{{"reason": "Text", "text":"{}"}}]'.format(reply)
+            structured = json.loads(text)
+        else:
+            structured = ""
+    return structured
+
+def get_latest_change_reply(experience_id):
+    change_reply = ""
+    changed_at = None
+    # We catch exceptions in case the experience doesn't exist
+    # in the local database
+    try:
+        pe = PublicExperience.objects.get(experience_id=experience_id)
+        if pe.experiencehistory_set.count() > 0:
+            latest = pe.experiencehistory_set.order_by(
+                "-changed_at"
+            )[0]
+            change_reply = structure_change_reply(latest.change_reply)
+            changed_at = latest.changed_at
+    except PublicExperience.DoesNotExist:
+        pass
+
+    return change_reply, changed_at
+
