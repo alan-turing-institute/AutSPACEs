@@ -571,3 +571,11 @@ def get_latest_change_reply(experience_id):
 
     return change_reply, changed_at
 
+def number_experiences(experiences, items_per_page):
+    """Number experiences so that stories have continous numbering across pages"""
+    # Calculate the start index for the current page
+    start_index = (experiences.number - 1) * items_per_page
+    # Add the start index to each experience in page_experiences
+    for i, experience in enumerate(experiences, start=start_index):
+        experience.number = i + 1
+    return experiences

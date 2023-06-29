@@ -45,6 +45,7 @@ from .helpers import (
     paginate_stories,
     get_latest_change_reply,
     structure_change_reply,
+    number_experiences,
 )
 
 from server.apps.users.helpers import (
@@ -368,14 +369,9 @@ def list_public_experiences(request):
     paginator = Paginator(experiences.order_by("created_at"), items_per_page)
     # Paginate experiences
     page_experiences = paginate_stories(request, paginator, "page")
-
-    # Set numbers so that stories have continous numbering across pages
-    # Calculate the start index for the current page
-    start_index = (page_experiences.number - 1) * items_per_page
-    # Add the start index to each experience in page_experiences
-    for i, experience in enumerate(page_experiences, start=start_index):
-        experience.number = i + 1
-
+    # Set continuous numbering across pages
+    page_experiences = number_experiences(page_experiences, items_per_page)
+    
     exp_context = {"experiences": page_experiences}
 
     context = {**tts, **exp_context, **search_context}
@@ -456,7 +452,7 @@ def my_stories(request):
 
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE
-
+        
         # For each category, filter stories and create pagination
         paginator_public = Paginator(
             filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
