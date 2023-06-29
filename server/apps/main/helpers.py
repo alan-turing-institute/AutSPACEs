@@ -571,11 +571,21 @@ def get_latest_change_reply(experience_id):
 
     return change_reply, changed_at
 
-def number_experiences(experiences, items_per_page):
-    """Number experiences so that stories have continous numbering across pages"""
+def number_stories(stories, items_per_page):
+    """
+    Adds a number field to each story for continuous numbering across pages
+    
+    Stories can be either PublicExperience objects (for the shared stories page) 
+    or dictionaries (for the my_stories page)
+    """
     # Calculate the start index for the current page
-    start_index = (experiences.number - 1) * items_per_page
+    start_index = (stories.number - 1) * items_per_page
     # Add the start index to each experience in page_experiences
-    for i, experience in enumerate(experiences, start=start_index):
-        experience.number = i + 1
-    return experiences
+    for i, story in enumerate(stories, start=start_index):
+        if isinstance(story, PublicExperience):
+            story.number = i + 1
+        elif isinstance(story, dict):
+            story["number"] = i + 1
+        else:
+            print(f'Unexpected type for story: {type(story)}')
+    return stories

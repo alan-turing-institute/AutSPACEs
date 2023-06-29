@@ -20,7 +20,7 @@
 
 {% for file in files %}
 <tr>
-    <th scope="row">{{ forloop.counter }}</th>
+    <th scope="row">{{ file.number }}</th>
     <td>{% firstof file.metadata.description "notitle" %}</td>
     <td>{% firstof file.created|naturaltime "Creation date unknown" %}</td>
     <td>

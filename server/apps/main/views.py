@@ -45,7 +45,7 @@ from .helpers import (
     paginate_stories,
     get_latest_change_reply,
     structure_change_reply,
-    number_experiences,
+    number_stories,
 )
 
 from server.apps.users.helpers import (
@@ -370,7 +370,7 @@ def list_public_experiences(request):
     # Paginate experiences
     page_experiences = paginate_stories(request, paginator, "page")
     # Set continuous numbering across pages
-    page_experiences = number_experiences(page_experiences, items_per_page)
+    page_experiences = number_stories(page_experiences, items_per_page)
     
     exp_context = {"experiences": page_experiences}
 
@@ -453,33 +453,42 @@ def my_stories(request):
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE
         
-        # For each category, filter stories and create pagination
+        # For each category, filter stories, create pagination and add continuous numbering
+        
+        # Public stories
         paginator_public = Paginator(
             filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
             items_per_page,
         )
         public_stories = paginate_stories(request, paginator_public, "page_public")
-
+        public_stories = number_stories(public_stories, items_per_page)
+       
+        # In review stories
         paginator_review = Paginator(
             filter_in_review(filter_by_tag(files, "public")), items_per_page
         )
         in_review_stories = paginate_stories(
             request, paginator_review, "page_review"
         )
+        in_review_stories = number_stories(in_review_stories, items_per_page)
 
+        # Rejected stories
         paginator_rejected = Paginator(
             filter_by_moderation_status(files, "rejected"), items_per_page
         )
         rejected_stories = paginate_stories(
             request, paginator_rejected, "page_rejected"
         )
+        rejected_stories = number_stories(rejected_stories, items_per_page)
 
+        # Private stories
         paginator_private = Paginator(
             filter_by_tag(files, "not public"), items_per_page
         )
         private_stories = paginate_stories(
             request, paginator_private, "page_private"
         )
+        private_stories = number_stories(private_stories, items_per_page)
 
         return render(
             request,
