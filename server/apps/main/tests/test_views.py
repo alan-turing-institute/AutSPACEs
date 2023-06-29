@@ -672,8 +672,63 @@ class Views(TestCase):
         response = c.get("/main/public_experiences/?page=2")
 
         # The second page should have 6 experiences
-        print(f'length of experiences: {len(response.context["experiences"])}')
         assert len(response.context["experiences"]) == 6
 
         # The first item on the second page should be the 11th item overall
         assert response.context["experiences"][0].number == 11
+            
+
+    # Test pagination in my_stories, uses separate tests for page 1 / page 2 to avoid cassette issues
+    @vcr.use_cassette(
+            "server/apps/main/tests/fixtures/pag_mystories.yaml",
+            record_mode="none",
+            filter_query_parameters=["access_token"],
+            match_on=["path"],
+    )
+    # This casette contanis 64 stories. 56 are public, 8 are private
+    # of the 56 public stories:
+    # 2 are in review
+    # 22 are not reviewed
+    # 25 are approved
+    # 7 are rejected
+    def test_my_stories_pagination_page1(self):
+        c = Client()
+        c.force_login(self.user_b)
+        
+        response = c.get("/main/my_stories/")
+        num_items_per_page = 10
+        # number of stories per category recorded in the casette
+        pages = {"public_stories": 25, "in_review_stories": 24, "rejected_stories": 7, "private_stories": 8}
+        for d in response.context[0]:
+            for page, n_stories in pages.items():
+                if d.keys().__contains__(page):
+                    stories = d[page]
+                    # check pagination
+                    assert len(stories) == min(num_items_per_page, n_stories)
+                    # check story numbering
+                    assert stories[0]['number'] == 1                                   # first story on page 1 has number 1
+                    assert stories[-1]['number'] == min(num_items_per_page, n_stories) # last story on page 1 has correct number
+    
+    @vcr.use_cassette(
+            "server/apps/main/tests/fixtures/pag_mystories.yaml",
+            record_mode="none",
+            filter_query_parameters=["access_token"],
+            match_on=["path"],
+    )
+    # Same cassette as above
+    def test_my_stories_pagination_page2(self):
+        c = Client()
+        c.force_login(self.user_b)
+        # checks page 2 for public and in_review stories
+        response = c.get("/main/my_stories/?page_public=2&page_review=2")
+        num_items_per_page = 10
+        # number of stories per category recorded in the casette, only test stories with multiple pages
+        pages = {"public_stories": 25, "in_review_stories": 24}
+        for d in response.context[0]:
+            for page, n_stories in pages.items():
+                if d.keys().__contains__(page):
+                    stories = d[page]
+                    # check pagination
+                    assert len(stories) == min(num_items_per_page, n_stories)
+                    # check story numbering
+                    assert stories[0]['number'] == num_items_per_page + 1  # first story on page 1 is continuation of page 1

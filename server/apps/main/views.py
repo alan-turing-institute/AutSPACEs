@@ -439,7 +439,7 @@ def moderation_list(request):
     else:
         return redirect("main:overview")
 
-
+#@vcr.use_cassette("server/apps/main/tests/fixtures/pag_mystories.yaml", filter_query_parameters=['access_token'])
 def my_stories(request):
     """
     List all stories that are associated with the OpenHumans project page.
@@ -467,27 +467,21 @@ def my_stories(request):
         paginator_review = Paginator(
             filter_in_review(filter_by_tag(files, "public")), items_per_page
         )
-        in_review_stories = paginate_stories(
-            request, paginator_review, "page_review"
-        )
+        in_review_stories = paginate_stories(request, paginator_review, "page_review")
         in_review_stories = number_stories(in_review_stories, items_per_page)
 
         # Rejected stories
         paginator_rejected = Paginator(
             filter_by_moderation_status(files, "rejected"), items_per_page
         )
-        rejected_stories = paginate_stories(
-            request, paginator_rejected, "page_rejected"
-        )
+        rejected_stories = paginate_stories(request, paginator_rejected, "page_rejected")
         rejected_stories = number_stories(rejected_stories, items_per_page)
 
         # Private stories
         paginator_private = Paginator(
             filter_by_tag(files, "not public"), items_per_page
         )
-        private_stories = paginate_stories(
-            request, paginator_private, "page_private"
-        )
+        private_stories = paginate_stories(request, paginator_private, "page_private")
         private_stories = number_stories(private_stories, items_per_page)
 
         return render(
