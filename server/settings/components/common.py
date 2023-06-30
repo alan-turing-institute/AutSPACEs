@@ -22,8 +22,9 @@ OPENHUMANS_APP_BASE_URL = config('OPENHUMANS_APP_BASE_URL')
 OPENHUMANS_CLIENT_ID = config('OPENHUMANS_CLIENT_ID')
 OPENHUMANS_CLIENT_SECRET = config('OPENHUMANS_CLIENT_SECRET')
 
-# After log in, send users to the home page.
-LOGIN_REDIRECT_URL = 'main:overview'
+# After log in, send users to the login page to be redirected.
+LOGIN_REDIRECT_URL = 'main:login'
+OPENHUMANS_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 # Project's page on Open Humans
 OH_PROJ_PAGE = config('OH_PROJ_PAGE')
@@ -37,6 +38,7 @@ INSTALLED_APPS: Tuple[str, ...] = (
 
     # Your apps go here:
     'server.apps.main',
+    'server.apps.users',
 
     # Default django apps:
     'django.contrib.auth',

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 import vcr
 import urllib
 from server.apps.main.forms import ShareExperienceForm
-
+from server.apps.users.models import UserProfile
 
 from openhumans.models import OpenHumansMember
 
@@ -38,6 +38,13 @@ class Views(TestCase):
         self.user_b.openhumansmember = self.oh_b
         self.user_b.set_password("password_a")
         self.user_b.save()
+        # Create user C
+        self.oh_c = OpenHumansMember.create(oh_id=23456789, data=data)
+        self.oh_c.save()
+        self.user_c = self.oh_b.user
+        self.user_c.openhumansmember = self.oh_b
+        self.user_c.set_password("password_c")
+        self.user_c.save()
 
         # Each with a public experience
         pe_data = {
@@ -118,6 +125,23 @@ class Views(TestCase):
             experience = self.pe_g,
             **moderation_history_empty
         )
+        # User profile for user C
+        user_profile = {
+           "profile_submitted": False,
+           "age_bracket": "18-25",
+           "gender": "see_description",
+           "autistic_identification": "unspecified",
+           "description": "Timelord",
+           "location": "Gallifrey",
+           "comms_review": False,
+           "abuse": True,
+           "violence": False,
+           "drug": False,
+           "mentalhealth": False,
+           "negbody": False,
+           "other": False,
+        }
+        self.up_a = UserProfile.objects.create(user=self.user_c, **user_profile)
 
     def test_confirm_page(self):
         c = Client()
@@ -552,6 +576,49 @@ class Views(TestCase):
             if item.keys().__contains__("experiences"):
                 assert len(item['experiences']) == 1
 
+    def test_list_public_exp_default_triggers(self):
+        """
+        Checks the public experience search given default triggers in the profile
+        """
+        c = Client()
+        c.force_login(self.user_c)
+        response = c.post("/main/public_experiences/")
+
+        # We're not going to set the abuse flag, but it should be pulled in from the user profile
+        # There should be 2 stories one with no tags one with the abuse tag
+        search_response_abuse = c.get("/main/public_experiences/")
+        for item in search_response_abuse.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 2
+
+        # Now if we perform a search with empty search term the profile should no longer be applied
+        # This shold be 1 story with no triggering labels
+        search_response_abuse = c.get("/main/public_experiences/", {"searched": ""})
+        for item in search_response_abuse.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
+
+        # A specific search with specific flags should also ignore the profile labels
+        # Results for story containing caramel when the abuse trigger label is set is 1
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "abuse": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) == 1
+
+        # A specific search with specific flags should also ignore the profile labels
+        # Results for story containing caramel when the abuse trigger label is unset is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "violence": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) == 0
+
+        # A specific search with no flags should also ignore the profile labels
+        # Results for story containing caramel when the abuse trigger label is unset is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel"})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) == 0
+
     def test_single_story(self):
         c = Client()
         c.force_login(self.user_a)
@@ -572,12 +639,12 @@ class Views(TestCase):
         # Check that rejected story isn't shown
         r_rejected_story = c.get("/main/single_story/8765_3/")
         self.assertRedirects(r_rejected_story, "/main/overview")
-     
+
     def test_list_public_exp_pagination(self):
         c = Client()
         c.force_login(self.user_a)
 
-        # Creating 15 more experiences to have a total of 16 public, non-triggering experiences. 
+        # Creating 15 more experiences to have a total of 16 public, non-triggering experiences.
         # Assuming items_per_page = 10, we should have 2 pages.
         pe_data = {
         "experience_text": "This is my experience",

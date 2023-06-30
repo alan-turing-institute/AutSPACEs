@@ -12,8 +12,10 @@ from django.db.models import Q
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms.models import model_to_dict
 
 from .models import PublicExperience
+from server.apps.users.models import UserProfile
 
 from .forms import ShareExperienceForm, ModerateExperienceForm
 
@@ -43,6 +45,10 @@ from .helpers import (
     paginate_stories,
     get_latest_change_reply,
     structure_change_reply,
+)
+
+from server.apps.users.helpers import (
+    user_profile_exists,
 )
 
 logger = logging.getLogger(__name__)
@@ -118,10 +124,26 @@ def overview(request):
         context = {
             "oh_id": oh_member.oh_id,
             "oh_member": oh_member,
+            "oh_user": oh_member.user,
             "oh_proj_page": settings.OH_PROJ_PAGE,
         }
         return render(request, "main/home.html", context=context)
     return redirect("index")
+
+def login_user(request):
+    """
+    Page the user arrives at immediately after logging in, expected to
+    immediately redirect to somewhere else.
+    """
+    if request.user.is_authenticated:
+        if not user_profile_exists(user=request.user):
+            # This is the first time we've logged into the site
+            # We use update_or_create() rather than create() to avoid a race
+            # condition on existence
+            UserProfile.objects.update_or_create(user=request.user)
+            return redirect("users:greetings")
+
+    return redirect("main:overview")
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/share_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
@@ -293,7 +315,7 @@ def list_public_experiences(request):
 
     # Default is to show non-triggering content only
     all_triggers = request.GET.get("all_triggers", False)
-   
+
     if all_triggers:
         allowed_triggers = {
             "abuse",
@@ -305,11 +327,19 @@ def list_public_experiences(request):
         }
     else:
         # Check the allowed triggers
-        allowed_triggers = request.GET.keys()
-        
+        allowed_triggers = set(request.GET.keys())
+
+    if "searched" not in request.GET:
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            user_data = model_to_dict(profile)
+            allowed_triggers = set([key for key in user_data if user_data[key]])
+        except UserProfile.DoesNotExist:
+            pass
+
     # Get a list of allowed triggers
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
-    
+
     tts = {}
     for trigger in triggers_to_show:
         trigger_check = f"check{trigger}"
@@ -333,19 +363,19 @@ def list_public_experiences(request):
 
     #  Define the number of experiences to show per page
     items_per_page = settings.EXPERIENCES_PER_PAGE
-    
+
     # Create a Paginator object, order by time of creation to avoid pagination issues
     paginator = Paginator(experiences.order_by("created_at"), items_per_page)
     # Paginate experiences
     page_experiences = paginate_stories(request, paginator, "page")
-  
+
     # Set numbers so that stories have continous numbering across pages
     # Calculate the start index for the current page
     start_index = (page_experiences.number - 1) * items_per_page
     # Add the start index to each experience in page_experiences
     for i, experience in enumerate(page_experiences, start=start_index):
         experience.number = i + 1
-    
+
     exp_context = {"experiences": page_experiences}
 
     context = {**tts, **exp_context, **search_context}

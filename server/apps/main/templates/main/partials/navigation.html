@@ -14,7 +14,7 @@
             <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What is Autism</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item dropdown" style="padding: 0 0">
+          <li class="nav-item dropdown nav-nopadding">
             <a class="nav-link dropdown-toggle nav-content" href="#" id="experienceDropdownMenuLink" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Experiences
@@ -26,7 +26,7 @@
           </li>
           {% is_moderator user as moderator %}
           {% if moderator %}
-          <li class="nav-item dropdown" style="padding: 0 0">
+          <li class="nav-item dropdown nav-nopadding">
             <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Moderation
@@ -61,12 +61,23 @@
 
 
         {% if user.is_authenticated %}
-          <form class="form-inline my-2 my-lg-0" action="{% url 'main:logout' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-light btn-lg my-2 mr-sm-0" type="submit">Log out</button>
-          </form>
+        <ul class="navbar-nav nav-right">
+          <li class="nav-item dropdown nav-nopadding">
+            <a class="nav-link dropdown-toggle nav-content nav-account" href="#" id="accountDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="accountDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
+              <form class="form-inline nav-nomargin" action="{% url 'main:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="dropdown-item" type="submit">Log out</button>
+              </form>
+            </div>
+          </li>
+        </ul>
         {% elif not page_status == "registration" %}
-          <a class="nav-content nav-item nav-link log-link" style="color: #fff" href="{{ auth_url }}">Log In</a>
+          <a class="nav-content nav-item nav-link log-link nav-account" href="{{ auth_url }}">Log In</a>
           <a href="{% url 'main:registration' %}" class="nav-content nav-item btn btn-lg btn-light">Register</a>
         {% endif %}
       </div>
