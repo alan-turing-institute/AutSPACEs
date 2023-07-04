@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for server/apps/main/helpers.py: 100%</title>
+    <title>Coverage for server/apps/main/helpers.py: 99%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="coverage_html.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>server/apps/main/helpers.py</b>:
-            <span class="pc_cov">100%</span>
+            <span class="pc_cov">99%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -54,9 +54,9 @@
             </div>
         </aside>
         <h2>
-            <span class="text">215 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">215<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">0<span class="text"> missing</span></button>
+            <span class="text">224 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">223<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">1<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
         <p class="text">
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_b172dc9ee102875b_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-06-30 15:07 +0000
+            created at 2023-07-04 08:28 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -623,36 +623,54 @@
     <p class="run"><span class="n"><a id="t541" href="#t541">541</a></span><span class="t">    <span class="nam">stories</span><span class="op">.</span><span class="nam">offset</span> <span class="op">=</span> <span class="nam">stories</span><span class="op">.</span><span class="nam">start_index</span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t542" href="#t542">542</a></span><span class="t">    <span class="key">return</span> <span class="nam">stories</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t543" href="#t543">543</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t544" href="#t544">544</a></span><span class="t"><span class="key">def</span> <span class="nam">structure_change_reply</span><span class="op">(</span><span class="nam">reply</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t545" href="#t545">545</a></span><span class="t">    <span class="nam">structured</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t546" href="#t546">546</a></span><span class="t">    <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t547" href="#t547">547</a></span><span class="t">        <span class="nam">structured</span> <span class="op">=</span> <span class="nam">json</span><span class="op">.</span><span class="nam">loads</span><span class="op">(</span><span class="nam">reply</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t548" href="#t548">548</a></span><span class="t">    <span class="key">except</span> <span class="nam">json</span><span class="op">.</span><span class="nam">JSONDecodeError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t549" href="#t549">549</a></span><span class="t">        <span class="key">if</span> <span class="nam">reply</span> <span class="op">!=</span> <span class="str">""</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t550" href="#t550">550</a></span><span class="t">            <span class="nam">text</span> <span class="op">=</span> <span class="str">'[{{"reason": "Text", "text":"{}"}}]'</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="nam">reply</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t551" href="#t551">551</a></span><span class="t">            <span class="nam">structured</span> <span class="op">=</span> <span class="nam">json</span><span class="op">.</span><span class="nam">loads</span><span class="op">(</span><span class="nam">text</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t552" href="#t552">552</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t553" href="#t553">553</a></span><span class="t">            <span class="nam">structured</span> <span class="op">=</span> <span class="str">""</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t554" href="#t554">554</a></span><span class="t">    <span class="key">return</span> <span class="nam">structured</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t555" href="#t555">555</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t556" href="#t556">556</a></span><span class="t"><span class="key">def</span> <span class="nam">get_latest_change_reply</span><span class="op">(</span><span class="nam">experience_id</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t557" href="#t557">557</a></span><span class="t">    <span class="nam">change_reply</span> <span class="op">=</span> <span class="str">""</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t558" href="#t558">558</a></span><span class="t">    <span class="nam">changed_at</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t559" href="#t559">559</a></span><span class="t">    <span class="com"># We catch exceptions in case the experience doesn't exist</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t560" href="#t560">560</a></span><span class="t">    <span class="com"># in the local database</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t561" href="#t561">561</a></span><span class="t">    <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t562" href="#t562">562</a></span><span class="t">        <span class="nam">pe</span> <span class="op">=</span> <span class="nam">PublicExperience</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">experience_id</span><span class="op">=</span><span class="nam">experience_id</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t563" href="#t563">563</a></span><span class="t">        <span class="key">if</span> <span class="nam">pe</span><span class="op">.</span><span class="nam">experiencehistory_set</span><span class="op">.</span><span class="nam">count</span><span class="op">(</span><span class="op">)</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t564" href="#t564">564</a></span><span class="t">            <span class="nam">latest</span> <span class="op">=</span> <span class="nam">pe</span><span class="op">.</span><span class="nam">experiencehistory_set</span><span class="op">.</span><span class="nam">order_by</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t565" href="#t565">565</a></span><span class="t">                <span class="str">"-changed_at"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t566" href="#t566">566</a></span><span class="t">            <span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t567" href="#t567">567</a></span><span class="t">            <span class="nam">change_reply</span> <span class="op">=</span> <span class="nam">structure_change_reply</span><span class="op">(</span><span class="nam">latest</span><span class="op">.</span><span class="nam">change_reply</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t568" href="#t568">568</a></span><span class="t">            <span class="nam">changed_at</span> <span class="op">=</span> <span class="nam">latest</span><span class="op">.</span><span class="nam">changed_at</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t569" href="#t569">569</a></span><span class="t">    <span class="key">except</span> <span class="nam">PublicExperience</span><span class="op">.</span><span class="nam">DoesNotExist</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t570" href="#t570">570</a></span><span class="t">        <span class="key">pass</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t571" href="#t571">571</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t572" href="#t572">572</a></span><span class="t">    <span class="key">return</span> <span class="nam">change_reply</span><span class="op">,</span> <span class="nam">changed_at</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t573" href="#t573">573</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t544" href="#t544">544</a></span><span class="t"><span class="key">def</span> <span class="nam">number_stories</span><span class="op">(</span><span class="nam">stories</span><span class="op">,</span> <span class="nam">items_per_page</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t545" href="#t545">545</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t546" href="#t546">546</a></span><span class="t"><span class="str">    Adds a number field to each story for continuous numbering across pages</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t547" href="#t547">547</a></span><span class="t"><span class="str">    </span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t548" href="#t548">548</a></span><span class="t"><span class="str">    Stories can be either PublicExperience objects (for the shared stories page) </span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t549" href="#t549">549</a></span><span class="t"><span class="str">    or dictionaries (for the my_stories page)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t550" href="#t550">550</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t551" href="#t551">551</a></span><span class="t">    <span class="com"># Calculate the start index for the current page</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t552" href="#t552">552</a></span><span class="t">    <span class="nam">start_index</span> <span class="op">=</span> <span class="op">(</span><span class="nam">stories</span><span class="op">.</span><span class="nam">number</span> <span class="op">-</span> <span class="num">1</span><span class="op">)</span> <span class="op">*</span> <span class="nam">items_per_page</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t553" href="#t553">553</a></span><span class="t">    <span class="com"># Add the start index to each experience in page_experiences</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t554" href="#t554">554</a></span><span class="t">    <span class="key">for</span> <span class="nam">i</span><span class="op">,</span> <span class="nam">story</span> <span class="key">in</span> <span class="nam">enumerate</span><span class="op">(</span><span class="nam">stories</span><span class="op">,</span> <span class="nam">start</span><span class="op">=</span><span class="nam">start_index</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t555" href="#t555">555</a></span><span class="t">        <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">story</span><span class="op">,</span> <span class="nam">PublicExperience</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t556" href="#t556">556</a></span><span class="t">            <span class="nam">story</span><span class="op">.</span><span class="nam">number</span> <span class="op">=</span> <span class="nam">i</span> <span class="op">+</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t557" href="#t557">557</a></span><span class="t">        <span class="key">elif</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">story</span><span class="op">,</span> <span class="nam">dict</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t558" href="#t558">558</a></span><span class="t">            <span class="nam">story</span><span class="op">[</span><span class="str">"number"</span><span class="op">]</span> <span class="op">=</span> <span class="nam">i</span> <span class="op">+</span> <span class="num">1</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t559" href="#t559">559</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t560" href="#t560">560</a></span><span class="t">            <span class="key">raise</span> <span class="nam">TypeError</span><span class="op">(</span><span class="str">f'Unexpected type for story: {type(story)}'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t561" href="#t561">561</a></span><span class="t">    <span class="key">return</span> <span class="nam">stories</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t562" href="#t562">562</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t563" href="#t563">563</a></span><span class="t"><span class="key">def</span> <span class="nam">structure_change_reply</span><span class="op">(</span><span class="nam">reply</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t564" href="#t564">564</a></span><span class="t">    <span class="nam">structured</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t565" href="#t565">565</a></span><span class="t">    <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t566" href="#t566">566</a></span><span class="t">        <span class="nam">structured</span> <span class="op">=</span> <span class="nam">json</span><span class="op">.</span><span class="nam">loads</span><span class="op">(</span><span class="nam">reply</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t567" href="#t567">567</a></span><span class="t">    <span class="key">except</span> <span class="nam">json</span><span class="op">.</span><span class="nam">JSONDecodeError</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t568" href="#t568">568</a></span><span class="t">        <span class="key">if</span> <span class="nam">reply</span> <span class="op">!=</span> <span class="str">""</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t569" href="#t569">569</a></span><span class="t">            <span class="nam">text</span> <span class="op">=</span> <span class="str">'[{{"reason": "Text", "text":"{}"}}]'</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="nam">reply</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t570" href="#t570">570</a></span><span class="t">            <span class="nam">structured</span> <span class="op">=</span> <span class="nam">json</span><span class="op">.</span><span class="nam">loads</span><span class="op">(</span><span class="nam">text</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t571" href="#t571">571</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t572" href="#t572">572</a></span><span class="t">            <span class="nam">structured</span> <span class="op">=</span> <span class="str">""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t573" href="#t573">573</a></span><span class="t">    <span class="key">return</span> <span class="nam">structured</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t574" href="#t574">574</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t575" href="#t575">575</a></span><span class="t"><span class="key">def</span> <span class="nam">get_latest_change_reply</span><span class="op">(</span><span class="nam">experience_id</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t576" href="#t576">576</a></span><span class="t">    <span class="nam">change_reply</span> <span class="op">=</span> <span class="str">""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t577" href="#t577">577</a></span><span class="t">    <span class="nam">changed_at</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t578" href="#t578">578</a></span><span class="t">    <span class="com"># We catch exceptions in case the experience doesn't exist</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t579" href="#t579">579</a></span><span class="t">    <span class="com"># in the local database</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t580" href="#t580">580</a></span><span class="t">    <span class="key">try</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t581" href="#t581">581</a></span><span class="t">        <span class="nam">pe</span> <span class="op">=</span> <span class="nam">PublicExperience</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">experience_id</span><span class="op">=</span><span class="nam">experience_id</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t582" href="#t582">582</a></span><span class="t">        <span class="key">if</span> <span class="nam">pe</span><span class="op">.</span><span class="nam">experiencehistory_set</span><span class="op">.</span><span class="nam">count</span><span class="op">(</span><span class="op">)</span> <span class="op">></span> <span class="num">0</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t583" href="#t583">583</a></span><span class="t">            <span class="nam">latest</span> <span class="op">=</span> <span class="nam">pe</span><span class="op">.</span><span class="nam">experiencehistory_set</span><span class="op">.</span><span class="nam">order_by</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t">                <span class="str">"-changed_at"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t">            <span class="op">)</span><span class="op">[</span><span class="num">0</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t586" href="#t586">586</a></span><span class="t">            <span class="nam">change_reply</span> <span class="op">=</span> <span class="nam">structure_change_reply</span><span class="op">(</span><span class="nam">latest</span><span class="op">.</span><span class="nam">change_reply</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t">            <span class="nam">changed_at</span> <span class="op">=</span> <span class="nam">latest</span><span class="op">.</span><span class="nam">changed_at</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t588" href="#t588">588</a></span><span class="t">    <span class="key">except</span> <span class="nam">PublicExperience</span><span class="op">.</span><span class="nam">DoesNotExist</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t589" href="#t589">589</a></span><span class="t">        <span class="key">pass</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t590" href="#t590">590</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t591" href="#t591">591</a></span><span class="t">    <span class="key">return</span> <span class="nam">change_reply</span><span class="op">,</span> <span class="nam">changed_at</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -662,7 +680,7 @@
             <a id="nextFileLink" class="nav" href="d_b172dc9ee102875b_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-06-30 15:07 +0000
+            created at 2023-07-04 08:28 +0000
         </p>
     </div>
 </footer>
