@@ -1,0 +1,33 @@
+name: Feature request
+description: Suggest a new feature for AutSPACEs
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    attributes:
+      label: Feature for…
+      description: Is this a feature for the front-end or back-end?
+      multiple: false
+      options:
+        - Frontend
+        - Backend
+        - Both
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is the problem you want to solve?
+      description: Give a brief and clear description of the problem you want to would solve. 
+  - type: textarea
+    id: solution
+    attributes:
+      label: How do you want to solve the problem?
+      description: What is the solution you have in mind to solve this problem? 
+      placeholder: |
+        1. I propose solving the problem by doing…
+        1. These are the alternative solutions…
+        1. This solution could be preferred because…
+  - type: textarea
+    id: comment
+    attributes:
+      label: Other comments
+      description: Add any other context about the problem or solution here
