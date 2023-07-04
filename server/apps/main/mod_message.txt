@@ -1,0 +1,21 @@
+Your story on AutSPACEs has been moderated
+Dear AutSPACEs community member,
+
+Thank you for submitting the following story to the AutSPACEs platform:
+
+"{title}"
+
+The moderation status of your story has changed. To see the latest information for your story, please visit the AutSPACEs site and navigate to the "My Stories" page.
+
+Alternatively, to go directly to the story, select this link:
+
+{story}
+
+Thank you again for contributing to the AutSPACES community.
+
+Best wishes from the AutSPACEs community.
+
+You can disable these alerts at any time from your profile page:
+
+{profile}
+

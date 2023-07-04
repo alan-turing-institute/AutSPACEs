@@ -46,6 +46,8 @@ from .helpers import (
     get_latest_change_reply,
     structure_change_reply,
     number_stories,
+    get_moderator_message,
+    message_wrap,
 )
 
 from server.apps.users.helpers import (
@@ -371,7 +373,7 @@ def list_public_experiences(request):
     page_experiences = paginate_stories(request, paginator, "page")
     # Set continuous numbering across pages
     page_experiences = number_stories(page_experiences, items_per_page)
-    
+
     exp_context = {"experiences": page_experiences}
 
     context = {**tts, **exp_context, **search_context}
@@ -452,9 +454,9 @@ def my_stories(request):
 
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE
-        
+
         # For each category, filter stories, create pagination and add continuous numbering
-        
+
         # Public stories
         paginator_public = Paginator(
             filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
@@ -462,7 +464,7 @@ def my_stories(request):
         )
         public_stories = paginate_stories(request, paginator_public, "page_public")
         public_stories = number_stories(public_stories, items_per_page)
-       
+
         # In review stories
         paginator_review = Paginator(
             filter_in_review(filter_by_tag(files, "public")), items_per_page
@@ -498,7 +500,25 @@ def my_stories(request):
         return redirect("main:overview")
 
 def moderate_experience(request, uuid):
-    """Moderate a single experience."""
+    """
+    Moderate a single experience.
+
+    If the moderation status changes to approved or rejected, a message will be
+    sent to users who opt to receive them.
+
+    The message is stored in the file "server/apps/main/mod_message.txt" in the
+    following format:
+
+    1. First line is the message subject.
+    2. All following lines are the message body.
+    3. The following substitutions will be made:
+         i. {story} - the URL of the view story page for this story.
+        ii. {profile} - the URL of the user's profile page.
+       iii. {title} - the title of the story.
+        iv. {status} - the new review status (Accepted, Rejected} of the story.
+    4. Paragraphs in the body of the message will be reformatted to a width of
+       80 charachters.
+    """
     if request.user.is_authenticated and is_moderator(request.user):
         model = PublicExperience.objects.get(experience_id=uuid)
         if request.method == "POST":
@@ -538,6 +558,35 @@ def moderate_experience(request, uuid):
             except Exception:
                 # if user writing E has deauthorized autspaces, delete public experience
                 delete_PE(uuid=uuid, ohmember=user_OH_member)
+
+            # send a message to the author if they've requested it
+            moderation_status = data.get("moderation_status", "")
+            moderation_string = moderation_status.title()
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                if (profile.comms_review and moderation_prior != moderation_status
+                    and moderation_status in ["approved", "rejected"]):
+                    story_url = "{}/main/view/{}".format(settings.OPENHUMANS_APP_BASE_URL,
+                        model.experience_id)
+                    profile_url = "{}/users/profile/".format(settings.OPENHUMANS_APP_BASE_URL)
+                    subject, message = get_moderator_message()
+                    substitutes = {
+                        "story": story_url,
+                        "profile": profile_url,
+                        "title": model.title_text,
+                        "status": moderation_string,
+                    }
+                    subject = subject.format(**substitutes)
+                    message = message.format(**substitutes)
+                    message = message_wrap(message, 80)
+                    request.user.openhumansmember.message(subject, message)
+
+            except Exception as e:
+                # This shouldn't happen, but if it does, it's reasonable to
+                # assume the user hasn't chosen to receive messages, or the
+                # message text file hasn't been created
+                print("Exception when attempting to send moderation message: {}".format(str(e)))
+
             # redirect to a new URL:
             status = choose_moderation_redirect(moderation_prior)
             return redirect(

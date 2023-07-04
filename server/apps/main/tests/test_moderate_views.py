@@ -1,9 +1,11 @@
+from unittest import mock
 from django.test import TestCase, Client, RequestFactory
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
 from django.contrib.auth.models import Group
 
 from server.apps.main.views import moderate_public_experiences
+from server.apps.users.models import UserProfile
 import vcr
 import json
 
@@ -37,11 +39,19 @@ class ModerationViewTests(TestCase):
         self.moderator_oh_user.save()
         # set password for login with Client()
         self.moderator_user = self.moderator_oh_user.user
-        self.moderator_user.set_password('testpassword')
+        self.moderator_user.set_password('testpassword1')
+        # create moderator OH object with user profile
+        self.moderator_oh_user_with_profile = OpenHumansMember.create(oh_id="34567891",data=data)
+        self.moderator_oh_user_with_profile.save()
+        # set password for login with Client()
+        self.moderator_user_with_profile = self.moderator_oh_user_with_profile.user
+        self.moderator_user_with_profile.set_password('testpassword2')
         # create moderator group
         self.moderator_group = Group.objects.create(name='Moderators')
         self.moderator_group.user_set.add(self.moderator_user)
         self.moderator_user.save()
+        self.moderator_group.user_set.add(self.moderator_user_with_profile)
+        self.moderator_user_with_profile.save()
         # create public expierence that needs review
         pe_data = {
             'experience_text': "test",
@@ -60,8 +70,23 @@ class ModerationViewTests(TestCase):
             experience = self.pe_a,
             **moderation_history
         )
-
-
+        # User profile for user moderator_user_with_profile
+        user_profile = {
+           "profile_submitted": False,
+           "age_bracket": "18-25",
+           "gender": "see_description",
+           "autistic_identification": "unspecified",
+           "description": "Timelord",
+           "location": "Gallifrey",
+           "comms_review": False,
+           "abuse": False,
+           "violence": False,
+           "drug": False,
+           "mentalhealth": False,
+           "negbody": False,
+           "other": False,
+        }
+        self.moderator_profile = UserProfile.objects.create(user=self.moderator_user_with_profile, **user_profile)
 
     # test moderation pages as logged-out user
 
@@ -399,3 +424,76 @@ class ModerationViewTests(TestCase):
         self.assertEqual(eh[1].change_comments, "No Comment Made")
         self.assertEqual(eh[1].change_reply, "")
 
+    @vcr.use_cassette(
+        'server/apps/main/tests/fixtures/moderate_experience.yaml',
+        record_mode="none",
+        filter_query_parameters=['access_token'],
+        match_on=['path'],
+    )
+    def moderate_message(self, status_prior, status_post, comms_review):
+        """
+        A helper method for testing message sending with different moderation conditions
+        """
+        # Ensure the user profile has the correct message send flag
+        self.moderator_profile.comms_review = comms_review
+        self.moderator_profile.save()
+
+        c = Client()
+        c.force_login(self.moderator_user_with_profile)
+        # Test uses cassette to allow fake-upload to OH
+        response = c.post("/main/moderate/test-test-test/",
+                        {
+                            "mentalhealth": True,
+                            "other": "New trigger",
+                            "moderation_status": status_post,
+                            "moderation_comments": "",
+                            "moderation_prior": status_prior,
+                        },
+                        follow=True)
+        # assert ending up on right page
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
+    @mock.patch('openhumans.models.OpenHumansMember.message')
+    def test_single_moderation_view_as_moderator_post_message_approved_send(self, mock_message):
+        """
+        Test that moderation change emails are sent if a post is approved
+        and the user wants them
+        """
+        self.moderate_message("not moderated", "approved", True)
+
+        # test that the message was sent
+        mock_message.assert_called_once()
+
+    @mock.patch('openhumans.models.OpenHumansMember.message')
+    def test_single_moderation_view_as_moderator_post_message_rejected_send(self, mock_message):
+        """
+        Test that moderation change emails are sent if a post is rejected
+        and the user wants them
+        """
+        self.moderate_message("not moderated", "rejected", True)
+
+        # test that the message was sent
+        mock_message.assert_called_once()
+
+    @mock.patch('openhumans.models.OpenHumansMember.message')
+    def test_single_moderation_view_as_moderator_post_message_no_change_no_send(self, mock_message):
+        """
+        Test that moderation change emails are not sent if the moderation status
+        doesn't change, even if the user wants moderation messages
+        """
+        self.moderate_message("approved", "approved", True)
+
+        # test that no message was sent
+        mock_message.assert_not_called()
+
+    @mock.patch('openhumans.models.OpenHumansMember.message')
+    def test_single_moderation_view_as_moderator_post_message_no_send(self, mock_message):
+        """
+        Test that moderation change emails are not sent if the user doesn't wants them
+        even if the moderation status changes
+        """
+        self.moderate_message("not moderated", "approved", False)
+
+        # test that no message was sent
+        mock_message.assert_not_called()

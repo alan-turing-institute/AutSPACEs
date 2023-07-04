@@ -3,6 +3,8 @@ import json
 import io
 import uuid
 import requests
+import os
+import textwrap
 from django.contrib.auth.models import Group
 from django.forms.models import model_to_dict
 from django.conf import settings
@@ -544,8 +546,8 @@ def paginate_stories(request, paginator, page):
 def number_stories(stories, items_per_page):
     """
     Adds a number field to each story for continuous numbering across pages
-    
-    Stories can be either PublicExperience objects (for the shared stories page) 
+
+    Stories can be either PublicExperience objects (for the shared stories page)
     or dictionaries (for the my_stories page)
     """
     # Calculate the start index for the current page
@@ -589,3 +591,21 @@ def get_latest_change_reply(experience_id):
         pass
 
     return change_reply, changed_at
+
+def get_moderator_message():
+    leaf_name = "mod_message.txt"
+    module_dir = os.path.dirname(__file__)
+    file_path = os.path.join(module_dir, leaf_name)
+    subject = ""
+    message = ""
+    with open(file_path, "r") as f:
+        subject = f.readline()
+        for line in f:
+            message += line
+    return subject, message
+
+def message_wrap(text, width):
+    """
+    Wrap the text to the given width, but retain paragraph breaks (empty lines)
+    """
+    return "\n".join(map(lambda para: "\n".join(textwrap.wrap(para, width)), text.split("\n")))
