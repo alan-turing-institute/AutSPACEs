@@ -1,0 +1,30 @@
+name: Bug report
+description: Report an issue with using AutSPACEs
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: describe
+    attributes:
+      label: Describe the bug
+      description: Please describe the bug, including any error messages you encounter. You can attach screenshots if available.
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce this behaviour.
+      placeholder: |
+        1. In this environment...
+        1. With this config...
+        1. Run '...'
+        1. See error...
+  - type: textarea
+    id: environment
+    attributes:
+      label: In which environment are you using AutSPACEs?
+      description: What OS and browser are you running to run/access AutSPACEs?
+  - type: textarea
+    id: comment
+    attributes:
+      label: Other comments
+      description: Add any other context about the problem here (e.g. expected behaviour)
