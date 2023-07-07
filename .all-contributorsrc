@@ -83,7 +83,7 @@
         "test",
         "code",
         "ideas",
-        "doc", 
+        "doc",
         "content",
         "talk",
         "audio",
@@ -442,6 +442,15 @@
         "content",
         "ideas",
         "review"
+      ]
+    },
+    {
+      "login": "obinnaofomah",
+      "name": "Obinna_Ofomah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112175827?v=4",
+      "profile": "https://github.com/obinnaofomah",
+      "contributions": [
+        "code"
       ]
     }
   ],
