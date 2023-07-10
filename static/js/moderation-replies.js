@@ -8,7 +8,24 @@ $(function() {
   var controlOpen = false
   var reasons = []
   // Initialise the reason section
+  try {
+    let moderation_reply = $("#id_moderation_reply").val()
+    if (moderation_reply) {
+      reasons = JSON.parse(moderation_reply) || []
+    }
+  } catch(e) {
+    console.log('Error parsing moderation reasons JSON: ' + e.message)
+    console.log('JSON string: "' + $("#id_moderation_reply").val() + '"');
+  }
+  applySeverityFormatting();
   generateReasons()
+
+  function applySeverityFormatting() {
+    // Style the menu items to match their severity
+    // This avoids us having to duplicate the severity info
+    control.find('[data-severity="red"]').addClass("moderation-red");
+    control.find('[data-severity="amber"]').addClass("moderation-amber");
+  }
 
   function forwardSelection(selection) {
     // Returns true if the selection was made forwards, otherwise false
@@ -56,7 +73,8 @@ $(function() {
     control.prop('text', text)
     controlOpen = true
     control.find(".addreason").on("click", function(event) {
-      addReason($(this).data("reason"), $(this).data("href"), text)
+      addReason($(this).data("reason"), $(this).data("href"),
+        $(this).data("severity"), text)
       hideReasons()
       event.stopPropagation()
     })
@@ -74,9 +92,9 @@ $(function() {
     document.getSelection().removeAllRanges()
   }
 
-  function addReason(reason, href, text) {
+  function addReason(reason, href, severity, text) {
     // Adds a moderation reason to the list
-    reasons.push({reason: reason, href: href, text: text})
+    reasons.push({reason: reason, href: href, severity: severity, text: text})
     generateReasons()
   }
 

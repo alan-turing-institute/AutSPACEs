@@ -1,7 +1,10 @@
+import json
+
 from django import forms
+from django.core.exceptions import ValidationError
 
 class ShareExperienceForm(forms.Form):
-        
+
 
     experience_text = forms.CharField(label='Please share your experience', strip=True,
 
@@ -120,7 +123,7 @@ class ModerateExperienceForm(forms.Form):
                                                               'class':'form-control'}))
     moderation_comments.group = 4
 
-    moderation_reply = forms.CharField(widget=forms.HiddenInput())
+    moderation_reply = forms.CharField(widget=forms.HiddenInput(), strip=True, required=False)
     moderation_reply.group = "hidden"
 
     moderation_prior = forms.CharField(widget=forms.HiddenInput())
@@ -148,3 +151,32 @@ class ModerateExperienceForm(forms.Form):
             mod_status = 'not reviewed'
 
         return mod_status
+
+    def clean_moderation_reply(self):
+        moderation_reply = self.cleaned_data['moderation_reply']
+        if moderation_reply == '[]' or moderation_reply == '{}':
+            moderation_reply = ""
+
+        return moderation_reply
+
+    def clean(self):
+        # Raise an error if status is "not reviewed" and moderation_comments isn't empty
+        cleaned_data = super().clean()
+        moderation_status = cleaned_data.get("moderation_status")
+        moderation_reply = cleaned_data.get("moderation_reply")
+        if moderation_status == "not reviewed" and moderation_reply:
+            raise ValidationError(
+                "Stories that are not being reviewed cannot have moderation replies added to them."
+            )
+        # Raise an error if status is "approved" and there are "Red" severity moderation comments
+        if moderation_status == "approved":
+            try:
+                reasons = json.loads(moderation_reply)
+                red_reasons = sum(map(lambda x : 1 if x.get('severity', None) == 'red' else 0, reasons))
+            except:
+                red_reasons = 0
+            if red_reasons > 0:
+                raise ValidationError(
+                    "Stories with Red moderation reasons can't be given approved status."
+                )
+

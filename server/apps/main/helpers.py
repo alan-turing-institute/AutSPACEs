@@ -26,10 +26,15 @@ def is_moderator(user):
         return False
 
 
-def model_to_form(model, disable_moderator=False):
+def public_experience_model_to_form(model, disable_moderator=False):
     """Converts Model to form."""
     model_dict = model_to_dict(model)
     model_dict["moderation_prior"] = model_dict["moderation_status"]
+
+    # Copy the latest moderation reply to the form
+    if (model.experience_id):
+        change_reply, changed_at = get_latest_change_reply(model.experience_id)
+        model_dict["moderation_reply"] = json.dumps(change_reply)
 
     form = ModerateExperienceForm(
         {**model_dict, "viewable": True},  # we only moderate public experiences
@@ -592,16 +597,30 @@ def get_latest_change_reply(experience_id):
 
     return change_reply, changed_at
 
-def get_moderator_message():
-    leaf_name = "mod_message.txt"
+def get_message(file_name):
+    """
+    Loads a message to be sent to the user.
+
+    The first line of the file should contain the subject. Subsequent lines
+    will comprise the message body.
+
+    Args:
+        file_name: the leaf name of the file to load.
+    Returns:
+        subject and body of the message.
+    """
     module_dir = os.path.dirname(__file__)
-    file_path = os.path.join(module_dir, leaf_name)
-    subject = ""
+    file_path = os.path.join(module_dir, file_name)
+    subject = None
     message = ""
-    with open(file_path, "r") as f:
-        subject = f.readline()
-        for line in f:
-            message += line
+    try:
+        with open(file_path, "r") as f:
+            subject = f.readline()
+            for line in f:
+                message += line
+    except IOError as e:
+        print("Exception when opening moderation message: {}".format(str(e)))
+        message = None
     return subject, message
 
 def message_wrap(text, width):

@@ -155,20 +155,20 @@
         <p><i>{{experience_difference}}</i></p>
       </div>
 
-      <template id="template-control" style="display: none;">
+      <template id="template-control" class="template-hidden">
         <div class="dropdown control">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Reason for moderation
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item addreason moderation-red" data-reason="Includes identity or sensitive data" data-href="identity">Identity or sensitive data</a></li>
-            <li><a class="dropdown-item addreason moderation-red" data-reason="Discriminatory or belittling content" data-href="discriminatory">Discriminatory or belittling</a></li>
-            <li><a class="dropdown-item addreason moderation-red" data-reason="Includes a racial slur" data-href="racial-slurs">Racial slur</a></li>
-            <li><a class="dropdown-item addreason moderation-red" data-reason="Making assumptions when writing on behalf of others" data-href="are-you-making-assumptions">Assumptions on behalf of others</a></li>
-            <li><a class="dropdown-item addreason moderation-red" data-reason="Including your own subjective details when writing on behalf of others" data-href="are-you-adding-subjective-detail">Own subjectivity on behalf of others</a></li>
-            <li><a class="dropdown-item addreason moderation-red" data-reason="Responding to someone else's story" data-href="responding-to-others">Response to someone else's story</a></li>
-            <li><a class="dropdown-item addreason moderation-amber" data-reason="Includes swear words or disability slurs" data-href="swear-words">Swear words or disability slurs</a></li>
-            <li><a class="dropdown-item addreason moderation-amber" data-reason="Potentially triggering to some users" data-href="swear-words">Triggering to some users</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Includes identity or sensitive data" data-href="identity" data-severity="red">Identity or sensitive data</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Discriminatory or belittling content" data-href="discriminatory" data-severity="red">Discriminatory or belittling</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Includes a racial slur" data-href="racial-slurs" data-severity="red">Racial slur</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Making assumptions when writing on behalf of others" data-href="are-you-making-assumptions" data-severity="red">Assumptions on behalf of others</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Including your own subjective details when writing on behalf of others" data-href="are-you-adding-subjective-detail" data-severity="red">Own subjectivity on behalf of others</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Responding to someone else's story" data-href="responding-to-others" data-severity="red">Response to someone else's story</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Includes swear words or disability slurs" data-href="swear-words" data-severity="amber">Swear words or disability slurs</a></li>
+            <li><a class="dropdown-item addreason" data-reason="Potentially triggering to some users" data-href="swear-words" data-severity="amber">Triggering to some users</a></li>
           </ul>
         </div>
       </template>
@@ -287,7 +287,7 @@
 
         <h5>Moderation reasons to be passed back to the author</h5>
 
-        <p>Highlight a portion of the experience text to add a reason.</p>
+        <p>Highlight a portion of the experience text to add a reason. These comments will be sent to the author on review completion.</p>
         <div id="reason-titles">
           <div class="d-flex flex-row">
             <div class="p-2 col col-lg-7 text"><b>Relevant text</b></div>
@@ -306,7 +306,7 @@
         </template>
 
         <div class='form-group'>
-          <input type="submit" class="btn btn-outline-dark btn-lg float-right" value="Submit">
+          <input type="submit" class="btn btn-outline-dark btn-lg float-right" id="submitBtn" value="Submit">
         </div>
       </form>
     </div>
@@ -314,5 +314,41 @@
     <script src="{% static 'js/moderation-replies.js' %}"></script>
   </div>
 </section>
+
+  <template id="template-text-not-reviewed-comments" class="template-hidden">
+    <p>It's not possible to record <i>Moderation reasons</i> for stories that haven't been reviewed.</p>
+    <p>Please set the <i>Moderation status</i> to <i>in review</i> to hold reasons for later use, or set the status to <i>accepted</i> or <i>rejected</i> to send the reasons to the author now.</p>
+  </template>
+
+  <template id="template-text-reject-no-comments" class="template-hidden">
+    <p>You are rejecting the story without providing a reason. Are you sure you want to continue?</p>
+  </template>
+
+  <template id="template-text-approve-comments" class="template-hidden">
+    <p>When approving a story you can cite <span class="word-amber">Amber</span> reasons, but not <span class="word-red">Red</span> reasons. Stories containing <span class="word-red">Red</span> reasons must be rejected.</p>
+  </template>
+
+  <!-- Modal for the submit button -->
+  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="submitModalLabel">Moderation reasons</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-text">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="closeModal" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="cancelModal" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="submitForm">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/moderation-dialogue.js' %}"></script>
 </div>
 {% endblock %}

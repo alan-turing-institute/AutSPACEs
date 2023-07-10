@@ -38,3 +38,18 @@ def user_submitted_profile(user):
         submitted = False
     return submitted
 
+def get_user_profile(user):
+    """
+    Attempts to get the profile for a user.
+
+    Args:
+        user: request.user
+
+    Returns:
+        The UserProfile associated with the user if it exists, None otherwise
+    """
+    try:
+        uo = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        uo = None
+    return uo
