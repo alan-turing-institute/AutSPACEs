@@ -184,6 +184,10 @@
           {% define "Sharing Options" as header %}
           {% define "Please indicate if you want to share your experience" as subheader %}
         {% endif %}
+        {% if group.grouper == 4 %}
+          {% define "Authorship" as header %}
+          {% define "Please indicate if this is a first- or second-hand story" as subheader %}
+        {% endif %}
         <div class="form-group">
           <h3><label>{{ header }}</label></h3>
 

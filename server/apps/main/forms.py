@@ -50,6 +50,16 @@ class ShareExperienceForm(forms.Form):
     research = forms.BooleanField(label = "Share for research", required=False)
     research.group = 3
 
+    # authorship option
+    authorship = [
+        ("AutSPACEs contributor", "AutSPACEs contributor"),
+        ("Autistic individual", "Autistic individual"),
+        ("Parent of an autistic individual", "Parent of an autistic individual"),
+        ("Carer for an autisitc individual", "Carer for an autisitc individual"),
+    ]
+    experience_authorship = forms.ChoiceField(choices = authorship, widget = forms.Select(), required=False)
+    experience_authorship.group = 4
+
     # hidden field for moderation status
     statuses = [
         ("not reviewed", "not reviewed"),

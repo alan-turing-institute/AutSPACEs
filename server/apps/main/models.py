@@ -25,6 +25,11 @@ class PublicExperience(models.Model):
     
     research = models.BooleanField(default=False)
 
+    experience_authorship = models.CharField(
+        blank=False,
+        default='AutSPACEs contributor',
+        max_length=100)
+
     def __str__(self):
         return self.experience_text
 
