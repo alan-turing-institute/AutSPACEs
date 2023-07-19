@@ -10,6 +10,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from .helpers import (
     user_profile_exists,
+    get_user_profile,
 )
 
 logger = logging.getLogger(__name__)
@@ -30,13 +31,13 @@ def user_profile(request, first_visit=False):
 
             return redirect("users:profile")
         else:
-            try:
-                profile = UserProfile.objects.get(user=request.user)
+            profile = get_user_profile(request.user)
+            if profile:
                 data = model_to_dict(profile)
                 # If the profile has been submitted this can't be the user's first visit
                 first_visit &= not profile.profile_submitted
                 form = UserProfileForm(data)
-            except UserProfile.DoesNotExist:
+            else:
                 form = UserProfileForm()
             oh_member = request.user.openhumansmember
             return render(

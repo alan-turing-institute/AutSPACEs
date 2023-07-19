@@ -532,6 +532,8 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
         response = c.post("/main/public_experiences/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/experiences_page.html")
 
         # Check that there is only one story visible - the one with no triggering labels
         for item in response.context[0]:
@@ -583,6 +585,8 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_c)
         response = c.post("/main/public_experiences/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/experiences_page.html")
 
         # We're not going to set the abuse flag, but it should be pulled in from the user profile
         # There should be 2 stories one with no tags one with the abuse tag
@@ -618,6 +622,58 @@ class Views(TestCase):
         for item in search_response_c_nb.context[0]:
             if item.keys().__contains__("experiences"):
                assert len(item['experiences']) == 0
+
+    def test_list_public_exp_anonymous_user(self):
+        """
+        Checks the public experience search given no user is logged in
+        """
+        c = Client()
+        response = c.post("/main/public_experiences/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/experiences_page.html")
+
+        # Check that there is only one story visible - the one with no triggering labels
+        for item in response.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
+
+        # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
+        search_response_abuse = c.get("/main/public_experiences/", {"searched": "", "abuse": True})
+        for item in search_response_abuse.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 2
+
+        # Results for story containing caramel is none as there is no triggering warning tag used
+        search_response_c = c.get("/main/public_experiences/", {"searched": "caramel"})
+        for item in search_response_c.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences'])==  0
+
+        # Results for story containing caramel when the wrong trigger label is used is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "negbody": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) ==  0
+
+        # Results for story containing caramel is 1 when there is no triggering warning tag used
+        search_response_c = c.get("/main/public_experiences/", {"searched": "caramel", "all_triggers": True})
+        for item in search_response_c.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) ==  1
+
+        # Results for story containing sausages is no stories
+        search_response = c.get("/main/public_experiences/", {"searched": "sausages"})
+        for item in search_response.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) ==  0
+
+        # One triggering story visible
+        search_response_t = c.get(
+            "/main/public_experiences/", {"searched": "", "triggering_stories": "True"}
+        )
+        for item in search_response_t.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
 
     def test_single_story(self):
         c = Client()
