@@ -155,7 +155,7 @@
              {% endif %}
             <h5 class="card-title story-header">{{ experience.number }}. {% firstof experience.title_text "no title given" %}</h5>
               <p class="card-text">{% firstof experience.experience_text|truncatechars:100 "no experience text given" %}</p>
-              <em>AutSPACEs Contributor</em>
+              <em>{% firstof experience.experience_authorship "Author's name unknown" %}</em>
               <a
               class="btn btn-primary collapsed float-right"
               data-toggle="collapse"
