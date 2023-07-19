@@ -339,15 +339,16 @@ class ModerationViewTests(TestCase):
 
     def test_single_moderation_view_as_moderator_post_missing_data(self):
         """
-        Test moderate single experience page is accessible by moderators but access has been revoked
+        Test that the moderation page redirects appropriately even with missing data
         """
         c = Client()
         c.force_login(self.moderator_user)
         self.assertEqual(len(PublicExperience.objects.all()),1)
-        # ideally would add a cassette here too which returns a "permission denied"
+        # ideally would add a cassette here too
         response = c.post("/main/moderate/test-test-test/",
                           {"mentalhealth": True, "other":"New trigger",
                           "moderation_prior":"approved",
+                          "moderation_reply":"[]",
                           },
                           follow=True)
         self.assertEqual(response.status_code,200)
@@ -369,7 +370,7 @@ class ModerationViewTests(TestCase):
                             {"mentalhealth": True, "other":"New trigger",
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
-                            "moderation_prior":"not moderated",
+                            "moderation_prior":"not reviewed",
                             },
                             follow=True)
         # assert ending up on right page
@@ -388,6 +389,7 @@ class ModerationViewTests(TestCase):
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
                             "moderation_reply":"Moderation reply",
+                            "moderation_prior":"not reviewed",
                             "title_text": 'try injection!'
                             },
                             follow=True)
@@ -396,7 +398,7 @@ class ModerationViewTests(TestCase):
 
     def test_single_moderation_view_as_moderator_post_empty_comment(self):
         """
-        Test moderate single experience page is successfully accessible and editable by moderators
+        Test moderation with an empty comment is successful
         """
 
         c = Client()
@@ -408,7 +410,7 @@ class ModerationViewTests(TestCase):
                             {"mentalhealth": True, "other":"New trigger",
                             "moderation_status":"approved",
                             "moderation_comments":"",
-                            "moderation_prior":"not moderated",
+                            "moderation_prior":"not reviewed",
                             },
                             follow=True)
         # assert ending up on right page
@@ -423,6 +425,99 @@ class ModerationViewTests(TestCase):
         self.assertEqual(len(eh), 2)
         self.assertEqual(eh[1].change_comments, "No Comment Made")
         self.assertEqual(eh[1].change_reply, "")
+
+    def test_single_moderation_view_as_moderator_post_not_reviewed_reply(self):
+        """
+        Test moderation submitting a "not reviewed" status with moderation reply
+        """
+
+        c = Client()
+        c.force_login(self.moderator_user)
+        # Test uses cassette to allow fake-upload to OH
+        with vcr.use_cassette('server/apps/main/tests/fixtures/moderate_experience.yaml',
+                      filter_query_parameters=['access_token'],match_on=['path']):
+            response = c.post("/main/moderate/test-test-test/",
+                            {"mentalhealth": True, "other":"New trigger",
+                            "moderation_status":"not reviewed",
+                            "moderation_comments":"amazing story!",
+                            "moderation_reply":"a reply isn't allowed if not reviewed",
+                            "moderation_prior":"rejected",
+                            },
+                            follow=True)
+        # assert ending up on right page
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'main/moderate_experience.html')
+        self.assertContains(response, "Stories that are not being reviewed cannot have moderation replies added to them.", status_code=200)
+
+    def post_approval(self, reply):
+        """
+        Sends and approval message with reply comments and returns the response
+        """
+        c = Client()
+        c.force_login(self.moderator_user)
+        # Test uses cassette to allow fake-upload to OH
+        with vcr.use_cassette('server/apps/main/tests/fixtures/moderate_experience.yaml',
+                      filter_query_parameters=['access_token'],match_on=['path']):
+            response = c.post("/main/moderate/test-test-test/",
+                            {"mentalhealth": True, "other":"New trigger",
+                            "moderation_status":"approved",
+                            "moderation_comments":"amazing story!",
+                            "moderation_reply": reply,
+                            "moderation_prior":"rejected",
+                            },
+                            follow=True)
+        return response
+
+    def test_single_moderation_view_as_moderator_post_approved_red(self):
+        """
+        Test moderation submitting an "approved" status with "Red" moderation reply
+        """
+
+        reply = ('[{'
+            '"reason": "Something serious", '
+            '"href": "here", '
+            '"severity": "red", '
+            '"text": "bad stuff"}]'
+        )
+        response = self.post_approval(reply)
+
+        # assert ending up on right page
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'main/moderate_experience.html')
+        self.assertContains(response, "Stories with Red moderation reasons can&#x27;t be given approved status.", status_code=200)
+
+    def test_single_moderation_view_as_moderator_post_approved_amber(self):
+        """
+        Test moderation submitting an "approved" status with "Amber" moderation reply
+        """
+
+        reply = ('[{'
+            '"reason": "Something not so serious", '
+            '"href": "here", '
+            '"severity": "amber", '
+            '"text": "triggering stuff"}]'
+        )
+
+        response = self.post_approval(reply)
+
+        # assert ending up on right page
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
+
+    def test_single_moderation_view_as_moderator_post_approved_malformed(self):
+        """
+        Test moderation submitting an "approved" status with malformed JSON moderation reply
+        """
+
+        reply = ('malformed [{'
+            '"reason": "Something not so serious", '
+        )
+
+        response = self.post_approval(reply)
+
+        # assert ending up on right page
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'main/moderation_list.html')
 
     @vcr.use_cassette(
         'server/apps/main/tests/fixtures/moderate_experience.yaml',

@@ -620,6 +620,10 @@ body {
   color: #fcbd7e;
 }
 
+.template-hidden {
+  display: "hidden";
+}
+
 /* USER PROFILE PAGE */
 
 .profile-section {

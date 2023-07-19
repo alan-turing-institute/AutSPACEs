@@ -3,9 +3,9 @@ import json
 from django.contrib.auth.models import Group
 from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
-    model_to_form, process_trigger_warnings, update_public_experience_db, \
+    public_experience_model_to_form, process_trigger_warnings, update_public_experience_db, \
     get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect, \
-    extract_triggers_to_show, get_moderator_message, message_wrap
+    extract_triggers_to_show, get_message, message_wrap
 
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
@@ -231,7 +231,7 @@ class StoryHelper(TestCase):
         self.assertEqual(0,len(PublicExperience.objects.filter(experience_id='TEST_ID')))
 
 
-    def test_model_to_form(self):
+    def test_public_experience_model_to_form(self):
         """
         Test that turning a PE object into a moderation form works
         Also test that subsequent processing of trigger warnings works!
@@ -246,7 +246,7 @@ class StoryHelper(TestCase):
             violence = True,
         )
         self.public_experience.save()
-        self.form = model_to_form(self.public_experience)
+        self.form = public_experience_model_to_form(self.public_experience)
         # assert returned form is of right class
         self.assertIsInstance(self.form, ModerateExperienceForm)
         # test processing of trigger warnings
@@ -357,13 +357,24 @@ class StoryHelper(TestCase):
         Tests that the message sent to users when the moderation status changes
         can be read in from file correctly.
         """
-        # This will assert if it fails
-        subject, message = get_moderator_message()
+        # Read in the message
+        subject, message = get_message("mod_message.txt")
         # Let's make some assumptions about a minimal length subject and message
         assert len(subject) > 4
         assert len(message) > 4
         # Let's assume a message that doesn't state where it's coming from isn't doing its job
         self.assertIn('AutSPACEs', message)
+
+    def test_message_read_error(self):
+        """
+        Tests that if there's an IO error reading a message template, the
+        subject and message will be returned as None.
+        """
+        # This will return a pair of Nones if it fails
+        subject, message = get_message("")
+        # Check that only Nones are returned
+        assert not subject
+        assert not message
 
     def test_message_wrap(self):
         """
