@@ -2,6 +2,7 @@
 
 #### This file contains links to slides for presentations given on the Turing/Autistica Citizen Science Project. 
 
+* 25-07-2023: "AutSPACEs: a co-created and open source citizen science project to improve environments for sensory processing in autistic people", delivered by Bastian Greshake Tzovaras at the 2023 "Bioinformatics Open Source Conference". Slides [available on Zenodo](https://zenodo.org/record/8164376)
 * 12-05-2023: "AutSPACEs: co-creating a citizen science platform": poster presentation created for CSci 2023. Poster available on [Zenodo](https://zenodo.org/record/7930597). Recording available on [YouTube](https://www.youtube.com/watch?v=CQCC9I4sUGQ)
 * 19-04-2023: "Nothing about us, without us: Participatory approaches to make data by the people for the people", at [CSV,conf,v7](https://csvconf.com/speakers/). Delivered by Bastian Greshake Tzovaras, slides on [Zenodo](https://zenodo.org/record/7843909)
 * 24-01-2023: "AutSPACEs: co-creating a citizen science platform", delivered by Bastian Greshake Tzovaras, Georga Aitkenhead, Otis Smith and Helen Duncan for an international seminar on "Public Space, Play and Neurodiversity". Slides on [Zenodo](https://zenodo.org/record/7550764). Video on [Youtube](https://www.youtube.com/watch?v=-SfQeF1dwaM).
