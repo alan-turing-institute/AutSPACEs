@@ -33,10 +33,10 @@
 | server/apps/main/tests/test\_moderate\_views.py                           |      250 |        0 |    100% |           |
 | server/apps/main/tests/test\_my\_stories.py                               |       15 |        0 |    100% |           |
 | server/apps/main/tests/test\_templatetags.py                              |       12 |        0 |    100% |           |
-| server/apps/main/tests/test\_views.py                                     |      288 |        3 |     99% |   631-633 |
+| server/apps/main/tests/test\_views.py                                     |      324 |        3 |     99% |   687-689 |
 | server/apps/main/tests/tests\_2023.py                                     |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                  |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                 |      245 |        6 |     98% |88, 92, 167, 300-306, 502 |
+| server/apps/main/views.py                                                 |      243 |        6 |     98% |88, 92, 167, 300-306, 500 |
 | server/apps/users/\_\_init\_\_.py                                         |        0 |        0 |    100% |           |
 | server/apps/users/admin.py                                                |        3 |        0 |    100% |           |
 | server/apps/users/apps.py                                                 |        3 |        0 |    100% |           |
@@ -49,7 +49,7 @@
 | server/apps/users/tests/test\_models.py                                   |       64 |        0 |    100% |           |
 | server/apps/users/tests/test\_views.py                                    |       91 |        0 |    100% |           |
 | server/apps/users/urls.py                                                 |        4 |        0 |    100% |           |
-| server/apps/users/views.py                                                |       28 |        0 |    100% |           |
+| server/apps/users/views.py                                                |       27 |        0 |    100% |           |
 | server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
@@ -60,7 +60,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       12 |        0 |    100% |           |
-|                                                                 **TOTAL** | **1871** |   **22** | **99%** |           |
+|                                                                 **TOTAL** | **1904** |   **22** | **99%** |           |
 
 
 ## Setup coverage badge
