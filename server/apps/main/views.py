@@ -334,13 +334,11 @@ def list_public_experiences(request):
         # Check the allowed triggers
         allowed_triggers = set(request.GET.keys())
 
-    if "searched" not in request.GET:
-        try:
-            profile = UserProfile.objects.get(user=request.user)
+    if request.user.is_authenticated and "searched" not in request.GET:
+        profile = get_user_profile(request.user)
+        if profile:
             user_data = model_to_dict(profile)
             allowed_triggers = set([key for key in user_data if user_data[key]])
-        except UserProfile.DoesNotExist:
-            pass
 
     # Get a list of allowed triggers
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
