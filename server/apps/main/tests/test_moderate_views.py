@@ -73,11 +73,14 @@ class ModerationViewTests(TestCase):
         # User profile for user moderator_user_with_profile
         user_profile = {
            "profile_submitted": False,
-           "age_bracket": "18-25",
-           "gender": "see_description",
            "autistic_identification": "unspecified",
+           "age_bracket": "18-25",
+           "age_public": False,
+           "gender": "see_description",
+           "gender_self_identification": "",
+           "gender_public": False,
            "description": "Timelord",
-           "location": "Gallifrey",
+           "description_public": False,
            "comms_review": False,
            "abuse": False,
            "violence": False,

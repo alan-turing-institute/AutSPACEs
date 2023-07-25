@@ -73,15 +73,35 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # This will make debug toolbar to work with django-csp,
 # since `ddt` loads some scripts from `ajax.googleapis.com`:
-CSP_SCRIPT_SRC = ("'self'", 'ajax.googleapis.com',
-                  'cdnjs.cloudflare.com', 'maxcdn.bootstrapcdn.com')
-CSP_IMG_SRC = ("'self'", 'data:')
-CSP_CONNECT_SRC = ("'self'",)
-CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com',
-                'maxcdn.bootstrapcdn.com', 'netdna.bootstrapcdn.com')
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'fonts.googleapis.com',
-                 'maxcdn.bootstrapcdn.com', 'netdna.bootstrapcdn.com')
-
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'ajax.googleapis.com',
+    'cdnjs.cloudflare.com',
+    'maxcdn.bootstrapcdn.com',
+    'cdn.jsdelivr.net',
+)
+CSP_IMG_SRC = (
+    "'self'",
+    'data:'
+)
+CSP_CONNECT_SRC = (
+    "'self'",
+)
+CSP_FONT_SRC = (
+    "'self'",
+    'fonts.gstatic.com',
+    'maxcdn.bootstrapcdn.com',
+    'netdna.bootstrapcdn.com',
+    'cdn.jsdelivr.net',
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    'fonts.googleapis.com',
+    'maxcdn.bootstrapcdn.com',
+    'netdna.bootstrapcdn.com',
+    'cdn.jsdelivr.net',
+)
 
 # nplusone
 # https://github.com/jmcarp/nplusone
