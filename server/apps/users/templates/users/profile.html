@@ -38,6 +38,8 @@
   <div class="container profile-section">
     <h3><label>Account</label></h3>
     <p/><a href="https://www.openhumans.org/">OpenHumans</a> ID: {{ oh_id }}
+    <p/><a href="{% url 'users:delete' %}">Delete AutSPACEs account</a>
+
     <form action="{% url 'users:profile' %}" class="form-context" method="post">
     {% csrf_token %}
     {% regroup form by field.group as field_groups %}

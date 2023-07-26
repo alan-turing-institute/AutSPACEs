@@ -1,0 +1,44 @@
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - {{title}} {% endblock %}
+
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block content %}
+
+<!-- Delete User Profile Form -->
+<section id="delete-user-profile-form">
+  <div class="container profile-section">
+    <h3><label>Delete AutSPACEs account</label></h3>
+    <p/><a href="https://www.openhumans.org/">OpenHumans</a> ID: {{ oh_id }}
+
+    <p/>Are you sure you want to delete your AutSPACEs account?
+    <p/>This will remove all your data from the AutSPACEs platform. This process cannot be undone.
+    <p/>Select the switch below to also remove your stories from OpenHumans.
+    <form action="{% url 'users:delete' %}" class="form-context" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        {% for field in form %}
+          <div class="row">
+            <div class="form-check col-lg-12">
+              <div class="custom-control custom-switch">
+                {{ field }}
+                <label class="custom-control-label" for="{{ field.auto_id}}">{{ field.label }}</label>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="submitForm">Delete account</button>
+        <a role="button" class="btn btn-secondary ml-5" id="cancelForm" href="{% url 'users:profile' %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
+
+

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from .models import UserProfile
+from server.apps.main.models import PublicExperience
 
 def user_profile_exists(user):
     """
@@ -53,3 +54,23 @@ def get_user_profile(user):
     except UserProfile.DoesNotExist:
         uo = None
     return uo
+
+def delete_user(user, delete_oh_data):
+    """
+    Deletes the user and all data associated with it.
+
+    Args:
+        delete_oh_data: True if stories on OpenHumans should also be deleted
+
+    Returns:
+        None
+    """
+    ohmember = user.openhumansmember
+
+    # Delete the stories from the OpenHumans database
+    if delete_oh_data:
+        ohmember.delete_all_files()
+
+    # Delete the actual user
+    user.delete()
+
