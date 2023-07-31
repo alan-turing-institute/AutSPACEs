@@ -2,7 +2,7 @@ from django import template
 # from django.contrib.auth.models import Group
 from ..views import is_moderator
 from django.template.defaultfilters import register
-from urllib.parse import unquote 
+from urllib.parse import unquote
 
 
 register = template.Library()
@@ -17,8 +17,8 @@ def toggle_story(val):
     return 'story'
   else:
     return 'stories'
-  
-register.simple_tag(is_moderator)  
+
+register.simple_tag(is_moderator)
 
 @register.filter
 def unquote_html(value):
@@ -32,3 +32,8 @@ def url_replace(request, field, value):
     query = request.GET.copy()
     query[field] = value
     return '?{}'.format(query.urlencode())
+
+@register.filter
+def field_type(field):
+    return field.__class__.__name__
+

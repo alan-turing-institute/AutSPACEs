@@ -48,11 +48,14 @@ class ViewTests(TestCase):
         # Create a user profile
         up_a_data = {
            "profile_submitted": False,
-           "age_bracket": "18-25",
-           "gender": "see_description",
            "autistic_identification": "unspecified",
+           "age_bracket": "18-25",
+           "age_public": False,
+           "gender": "see_description",
+           "gender_self_identification": "",
+           "gender_public": False,
            "description": "Timelord",
-           "location": "Gallifrey",
+           "description_public": False,
            "comms_review": False,
            "abuse": False,
            "violence": False,
@@ -65,11 +68,14 @@ class ViewTests(TestCase):
         # Create a user profile
         up_b_data = {
            "profile_submitted": False,
-           "age_bracket": "26-35",
-           "gender": "Female",
            "autistic_identification": "childhood",
+           "age_bracket": "26-35",
+           "age_public": False,
+           "gender": "Female",
+           "gender_self_identification": "abcdabcd",
+           "gender_public": False,
            "description": "Companion",
-           "location": "Earth",
+           "description_public": False,
            "comms_review": True,
            "abuse": False,
            "violence": True,
@@ -164,6 +170,7 @@ class ViewTests(TestCase):
         response = c.post(
             "/users/profile/",
             {
+                "autistic_identification": "yes",
                 "description": "Described",
                 "comms_review": True,
             },
@@ -186,6 +193,6 @@ class ViewTests(TestCase):
         response = c.get("/users/profile/")
         assert response.status_code == 200
         self.assertContains(response, "Companion")
-        self.assertContains(response, "Earth")
+        self.assertContains(response, "abcdabcd")
         self.assertContains(response, "26-35")
 

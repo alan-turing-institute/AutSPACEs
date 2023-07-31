@@ -15,7 +15,6 @@ from .helpers import (
 
 logger = logging.getLogger(__name__)
 
-
 def user_profile(request, first_visit=False):
     """
     User profile page.
