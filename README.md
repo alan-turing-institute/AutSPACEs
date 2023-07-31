@@ -40,17 +40,17 @@
 | server/apps/users/\_\_init\_\_.py                                         |        0 |        0 |    100% |           |
 | server/apps/users/admin.py                                                |        3 |        0 |    100% |           |
 | server/apps/users/apps.py                                                 |        3 |        0 |    100% |           |
-| server/apps/users/forms.py                                                |       41 |        0 |    100% |           |
-| server/apps/users/helpers.py                                              |       17 |        0 |    100% |           |
+| server/apps/users/forms.py                                                |       43 |        0 |    100% |           |
+| server/apps/users/helpers.py                                              |       23 |        0 |    100% |           |
 | server/apps/users/migrations/0001\_initial.py                             |        6 |        0 |    100% |           |
 | server/apps/users/migrations/0002\_userprofile\_refine\_fields.py         |        4 |        0 |    100% |           |
 | server/apps/users/migrations/\_\_init\_\_.py                              |        0 |        0 |    100% |           |
 | server/apps/users/models.py                                               |       22 |        0 |    100% |           |
 | server/apps/users/tests/\_\_init\_\_.py                                   |        0 |        0 |    100% |           |
 | server/apps/users/tests/test\_models.py                                   |       64 |        0 |    100% |           |
-| server/apps/users/tests/test\_views.py                                    |       91 |        0 |    100% |           |
+| server/apps/users/tests/test\_views.py                                    |      144 |        0 |    100% |           |
 | server/apps/users/urls.py                                                 |        4 |        0 |    100% |           |
-| server/apps/users/views.py                                                |       27 |        0 |    100% |           |
+| server/apps/users/views.py                                                |       41 |        0 |    100% |           |
 | server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
@@ -61,7 +61,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       12 |        0 |    100% |           |
-|                                                                 **TOTAL** | **1924** |   **22** | **99%** |           |
+|                                                                 **TOTAL** | **1999** |   **22** | **99%** |           |
 
 
 ## Setup coverage badge
