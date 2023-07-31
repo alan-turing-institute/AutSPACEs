@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.conf import settings
 from django.test import Client
+from django.contrib.auth.models import User
 
 from openhumans.models import OpenHumansMember
 
@@ -9,6 +10,12 @@ from server.apps.users.helpers import (
     user_profile_exists,
     user_submitted_profile,
 )
+from server.apps.main.models import (
+    PublicExperience,
+    ExperienceHistory,
+)
+
+import vcr
 
 class ViewTests(TestCase):
     """
@@ -195,4 +202,146 @@ class ViewTests(TestCase):
         self.assertContains(response, "Companion")
         self.assertContains(response, "abcdabcd")
         self.assertContains(response, "26-35")
+
+    def test_user_delete_rendering(self):
+        """
+        Check that the user delete page is rendered correctly.
+        """
+        c = Client()
+        c.force_login(self.user_b)
+        response = c.get("/users/delete/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, 'users/delete.html')
+
+    def test_user_delete_logged_out(self):
+        """
+        Check that the user delete page is not shown if the user isn't logged in.
+        """
+        c = Client()
+        response = c.get("/users/delete/", follow=True)
+        self.assertRedirects(response, "/",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'main/home.html')
+
+    def delete_user(self, delete_oh_data):
+        """
+        Helper function that deletes a user and checks the result.
+        """
+        # Create a user for us to delete
+        data = {"access_token": "123456", "refresh_token": "bar", "expires_in": 36000}
+        oh = OpenHumansMember.create(oh_id=97526814, data=data)
+        oh.save()
+        user = oh.user
+        user.openhumansmember = oh
+        user.set_password("password")
+        user.save()
+        # Create a user profile
+        up_data = {
+           "profile_submitted": False,
+           "autistic_identification": "unspecified",
+           "age_bracket": "18-25",
+           "age_public": False,
+           "gender": "see_description",
+           "gender_self_identification": "",
+           "gender_public": False,
+           "description": "Timelord",
+           "description_public": False,
+           "comms_review": False,
+           "abuse": False,
+           "violence": False,
+           "drug": True,
+           "mentalhealth": False,
+           "negbody": True,
+           "other": False,
+        }
+        up = UserProfile.objects.create(user=user, **up_data)
+        # Create a story
+        pe_data = {
+            "experience_text": "Here is some experience text",
+            "difference_text": "Here is some difference text",
+            "title_text": "Here is the title",
+        }
+        pe = PublicExperience.objects.create(
+            open_humans_member=oh, experience_id="69072773", **pe_data
+        )
+        # Create a history entry
+        mh_data = {
+            "changed_by": oh,
+            "change_comments": "Local moderation comment",
+            "change_reply": "Moderation comment",
+        }
+        self.eh_a = ExperienceHistory.objects.create(
+            experience = pe, **mh_data
+        )
+
+        objects = PublicExperience.objects.filter(
+            open_humans_member=oh
+        )
+        assert len(objects) > 0
+
+        objects = UserProfile.objects.filter(
+            user=user
+        )
+        assert len(objects) > 0
+
+        objects = User.objects.filter(
+            id=user.id
+        )
+        assert len(objects) > 0
+
+        objects = ExperienceHistory.objects.filter(
+            experience_id="69072773"
+        )
+        assert len(objects) > 0
+
+        c = Client()
+        c.force_login(user)
+        response = c.post(
+            "/users/delete/",
+            {
+                "title": "Profile Deleted",
+                "delete_oh_data": delete_oh_data,
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+
+        objects = PublicExperience.objects.filter(
+            open_humans_member=oh
+        )
+        assert len(objects) == 0
+
+        objects = UserProfile.objects.filter(
+            user=user
+        )
+        assert len(objects) == 0
+
+        objects = User.objects.filter(
+            id=user.id
+        )
+        assert len(objects) == 0
+
+        objects = ExperienceHistory.objects.filter(
+            experience_id="69072773"
+
+        )
+        assert len(objects) == 0
+
+    def test_user_delete_no_oh(self):
+        """
+        Test that profile deletion works, without deleting the OpenHumans data.
+        """
+        self.delete_user(False)
+
+    @vcr.use_cassette(
+        'server/apps/users/tests/fixtures/delete_user.yaml',
+        record_mode="none",
+        filter_query_parameters=['access_token'],
+        match_on=['path'],
+    )
+    def test_user_delete_oh(self):
+        """
+        Test that profile deletion works, including deleting OpenHumans data.
+        """
+        self.delete_user(True)
 

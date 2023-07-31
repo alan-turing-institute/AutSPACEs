@@ -114,3 +114,7 @@ class UserProfileForm(forms.Form):
         widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
     profile_submitted.group = "hidden"
 
+class UserProfileDeleteForm(forms.Form):
+    delete_oh_data = forms.BooleanField(label = "Delete your stories from OpenHumans",
+                                       required=False,
+                                       widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
