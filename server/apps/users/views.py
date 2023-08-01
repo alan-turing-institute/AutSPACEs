@@ -5,15 +5,20 @@ from django.conf import settings
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.forms.models import model_to_dict
+from django.contrib.auth import logout
 
 from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import (
+    UserProfileForm,
+    UserProfileDeleteForm,
+)
 from .helpers import (
     user_profile_exists,
+    get_user_profile,
+    delete_user,
 )
 
 logger = logging.getLogger(__name__)
-
 
 def user_profile(request, first_visit=False):
     """
@@ -30,13 +35,13 @@ def user_profile(request, first_visit=False):
 
             return redirect("users:profile")
         else:
-            try:
-                profile = UserProfile.objects.get(user=request.user)
+            profile = get_user_profile(request.user)
+            if profile:
                 data = model_to_dict(profile)
                 # If the profile has been submitted this can't be the user's first visit
                 first_visit &= not profile.profile_submitted
                 form = UserProfileForm(data)
-            except UserProfile.DoesNotExist:
+            else:
                 form = UserProfileForm()
             oh_member = request.user.openhumansmember
             return render(
@@ -50,3 +55,33 @@ def user_profile(request, first_visit=False):
     else:
         return redirect("index")
 
+def user_profile_delete(request):
+    if request.user.is_authenticated:
+        oh_member = request.user.openhumansmember
+        if request.method == "POST":
+            form = UserProfileDeleteForm(request.POST)
+
+            if form.is_valid():
+                # Delete all the user's data
+                delete_oh_data = form.cleaned_data['delete_oh_data']
+                delete_user(request.user, delete_oh_data)
+                # Log the user out. That's it.
+                logout(request)
+                # Say goodbye.
+                return render(
+                    request, "users/goodbye.html", {
+                        "title": "Profile Deleted",
+                        "delete_oh_data": delete_oh_data,
+                    })
+        else:
+            form = UserProfileDeleteForm()
+
+        return render(
+            request, "users/delete.html", {
+                "title": "Delete profile",
+                "form": form,
+                "oh_id": oh_member.oh_id,
+            })
+
+    else:
+        return redirect("index")

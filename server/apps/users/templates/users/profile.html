@@ -8,6 +8,8 @@
 
 {% block content %}
 
+<script src="{% static 'js/activate-profile.js' %}"></script>
+
 {% if first_visit == True %}
 <div class="container alert-container">
   <div class="alert alert-info" role="alert">
@@ -36,11 +38,14 @@
   <div class="container profile-section">
     <h3><label>Account</label></h3>
     <p/><a href="https://www.openhumans.org/">OpenHumans</a> ID: {{ oh_id }}
+    <p/><a href="{% url 'users:delete' %}">Delete AutSPACEs account</a>
+
     <form action="{% url 'users:profile' %}" class="form-context" method="post">
     {% csrf_token %}
     {% regroup form by field.group as field_groups %}
 
     {% for group in field_groups %}
+      {% define "col-lg-12" as columns %}
       {% if group.grouper == 1 %}
         {% define "User Profile" as header %}
         {% define "Please provide details you are comfortable sharing. All fields are optional." as subheader %}
@@ -48,6 +53,7 @@
       {% if group.grouper == 2 %}
         {% define "Sensitive topics" as header %}
         {% define "Select the trigger labels that you are comfortable viewing in the story list by default" as subheader %}
+        {% define "col-lg-6" as columns %}
       {% endif %}
       {% if group.grouper == 3 %}
         {% define "Communication preferences" as header %}
@@ -65,20 +71,31 @@
         <br/>
         <div class="row">
         {% for field in group.list %}
-          {% if group.grouper >= 2 %}
-          <div class="form-check col-lg-6">
-            <div class="custom-control custom-switch">
-              {{ field }}
-              <label class="custom-control-label" for="{{ field.auto_id}}">{{ field.label }}</label>
-            </div>
-          </div>
+          <div class="form-check {{ columns }}">
+          {% if field.field.widget|field_type == "CheckboxInput" %}
+              <div class="custom-control custom-switch">
+                {{ field }}
+                <label class="custom-control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+              </div>
           {% else %}
-          <div class="form-check col-lg-12">
-            <p/><label for="{{ field.auto_id}}">{{ field.label }}</label>
-            <br/>
-            {{ field }}
-          </div>
+              <p/><label for="{{ field.auto_id }}">{{ field.label }}</label>
+              {% if field.help_text %}
+                <a tabindex="0" role="button" class="btn btn-link" data-toggle="popover" data-trigger="focus"
+                   data-html="true" title="{{ field.label }}" data-content="{{ field.help_text|safe }}">
+                   <i class="bi bi-info-circle-fill"></i>
+                </a>
+              {% endif %}
+              {% if not field.field.layout_horizontal %}
+                <br/>
+              {% endif %}
+              {{ field }}
           {% endif %}
+          </div>
+
+          {% if field.field.gap %}
+            <div class="form-check {{ columns }} mb-5"></div>
+          {% endif %}
+
         {% endfor %}
         </div>
       </div>

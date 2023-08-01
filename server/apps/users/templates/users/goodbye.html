@@ -1,0 +1,31 @@
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - {{title}} {% endblock %}
+
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block content %}
+
+<!-- User Profile Deleted Page -->
+<section id="goodbye-notification">
+  <div class="container profile-section">
+    <h3><label>Thank you for contributing to AutSPACEs</label></h3>
+
+    <p/>We're sorry to see you go, but are grateful for your contribution to AutSPACEs.
+    {% if delete_oh_data %}
+      <p/>All of your personal data has been removed from the AutSPACEs platform and your stories have been removed from <a href="https://www.openhumans.org/">OpenHumans</a>. This won't affect any other data you may have stored on the OpenHumans platform.
+    {% else %}
+      <p/>All of your personal data has been removed from the AutSPACEs platform, but please be aware that stories you entered here may still be stored on <a href="https://www.openhumans.org/">OpenHumans</a>. You'll need to delete these separately.
+    {% endif %}
+    <p/>If you'd like to contribute to AutSPACEs again in the future, please feel free to create a new account.
+    <div class="form-group">
+      <a role="button" class="btn btn-primary" id="return" href="{% url 'index' %}">Return to front page</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+

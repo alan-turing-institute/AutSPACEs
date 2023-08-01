@@ -23,7 +23,7 @@ from django.contrib import messages
 
 from .helpers import (
     is_moderator,
-    model_to_form,
+    public_experience_model_to_form,
     extract_experience_details,
     reformat_date_string,
     get_review_status,
@@ -46,12 +46,13 @@ from .helpers import (
     get_latest_change_reply,
     structure_change_reply,
     number_stories,
-    get_moderator_message,
+    get_message,
     message_wrap,
 )
 
 from server.apps.users.helpers import (
     user_profile_exists,
+    get_user_profile,
 )
 
 logger = logging.getLogger(__name__)
@@ -195,6 +196,7 @@ def share_experience(request, uuid=False):
                                 messages.WARNING,
                                 "{}: {}".format(field.label, error),
                             )
+
                 if uuid:  # check if editing existing exp
                     moderation_status = PublicExperience.objects.get(
                         experience_id=uuid
@@ -332,13 +334,11 @@ def list_public_experiences(request):
         # Check the allowed triggers
         allowed_triggers = set(request.GET.keys())
 
-    if "searched" not in request.GET:
-        try:
-            profile = UserProfile.objects.get(user=request.user)
+    if request.user.is_authenticated and "searched" not in request.GET:
+        profile = get_user_profile(request.user)
+        if profile:
             user_data = model_to_dict(profile)
             allowed_triggers = set([key for key in user_data if user_data[key]])
-        except UserProfile.DoesNotExist:
-            pass
 
     # Get a list of allowed triggers
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
@@ -520,90 +520,116 @@ def moderate_experience(request, uuid):
        80 charachters.
     """
     if request.user.is_authenticated and is_moderator(request.user):
-        model = PublicExperience.objects.get(experience_id=uuid)
+        public_experience = PublicExperience.objects.get(experience_id=uuid)
         if request.method == "POST":
             # get the data from the model
-            moderated_form = ModerateExperienceForm(request.POST)
-            moderated_form.is_valid()
+            form = ModerateExperienceForm(request.POST)
+            if form.is_valid():
+                # Get the (immutable) experience data
+                unchanged_experience_details = extract_experience_details(public_experience)
+                # Get the (mutable) trigger warnings
+                trigger_details = process_trigger_warnings(form)
 
-            # Get the (immutable) experience data
-            unchanged_experience_details = extract_experience_details(model)
-            # Get the (mutable) trigger warnings
-            trigger_details = process_trigger_warnings(moderated_form)
+                # validate
+                data = {**unchanged_experience_details, **trigger_details}
 
-            # validate
-            data = {**unchanged_experience_details, **trigger_details}
+                moderation_comments = data.pop("moderation_comments", None)
+                moderation_reply = data.pop("moderation_reply", "")
+                moderation_prior = data.pop("moderation_prior", "not moderated")
 
-            moderation_comments = data.pop("moderation_comments", None)
-            moderation_reply = data.pop("moderation_reply", "")
-            moderation_prior = data.pop("moderation_prior", "not moderated")
+                # get the users OH member id from the model
+                user_OH_member = public_experience.open_humans_member
 
-            # get the users OH member id from the model
-            user_OH_member = model.open_humans_member
+                # wrap in try/except in case user writing experience originally has left AutSPACEs
+                try:
+                    user_OH_member.delete_single_file(file_basename=f"{uuid}.json")
+                    upload(data, uuid, ohmember=user_OH_member)
+                    # update the PE object
+                    update_public_experience_db(
+                        data,
+                        uuid,
+                        ohmember=user_OH_member,
+                        editing_user=request.user.openhumansmember,
+                        change_type="Moderate",
+                        change_comments=moderation_comments,
+                        change_reply=moderation_reply,
+                    )
+                except Exception:
+                    # if user writing E has deauthorized autspaces, delete public experience
+                    delete_PE(uuid=uuid, ohmember=user_OH_member)
 
-            # wrap in try/except in case user writing experience originally has left AutSPACEs
-            try:
-                user_OH_member.delete_single_file(file_basename=f"{uuid}.json")
-                upload(data, uuid, ohmember=user_OH_member)
-                # update the PE object
-                update_public_experience_db(
-                    data,
-                    uuid,
-                    ohmember=user_OH_member,
-                    editing_user=request.user.openhumansmember,
-                    change_type="Moderate",
-                    change_comments=moderation_comments,
-                    change_reply=moderation_reply,
-                )
-            except Exception:
-                # if user writing E has deauthorized autspaces, delete public experience
-                delete_PE(uuid=uuid, ohmember=user_OH_member)
+                # send a message to the author if they've requested it
+                moderation_status = data.get("moderation_status", "")
+                moderation_string = moderation_status.title()
 
-            # send a message to the author if they've requested it
-            moderation_status = data.get("moderation_status", "")
-            moderation_string = moderation_status.title()
-            try:
-                profile = UserProfile.objects.get(user=request.user)
-                if (profile.comms_review and moderation_prior != moderation_status
+                profile = get_user_profile(user=request.user)
+                if (profile and profile.comms_review and moderation_prior != moderation_status
                     and moderation_status in ["approved", "rejected"]):
                     story_url = "{}/main/view/{}".format(settings.OPENHUMANS_APP_BASE_URL,
-                        model.experience_id)
+                        public_experience.experience_id)
                     profile_url = "{}/users/profile/".format(settings.OPENHUMANS_APP_BASE_URL)
-                    subject, message = get_moderator_message()
-                    substitutes = {
-                        "story": story_url,
-                        "profile": profile_url,
-                        "title": model.title_text,
-                        "status": moderation_string,
-                    }
-                    subject = subject.format(**substitutes)
-                    message = message.format(**substitutes)
-                    message = message_wrap(message, 80)
-                    request.user.openhumansmember.message(subject, message)
+                    subject, message = get_message("mod_message.txt")
+                    if subject and message:
+                        substitutes = {
+                            "story": story_url,
+                            "profile": profile_url,
+                            "title": public_experience.title_text,
+                            "status": moderation_string,
+                        }
+                        subject = subject.format(**substitutes)
+                        message = message.format(**substitutes)
+                        message = message_wrap(message, 80)
+                        request.user.openhumansmember.message(subject, message)
 
-            except Exception as e:
-                # This shouldn't happen, but if it does, it's reasonable to
-                # assume the user hasn't chosen to receive messages, or the
-                # message text file hasn't been created
-                print("Exception when attempting to send moderation message: {}".format(str(e)))
+                # redirect to a new URL:
+                status = choose_moderation_redirect(moderation_prior)
+                return redirect(
+                    "{}?status={}".format(reverse("main:moderation_list"), status)
+                )
+            else:
+                # Form didn't validate correctly
+                for error in form.non_field_errors():
+                    messages.add_message(
+                        request,
+                        messages.WARNING,
+                        "{}".format(error)
+                    )
 
-            # redirect to a new URL:
-            status = choose_moderation_redirect(moderation_prior)
-            return redirect(
-                "{}?status={}".format(reverse("main:moderation_list"), status)
-            )
+                experience_title = public_experience.title_text
+                experience_text = public_experience.experience_text
+                experience_difference = public_experience.difference_text
+                experience_history = public_experience.experiencehistory_set.all().order_by(
+                    "-changed_at"
+                )
+                for history_item in experience_history:
+                    history_item.change_reply = structure_change_reply(history_item.change_reply)
+
+                return render(
+                    request,
+                    "main/moderate_experience.html",
+                    {
+                        "form": form,
+                        "uuid": uuid,
+                        "experience_title": experience_title,
+                        "experience_text": experience_text,
+                        "experience_difference": experience_difference,
+                        "experience_history": experience_history,
+                        "show_moderation_status": True,
+                        "title": "Moderate experience",
+                    },
+                )
 
         else:
-            experience_title = model.title_text
-            experience_text = model.experience_text
-            experience_difference = model.difference_text
-            experience_history = model.experiencehistory_set.all().order_by(
-                "changed_at"
+            experience_title = public_experience.title_text
+            experience_text = public_experience.experience_text
+            experience_difference = public_experience.difference_text
+            experience_history = public_experience.experiencehistory_set.all().order_by(
+                "-changed_at"
             )
             for history_item in experience_history:
                 history_item.change_reply = structure_change_reply(history_item.change_reply)
 
-            form = model_to_form(model, disable_moderator=True)
+            form = public_experience_model_to_form(public_experience, disable_moderator=True)
             return render(
                 request,
                 "main/moderate_experience.html",

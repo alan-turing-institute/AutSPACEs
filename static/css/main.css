@@ -620,7 +620,11 @@ body {
   color: #fcbd7e;
 }
 
-/* USER PROFILE PAGE */
+.template-hidden {
+  display: "hidden";
+}
+
+/* USER PROFILE PAGES */
 
 .profile-section {
   padding: 3% 5%;
