@@ -29,6 +29,11 @@ class PublicExperience(models.Model):
         blank=False,
         default='AutSPACEs contributor',
         max_length=100)
+    
+    author_relationship = models.CharField(
+        default = " ",
+        max_length = 150,
+    )
 
     def __str__(self):
         return self.experience_text

@@ -54,14 +54,17 @@ class ShareExperienceForm(forms.Form):
     research.group = 3
 
     # authorship option
-    authorship = [
-        ("AutSPACEs contributor", "AutSPACEs contributor"),
-        ("Autistic individual", "Autistic individual"),
-        ("Parent of an autistic individual", "Parent of an autistic individual"),
-        ("Carer for an autisitc individual", "Carer for an autisitc individual"),
-    ]
-    experience_authorship = forms.ChoiceField(choices = authorship, widget = forms.Select(), required=False)
+    authorship = [("Friend or relation of an autistic individual", "Yes"), 
+                  ("An autistic individual", "No")]
+    experience_authorship = forms.ChoiceField(choices = authorship, widget = forms.RadioSelect(), required=False, label="")
     experience_authorship.group = 4
+
+    author_relationship = forms.CharField(label='Relationship',
+                            strip=True,
+                            max_length=150,
+                            widget=forms.TextInput(), 
+                            required=False)
+    author_relationship.group = 4
 
     # hidden field for moderation status
     statuses = [

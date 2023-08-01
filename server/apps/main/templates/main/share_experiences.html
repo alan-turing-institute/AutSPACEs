@@ -186,7 +186,7 @@
         {% endif %}
         {% if group.grouper == 4 %}
           {% define "Authorship" as header %}
-          {% define "Please indicate if this is a first- or second-hand story" as subheader %}
+          {% define "Is this an experience shared on behalf of someone else?" as subheader %}
         {% endif %}
         <div class="form-group">
           <h3><label>{{ header }}</label></h3>
@@ -196,6 +196,12 @@
           <div class="row">
           {% for field in group.list %}
 
+            {% if field.label == "" or field.label == "Relationship" %}
+            <div class="form-check col-lg-12">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% else %}
             <div class="form-check col-lg-6">
               {% if field.label == "Other"%}
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
@@ -206,6 +212,7 @@
               {% endif %}
 
             </div>
+            {% endif %}
 
           {% endfor %}
          </div>
