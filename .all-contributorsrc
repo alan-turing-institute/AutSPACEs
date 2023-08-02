@@ -452,6 +452,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "AniKarenina",
+      "name": "Andrea Grover",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5032216?v=4",
+      "profile": "http://www.andreakgrover.com/",
+      "contributions": [
+        "userTesting"
+      ]
     }
   ],
   "contributorsPerLine": 7,

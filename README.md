@@ -1,6 +1,6 @@
 # AutSPACEs
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-38-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-39-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 *Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
@@ -169,6 +169,7 @@ Full documentation is available here: [`docs/`](docs).
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mastoffel"><img src="https://avatars.githubusercontent.com/u/7348440?v=4?s=100" width="100px;" alt="martin"/><br /><sub><b>martin</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=mastoffel" title="Code">💻</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=mastoffel" title="Tests">⚠️</a> <a href="#content-mastoffel" title="Content">🖋</a> <a href="#ideas-mastoffel" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.flypig.co.uk/"><img src="https://avatars.githubusercontent.com/u/1446122?v=4?s=100" width="100px;" alt="David Llewellyn-Jones"/><br /><sub><b>David Llewellyn-Jones</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=llewelld" title="Code">💻</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=llewelld" title="Tests">⚠️</a> <a href="#content-llewelld" title="Content">🖋</a> <a href="#ideas-llewelld" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/alan-turing-institute/AutSPACEs/pulls?q=is%3Apr+reviewed-by%3Allewelld" title="Reviewed Pull Requests">👀</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/obinnaofomah"><img src="https://avatars.githubusercontent.com/u/112175827?v=4?s=100" width="100px;" alt="Obinna_Ofomah"/><br /><sub><b>Obinna_Ofomah</b></sub></a><br /><a href="https://github.com/alan-turing-institute/AutSPACEs/commits?author=obinnaofomah" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.andreakgrover.com/"><img src="https://avatars.githubusercontent.com/u/5032216?v=4?s=100" width="100px;" alt="Andrea Grover"/><br /><sub><b>Andrea Grover</b></sub></a><br /><a href="#userTesting-AniKarenina" title="User Testing">📓</a></td>
     </tr>
   </tbody>
 </table>
