@@ -11,50 +11,50 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What is Autism</a>
+            <a class="nav-content nav-item nav-link" id="nav-what-is-autism" href="{% url 'main:what_autism_is' %}">What is Autism</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item dropdown nav-nopadding">
+          <li class="nav-item dropdown nav-nopadding" id="nav-experiences">
             <a class="nav-link dropdown-toggle nav-content" href="#" id="experienceDropdownMenuLink" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Experiences
             </a>
             <div class="dropdown-menu" aria-labelledby="experienceDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'main:public_experiences' %}">View Stories</a>
-              <a class="dropdown-item" href="{% url 'main:share_exp' %}">Share Stories</a>
+              <a class="dropdown-item" id="nav-experiences-view" href="{% url 'main:public_experiences' %}">View Stories</a>
+              <a class="dropdown-item" id="nav-experiences-share" href="{% url 'main:share_exp' %}">Share Stories</a>
             </div>
           </li>
           {% is_moderator user as moderator %}
           {% if moderator %}
           <li class="nav-item dropdown nav-nopadding">
-            <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
+            <a class="nav-link dropdown-toggle nav-content" id="nav-moderation" href="#" id="navbarDropdownMenuLink" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Moderation
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=pending">Pending</a>
-              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=approved">Approved</a>
-              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=rejected">Rejected</a>
+              <a class="dropdown-item" id="nav-moderation-pending" href="{% url 'main:moderation_list' %}?status=pending">Pending</a>
+              <a class="dropdown-item" id="nav-moderation-approved" href="{% url 'main:moderation_list' %}?status=approved">Approved</a>
+              <a class="dropdown-item" id="nav-moderation-rejected" href="{% url 'main:moderation_list' %}?status=rejected">Rejected</a>
             </div>
           </li>
 
           {% endif %}
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+            <a class="nav-content nav-item nav-link" id="nav-my-stories" href="{% url 'main:my_stories' %}">My Stories</a>
           </li>
           {% else %}
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:public_experiences' %}">View Stories</a>
+            <a class="nav-content nav-item nav-link" id="nav-public-experiences" href="{% url 'main:public_experiences' %}">View Stories</a>
           </li>
           {% endif %}
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
+            <a class="nav-content nav-item nav-link" id="nav-about" href="{% url 'main:about_us' %}">About Us</a>
           </li>
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
+            <a class="nav-content nav-item nav-link" id="nav-coc" href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
           </li>
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:help' %}">Help</a>
+            <a class="nav-content nav-item nav-link" id="nav-help" href="{% url 'main:help' %}">Help</a>
           </li>
         </ul>
 
@@ -62,14 +62,14 @@
 
         {% if user.is_authenticated %}
         <ul class="navbar-nav nav-right">
-          <li class="nav-item dropdown nav-nopadding">
+          <li class="nav-item dropdown nav-nopadding" id="nav-account">
             <a class="nav-link dropdown-toggle nav-content nav-account" href="#" id="accountDropdownMenuLink" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Account
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
-              <form class="form-inline nav-nomargin" action="{% url 'main:logout' %}" method="post">
+              <a class="dropdown-item" id="nav-account-profile" href="{% url 'users:profile' %}">Profile</a>
+              <form class="form-inline nav-nomargin" id="nav-account-logout" action="{% url 'main:logout' %}" method="post">
                 {% csrf_token %}
                 <button class="dropdown-item" type="submit">Log out</button>
               </form>

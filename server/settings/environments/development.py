@@ -79,6 +79,7 @@ CSP_SCRIPT_SRC = (
     'cdnjs.cloudflare.com',
     'maxcdn.bootstrapcdn.com',
     'cdn.jsdelivr.net',
+    'unpkg.com',
 )
 CSP_IMG_SRC = (
     "'self'",
@@ -101,6 +102,7 @@ CSP_STYLE_SRC = (
     'maxcdn.bootstrapcdn.com',
     'netdna.bootstrapcdn.com',
     'cdn.jsdelivr.net',
+    'unpkg.com',
 )
 
 # nplusone

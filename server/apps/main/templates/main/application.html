@@ -8,7 +8,7 @@
 
     <!-- jQuery -->
     {% include 'main/partials/jquery.html' %}
-    
+
     <!-- Bootstrap CSS -->
 
     <!--Google Fonts-->
@@ -25,6 +25,10 @@
     <link href="{% static '/css/main.css' %}" rel="stylesheet">
     {%block page_css%} {% endblock %}
 
+    <!-- TourGuide (TODO: should only be included when needed) -->
+    <script src="https://unpkg.com/@sjmc11/tourguidejs/dist/tour.js" crossorigin="anonymous"
+      referrerpolicy="no-referrer" type"module"'></script>
+    <link rel="stylesheet" href="https://unpkg.com/@sjmc11/tourguidejs/dist/css/tour.min.css">
   </head>
 
   <body {% block body_attributes%} {% endblock %}>
