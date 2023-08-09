@@ -48,6 +48,7 @@ from .helpers import (
     number_stories,
     get_message,
     message_wrap,
+    experience_titles_for_session,
 )
 
 from server.apps.users.helpers import (
@@ -284,11 +285,13 @@ def view_experience(request, uuid):
 
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/delete_exp.yaml", filter_query_parameters=['access_token'])
-def delete_experience(request, uuid, title):
+def delete_experience(request, uuid):
     """
     Delete experience from PE databacse and OH
     """
-    # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
+    
+    titles = request.session.get('titles', {})
+    title = titles.get(uuid, "no title")
 
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -451,6 +454,9 @@ def my_stories(request):
         files = request.user.openhumansmember.list_files()
         context = {"files": files}
         context = reformat_date_string(context)
+
+        # add experience titles to session for deletion pages
+        request.session['titles']= experience_titles_for_session(files)
 
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE

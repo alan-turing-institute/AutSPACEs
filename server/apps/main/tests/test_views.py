@@ -527,7 +527,7 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
         response = c.post(
-            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/"
+            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/"
         )
         assert response.status_code == 200
 
