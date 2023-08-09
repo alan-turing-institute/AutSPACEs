@@ -54,7 +54,7 @@
     <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
 </td>
 <td>
-    <a href="{% url 'main:delete_exp' file.metadata.uuid file.metadata.description|urlencode:"" %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'main:delete_exp' file.metadata.uuid %}" class="btn btn-danger">Delete</a>
 </td>
 </tr>
 {% comment %} {% empty %}
