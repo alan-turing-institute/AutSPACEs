@@ -3,7 +3,6 @@ from django import forms
 class UserProfileForm(forms.Form):
 
     autistic_identifications = [
-        ("", "-----------"),
         ("yes", "Yes"),
         ("no", "No"),
         ("unspecified", "Prefer not to say"),

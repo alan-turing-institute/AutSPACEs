@@ -7,7 +7,7 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     profile_submitted = models.BooleanField(default=False)
-    autistic_identification = models.TextField(default="")
+    autistic_identification = models.TextField(default="unspecified")
     age_bracket = models.TextField(default="unspecified")
     age_public = models.BooleanField(default=False)
     gender = models.TextField(default="unspecified")
