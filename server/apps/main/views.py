@@ -289,8 +289,7 @@ def delete_experience(request, uuid):
     """
     Delete experience from PE databacse and OH
     """
-    # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
-
+    
     titles = request.session.get('titles', {})
     title = titles.get(uuid, "no title")
 
