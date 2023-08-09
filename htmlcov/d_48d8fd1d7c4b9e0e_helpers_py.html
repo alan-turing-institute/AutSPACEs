@@ -54,8 +54,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">245 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">244<span class="text"> run</span></button>
+            <span class="text">251 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">250<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">1<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_b172dc9ee102875b_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-08-08 12:48 +0000
+            created at 2023-08-09 15:54 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -710,6 +710,22 @@
     <p class="pln"><span class="n"><a id="t628" href="#t628">628</a></span><span class="t"><span class="str">    Wrap the text to the given width, but retain paragraph breaks (empty lines)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t629" href="#t629">629</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t630" href="#t630">630</a></span><span class="t">    <span class="key">return</span> <span class="str">"\n"</span><span class="op">.</span><span class="nam">join</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span><span class="key">lambda</span> <span class="nam">para</span><span class="op">:</span> <span class="str">"\n"</span><span class="op">.</span><span class="nam">join</span><span class="op">(</span><span class="nam">textwrap</span><span class="op">.</span><span class="nam">wrap</span><span class="op">(</span><span class="nam">para</span><span class="op">,</span> <span class="nam">width</span><span class="op">)</span><span class="op">)</span><span class="op">,</span> <span class="nam">text</span><span class="op">.</span><span class="nam">split</span><span class="op">(</span><span class="str">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t631" href="#t631">631</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t632" href="#t632">632</a></span><span class="t"><span class="key">def</span> <span class="nam">experience_titles_for_session</span><span class="op">(</span><span class="nam">files</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t633" href="#t633">633</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t634" href="#t634">634</a></span><span class="t"><span class="str">    take a member.list_files() list of files and add them to dict</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t635" href="#t635">635</a></span><span class="t"><span class="str">    of the form </span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t636" href="#t636">636</a></span><span class="t"><span class="str">    {"titles":{</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t637" href="#t637">637</a></span><span class="t"><span class="str">        "uuid": "title",</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t638" href="#t638">638</a></span><span class="t"><span class="str">        "uuid2": "title2"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t639" href="#t639">639</a></span><span class="t"><span class="str">    }}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t640" href="#t640">640</a></span><span class="t"><span class="str">    To be added to session</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t641" href="#t641">641</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t642" href="#t642">642</a></span><span class="t">    <span class="nam">titles</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t643" href="#t643">643</a></span><span class="t">    <span class="key">for</span> <span class="nam">f</span> <span class="key">in</span> <span class="nam">files</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t644" href="#t644">644</a></span><span class="t">        <span class="key">if</span> <span class="str">"uuid"</span> <span class="key">in</span> <span class="nam">f</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">.</span><span class="nam">keys</span><span class="op">(</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t645" href="#t645">645</a></span><span class="t">            <span class="nam">titles</span><span class="op">[</span><span class="nam">f</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'uuid'</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="nam">f</span><span class="op">[</span><span class="str">'metadata'</span><span class="op">]</span><span class="op">[</span><span class="str">'description'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t646" href="#t646">646</a></span><span class="t">    <span class="key">return</span> <span class="nam">titles</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -719,7 +735,7 @@
             <a id="nextFileLink" class="nav" href="d_b172dc9ee102875b_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-08-08 12:48 +0000
+            created at 2023-08-09 15:54 +0000
         </p>
     </div>
 </footer>
