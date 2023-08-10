@@ -154,7 +154,7 @@ class ViewTests(TestCase):
         response = c.get("/main/login/")
         # Login redirects to the overview page
         assert response.status_code == 302
-        self.assertRedirects(response, "/main/overview", status_code=302, target_status_code=200, fetch_redirect_response=True)
+        self.assertRedirects(response, "/main/", status_code=302, target_status_code=200, fetch_redirect_response=True)
 
     def test_profile_submit(self):
         """

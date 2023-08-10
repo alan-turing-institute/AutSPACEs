@@ -693,11 +693,11 @@ class Views(TestCase):
 
         # Check redirect if invalid UUID given
         r_bad_uuid = c.get("/main/single_story/this-is-an-invalid-uuid/", follow=True)
-        self.assertRedirects(r_bad_uuid, "/main/overview")
+        self.assertRedirects(r_bad_uuid, "/")
 
         # Check that rejected story isn't shown
         r_rejected_story = c.get("/main/single_story/8765_3/")
-        self.assertRedirects(r_rejected_story, "/main/overview")
+        self.assertRedirects(r_rejected_story, "/")
 
     def test_list_public_exp_pagination(self):
         c = Client()
