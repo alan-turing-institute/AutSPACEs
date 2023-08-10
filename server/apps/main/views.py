@@ -65,7 +65,7 @@ def confirmation_page(request):
     if request.user.is_authenticated:
         return render(request, "main/confirmation_page.html")
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 
 def about_us(request):
@@ -107,21 +107,10 @@ def logout_user(request):
     return redirect("index")
 
 
+# @vcr.use_cassette("tmp/overview.yaml", filter_query_parameters=['access_token'])
 def index(request):
     """
     Starting page for app.
-    """
-    auth_url = OpenHumansMember.get_auth_url()
-    context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
-    if request.user.is_authenticated:
-        return redirect("main:overview")
-    return render(request, "main/home.html", context=context)
-
-
-# @vcr.use_cassette("tmp/overview.yaml", filter_query_parameters=['access_token'])
-def overview(request):
-    """
-    Overview page for logged in users directs to home, otherwise to index.
     """
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
@@ -131,8 +120,10 @@ def overview(request):
             "oh_user": oh_member.user,
             "oh_proj_page": settings.OH_PROJ_PAGE,
         }
-        return render(request, "main/home.html", context=context)
-    return redirect("index")
+    else:
+        auth_url = OpenHumansMember.get_auth_url()
+        context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
+    return render(request, "main/home.html", context=context)
 
 def login_user(request):
     """
@@ -147,7 +138,7 @@ def login_user(request):
             UserProfile.objects.update_or_create(user=request.user)
             return redirect("users:greetings")
 
-    return redirect("main:overview")
+    return redirect("main:index")
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/share_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
@@ -280,7 +271,7 @@ def view_experience(request, uuid):
             },
         )
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/delete_exp.yaml", filter_query_parameters=['access_token'])
@@ -402,7 +393,7 @@ def moderate_public_experiences(request):
             },
         )
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 
 def moderation_list(request):
@@ -439,7 +430,7 @@ def moderation_list(request):
 
         return moderate_page(request, status, experiences)
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 #@vcr.use_cassette("server/apps/main/tests/fixtures/pag_mystories.yaml", filter_query_parameters=['access_token'])
 def my_stories(request):
@@ -497,7 +488,7 @@ def my_stories(request):
             },
         )
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 def moderate_experience(request, uuid):
     """
@@ -664,4 +655,4 @@ def single_story(request, uuid):
         context = {**exp_context, **title_context}
         return render(request, "main/single_story.html", context=context)
     except ObjectDoesNotExist:
-        return redirect("main:overview")
+        return redirect("index")
