@@ -144,7 +144,7 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderate_public_experiences", follow=True)
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -155,7 +155,7 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderation_list", {"status": "pending"}, follow=True)
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -166,7 +166,7 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderation_list", {"status": "approved"}, follow=True)
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -177,7 +177,7 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderation_list", {"status": "rejected"}, follow=True)
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302,target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -188,7 +188,7 @@ class ModerationViewTests(TestCase):
         c = Client()
         c.force_login(self.non_moderator_user)
         response = c.get("/main/moderate/test-test-test/", follow=True)
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302, target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
 
@@ -207,7 +207,7 @@ class ModerationViewTests(TestCase):
                         },
                         follow=True)
         # assert ending up on right page
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302, target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
         # test that no changes were made
@@ -231,7 +231,7 @@ class ModerationViewTests(TestCase):
                         },
                         follow=True)
         # assert ending up on right page
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302, target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
         # test that no changes were made
@@ -255,7 +255,7 @@ class ModerationViewTests(TestCase):
                         },
                         follow=True)
         # assert ending up on right page
-        self.assertRedirects(response, "/main/overview",
+        self.assertRedirects(response, "/",
                              status_code=302, target_status_code=200)
         self.assertTemplateUsed(response, 'main/home.html')
         # test that no changes were made
