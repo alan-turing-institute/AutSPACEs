@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_2b118a4a7b3791e6_tests_2023_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-08-09 15:54 +0000
+            created at 2023-08-10 14:43 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -775,11 +775,11 @@
     <p class="pln"><span class="n"><a id="t693" href="#t693">693</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t694" href="#t694">694</a></span><span class="t">        <span class="com"># Check redirect if invalid UUID given</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t695" href="#t695">695</a></span><span class="t">        <span class="nam">r_bad_uuid</span> <span class="op">=</span> <span class="nam">c</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/main/single_story/this-is-an-invalid-uuid/"</span><span class="op">,</span> <span class="nam">follow</span><span class="op">=</span><span class="key">True</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t696" href="#t696">696</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertRedirects</span><span class="op">(</span><span class="nam">r_bad_uuid</span><span class="op">,</span> <span class="str">"/main/overview"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t696" href="#t696">696</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertRedirects</span><span class="op">(</span><span class="nam">r_bad_uuid</span><span class="op">,</span> <span class="str">"/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t697" href="#t697">697</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t698" href="#t698">698</a></span><span class="t">        <span class="com"># Check that rejected story isn't shown</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t699" href="#t699">699</a></span><span class="t">        <span class="nam">r_rejected_story</span> <span class="op">=</span> <span class="nam">c</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/main/single_story/8765_3/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t700" href="#t700">700</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertRedirects</span><span class="op">(</span><span class="nam">r_rejected_story</span><span class="op">,</span> <span class="str">"/main/overview"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t700" href="#t700">700</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertRedirects</span><span class="op">(</span><span class="nam">r_rejected_story</span><span class="op">,</span> <span class="str">"/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t701" href="#t701">701</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t702" href="#t702">702</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_list_public_exp_pagination</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t703" href="#t703">703</a></span><span class="t">        <span class="nam">c</span> <span class="op">=</span> <span class="nam">Client</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -882,7 +882,7 @@
             <a id="nextFileLink" class="nav" href="d_2b118a4a7b3791e6_tests_2023_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-08-09 15:54 +0000
+            created at 2023-08-10 14:43 +0000
         </p>
     </div>
 </footer>
