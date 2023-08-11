@@ -63,6 +63,19 @@ class ShareExperienceForm(forms.Form):
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
 
+    authorship_choices = [
+        ("Experience is my own", "Experience is my own"),
+        ("Experience is someone else's", "Experience is someone else's"),
+    ]
+    authorship_status = forms.ChoiceField(choices = authorship_choices, widget = forms.RadioSelect(), required=False)
+    authorship_status.group = 4
+
+    authorship_relation = forms.CharField(label="Relationship",
+                                 max_length=150, strip=True, required=False,
+                                 widget=forms.TextInput())
+    authorship_relation.layout_horizontal = True
+    authorship_relation.group = 4
+
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
 

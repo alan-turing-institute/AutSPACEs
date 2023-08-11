@@ -184,6 +184,10 @@
           {% define "Sharing Options" as header %}
           {% define "Please indicate if you want to share your experience" as subheader %}
         {% endif %}
+        {% if group.grouper == 4 %}
+          {% define "Authorship Description" as header %}
+          {% define "Are you writing this experience on behalf of yourself or someone else" as subheader %}
+        {% endif %} 
         <div class="form-group">
           <h3><label>{{ header }}</label></h3>
 
@@ -196,6 +200,9 @@
               {% if field.label == "Other"%}
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                 {{field}}
+              {% elif field.label == "Authorship status" %}
+                <label for="{{ field.id_for_label}}"></label>
+                {{ field }}
               {% else %}
                 {{ field }}
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -275,6 +282,7 @@
   </div>
 
   <script src="{% static 'js/submit-warning.js' %}"></script>
+  <script src="{% static 'js/helen.js' %}"></script>
   </div>
 {% endblock %}
 
