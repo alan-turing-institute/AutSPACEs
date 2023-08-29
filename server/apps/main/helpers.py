@@ -628,3 +628,19 @@ def message_wrap(text, width):
     Wrap the text to the given width, but retain paragraph breaks (empty lines)
     """
     return "\n".join(map(lambda para: "\n".join(textwrap.wrap(para, width)), text.split("\n")))
+
+def experience_titles_for_session(files):
+    """
+    take a member.list_files() list of files and add them to dict
+    of the form 
+    {"titles":{
+        "uuid": "title",
+        "uuid2": "title2"
+    }}
+    To be added to session
+    """
+    titles = {}
+    for f in files:
+        if "uuid" in f['metadata'].keys():
+            titles[f['metadata']['uuid']] = f['metadata']['description']
+    return titles

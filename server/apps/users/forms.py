@@ -1,5 +1,11 @@
 from django import forms
 
+class SelectRequired(forms.Select):
+    # Disables items in the drop down list that have an empty value
+    # See https://docs.djangoproject.com/en/4.2/ref/forms/renderers/#built-in-template-form-renderers
+    # See also the ChoiceWidget.create_option() implementation in django/forms/widgets.py
+    option_template_name = "users/select_option_disable_empty.html"
+
 class UserProfileForm(forms.Form):
 
     autistic_identifications = [
@@ -8,7 +14,8 @@ class UserProfileForm(forms.Form):
         ("no", "No"),
         ("unspecified", "Prefer not to say"),
     ]
-    autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = forms.Select(attrs={
+    
+    autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = SelectRequired(attrs={
         "class": "custom-select",
         "aria-describedby": "help_id_autistic_identification"}
         ),

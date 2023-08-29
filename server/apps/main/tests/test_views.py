@@ -527,7 +527,7 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
         response = c.post(
-            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/"
+            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/"
         )
         assert response.status_code == 200
 
@@ -693,11 +693,11 @@ class Views(TestCase):
 
         # Check redirect if invalid UUID given
         r_bad_uuid = c.get("/main/single_story/this-is-an-invalid-uuid/", follow=True)
-        self.assertRedirects(r_bad_uuid, "/main/overview")
+        self.assertRedirects(r_bad_uuid, "/")
 
         # Check that rejected story isn't shown
         r_rejected_story = c.get("/main/single_story/8765_3/")
-        self.assertRedirects(r_rejected_story, "/main/overview")
+        self.assertRedirects(r_rejected_story, "/")
 
     def test_list_public_exp_pagination(self):
         c = Client()

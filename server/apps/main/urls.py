@@ -8,7 +8,6 @@ urlpatterns = [
     re_path(r"^signup/?$", views.signup, name="signup"),
     re_path(r"^login/?$", views.login_user, name="login"),
     re_path(r"^logout/?$", views.logout_user, name="logout"),
-    re_path(r"^overview/?$", views.overview, name="overview"),
     re_path(
         r"^public_experiences/?$",
         views.list_public_experiences,
@@ -20,7 +19,7 @@ urlpatterns = [
         name="moderate_public_experiences",
     ),
     re_path(r"moderation_list/?$", views.moderation_list, name="moderation_list"),
-    path("delete/<uuid>/<title>/", views.delete_experience, name="delete_exp"),
+    path("delete/<uuid>/", views.delete_experience, name="delete_exp"),
     path("share_exp/", views.share_experience, name="share_exp"),
     path("edit/<uuid>/", views.share_experience, name="edit_exp"),
     path("moderate/<uuid>/", views.moderate_experience, name="moderate_exp"),
