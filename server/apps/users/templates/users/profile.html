@@ -76,7 +76,7 @@
               <p/><label for="{{ field.auto_id }}">{{ field.label }}</label>
               {{ field }}
               {% if field.help_text %}
-              <small id="Help{{field.auto_id}}" class="form-text text-muted">
+              <small id="help_{{field.auto_id}}" class="form-text text-muted">
                 {{field.help_text|safe}}
               </small>
               {% endif %}
