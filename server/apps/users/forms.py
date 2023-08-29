@@ -9,7 +9,7 @@ class SelectRequired(forms.Select):
 class UserProfileForm(forms.Form):
 
     autistic_identifications = [
-        ("", "-----------"),
+        ("", ""),
         ("yes", "Yes"),
         ("no", "No"),
         ("unspecified", "Prefer not to say"),
@@ -20,7 +20,7 @@ class UserProfileForm(forms.Form):
         "aria-describedby": "help_id_autistic_identification"}
         ),
                                            label="Do you identify as autistic?",
-                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why this is a mandatory question. If you select <i>prefer not to say</i>, your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
+                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why <strong>require a conscious decision for this question</strong>. If you select <i>prefer not to say</i>, your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
                                            required=True,
                                            initial="")
     autistic_identification.group = 1
