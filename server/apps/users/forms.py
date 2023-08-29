@@ -3,16 +3,16 @@ from django import forms
 class UserProfileForm(forms.Form):
 
     autistic_identifications = [
+        ("", "-----------"),
         ("yes", "Yes"),
         ("no", "No"),
         ("unspecified", "Prefer not to say"),
     ]
-    autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = forms.Select(),
+    autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = forms.Select(attrs={"class": "custom-select"}),
                                            label="Do you identify as autistic?",
-                                           help_text="AutSPACEs is focusing on collecting and sharing the voices and lived experiences of autistic people, which is why this is a mandatory question. If you select <i>prefer not to say</i> your answers will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
+                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why this is a mandatory question. If you select <i>prefer not to say</i>, your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
                                            required=True)
     autistic_identification.group = 1
-    autistic_identification.gap = True
 
     age_brackets = [
         ("18-25", "18-25"),
@@ -22,9 +22,9 @@ class UserProfileForm(forms.Form):
         ("over 65", "Over 65"),
         ("unspecified", "Prefer not to say"),
     ]
-    age_bracket = forms.ChoiceField(choices = age_brackets, widget = forms.Select(), required=False,
+    age_bracket = forms.ChoiceField(choices = age_brackets, widget = forms.Select(attrs={"class": "custom-select"}), required=False,
                                    label="What is your age group?",
-                                   help_text="Providing your age will help researchers understand potential trends across age groups. It will also help readers to better understand your perspective if this data is made public.",
+                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers to better understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
                                    initial="unspecified")
     age_bracket.group = 1
 
@@ -41,9 +41,9 @@ class UserProfileForm(forms.Form):
         ("self_identify", "Self identify"),
         ("unspecified", "Prefer not to say"),
     ]
-    gender = forms.ChoiceField(choices = genders, widget = forms.Select(), required=False,
+    gender = forms.ChoiceField(choices = genders, widget = forms.Select(attrs={"class": "custom-select"}), required=False,
                               label="What gender do you identify with?",
-                              help_text="Providing your gender identity will help researchers understand potential trends across this demographic. It will also help readers to better understand your perspective if this data is made public.",
+                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers to better understand your perspective if this data is made public.",
                               initial="unspecified")
     gender.group = 1
 

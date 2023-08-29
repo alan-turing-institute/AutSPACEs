@@ -36,7 +36,7 @@
 <!-- User Profile Form -->
 <section id="user-profile-form">
   <div class="container profile-section">
-    <h3><label>Account</label></h3>
+    <h3><label>Account details</label></h3>
     <p/><a href="https://www.openhumans.org/">OpenHumans</a> ID: {{ oh_id }}
     <p/><a href="{% url 'users:delete' %}">Delete AutSPACEs account</a>
 
@@ -47,8 +47,8 @@
     {% for group in field_groups %}
       {% define "col-lg-12" as columns %}
       {% if group.grouper == 1 %}
-        {% define "User Profile" as header %}
-        {% define "Please provide details you are comfortable sharing. All fields are optional." as subheader %}
+        {% define "Your profile" as header %}
+        {% define "You can chose <em>'Prefer not to say'</em> for all options and answers are not public by default." as subheader %}
       {% endif %}
       {% if group.grouper == 2 %}
         {% define "Sensitive topics" as header %}
@@ -68,8 +68,7 @@
         <h3><label>{{ header }}</label></h3>
 
         <h5>{{ subheader }}</h5>
-        <br/>
-        <div class="row">
+        <div class="form-row">
         {% for field in group.list %}
           <div class="form-check {{ columns }}">
           {% if field.field.widget|field_type == "CheckboxInput" %}
@@ -79,21 +78,17 @@
               </div>
           {% else %}
               <p/><label for="{{ field.auto_id }}">{{ field.label }}</label>
-              {% if field.help_text %}
-                <a tabindex="0" role="button" class="btn btn-link" data-toggle="popover" data-trigger="focus"
-                   data-html="true" title="{{ field.label }}" data-content="{{ field.help_text|safe }}">
-                   <i class="bi bi-info-circle-fill"></i>
-                </a>
-              {% endif %}
-              {% if not field.field.layout_horizontal %}
-                <br/>
-              {% endif %}
               {{ field }}
+              {% if field.help_text %}
+              <small id="Help{{field.auto_id}}" class="form-text text-muted">
+                {{field.help_text|safe}}
+              </small>
+              {% endif %}
           {% endif %}
           </div>
 
           {% if field.field.gap %}
-            <div class="form-check {{ columns }} mb-5"></div>
+            <div class="form-check {{ columns }} mb-3"></div>
           {% endif %}
 
         {% endfor %}
