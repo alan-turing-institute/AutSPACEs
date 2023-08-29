@@ -40,7 +40,7 @@
 | server/apps/users/\_\_init\_\_.py                                         |        0 |        0 |    100% |           |
 | server/apps/users/admin.py                                                |        3 |        0 |    100% |           |
 | server/apps/users/apps.py                                                 |        3 |        0 |    100% |           |
-| server/apps/users/forms.py                                                |       43 |        0 |    100% |           |
+| server/apps/users/forms.py                                                |       45 |        0 |    100% |           |
 | server/apps/users/helpers.py                                              |       23 |        0 |    100% |           |
 | server/apps/users/migrations/0001\_initial.py                             |        6 |        0 |    100% |           |
 | server/apps/users/migrations/0002\_userprofile\_refine\_fields.py         |        4 |        0 |    100% |           |
@@ -61,7 +61,7 @@
 | server/settings/environments/development.py                               |       27 |        0 |    100% |           |
 | server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
 | server/urls.py                                                            |       12 |        0 |    100% |           |
-|                                                                 **TOTAL** | **2003** |   **22** | **99%** |           |
+|                                                                 **TOTAL** | **2005** |   **22** | **99%** |           |
 
 
 ## Setup coverage badge
