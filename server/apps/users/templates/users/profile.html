@@ -36,10 +36,6 @@
 <!-- User Profile Form -->
 <section id="user-profile-form">
   <div class="container profile-section">
-    <h3><label>Account details</label></h3>
-    <p/><a href="https://www.openhumans.org/">OpenHumans</a> ID: {{ oh_id }}
-    <p/><a href="{% url 'users:delete' %}">Delete AutSPACEs account</a>
-
     <form action="{% url 'users:profile' %}" class="form-context" method="post">
     {% csrf_token %}
     {% regroup form by field.group as field_groups %}
@@ -52,12 +48,12 @@
       {% endif %}
       {% if group.grouper == 2 %}
         {% define "Sensitive topics" as header %}
-        {% define "Select the trigger labels that you are comfortable viewing in the story list by default" as subheader %}
+        {% define "Select the topics that you are comfortable seeing in experiences" as subheader %}
         {% define "col-lg-6" as columns %}
       {% endif %}
       {% if group.grouper == 3 %}
-        {% define "Communication preferences" as header %}
-        {% define "Select the option below if you'd like Open Humans to send you messages." as subheader %}
+        {% define "Messaging options" as header %}
+        {% define "Select when you would like to be notified by us." as subheader %}
       {% endif %}
       {% if group.grouper == 4 %}
         {% define "Hidden fields" as header %}
@@ -98,9 +94,15 @@
     {% endfor %}
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" id="submitForm">Submit</button>
+        <button type="submit" class="btn btn-primary" id="submitForm">Save profile settings</button>
       </div>
     </form>
+
+    <h3><label>Account details</label></h3>
+    <p/><a href="https://www.openhumans.org/">Open Humans</a> ID: {{ oh_id }}
+    <p/><a href="{% url 'users:delete' %}" class="btn btn-danger">Delete AutSPACEs account</a>
+
+
   </div>
 </section>
 

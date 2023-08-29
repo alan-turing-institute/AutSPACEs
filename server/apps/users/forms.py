@@ -11,7 +11,8 @@ class UserProfileForm(forms.Form):
     autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = forms.Select(attrs={"class": "custom-select"}),
                                            label="Do you identify as autistic?",
                                            help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why this is a mandatory question. If you select <i>prefer not to say</i>, your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
-                                           required=True)
+                                           required=True,
+                                           initial="")
     autistic_identification.group = 1
 
     age_brackets = [
@@ -102,7 +103,7 @@ class UserProfileForm(forms.Form):
     other.group = 2
 
     # Communications preferences
-    comms_review = forms.BooleanField(label = "When the review status of your story changes",
+    comms_review = forms.BooleanField(label = "Moderation reviews of my experiences",
         required = False,
         widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
     comms_review.group = 3
