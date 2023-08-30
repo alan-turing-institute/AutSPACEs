@@ -188,7 +188,7 @@
         {% endif %}
         {% if group.grouper == 4 %}
           {% define "Authorship Description" as header %}
-          {% define "Are you writing this experience on behalf of yourself or someone else" as subheader %}
+          {% define "Are you writing this experience on behalf of yourself?" as subheader %}
           {% define "col-lg-12" as columns %}
         {% endif %} 
         <div class="form-group">
@@ -204,8 +204,8 @@
               {% if field.label == "Other"%}
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                 {{field}}
-              {% elif field.label == "Authorship status" %}
-                <label for="{{ field.id_for_label}}"></label>
+              {% elif field.label == "First hand authorship" %}
+              <label for="{{ field.id_for_label }}"></label>
                 {{ field }}
               {% elif field.label == "Relationship"%}
                 <label for="{{ field.id_for_label}}">{{ field.label }}:</label>

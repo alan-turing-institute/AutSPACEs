@@ -1,23 +1,24 @@
 $(function () {
     $(document).ready(function() {
         $('input:radio').change(function() {
-          var ele = document.getElementsByName('authorship_status');
+          var ele = document.getElementsByName('first_hand_authorship');
 
           for (i = 0; i < ele.length; i++) {
             if (ele[i].checked)
                    op = ele[i].value;}
 
-        if (op == "Experience is someone else's")
+        if (op == "False")
             set_visibility(true, '#id_authorship_relation', true)
 
-        if (op == "Experience is my own")
+        if (op == "True")
             set_visibility(false, '#id_authorship_relation', true)
 
         });
     });
 
     // Set the initial visibility
-    set_visibility($('#id_authorship_relation').val() == "Experience is someone else's", '#id_authorship_relation', true)
+    // alert($('input[name="first_hand_authorship"]:checked').val()==undefined)
+    set_visibility($('input[name="first_hand_authorship"]:checked').val()!=undefined, '#id_authorship_relation', true)
 
     // Control the visibility of a field
     function set_visibility(visible, field_id, instant) {

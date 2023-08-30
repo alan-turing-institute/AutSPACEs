@@ -25,6 +25,10 @@ class PublicExperience(models.Model):
     
     research = models.BooleanField(default=False)
 
+    authorship_choices = ((False, "Experience is someone else's"), (True, "Experience is my own"))
+    first_hand_authorship = models.BooleanField(choices=authorship_choices, default=False)
+    authorship_relation = models.TextField(default="")
+
     def __str__(self):
         return self.experience_text
 
