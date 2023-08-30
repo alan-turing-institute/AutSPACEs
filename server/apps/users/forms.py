@@ -39,7 +39,7 @@ class UserProfileForm(forms.Form):
         ), 
                                    required=False,
                                    label="What is your age group?",
-                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers to better understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
+                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers to better understand your perspective if this data is made public.",
                                    initial="unspecified")
     age_bracket.group = 1
 
