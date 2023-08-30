@@ -1,0 +1,21 @@
+{% load static %}
+
+<!-- List of dropdown moderation replies with severity (amber/red) + link to CoC item  --> 
+
+<template id="template-control" class="template-hidden">
+    <div class="dropdown control">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reason for moderation
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item addreason" data-reason="Includes identity or sensitive data" data-href="identity" data-severity="red">Identity or sensitive data</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Discriminatory or belittling content" data-href="discriminatory" data-severity="red">Discriminatory or belittling</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Includes a racial slur" data-href="racial-slurs" data-severity="red">Racial slur</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Making assumptions when writing on behalf of others" data-href="are-you-making-assumptions" data-severity="red">Assumptions on behalf of others</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Including your own subjective details when writing on behalf of others" data-href="are-you-adding-subjective-detail" data-severity="red">Own subjectivity on behalf of others</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Responding to someone else's story" data-href="responding-to-others" data-severity="red">Response to someone else's story</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Includes swear words or disability slurs" data-href="swear-words" data-severity="amber">Swear words or disability slurs</a></li>
+        <li><a class="dropdown-item addreason" data-reason="Potentially triggering to some users" data-href="swear-words" data-severity="amber">Triggering to some users</a></li>
+      </ul>
+    </div>
+  </template>
