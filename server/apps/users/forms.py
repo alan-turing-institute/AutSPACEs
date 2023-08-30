@@ -20,7 +20,7 @@ class UserProfileForm(forms.Form):
         "aria-describedby": "help_id_autistic_identification"}
         ),
                                            label="Do you identify as autistic?",
-                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why <strong>require a conscious decision for this question</strong>. If you select <i>prefer not to say</i>, your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
+                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why we <strong>require a conscious decision for this question</strong>. If you select <i>prefer not to say</i> your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
                                            required=True,
                                            initial="")
     autistic_identification.group = 1
@@ -39,7 +39,7 @@ class UserProfileForm(forms.Form):
         ), 
                                    required=False,
                                    label="What is your age group?",
-                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers to better understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
+                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers to better understand your perspective if this data is made public.",
                                    initial="unspecified")
     age_bracket.group = 1
 
@@ -62,7 +62,7 @@ class UserProfileForm(forms.Form):
         ), 
                               required=False,
                               label="What gender do you identify with?",
-                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers to better understand your perspective if this data is made public.",
+                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers to better understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
                               initial="unspecified")
     gender.group = 1
 
