@@ -62,7 +62,7 @@ class UserProfileForm(forms.Form):
         ), 
                               required=False,
                               label="What gender do you identify with?",
-                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers to better understand your perspective if this data is made public.",
+                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers to better understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
                               initial="unspecified")
     gender.group = 1
 
