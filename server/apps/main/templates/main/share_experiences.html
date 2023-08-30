@@ -179,14 +179,17 @@
         {% if group.grouper == 2 %}
           {% define "Sensitive topics" as header %}
           {% define "Please indicate if your experience covers a sensitive topic by selecting from the trigger labels below" as subheader %}
+          {% define "col-lg-6" as columns %}
         {% endif %}
         {% if group.grouper == 3 %}
           {% define "Sharing Options" as header %}
           {% define "Please indicate if you want to share your experience" as subheader %}
+          {% define "col-lg-6" as columns %}
         {% endif %}
         {% if group.grouper == 4 %}
           {% define "Authorship Description" as header %}
           {% define "Are you writing this experience on behalf of yourself or someone else" as subheader %}
+          {% define "col-lg-12" as columns %}
         {% endif %} 
         <div class="form-group">
           <h3><label>{{ header }}</label></h3>
@@ -195,13 +198,17 @@
 
           <div class="row">
           {% for field in group.list %}
+          
 
-            <div class="form-check col-lg-6">
+            <div class="form-check {{ columns }}">
               {% if field.label == "Other"%}
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                 {{field}}
               {% elif field.label == "Authorship status" %}
                 <label for="{{ field.id_for_label}}"></label>
+                {{ field }}
+              {% elif field.label == "Relationship"%}
+                <label for="{{ field.id_for_label}}">{{ field.label }}:</label>
                 {{ field }}
               {% else %}
                 {{ field }}
