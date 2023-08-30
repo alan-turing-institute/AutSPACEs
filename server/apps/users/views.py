@@ -20,7 +20,7 @@ from .helpers import (
 
 logger = logging.getLogger(__name__)
 
-def user_profile(request, first_visit=False):
+def user_profile(request, first_visit=False, remind_user=False):
     """
     User profile page.
     """
@@ -50,7 +50,7 @@ def user_profile(request, first_visit=False):
                     "form": form,
                     "oh_id": oh_member.oh_id,
                     "first_visit": first_visit,
-                    "request_profile": False,
+                    "request_profile": remind_user,
                 })
     else:
         return redirect("index")

@@ -54,6 +54,7 @@ from .helpers import (
 from server.apps.users.helpers import (
     user_profile_exists,
     get_user_profile,
+    user_submitted_profile,
 )
 
 logger = logging.getLogger(__name__)
@@ -162,22 +163,31 @@ def share_experience(request, uuid=False):
                 else:
                     uuid = make_uuid()
 
+                data = form.cleaned_data
+                experience_is_shared = data.get("viewable", False) or data.get("research", False)
+
                 upload(
-                    data=form.cleaned_data,
+                    data=data,
                     uuid=uuid,
                     ohmember=request.user.openhumansmember,
                 )
 
                 # for Public Experience we need to check if it's viewable and update accordingly.
                 update_public_experience_db(
-                    data=form.cleaned_data,
+                    data=data,
                     uuid=uuid,
                     ohmember=request.user.openhumansmember,
                     editing_user=request.user.openhumansmember,
                 )
 
-                # redirect to a new URL:
-                return redirect("main:confirm_page")
+                # Has the user filled out their profile?
+                if experience_is_shared and (not user_submitted_profile(request.user)):
+                    # Remind the user to fill out their profile
+                    return redirect("users:reminder")
+                else:
+                    # redirect to the submission confirmation page
+                    return redirect("main:confirm_page")
+
             # If form is invalid raise errors back to user
             else:
                 for field in form:
@@ -280,7 +290,7 @@ def delete_experience(request, uuid):
     """
     Delete experience from PE databacse and OH
     """
-    
+
     titles = request.session.get('titles', {})
     title = titles.get(uuid, "no title")
 

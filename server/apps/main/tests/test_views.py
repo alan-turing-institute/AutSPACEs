@@ -310,6 +310,127 @@ class Views(TestCase):
         filter_query_parameters=["access_token"],
         match_on=["path"],
     )
+    def test_share_exp_redirect_confirmation(self):
+        """
+        Test that the user is redirected to the user profile
+        given the profile is incomplete and the experience will be
+        shared publicly and for research
+
+        logic:
+            request.user.is_authenticated == True
+            request.method == "POST"
+            form.is_valid() == True
+            viewable == True
+            research == True
+            user.autistic_identification == ''
+        """
+        c = Client()
+        c.force_login(self.user_a)
+
+        user_a_stories_before = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        response = c.post(
+            "/main/share_exp/",
+            {
+                "experience_text": "Here is some experience text",
+                "difference_text": "Here is some difference text",
+                "title_text": "A new story added",
+                "viewable": "False",
+                "research": "False",
+                "open_humans_member": self.oh_a,
+            },
+            follow=True,
+        )
+
+        user_a_stories_after = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        pe_db_after = PublicExperience.objects.filter(title_text="A new story added")
+
+        # Check that a story with the title now exists in the database
+        assert len(pe_db_after) == 0
+
+        # Check that there is one new story for user A
+        assert user_a_stories_after == user_a_stories_before
+
+        # Check that there is a redirect after
+        assert response.status_code == 200
+
+        # Check that the user is redirect to confirmation page and not
+        # the profile page
+        self.assertRedirects(response, "/main/confirm_page/",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'main/confirmation_page.html')
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/share_experience.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
+    def test_share_exp_redirect_reminder(self):
+        """
+        Test that the user is redirected to the confirmation page
+        given the experience won't be shared publicly and for research
+
+        logic:
+            request.user.is_authenticated == True
+            request.method == "POST"
+            form.is_valid() == True
+            viewable == False
+            research == False
+            user.autistic_identification == ''
+        """
+        c = Client()
+        c.force_login(self.user_a)
+
+        user_a_stories_before = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        response = c.post(
+            "/main/share_exp/",
+            {
+                "experience_text": "Here is some experience text",
+                "difference_text": "Here is some difference text",
+                "title_text": "A new story added",
+                "viewable": "True",
+                "research": "True",
+                "open_humans_member": self.oh_a,
+            },
+            follow=True,
+        )
+
+        user_a_stories_after = len(
+            PublicExperience.objects.filter(open_humans_member=self.oh_a)
+        )
+
+        pe_db_after = PublicExperience.objects.filter(title_text="A new story added")
+
+        # Check that a story with the title now exists in the database
+        assert len(pe_db_after) == 1
+
+        # Check that there is one new story for user A
+        assert user_a_stories_after == user_a_stories_before + 1
+
+        # Check that there is a redirect after
+        assert response.status_code == 200
+
+        # Check that the user is redirect to the profile page as a reminder
+        # to fill out their profile
+        self.assertRedirects(response, "/users/reminder/",
+                             status_code=302, target_status_code=200)
+        self.assertTemplateUsed(response, 'users/profile.html')
+
+    @vcr.use_cassette(
+        "server/apps/main/tests/fixtures/share_experience.yaml",
+        record_mode="none",
+        filter_query_parameters=["access_token"],
+        match_on=["path"],
+    )
     def test_share_exp_missing_data(self):
         """
         Test that user cannot submit a new experience if required data is missing

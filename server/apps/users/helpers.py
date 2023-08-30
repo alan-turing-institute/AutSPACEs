@@ -24,8 +24,8 @@ def user_submitted_profile(user):
     Determines whether the user has ever hit the Submit button on the profile page.
 
     This is the best indication we have of whether the user has ever filled out
-    the profile page (because they might legitimately want the profile to be
-    emtpy).
+    the profile page, because they'll be blocked from submitting it if they've
+    filled out the required fields and all others are optional.
 
     Args:
         user: request.user
