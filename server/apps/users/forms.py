@@ -9,7 +9,7 @@ class SelectRequired(forms.Select):
 class UserProfileForm(forms.Form):
 
     autistic_identifications = [
-        ("", ""),
+        ("", "Please select"),
         ("yes", "Yes"),
         ("no", "No"),
         ("unspecified", "Prefer not to say"),
