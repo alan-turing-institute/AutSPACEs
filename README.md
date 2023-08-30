@@ -2,66 +2,67 @@
 
 [Full report](https://htmlpreview.github.io/?https://github.com/alan-turing-institute/AutSPACEs/blob/python-coverage-comment-action-data/htmlcov/index.html)
 
-| Name                                                                      |    Stmts |     Miss |   Cover |   Missing |
-|-------------------------------------------------------------------------- | -------: | -------: | ------: | --------: |
-| manage.py                                                                 |       11 |        2 |     82% |     20-21 |
-| server/\_\_init\_\_.py                                                    |        0 |        0 |    100% |           |
-| server/apps/\_\_init\_\_.py                                               |        0 |        0 |    100% |           |
-| server/apps/main/\_\_init\_\_.py                                          |        0 |        0 |    100% |           |
-| server/apps/main/admin.py                                                 |        4 |        0 |    100% |           |
-| server/apps/main/apps.py                                                  |        3 |        0 |    100% |           |
-| server/apps/main/context\_processors.py                                   |        4 |        0 |    100% |           |
-| server/apps/main/forms.py                                                 |       96 |        1 |     99% |       143 |
-| server/apps/main/helpers.py                                               |      251 |        1 |     99% |       567 |
-| server/apps/main/migrations/0001\_initial.py                              |        6 |        0 |    100% |           |
-| server/apps/main/migrations/0002\_add\_fields\_to\_public\_experiences.py |        4 |        0 |    100% |           |
-| server/apps/main/migrations/0003\_publicexperience\_title\_text.py        |        4 |        0 |    100% |           |
-| server/apps/main/migrations/0004\_update\_publicexperience\_class.py      |        4 |        0 |    100% |           |
-| server/apps/main/migrations/0005\_auto\_20230105\_1303.py                 |        4 |        0 |    100% |           |
-| server/apps/main/migrations/0006\_auto\_20230123\_1209.py                 |        4 |        0 |    100% |           |
-| server/apps/main/migrations/0007\_auto\_20230123\_1341.py                 |        4 |        0 |    100% |           |
-| server/apps/main/migrations/0008\_experiencehistory.py                    |        5 |        0 |    100% |           |
-| server/apps/main/migrations/0009\_auto\_20230327\_1226.py                 |        5 |        0 |    100% |           |
-| server/apps/main/migrations/0010\_experiencehistory\_change\_reply.py     |        4 |        0 |    100% |           |
-| server/apps/main/migrations/\_\_init\_\_.py                               |        0 |        0 |    100% |           |
-| server/apps/main/models.py                                                |       28 |        1 |     96% |        43 |
-| server/apps/main/templatetags/\_\_init\_\_.py                             |        0 |        0 |    100% |           |
-| server/apps/main/templatetags/custom\_tags.py                             |       25 |        1 |     96% |        17 |
-| server/apps/main/tests/\_\_init\_\_.py                                    |        0 |        0 |    100% |           |
-| server/apps/main/tests/test\_helpers.py                                   |      196 |        0 |    100% |           |
-| server/apps/main/tests/test\_models.py                                    |       25 |        0 |    100% |           |
-| server/apps/main/tests/test\_moderate\_views.py                           |      250 |        0 |    100% |           |
-| server/apps/main/tests/test\_my\_stories.py                               |       15 |        0 |    100% |           |
-| server/apps/main/tests/test\_templatetags.py                              |       12 |        0 |    100% |           |
-| server/apps/main/tests/test\_views.py                                     |      324 |        3 |     99% |   690-692 |
-| server/apps/main/tests/tests\_2023.py                                     |       12 |        7 |     42% |     11-35 |
-| server/apps/main/urls.py                                                  |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                 |      241 |        6 |     98% |89, 93, 159, 294-300, 497 |
-| server/apps/users/\_\_init\_\_.py                                         |        0 |        0 |    100% |           |
-| server/apps/users/admin.py                                                |        3 |        0 |    100% |           |
-| server/apps/users/apps.py                                                 |        3 |        0 |    100% |           |
-| server/apps/users/forms.py                                                |       45 |        0 |    100% |           |
-| server/apps/users/helpers.py                                              |       23 |        0 |    100% |           |
-| server/apps/users/migrations/0001\_initial.py                             |        6 |        0 |    100% |           |
-| server/apps/users/migrations/0002\_userprofile\_refine\_fields.py         |        4 |        0 |    100% |           |
-| server/apps/users/migrations/\_\_init\_\_.py                              |        0 |        0 |    100% |           |
-| server/apps/users/models.py                                               |       22 |        0 |    100% |           |
-| server/apps/users/tests/\_\_init\_\_.py                                   |        0 |        0 |    100% |           |
-| server/apps/users/tests/test\_models.py                                   |       64 |        0 |    100% |           |
-| server/apps/users/tests/test\_views.py                                    |      144 |        0 |    100% |           |
-| server/apps/users/urls.py                                                 |        4 |        0 |    100% |           |
-| server/apps/users/views.py                                                |       41 |        0 |    100% |           |
-| server/settings/\_\_init\_\_.py                                           |        8 |        0 |    100% |           |
-| server/settings/components/\_\_init\_\_.py                                |        4 |        0 |    100% |           |
-| server/settings/components/caches.py                                      |        2 |        0 |    100% |           |
-| server/settings/components/common.py                                      |       39 |        0 |    100% |           |
-| server/settings/components/csp.py                                         |        5 |        0 |    100% |           |
-| server/settings/components/logging.py                                     |        3 |        0 |    100% |           |
-| server/settings/environments/\_\_init\_\_.py                              |        1 |        0 |    100% |           |
-| server/settings/environments/development.py                               |       27 |        0 |    100% |           |
-| server/settings/environments/local.py                                     |        0 |        0 |    100% |           |
-| server/urls.py                                                            |       12 |        0 |    100% |           |
-|                                                                 **TOTAL** | **2005** |   **22** | **99%** |           |
+| Name                                                                               |    Stmts |     Miss |   Cover |   Missing |
+|----------------------------------------------------------------------------------- | -------: | -------: | ------: | --------: |
+| manage.py                                                                          |       11 |        2 |     82% |     20-21 |
+| server/\_\_init\_\_.py                                                             |        0 |        0 |    100% |           |
+| server/apps/\_\_init\_\_.py                                                        |        0 |        0 |    100% |           |
+| server/apps/main/\_\_init\_\_.py                                                   |        0 |        0 |    100% |           |
+| server/apps/main/admin.py                                                          |        4 |        0 |    100% |           |
+| server/apps/main/apps.py                                                           |        3 |        0 |    100% |           |
+| server/apps/main/context\_processors.py                                            |        4 |        0 |    100% |           |
+| server/apps/main/forms.py                                                          |       96 |        1 |     99% |       143 |
+| server/apps/main/helpers.py                                                        |      251 |        1 |     99% |       567 |
+| server/apps/main/migrations/0001\_initial.py                                       |        6 |        0 |    100% |           |
+| server/apps/main/migrations/0002\_add\_fields\_to\_public\_experiences.py          |        4 |        0 |    100% |           |
+| server/apps/main/migrations/0003\_publicexperience\_title\_text.py                 |        4 |        0 |    100% |           |
+| server/apps/main/migrations/0004\_update\_publicexperience\_class.py               |        4 |        0 |    100% |           |
+| server/apps/main/migrations/0005\_auto\_20230105\_1303.py                          |        4 |        0 |    100% |           |
+| server/apps/main/migrations/0006\_auto\_20230123\_1209.py                          |        4 |        0 |    100% |           |
+| server/apps/main/migrations/0007\_auto\_20230123\_1341.py                          |        4 |        0 |    100% |           |
+| server/apps/main/migrations/0008\_experiencehistory.py                             |        5 |        0 |    100% |           |
+| server/apps/main/migrations/0009\_auto\_20230327\_1226.py                          |        5 |        0 |    100% |           |
+| server/apps/main/migrations/0010\_experiencehistory\_change\_reply.py              |        4 |        0 |    100% |           |
+| server/apps/main/migrations/\_\_init\_\_.py                                        |        0 |        0 |    100% |           |
+| server/apps/main/models.py                                                         |       28 |        1 |     96% |        43 |
+| server/apps/main/templatetags/\_\_init\_\_.py                                      |        0 |        0 |    100% |           |
+| server/apps/main/templatetags/custom\_tags.py                                      |       25 |        1 |     96% |        17 |
+| server/apps/main/tests/\_\_init\_\_.py                                             |        0 |        0 |    100% |           |
+| server/apps/main/tests/test\_helpers.py                                            |      196 |        0 |    100% |           |
+| server/apps/main/tests/test\_models.py                                             |       25 |        0 |    100% |           |
+| server/apps/main/tests/test\_moderate\_views.py                                    |      250 |        0 |    100% |           |
+| server/apps/main/tests/test\_my\_stories.py                                        |       15 |        0 |    100% |           |
+| server/apps/main/tests/test\_templatetags.py                                       |       12 |        0 |    100% |           |
+| server/apps/main/tests/test\_views.py                                              |      324 |        3 |     99% |   690-692 |
+| server/apps/main/tests/tests\_2023.py                                              |       12 |        7 |     42% |     11-35 |
+| server/apps/main/urls.py                                                           |        4 |        0 |    100% |           |
+| server/apps/main/views.py                                                          |      241 |        6 |     98% |89, 93, 159, 294-300, 497 |
+| server/apps/users/\_\_init\_\_.py                                                  |        0 |        0 |    100% |           |
+| server/apps/users/admin.py                                                         |        3 |        0 |    100% |           |
+| server/apps/users/apps.py                                                          |        3 |        0 |    100% |           |
+| server/apps/users/forms.py                                                         |       44 |        0 |    100% |           |
+| server/apps/users/helpers.py                                                       |       23 |        0 |    100% |           |
+| server/apps/users/migrations/0001\_initial.py                                      |        6 |        0 |    100% |           |
+| server/apps/users/migrations/0002\_userprofile\_refine\_fields.py                  |        4 |        0 |    100% |           |
+| server/apps/users/migrations/0003\_alter\_userprofile\_autistic\_identification.py |        4 |        0 |    100% |           |
+| server/apps/users/migrations/\_\_init\_\_.py                                       |        0 |        0 |    100% |           |
+| server/apps/users/models.py                                                        |       22 |        0 |    100% |           |
+| server/apps/users/tests/\_\_init\_\_.py                                            |        0 |        0 |    100% |           |
+| server/apps/users/tests/test\_models.py                                            |       64 |        0 |    100% |           |
+| server/apps/users/tests/test\_views.py                                             |      144 |        0 |    100% |           |
+| server/apps/users/urls.py                                                          |        4 |        0 |    100% |           |
+| server/apps/users/views.py                                                         |       41 |        0 |    100% |           |
+| server/settings/\_\_init\_\_.py                                                    |        8 |        0 |    100% |           |
+| server/settings/components/\_\_init\_\_.py                                         |        4 |        0 |    100% |           |
+| server/settings/components/caches.py                                               |        2 |        0 |    100% |           |
+| server/settings/components/common.py                                               |       39 |        0 |    100% |           |
+| server/settings/components/csp.py                                                  |        5 |        0 |    100% |           |
+| server/settings/components/logging.py                                              |        3 |        0 |    100% |           |
+| server/settings/environments/\_\_init\_\_.py                                       |        1 |        0 |    100% |           |
+| server/settings/environments/development.py                                        |       27 |        0 |    100% |           |
+| server/settings/environments/local.py                                              |        0 |        0 |    100% |           |
+| server/urls.py                                                                     |       12 |        0 |    100% |           |
+|                                                                          **TOTAL** | **2008** |   **22** | **99%** |           |
 
 
 ## Setup coverage badge
