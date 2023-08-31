@@ -49,6 +49,7 @@ from .helpers import (
     get_message,
     message_wrap,
     experience_titles_for_session,
+    extract_authorship_details,
 )
 
 from server.apps.users.helpers import (
@@ -526,9 +527,11 @@ def moderate_experience(request, uuid):
                 unchanged_experience_details = extract_experience_details(public_experience)
                 # Get the (mutable) trigger warnings
                 trigger_details = process_trigger_warnings(form)
+                # Get the (mutable) authorship details
+                authorship_details = extract_authorship_details(form)
 
                 # validate
-                data = {**unchanged_experience_details, **trigger_details}
+                data = {**unchanged_experience_details, **trigger_details, **authorship_details}
 
                 moderation_comments = data.pop("moderation_comments", None)
                 moderation_reply = data.pop("moderation_reply", "")

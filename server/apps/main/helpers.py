@@ -64,6 +64,18 @@ def extract_experience_details(model):
 
     return model_dict
 
+def extract_authorship_details(form):
+    """
+    Get the mutable authorship details from the data
+    """
+    form.is_valid()
+    # Populate with values from moderation form
+    authorship_dict = {
+        k: form.cleaned_data[k]
+        for k in form.data.keys()
+        if k in ['first_hand_authorship', 'authorship_relation']
+    }
+    return authorship_dict
 
 def process_trigger_warnings(form):
     """
