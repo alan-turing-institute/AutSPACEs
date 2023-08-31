@@ -71,7 +71,7 @@ class ShareExperienceForm(forms.Form):
     first_hand_authorship.group = 4
 
     authorship_relation = forms.CharField(label="Relationship",
-                                 max_length=150, strip=True, required=False,
+                                 max_length=300, strip=True, required=False,
                                  widget=forms.TextInput(),
                                  help_text='For example: "I am the non-autistic parent of an autistic adult", "I am the autistic parent of autistic children", "I am a teacher who works with autistic people", "I am best friends of an autistic person". - Please do not share personally identifying information.')
     authorship_relation.layout_horizontal = True
@@ -142,6 +142,19 @@ class ModerateExperienceForm(forms.Form):
 
     moderation_prior = forms.CharField(widget=forms.HiddenInput())
     moderation_prior.group = "hidden"
+
+    authorship_choices = [
+        (True, "Experience is my own"),
+        (False, "Experience is someone else's"),
+    ]
+    first_hand_authorship = forms.ChoiceField(choices = authorship_choices, widget = forms.RadioSelect(), required=False)
+    first_hand_authorship.group = 5
+
+    authorship_relation = forms.CharField(label="Relationship",
+                                 max_length=300, strip=True, required=False,
+                                 widget=forms.TextInput(),
+                                 help_text='For example: "I am the non-autistic parent of an autistic adult", "I am the autistic parent of autistic children", "I am a teacher who works with autistic people", "I am best friends of an autistic person". - Please do not share personally identifying information.')
+    authorship_relation.group = 5
 
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
