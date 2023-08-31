@@ -94,6 +94,9 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+import os 
+
+
 if not os.environ.get('DATABASE_URL'):
 
     DATABASES = {
@@ -113,10 +116,8 @@ if not os.environ.get('DATABASE_URL'):
 
 # database for flyio
 
-import dj_database_url
-import os 
-
 if os.environ.get('DATABASE_URL'):
+    import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(
             conn_max_age=600,
