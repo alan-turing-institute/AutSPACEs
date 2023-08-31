@@ -58,6 +58,8 @@ def extract_experience_details(model):
         "negbody",
         "other",
         "moderation_status",
+        "authorship_relation",
+        "first_hand_authorship",
     ]:
         model_dict.pop(key, None)
     model_dict["viewable"] = True  # Only moderate viewable experiences
