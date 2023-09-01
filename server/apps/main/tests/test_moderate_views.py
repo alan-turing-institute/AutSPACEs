@@ -351,6 +351,7 @@ class ModerationViewTests(TestCase):
         # ideally would add a cassette here too
         response = c.post("/main/moderate/test-test-test/",
                           {"mentalhealth": True, "other":"New trigger",
+                          "first_hand_authorship": True,
                           "moderation_prior":"approved",
                           "moderation_reply":"[]",
                           },
@@ -372,7 +373,7 @@ class ModerationViewTests(TestCase):
                       filter_query_parameters=['access_token'],match_on=['path']):
             response = c.post("/main/moderate/test-test-test/",
                             {"mentalhealth": True, "other":"New trigger",
-                             "first_hand_authorship": True,
+                            "first_hand_authorship": True,
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
                             "moderation_prior":"not reviewed",
@@ -414,6 +415,7 @@ class ModerationViewTests(TestCase):
                       filter_query_parameters=['access_token'],match_on=['path']):
             response = c.post("/main/moderate/test-test-test/",
                             {"mentalhealth": True, "other":"New trigger",
+                            "first_hand_authorship": True,
                             "moderation_status":"approved",
                             "moderation_comments":"",
                             "moderation_prior":"not reviewed",
@@ -444,6 +446,7 @@ class ModerationViewTests(TestCase):
                       filter_query_parameters=['access_token'],match_on=['path']):
             response = c.post("/main/moderate/test-test-test/",
                             {"mentalhealth": True, "other":"New trigger",
+                            "first_hand_authorship": True,
                             "moderation_status":"not reviewed",
                             "moderation_comments":"amazing story!",
                             "moderation_reply":"a reply isn't allowed if not reviewed",
@@ -466,6 +469,7 @@ class ModerationViewTests(TestCase):
                       filter_query_parameters=['access_token'],match_on=['path']):
             response = c.post("/main/moderate/test-test-test/",
                             {"mentalhealth": True, "other":"New trigger",
+                            "first_hand_authorship": True,
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
                             "moderation_reply": reply,
