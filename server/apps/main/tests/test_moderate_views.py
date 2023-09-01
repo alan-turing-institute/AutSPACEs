@@ -57,7 +57,8 @@ class ModerationViewTests(TestCase):
             'experience_text': "test",
             'title_text': "title",
             'open_humans_member': self.non_moderator_ohmember,
-            'experience_id': 'test-test-test'
+            'experience_id': 'test-test-test',
+            "first_hand_authorship": "True",
         }
         self.pe_a = PublicExperience.objects.create(**pe_data)
 
@@ -371,6 +372,7 @@ class ModerationViewTests(TestCase):
                       filter_query_parameters=['access_token'],match_on=['path']):
             response = c.post("/main/moderate/test-test-test/",
                             {"mentalhealth": True, "other":"New trigger",
+                             "first_hand_authorship": True,
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
                             "moderation_prior":"not reviewed",
@@ -389,6 +391,7 @@ class ModerationViewTests(TestCase):
         with self.assertRaises(KeyError) as ce:
             response = c.post("/main/moderate/test-test-test/",
                             {"mentalhealth": True, "other":"New trigger",
+                             "first_hand_authorship": True,
                             "moderation_status":"approved",
                             "moderation_comments":"amazing story!",
                             "moderation_reply":"Moderation reply",
