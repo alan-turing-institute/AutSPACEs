@@ -58,7 +58,7 @@ class ModerationViewTests(TestCase):
             'title_text': "title",
             'open_humans_member': self.non_moderator_ohmember,
             'experience_id': 'test-test-test',
-            "first_hand_authorship": "True",
+            "first_hand_authorship": True,
         }
         self.pe_a = PublicExperience.objects.create(**pe_data)
 
@@ -549,6 +549,7 @@ class ModerationViewTests(TestCase):
         response = c.post("/main/moderate/test-test-test/",
                         {
                             "mentalhealth": True,
+                            "first_hand_authorship": True,
                             "other": "New trigger",
                             "moderation_status": status_post,
                             "moderation_comments": "",
