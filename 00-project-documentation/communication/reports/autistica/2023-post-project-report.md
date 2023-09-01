@@ -1,5 +1,7 @@
 # 2023 post project report for Autistica
 
+Submitted on September 1, 2023
+
 ## Please provide a summary of any project related activities that have happened over the last twelve months
 
 Thanks to additional funding by The Alan Turing Institute, the AutSPACEs project has continued and progressed over the last 12 months. The additional funding has allowed the AutSPACEs team to grow by a senior researcher (Dr. Bastian Greshake Tzovaras) – to co-lead the project with Dr. Kirstie Whitaker – and 2 research software engineers to support the implementation of the AutSPACEs platform.
@@ -41,6 +43,3 @@ Whenever the timing allowed, at least one autistic contributors co-presented our
 ## Please detail any further work, plans, or projects that have stemmed from the original Autistica funded project
 
 Beyond a continuation of the AutSPACEs project as outlined above, we have started to engage in an early brainstorming phase with a mixed team of autistic and neuro-typical researchers to explore how the AutSPACEs approach could be adapted to collect data for another reseach question – in particular surrounding the phenomenology of Autism. 
-
-## Please leave any final comments or feedback on the project and your work (optional)
-
