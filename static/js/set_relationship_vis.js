@@ -1,35 +1,25 @@
-$(function () {
-    $(document).ready(function() {
-        $('input:radio').change(function() {
-          var ele = document.getElementsByName('first_hand_authorship');
+document.addEventListener("DOMContentLoaded", function(event) { 
+    set_visibility(chk_radio(), '#id_authorship_relation', false)
+    }
+);
 
-          for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                   op = ele[i].value;}
+$(function() {
+    $('input:radio').on('change', function() {
+        set_visibility(chk_radio(), '#id_authorship_relation', false)
+  })});
 
-        if (op == "False")
-            set_visibility(true, '#id_authorship_relation', true)
+function chk_radio(){
+    var rb = document.querySelectorAll('input[name="first_hand_authorship"]');
+    if (rb[1].checked){ return true } else {return false}
+}
 
-        if (op == "True")
-            set_visibility(false, '#id_authorship_relation', true)
-
-        });
-    });
-
-    // Set the initial visibility
-    // alert($('input[name="first_hand_authorship"]:checked').val()==undefined)
-    set_visibility($('input[name="first_hand_authorship"]:checked').val()!=undefined, '#id_authorship_relation', true)
-
-    // Control the visibility of a field
-    function set_visibility(visible, field_id, instant) {
-        duration = instant ? 0 : 200;
-        $(field_id).prop('disabled', !visible);
-        if (visible) {
-          $(field_id).parent().show(duration);
-        }
-        else {
-          $(field_id).parent().hide(duration);
-        }
-      }
-
-});
+function set_visibility(visible, field_id, instant) {
+    duration = instant ? 0 : 200;
+    $(field_id).prop('disabled', !visible);
+    if (visible) {
+      $(field_id).parent().show(duration);
+    }
+    else {
+      $(field_id).parent().hide(duration);
+    }
+  }
