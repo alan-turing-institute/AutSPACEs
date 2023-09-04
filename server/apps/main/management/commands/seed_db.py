@@ -11,7 +11,7 @@ class Command(BaseCommand):
             "-f, --file",
             dest="file",
             required=True,
-            help="the open humans ID to queue",
+            help="the CSV file with experiences to import",
             )
 
     def handle(self, *args, **options):
@@ -26,6 +26,10 @@ class Command(BaseCommand):
         oh_member.save()
 
 
+        # iterate over CSV file, 
+        # expects first row to be header and then 4 columns
+        # 1. title, 2. experience text, 3. difference text
+        # 4. (optional entry): which trigger label applies
 
         with open(file_name, newline='') as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
