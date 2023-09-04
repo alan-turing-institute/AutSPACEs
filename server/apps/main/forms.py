@@ -77,6 +77,21 @@ class ShareExperienceForm(forms.Form):
     authorship_relation.layout_horizontal = True
     authorship_relation.group = 4
 
+
+    def clean(self):
+        # Raise an error if second-hand authorship chosen with no description
+        # Raise an error if first-hand authorship has a relationship description
+
+        cleaned_data = super().clean()
+
+        first_hand_authorship = cleaned_data.get("first_hand_authorship")
+        authorship_relation = cleaned_data.get("authorship_relation")
+
+        if first_hand_authorship == "False" and authorship_relation == "":
+                self.add_error("first_hand_authorship", ValidationError(("Stories written on behalf of someone else must have a description of the relationship"), code="invalid"))
+        if first_hand_authorship == "True" and authorship_relation != "":
+                self.add_error("first_hand_authorship", ValidationError(("First hand stories do not require a relationship field"), code="invalid"))
+
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
 
@@ -99,6 +114,8 @@ class ShareExperienceForm(forms.Form):
             mod_status = 'not reviewed'
 
         return mod_status
+    
+
 
 
 class ModerateExperienceForm(forms.Form):
