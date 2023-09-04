@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
-    set_visibility(chk_radio(), '#id_authorship_relation', false)
+document.addEventListener("DOMContentLoaded", function() { 
+    change_viz(chk_radio(), 'id_authorship_relation')
     }
 );
 
 $(function() {
     $('input:radio').on('change', function() {
-        set_visibility(chk_radio(), '#id_authorship_relation', false)
+        change_viz(chk_radio(), 'id_authorship_relation')
   })});
 
 function chk_radio(){
@@ -13,13 +13,10 @@ function chk_radio(){
     if (rb[1].checked){ return true } else {return false}
 }
 
-function set_visibility(visible, field_id, instant) {
-    duration = instant ? 0 : 200;
-    $(field_id).prop('disabled', !visible);
-    if (visible) {
-      $(field_id).parent().show(duration);
-    }
-    else {
-      $(field_id).parent().hide(duration);
-    }
-  }
+function change_viz (viz, field_id) {
+  r = document.getElementById(field_id)
+  if (viz == true) {
+    r.parentElement.style.visibility = ""}
+  else {
+    r.parentElement.style.visibility = "hidden"}
+}
