@@ -13,6 +13,7 @@
 | server/apps/main/context\_processors.py                                                |        4 |        0 |    100% |           |
 | server/apps/main/forms.py                                                              |      115 |        3 |     97% |91, 93, 187 |
 | server/apps/main/helpers.py                                                            |      255 |        1 |     99% |       581 |
+| server/apps/main/management/commands/seed\_db.py                                       |       27 |        1 |     96% |        29 |
 | server/apps/main/migrations/0001\_initial.py                                           |        6 |        0 |    100% |           |
 | server/apps/main/migrations/0002\_add\_fields\_to\_public\_experiences.py              |        4 |        0 |    100% |           |
 | server/apps/main/migrations/0003\_publicexperience\_title\_text.py                     |        4 |        0 |    100% |           |
@@ -30,6 +31,7 @@
 | server/apps/main/templatetags/custom\_tags.py                                          |       25 |        1 |     96% |        17 |
 | server/apps/main/tests/\_\_init\_\_.py                                                 |        0 |        0 |    100% |           |
 | server/apps/main/tests/test\_helpers.py                                                |      196 |        0 |    100% |           |
+| server/apps/main/tests/test\_management\_commands.py                                   |       31 |        0 |    100% |           |
 | server/apps/main/tests/test\_models.py                                                 |       25 |        0 |    100% |           |
 | server/apps/main/tests/test\_moderate\_views.py                                        |      250 |        0 |    100% |           |
 | server/apps/main/tests/test\_my\_stories.py                                            |       15 |        0 |    100% |           |
@@ -60,10 +62,10 @@
 | server/settings/components/csp.py                                                      |        5 |        0 |    100% |           |
 | server/settings/components/logging.py                                                  |        3 |        0 |    100% |           |
 | server/settings/environments/\_\_init\_\_.py                                           |        1 |        0 |    100% |           |
-| server/settings/environments/development.py                                            |       27 |        0 |    100% |           |
+| server/settings/environments/development.py                                            |       28 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2044** |   **26** | **99%** |           |
+|                                                                              **TOTAL** | **2103** |   **27** | **99%** |           |
 
 
 ## Setup coverage badge
