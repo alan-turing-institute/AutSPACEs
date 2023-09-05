@@ -54,6 +54,7 @@
         "test",
         "review",
         "doc",
+        "content",
         "design"
       ]
     },
@@ -68,6 +69,7 @@
         "design",
         "question",
         "mentoring",
+        "content",
         "talk"
       ]
     },
@@ -81,7 +83,8 @@
         "test",
         "code",
         "ideas",
-        "doc", 
+        "doc",
+        "content",
         "talk",
         "audio",
         "review"
@@ -126,17 +129,6 @@
       ]
     },
     {
-      "login": "sowmya9507",
-      "name": "Sowmya",
-      "avatar_url": "https://avatars.githubusercontent.com/u/55495129?v=4",
-      "profile": "https://github.com/sowmya9507",
-      "contributions": [
-        "code",
-        "ideas",
-        "doc"
-      ]
-    },
-    {
       "login": "anoura12",
       "name": "Anoushka Ramesh",
       "avatar_url": "https://avatars.githubusercontent.com/u/73518403?v=4",
@@ -169,6 +161,7 @@
         "code",
         "ideas",
         "doc",
+        "content",
         "design"
       ]
     },
@@ -343,7 +336,8 @@
       "profile": "https://github.com/sowmyaarajan",
       "contributions": [
         "ideas",
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -356,6 +350,7 @@
         "review",
         "doc",
         "design",
+        "content",
         "audio"
       ]
     },
@@ -374,6 +369,7 @@
       "contributions": [
         "ideas",
         "review",
+        "content",
         "talk"
       ]
     },
@@ -405,6 +401,7 @@
       "contributions": [
         "ideas",
         "code",
+        "content",
         "review"
       ]
     },
@@ -416,6 +413,7 @@
       "contributions": [
         "ideas",
         "code",
+        "content",
         "review",
         "infra",
         "talk"
@@ -429,6 +427,7 @@
       "contributions": [
         "code",
         "test",
+        "content",
         "ideas"
       ]
     },
@@ -440,8 +439,27 @@
       "contributions": [
         "code",
         "test",
+        "content",
         "ideas",
         "review"
+      ]
+    },
+    {
+      "login": "obinnaofomah",
+      "name": "Obinna_Ofomah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112175827?v=4",
+      "profile": "https://github.com/obinnaofomah",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "AniKarenina",
+      "name": "Andrea Grover",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5032216?v=4",
+      "profile": "http://www.andreakgrover.com/",
+      "contributions": [
+        "userTesting"
       ]
     }
   ],

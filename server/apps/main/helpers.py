@@ -3,6 +3,8 @@ import json
 import io
 import uuid
 import requests
+import os
+import textwrap
 from django.contrib.auth.models import Group
 from django.forms.models import model_to_dict
 from django.conf import settings
@@ -24,10 +26,15 @@ def is_moderator(user):
         return False
 
 
-def model_to_form(model, disable_moderator=False):
+def public_experience_model_to_form(model, disable_moderator=False):
     """Converts Model to form."""
     model_dict = model_to_dict(model)
     model_dict["moderation_prior"] = model_dict["moderation_status"]
+
+    # Copy the latest moderation reply to the form
+    if (model.experience_id):
+        change_reply, changed_at = get_latest_change_reply(model.experience_id)
+        model_dict["moderation_reply"] = json.dumps(change_reply)
 
     form = ModerateExperienceForm(
         {**model_dict, "viewable": True},  # we only moderate public experiences
@@ -51,12 +58,26 @@ def extract_experience_details(model):
         "negbody",
         "other",
         "moderation_status",
+        "authorship_relation",
+        "first_hand_authorship",
     ]:
         model_dict.pop(key, None)
     model_dict["viewable"] = True  # Only moderate viewable experiences
 
     return model_dict
 
+def extract_authorship_details(form):
+    """
+    Get the mutable authorship details from the data
+    """
+    form.is_valid()
+    # Populate with values from moderation form
+    authorship_dict = {
+        k: form.cleaned_data[k]
+        for k in form.data.keys()
+        if k in ['first_hand_authorship', 'authorship_relation']
+    }
+    return authorship_dict
 
 def process_trigger_warnings(form):
     """
@@ -541,6 +562,25 @@ def paginate_stories(request, paginator, page):
     stories.offset = stories.start_index() - 1
     return stories
 
+def number_stories(stories, items_per_page):
+    """
+    Adds a number field to each story for continuous numbering across pages
+
+    Stories can be either PublicExperience objects (for the shared stories page)
+    or dictionaries (for the my_stories page)
+    """
+    # Calculate the start index for the current page
+    start_index = (stories.number - 1) * items_per_page
+    # Add the start index to each experience in page_experiences
+    for i, story in enumerate(stories, start=start_index):
+        if isinstance(story, PublicExperience):
+            story.number = i + 1
+        elif isinstance(story, dict):
+            story["number"] = i + 1
+        else:
+            raise TypeError(f'Unexpected type for story: {type(story)}')
+    return stories
+
 def structure_change_reply(reply):
     structured = None
     try:
@@ -571,3 +611,50 @@ def get_latest_change_reply(experience_id):
 
     return change_reply, changed_at
 
+def get_message(file_name):
+    """
+    Loads a message to be sent to the user.
+
+    The first line of the file should contain the subject. Subsequent lines
+    will comprise the message body.
+
+    Args:
+        file_name: the leaf name of the file to load.
+    Returns:
+        subject and body of the message.
+    """
+    module_dir = os.path.dirname(__file__)
+    file_path = os.path.join(module_dir, file_name)
+    subject = None
+    message = ""
+    try:
+        with open(file_path, "r") as f:
+            subject = f.readline()
+            for line in f:
+                message += line
+    except IOError as e:
+        print("Exception when opening moderation message: {}".format(str(e)))
+        message = None
+    return subject, message
+
+def message_wrap(text, width):
+    """
+    Wrap the text to the given width, but retain paragraph breaks (empty lines)
+    """
+    return "\n".join(map(lambda para: "\n".join(textwrap.wrap(para, width)), text.split("\n")))
+
+def experience_titles_for_session(files):
+    """
+    take a member.list_files() list of files and add them to dict
+    of the form 
+    {"titles":{
+        "uuid": "title",
+        "uuid2": "title2"
+    }}
+    To be added to session
+    """
+    titles = {}
+    for f in files:
+        if "uuid" in f['metadata'].keys():
+            titles[f['metadata']['uuid']] = f['metadata']['description']
+    return titles

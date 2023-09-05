@@ -12,8 +12,10 @@ from django.db.models import Q
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms.models import model_to_dict
 
 from .models import PublicExperience
+from server.apps.users.models import UserProfile
 
 from .forms import ShareExperienceForm, ModerateExperienceForm
 
@@ -21,7 +23,7 @@ from django.contrib import messages
 
 from .helpers import (
     is_moderator,
-    model_to_form,
+    public_experience_model_to_form,
     extract_experience_details,
     reformat_date_string,
     get_review_status,
@@ -43,6 +45,16 @@ from .helpers import (
     paginate_stories,
     get_latest_change_reply,
     structure_change_reply,
+    number_stories,
+    get_message,
+    message_wrap,
+    experience_titles_for_session,
+    extract_authorship_details,
+)
+
+from server.apps.users.helpers import (
+    user_profile_exists,
+    get_user_profile,
 )
 
 logger = logging.getLogger(__name__)
@@ -55,7 +67,7 @@ def confirmation_page(request):
     if request.user.is_authenticated:
         return render(request, "main/confirmation_page.html")
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 
 def about_us(request):
@@ -97,31 +109,38 @@ def logout_user(request):
     return redirect("index")
 
 
+# @vcr.use_cassette("tmp/overview.yaml", filter_query_parameters=['access_token'])
 def index(request):
     """
     Starting page for app.
-    """
-    auth_url = OpenHumansMember.get_auth_url()
-    context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
-    if request.user.is_authenticated:
-        return redirect("main:overview")
-    return render(request, "main/home.html", context=context)
-
-
-# @vcr.use_cassette("tmp/overview.yaml", filter_query_parameters=['access_token'])
-def overview(request):
-    """
-    Overview page for logged in users directs to home, otherwise to index.
     """
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
         context = {
             "oh_id": oh_member.oh_id,
             "oh_member": oh_member,
+            "oh_user": oh_member.user,
             "oh_proj_page": settings.OH_PROJ_PAGE,
         }
-        return render(request, "main/home.html", context=context)
-    return redirect("index")
+    else:
+        auth_url = OpenHumansMember.get_auth_url()
+        context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
+    return render(request, "main/home.html", context=context)
+
+def login_user(request):
+    """
+    Page the user arrives at immediately after logging in, expected to
+    immediately redirect to somewhere else.
+    """
+    if request.user.is_authenticated:
+        if not user_profile_exists(user=request.user):
+            # This is the first time we've logged into the site
+            # We use update_or_create() rather than create() to avoid a race
+            # condition on existence
+            UserProfile.objects.update_or_create(user=request.user)
+            return redirect("users:greetings")
+
+    return redirect("main:index")
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/share_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
 def share_experience(request, uuid=False):
@@ -170,6 +189,7 @@ def share_experience(request, uuid=False):
                                 messages.WARNING,
                                 "{}: {}".format(field.label, error),
                             )
+
                 if uuid:  # check if editing existing exp
                     moderation_status = PublicExperience.objects.get(
                         experience_id=uuid
@@ -253,15 +273,17 @@ def view_experience(request, uuid):
             },
         )
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/delete_exp.yaml", filter_query_parameters=['access_token'])
-def delete_experience(request, uuid, title):
+def delete_experience(request, uuid):
     """
     Delete experience from PE databacse and OH
     """
-    # TODO: we currently are passing title via url because it is nice to display it in the confirmation. We could improve the deletion process by having a javascript layover.
+    
+    titles = request.session.get('titles', {})
+    title = titles.get(uuid, "no title")
 
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -293,7 +315,7 @@ def list_public_experiences(request):
 
     # Default is to show non-triggering content only
     all_triggers = request.GET.get("all_triggers", False)
-   
+
     if all_triggers:
         allowed_triggers = {
             "abuse",
@@ -305,11 +327,17 @@ def list_public_experiences(request):
         }
     else:
         # Check the allowed triggers
-        allowed_triggers = request.GET.keys()
-        
+        allowed_triggers = set(request.GET.keys())
+
+    if request.user.is_authenticated and "searched" not in request.GET:
+        profile = get_user_profile(request.user)
+        if profile:
+            user_data = model_to_dict(profile)
+            allowed_triggers = set([key for key in user_data if user_data[key]])
+
     # Get a list of allowed triggers
     triggers_to_show = extract_triggers_to_show(allowed_triggers)
-    
+
     tts = {}
     for trigger in triggers_to_show:
         trigger_check = f"check{trigger}"
@@ -333,19 +361,14 @@ def list_public_experiences(request):
 
     #  Define the number of experiences to show per page
     items_per_page = settings.EXPERIENCES_PER_PAGE
-    
+
     # Create a Paginator object, order by time of creation to avoid pagination issues
     paginator = Paginator(experiences.order_by("created_at"), items_per_page)
     # Paginate experiences
     page_experiences = paginate_stories(request, paginator, "page")
-  
-    # Set numbers so that stories have continous numbering across pages
-    # Calculate the start index for the current page
-    start_index = (page_experiences.number - 1) * items_per_page
-    # Add the start index to each experience in page_experiences
-    for i, experience in enumerate(page_experiences, start=start_index):
-        experience.number = i + 1
-    
+    # Set continuous numbering across pages
+    page_experiences = number_stories(page_experiences, items_per_page)
+
     exp_context = {"experiences": page_experiences}
 
     context = {**tts, **exp_context, **search_context}
@@ -374,7 +397,7 @@ def moderate_public_experiences(request):
             },
         )
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 
 def moderation_list(request):
@@ -411,9 +434,9 @@ def moderation_list(request):
 
         return moderate_page(request, status, experiences)
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
-
+#@vcr.use_cassette("server/apps/main/tests/fixtures/pag_mystories.yaml", filter_query_parameters=['access_token'])
 def my_stories(request):
     """
     List all stories that are associated with the OpenHumans project page.
@@ -424,36 +447,42 @@ def my_stories(request):
         context = {"files": files}
         context = reformat_date_string(context)
 
+        # add experience titles to session for deletion pages
+        request.session['titles']= experience_titles_for_session(files)
+
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE
 
-        # For each category, filter stories and create pagination
+        # For each category, filter stories, create pagination and add continuous numbering
+
+        # Public stories
         paginator_public = Paginator(
             filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
             items_per_page,
         )
         public_stories = paginate_stories(request, paginator_public, "page_public")
+        public_stories = number_stories(public_stories, items_per_page)
 
+        # In review stories
         paginator_review = Paginator(
             filter_in_review(filter_by_tag(files, "public")), items_per_page
         )
-        in_review_stories = paginate_stories(
-            request, paginator_review, "page_review"
-        )
+        in_review_stories = paginate_stories(request, paginator_review, "page_review")
+        in_review_stories = number_stories(in_review_stories, items_per_page)
 
+        # Rejected stories
         paginator_rejected = Paginator(
             filter_by_moderation_status(files, "rejected"), items_per_page
         )
-        rejected_stories = paginate_stories(
-            request, paginator_rejected, "page_rejected"
-        )
+        rejected_stories = paginate_stories(request, paginator_rejected, "page_rejected")
+        rejected_stories = number_stories(rejected_stories, items_per_page)
 
+        # Private stories
         paginator_private = Paginator(
             filter_by_tag(files, "not public"), items_per_page
         )
-        private_stories = paginate_stories(
-            request, paginator_private, "page_private"
-        )
+        private_stories = paginate_stories(request, paginator_private, "page_private")
+        private_stories = number_stories(private_stories, items_per_page)
 
         return render(
             request,
@@ -466,66 +495,141 @@ def my_stories(request):
             },
         )
     else:
-        return redirect("main:overview")
+        return redirect("index")
 
 def moderate_experience(request, uuid):
-    """Moderate a single experience."""
+    """
+    Moderate a single experience.
+
+    If the moderation status changes to approved or rejected, a message will be
+    sent to users who opt to receive them.
+
+    The message is stored in the file "server/apps/main/mod_message.txt" in the
+    following format:
+
+    1. First line is the message subject.
+    2. All following lines are the message body.
+    3. The following substitutions will be made:
+         i. {story} - the URL of the view story page for this story.
+        ii. {profile} - the URL of the user's profile page.
+       iii. {title} - the title of the story.
+        iv. {status} - the new review status (Accepted, Rejected} of the story.
+    4. Paragraphs in the body of the message will be reformatted to a width of
+       80 charachters.
+    """
     if request.user.is_authenticated and is_moderator(request.user):
-        model = PublicExperience.objects.get(experience_id=uuid)
+        public_experience = PublicExperience.objects.get(experience_id=uuid)
         if request.method == "POST":
             # get the data from the model
-            moderated_form = ModerateExperienceForm(request.POST)
-            moderated_form.is_valid()
+            form = ModerateExperienceForm(request.POST)
+            if form.is_valid():
+                # Get the (immutable) experience data
+                unchanged_experience_details = extract_experience_details(public_experience)
+                # Get the (mutable) trigger warnings
+                trigger_details = process_trigger_warnings(form)
+                # Get the (mutable) authorship details
+                authorship_details = extract_authorship_details(form)
 
-            # Get the (immutable) experience data
-            unchanged_experience_details = extract_experience_details(model)
-            # Get the (mutable) trigger warnings
-            trigger_details = process_trigger_warnings(moderated_form)
+                # validate
+                data = {**unchanged_experience_details, **trigger_details, **authorship_details}
 
-            # validate
-            data = {**unchanged_experience_details, **trigger_details}
+                moderation_comments = data.pop("moderation_comments", None)
+                moderation_reply = data.pop("moderation_reply", "")
+                moderation_prior = data.pop("moderation_prior", "not moderated")
 
-            moderation_comments = data.pop("moderation_comments", None)
-            moderation_reply = data.pop("moderation_reply", "")
-            moderation_prior = data.pop("moderation_prior", "not moderated")
+                # get the users OH member id from the model
+                user_OH_member = public_experience.open_humans_member
 
-            # get the users OH member id from the model
-            user_OH_member = model.open_humans_member
+                # wrap in try/except in case user writing experience originally has left AutSPACEs
+                try:
+                    user_OH_member.delete_single_file(file_basename=f"{uuid}.json")
+                    upload(data, uuid, ohmember=user_OH_member)
+                    # update the PE object
+                    update_public_experience_db(
+                        data,
+                        uuid,
+                        ohmember=user_OH_member,
+                        editing_user=request.user.openhumansmember,
+                        change_type="Moderate",
+                        change_comments=moderation_comments,
+                        change_reply=moderation_reply,
+                    )
+                except Exception:
+                    # if user writing E has deauthorized autspaces, delete public experience
+                    delete_PE(uuid=uuid, ohmember=user_OH_member)
 
-            # wrap in try/except in case user writing experience originally has left AutSPACEs
-            try:
-                user_OH_member.delete_single_file(file_basename=f"{uuid}.json")
-                upload(data, uuid, ohmember=user_OH_member)
-                # update the PE object
-                update_public_experience_db(
-                    data,
-                    uuid,
-                    ohmember=user_OH_member,
-                    editing_user=request.user.openhumansmember,
-                    change_type="Moderate",
-                    change_comments=moderation_comments,
-                    change_reply=moderation_reply,
+                # send a message to the author if they've requested it
+                moderation_status = data.get("moderation_status", "")
+                moderation_string = moderation_status.title()
+
+                profile = get_user_profile(user=request.user)
+                if (profile and profile.comms_review and moderation_prior != moderation_status
+                    and moderation_status in ["approved", "rejected"]):
+                    story_url = "{}/main/view/{}".format(settings.OPENHUMANS_APP_BASE_URL,
+                        public_experience.experience_id)
+                    profile_url = "{}/users/profile/".format(settings.OPENHUMANS_APP_BASE_URL)
+                    subject, message = get_message("mod_message.txt")
+                    if subject and message:
+                        substitutes = {
+                            "story": story_url,
+                            "profile": profile_url,
+                            "title": public_experience.title_text,
+                            "status": moderation_string,
+                        }
+                        subject = subject.format(**substitutes)
+                        message = message.format(**substitutes)
+                        message = message_wrap(message, 80)
+                        request.user.openhumansmember.message(subject, message)
+
+                # redirect to a new URL:
+                status = choose_moderation_redirect(moderation_prior)
+                return redirect(
+                    "{}?status={}".format(reverse("main:moderation_list"), status)
                 )
-            except Exception:
-                # if user writing E has deauthorized autspaces, delete public experience
-                delete_PE(uuid=uuid, ohmember=user_OH_member)
-            # redirect to a new URL:
-            status = choose_moderation_redirect(moderation_prior)
-            return redirect(
-                "{}?status={}".format(reverse("main:moderation_list"), status)
-            )
+            else:
+                # Form didn't validate correctly
+                for error in form.non_field_errors():
+                    messages.add_message(
+                        request,
+                        messages.WARNING,
+                        "{}".format(error)
+                    )
+
+                experience_title = public_experience.title_text
+                experience_text = public_experience.experience_text
+                experience_difference = public_experience.difference_text
+                experience_history = public_experience.experiencehistory_set.all().order_by(
+                    "-changed_at"
+                )
+                for history_item in experience_history:
+                    history_item.change_reply = structure_change_reply(history_item.change_reply)
+
+                return render(
+                    request,
+                    "main/moderate_experience.html",
+                    {
+                        "form": form,
+                        "uuid": uuid,
+                        "experience_title": experience_title,
+                        "experience_text": experience_text,
+                        "experience_difference": experience_difference,
+                        "experience_history": experience_history,
+                        "show_moderation_status": True,
+                        "title": "Moderate experience",
+                    },
+                )
 
         else:
-            experience_title = model.title_text
-            experience_text = model.experience_text
-            experience_difference = model.difference_text
-            experience_history = model.experiencehistory_set.all().order_by(
-                "changed_at"
+            experience_title = public_experience.title_text
+            experience_text = public_experience.experience_text
+            experience_difference = public_experience.difference_text
+            experience_history = public_experience.experiencehistory_set.all().order_by(
+                "-changed_at"
             )
             for history_item in experience_history:
                 history_item.change_reply = structure_change_reply(history_item.change_reply)
 
-            form = model_to_form(model, disable_moderator=True)
+            form = public_experience_model_to_form(public_experience, disable_moderator=True)
             return render(
                 request,
                 "main/moderate_experience.html",
@@ -560,4 +664,4 @@ def single_story(request, uuid):
         context = {**exp_context, **title_context}
         return render(request, "main/single_story.html", context=context)
     except ObjectDoesNotExist:
-        return redirect("main:overview")
+        return redirect("index")

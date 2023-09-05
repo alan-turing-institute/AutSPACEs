@@ -38,7 +38,7 @@
             </div>
           </div>
 
-          <div class="trigger-warning-message"> We have excluded potentially triggering content, if you would like to see more content please choose which categories you would like to see</div>
+          <div class="trigger-warning-message"> We have excluded potentially triggering content, please select any categories that you would be comfortable seeing </div>
 
 
       <div class="form-check mb-2">
@@ -155,7 +155,11 @@
              {% endif %}
             <h5 class="card-title story-header">{{ experience.number }}. {% firstof experience.title_text "no title given" %}</h5>
               <p class="card-text">{% firstof experience.experience_text|truncatechars:100 "no experience text given" %}</p>
-              <em>AutSPACEs Contributor</em>
+              {% if experience.first_hand_authorship %}
+                <em>Autistic individual</em>
+              {% else %}
+              <em>{% firstof experience.authorship_relation "AutSPACEs Contributor" %}</em>
+              {% endif %}
               <a
               class="btn btn-primary collapsed float-right"
               data-toggle="collapse"
@@ -163,7 +167,7 @@
               aria-expanded="false"
               aria-controls="exp{{ experience.experience_id }}"
               style="text-align: right">
-              Read Full Story
+              Expand
               </a>
           </div>
           <div
@@ -177,7 +181,7 @@
           aria-expanded="false"
           aria-controls="single{{ experience.experience_id }}"
           style="text-align: right">
-          Read Story on Single Page
+          Open in new page
           </a>
           </div>
           </div>

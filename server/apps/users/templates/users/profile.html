@@ -1,0 +1,110 @@
+{% extends 'main/application.html' %}
+
+{% block title %}AutSPACEs - {{title}} {% endblock %}
+
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block content %}
+
+<script src="{% static 'js/activate-profile.js' %}"></script>
+
+{% if first_visit == True %}
+<div class="container alert-container">
+  <div class="alert alert-info" role="alert">
+    Welcome to AutSPACEs!
+  </div>
+  <div class="alert alert-info" role="alert">
+    We&#x27;re super excited to have you here. As this is your first visit,
+    please take the time to complete your profile as this helps us and others make 
+    the most of the experiences you share. Return here to update your details at any time.
+  </div>
+</div>
+{% endif %}
+{% if request_profile == True %}
+<div class="container alert-container">
+  <div class="alert alert-info" role="alert">
+    We&#x27;d love it if you could fill out some of your details, to allow us and
+    others to make the most of your shared experiences. 
+    You can come back here to update your details at any time.
+  </div>
+</div>
+{% endif %}
+
+<!-- User Profile Form -->
+<section id="user-profile-form">
+  <div class="container profile-section">
+    <form action="{% url 'users:profile' %}" class="form-context needs-validation" method="post" novalidate>
+    {% csrf_token %}
+    {% regroup form by field.group as field_groups %}
+
+    {% for group in field_groups %}
+      {% define "col-lg-12" as columns %}
+      {% if group.grouper == 1 %}
+        {% define "Your profile" as header %}
+        {% define "You can chose <em>'Prefer not to say'</em> for all options and answers are not public by default." as subheader %}
+      {% endif %}
+      {% if group.grouper == 2 %}
+        {% define "Sensitive topics" as header %}
+        {% define "Select the topics that you are comfortable seeing in experiences" as subheader %}
+        {% define "col-lg-6" as columns %}
+      {% endif %}
+      {% if group.grouper == 3 %}
+        {% define "Messaging options" as header %}
+        {% define "Select when you would like to be notified by us." as subheader %}
+      {% endif %}
+      {% if group.grouper == 4 %}
+        {% define "Hidden fields" as header %}
+        {% define "These fields are for debugging only and will be removed in the final implementation" as subheader %}
+      {% endif %}
+      {% if group.grouper != "hidden" %}
+      <div class="form-group">
+        <h3><label>{{ header }}</label></h3>
+
+        <h5>{{ subheader }}</h5>
+        <div class="form-row">
+        {% for field in group.list %}
+          <div class="col {{ columns }}">
+          {% if field.field.widget|field_type == "CheckboxInput" %}
+              <div class="custom-control custom-switch">
+                {{ field }}
+                <label class="custom-control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+              </div>
+          {% else %}
+              <p/><label for="{{ field.auto_id }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+              <small id="help_{{field.auto_id}}" class="form-text text-muted">
+                {{field.help_text|safe}}
+              </small>
+              {% endif %}
+          {% endif %}
+          </div>
+
+          {% if field.field.gap %}
+            <div class="form-check {{ columns }} mb-3"></div>
+          {% endif %}
+
+        {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="submitForm">Save profile settings</button>
+      </div>
+    </form>
+
+    <h3><label>Account details</label></h3>
+    <p/><a href="https://www.openhumans.org/">Open Humans</a> ID: {{ oh_id }}
+    <p/><a href="{% url 'users:delete' %}" class="btn btn-danger">Delete AutSPACEs account</a>
+
+
+  </div>
+</section>
+
+{% endblock %}
+
+

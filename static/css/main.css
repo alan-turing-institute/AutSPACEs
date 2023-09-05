@@ -66,17 +66,30 @@ body {
   background: #1BB5AF;
 }
 
- .nav-content {
-   font-weight: bold;
+.nav-content {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
 
-   font-size: 1.3rem;
- }
+.nav-link:hover {
+  color: #000 !important;
+}
 
+.nav-account {
+  color: #fff !important;
+}
 
- .nav-link:hover {
-   color:#000 !important;
- }
+.nav-right {
+  padding: 1 40;
+}
 
+.nav-nopadding {
+  padding: 0 0;
+}
+
+.nav-nomargin {
+  margin: 0 0;
+}
 
  /* LANDING PAGE */
  /*Headings*/
@@ -154,7 +167,7 @@ body {
 
  .alert-container {
   padding-top: 10px;
- } 
+ }
 
  #experience {
    padding:  4% 5%;
@@ -607,3 +620,12 @@ body {
   color: #fcbd7e;
 }
 
+.template-hidden {
+  display: "hidden";
+}
+
+/* USER PROFILE PAGES */
+
+.profile-section {
+  padding: 3% 5%;
+}

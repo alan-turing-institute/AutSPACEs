@@ -1,7 +1,10 @@
+import json
+
 from django import forms
+from django.core.exceptions import ValidationError
 
 class ShareExperienceForm(forms.Form):
-        
+
 
     experience_text = forms.CharField(label='Please share your experience', strip=True,
 
@@ -60,6 +63,35 @@ class ShareExperienceForm(forms.Form):
     moderation_status = forms.ChoiceField(choices = statuses, widget = forms.Select(), required=False)
     moderation_status.group = "hidden"
 
+    authorship_choices = [
+        (True, "Experience is my own"),
+        (False, "Experience is someone else's"),
+    ]
+    first_hand_authorship = forms.ChoiceField(choices = authorship_choices, widget = forms.RadioSelect(), required=True)
+    first_hand_authorship.group = 4
+
+    authorship_relation = forms.CharField(label="Relationship",
+                                 max_length=300, strip=True, required=False,
+                                 widget=forms.TextInput(),
+                                 help_text='For example: "I am the non-autistic parent of an autistic adult", "I am the autistic parent of autistic children", "I am a teacher who works with autistic people", "I am best friends of an autistic person". - Please do not share personally identifying information.')
+    authorship_relation.layout_horizontal = True
+    authorship_relation.group = 4
+
+
+    def clean(self):
+        # Raise an error if second-hand authorship chosen with no description
+        # Raise an error if first-hand authorship has a relationship description
+
+        cleaned_data = super().clean()
+
+        first_hand_authorship = cleaned_data.get("first_hand_authorship")
+        authorship_relation = cleaned_data.get("authorship_relation")
+
+        if first_hand_authorship == "False" and authorship_relation == "":
+                self.add_error("first_hand_authorship", ValidationError(("Stories written on behalf of someone else must have a description of the relationship"), code="invalid"))
+        if first_hand_authorship == "True" and authorship_relation != "":
+                self.add_error("first_hand_authorship", ValidationError(("First hand stories do not require a relationship field"), code="invalid"))
+
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
 
@@ -82,6 +114,8 @@ class ShareExperienceForm(forms.Form):
             mod_status = 'not reviewed'
 
         return mod_status
+    
+
 
 
 class ModerateExperienceForm(forms.Form):
@@ -120,11 +154,24 @@ class ModerateExperienceForm(forms.Form):
                                                               'class':'form-control'}))
     moderation_comments.group = 4
 
-    moderation_reply = forms.CharField(widget=forms.HiddenInput())
+    moderation_reply = forms.CharField(widget=forms.HiddenInput(), strip=True, required=False)
     moderation_reply.group = "hidden"
 
     moderation_prior = forms.CharField(widget=forms.HiddenInput())
     moderation_prior.group = "hidden"
+
+    authorship_choices = [
+        (True, "Experience is my own"),
+        (False, "Experience is someone else's"),
+    ]
+    first_hand_authorship = forms.ChoiceField(choices = authorship_choices, widget = forms.RadioSelect(), required=True)
+    first_hand_authorship.group = 5
+
+    authorship_relation = forms.CharField(label="Relationship",
+                                 max_length=300, strip=True, required=False,
+                                 widget=forms.TextInput(),
+                                 help_text='For example: "I am the non-autistic parent of an autistic adult", "I am the autistic parent of autistic children", "I am a teacher who works with autistic people", "I am best friends of an autistic person". - Please do not share personally identifying information.')
+    authorship_relation.group = 5
 
     def __init__(self, *args, **kwargs):
         """ Disable free text fields to the moderator, or disable all fields if in 'read only' mode"""
@@ -148,3 +195,32 @@ class ModerateExperienceForm(forms.Form):
             mod_status = 'not reviewed'
 
         return mod_status
+
+    def clean_moderation_reply(self):
+        moderation_reply = self.cleaned_data['moderation_reply']
+        if moderation_reply == '[]' or moderation_reply == '{}':
+            moderation_reply = ""
+
+        return moderation_reply
+
+    def clean(self):
+        # Raise an error if status is "not reviewed" and moderation_comments isn't empty
+        cleaned_data = super().clean()
+        moderation_status = cleaned_data.get("moderation_status")
+        moderation_reply = cleaned_data.get("moderation_reply")
+        if moderation_status == "not reviewed" and moderation_reply:
+            raise ValidationError(
+                "Stories that are not being reviewed cannot have moderation replies added to them."
+            )
+        # Raise an error if status is "approved" and there are "Red" severity moderation comments
+        if moderation_status == "approved":
+            try:
+                reasons = json.loads(moderation_reply)
+                red_reasons = sum(map(lambda x : 1 if x.get('severity', None) == 'red' else 0, reasons))
+            except:
+                red_reasons = 0
+            if red_reasons > 0:
+                raise ValidationError(
+                    "Stories with Red moderation reasons can't be given approved status."
+                )
+

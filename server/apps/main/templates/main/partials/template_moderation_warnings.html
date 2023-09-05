@@ -1,0 +1,16 @@
+{% load static %}
+
+<!-- moderation warning statuses to be displayed on conditions  --> 
+
+<template id="template-text-not-reviewed-comments" class="template-hidden">
+    <p>It's not possible to record <i>Moderation reasons</i> for stories that haven't been reviewed.</p>
+    <p>Please set the <i>Moderation status</i> to <i>in review</i> to hold reasons for later use, or set the status to <i>accepted</i> or <i>rejected</i> to send the reasons to the author now.</p>
+</template>
+
+ <template id="template-text-reject-no-comments" class="template-hidden">
+    <p>You are rejecting the story without providing a reason. Are you sure you want to continue?</p>
+</template>
+
+<template id="template-text-approve-comments" class="template-hidden">
+    <p>When approving a story you can cite <span class="word-amber">Amber</span> reasons, but not <span class="word-red">Red</span> reasons. Stories containing <span class="word-red">Red</span> reasons must be rejected.</p>
+</template>

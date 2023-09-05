@@ -22,8 +22,9 @@ OPENHUMANS_APP_BASE_URL = config('OPENHUMANS_APP_BASE_URL')
 OPENHUMANS_CLIENT_ID = config('OPENHUMANS_CLIENT_ID')
 OPENHUMANS_CLIENT_SECRET = config('OPENHUMANS_CLIENT_SECRET')
 
-# After log in, send users to the home page.
-LOGIN_REDIRECT_URL = 'main:overview'
+# After log in, send users to the login page to be redirected.
+LOGIN_REDIRECT_URL = 'main:login'
+OPENHUMANS_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 # Project's page on Open Humans
 OH_PROJ_PAGE = config('OH_PROJ_PAGE')
@@ -37,6 +38,7 @@ INSTALLED_APPS: Tuple[str, ...] = (
 
     # Your apps go here:
     'server.apps.main',
+    'server.apps.users',
 
     # Default django apps:
     'django.contrib.auth',
@@ -92,21 +94,36 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('POSTGRES_DB'),
-        'USER': config('POSTGRES_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('DJANGO_DATABASE_HOST'),
-        'PORT': config('DJANGO_DATABASE_PORT', cast=int),
-        'CONN_MAX_AGE': config('CONN_MAX_AGE', cast=int, default=60),
-        'OPTIONS': {
-            'connect_timeout': 10,
-        },
-    },
-}
+import os 
 
+
+if not os.environ.get('DATABASE_URL'):
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('POSTGRES_DB'),
+            'USER': config('POSTGRES_USER'),
+            'PASSWORD': config('POSTGRES_PASSWORD'),
+            'HOST': config('DJANGO_DATABASE_HOST'),
+            'PORT': config('DJANGO_DATABASE_PORT', cast=int),
+            'CONN_MAX_AGE': config('CONN_MAX_AGE', cast=int, default=60),
+            'OPTIONS': {
+                'connect_timeout': 10,
+            },
+        },
+    }
+
+# database for flyio
+
+if os.environ.get('DATABASE_URL'):
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+        ),
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

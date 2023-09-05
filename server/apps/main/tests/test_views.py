@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 import vcr
 import urllib
 from server.apps.main.forms import ShareExperienceForm
-
+from server.apps.users.models import UserProfile
 
 from openhumans.models import OpenHumansMember
 
@@ -38,6 +38,13 @@ class Views(TestCase):
         self.user_b.openhumansmember = self.oh_b
         self.user_b.set_password("password_a")
         self.user_b.save()
+        # Create user C
+        self.oh_c = OpenHumansMember.create(oh_id=23456789, data=data)
+        self.oh_c.save()
+        self.user_c = self.oh_b.user
+        self.user_c.openhumansmember = self.oh_b
+        self.user_c.set_password("password_c")
+        self.user_c.save()
 
         # Each with a public experience
         pe_data = {
@@ -118,6 +125,26 @@ class Views(TestCase):
             experience = self.pe_g,
             **moderation_history_empty
         )
+        # User profile for user C
+        user_profile = {
+           "profile_submitted": False,
+           "autistic_identification": "unspecified",
+           "age_bracket": "18-25",
+           "age_public": False,
+           "gender": "see_description",
+           "gender_self_identification": "",
+           "gender_public": False,
+           "description": "Timelord",
+           "description_public": False,
+           "comms_review": False,
+           "abuse": True,
+           "violence": False,
+           "drug": False,
+           "mentalhealth": False,
+           "negbody": False,
+           "other": False,
+        }
+        self.up_a = UserProfile.objects.create(user=self.user_c, **user_profile)
 
     def test_confirm_page(self):
         c = Client()
@@ -257,6 +284,7 @@ class Views(TestCase):
                 "difference_text": "Here is some difference text",
                 "title_text": "A new story added",
                 "viewable": "True",
+                "first_hand_authorship": "True",
                 "open_humans_member": self.oh_a,
             },
             follow=True,
@@ -304,6 +332,7 @@ class Views(TestCase):
                 "difference_text": "",
                 "title_text": "",
                 "viewable": "True",
+                "first_hand_authorship": "True",
                 "open_humans_member": self.oh_a,
             },
             follow=True,
@@ -500,7 +529,7 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
         response = c.post(
-            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/Placeholder%20text/"
+            "/main/delete/3653328c-f956-11ed-9803-0242ac140003/"
         )
         assert response.status_code == 200
 
@@ -508,6 +537,105 @@ class Views(TestCase):
         c = Client()
         c.force_login(self.user_a)
         response = c.post("/main/public_experiences/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/experiences_page.html")
+
+        # Check that there is only one story visible - the one with no triggering labels
+        for item in response.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
+
+        # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
+        search_response_abuse = c.get("/main/public_experiences/", {"searched": "", "abuse": True})
+        for item in search_response_abuse.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 2
+
+        # Results for story containing caramel is none as there is no triggering warning tag used
+        search_response_c = c.get("/main/public_experiences/", {"searched": "caramel"})
+        for item in search_response_c.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences'])==  0
+
+        # Results for story containing caramel when the wrong trigger label is used is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "negbody": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) ==  0
+
+        # Results for story containing caramel is 1 when there is no triggering warning tag used
+        search_response_c = c.get("/main/public_experiences/", {"searched": "caramel", "all_triggers": True})
+        for item in search_response_c.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) ==  1
+
+        # Results for story containing sausages is no stories
+        search_response = c.get("/main/public_experiences/", {"searched": "sausages"})
+        for item in search_response.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) ==  0
+
+        # One triggering story visible
+        search_response_t = c.get(
+            "/main/public_experiences/", {"searched": "", "triggering_stories": "True"}
+        )
+        for item in search_response_t.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
+
+    def test_list_public_exp_default_triggers(self):
+        """
+        Checks the public experience search given default triggers in the profile
+        """
+        c = Client()
+        c.force_login(self.user_c)
+        response = c.post("/main/public_experiences/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/experiences_page.html")
+
+        # We're not going to set the abuse flag, but it should be pulled in from the user profile
+        # There should be 2 stories one with no tags one with the abuse tag
+        search_response_abuse = c.get("/main/public_experiences/")
+        for item in search_response_abuse.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 2
+
+        # Now if we perform a search with empty search term the profile should no longer be applied
+        # This shold be 1 story with no triggering labels
+        search_response_abuse = c.get("/main/public_experiences/", {"searched": ""})
+        for item in search_response_abuse.context[0]:
+            if item.keys().__contains__("experiences"):
+                assert len(item['experiences']) == 1
+
+        # A specific search with specific flags should also ignore the profile labels
+        # Results for story containing caramel when the abuse trigger label is set is 1
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "abuse": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) == 1
+
+        # A specific search with specific flags should also ignore the profile labels
+        # Results for story containing caramel when the abuse trigger label is unset is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel", "violence": True})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) == 0
+
+        # A specific search with no flags should also ignore the profile labels
+        # Results for story containing caramel when the abuse trigger label is unset is 0
+        search_response_c_nb = c.get("/main/public_experiences/", {"searched": "caramel"})
+        for item in search_response_c_nb.context[0]:
+            if item.keys().__contains__("experiences"):
+               assert len(item['experiences']) == 0
+
+    def test_list_public_exp_anonymous_user(self):
+        """
+        Checks the public experience search given no user is logged in
+        """
+        c = Client()
+        response = c.post("/main/public_experiences/")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/experiences_page.html")
 
         # Check that there is only one story visible - the one with no triggering labels
         for item in response.context[0]:
@@ -567,17 +695,17 @@ class Views(TestCase):
 
         # Check redirect if invalid UUID given
         r_bad_uuid = c.get("/main/single_story/this-is-an-invalid-uuid/", follow=True)
-        self.assertRedirects(r_bad_uuid, "/main/overview")
+        self.assertRedirects(r_bad_uuid, "/")
 
         # Check that rejected story isn't shown
         r_rejected_story = c.get("/main/single_story/8765_3/")
-        self.assertRedirects(r_rejected_story, "/main/overview")
-     
+        self.assertRedirects(r_rejected_story, "/")
+
     def test_list_public_exp_pagination(self):
         c = Client()
         c.force_login(self.user_a)
 
-        # Creating 15 more experiences to have a total of 16 public, non-triggering experiences. 
+        # Creating 15 more experiences to have a total of 16 public, non-triggering experiences.
         # Assuming items_per_page = 10, we should have 2 pages.
         pe_data = {
         "experience_text": "This is my experience",
@@ -605,8 +733,63 @@ class Views(TestCase):
         response = c.get("/main/public_experiences/?page=2")
 
         # The second page should have 6 experiences
-        print(f'length of experiences: {len(response.context["experiences"])}')
         assert len(response.context["experiences"]) == 6
 
         # The first item on the second page should be the 11th item overall
         assert response.context["experiences"][0].number == 11
+            
+
+    # Test pagination in my_stories, uses separate tests for page 1 / page 2 to avoid cassette issues
+    @vcr.use_cassette(
+            "server/apps/main/tests/fixtures/pag_mystories.yaml",
+            record_mode="none",
+            filter_query_parameters=["access_token"],
+            match_on=["path"],
+    )
+    # This casette contanis 64 stories. 56 are public, 8 are private
+    # of the 56 public stories:
+    # 2 are in review
+    # 22 are not reviewed
+    # 25 are approved
+    # 7 are rejected
+    def test_my_stories_pagination_page1(self):
+        c = Client()
+        c.force_login(self.user_b)
+        
+        response = c.get("/main/my_stories/")
+        num_items_per_page = 10
+        # number of stories per category recorded in the casette
+        pages = {"public_stories": 25, "in_review_stories": 24, "rejected_stories": 7, "private_stories": 8}
+        for d in response.context[0]:
+            for page, n_stories in pages.items():
+                if d.keys().__contains__(page):
+                    stories = d[page]
+                    # check pagination
+                    assert len(stories) == min(num_items_per_page, n_stories)
+                    # check story numbering
+                    assert stories[0]['number'] == 1                                   # first story on page 1 has number 1
+                    assert stories[-1]['number'] == min(num_items_per_page, n_stories) # last story on page 1 has correct number
+    
+    @vcr.use_cassette(
+            "server/apps/main/tests/fixtures/pag_mystories.yaml",
+            record_mode="none",
+            filter_query_parameters=["access_token"],
+            match_on=["path"],
+    )
+    # Same cassette as above
+    def test_my_stories_pagination_page2(self):
+        c = Client()
+        c.force_login(self.user_b)
+        # checks page 2 for public and in_review stories
+        response = c.get("/main/my_stories/?page_public=2&page_review=2")
+        num_items_per_page = 10
+        # number of stories per category recorded in the casette, only test stories with multiple pages
+        pages = {"public_stories": 25, "in_review_stories": 24}
+        for d in response.context[0]:
+            for page, n_stories in pages.items():
+                if d.keys().__contains__(page):
+                    stories = d[page]
+                    # check pagination
+                    assert len(stories) == min(num_items_per_page, n_stories)
+                    # check story numbering
+                    assert stories[0]['number'] == num_items_per_page + 1  # first story on page 1 is continuation of page 1
