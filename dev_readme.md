@@ -137,6 +137,22 @@ Select the user account you would like to be a moderator. On the resulting page 
 
 From now on the user should be able to see the Moderator pages in the front-end of AutSPACEs.
 
+### Test deployment for user testing
+
+The repo provides a simple `Dockerfile` and `fly.toml` for quick and free deployments for testing to _fly.io_ (which provides very small compute resources for free). This setup is not designed for an actual production deployment, but to allow people to interact with the prototype for e.g. user testing purposes. 
+
+On a Mac with `brew` installed the following set of commands should be enough to deploy: 
+
+To prepare the repo: 
+
+```
+brew install flyctl
+fly launch
+fly deploy
+```
+
+Before running the deploy step, one will have to add all the information that otherwise resides in the `.env` (see above) on the fly.io web interface.
+
 
 ## Extra Tips
 
@@ -148,3 +164,4 @@ From now on the user should be able to see the Moderator pages in the front-end 
 ## Docker overview 
 
 You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in _The Turing Way_ useful!
+
