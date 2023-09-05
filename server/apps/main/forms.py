@@ -67,7 +67,7 @@ class ShareExperienceForm(forms.Form):
         (True, "Experience is my own"),
         (False, "Experience is someone else's"),
     ]
-    first_hand_authorship = forms.ChoiceField(choices = authorship_choices, widget = forms.RadioSelect(), required=False)
+    first_hand_authorship = forms.ChoiceField(choices = authorship_choices, widget = forms.RadioSelect(), required=True)
     first_hand_authorship.group = 4
 
     authorship_relation = forms.CharField(label="Relationship",
