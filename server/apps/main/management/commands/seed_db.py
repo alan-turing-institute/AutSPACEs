@@ -17,6 +17,17 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         file_name = options["file"]
         
+        # delete existing OH members & PublicExperiences, 
+        # should reset DB except admin users before doing import
+
+        oh_members = OpenHumansMember.objects.all()
+        for ohm in oh_members:
+            ohm.delete()
+
+        pes = PublicExperience.objects.all()
+        for pe in pes:
+            pe.delete()
+
         # create OH member for public experience import
         data = {"access_token": 'foo',
                 "refresh_token": 'bar',
