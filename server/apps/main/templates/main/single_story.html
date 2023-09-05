@@ -45,6 +45,11 @@
 
     <div class="container story-section">
     <h2>Title: <i>{% firstof experience.title_text "No Title Given" %}</i></h2>
+    {% if experience.first_hand_authorship %}
+    <em>Autistic individual</em>
+    {% else %}
+    <em>{% firstof experience.authorship_relation "AutSPACEs Contributor" %}</em>
+    {% endif %}
 
     <h3>Experience</h3>
     <p><i>{% firstof experience.experience_text "No Experience Text Given" %}</i></p>

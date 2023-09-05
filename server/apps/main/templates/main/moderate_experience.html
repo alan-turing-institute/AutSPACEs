@@ -244,6 +244,11 @@
             {% define "Earlier comments can be viewed in the Experience history" as subheader %}
             {% define "col-lg-12" as columns %}
           {% endif %}
+          {% if group.grouper == 5 %}
+            {% define "Authorship" as header %}
+            {% define "Are you writing this experience on behalf of yourself?" as subheader %}
+            {% define "col-lg-12" as columns %}
+          {% endif %}
         <div class="form-group">
           <h3><label>{{ header }}</label></h3>
 
@@ -256,10 +261,21 @@
               {% if field.label == "Other"%}
               <label for="{{ field.auto_id }}">{{ field.label }}:</label>
               {{field}}
+              {% elif field.label == "First hand authorship" %}
+              <label for="{{ field.id_for_label }}"></label>
+                {{ field }}
+              {% elif field.label == "Relationship"%}
+                <label for="{{ field.id_for_label}}">{{ field.label }}:</label>
+                {{ field }}
+                {% if field.help_text %}
+                <small id="help_{{field.auto_id}}" class="form-text text-muted">
+                  {{field.help_text|safe}}</small>
+               {% endif %}
               {% else %}
               {{ field }}
               <label for="{{ field.auto_id }}">{{ field.label }}</label>
               {% endif %}
+
 
             </div>
 
@@ -325,5 +341,6 @@
   </div>
 
   <script src="{% static 'js/moderation-dialogue.js' %}"></script>
+  <script src="{% static 'js/set_relationship_vis.js' %}"></script>
 </div>
 {% endblock %}

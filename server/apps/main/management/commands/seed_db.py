@@ -40,6 +40,7 @@ class Command(BaseCommand):
                         "experience_text": row[1],
                         "difference_text": row[2],
                         "moderation_status": "approved",
+                        "first_hand_authorship": "True",
                     }
                     if row[3]:
                         pe_data[row[3]] = True                    
