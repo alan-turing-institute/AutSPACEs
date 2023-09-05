@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 $(function() {
     $('input:radio').on('change', function() {
-        change_viz(chk_radio(), 'id_authorship_relation')
+        change_viz(chk_radio(), 'id_authorship_relation');
   })});
 
 function chk_radio(){
@@ -18,5 +18,8 @@ function change_viz (viz, field_id) {
   if (viz == true) {
     r.parentElement.style.visibility = ""}
   else {
-    r.parentElement.style.visibility = "hidden"}
+    r.parentElement.style.visibility = "hidden"
+    r.value = ""
+    }
 }
+
