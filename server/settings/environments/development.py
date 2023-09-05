@@ -26,6 +26,10 @@ ALLOWED_HOSTS = [
     '[::1]',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://" + config('DOMAIN_NAME'),
+    "http://" + config('DOMAIN_NAME'),
+    ]
 
 # Installed apps for development only:
 
