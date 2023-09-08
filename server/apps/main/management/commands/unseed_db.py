@@ -10,17 +10,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         # Delete user added stories from OH and DB and delete the user
-        for up in UserProfile.objects.all():
-            delete_user(user=up.user, delete_oh_data=True)
-
-        # Delete the seeded stories from the DB
-        for p in PublicExperience.objects.all():
-            p.delete()
-
-        # Delete seeded user
         for u in User.objects.all():
             if u.username == "999999999_openhumans":
                 u.delete()
+            else:
+                delete_user(user=u, delete_oh_data=True)
 
 
 
