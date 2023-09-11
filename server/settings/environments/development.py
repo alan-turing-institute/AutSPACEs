@@ -166,3 +166,6 @@ EXTRA_CHECKS = {
         'field-choices-constraint',
     ],
 }
+
+# Don't automatically deauthorise an OH account upon deletion of user
+OPENHUMANS_DEAUTH_ON_DELETE = False
