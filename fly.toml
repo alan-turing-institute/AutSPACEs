@@ -9,8 +9,8 @@ console_command = "/code/manage.py shell"
 
 [build]
 
-#[deploy]
-#  release_command = "python manage.py migrate"
+[deploy]
+  release_command = "python manage.py migrate"
 
 [env]
   PORT = "8000"

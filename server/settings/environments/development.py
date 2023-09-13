@@ -26,6 +26,10 @@ ALLOWED_HOSTS = [
     '[::1]',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://" + config('DOMAIN_NAME'),
+    "http://" + config('DOMAIN_NAME'),
+    ]
 
 # Installed apps for development only:
 
@@ -162,3 +166,6 @@ EXTRA_CHECKS = {
         'field-choices-constraint',
     ],
 }
+
+# Don't automatically deauthorise an OH account upon deletion of user
+OPENHUMANS_DEAUTH_ON_DELETE = False
