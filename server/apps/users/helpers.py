@@ -75,7 +75,8 @@ def delete_user(user, delete_oh_data):
         ohmember.delete_all_files()
 
     # de-auth OH member if not doing so by default
-    if settings.OPENHUMANS_DEAUTH_ON_DELETE == False:
+    deauth_on_delete = getattr(settings, 'OPENHUMANS_DEAUTH_ON_DELETE', True)
+    if deauth_on_delete == False:
         deauth_oh_member(ohmember)
 
     # Delete the actual user
