@@ -1,48 +1,45 @@
-let searchForm = document.getElementById("search-form");
-let trigger_array = ["abuse-checkbox", "drug-checkbox", "negbody-checkbox", "violence-checkbox", "mentalhealth-checkbox", "other-checkbox"]
-
-// Check if the all toggle has been changed
-let all = document.getElementById("all-checkbox");
-let abuse = document.getElementById("abuse-checkbox")
-let vio = document.getElementById('violence-chcekbox')
-
-$(function() {
-    
-}
-    )
+let all_check = document.getElementById("all-checkbox")
+let trigger_array = ["abuse-checkbox",
+                     "drug-checkbox", 
+                     "negbody-checkbox", 
+                     "violence-checkbox", 
+                     "mentalhealth-checkbox", "other-checkbox"]
 
 
-$(function() {
-    $(".custom-control-input").on("change", pressSubmit)
-
-    function pressSubmit() {
-        all_checkbox = document.getElementById("all-checkbox").checked
-
-        all_sing = trigger_array.forEach(item => console.log(document.getElementById(item).checked))
-
-        alert(all_checkbox)
-        
-        $("#search-form").submit()
-
-        // var state_after_submit_all = $("#all-checkbox").is(":checked")
-
-        // var state_after_submit_indi = [
-        //     $("#abuse-checkbox").is(":checked"),
-        //     $("#drug-checkbox").is(":checked"),
-        //     $("#negbody-checkbox").is(":checked"),
-        //     $("#violence-checkbox").is(":checked"),
-        //     $("#mentalhealth-checkbox").is(":checked"),
-        //     $("#other-checkbox").is(":checked"),
-        // ]
-
-        // var isAllTrue = (x) => x == true;
-
-        // var all_checked = state_after_submit_indi.every(isAllTrue)
-        // alert("all " + state_after_submit_all + " indi " + state_after_submit_indi + "-----" + all_checked)
+$(all_check).change(function(){
+    // If the all-trigger checkbox is checked ensure all single triggers are checked
+    // If the all-trigger checkbox is unchecked, ensure all single triggers are unchecked
+    if (all_check.checked == true) {
+        for (let i = 0; i < trigger_array.length; i++) {
+            document.getElementById(trigger_array[i]).checked = true
+        }
+    } else {
+        for (let i = 0; i < trigger_array.length; i++) {
+            document.getElementById(trigger_array[i]).checked = false
+        }
     }
 
+    $("#search-form").submit()
+})
 
-  })
+$("#single_trigger_warnings :checkbox").change(function(){
+    // check if all the single trigger warnings are checked
+    // if so check the "all" checkbox
+
+    var all_sing = [];
+    for (let i = 0; i < trigger_array.length; i++) {
+        all_sing.push(document.getElementById(trigger_array[i]).checked)
+    }
+
+    if (all_sing.includes(false)) {
+        document.getElementById("all-checkbox").checked = false
+    } else {
+        document.getElementById("all-checkbox").checked = true
+    }
+
+    $("#search-form").submit()
+
+});
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     var scrollpos = localStorage.getItem('scrollpos');
