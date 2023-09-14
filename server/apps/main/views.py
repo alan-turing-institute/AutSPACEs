@@ -342,6 +342,9 @@ def list_public_experiences(request):
     for trigger in triggers_to_show:
         trigger_check = f"check{trigger}"
         tts[trigger_check] = True
+    
+    if all_triggers:
+        tts["checkall"] = True
 
     experiences = expand_filter(experiences, triggers_to_show)
 
