@@ -11,7 +11,6 @@
       <th class="submission-date-th" scope="col">Creation Date</th>
       <th class="tags-th" scope="col">Tags</th>
       <th class="status-th" scope="col">Moderation Status</th>
-      <th class="status-th" scope="col">Triggering Labels</th>
       <th class="status-th" scope="col" colspan="4">File Options</th>
     </tr>
     </thead>
@@ -32,13 +31,6 @@
 </td>
 <td>
     {% firstof file.metadata.data.moderation_status "Moderation Status Unknown" %}
-</td>
-<td>
-    {% for tag in file.metadata.tags %}
-    {% if tag not in sharing_tags %}
-        <strong class="badge">{{ tag }}</strong>
-    {%endif%}
-    {% endfor %}
 </td>
 <td>
     <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
