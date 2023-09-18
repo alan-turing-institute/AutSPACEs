@@ -89,7 +89,10 @@
       <!-- Add the tab navigation -->
     <ul class="nav nav-tabs mystory-tabs" id="storyTabs" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="public-tab" data-toggle="tab" href="#public" role="tab" aria-controls="public" aria-selected="true">Public</a>
+        <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="public-tab" data-toggle="tab" href="#public" role="tab" aria-controls="public" aria-selected="false">Public</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="in-review-tab" data-toggle="tab" href="#in-review" role="tab" aria-controls="in-review" aria-selected="false">Pending Review</a>
@@ -104,11 +107,17 @@
 
     <!-- Add the tab content -->
   <div class="tab-content" id="storyTabsContent">
-    <div class="tab-pane fade show active" id="public" role="tabpanel" aria-labelledby="public-tab">
+    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+      <!-- Table for all stories -->
+      {% include 'main/story_table.html' with files=all_stories %}
+      {% include 'main/pagination.html' with stories=all_stories page_query_param='page_all' %}
+    </div>
+
+    <div class="tab-pane fade" id="public" role="tabpanel" aria-labelledby="public-tab">
       <!-- Table for public stories -->
       {% include 'main/story_table.html' with files=public_stories %}
       {% include 'main/pagination.html' with stories=public_stories page_query_param='page_public' %}
-  </div>
+    </div>
 
     <div class="tab-pane fade" id="in-review" role="tabpanel" aria-labelledby="in-review-tab">
       <!-- Table for `in review` stories -->
@@ -122,12 +131,13 @@
       {% include 'main/pagination.html' with stories=rejected_stories page_query_param='page_rejected' %}
     </div>
 
-
     <div class="tab-pane fade" id="private" role="tabpanel" aria-labelledby="private-tab">
       <!-- Table for private stories -->
       {% include 'main/story_table.html' with files=private_stories %}
       {% include 'main/pagination.html' with stories=private_stories page_query_param='page_private' %}
     </div>
+
+  </div>
   
     <div class="contact-btn">
     <a
@@ -135,8 +145,8 @@
       href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
       target="_blank">Contact Moderators
     </a>
-      </div>
-          </div>
+    </div>
+
 
 </section>
 

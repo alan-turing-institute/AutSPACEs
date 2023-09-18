@@ -458,6 +458,13 @@ def my_stories(request):
 
         # For each category, filter stories, create pagination and add continuous numbering
 
+        # All stories
+        paginator_all = Paginator(
+            files, items_per_page,
+        )
+        all_stories = paginate_stories(request, paginator_all, "page_all")
+        all_stories = number_stories(all_stories, items_per_page)
+
         # Public stories
         paginator_public = Paginator(
             filter_by_tag(filter_by_moderation_status(files, "approved"), "public"),
@@ -491,6 +498,7 @@ def my_stories(request):
             request,
             "main/my_stories.html",
             context={
+                "all_stories": all_stories,
                 "public_stories": public_stories,
                 "in_review_stories": in_review_stories,
                 "rejected_stories": rejected_stories,
