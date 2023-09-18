@@ -464,9 +464,7 @@ def my_stories(request):
         )
         all_stories = paginate_stories(request, paginator_all, "page_all")
         all_stories = number_stories(all_stories, items_per_page)
-        all_stories_numbering = list(range(all_stories.start_index(), all_stories.start_index()+items_per_page))
-        print(all_stories_numbering)
-        print(len(all_stories.object_list))
+        all_stories_numbering = list(range(all_stories.start_index(), all_stories.start_index()+min(items_per_page, len(all_stories.object_list))))
 
         # Public stories
         paginator_public = Paginator(
