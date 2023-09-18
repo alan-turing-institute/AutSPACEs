@@ -658,3 +658,28 @@ def experience_titles_for_session(files):
         if "uuid" in f['metadata'].keys():
             titles[f['metadata']['uuid']] = f['metadata']['description']
     return titles
+
+def number_by_review_status(files):
+    """
+    Return a dictionary of review status: number for the My Stories page
+    """
+    list_status = ["approved", "not_reviewed", "rejected", "in_review"]
+    status = {s: 0 for s in list_status}
+
+    for f in files:
+        s = f['metadata']['data']['moderation_status']
+        status[s.replace(" ","_")] = status[s.replace(" ","_")] + 1
+
+    # Get the private stories
+    private = 0
+    for f in files:
+        if not f['metadata']['data']['viewable']:
+            private += 1
+
+    status["private"] = private
+    status["not_reviewed"] = status["not_reviewed"] - private
+
+    status["moderated"] = status["approved"] + status["rejected"]
+
+
+    return status

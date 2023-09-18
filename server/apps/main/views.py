@@ -50,6 +50,7 @@ from .helpers import (
     message_wrap,
     experience_titles_for_session,
     extract_authorship_details,
+    number_by_review_status,
 )
 
 from server.apps.users.helpers import (
@@ -450,6 +451,9 @@ def my_stories(request):
         context = {"files": files}
         context = reformat_date_string(context)
 
+        summary_status = number_by_review_status(files)
+        print(summary_status)
+
         # add experience titles to session for deletion pages
         request.session['titles']= experience_titles_for_session(files)
 
@@ -463,7 +467,7 @@ def my_stories(request):
             files, items_per_page,
         )
         all_stories = paginate_stories(request, paginator_all, "page_all")
-        all_stories = number_stories(all_stories, items_per_page)
+        # Numbering for all stories different to all other tabs 
         all_stories_numbering = list(range(all_stories.start_index(), all_stories.start_index()+min(items_per_page, len(all_stories.object_list))))
 
         # Public stories
@@ -504,8 +508,8 @@ def my_stories(request):
                 "in_review_stories": in_review_stories,
                 "rejected_stories": rejected_stories,
                 "private_stories": private_stories,
-                "all_stories_numbering": all_stories_numbering,
-                "zipped":zip(all_stories, all_stories_numbering)
+                "zipped":zip(all_stories, all_stories_numbering),
+                **summary_status,
             },
         )
     else:

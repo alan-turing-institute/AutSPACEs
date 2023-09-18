@@ -38,9 +38,9 @@
               <h3 class="story-head card-header process">In Process</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
-                  <li class="list-item"><p class="card-text">Waiting:<strong> {% firstof n_not_reviewed 0|floatformat %} {% toggle_story n_not_reviewed %}
+                  <li class="list-item"><p class="card-text">Not yet reviewed:<strong> {% firstof not_reviewed 0|floatformat %} {% toggle_story not_reviewed %}
                   </strong></p></li>
-                  <li class="list-item"><p class="card-text">Moderating:<strong> {% firstof n_in_review 0|floatformat %} {% toggle_story n_in_review %}
+                  <li class="list-item"><p class="card-text">In review:<strong> {% firstof in_review 0|floatformat %} {% toggle_story in_review %}
                   </strong></p></li>
 
 
@@ -53,11 +53,11 @@
               <h3 class="story-head card-header submitted">Moderated</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
-                  <li class="list-item"><p class="card-text">Moderated:<strong> {% firstof n_moderated 0|floatformat %} {% toggle_story n_moderated %}
+                  <li class="list-item"><p class="card-text">Moderated:<strong> {% firstof moderated 0|floatformat %} {% toggle_story moderated %}
                   </strong></p></li>
-                  <li class="list-item"><p class="card-text">Approved:<strong> {% firstof n_approved 0|floatformat %} {% toggle_story n_approved %}
+                  <li class="list-item"><p class="card-text">Approved:<strong> {% firstof approved 0|floatformat %} {% toggle_story approved %}
                   </strong></p></li>
-                  <li class="list-item"><p class="card-text">Rejected:<strong> {% firstof n_rejected 0|floatformat %} {% toggle_story n_rejected %}
+                  <li class="list-item"><p class="card-text">Rejected:<strong> {% firstof rejected 0|floatformat %} {% toggle_story rejected %}
                   </strong></p></li>
                 </ul>
               </div>
