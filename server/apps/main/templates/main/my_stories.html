@@ -109,7 +109,7 @@
   <div class="tab-content" id="storyTabsContent">
     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
       <!-- Table for all stories -->
-      {% include 'main/story_table.html' with files=all_stories %}
+      {% include 'main/story_table.html' with files=zipped fullstories=all_stories_numbering %}
       {% include 'main/pagination.html' with stories=all_stories page_query_param='page_all' %}
     </div>
 

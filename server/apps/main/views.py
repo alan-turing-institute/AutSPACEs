@@ -464,6 +464,9 @@ def my_stories(request):
         )
         all_stories = paginate_stories(request, paginator_all, "page_all")
         all_stories = number_stories(all_stories, items_per_page)
+        all_stories_numbering = list(range(all_stories.start_index(), all_stories.start_index()+items_per_page))
+        print(all_stories_numbering)
+        print(len(all_stories.object_list))
 
         # Public stories
         paginator_public = Paginator(
@@ -503,6 +506,8 @@ def my_stories(request):
                 "in_review_stories": in_review_stories,
                 "rejected_stories": rejected_stories,
                 "private_stories": private_stories,
+                "all_stories_numbering": all_stories_numbering,
+                "zipped":zip(all_stories, all_stories_numbering)
             },
         )
     else:
