@@ -68,13 +68,31 @@
               <h3 class="story-head card-header messages">Messages</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
-                  <li><p class="card-text">Your story<strong>"Traffic Lights"</strong> have been accepted.</p></li>
+                  {% if exp_hist %}
+                  <p class="card-text">Your story <strong>{{ exp_hist.experience.title_text }}</strong> 
+                    was reviewed by the moderators {% firstof exp_hist.changed_at|naturaltime "an unknown amount of time ago" %}. 
+                    The current status of the story is <em>{{ exp_hist.experience.moderation_status}}.</em></p>
+                  <!-- {% firstof file.created|naturaltime "Creation date unknown" %} -->
+                  {% else %}
+                  <p class="card-text">There have been no stories reviewed by the moderators at this time.</p>
+                  {% endif %}
                 </ul>
+                
+                {% if exp_hist %}
                 <a
-                  class="btn btn-outline-info float-right view-btn"
-                  href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
+                  class="btn btn-outline-info float-right view-btn" href="{% url 'main:view_exp' exp_hist.experience.experience_id %}" rel="noopener noreferrer"
                   target="_blank">View Here
                 </a>
+                {% else %}
+                <a
+                class="btn btn-outline-info float-right view-btn"
+                href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
+                target="_blank">View already published public experiences
+              </a>
+                {% endif %}
+
+
+
               </div>
             </div>
           </div>

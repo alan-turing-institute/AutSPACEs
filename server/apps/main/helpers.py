@@ -683,3 +683,20 @@ def number_by_review_status(files):
 
 
     return status
+
+def most_recent_exp_history(ohm):
+    """
+    Return the most recent Moderate Experience History for the user
+    """
+
+    try:
+        exp_hist = ExperienceHistory.objects.filter(Q(experience__open_humans_member=ohm) 
+                                     & Q(change_type="Moderate")).latest("changed_at")
+        return exp_hist
+
+    except ExperienceHistory.DoesNotExist:
+        return None
+
+
+    
+    

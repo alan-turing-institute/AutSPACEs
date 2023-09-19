@@ -14,7 +14,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
 
-from .models import PublicExperience
+from .models import PublicExperience, ExperienceHistory
 from server.apps.users.models import UserProfile
 
 from .forms import ShareExperienceForm, ModerateExperienceForm
@@ -51,6 +51,7 @@ from .helpers import (
     experience_titles_for_session,
     extract_authorship_details,
     number_by_review_status,
+    most_recent_exp_history,
 )
 
 from server.apps.users.helpers import (
@@ -451,8 +452,12 @@ def my_stories(request):
         context = {"files": files}
         context = reformat_date_string(context)
 
+        print(request.user.openhumansmember)
+
         summary_status = number_by_review_status(files)
-        print(summary_status)
+        recent_exp_history = most_recent_exp_history(request.user.openhumansmember)
+        if recent_exp_history:
+            summary_status["exp_hist"] = recent_exp_history
 
         # add experience titles to session for deletion pages
         request.session['titles']= experience_titles_for_session(files)
