@@ -1,6 +1,11 @@
 from django.contrib.auth.models import User
 from .models import UserProfile
 from server.apps.main.models import PublicExperience
+from django.conf import settings
+import requests
+from urllib.parse import urljoin
+from openhumans.settings import openhumans_settings
+
 
 def user_profile_exists(user):
     """
@@ -71,6 +76,19 @@ def delete_user(user, delete_oh_data):
     if delete_oh_data:
         ohmember.delete_all_files()
 
+    # de-auth OH member if not doing so by default
+    deauth_on_delete = getattr(settings, 'OPENHUMANS_DEAUTH_ON_DELETE', True)
+    if deauth_on_delete == False:
+        deauth_oh_member(ohmember)
+
     # Delete the actual user
     user.delete()
 
+def deauth_oh_member(oh_member):
+    OH_BASE_URL = openhumans_settings['OPENHUMANS_OH_BASE_URL']
+    deauth_url = urljoin(OH_BASE_URL,
+                         '/api/direct-sharing/project/remove-members/')
+    deauth_url = urljoin(
+            deauth_url,
+            '?access_token={}'.format(oh_member.get_access_token()))
+    requests.post(deauth_url)
