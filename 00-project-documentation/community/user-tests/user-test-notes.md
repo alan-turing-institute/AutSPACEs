@@ -950,6 +950,7 @@ Explore if people understand _why_ they don’t see it (this is not a search)
 * "The world would be a much better place if autistic people had more of a say in how public places are used and designed"
 * "I like that there's a possibility to share your story. I think that's really important, because often people don't get an opportunity to share their story, so nobody knows what it's like for them"
 https://hackmd.io/f1AnlqwDRk29_9SwuUkzjg#User-Test-11
+
 ## User Test 11
 
 Prior experience? *Long-term key collaborator with AutSPACEs*
@@ -968,7 +969,8 @@ Prior experience? *Long-term key collaborator with AutSPACEs*
 * Sharing stories is a key part of the website and should be its own menu point in the navigation bar
 * The flow diagram needs to have a little box on main home page to take you to the diagram. And the diagram should link out to pages it talks about
 * “Ideally have a button to give you a outline of how the pages work and link to each other, e.g. have a visual map of the pages”
-* Have an easier way to sign the consent form.  
+* Have an easier way to sign the consent form.
+* AutSPACEs may like to publicise the website in April 2024 as part of UK Autism Awareness Week (  perhaps on World Autism Awareness Day itself) as a way of emphasising the impact sensory processing has on Autistic people in the public environment.   
 
 ### User Journeys
 
@@ -1038,17 +1040,17 @@ Prior experience? *Long-term key collaborator with AutSPACEs*
 * Make it iPad compatible! 
 * Moving down menus was not easy to find (e.g. “share experiences”, “register” etc)
 * Change the red colour of headings for stories
-* * “Thank you for sharing your story” is confusing if one doesn’t actually share it
+* “Thank you for sharing your story” is confusing if one doesn’t actually share it
 * Maybe worth having a moderator explaining “why we moderate”
 * Include example experiences for people to understand what the expectation is 
 * Testimonials of why sensory processing is an important topic/research area
-* Put something on about AutSPACEs in April for the April acceptance week and use to share the platform and bring people into using AutSPACEs 
+* AutSpaces may like to publicise the website in April 2024 as part of UK Autism Awareness Week (perhaps on World Autism Awareness Day itself) as a way of emphasising the impact sensory processing has on Autistic people in the public environment. 
 
 ### User Journeys
 
 #### Browse to AutSPACEs and explore as you like: What do you think the goal and purpose of AutSPACEs is? 
 
-* Formatting of “about autspaces” broken on iPad in portrait orientation
+* Formatting of “about AutSPACEs” broken on iPad in portrait orientation
 * Floating bits of “scrollspy” is overlaying with actual content 
 * Typo: “an empathise”, also double “them”
 * Maybe have “Open Humans” be consistently highlighted
@@ -1091,7 +1093,7 @@ Explore if people understand _why_ they don’t see it (this is not a search)
 
 * Would definitely use more than certain other apps, as you have the satisfaction to know you can learn from other people’s experiences
 * Learning from each other is a positive
-* Would use the platform for reading during episodes of insomnia!
+* Would use the platform for reading during episodes of insomnia
 
 ### Any concerns?
 
