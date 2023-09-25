@@ -860,7 +860,7 @@ Explore if people understand _why_ they don’t see it (this is not a search)
 
 * Like the colour 
 * First thing noticed is picture on right-hand side, looking at that - the dog looks a bit disturbed 
-* Click on “about”, reading through autspaces page 
+* Click on “about”, reading through autSPACEs page 
 * Reading through about the platform usage/registration 
 * Like that it’s private & anonymous & also the dynamic consent of being able to change stories
 * Also enjoy reading other people’s stories if they’ve shared them
@@ -923,7 +923,8 @@ Explore if people understand _why_ they don’t see it (this is not a search)
 ### Do you think AutSPACEs could be useful to you/Would you use AutSPACEs to share your experiences?
 
 * Would definitely find AutSPACEs useful for sharing experiences & reading.
-* Would use it mostly for reading other people’s stories, not sure if one can reply and interact with other people’s stories. Would like to be able to respond to other people’s experiences. Or even just a button to say, “I relate to this”. 
+* Would use it mostly for reading other people’s stories, not sure if one can reply and interact with other people’s stories. Would like to be able to respond to other people’s experiences. Or even just a button to say, “I relate to this”, but on reflection doesn't seem worth it as there's a risk if some stories got lots of comments or "relates" and some didn't, it might make the person who got fewer negatively and make them feel more isolated and alone in their experiences!
+* Also, the purpose of this website is to gather data of experiences and the possibility of interaction/reactions might affect how people share their stories. 
 * Would prefer mainly text, maybe diagrams but not videos, prefer reading over viewing video.
 
 ### What would bring you back to AutSPACEs after an initial visit?
