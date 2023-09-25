@@ -4,6 +4,8 @@ from server.apps.main.models import PublicExperience
 from django.conf import settings
 import requests
 from urllib.parse import urljoin
+from openhumans.settings import openhumans_settings
+
 
 def user_profile_exists(user):
     """
@@ -83,7 +85,9 @@ def delete_user(user, delete_oh_data):
     user.delete()
 
 def deauth_oh_member(oh_member):
-    deauth_url = 'https://www.openhumans.org/api/direct-sharing/project/remove-members/'
+    OH_BASE_URL = openhumans_settings['OPENHUMANS_OH_BASE_URL']
+    deauth_url = urljoin(OH_BASE_URL,
+                         '/api/direct-sharing/project/remove-members/')
     deauth_url = urljoin(
             deauth_url,
             '?access_token={}'.format(oh_member.get_access_token()))
