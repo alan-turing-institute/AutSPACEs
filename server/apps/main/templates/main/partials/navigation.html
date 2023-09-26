@@ -11,18 +11,14 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:what_autism_is' %}">What is Autism</a>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:public_experiences' %}">View Stories</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item dropdown nav-nopadding">
-            <a class="nav-link dropdown-toggle nav-content" href="#" id="experienceDropdownMenuLink" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Experiences
-            </a>
-            <div class="dropdown-menu" aria-labelledby="experienceDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'main:public_experiences' %}">View Stories</a>
-              <a class="dropdown-item" href="{% url 'main:share_exp' %}">Share Stories</a>
-            </div>
+          <li>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:share_exp' %}">Share Stories</a>
+          </li>
+          <li>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
           </li>
           {% is_moderator user as moderator %}
           {% if moderator %}
@@ -37,24 +33,20 @@
               <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=rejected">Rejected</a>
             </div>
           </li>
+          {% endif %}
+          {% endif %}
 
-          {% endif %}
-          <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
-          </li>
-          {% else %}
-          <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:public_experiences' %}">View Stories</a>
-          </li>
-          {% endif %}
-          <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:about_us' %}">About Us</a>
-          </li>
-          <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
-          </li>
-          <li>
-            <a class="nav-content nav-item nav-link" href="{% url 'main:help' %}">Help</a>
+          <li class="nav-item dropdown nav-nopadding">
+            <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Learn More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'main:what_autism_is' %}">What is Autism</a>
+              <a class="dropdown-item" href="{% url 'main:about_us' %}">About Us</a>
+              <a class="dropdown-item" href="{% url 'main:code_of_conduct' %}">Code of Conduct</a>
+              <a class="dropdown-item" href="{% url 'main:help' %}">Help</a>
+            </div>
           </li>
         </ul>
 
