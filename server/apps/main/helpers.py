@@ -398,62 +398,49 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
     else:
         delete_PE(uuid, ohmember)
 
-def moderate_page(request, status, experiences):
+def moderate_page(request, tabbed_stories):
     """
     View containing lists of the given Public Experiences
 
     A helper function for generating the Moderation pages.
     """
+    # Define the number of items per page
+    items_per_page = settings.EXPERIENCES_PER_PAGE
+
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
 
-    if searched:
-        # If there's a search term, additionally filter on it too
-        experiences = experiences.filter(
-            Q(title_text__icontains=searched)
-            | Q(experience_text__icontains=searched)
-            | Q(difference_text__icontains=searched)
-        )
+    for status, stories in tabbed_stories.items():
+        # Filter based on the search query
+        if searched:
+            stories = stories.filter(
+                Q(title_text__icontains=searched)
+                | Q(experience_text__icontains=searched)
+                | Q(difference_text__icontains=searched)
+            )
 
-    paginator = Paginator(experiences, settings.EXPERIENCES_PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    page_obj.page_range = paginator.get_elided_page_range(page_obj.number, on_each_side=2, on_ends=1)
-    page_obj.offset = page_obj.start_index() - 1
+        # Paginate stories
+        paginator = Paginator(stories, items_per_page)
+        stories = paginate_stories(request, paginator, status)
+        stories = number_stories(stories, items_per_page)
+        tabbed_stories[status] = stories
 
-    unreviewed = PublicExperience.objects.filter(
-        Q(moderation_status="not reviewed")
-    ).count()
-    inreview = PublicExperience.objects.filter(
-        Q(moderation_status="in review")
-    ).count()
-    approved = PublicExperience.objects.filter(
-        Q(moderation_status="approved")
-    ).count()
-    rejected = PublicExperience.objects.filter(
-        Q(moderation_status="rejected")
-    ).count()
+    context={
+        "pending_stories": tabbed_stories["page_pending"],
+        "approved_stories": tabbed_stories["page_approved"],
+        "rejected_stories": tabbed_stories["page_rejected"],
+        "searched": searched if searched else "",
+    }
 
-    subtitle = {
-        "pending": "Experiences for Moderation",
-        "approved": "Approved Experiences",
-        "rejected": "Rejected Experiences",
-    }.get(status, "Moderation")
+    for status in ["not reviewed", "in review", "approved", "rejected"]:
+        context[status.replace(" ", "_")] = PublicExperience.objects.filter(
+            Q(moderation_status=status)
+        ).count()
 
     return render(
         request,
         "main/moderation_list.html",
-        context={
-            "subtitle": subtitle,
-            "status": status,
-            "page_obj": page_obj,
-            "unreviewed": unreviewed,
-            "inreview": inreview,
-            "approved": approved,
-            "rejected": rejected,
-            "searched": searched if searched else "",
-            "params": "?status=" + status + (("&searched=" + searched) if searched else ""),
-        },
+        context=context,
     )
 
 def choose_moderation_redirect(moderation_prior):

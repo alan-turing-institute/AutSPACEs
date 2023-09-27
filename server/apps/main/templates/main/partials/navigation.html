@@ -22,16 +22,8 @@
           </li>
           {% is_moderator user as moderator %}
           {% if moderator %}
-          <li class="nav-item dropdown nav-nopadding">
-            <a class="nav-link dropdown-toggle nav-content" href="#" id="navbarDropdownMenuLink" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Moderation
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=pending">Pending</a>
-              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=approved">Approved</a>
-              <a class="dropdown-item" href="{% url 'main:moderation_list' %}?status=rejected">Rejected</a>
-            </div>
+          <li>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:moderation_list' %}">Moderation</a>
           </li>
           {% endif %}
           {% else %}
