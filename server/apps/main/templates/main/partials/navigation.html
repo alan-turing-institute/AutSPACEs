@@ -34,6 +34,10 @@
             </div>
           </li>
           {% endif %}
+          {% else %}
+          <li>
+            <a class="nav-content nav-item nav-link" href="{% url 'main:registration' %}">Add Story</a>
+          </li>
           {% endif %}
 
           <li class="nav-item dropdown nav-nopadding">
