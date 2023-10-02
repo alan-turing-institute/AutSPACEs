@@ -65,7 +65,7 @@
           </div>
           <div class="story-card col-lg-4 message-card">
             <div class="card">
-              <h3 class="story-head card-header messages">Messages</h3>
+              <h3 class="story-head card-header messages">Moderation Update</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
                   {% if exp_hist %}
@@ -157,13 +157,20 @@
 
   </div>
   
-    <div class="contact-btn">
-    <a
+
+
+    <div class="col-lg-12 text-right">
+
+      <a href="{% url 'main:share_exp' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
+        Enter Another Experience
+      </a>
+      <a
       class="btn btn-lg btn-outline-primary float-right"
       href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
       target="_blank">Contact Moderators
     </a>
-    </div>
+
+     </div>
 
 
 </section>
