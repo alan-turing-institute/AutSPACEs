@@ -452,8 +452,6 @@ def my_stories(request):
         context = {"files": files}
         context = reformat_date_string(context)
 
-        print(request.user.openhumansmember)
-
         summary_status = number_by_review_status(files)
         recent_exp_history = most_recent_exp_history(request.user.openhumansmember)
         if recent_exp_history:
