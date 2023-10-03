@@ -3,7 +3,7 @@
 ## Demographic Information
 
 * No. Participants: 14 
-* Connections to autism: all autistic, 3 parents of autistic people, 4 with a professional connection to autism. 
+* Connections to autism: all autistic, 2 parents of autistic people, 3 with a professional connection to autism. 
 * Age ranges: 20s - 60s.   
 * Co-occuring conditions (across all participants): chronic health conditions, red/green colour blindness, agoraphobia, social anxiety, OCD, ADHD, hypomobility, EDS, partial deafness, childhood trauma, dyspraxia, depression, asthma, spacial disorientation, body dysmorphia, prior anorexia, asthma, hypervigilence 
 * Gender ratios: 1 non-binary, 9 female, 4 male
@@ -47,7 +47,7 @@
 * Expects to email someone to add experience
     * Looks for email address
     * Not clear how to share story
-* When prompted to Login/register finds page and is able to login easily
+*  When prompted to Login/register finds page and is able to login easily
 *  Some uncertaintly about Open Humans page - expects to need to click on "add data" instead of authorise
 *  Unclear why you would add a story to the website other than so other people can read stories
 *  Doesn't have an experience to share currently - unsure what would feel comfortable sharing with everybody 
