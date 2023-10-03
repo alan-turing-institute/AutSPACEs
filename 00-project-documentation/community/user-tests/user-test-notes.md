@@ -9,7 +9,7 @@
 * Gender ratios: 1 non-binary, 9 female, 4 male
 * Socio-economic and educational backgrounds: range of education levels and professional backgrounds
 * Use of technology: all familiar with technology
-* Familiarity with AutSPACEs/citizen science: 4 out od 14 participants had already been involved in AutSPACEs, one had heard of it but not taken part and had been involved in similar research, the rest had no prior experience of citizen science or AutSPACEs 
+* Familiarity with AutSPACEs/citizen science: 4 out of 14 participants had already been involved in AutSPACEs, one had heard of it but not taken part and had been involved in similar research, the rest had no prior experience of citizen science or AutSPACEs 
 
 ## User Test 1
 
