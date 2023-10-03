@@ -8,7 +8,7 @@
 * Co-occuring conditions (across all participants): chronic health conditions, red/green colour blindness, agoraphobia, social anxiety, OCD, ADHD, hypomobility, EDS, partial deafness, childhood trauma, dyspraxia, depression, asthma, spacial disorientation, body dysmorphia, prior anorexia, asthma, hypervigilence 
 * Gender ratios: 1 non-binary, 9 female, 4 male
 * Socio-economic and educational backgrounds: range of education levels and professional backgrounds
-* Use of technology: all familiar with technology
+* Use of technology: all familiar with technology, some actively engaged in own social media/online platform efforts, some more as consumers
 * Familiarity with AutSPACEs/citizen science: 4 out of 14 participants had already been involved in AutSPACEs, one had heard of it but not taken part and had been involved in similar research, the rest had no prior experience of citizen science or AutSPACEs 
 
 ## User Test 1
