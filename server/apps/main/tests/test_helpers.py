@@ -5,7 +5,7 @@ from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
     public_experience_model_to_form, process_trigger_warnings, update_public_experience_db, \
     get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect, \
-    extract_triggers_to_show, get_message, message_wrap
+    extract_triggers_to_show, get_message, message_wrap, number_by_review_status
 
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
@@ -390,3 +390,30 @@ class StoryHelper(TestCase):
         assert text.count("\n") == 31
         for line in text.split("\n"):
             assert len(line) <= length
+
+    def test_number_by_review_status(self):
+        # make minimal working example of files
+        files = []
+        # one of each moderation status
+        poss_mod_status = ["approved", "not reviewed", "rejected", "in review"]
+        for p in poss_mod_status:
+            files.append({'metadata': {'data': {'moderation_status': p, 'viewable': True}}})
+
+        # add another rejected story
+        files.append({'metadata': {'data': {'moderation_status': 'rejected', 'viewable': True}}})
+        
+        # two private stories
+        for _ in range(2):
+            files.append({'metadata':{'data':{'viewable': False, 'moderation_status': 'not reviewed'}}})
+
+        status = number_by_review_status(files=files)
+
+        self.assertEqual(status['private'], 2)
+        self.assertEqual(status['approved'], 1)
+        self.assertEqual(status['not_reviewed'], 1)
+        self.assertEqual(status['rejected'], 2)
+        self.assertEqual(status['in_review'], 1)
+        self.assertEqual(status['moderated'],3)
+
+        
+

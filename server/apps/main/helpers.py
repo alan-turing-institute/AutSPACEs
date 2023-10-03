@@ -681,7 +681,6 @@ def number_by_review_status(files):
 
     status["moderated"] = status["approved"] + status["rejected"]
 
-
     return status
 
 def most_recent_exp_history(ohm):
