@@ -64,6 +64,10 @@ body {
   margin-bottom: 7%;
 }
 
+.clear-hover:hover {
+   text-decoration: none;
+}
+
 .footer-text {
   text-align: left;
   padding-right: 2%;
