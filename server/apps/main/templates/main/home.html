@@ -4,13 +4,11 @@
 
 {% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
 
-  {% block content %}
+{% block content %}
 
-<!--Navigation-->
+<!-- Introduction of AutSPACEs -->
 <section id="title">
-<!--  Navigation-->
-   <div class="container-fluid">
-     <!--Introduction of AutSPACEs-->
+  <div class="container-fluid">
     <div class="row intro">
       <div class="col-lg-6 text-left">
         <h1 class="big-heading">AutSPACEs</h1>
@@ -20,135 +18,159 @@
     <div class="row intro intro-text">
       <div class="col-lg-7">
         <h3 class="title-text">A space for autistic people to share our stories about our senses so we can build a better world for autistic people</h3>
-         <a class="col-lg-12" href="{% url 'main:about_us' %}">
-       <button class="btn btn-outline-light btn-lg float-left" type="button">Read More</button>
-   </a>
-
+        <a class="col-lg-12" href="{% url 'main:about_us' %}">
+          <button class="btn btn-outline-light btn-lg float-left" type="button">Read More</button>
+        </a>
       </div>
+
       <div class="col-lg-5">
         <img class="title-image" src="{% static '/images/animation_a.jpg' %}" alt="Illustration" />
       </div>
     </div>
   </div>
-
 </section>
-<section id="value">
+
+<!-- Platform information -->
+<section id="platform_info">
   <div class="row">
-  <div class="col-lg-4 value-box">
-     <h3 class="value-heading">Increase</h3>
-  <p class="value-text">understanding of sensory processing</p>
+    <div class="col-lg-12 platform-title">
+      <h2 class="section-heading">About AutSPACEs</h2>
+    </div>
   </div>
+  <div class="row">
+    <div class= "col-lg-12 platform-info-text">
 
-  <div class="col-lg-4 value-box">
-  <h3 class="value-heading">Share</h3>
-  <p class="value-text">our strategies and experiences with each other</p>
-</div>
+      <p>AutSPACEs is made by and for autistic people, researchers, and allies
+      of autistic people, who think that the world would be a much better place
+      if autistic people had more of a say in how public and private spaces are
+      used and designed.</p>
 
-  <div class="col-lg-4 value-box">
-  <h3 class="value-heading">Advise</h3>
-  <p class="value-text">organisations and policy-makers for real-world impact</p>
+      <p>All autistic people are different. We want to collect together lots of
+      stories from autistic people, so that we can better understand how
+      sensory processing differences affect the way autistic people navigate
+      the world around them.  Together, we can use this information to build a
+      better world for autistic people.</p>
+
     </div>
-
-    <div class="col-lg-4 value-box">
-      <h3 class="value-heading">Educate</h3>
-      <p class="value-text">non-autistic people about autistic experiences</p>
-</div>
+  </div>
+  <div class="row">
+    <div class="col float-right">
+      <a href="{% url 'main:about_us' %}">
+        <button class="btn btn-outline-primary btn-home-about btn-lg float-right" type="button">Read More</button>
+      </a>
     </div>
+  </div>
 </section>
-<!--How to Use the Platform-->
+
+<!-- How to Use the Platform -->
 <section id="platform_usage">
   <div class="row">
-      <div class="col-lg-12 platform-title">
-      <h2 class="section-heading">How to Use The Platform</h2>
+    <div class="col-lg-12 platform-title">
+      <h2 class="section-heading">How to use the platform</h2>
     </div>
   </div>
   <div class="row">
-  <div class="col-lg-2 platform-box platform-left-border">
-     <h3 class="usage-heading">Register<img class="usage-icon m-5"
-                                            src="{% static "/images/heart-fill.svg" %}" width="32"
-          height="32"/ alt="Register" style="color: cornflowerblue;"></h3>
+    <div class="col platform-box usage-box">
+      <a href="{% url 'main:registration' %}">
+        <h3 class="usage-heading">
+          Register
+          <br/>
+          <i class="usage-icon m-5 bi bi-people"></i>
+        </h3>
+      </a>
+    </div>
+
+    <div class="col platform-box usage-box">
+      {% if user.is_authenticated %}
+      <a href="{% url 'main:share_exp' %}">
+      {% else %}
+      <a href="{% url 'main:registration' %}">
+      {% endif %}
+        <h3 class="usage-heading">
+          Share
+          <br/>
+          <i class="usage-icon m-5 bi bi-share-fill"></i>
+        </h3>
+      </a>
+    </div>
+
+    <div class="col platform-box usage-box">
+      <a href="{% url 'main:public_experiences' %}">
+        <h3 class="usage-heading">
+          View
+          <br/>
+          <i class="usage-icon m-5 bi bi-eye-fill"></i>
+        </h3>
+      </a>
+    </div>
+
+    <div class="col platform-box usage-box">
+      {% if user.is_authenticated %}
+      <a href="{% url 'main:my_stories' %}">
+      {% else %}
+      <a href="{% url 'main:registration' %}">
+      {% endif %}
+        <h3 class="usage-heading">
+          Edit
+          <br/>
+          <i class="usage-icon m-5 bi bi-pencil-square"></i>
+        </h3>
+      </a>
+    </div>
+
+    <div class="col platform-box usage-box">
+      <a href="{% url 'main:what_autism_is' %}">
+        <h3 class="usage-heading">
+          Learn
+          <br/>
+          <i class="usage-icon m-5 bi bi-mortarboard"></i>
+        </h3>
+      </a>
+    </div>
   </div>
-
-  <div class="col-lg-2 platform-box">
-  <h3 class="usage-heading">Share<img class="usage-icon m-5"
-                                            src="{% static "/images/send.svg" %}" width="32"
-          height="32"/ alt="Register" style="color: cornflowerblue;"></h3>
-</div>
-
-  <div class="col-lg-2 platform-box">
-  <h3 class="usage-heading">Choose<img class="usage-icon m-5"
-                                            src="{% static "/images/pie-chart-fill.svg" %}" width="32"
-          height="32"/ alt="Register" style="color: cornflowerblue;"></h3>
-    </div>
-
-     <div class="col-lg-2 platform-box">
-  <h3 class="usage-heading">Check<img class="usage-icon m-5"
-                                            src="{% static "/images/ui-checks.svg" %}" width="32"
-          height="32"/ alt="Register" style="color: cornflowerblue;"></h3>
-    </div>
-
-     <div class="col-lg-2 platform-box">
-  <h3 class="usage-heading">Change<img class="usage-icon m-5"
-                                            src="{% static "/images/pencil-square.svg" %}" width="32"
-          height="32"/ alt="Register" style="color: cornflowerblue;"></h3>
-    </div>
-      <a class="col-lg-12" href="{{ auth_url }}">
-       <button class="btn btn-outline-light btn-lg float-right platform-button" type="button">Read More</button>
-   </a>
-    </div>
-
 </section>
-<!--  View Experiences -->
+
+<!-- View Experiences -->
 <section id="experience">
   <div class="row">
-      <div class="col-lg-6 shared-experience">
-      <h2 class="section-heading">Shared Stories</h2>
+    <div class="col-lg-12 shared-experience">
+    <h2 class="section-heading">Shared stories</h2>
   </div>
   <div id="experience-carousel" class="carousel slide" data-ride="false" data-interval="false">
     <ol class="carousel-indicators">
-      <li data-target="#experience-carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#experience-carousel" data-slide-to="1"></li>
-      <li data-target="#experience-carousel" data-slide-to="2"></li>
+      {% for story in stories %}
+      <li data-target="#experience-carousel" data-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></li>
+      {% endfor %}
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      {% for story in stories %}
+      <div class="carousel-item {{ forloop.first|yesno:"active,," }}">
+        <a href="{% url 'main:single_story' story.uuid %}">
         <div class="row">
-        <img class="experience-image float-left d-block w-50" src="{% static "/images/animation_d.jpg" %}" width="150"
-          height="325"/ alt="First slide">
-        <div class="col-md-5">
-        <h3 class="experience-heading">Eating in a Restaurant</h3>
-        <p class="experience-content">...Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve
-          realised hunger exacerbates my sensory differences I know how to cope. I try to make sure I’ve eaten something before I go out and a while back I bought some earplugs which are great for small and bustling places.. </p>
-        <em small class="experience-content">Sdy</em>
-         </div>
+          {% if story.image %}
+          <div class="experience-half w-50">
+          <div class="experience-image-box w-100">
+          <img class="experience-image d-block w-100" src="{% static "/images/" %}{{ story.image }}" alt="First slide" />
           </div>
-      </div>
-      <div class="carousel-item">
-                <div class="row">
-         <img class="experience-image float-left d-block w-50" src="{% static "/images/animation_b.jpg" %}" width="150"
-                  height="325"/ alt="Second slide">
-                          <div class="col-md-5">
-
-         <h3 class="experience-heading">Ice cream</h3>
-         <p class="experience-content">...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-           et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co.... </p>
-        <em class="experience-content">Ali</em>
-                          </div>
-                  </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-         <img class="experience-image float-left d-block w-50" src="{% static "/images/animation_c.jpg" %}"/
-          width="150"
-          height="325"  alt="Third slide">
-          <div class="col-md-5">
-         <h3 class="experience-heading">Traffic</h3>
-        <p class="experience-content">...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo co .. </p>
-        <em class="experience-content">Jess</em>
-            </div>
           </div>
+          <div class="experience-half w-50">
+          <div class="experience-text-box w-100">
+            <h3 class="experience-heading">{{ story.title }}</h3>
+            <p class="experience-content">{{ story.summary }}</p>
+          </div>
+          </div>
+        {% else %}
+          <div class="experience-full w-100">
+          <div class="experience-text-box w-100">
+            <h3 class="experience-heading">{{ story.title }}</h3>
+            <p class="experience-content">{{ story.summary }}</p>
+          </div>
+          </div>
+        {% endif %}
+        </div>
+        </a>
       </div>
+      {% endfor %}
     </div>
     <a class="carousel-control-prev" href="#experience-carousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -159,74 +181,33 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-      <a class="col-lg-12" href="{% url 'main:public_experiences' %}">
-       <button class="btn btn-outline-dark btn-lg float-right" type="button">View More</button>
-   </a>
-        </div>
-
 </section>
-<!-- Call to Action-->
-<section id="cta">
-  <h2 class="section-heading">Get Involved</h2>
-     <div class="row">
-       <div class="cta-card col-lg-3">
-         <div class="card">
-           <h3 class="card-header cta-header">Management</h3>
-           <div class="card-body">
-             <p class="card-text">Contribute to the GitHub repository.</p>
-                <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience" class="btn btn-primary">Contribute</a>
-           </div>
-         </div>
-       </div>
-              <div class="cta-card col-lg-3">
-         <div class="card">
-           <h3 class="card-header cta-header">Development</h3>
-           <div class="card-body">
-             <p class="card-text">Contribute to the GitHub repository.</p>
-                <a href="https://github.com/alan-turing-institute/AutSPACEs" class="btn btn-primary">Contribute</a>
-           </div>
-         </div>
-       </div>
-              <div class="cta-card col-lg-3">
-         <div class="card">
-           <h3 class="card-header cta-header">Discussion</h3>
-           <div class="card-body">
-             <p class="card-text">Join us on our public Slack Channel.</p>
-                <a href="https://slackin.openhumans.org" class="btn btn-primary">Join Us</a>
-           </div>
-         </div>
-       </div>
-              <div class="cta-card col-lg-3">
-         <div class="card">
-           <h3 class="card-header cta-header">Updates</h3>
-           <div class="card-body">
-             <p class="card-text">Subscribe to our monthly newsletter.</p>
-                <a href="https://tinyletter.com/AutisticaTuringCitizenScience" class="btn btn-primary">Subscribe</a>
-           </div>
-         </div>
-       </div>
-     </div>
 
-</section>
-<!--  What Autism is-->
-<section id="autism">
-  <div class="row align-items-center">
-    <div class="col-lg-6">
-      <h2 class="section-heading">What Autism Is</h2>
-    </div>
-    <div class="col-lg-6">
-      <h4 class="autism-text">Autistic people often have different sensory processing to people who are not autistic
-        .</h4>
-      <h4 class="autism-text">By collecting together lots of autistic people’s experiences, we can change spaces so
-        that
-        they are
-        better for autistic people.</h4>
-      <a class="col-lg-12" href="{% url 'main:what_autism_is' %}">
-       <button class="btn btn-outline-dark btn-lg float-right" type="button">View More</button>
-   </a>
+<!-- Our goals -->
+<section id="value">
+  <div class="row">
+    <div class="col-lg-12 platform-title">
+      <h2 class="section-heading">Our goals</h2>
     </div>
   </div>
-<!--  Direct to 'What Autism Is Page-->
+  <div class="row">
+    <div class="row">
+
+      <div class="col-lg-4 value-box">
+        <h3 class="value-heading">Share</h3>
+        <p class="value-text">Share our strategies and experiences with each other</p>
+      </div>
+
+      <div class="col-lg-4 value-box">
+        <h3 class="value-heading">Influence</h3>
+        <p class="value-text">Advise organisations and policy-makers for real-world impact</p>
+      </div>
+
+      <div class="col-lg-4 value-box">
+        <h3 class="value-heading">Educate</h3>
+        <p class="value-text">Educate non-autistic people about autistic experiences</p>
+      </div>
+  </div>
 </section>
 
 {% endblock %}

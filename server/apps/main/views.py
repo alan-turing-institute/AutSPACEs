@@ -116,11 +116,34 @@ def index(request):
     """
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
+
+        stories = [
+            {
+                "title": "Eating in a restaurant",
+                "summary": "I’ve always found it so difficult going to restaurants. When I’m hungry everything sounds even louder and feels even more intimidating. As a kid, I never understood why it was so hard and my parents would often get mad at me for ‘misbehaving’ in public. I’d just meltdown whenever we went out to eat. Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve realised hunger exacerbates my sensory differences I know how to cope.",
+                "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
+                "image": "animation_a.jpg",
+            },
+            {
+                "title": "Spatial awareness",
+                "summary": "My lack of spatial awareness is probably the most debilitating part of my autism. I’m constantly walking into door frames and tripping over the corners of furniture even in my own home. And have a terrible habit of walking backwards into old women in shopping aisles. It’s been super hard with COVID as I’ve had to be in full ‘defensive mode’ whenever I go out, making sure I’m not too near to anyone.",
+                "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
+                "image": "animation_b.jpg",
+            },
+            {
+                "title": "Television",
+                "summary": "My family recently got a new TV. It’s much larger than our previous one and has limited screen settings. 3/4 are too bright for me but my family dislikes the fourth option. I don’t often watch telly with the family but I feel like I should have the option to. It just feels unfair, I get that I’m a minority but they don’t see what I see and the fact that they won’t adapt to my needs upsets me. My parents are constantly nagging me to spend less time in my room but it’s situations like this that make me do just that. I can regulate my input in my own space and I can’t elsewhere.",
+                "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
+                "image": "animation_c.jpg",
+            },
+        ]
+
         context = {
             "oh_id": oh_member.oh_id,
             "oh_member": oh_member,
             "oh_user": oh_member.user,
             "oh_proj_page": settings.OH_PROJ_PAGE,
+            "stories": stories,
         }
     else:
         auth_url = OpenHumansMember.get_auth_url()
@@ -281,7 +304,7 @@ def delete_experience(request, uuid):
     """
     Delete experience from PE databacse and OH
     """
-    
+
     titles = request.session.get('titles', {})
     title = titles.get(uuid, "no title")
 
@@ -342,7 +365,7 @@ def list_public_experiences(request):
     for trigger in triggers_to_show:
         trigger_check = f"check{trigger}"
         tts[trigger_check] = True
-    
+
     if all_triggers:
         tts["checkall"] = True
 
