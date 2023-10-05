@@ -701,6 +701,17 @@ class Views(TestCase):
         r_rejected_story = c.get("/main/single_story/8765_3/")
         self.assertRedirects(r_rejected_story, "/")
 
+    def test_single_story_placeholder(self):
+        c = Client()
+        c.force_login(self.user_a)
+
+        # Check placeholder story is shown
+        r_approved_story = c.get("/main/single_story/placeholder1/")
+        assert r_approved_story.status_code == 200
+        for item in r_approved_story.context[0]:
+            if "placeholder" in item:
+                assert item["placeholder"] == True
+
     def test_list_public_exp_pagination(self):
         c = Client()
         c.force_login(self.user_a)
@@ -737,7 +748,7 @@ class Views(TestCase):
 
         # The first item on the second page should be the 11th item overall
         assert response.context["experiences"][0].number == 11
-            
+
 
     # Test pagination in my_stories, uses separate tests for page 1 / page 2 to avoid cassette issues
     @vcr.use_cassette(
@@ -755,7 +766,7 @@ class Views(TestCase):
     def test_my_stories_pagination_page1(self):
         c = Client()
         c.force_login(self.user_b)
-        
+
         response = c.get("/main/my_stories/")
         num_items_per_page = 10
         # number of stories per category recorded in the casette
@@ -769,7 +780,7 @@ class Views(TestCase):
                     # check story numbering
                     assert stories[0]['number'] == 1                                   # first story on page 1 has number 1
                     assert stories[-1]['number'] == min(num_items_per_page, n_stories) # last story on page 1 has correct number
-    
+
     @vcr.use_cassette(
             "server/apps/main/tests/fixtures/pag_mystories.yaml",
             record_mode="none",

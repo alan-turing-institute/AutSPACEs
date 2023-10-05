@@ -50,6 +50,7 @@ from .helpers import (
     message_wrap,
     experience_titles_for_session,
     extract_authorship_details,
+    get_carousel_stories,
 )
 
 from server.apps.users.helpers import (
@@ -114,29 +115,10 @@ def index(request):
     """
     Starting page for app.
     """
+    stories = get_carousel_stories()
+
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
-
-        stories = [
-            {
-                "title": "Eating in a restaurant",
-                "summary": "I’ve always found it so difficult going to restaurants. When I’m hungry everything sounds even louder and feels even more intimidating. As a kid, I never understood why it was so hard and my parents would often get mad at me for ‘misbehaving’ in public. I’d just meltdown whenever we went out to eat. Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve realised hunger exacerbates my sensory differences I know how to cope.",
-                "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
-                "image": "animation_a.jpg",
-            },
-            {
-                "title": "Spatial awareness",
-                "summary": "My lack of spatial awareness is probably the most debilitating part of my autism. I’m constantly walking into door frames and tripping over the corners of furniture even in my own home. And have a terrible habit of walking backwards into old women in shopping aisles. It’s been super hard with COVID as I’ve had to be in full ‘defensive mode’ whenever I go out, making sure I’m not too near to anyone.",
-                "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
-                "image": "animation_b.jpg",
-            },
-            {
-                "title": "Television",
-                "summary": "My family recently got a new TV. It’s much larger than our previous one and has limited screen settings. 3/4 are too bright for me but my family dislikes the fourth option. I don’t often watch telly with the family but I feel like I should have the option to. It just feels unfair, I get that I’m a minority but they don’t see what I see and the fact that they won’t adapt to my needs upsets me. My parents are constantly nagging me to spend less time in my room but it’s situations like this that make me do just that. I can regulate my input in my own space and I can’t elsewhere.",
-                "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
-                "image": "animation_c.jpg",
-            },
-        ]
 
         context = {
             "oh_id": oh_member.oh_id,
@@ -147,7 +129,11 @@ def index(request):
         }
     else:
         auth_url = OpenHumansMember.get_auth_url()
-        context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
+        context = {
+            "auth_url": auth_url,
+            "oh_proj_page": settings.OH_PROJ_PAGE,
+            "stories": stories,
+        }
     return render(request, "main/home.html", context=context)
 
 def login_user(request):
@@ -680,14 +666,30 @@ def single_story(request, uuid):
     """
     # Must have both the specified UUID and be approved otherwise will redirect
     # Should only be one result if not redirect
+    experience = None
+    placeholder = False
     try:
         experience = PublicExperience.objects.get(
             experience_id=uuid, moderation_status="approved"
         )
+    except ObjectDoesNotExist:
+        if uuid.startswith("placeholder"):
+            stories = get_carousel_stories()
+            for story in stories:
+                if story["uuid"] == uuid:
+                    experience = PublicExperience(
+                        title_text = story["title"],
+                        experience_text = story["experience"],
+                        difference_text = story["difference"],
+
+                    )
+                    placeholder = True
+                    break;
+    if experience:
         title = experience.title_text
         exp_context = {"experience": experience}
         title_context = {"title": title}
-        context = {**exp_context, **title_context}
+        context = {**exp_context, **title_context, "placeholder": placeholder}
         return render(request, "main/single_story.html", context=context)
-    except ObjectDoesNotExist:
+    else:
         return redirect("index")
