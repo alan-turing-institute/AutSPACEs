@@ -17,6 +17,21 @@ body {
  position: fixed;
 }
 
+#content-bar-filler {
+ position: relative;
+}
+
+/*Responsive Design*/
+@media (max-width: 991px) {
+  #content-bar {
+   position: relative;
+  }
+
+  #content-bar-filler {
+   position: fixed;
+  }
+}
+
 .content-tile {
     font-size: 2.5em;
     font-weight: bold;
@@ -42,6 +57,7 @@ body {
   background: #F2F2F2;
   padding: 2% 5%;
   color:#000;
+  position: relative;
 }
 
 .footer-image {
