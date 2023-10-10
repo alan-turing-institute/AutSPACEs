@@ -632,6 +632,19 @@ body {
   font-size: 20px;
 }
 
+connection {
+  border: 16px solid;
+  border-radius: 7em;
+  color: #1BB5AF;
+}
+
+arrowhead {
+  border-top: solid 8px #1BB5AF;
+  border-right: solid 8px #1BB5AF;
+  border-bottom: solid 8px transparent;
+  border-left: solid 8px transparent;
+}
+
 /* MODERATION LIST */
 
 /* Remove grey line on top of table to make tabs work properly */
