@@ -633,7 +633,7 @@ def message_wrap(text, width):
 def experience_titles_for_session(files):
     """
     take a member.list_files() list of files and add them to dict
-    of the form 
+    of the form
     {"titles":{
         "uuid": "title",
         "uuid2": "title2"
@@ -645,3 +645,108 @@ def experience_titles_for_session(files):
         if "uuid" in f['metadata'].keys():
             titles[f['metadata']['uuid']] = f['metadata']['description']
     return titles
+
+def truncate_text(text, length):
+    truncated = textwrap.wrap(text, length)[0]
+    if len(truncated) < len(text):
+        truncated = textwrap.wrap(text, length - 3)[0];
+        truncated += "..."
+    return truncated
+
+def get_carousel_stories(filename="carousel.json"):
+    """
+    Return the stories to use for the carousel on the home page
+
+    Returns an array of stories, each with the following structdure:
+    {
+        "title_summary": "",
+        "experience_summary": "",
+        "title": "",
+        "experience": "",
+        "difference": "",
+        "image": "",
+        "uuid": ""
+    }
+
+    The actual content of the stories is controlled by the variables in the
+    server/apps/main/carousel.json file.
+    """
+    module_dir = os.path.dirname(__file__)
+    file_path = os.path.join(module_dir, filename)
+    stories = []
+    try:
+        with open(file_path, "r") as f:
+            data = json.load(f)
+    except IOError as e:
+        print("Exception when opening carousel file: {}".format(str(e)))
+        return None
+
+    total = data.get("number-to-display", 3)
+    title_max = data.get("max-chars-title", 16)
+    experience_max = data.get("max-chars-experience", 128)
+
+
+    # Step 1: collect together real stories
+    if len(stories) < total:
+        for story in data.get("stories", []):
+            try:
+                uuid = story["uuid"]
+                public_story = PublicExperience.objects.get(
+                    experience_id=uuid
+                )
+                if (public_story.moderation_status != "approved"
+                    or public_story.abuse
+                    or public_story.violence
+                    or public_story.drug
+                    or public_story.mentalhealth
+                    or public_story.negbody
+                    or public_story.other):
+                    # This isn't an appropriate story to use so we'll skip it
+                    continue
+                title = public_story.title_text
+                experience = public_story.experience_text
+                item = {
+                    "title_summary": truncate_text(title, title_max),
+                    "experience_summary": truncate_text(experience, experience_max),
+                    "title": title,
+                    "experience": experience,
+                    "difference": public_story.difference_text,
+                    "image": story.get("image", ""),
+                    "uuid": uuid,
+                }
+                stories.append(item)
+                if len(stories) >= total:
+                    break
+            except KeyError as e:
+                print("Exception when reading carousel dictionary: {}".format(str(e)))
+            except PublicExperience.DoesNotExist as e:
+                print("Carousel experience does not exist:: {}".format(uuid))
+
+
+    # Step 2: collect together placeholder stories
+    placeholder = 0
+    if len(stories) < total:
+        for story in data.get("placeholders", []):
+            try:
+                uuid = 'placeholder{}'.format(placeholder)
+                title = story["title"]
+                experience = story["experience"]
+                item = {
+                    "title_summary": truncate_text(title, title_max),
+                    "experience_summary": truncate_text(experience, experience_max),
+                    "title": title,
+                    "experience": experience,
+                    "difference": story["difference"],
+                    "image": story.get("image", ""),
+                    "uuid": uuid,
+                }
+                stories.append(item)
+                placeholder += 1
+                if len(stories) >= total:
+                    break
+            except KeyError as e:
+                print("Exception when reading carousel dictionary: {}".format(str(e)))
+
+    return stories
+
+

@@ -1,27 +1,28 @@
 {% load static %}
 
-
   <div class="row">
-  <div class="col-lg-3 footer-column">
-      <img class="footer-image" src="{% static "/images/autistica.png" %}" width="65" height="40" alt="Autistica
-  Logo" />
-      <img class="footer-image" src="{% static "/images/alanturing.png" %}" width="75" height="40" alt="Alan Turing Institute
-      Logo" />
-      <p class="footer-text">©Copyright 2022 AutSPACEs</p>
+    <div class="col-lg-3 footer-column">
+      <a class="clear-hover" href="https://www.autistica.org.uk/">
+        <img class="footer-image" src="{% static "/images/autistica.png" %}" width="65" height="40" alt="Autistica Logo" />
+      </a>
+      <a class="clear-hover" href="https://www.turing.ac.uk/">
+        <img class="footer-image" src="{% static "/images/alanturing.png" %}" width="75" height="40" alt="Alan Turing Institute Logo" />
+      </a>
+      <p class="footer-text">&copy; Copyright 2023 AutSPACEs</p>
       <p class="footer-text"><a href="https://twitter.com/AutSpaces">@AutSpaces</a> on Twitter</p>
     </div>
     <div class="col-lg-3 footer-text">
       <h5>Supported by:</h5>
-      <p>Autistica</p>
-      <p>The Alan Turing Institute</p>
-      <p>Open Humans</p>
+      <p><a href="https://www.autistica.org.uk/">Autistica</a></p>
+      <p><a href="https://www.turing.ac.uk/">The Alan Turing Institute</a></p>
+      <p><a href="https://www.openhumans.org/">Open Humans</a></p>
     </div>
 
     <div class="col-lg-3 footer-text">
       <h5>Policies</h5>
-      <p>Ethics</p>
+      <p><a href="https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/project-management/ethics-applications">Ethics</a></p>
       <p>Terms of Use</p>
-      <p> <a href="{% url 'main:code_of_conduct' %}">Code of Conduct</a></p>
+      <p><a href="{% url 'main:code_of_conduct' %}">Code of Conduct</a></p>
     </div>
 
     <div class="col-lg-3 footer-text">
@@ -29,5 +30,5 @@
       <p><a href="https://github.com/alan-turing-institute/AutSPACEs">GitHub</a></p>
       <p>Explore AutSPACEs</p>
       <p>Data Usage</p>
-  </div>
+    </div>
   </div>

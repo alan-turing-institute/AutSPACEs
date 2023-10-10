@@ -1,0 +1,32 @@
+{
+  "number-to-display": 3,
+  "max-chars-title": 14,
+  "max-chars-experience": 24,
+  "placeholders": [
+    {
+      "title": "title01title01title01title01title01title01title01title01title01title01title01title01",
+      "experience": "experience01experience01experience01experience01experience01experience01experience01experience01experience01experience01experience01experience01",
+      "difference": "difference01difference01difference01difference01difference01difference01difference01difference01difference01difference01difference01difference01",
+      "image": "animation_a.jpg"
+    },
+    {
+      "experience": "experience02experience02experience02experience02experience02experience02experience02experience02experience02experience02experience02experience02",
+      "difference": "difference02difference02difference02difference02difference02difference02difference02difference02difference02difference02difference02difference02",
+      "image": "animation_b.jpg"
+    },
+    {
+      "title": "title03title03title03title03title03title03title03title03title03title03title03title03",
+      "experience": "experience03experience03experience03experience03experience03experience03experience03experience03experience03experience03experience03experience03"
+    }
+  ],
+  "stories": [
+    {
+      "uuid": "1234_2",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "nonexistent",
+      "image": "animation_c.jpg"
+    }
+  ]
+}

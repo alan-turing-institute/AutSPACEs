@@ -1,0 +1,35 @@
+{
+  "number-to-display": 3,
+  "max-chars-title": 48,
+  "max-chars-experience": 512,
+  "placeholders": [
+    {
+      "title": "Eating in a restaurant",
+      "experience": "I’ve always found it so difficult going to restaurants. When I’m hungry everything sounds even louder and feels even more intimidating. As a kid, I never understood why it was so hard and my parents would often get mad at me for ‘misbehaving’ in public. I’d just meltdown whenever we went out to eat. Waiting for the food felt like some kind of marathon and I just got so overwhelmed. But now that I’ve realised hunger exacerbates my sensory differences I know how to cope.",
+      "difference": "I try to make sure I’ve eaten something before I go out and a while back I bought some earplugs which are great for small and bustling places. Looking at menus beforehand also helps as I can better prep myself and focus on adjusting to the environment rather than debating what to eat. I do wish restaurants wouldn’t play super loud music. I get it adds to the ambience but having even one section that’s quiet would be so helpful.",
+      "image": "animation_a.jpg"
+    },
+    {
+      "title": "Spatial awareness",
+      "experience": "My lack of spatial awareness is probably the most debilitating part of my autism. I’m constantly walking into door frames and tripping over the corners of furniture even in my own home. And have a terrible habit of walking backwards into old women in shopping aisles. It’s been super hard with COVID as I’ve had to be in full ‘defensive mode’ whenever I go out, making sure I’m not too near to anyone.\n\nHowever, I feel it most when I’m playing sports. I think I’m marking someone but they're actually halfway across the pitch. Or I call for the ball thinking I’m in a clear space when in reality there are three players standing right behind me. It’s even harder if there’s more than one game going on as I find it hard to focus on just one sound and I tend to use my hearing as a way of working out whether people are near me or not. Because autism is an invisible disability I feel like people don’t understand and just see me as a bad player. At times this gets really upsetting. It takes so much effort for me to participate in group activities because of my social anxiety, so if I feel like I’m underperforming it sometimes gets too much.",
+      "difference": "I think shops need to be more aware of spatial issues. Stop putting piles of things in the middle of aisles! In social situations, I just wish people were more aware. If I’m playing football and you’re on my team, tell me where the opponents are.",
+      "image": "animation_b.jpg"
+    },
+    {
+      "title": "Television",
+      "experience": "My family recently got a new TV. It’s much larger than our previous one and has limited screen settings. 3/4 are too bright for me but my family dislikes the fourth option. I don’t often watch telly with the family but I feel like I should have the option to. It just feels unfair, I get that I’m a minority but they don’t see what I see and the fact that they won’t adapt to my needs upsets me. My parents are constantly nagging me to spend less time in my room but it’s situations like this that make me do just that. I can regulate my input in my own space and I can’t elsewhere.",
+      "difference": "Well firstly TVs need more options and the menu should be easy to navigate. But like with so much it’s just a matter of awareness and others actually having a  willingness to adapt. ",
+      "image": "animation_c.jpg"
+    }
+  ],
+  "stories": [
+    {
+      "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "",
+      "image": ""
+    }
+  ]
+}

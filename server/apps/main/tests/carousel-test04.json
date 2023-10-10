@@ -1,0 +1,36 @@
+{
+  "number-to-display": 1,
+  "max-chars-title": 14,
+  "max-chars-experience": 24,
+  "placeholders": [
+  ],
+  "stories": [
+    {
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "1234_1",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "1234_2",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "1234_3",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "1234_1",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "1234_1",
+      "image": "animation_b.jpg"
+    },
+    {
+      "uuid": "",
+      "image": ""
+    }
+  ]
+}

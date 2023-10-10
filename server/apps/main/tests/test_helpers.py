@@ -5,7 +5,7 @@ from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
     public_experience_model_to_form, process_trigger_warnings, update_public_experience_db, \
     get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect, \
-    extract_triggers_to_show, get_message, message_wrap
+    extract_triggers_to_show, get_message, message_wrap, get_carousel_stories
 
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
@@ -40,6 +40,34 @@ class StoryHelper(TestCase):
         self.moderator_group.user_set.add(self.moderator_user.user)
         self.moderator_user.save()
 
+        approved = {
+            "experience_text": "approved",
+            "difference_text": "approved",
+            "title_text": "approved",
+            "moderation_status": "approved",
+        }
+        approved_with_trigger = {
+            "experience_text": "trigger",
+            "difference_text": "trigger",
+            "title_text": "trigger",
+            "moderation_status": "approved",
+            "abuse": True,
+        }
+        rejected = {
+            "experience_text": "rejected",
+            "difference_text": "rejected",
+            "title_text": "rejected",
+            "moderation_status": "rejected",
+        }
+        self.pe_a = PublicExperience.objects.create(
+            open_humans_member=self.non_moderator_user, experience_id="1234_1", **approved
+        )
+        self.pe_b = PublicExperience.objects.create(
+            open_humans_member=self.non_moderator_user, experience_id="1234_2", **approved_with_trigger
+        )
+        self.pe_c = PublicExperience.objects.create(
+            open_humans_member=self.non_moderator_user, experience_id="1234_3", **rejected
+        )
 
     def test_reformat_date(self):
         """
@@ -276,18 +304,18 @@ class StoryHelper(TestCase):
             'experience_id': 'foobar_id',
             'viewable': True
         }
-        # assert no PE and PEH objects exist so far
-        self.assertEqual(len(PublicExperience.objects.all()),0)
-        self.assertEqual(len(ExperienceHistory.objects.all()),0)
+        # record initial PE and PEH objects in the database
+        initial_experiences = len(PublicExperience.objects.all())
+        initial_histories = len(ExperienceHistory.objects.all())
         # create new PE
         update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
         # check that PE exists
-        self.assertEqual(len(PublicExperience.objects.all()),1)
+        self.assertEqual(len(PublicExperience.objects.all()),initial_experiences + 1)
         pe = PublicExperience.objects.get(experience_id='foobar_id')
         # check that moderation status is "in review"
         self.assertEqual(pe.moderation_status, 'not reviewed')
         # check that this and only this PEH object exists
-        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),1)
+        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),initial_histories + 1)
         # check that EH object marks creation
         peh = ExperienceHistory.objects.filter(experience=pe)[0]
         self.assertEqual(peh.change_type,"Make Public")
@@ -302,7 +330,7 @@ class StoryHelper(TestCase):
         pe = PublicExperience.objects.get(experience_id='foobar_id')
         self.assertEqual(pe.moderation_status, 'not reviewed')
         # check that two history objects exists
-        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),2)
+        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),initial_histories + 2)
         # get newest PEH object, check it's "Edit"
         peh = ExperienceHistory.objects.all().order_by('changed_at')[1]
         self.assertEqual(peh.change_type,"Edit")
@@ -314,7 +342,7 @@ class StoryHelper(TestCase):
         # check updated PE & latest PEH object
         pe = PublicExperience.objects.get(experience_id='foobar_id')
         self.assertEqual(pe.moderation_status, 'approved') # is now approved
-        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),3) # got 3 history entries now
+        self.assertEqual(len(ExperienceHistory.objects.filter(experience=pe)),initial_histories + 3) # got 3 history entries now
         peh = ExperienceHistory.objects.all().order_by('changed_at')[2]
         # check details of PEH & PE
         self.assertEqual(pe.open_humans_member.oh_id,str(self.non_moderator_user.oh_id)) # exp owned by owner
@@ -322,8 +350,8 @@ class StoryHelper(TestCase):
         self.assertEqual(peh.change_type,'Moderate') # last operation was moderate
         # check everything gets deleted if user makes story non-public
         update_public_experience_db(self.pe_data, "foobar_id" ,self.non_moderator_user,self.non_moderator_user)
-        self.assertEqual(len(PublicExperience.objects.all()),0) # should be no public experience
-        self.assertEqual(len(ExperienceHistory.objects.all()),0) # should be no history
+        self.assertEqual(len(PublicExperience.objects.all()),initial_experiences) # should be no additional public experience
+        self.assertEqual(len(ExperienceHistory.objects.all()),initial_histories) # should be no additional history
 
     def test_moderation_redirect(self):
         result = choose_moderation_redirect("not moderated")
@@ -390,3 +418,98 @@ class StoryHelper(TestCase):
         assert text.count("\n") == 31
         for line in text.split("\n"):
             assert len(line) <= length
+
+    def test_carousel_stories_nofile(self):
+        """
+        Test that if the carousel fils is missing None is returned.
+        """
+        # File doesn't exist
+        stories = get_carousel_stories(filename="tests/carousel-nonexistent.json")
+        assert not stories
+
+    def test_carousel_stories_appropriate_stories(self):
+        """
+        Test that appropriate stories can appear in the carousel.
+        """
+        # Request three stories, all appropriate
+        stories = get_carousel_stories(filename="tests/carousel-test01.json")
+        assert len(stories) == 3
+        for story in stories:
+            assert len(story["title_summary"]) <= 14
+            assert len(story["experience_summary"]) <= 24
+            assert len(story["title_summary"]) > 0
+            assert len(story["experience_summary"]) > 0
+            assert len(story["title"]) > 0
+            assert len(story["experience"]) > 0
+            assert len(story["difference"]) > 0
+            assert len(story["image"]) > 0
+            assert len(story["uuid"]) > 0
+
+    def test_carousel_stories_inappropriate_stories(self):
+        """
+        Test that no inappropriate stories (rejected or with trigger warnings)
+        will appear in the carousel.
+        """
+        # Request five stories but only two are inappropriate
+        stories = get_carousel_stories(filename="tests/carousel-test02.json")
+        assert len(stories) == 2
+        for story in stories:
+            assert len(story["title_summary"]) <= 14
+            assert len(story["experience_summary"]) <= 24
+            assert len(story["title_summary"]) > 0
+            assert len(story["experience_summary"]) > 0
+            assert len(story["title"]) > 0
+            assert len(story["experience"]) > 0
+            assert len(story["difference"]) > 0
+            assert len(story["image"]) > 0
+            assert len(story["uuid"]) > 0
+            assert story["title"] != "rejected"
+            assert story["title"] != "trigger"
+            assert "placeholder" in story["uuid"]
+
+    def test_carousel_stories_missing_details(self):
+        """
+        Test that if the caoursel file has poorly formed entries they are skipped
+        but without impacting the well-formed entries.
+        """
+        # Request five stories but only one is well-formed
+        stories = get_carousel_stories(filename="tests/carousel-test03.json")
+        assert len(stories) == 1
+        for story in stories:
+            assert len(story["title_summary"]) <= 14
+            assert len(story["experience_summary"]) <= 24
+            assert len(story["title_summary"]) > 0
+            assert len(story["experience_summary"]) > 0
+            assert len(story["title"]) > 0
+            assert len(story["experience"]) > 0
+            assert len(story["difference"]) > 0
+            assert len(story["image"]) > 0
+            assert len(story["uuid"]) > 0
+            assert story["title"] != "rejected"
+            assert story["title"] != "trigger"
+            assert "placeholder" in story["uuid"]
+
+    def test_carousel_stories_too_many(self):
+        """
+        Test that if there are too many real stories available for the carousel
+        the correct number is still returned. Also tests the exception case where
+        the uuid is missing.
+        """
+        # Request five stories but only one is well-formed
+        stories = get_carousel_stories(filename="tests/carousel-test04.json")
+        assert len(stories) == 1
+        for story in stories:
+            assert len(story["title_summary"]) <= 14
+            assert len(story["experience_summary"]) <= 24
+            assert len(story["title_summary"]) > 0
+            assert len(story["experience_summary"]) > 0
+            assert len(story["title"]) > 0
+            assert len(story["experience"]) > 0
+            assert len(story["difference"]) > 0
+            assert len(story["image"]) > 0
+            assert len(story["uuid"]) > 0
+            assert story["title"] != "rejected"
+            assert story["title"] != "trigger"
+            assert "placeholder" not in story["uuid"]
+
+
