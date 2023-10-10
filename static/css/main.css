@@ -520,6 +520,21 @@ body {
   font-size: 20px;
 }
 
+/* MODERATION LIST */
+
+/* Remove grey line on top of table to make tabs work properly */
+#moderation-table {
+  margin: 0% 5%;
+}
+
+.moderation-table thead th {
+  border-top: none;
+}
+
+.moderation-table-container {
+  margin-bottom: 3%;
+}
+
 /* CODE OF CONDUCT */
 
 .word-red {

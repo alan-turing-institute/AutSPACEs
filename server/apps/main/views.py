@@ -415,27 +415,20 @@ def moderation_list(request):
     When status is "rejected" it includes experiences marked as "rejected".
     """
     if request.user.is_authenticated and is_moderator(request.user):
-        status = request.GET.get("status", "pending")
-        if status not in ["pending", "approved", "rejected"]:
-            status = "pending"
-
-        if status == "approved":
-            # Search through approved experiences
-            experiences = PublicExperience.objects.filter(
-                moderation_status="approved"
-            ).order_by("created_at")
-        elif status == "rejected":
-            # Search through rejected experiences
-            experiences = PublicExperience.objects.filter(
-                moderation_status="rejected"
-            ).order_by("created_at")
-        else:
-            # Search through unreviewed or in review experiences
-            experiences = PublicExperience.objects.filter(
+        # Categorise the stories based on the page tabs
+        tabbed_stories = {
+            "page_pending": PublicExperience.objects.filter(
                 Q(moderation_status="not reviewed") | Q(moderation_status="in review")
-            ).order_by("created_at")
+            ).order_by("created_at"),
+            "page_approved": PublicExperience.objects.filter(
+                moderation_status="approved"
+            ).order_by("created_at"),
+            "page_rejected": PublicExperience.objects.filter(
+                moderation_status="rejected"
+            ).order_by("created_at"),
+        }
 
-        return moderate_page(request, status, experiences)
+        return moderate_page(request, tabbed_stories)
     else:
         return redirect("index")
 
@@ -451,7 +444,7 @@ def my_stories(request):
         context = reformat_date_string(context)
 
         # add experience titles to session for deletion pages
-        request.session['titles']= experience_titles_for_session(files)
+        request.session['titles'] = experience_titles_for_session(files)
 
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE

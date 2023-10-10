@@ -13,11 +13,10 @@
     <div class="col-lg-12">
       <div class="card-header"><h4>Moderation Summary</h4></div>
       <div class="card-body">
-        <!-- new_experiences = filter(lambda x: x.attr0 == attr0 and x.attr1 == attr1, lst) -->
         <div class="row align-items-center" style="left: 0px">
           <div class="col-lg-6">
-            <p>New Experiences on the Platform: {{ unreviewed }} </p>
-            <p>Under review: {{ inreview }} </p>
+            <p>New Experiences on the Platform: {{ not_reviewed }} </p>
+            <p>Under review: {{ in_review }} </p>
           </div>
           <div class="col-lg-6">
             <p>Approved: {{ approved }} </p>
@@ -25,18 +24,23 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="card-header"><h4>{{ subtitle }}</h4></div>
-
+<section id="moderation-table">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card-header"><h4>Stories</h4></div>
       <div class="card-body">
         <div class="container search">
-          <form method="GET" action="{% url 'main:moderation_list' %}{{ params }}">
+          <form method="GET" action="{% url 'main:moderation_list' %}">
             <div class="form-row align-items-center" style="left: 0px">
               <div class="col-lg-10">
                 <label class="sr-only" for="inlineFormInput">Name</label>
                 <input class="form-control mb-2"
                         id="inlineFormInput"
-                        placeholder="Search {{ status }} stories"
+                        placeholder="Search stories"
                         type="text"
                         name="searched"
                         value="{{ searched }}"
@@ -44,107 +48,53 @@
               </div>
 
               <div class="col-auto">
-                <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
+                <button class="btn btn-primary mb-2" type="submit">Search</button>
               </div>
             </div>
           </form>
         </div>
+      </div>
 
-        <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
-          <thead><tr>
-            <th class="number-th" scope="col">Nr.</th>
-            <th class="title-th" scope="col">Title</th>
-            <th class="triggering-label" scope="col">Triggering Labels</th>
-            <th class="moderation-status" scope="col">Moderation Status</th>
-            <th class="title-th" scope="col">Moderate</th>
-            </tr></thead>
-            <tbody>
-              {% for experience in page_obj %}
-              <tr>
-                <th scope="row">{{ forloop.counter|add:page_obj.offset }}</th>
-                <td>{% firstof experience.title_text "notitle" %}</td>
-                <td>
-                {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
-                  {% if experience.abuse and experience.violence and experience.drug and experience.mentalhealth and experience.negbody and experience.other %}
-                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
-                  <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">All trigger warnings selected</span>
-                  {% else %}
-                    {% if experience.other %}
-                    <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
-                    {% endif %}
-                    {% if experience.mentalhealth %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Mental Health issues</span>
-                    {% endif %}
-                    {% if experience.violence %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Violence</span>
-                    {% endif %}
-                    {% if experience.negbody %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Negative body image</span>
-                    {% endif %}
-                    {% if experience.drug %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Drug and/or Alcohol misuse</span>
-                    {% endif %}
-                    {% if experience.abuse %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Abuse</span>
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-                </td>
-                <td>{{ experience.moderation_status }}</td>
-                <td>
-                  <a class="btn btn-primary" href="{% url 'main:moderate_exp' experience.experience_id %}">
-                    Moderate experience
-                  </a>
-              </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+      <div class="moderation-table-container">
 
-          <ul class="pagination justify-content-end">
-            {% if page_obj.has_previous %}
-            <li class="page-itemd">
-              <a class="page-link" href="{{ params }}&page={{ page_obj.previous_page_number }}">Previous</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            {% endif %}
+        <!-- Tab navigation -->
+        <ul class="nav nav-tabs moderation-tabs" id="moderationTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="public" aria-selected="true">Pending Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="approved-tab" data-toggle="tab" href="#approved" role="tab" aria-controls="in-review" aria-selected="false">Approved</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="rejected-tab" data-toggle="tab" href="#rejected" role="tab" aria-controls="rejected" aria-selected="false">Rejected</a>
+          </li>
+        </ul>
 
-            {% for page_number in page_obj.page_range %}
-
-            {% if page_obj.number == page_number %}
-            <li class="page-item active">
-              <a class="page-link" href="{{ params }}&page={{ page_number }}">{{ page_number}}</a>
-            </li>
-            {% elif page_number == page_obj.paginator.ELLIPSIS %}
-            <li class="page-item disabled">
-              <a class="page-link" href="#">&hellip;</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-              <a class="page-link" href="{{ params }}&page={{ page_number }}">{{ page_number}}</a>
-            </li>
-            {% endif %}
-
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="{{ params }}&page={{ page_obj.next_page_number }}">Next</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">Next</a>
-            </li>
-            {% endif %}
-          </ul>
-
+        <!-- Tab content -->
+        <div class="tab-content" id="moderationTabsContent">
+          <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+            <!-- Table for pending stories -->
+            {% include 'main/moderation_table.html' with files=pending_stories %}
+            {% include 'main/pagination.html' with stories=pending_stories page_query_param='page_pending' %}
         </div>
+
+        <div class="tab-pane fade" id="approved" role="tabpanel" aria-labelledby="approved-tab">
+          <!-- Table for approved stories -->
+          {% include 'main/moderation_table.html' with files=approved_stories %}
+          {% include 'main/pagination.html' with stories=approved_stories page_query_param='page_approved' %}
+        </div>
+
+        <div class="tab-pane fade" id="rejected" role="tabpanel" aria-labelledby="rejected-tab">
+          <!-- Table for `in review` stories -->
+          {% include 'main/moderation_table.html' with files=rejected_stories %}
+          {% include 'main/pagination.html' with stories=rejected_stories page_query_param='page_rejected' %}
+        </div>
+
       </div>
     </div>
   </div>
 </section>
+
+<script src="{% static 'js/store-tab.js' %}"></script>
 
 {% endblock %}
