@@ -55,8 +55,7 @@
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Account
             </a>
-            <div class="dropdown-menu " aria-labelledby="accountDropdownMenuLink">
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownMenuLink">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
               <form class="form-inline nav-nomargin" action="{% url 'main:logout' %}" method="post">
                 {% csrf_token %}
