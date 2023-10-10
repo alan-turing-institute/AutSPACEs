@@ -50,6 +50,7 @@ from .helpers import (
     message_wrap,
     experience_titles_for_session,
     extract_authorship_details,
+    get_carousel_stories,
     number_by_review_status,
     most_recent_exp_history,
 )
@@ -116,17 +117,25 @@ def index(request):
     """
     Starting page for app.
     """
+    stories = get_carousel_stories()
+
     if request.user.is_authenticated:
         oh_member = request.user.openhumansmember
+
         context = {
             "oh_id": oh_member.oh_id,
             "oh_member": oh_member,
             "oh_user": oh_member.user,
             "oh_proj_page": settings.OH_PROJ_PAGE,
+            "stories": stories,
         }
     else:
         auth_url = OpenHumansMember.get_auth_url()
-        context = {"auth_url": auth_url, "oh_proj_page": settings.OH_PROJ_PAGE}
+        context = {
+            "auth_url": auth_url,
+            "oh_proj_page": settings.OH_PROJ_PAGE,
+            "stories": stories,
+        }
     return render(request, "main/home.html", context=context)
 
 def login_user(request):
@@ -283,7 +292,7 @@ def delete_experience(request, uuid):
     """
     Delete experience from PE databacse and OH
     """
-    
+
     titles = request.session.get('titles', {})
     title = titles.get(uuid, "no title")
 
@@ -344,7 +353,7 @@ def list_public_experiences(request):
     for trigger in triggers_to_show:
         trigger_check = f"check{trigger}"
         tts[trigger_check] = True
-    
+
     if all_triggers:
         tts["checkall"] = True
 
@@ -417,27 +426,20 @@ def moderation_list(request):
     When status is "rejected" it includes experiences marked as "rejected".
     """
     if request.user.is_authenticated and is_moderator(request.user):
-        status = request.GET.get("status", "pending")
-        if status not in ["pending", "approved", "rejected"]:
-            status = "pending"
-
-        if status == "approved":
-            # Search through approved experiences
-            experiences = PublicExperience.objects.filter(
-                moderation_status="approved"
-            ).order_by("created_at")
-        elif status == "rejected":
-            # Search through rejected experiences
-            experiences = PublicExperience.objects.filter(
-                moderation_status="rejected"
-            ).order_by("created_at")
-        else:
-            # Search through unreviewed or in review experiences
-            experiences = PublicExperience.objects.filter(
+        # Categorise the stories based on the page tabs
+        tabbed_stories = {
+            "page_pending": PublicExperience.objects.filter(
                 Q(moderation_status="not reviewed") | Q(moderation_status="in review")
-            ).order_by("created_at")
+            ).order_by("created_at"),
+            "page_approved": PublicExperience.objects.filter(
+                moderation_status="approved"
+            ).order_by("created_at"),
+            "page_rejected": PublicExperience.objects.filter(
+                moderation_status="rejected"
+            ).order_by("created_at"),
+        }
 
-        return moderate_page(request, status, experiences)
+        return moderate_page(request, tabbed_stories)
     else:
         return redirect("index")
 
@@ -458,7 +460,7 @@ def my_stories(request):
             summary_status["exp_hist"] = recent_exp_history
 
         # add experience titles to session for deletion pages
-        request.session['titles']= experience_titles_for_session(files)
+        request.session['titles'] = experience_titles_for_session(files)
 
         # Define the number of items per page
         items_per_page = settings.EXPERIENCES_PER_PAGE
@@ -675,14 +677,30 @@ def single_story(request, uuid):
     """
     # Must have both the specified UUID and be approved otherwise will redirect
     # Should only be one result if not redirect
+    experience = None
+    placeholder = False
     try:
         experience = PublicExperience.objects.get(
             experience_id=uuid, moderation_status="approved"
         )
+    except ObjectDoesNotExist:
+        if uuid.startswith("placeholder"):
+            stories = get_carousel_stories()
+            for story in stories:
+                if story["uuid"] == uuid:
+                    experience = PublicExperience(
+                        title_text = story["title"],
+                        experience_text = story["experience"],
+                        difference_text = story["difference"],
+
+                    )
+                    placeholder = True
+                    break;
+    if experience:
         title = experience.title_text
         exp_context = {"experience": experience}
         title_context = {"title": title}
-        context = {**exp_context, **title_context}
+        context = {**exp_context, **title_context, "placeholder": placeholder}
         return render(request, "main/single_story.html", context=context)
-    except ObjectDoesNotExist:
+    else:
         return redirect("index")

@@ -64,6 +64,10 @@ body {
   margin-bottom: 7%;
 }
 
+.clear-hover:hover {
+   text-decoration: none;
+}
+
 .footer-text {
   text-align: left;
   padding-right: 2%;
@@ -95,10 +99,6 @@ body {
   color: #fff !important;
 }
 
-.nav-right {
-  padding: 1 40;
-}
-
 .nav-nopadding {
   padding: 0 0;
 }
@@ -116,6 +116,7 @@ body {
  .section-heading {
    font-size: 3rem;
    font-weight: bold;
+   text-align: center;
  }
  .value-heading {
    font-size: 2rem;
@@ -133,12 +134,16 @@ body {
    line-height: 1.5;
    font-weight: bold;
    text-align: center;
+   color: #fff;
+   text-decoration: none;
  }
-
+ .usage-box a:hover {
+   text-decoration: none;
+ }
  /*Introduction Section*/
  .intro {
    padding: 2% 5% 3%;
-      background: #1BB5AF;
+   background: #1BB5AF;
    color: #fff;
  }
 
@@ -149,9 +154,8 @@ body {
    padding-bottom: 3%;
  }
  .title-image {
-   padding-top: 2%;
-   width: 75%;
-   margin-left: 25%;
+   margin-top: 20px;
+   width: 100%;
    border-radius: 5%;
  }
 
@@ -159,7 +163,8 @@ body {
  /*Value Section*/
  #value {
    padding: 4% 5%;
-   color: #309FDC;
+   background: #309FDC;
+   color: #fff;
  }
  .value-text {
    line-height: 2;
@@ -189,21 +194,59 @@ body {
    padding:  4% 5%;
    color: #309FDC;
  }
+
  .experience-content {
    color: #8f8f8f;
    line-height: 1.5;
    font-size: 20px;
  }
+
+ .experience-half {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+   overflow: hidden;
+   height: 400px;
+ }
+
+ .experience-full {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px 100px;
+   overflow: hidden;
+   height: 400px;
+ }
+
+ .experience-image-box {
+   padding: 0;
+   margin: 0;
+   overflow: hidden;
+ }
+
+ .experience-text-box {
+   max-height: 400px;
+   overflow: hidden;
+   -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
+ }
+
  .experience-image {
-   width: 50%;
-   padding-top: 2%;
-   padding-right: 5%;
-   padding-left: 6%;
+   transition: transform .5s;
  }
 
  .carousel-item {
    padding: 5% 5%;
    height: 500px;
+ }
+
+ .carousel-item a, .carousel-item a:hover {
+   text-decoration: none;
+   color: #309FDC;
+ }
+
+ .carousel-item a:hover .experience-image {
+   transform: scale(1.05);
  }
 
  .carousel-control-next,
@@ -221,23 +264,66 @@ body {
    filter: invert(100%);
  }
 
+ /*Platform Information*/
+
+ #platform_info {
+   background: #FFFFFF;
+   padding: 4% 5%;
+   color: #1BB5AF;
+ }
+
+ .platform-info-text {
+   line-height: 1.5;
+   font-size: 20px;
+ }
+
+ .btn-home-about {
+   color: #1BB5AF;
+   border-color: #1BB5AF;
+ }
+
+ .btn-home-about:hover {
+   background-color: #1BB5AF;
+   border-color: #1BB5AF;
+ }
+
+ .btn-home-about:active {
+   color: #1BB5AF;
+   background-color: #1BB5AF;
+   border-color: #1BB5AF;
+ }
+
+ .btn-home-about:focus {
+   box-shadow: 0 0 0 3px #1BB5AF80;
+ }
+
  /*How to Use the Platform Section*/
+
  #platform_usage {
-   background: #F1806F;
+   background: #FAC145;
    padding: 4% 5%;
    color: #ffffff;
  }
+
  .platform-title  {
    padding-bottom: 5%;
  }
 
-
  .platform-left-border {
-   margin-left: 8%;
+    margin-left: 8%;
  }
-.usage-icon{
-  color: #fff;
-}
+
+ .usage-icon{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: transform .5s;
+ }
+
+ .usage-box:hover .usage-icon {
+   transform: scale(1.5);
+ }
+
  .platform-button {
    margin-top: 5%;
   }
@@ -518,6 +604,21 @@ body {
 .registration-text {
   line-height: 2;
   font-size: 20px;
+}
+
+/* MODERATION LIST */
+
+/* Remove grey line on top of table to make tabs work properly */
+#moderation-table {
+  margin: 0% 5%;
+}
+
+.moderation-table thead th {
+  border-top: none;
+}
+
+.moderation-table-container {
+  margin-bottom: 3%;
 }
 
 /* CODE OF CONDUCT */

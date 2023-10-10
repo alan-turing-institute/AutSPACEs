@@ -398,62 +398,49 @@ def update_public_experience_db(data, uuid, ohmember, editing_user, **change_inf
     else:
         delete_PE(uuid, ohmember)
 
-def moderate_page(request, status, experiences):
+def moderate_page(request, tabbed_stories):
     """
     View containing lists of the given Public Experiences
 
     A helper function for generating the Moderation pages.
     """
+    # Define the number of items per page
+    items_per_page = settings.EXPERIENCES_PER_PAGE
+
     # Check to see if a search has been performed
     searched = request.GET.get("searched", False)
 
-    if searched:
-        # If there's a search term, additionally filter on it too
-        experiences = experiences.filter(
-            Q(title_text__icontains=searched)
-            | Q(experience_text__icontains=searched)
-            | Q(difference_text__icontains=searched)
-        )
+    for status, stories in tabbed_stories.items():
+        # Filter based on the search query
+        if searched:
+            stories = stories.filter(
+                Q(title_text__icontains=searched)
+                | Q(experience_text__icontains=searched)
+                | Q(difference_text__icontains=searched)
+            )
 
-    paginator = Paginator(experiences, settings.EXPERIENCES_PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    page_obj.page_range = paginator.get_elided_page_range(page_obj.number, on_each_side=2, on_ends=1)
-    page_obj.offset = page_obj.start_index() - 1
+        # Paginate stories
+        paginator = Paginator(stories, items_per_page)
+        stories = paginate_stories(request, paginator, status)
+        stories = number_stories(stories, items_per_page)
+        tabbed_stories[status] = stories
 
-    unreviewed = PublicExperience.objects.filter(
-        Q(moderation_status="not reviewed")
-    ).count()
-    inreview = PublicExperience.objects.filter(
-        Q(moderation_status="in review")
-    ).count()
-    approved = PublicExperience.objects.filter(
-        Q(moderation_status="approved")
-    ).count()
-    rejected = PublicExperience.objects.filter(
-        Q(moderation_status="rejected")
-    ).count()
+    context={
+        "pending_stories": tabbed_stories["page_pending"],
+        "approved_stories": tabbed_stories["page_approved"],
+        "rejected_stories": tabbed_stories["page_rejected"],
+        "searched": searched if searched else "",
+    }
 
-    subtitle = {
-        "pending": "Experiences for Moderation",
-        "approved": "Approved Experiences",
-        "rejected": "Rejected Experiences",
-    }.get(status, "Moderation")
+    for status in ["not reviewed", "in review", "approved", "rejected"]:
+        context[status.replace(" ", "_")] = PublicExperience.objects.filter(
+            Q(moderation_status=status)
+        ).count()
 
     return render(
         request,
         "main/moderation_list.html",
-        context={
-            "subtitle": subtitle,
-            "status": status,
-            "page_obj": page_obj,
-            "unreviewed": unreviewed,
-            "inreview": inreview,
-            "approved": approved,
-            "rejected": rejected,
-            "searched": searched if searched else "",
-            "params": "?status=" + status + (("&searched=" + searched) if searched else ""),
-        },
+        context=context,
     )
 
 def choose_moderation_redirect(moderation_prior):
@@ -646,7 +633,7 @@ def message_wrap(text, width):
 def experience_titles_for_session(files):
     """
     take a member.list_files() list of files and add them to dict
-    of the form 
+    of the form
     {"titles":{
         "uuid": "title",
         "uuid2": "title2"
@@ -699,3 +686,107 @@ def most_recent_exp_history(ohm):
 
     
     
+def truncate_text(text, length):
+    truncated = textwrap.wrap(text, length)[0]
+    if len(truncated) < len(text):
+        truncated = textwrap.wrap(text, length - 3)[0];
+        truncated += "..."
+    return truncated
+
+def get_carousel_stories(filename="carousel.json"):
+    """
+    Return the stories to use for the carousel on the home page
+
+    Returns an array of stories, each with the following structdure:
+    {
+        "title_summary": "",
+        "experience_summary": "",
+        "title": "",
+        "experience": "",
+        "difference": "",
+        "image": "",
+        "uuid": ""
+    }
+
+    The actual content of the stories is controlled by the variables in the
+    server/apps/main/carousel.json file.
+    """
+    module_dir = os.path.dirname(__file__)
+    file_path = os.path.join(module_dir, filename)
+    stories = []
+    try:
+        with open(file_path, "r") as f:
+            data = json.load(f)
+    except IOError as e:
+        print("Exception when opening carousel file: {}".format(str(e)))
+        return None
+
+    total = data.get("number-to-display", 3)
+    title_max = data.get("max-chars-title", 16)
+    experience_max = data.get("max-chars-experience", 128)
+
+
+    # Step 1: collect together real stories
+    if len(stories) < total:
+        for story in data.get("stories", []):
+            try:
+                uuid = story["uuid"]
+                public_story = PublicExperience.objects.get(
+                    experience_id=uuid
+                )
+                if (public_story.moderation_status != "approved"
+                    or public_story.abuse
+                    or public_story.violence
+                    or public_story.drug
+                    or public_story.mentalhealth
+                    or public_story.negbody
+                    or public_story.other):
+                    # This isn't an appropriate story to use so we'll skip it
+                    continue
+                title = public_story.title_text
+                experience = public_story.experience_text
+                item = {
+                    "title_summary": truncate_text(title, title_max),
+                    "experience_summary": truncate_text(experience, experience_max),
+                    "title": title,
+                    "experience": experience,
+                    "difference": public_story.difference_text,
+                    "image": story.get("image", ""),
+                    "uuid": uuid,
+                }
+                stories.append(item)
+                if len(stories) >= total:
+                    break
+            except KeyError as e:
+                print("Exception when reading carousel dictionary: {}".format(str(e)))
+            except PublicExperience.DoesNotExist as e:
+                print("Carousel experience does not exist:: {}".format(uuid))
+
+
+    # Step 2: collect together placeholder stories
+    placeholder = 0
+    if len(stories) < total:
+        for story in data.get("placeholders", []):
+            try:
+                uuid = 'placeholder{}'.format(placeholder)
+                title = story["title"]
+                experience = story["experience"]
+                item = {
+                    "title_summary": truncate_text(title, title_max),
+                    "experience_summary": truncate_text(experience, experience_max),
+                    "title": title,
+                    "experience": experience,
+                    "difference": story["difference"],
+                    "image": story.get("image", ""),
+                    "uuid": uuid,
+                }
+                stories.append(item)
+                placeholder += 1
+                if len(stories) >= total:
+                    break
+            except KeyError as e:
+                print("Exception when reading carousel dictionary: {}".format(str(e)))
+
+    return stories
+
+
