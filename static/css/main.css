@@ -91,6 +91,11 @@ body {
   font-size: 1.3rem;
 }
 
+.nav-link {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
 .nav-link:hover {
   color: #000 !important;
 }
