@@ -12,29 +12,29 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:public_experiences' %}">View Stories</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:public_experiences' %}">View Stories</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:share_exp' %}">Add Story</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:share_exp' %}">Add Story</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:my_stories' %}">My Stories</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:my_stories' %}">My Stories</a>
           </li>
           {% is_moderator user as moderator %}
           {% if moderator %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:moderation_list' %}">Moderation</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:moderation_list' %}">Moderation</a>
           </li>
           {% endif %}
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'main:registration' %}">Add Story</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:registration' %}">Add Story</a>
           </li>
           {% endif %}
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            <a class="nav-link nav-link-menu dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Learn More
             </a>
@@ -51,7 +51,7 @@
 
         {% if user.is_authenticated %}
         <li class="nav-item dropdown d-flex">
-          <a class="nav-link dropdown-toggle nav-account" href="#" id="accountDropdownMenuLink" role="button"
+          <a class="nav-link nav-link-menu dropdown-toggle nav-account" href="#" id="accountDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Account
           </a>
