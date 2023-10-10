@@ -1,6 +1,11 @@
 from django.contrib.auth.models import User
 from .models import UserProfile
 from server.apps.main.models import PublicExperience
+from django.conf import settings
+import requests
+from urllib.parse import urljoin
+from openhumans.settings import openhumans_settings
+
 
 def user_profile_exists(user):
     """
@@ -71,6 +76,10 @@ def delete_user(user, delete_oh_data):
     if delete_oh_data:
         ohmember.delete_all_files()
 
+    # de-auth OH member if not doing so by default
+    deauth_on_delete = getattr(settings, 'OPENHUMANS_DEAUTH_ON_DELETE', True)
+    if deauth_on_delete == False:
+        ohmember.deauth()
+
     # Delete the actual user
     user.delete()
-
