@@ -44,7 +44,7 @@
                     <td>{% firstof experience.title_text "notitle" %}</td>
                     <td>
                       {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+                      <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
                       {% endif %}
                     </td>
                     <td>
@@ -87,7 +87,7 @@
                     <td>{% firstof experience.title_text "notitle" %}</td>
                     <td>
                       {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
-                        <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+                        <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
                       {% endif %}
                     </td>
                     <td>{{ experience.moderation_status }}</td>

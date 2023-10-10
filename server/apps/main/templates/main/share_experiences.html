@@ -52,7 +52,7 @@
 <!--            Link to be updated-->
               <a href="#"
                target="_blank">
-              <button class="btn btn-outline-primary coc-btn float-right">Read More</button>
+              <button class="btn btn-outline-primary coc-btn float-end">Read More</button>
             </a>
           </div>
         </div>
@@ -99,7 +99,7 @@
             <!--            Link to be updated-->
             <a href="#"
                target="_blank">
-              <button class="btn btn-outline-primary coc-btn float-right">Read More</button>
+              <button class="btn btn-outline-primary coc-btn float-end">Read More</button>
             </a>
           </div>
         </div>
@@ -256,13 +256,13 @@
       </form>
       <div class="form-group">
         <a href="{% url 'main:edit_exp' uuid %}">
-          <button class="btn btn-primary btn-lg float-right">Edit</button>
+          <button class="btn btn-primary btn-lg float-end">Edit</button>
         </a>
       </div>
     {% else %}
         <div class='form-group'>
           <!-- Add an id and data attributes to the submit button -->
-            <button type="button" class="btn btn-outline-dark btn-lg float-right" id="submitBtn"
+            <button type="button" class="btn btn-outline-dark btn-lg float-end" id="submitBtn"
             data-uuid="{{ uuid }}" data-moderation-status="{{ moderation_status }}">Submit</button>
         </div>
       </form>

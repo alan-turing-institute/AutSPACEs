@@ -80,12 +80,12 @@
                 
                 {% if exp_hist %}
                 <a
-                  class="btn btn-outline-info float-right view-btn" href="{% url 'main:view_exp' exp_hist.experience.experience_id %}" rel="noopener noreferrer"
+                  class="btn btn-outline-info float-end view-btn" href="{% url 'main:view_exp' exp_hist.experience.experience_id %}" rel="noopener noreferrer"
                   target="_blank">View Here
                 </a>
                 {% else %}
                 <a
-                class="btn btn-outline-info float-right view-btn"
+                class="btn btn-outline-info float-end view-btn"
                 href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
                 target="_blank">View already published public experiences
               </a>
@@ -165,7 +165,7 @@
         Enter Another Experience
       </a>
       <a
-      class="btn btn-lg btn-outline-primary float-right"
+      class="btn btn-lg btn-outline-primary float-end"
       href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
       target="_blank">Contact Moderators
     </a>

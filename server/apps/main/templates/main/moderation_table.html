@@ -22,43 +22,43 @@
         <td>{% firstof file.title_text "notitle" %}</td>
         <td>
         {% if file.other %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             {{file.other}}
           </span>
         {% endif %}
         {% if file.abuse and file.violence and file.drug and file.mentalhealth and file.negbody and file.other %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             All trigger warnings selected
           </span>
         {% else %}
           {% if file.mentalhealth %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             Mental Health issues
           </span>
           {% endif %}
           {% if file.violence %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             Violence
           </span>
           {% endif %}
           {% if file.negbody %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             Negative body image
           </span>
           {% endif %}
           {% if file.drug %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             Drug and/or Alcohol misuse
           </span>
           {% endif %}
           {% if file.abuse %}
-          <span class="badge badge-warning float-right"
+          <span class="badge text-bg-warning float-end"
                 style="font-size: 1rem; margin-top:1%; margin-left:1%;">
             Abuse
           </span>

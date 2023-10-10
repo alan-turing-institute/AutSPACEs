@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}AutSPACEs - What is Autism? {% endblock %}
 
-{% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
+{% block body_attributes%} data-bs-spy="scroll" data-target="#content-bar" {% endblock %}
 
 {% block content %}
 
@@ -51,9 +51,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col float-right">
+    <div class="col float-end">
       <a href="{% url 'main:about_us' %}">
-        <button class="btn btn-outline-primary btn-home-about btn-lg float-right" type="button">Read More</button>
+        <button class="btn btn-outline-primary btn-home-about btn-lg float-end" type="button">Read More</button>
       </a>
     </div>
   </div>
