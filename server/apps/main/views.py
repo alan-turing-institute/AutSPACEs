@@ -14,7 +14,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
 
-from .models import PublicExperience
+from .models import PublicExperience, ExperienceHistory
 from server.apps.users.models import UserProfile
 
 from .forms import ShareExperienceForm, ModerateExperienceForm
@@ -51,6 +51,8 @@ from .helpers import (
     experience_titles_for_session,
     extract_authorship_details,
     get_carousel_stories,
+    number_by_review_status,
+    most_recent_exp_history,
 )
 
 from server.apps.users.helpers import (
@@ -452,6 +454,11 @@ def my_stories(request):
         context = {"files": files}
         context = reformat_date_string(context)
 
+        summary_status = number_by_review_status(files)
+        recent_exp_history = most_recent_exp_history(request.user.openhumansmember)
+        if recent_exp_history:
+            summary_status["exp_hist"] = recent_exp_history
+
         # add experience titles to session for deletion pages
         request.session['titles'] = experience_titles_for_session(files)
 
@@ -459,6 +466,14 @@ def my_stories(request):
         items_per_page = settings.EXPERIENCES_PER_PAGE
 
         # For each category, filter stories, create pagination and add continuous numbering
+
+        # All stories
+        paginator_all = Paginator(
+            files, items_per_page,
+        )
+        all_stories = paginate_stories(request, paginator_all, "page_all")
+        # Numbering for all stories different to all other tabs 
+        all_stories_numbering = list(range(all_stories.start_index(), all_stories.start_index()+min(items_per_page, len(all_stories.object_list))))
 
         # Public stories
         paginator_public = Paginator(
@@ -493,10 +508,13 @@ def my_stories(request):
             request,
             "main/my_stories.html",
             context={
+                "all_stories": all_stories,
                 "public_stories": public_stories,
                 "in_review_stories": in_review_stories,
                 "rejected_stories": rejected_stories,
                 "private_stories": private_stories,
+                "zipped":zip(all_stories, all_stories_numbering),
+                **summary_status,
             },
         )
     else:

@@ -38,9 +38,9 @@
               <h3 class="story-head card-header process">In Process</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
-                  <li class="list-item"><p class="card-text">Waiting:<strong> {% firstof n_not_reviewed 0|floatformat %} {% toggle_story n_not_reviewed %}
+                  <li class="list-item"><p class="card-text">Not yet reviewed:<strong> {% firstof not_reviewed 0|floatformat %} {% toggle_story not_reviewed %}
                   </strong></p></li>
-                  <li class="list-item"><p class="card-text">Moderating:<strong> {% firstof n_in_review 0|floatformat %} {% toggle_story n_in_review %}
+                  <li class="list-item"><p class="card-text">In review:<strong> {% firstof in_review 0|floatformat %} {% toggle_story in_review %}
                   </strong></p></li>
 
 
@@ -53,11 +53,11 @@
               <h3 class="story-head card-header submitted">Moderated</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
-                  <li class="list-item"><p class="card-text">Moderated:<strong> {% firstof n_moderated 0|floatformat %} {% toggle_story n_moderated %}
+                  <li class="list-item"><p class="card-text">Moderated:<strong> {% firstof moderated 0|floatformat %} {% toggle_story moderated %}
                   </strong></p></li>
-                  <li class="list-item"><p class="card-text">Approved:<strong> {% firstof n_approved 0|floatformat %} {% toggle_story n_approved %}
+                  <li class="list-item"><p class="card-text">Approved:<strong> {% firstof approved 0|floatformat %} {% toggle_story approved %}
                   </strong></p></li>
-                  <li class="list-item"><p class="card-text">Rejected:<strong> {% firstof n_rejected 0|floatformat %} {% toggle_story n_rejected %}
+                  <li class="list-item"><p class="card-text">Rejected:<strong> {% firstof rejected 0|floatformat %} {% toggle_story rejected %}
                   </strong></p></li>
                 </ul>
               </div>
@@ -65,16 +65,34 @@
           </div>
           <div class="story-card col-lg-4 message-card">
             <div class="card">
-              <h3 class="story-head card-header messages">Messages</h3>
+              <h3 class="story-head card-header messages">Moderation Update</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
-                  <li><p class="card-text">Your story<strong>"Traffic Lights"</strong> have been accepted.</p></li>
+                  {% if exp_hist %}
+                  <p class="card-text">Your story <strong>{{ exp_hist.experience.title_text }}</strong> 
+                    was reviewed by the moderators {% firstof exp_hist.changed_at|naturaltime "an unknown amount of time ago" %}. 
+                    The current status of the story is <em>{{ exp_hist.experience.moderation_status}}.</em></p>
+                  <!-- {% firstof file.created|naturaltime "Creation date unknown" %} -->
+                  {% else %}
+                  <p class="card-text">There have been no stories reviewed by the moderators at this time.</p>
+                  {% endif %}
                 </ul>
+                
+                {% if exp_hist %}
                 <a
-                  class="btn btn-outline-info float-right view-btn"
-                  href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
+                  class="btn btn-outline-info float-right view-btn" href="{% url 'main:view_exp' exp_hist.experience.experience_id %}" rel="noopener noreferrer"
                   target="_blank">View Here
                 </a>
+                {% else %}
+                <a
+                class="btn btn-outline-info float-right view-btn"
+                href="{% url 'main:public_experiences' %}" rel="noopener noreferrer"
+                target="_blank">View already published public experiences
+              </a>
+                {% endif %}
+
+
+
               </div>
             </div>
           </div>
@@ -89,7 +107,10 @@
       <!-- Add the tab navigation -->
     <ul class="nav nav-tabs mystory-tabs" id="storyTabs" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="public-tab" data-toggle="tab" href="#public" role="tab" aria-controls="public" aria-selected="true">Public</a>
+        <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="public-tab" data-toggle="tab" href="#public" role="tab" aria-controls="public" aria-selected="false">Public</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="in-review-tab" data-toggle="tab" href="#in-review" role="tab" aria-controls="in-review" aria-selected="false">Pending Review</a>
@@ -104,11 +125,17 @@
 
     <!-- Add the tab content -->
   <div class="tab-content" id="storyTabsContent">
-    <div class="tab-pane fade show active" id="public" role="tabpanel" aria-labelledby="public-tab">
+    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+      <!-- Table for all stories -->
+      {% include 'main/story_table.html' with files=zipped fullstories=all_stories_numbering %}
+      {% include 'main/pagination.html' with stories=all_stories page_query_param='page_all' %}
+    </div>
+
+    <div class="tab-pane fade" id="public" role="tabpanel" aria-labelledby="public-tab">
       <!-- Table for public stories -->
       {% include 'main/story_table.html' with files=public_stories %}
       {% include 'main/pagination.html' with stories=public_stories page_query_param='page_public' %}
-  </div>
+    </div>
 
     <div class="tab-pane fade" id="in-review" role="tabpanel" aria-labelledby="in-review-tab">
       <!-- Table for `in review` stories -->
@@ -122,21 +149,29 @@
       {% include 'main/pagination.html' with stories=rejected_stories page_query_param='page_rejected' %}
     </div>
 
-
     <div class="tab-pane fade" id="private" role="tabpanel" aria-labelledby="private-tab">
       <!-- Table for private stories -->
       {% include 'main/story_table.html' with files=private_stories %}
       {% include 'main/pagination.html' with stories=private_stories page_query_param='page_private' %}
     </div>
+
+  </div>
   
-    <div class="contact-btn">
-    <a
+
+
+    <div class="col-lg-12 text-right">
+
+      <a href="{% url 'main:share_exp' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
+        Enter Another Experience
+      </a>
+      <a
       class="btn btn-lg btn-outline-primary float-right"
       href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
       target="_blank">Contact Moderators
     </a>
-      </div>
-          </div>
+
+     </div>
+
 
 </section>
 

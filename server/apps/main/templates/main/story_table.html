@@ -2,7 +2,8 @@
 {% load custom_tags %}
 {% load humanize %}
 
-{% if files %}
+
+{% if files or zipped %}
   <table class="table table-responsive-lg table-hover table-striped mystory-table" style="width:auto">
     <thead>
     <tr>
@@ -11,16 +12,16 @@
       <th class="submission-date-th" scope="col">Creation Date</th>
       <th class="tags-th" scope="col">Tags</th>
       <th class="status-th" scope="col">Moderation Status</th>
-      <th class="status-th" scope="col">Triggering Labels</th>
       <th class="status-th" scope="col" colspan="4">File Options</th>
     </tr>
     </thead>
     <tbody>
 {% endif %}
 
-{% for file in files %}
-<tr>
-    <th scope="row">{{ file.number }}</th>
+{% if zipped %}
+    {% for file, as_number in zipped %}
+    <tr>
+    <th scope="row">{{ as_number }}</th>
     <td>{% firstof file.metadata.description "notitle" %}</td>
     <td>{% firstof file.created|naturaltime "Creation date unknown" %}</td>
     <td>
@@ -29,37 +30,79 @@
         <strong class="badge">{{ tag }}</strong>
         {%endif%}
     {% endfor %}
-</td>
-<td>
+    </td>
+    <td>
     {% firstof file.metadata.data.moderation_status "Moderation Status Unknown" %}
-</td>
-<td>
-    {% for tag in file.metadata.tags %}
-    {% if tag not in sharing_tags %}
-        <strong class="badge">{{ tag }}</strong>
-    {%endif%}
-    {% endfor %}
-</td>
-<td>
+    </td>
+    <td>
     <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
     View
     </a>
-</td>
-<td>
+    </td>
+    <td>
     <a href="{% url 'main:edit_exp' file.metadata.uuid %}" class="btn btn-primary">
     Edit
     </a>
-</td>
-<td>
+    </td>
+    <td>
     <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
-</td>
-<td>
+    </td>
+    <td>
     <a href="{% url 'main:delete_exp' file.metadata.uuid %}" class="btn btn-danger">Delete</a>
-</td>
-</tr>
-{% comment %} {% empty %}
-    {% include 'main/partials/dummy_stories.html'%} {% endcomment %}
+    </td>
+    </tr>
+    {% endfor %}
+{% comment %} 
+{% empty %}
+{% include 'main/partials/dummy_stories.html'%} 
+{% endcomment %}
+{% endif %}
+
+{% if files %}
+{% for file in files %}
+    <tr>
+    <th scope="row">{{ file.number }}</th>
+    <td>{% firstof file.metadata.description "notitle" %}</td>
+    <td>{% firstof file.created|naturaltime "Creation date unknown" %}</td>
+    <td>
+    {% for tag in file.metadata.tags %}
+        {% if tag in sharing_tags %}
+            <strong class="badge">{{ tag }}</strong>
+        {%endif%}
+    {% endfor %}
+    </td>
+    <td>
+    {% firstof file.metadata.data.moderation_status "Moderation Status Unknown" %}
+    </td>
+    <td>
+    <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
+    View
+    </a>
+    </td>
+    <td>
+    <a href="{% url 'main:edit_exp' file.metadata.uuid %}" class="btn btn-primary">
+    Edit
+    </a>
+    </td>
+    <td>
+    <a href="{{ file.download_url }}" class="btn btn-secondary" target="_blank">Download</a>
+    </td>
+    <td>
+    <a href="{% url 'main:delete_exp' file.metadata.uuid %}" class="btn btn-danger">Delete</a>
+    </td>
+    </tr>
 {% endfor %}
+{% comment %} 
+{% empty %}
+{% include 'main/partials/dummy_stories.html'%} 
+{% endcomment %}
+{% endif %}
+
+<!-- {% comment %} 
+{% empty %}
+{% include 'main/partials/dummy_stories.html'%} 
+{% endcomment %} -->
+
 </tbody>
 </table>
 
