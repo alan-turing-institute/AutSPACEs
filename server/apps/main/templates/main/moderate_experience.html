@@ -18,12 +18,12 @@
           <div class="card-header" id="headingOne">
             <h5 class="mb-0">
               <button aria-controls="collapseOne" aria-expanded="false" class="btn btn-link collapsed"
-                      data-target="#collapseOne" data-toggle="collapse">
+                      data-bs-target="#collapseOne" data-bs-toggle="collapse">
                 Read before
               </button>
             </h5>
           </div>
-          <div aria-labelledby="headingOne" class="collapse" data-parent="#accordion" id="collapseOne">
+          <div aria-labelledby="headingOne" class="collapse" data-bs-parent="#accordion" id="collapseOne">
             <div class="card-body">
               <p>The AutSPACEs platform is an online space which puts autistic people first. We are committed to
                 providing a safe and welcoming place for autistic people and their supporters to share experiences,
@@ -62,12 +62,12 @@
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
               <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
-                      data-target="#collapseTwo" data-toggle="collapse">
+                      data-bs-target="#collapseTwo" data-bs-toggle="collapse">
                 Code of conduct
               </button>
             </h5>
           </div>
-          <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordion" id="collapseTwo">
+          <div aria-labelledby="headingTwo" class="collapse" data-bs-parent="#accordion" id="collapseTwo">
             <div class="card-body">
               <strong>The following stories will automatically be disapproved:</strong>
               <ul>
@@ -109,12 +109,12 @@
           <div class="card-header" id="headingThree">
             <h5 class="mb-0">
               <button aria-controls="collapseThree" aria-expanded="false" class="btn btn-link collapsed"
-                      data-target="#collapseThree" data-toggle="collapse">
+                      data-bs-target="#collapseThree" data-bs-toggle="collapse">
                 Stories that break CoC
               </button>
             </h5>
           </div>
-          <div aria-labelledby="headingThree" class="collapse" data-parent="#accordion" id="collapseThree">
+          <div aria-labelledby="headingThree" class="collapse" data-bs-parent="#accordion" id="collapseThree">
             <div class="card-body">
               <strong>Personal Details</strong>
               <p>Full Story</p>
@@ -178,7 +178,7 @@
                 <td class="col-2">{{history_item.change_type}}</td>
                 <td class="col-4">
                   <div class="collapsablecell">
-                    <a class="collapsed" data-toggle="collapse" href="#replycell{{ forloop.counter0 }}"
+                    <a class="collapsed" data-bs-toggle="collapse" href="#replycell{{ forloop.counter0 }}"
                       aria-expanded="false" aria-controls="collapseSummary">
                       <p class="collapse" id="replycell{{ forloop.counter0 }}">
                         {% for obj in history_item.change_reply %}
@@ -190,7 +190,7 @@
                 </td>
                 <td class="col-4">
                   <div class="collapsablecell">
-                    <a class="collapsed" data-toggle="collapse" href="#commentcell{{ forloop.counter0 }}"
+                    <a class="collapsed" data-bs-toggle="collapse" href="#commentcell{{ forloop.counter0 }}"
                       aria-expanded="false" aria-controls="collapseSummary">
                       <p class="collapse" id="commentcell{{ forloop.counter0 }}">
                         {{history_item.change_comments}}
@@ -325,15 +325,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="submitModalLabel">Moderation reasons</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>
         <div class="modal-body" id="modal-text">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="closeModal" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-secondary" id="cancelModal" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="closeModal" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" id="cancelModal" data-bs-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" id="submitForm">Continue</button>
         </div>
       </div>
