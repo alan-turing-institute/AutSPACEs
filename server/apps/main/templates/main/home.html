@@ -133,10 +133,10 @@
     <div class="col-lg-12 shared-experience">
     <h2 class="section-heading">Shared stories</h2>
   </div>
-  <div id="experience-carousel" class="carousel slide" data-ride="false" data-interval="false">
+  <div id="experience-carousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
     <ol class="carousel-indicators">
       {% for story in stories %}
-      <li data-target="#experience-carousel" data-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></li>
+      <li data-bs-target="#experience-carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></li>
       {% endfor %}
     </ol>
     <div class="carousel-inner">
@@ -169,13 +169,13 @@
       </div>
       {% endfor %}
     </div>
-    <a class="carousel-control-prev" href="#experience-carousel" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#experience-carousel" role="button" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
+      <span class="visually-hidden">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#experience-carousel" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#experience-carousel" role="button" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
+      <span class="visually-hidden">Next</span>
     </a>
   </div>
 </section>
