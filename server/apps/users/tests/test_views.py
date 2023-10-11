@@ -148,7 +148,7 @@ class ViewTests(TestCase):
         # Third valid login redirects elsewhere
         c.post("/main/logout/")
         logged_out_response = c.get("/main/share_exp/", follow=True)
-        self.assertTemplateUsed(logged_out_response, "main/home.html")
+        self.assertTemplateUsed(logged_out_response, "main/registration.html")
         c.force_login(self.user_c)
 
         response = c.get("/main/login/")

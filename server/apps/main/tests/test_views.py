@@ -187,19 +187,20 @@ class Views(TestCase):
         """
         c = Client()
 
-        # Pre-login. Get redirected to home
+        # Pre-login. Get redirected to registration page
         pre_login = c.get("/main/share_exp/", follow=True)
-        self.assertTemplateUsed(pre_login, "main/home.html")
+        self.assertTemplateUsed(pre_login, "main/registration.html")
 
         # Logged in go to the share experiences page
         c.force_login(self.user_a)
         logged_in_response = c.get("/main/share_exp/", follow=True)
         self.assertTemplateUsed(logged_in_response, "main/share_experiences.html")
 
-        # Log out the user using AutSPACEs. Get redirected to home
+        # Log out the user using AutSPACEs
+        # The Share Experience page now opens the registratoin page
         c.post("/main/logout/")
         logged_out_response = c.get("/main/share_exp/", follow=True)
-        self.assertTemplateUsed(logged_out_response, "main/home.html")
+        self.assertTemplateUsed(logged_out_response, "main/registration.html")
 
     @vcr.use_cassette(
         "server/apps/main/tests/fixtures/view_exp.yaml",
@@ -230,13 +231,12 @@ class Views(TestCase):
 
     def test_share_exp(self):
         """
-        Check that non-authorised users are redirected (to index, then home) - get
-        logic:
+        Check that non-authorised users are served the registration page
             request.user.is_authenticated == False
         """
         c = Client()
-        response = c.get("/main/share_exp/")
-        assert response.status_code == 302
+        response = c.get("/main/share_exp/", follow=True)
+        self.assertTemplateUsed(response, "main/registration.html")
 
     def test_share_exp_logged_in(self):
         """
