@@ -16,7 +16,7 @@ class UserProfileForm(forms.Form):
     ]
     
     autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = SelectRequired(attrs={
-        "class": "custom-select",
+        "class": "form-select",
         "aria-describedby": "help_id_autistic_identification"}
         ),
                                            label="Do you identify as autistic?",
@@ -34,7 +34,7 @@ class UserProfileForm(forms.Form):
         ("unspecified", "Prefer not to say"),
     ]
     age_bracket = forms.ChoiceField(choices = age_brackets, widget = forms.Select(attrs={
-        "class": "custom-select",
+        "class": "form-select",
         "aria-describedby": "help_id_age_bracket"}
         ), 
                                    required=False,
@@ -57,7 +57,7 @@ class UserProfileForm(forms.Form):
         ("unspecified", "Prefer not to say"),
     ]
     gender = forms.ChoiceField(choices = genders, widget = forms.Select(attrs={
-        "class": "custom-select",
+        "class": "form-select",
         "aria-describedby": "help_id_gender"}
         ), 
                               required=False,
