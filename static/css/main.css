@@ -21,6 +21,13 @@ body {
  position: relative;
 }
 
+.heading-blue {
+  color: #17a2b8;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding-bottom: 2%;
+}
+
 /*Responsive Design*/
 @media (max-width: 991px) {
   #content-bar {
