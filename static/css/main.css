@@ -145,6 +145,11 @@ body {
  .usage-box a:hover {
    text-decoration: none;
  }
+
+ .usage-box a {
+  text-decoration: none;
+}
+
  /*Introduction Section*/
  .intro {
    padding: 2% 5% 3%;
@@ -475,6 +480,10 @@ body {
   background: #309FDC;
   padding: 3% 5% 3%;
   color: #fff;
+}
+
+.story-search {
+  padding-top :1%;
 }
 
 .story-header {
