@@ -42,69 +42,76 @@
 
 
       <div class="form-check mb-2">
-        <div class="custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="all-checkbox"
           name="all_triggers"
           value="True"
           {{ checkall|yesno:"checked,unchecked" }}>
-        <label class="custom-control-label" for="all-checkbox">Allow all triggering content</label>
+        <label class="form-check-label" for="all-checkbox">Allow all triggering content</label>
       </div>
         <div id="single_trigger_warnings">
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="abuse-checkbox"
           name="abuse"
           value="True"
           {{ checkabuse|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
+          <label class="form-check-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="drug-checkbox"
           name="drug"
           value="True"
           {{ checkdrug|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
+          <label class="form-check-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="negbody-checkbox"
           name="negbody"
           value="True"
           {{ checknegbody|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="negbody-checkbox">Negative body image</label>
+          <label class="form-check-label" for="negbody-checkbox">Negative body image</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="violence-checkbox"
           name="violence"
           value="True"
           {{ checkviolence|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="violence-checkbox">Violence and Assault</label>
+          <label class="form-check-label" for="violence-checkbox">Violence and Assault</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="mentalhealth-checkbox"
           name="mentalhealth"
           value="True"
           {{ checkmentalhealth|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="mentalhealth-checkbox">Mental Health Issues</label>
+          <label class="form-check-label" for="mentalhealth-checkbox">Mental Health Issues</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="other-checkbox"
           name="other"
           value="True"
           {{ checkother|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="other-checkbox">Other</label>
+          <label class="form-check-label" for="other-checkbox">Other</label>
         </div>
       </div>
       </div>
