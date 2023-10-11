@@ -51,10 +51,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col float-end">
-      <a href="{% url 'main:about_us' %}">
-        <button class="btn btn-outline-primary btn-home-about btn-lg float-end" type="button">Read More</button>
-      </a>
+    <div class="col">
+      <div class="float-end">
+        <a href="{% url 'main:share_exp' %}" class="mr-3">
+          <button class="btn btn-outline-primary btn-home-about btn-lg mb-3" type="button">Add Story</button>
+        </a>
+        <a href="{% url 'main:about_us' %}" class="mt-3">
+          <button class="btn btn-outline-primary btn-home-about btn-lg mb-3" type="button">Read More</button>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -78,11 +83,7 @@
     </div>
 
     <div class="col platform-box usage-box">
-      {% if user.is_authenticated %}
       <a href="{% url 'main:share_exp' %}">
-      {% else %}
-      <a href="{% url 'main:registration' %}">
-      {% endif %}
         <h3 class="usage-heading">
           Share
           <br/>
