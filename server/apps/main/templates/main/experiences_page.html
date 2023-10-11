@@ -22,25 +22,32 @@
         </p>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+          <a href="{% url 'main:share_exp' %}" class="float-right">
+            <button class="btn btn-light btn-lg" type="button">Add Story</button>
+          </a>
+      </div>
+    </div>
   </div>
 </div>
 
 <section id="hd-section">
   <div class="container story-search">
     <form id=search-form method="GET" action="{% url 'main:public_experiences' %}">
-        <div class='container'>
-          <div class="row">
-            <div class="col-md-10">
-              <label class="visually-hidden" for="inlineFormInput">Search text</label>
-                <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" value="{{ searched }}" type="text" name="searched">
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
-            </div>
+      <div class='container'>
+        <div class="row">
+          <div class="col-md-10">
+            <label class="visually-hidden" for="inlineFormInput">Search text</label>
+            <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" value="{{ searched }}" type="text" name="searched" />
           </div>
-
-          <div class="trigger-warning-message"> We have excluded potentially triggering content, please select any categories that you would be comfortable seeing </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
+          </div>
         </div>
+
+        <div class="trigger-warning-message"> We have excluded potentially triggering content, please select any categories that you would be comfortable seeing </div>
+      </div>
 
       <div class="form-check mb-2">
         <div class="form-check form-switch">
@@ -50,7 +57,7 @@
           id="all-checkbox"
           name="all_triggers"
           value="True"
-          {{ checkall|yesno:"checked,unchecked" }}>
+          {{ checkall|yesno:"checked,unchecked" }} />
         <label class="form-check-label" for="all-checkbox">Allow all triggering content</label>
       </div>
         <div id="single_trigger_warnings">
@@ -61,7 +68,7 @@
           id="abuse-checkbox"
           name="abuse"
           value="True"
-          {{ checkabuse|yesno:"checked,unchecked" }}>
+          {{ checkabuse|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
         </div>
         <div class="form-check form-switch">
@@ -71,7 +78,7 @@
           id="drug-checkbox"
           name="drug"
           value="True"
-          {{ checkdrug|yesno:"checked,unchecked" }}>
+          {{ checkdrug|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
         </div>
         <div class="form-check form-switch">
@@ -81,7 +88,7 @@
           id="negbody-checkbox"
           name="negbody"
           value="True"
-          {{ checknegbody|yesno:"checked,unchecked" }}>
+          {{ checknegbody|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="negbody-checkbox">Negative body image</label>
         </div>
         <div class="form-check form-switch">
@@ -91,7 +98,7 @@
           id="violence-checkbox"
           name="violence"
           value="True"
-          {{ checkviolence|yesno:"checked,unchecked" }}>
+          {{ checkviolence|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="violence-checkbox">Violence and Assault</label>
         </div>
         <div class="form-check form-switch">
@@ -101,7 +108,7 @@
           id="mentalhealth-checkbox"
           name="mentalhealth"
           value="True"
-          {{ checkmentalhealth|yesno:"checked,unchecked" }}>
+          {{ checkmentalhealth|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="mentalhealth-checkbox">Mental Health Issues</label>
         </div>
         <div class="form-check form-switch">
@@ -111,7 +118,7 @@
           id="other-checkbox"
           name="other"
           value="True"
-          {{ checkother|yesno:"checked,unchecked" }}>
+          {{ checkother|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="other-checkbox">Other</label>
         </div>
       </div>
@@ -159,8 +166,8 @@
                  {% if experience.abuse %}
                    <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Abuse</span>
                  {% endif %}
-             {% endif %}        
-             </div> 
+             {% endif %}
+             </div>
                </div>
              {% endif %}
             <h5 class="card-title story-header">{{ experience.number }}. {% firstof experience.title_text "no title given" %}</h5>
@@ -187,7 +194,7 @@
           <div class="card-body story">
           <a
           class="btn btn-primary collapsed float-end"
-          href="{% url 'main:single_story' experience.experience_id %}" 
+          href="{% url 'main:single_story' experience.experience_id %}"
           aria-expanded="false"
           aria-controls="single{{ experience.experience_id }}"
           style="text-align: right">
