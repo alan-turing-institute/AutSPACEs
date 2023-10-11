@@ -11,16 +11,18 @@
 <section id="moderation-intro">
   <div class="row">
     <div class="col-lg-12">
-      <div class="card-header"><h4>Moderation Summary</h4></div>
-      <div class="card-body">
-        <div class="row align-items-center" style="left: 0px">
-          <div class="col-lg-6">
-            <p>New Experiences on the Platform: {{ not_reviewed }} </p>
-            <p>Under review: {{ in_review }} </p>
-          </div>
-          <div class="col-lg-6">
-            <p>Approved: {{ approved }} </p>
-            <p>Rejected: {{ rejected }} </p>
+      <div class="card">
+        <div class="card-header"><h4>Moderation Summary</h4></div>
+        <div class="card-body">
+          <div class="row align-items-center" style="left: 0px">
+            <div class="col-lg-6">
+              <p>New Experiences on the Platform: {{ not_reviewed }} </p>
+              <p>Under review: {{ in_review }} </p>
+            </div>
+            <div class="col-lg-6">
+              <p>Approved: {{ approved }} </p>
+              <p>Rejected: {{ rejected }} </p>
+            </div>
           </div>
         </div>
       </div>
@@ -31,27 +33,29 @@
 <section id="moderation-table">
   <div class="row">
     <div class="col-lg-12">
-      <div class="card-header"><h4>Stories</h4></div>
-      <div class="card-body">
-        <div class="container search">
-          <form method="GET" action="{% url 'main:moderation_list' %}">
-            <div class="form-row align-items-center" style="left: 0px">
-              <div class="col-lg-10">
-                <label class="sr-only" for="inlineFormInput">Name</label>
-                <input class="form-control mb-2"
-                        id="inlineFormInput"
-                        placeholder="Search stories"
-                        type="text"
-                        name="searched"
-                        value="{{ searched }}"
-                        />
-              </div>
+      <div class="card">
+        <div class="card-header"><h4>Stories</h4></div>
+        <div class="card-body">
+          <div class="container search">
+            <form method="GET" action="{% url 'main:moderation_list' %}">
+              <div class="form-row align-items-center" style="left: 0px">
+                <div class="col-lg-10">
+                  <label class="sr-only" for="inlineFormInput">Name</label>
+                  <input class="form-control mb-2"
+                          id="inlineFormInput"
+                          placeholder="Search stories"
+                          type="text"
+                          name="searched"
+                          value="{{ searched }}"
+                          />
+                </div>
 
-              <div class="col-auto">
-                <button class="btn btn-primary mb-2" type="submit">Search</button>
+                <div class="col-auto">
+                  <button class="btn btn-primary mb-2" type="submit">Search</button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -76,20 +80,20 @@
             <!-- Table for pending stories -->
             {% include 'main/moderation_table.html' with files=pending_stories %}
             {% include 'main/pagination.html' with stories=pending_stories page_query_param='page_pending' %}
-        </div>
+          </div>
 
-        <div class="tab-pane fade" id="approved" role="tabpanel" aria-labelledby="approved-tab">
-          <!-- Table for approved stories -->
-          {% include 'main/moderation_table.html' with files=approved_stories %}
-          {% include 'main/pagination.html' with stories=approved_stories page_query_param='page_approved' %}
-        </div>
+          <div class="tab-pane fade" id="approved" role="tabpanel" aria-labelledby="approved-tab">
+            <!-- Table for approved stories -->
+            {% include 'main/moderation_table.html' with files=approved_stories %}
+            {% include 'main/pagination.html' with stories=approved_stories page_query_param='page_approved' %}
+          </div>
 
-        <div class="tab-pane fade" id="rejected" role="tabpanel" aria-labelledby="rejected-tab">
-          <!-- Table for `in review` stories -->
-          {% include 'main/moderation_table.html' with files=rejected_stories %}
-          {% include 'main/pagination.html' with stories=rejected_stories page_query_param='page_rejected' %}
+          <div class="tab-pane fade" id="rejected" role="tabpanel" aria-labelledby="rejected-tab">
+            <!-- Table for `in review` stories -->
+            {% include 'main/moderation_table.html' with files=rejected_stories %}
+            {% include 'main/pagination.html' with stories=rejected_stories page_query_param='page_rejected' %}
+          </div>
         </div>
-
       </div>
     </div>
   </div>
