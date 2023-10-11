@@ -136,7 +136,7 @@
   <div id="experience-carousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
     <ol class="carousel-indicators">
       {% for story in stories %}
-      <li data-bs-target="#experience-carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></li>
+      <button type="button" data-bs-target="#experience-carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></button>
       {% endfor %}
     </ol>
     <div class="carousel-inner">
