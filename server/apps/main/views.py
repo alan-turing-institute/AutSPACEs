@@ -55,6 +55,7 @@ from .helpers import (
     most_recent_exp_history,
     get_story_privacy,
     get_story_research_status,
+    get_story_privacy_and_research_for_session,
 )
 
 from server.apps.users.helpers import (
@@ -182,14 +183,10 @@ def share_experience(request, uuid=False):
                     request.user.openhumansmember.delete_single_file(
                         file_basename=f"{uuid}.json"
                     )
-                    if "confirm_story" in request.session:
-                        del request.session["confirm_story"]
-                    request.session['confirm_story'] = "editing"
+                    story_change_type = "edited"
                 else:
                     uuid = make_uuid()
-                    if "confirm_story" in request.session:
-                        del request.session["confirm_story"]
-                    request.session['confirm_story'] = "sharing"
+                    story_change_type = "new"
 
                 upload(
                     data=form.cleaned_data,
@@ -197,10 +194,19 @@ def share_experience(request, uuid=False):
                     ohmember=request.user.openhumansmember,
                 )
 
-                # Check if the story is viewable and update the session info
+                # Check the viewable and research options
+                conf_story, pr, rr = get_story_privacy_and_research_for_session(data=form.cleaned_data, story_change_type=story_change_type)
+                if "confirm_story" in request.session:
+                    del request.session["confirm_story"]
+                request.session["confirm_story"] = conf_story
+                # update the session info for public sharing and research
                 if "confirm_story_privacy" in request.session:
                     del request.session["confirm_story_privacy"]
-                request.session['confirm_story_privacy'] = get_story_privacy(data=form.cleaned_data)
+                request.session['confirm_story_privacy'] = pr
+                if "confirm_story_research" in request.session:
+                    del request.session["confirm_story_research"]
+                request.session["confirm_story_research"] = rr
+
                 # for Public Experience we need to check if it's viewable and update accordingly.
                 update_public_experience_db(
                     data=form.cleaned_data,
@@ -208,10 +214,6 @@ def share_experience(request, uuid=False):
                     ohmember=request.user.openhumansmember,
                     editing_user=request.user.openhumansmember,
                 )
-                # Check if the story can be used for research and update the session info
-                if "confirm_story_research" in request.session:
-                    del request.session["confirm_story_research"]
-                request.session["confirm_story_research"] = get_story_research_status(data=form.cleaned_data)
 
                 # redirect to a new URL:
                 return redirect("main:new_confirm_page")

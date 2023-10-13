@@ -17,7 +17,7 @@
       </h1>
 
       <p class="confirmation-title-text">
-        Thank you for {% firstof request.session.confirm_story "unknown story action" %} your experience.
+        {% firstof request.session.confirm_story "unknown story action" %}
       </p>
     </div>
  </div>
@@ -32,6 +32,9 @@
 
           <li><p class="text">
             {% firstof request.session.confirm_story_research "Your decision to share your story with researchers is unknown"%}
+          </p></li>
+          <li><p class="text">
+            You can change your privacy and research settings for this story by editing it via "My Stories" and changing the "Sharing Options".
           </p></li>
             </ul>
       </div>

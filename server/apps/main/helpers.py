@@ -805,3 +805,27 @@ def get_story_research_status(data):
     else:
         return "Your story will not be shared by us with researchers"
     
+
+def get_story_privacy_and_research_for_session(data, story_change_type):
+    """
+    Get the privacy and research tags for the story and return appropriate responses
+    """
+    story_viewable = data.get("viewable", False)
+    story_research = data.get("research", False)
+
+    if not story_viewable and not story_research:
+        confirm_story_response = f"Your {story_change_type} experience was saved"
+    else:
+        confirm_story_response = f"Thank you for sharing your {story_change_type} experience"
+
+    if story_viewable:
+        public_response = "As you chose to publicly share your experience, a moderator will check that it follows our code of conduct, and if it does, you will receive a confirmation and your experience will then be published on this website."
+    else:
+        public_response = "Your experience will not be publicly accessible on AutSPACEs"
+
+    if story_research:
+        research_response = "As you chose to share your experience with researchers, your experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."
+    else:
+        research_response = "Your experience will not be part of the AutSPACEs research data set."
+
+    return confirm_story_response, public_response, research_response
