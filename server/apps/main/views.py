@@ -53,6 +53,8 @@ from .helpers import (
     get_carousel_stories,
     number_by_review_status,
     most_recent_exp_history,
+    get_story_privacy,
+    get_story_research_status,
 )
 
 from server.apps.users.helpers import (
@@ -69,6 +71,15 @@ def confirmation_page(request):
     """
     if request.user.is_authenticated:
         return render(request, "main/confirmation_page.html")
+    else:
+        return redirect("index")
+    
+def new_confirm_page(request):
+    """
+    Flexible confirmation page
+    """
+    if request.user.is_authenticated:
+        return render(request, "main/new_confirmation_page.html")
     else:
         return redirect("index")
 
@@ -171,8 +182,14 @@ def share_experience(request, uuid=False):
                     request.user.openhumansmember.delete_single_file(
                         file_basename=f"{uuid}.json"
                     )
+                    if "confirm_story" in request.session:
+                        del request.session["confirm_story"]
+                    request.session['confirm_story'] = "editing"
                 else:
                     uuid = make_uuid()
+                    if "confirm_story" in request.session:
+                        del request.session["confirm_story"]
+                    request.session['confirm_story'] = "sharing"
 
                 upload(
                     data=form.cleaned_data,
@@ -180,6 +197,10 @@ def share_experience(request, uuid=False):
                     ohmember=request.user.openhumansmember,
                 )
 
+                # Check if the story is viewable and update the session info
+                if "confirm_story_privacy" in request.session:
+                    del request.session["confirm_story_privacy"]
+                request.session['confirm_story_privacy'] = get_story_privacy(data=form.cleaned_data)
                 # for Public Experience we need to check if it's viewable and update accordingly.
                 update_public_experience_db(
                     data=form.cleaned_data,
@@ -187,9 +208,13 @@ def share_experience(request, uuid=False):
                     ohmember=request.user.openhumansmember,
                     editing_user=request.user.openhumansmember,
                 )
+                # Check if the story can be used for research and update the session info
+                if "confirm_story_research" in request.session:
+                    del request.session["confirm_story_research"]
+                request.session["confirm_story_research"] = get_story_research_status(data=form.cleaned_data)
 
                 # redirect to a new URL:
-                return redirect("main:confirm_page")
+                return redirect("main:new_confirm_page")
             # If form is invalid raise errors back to user
             else:
                 for field in form:
