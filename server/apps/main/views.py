@@ -257,7 +257,7 @@ def share_experience(request, uuid=False):
             )
 
     else:
-        return redirect("index")
+        return registration(request)
 
 
 # @vcr.use_cassette("server/apps/main/tests/fixtures/view_exp.yaml", filter_query_parameters=['access_token', 'AWSAccessKeyId'])
