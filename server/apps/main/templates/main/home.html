@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}AutSPACEs - What is Autism? {% endblock %}
 
-{% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
+{% block body_attributes%} data-bs-spy="scroll" data-target="#content-bar" {% endblock %}
 
 {% block content %}
 
@@ -45,15 +45,15 @@
       <p>All autistic people are different. We want to collect together lots of
       stories from autistic people, so that we can better understand how
       sensory processing differences affect the way autistic people navigate
-      the world around them.  Together, we can use this information to build a
+      the world around them. Together, we can use this information to build a
       better world for autistic people.</p>
 
     </div>
   </div>
   <div class="row">
-    <div class="col float-right">
+    <div class="col float-end">
       <a href="{% url 'main:about_us' %}">
-        <button class="btn btn-outline-primary btn-home-about btn-lg float-right" type="button">Read More</button>
+        <button class="btn btn-outline-primary btn-home-about btn-lg float-end" type="button">Read More</button>
       </a>
     </div>
   </div>
@@ -133,10 +133,10 @@
     <div class="col-lg-12 shared-experience">
     <h2 class="section-heading">Shared stories</h2>
   </div>
-  <div id="experience-carousel" class="carousel slide" data-ride="false" data-interval="false">
+  <div id="experience-carousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
     <ol class="carousel-indicators">
       {% for story in stories %}
-      <li data-target="#experience-carousel" data-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></li>
+      <button type="button" data-bs-target="#experience-carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{{ forloop.first|yesno:"active,," }}"></button>
       {% endfor %}
     </ol>
     <div class="carousel-inner">
@@ -169,13 +169,13 @@
       </div>
       {% endfor %}
     </div>
-    <a class="carousel-control-prev" href="#experience-carousel" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#experience-carousel" role="button" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
+      <span class="visually-hidden">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#experience-carousel" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#experience-carousel" role="button" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
+      <span class="visually-hidden">Next</span>
     </a>
   </div>
 </section>

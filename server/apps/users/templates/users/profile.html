@@ -67,9 +67,9 @@
         {% for field in group.list %}
           <div class="col {{ columns }}">
           {% if field.field.widget|field_type == "CheckboxInput" %}
-              <div class="custom-control custom-switch">
+              <div class="form-check form-switch">
                 {{ field }}
-                <label class="custom-control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                <label class="form-check-label" for="{{ field.auto_id }}">{{ field.label }}</label>
               </div>
           {% else %}
               <p/><label for="{{ field.auto_id }}">{{ field.label }}</label>

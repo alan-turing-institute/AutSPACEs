@@ -21,6 +21,13 @@ body {
  position: relative;
 }
 
+.heading-blue {
+  color: #17a2b8;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding-bottom: 2%;
+}
+
 /*Responsive Design*/
 @media (max-width: 991px) {
   #content-bar {
@@ -91,6 +98,11 @@ body {
   font-size: 1.3rem;
 }
 
+.nav-link-menu {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
 .nav-link:hover {
   color: #000 !important;
 }
@@ -140,6 +152,11 @@ body {
  .usage-box a:hover {
    text-decoration: none;
  }
+
+ .usage-box a {
+  text-decoration: none;
+}
+
  /*Introduction Section*/
  .intro {
    padding: 2% 5% 3%;
@@ -472,6 +489,10 @@ body {
   color: #fff;
 }
 
+.story-search {
+  padding-top :1%;
+}
+
 .story-header {
   color: #F1806F;
   font-size: 2rem;
@@ -590,6 +611,11 @@ body {
 #moderation-intro {
   padding: 3% 5% ;
 }
+
+.moderation-table-container {
+  margin-top: 3%;
+  margin-bottom: 3%;
+} 
 
 /* REGISTRATION PAGE */
 #registration-intro {

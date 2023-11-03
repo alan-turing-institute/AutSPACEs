@@ -26,85 +26,93 @@
 </div>
 
 <section id="hd-section">
-  <div class="container">
+  <div class="container story-search">
     <form id=search-form method="GET" action="{% url 'main:public_experiences' %}">
-          <div class="form-row">
-            <div class="form-group col-md-10">
-              <label class="sr-only" for="inlineFormInput">Name</label>
+        <div class='container'>
+          <div class="row">
+            <div class="col-md-10">
+              <label class="visually-hidden" for="inlineFormInput">Search text</label>
                 <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" value="{{ searched }}" type="text" name="searched">
             </div>
-            <div class="form-group col-md-2">
+            <div class="col-md-2">
               <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
             </div>
           </div>
 
           <div class="trigger-warning-message"> We have excluded potentially triggering content, please select any categories that you would be comfortable seeing </div>
-
+        </div>
 
       <div class="form-check mb-2">
-        <div class="custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="all-checkbox"
           name="all_triggers"
           value="True"
           {{ checkall|yesno:"checked,unchecked" }}>
-        <label class="custom-control-label" for="all-checkbox">Allow all triggering content</label>
+        <label class="form-check-label" for="all-checkbox">Allow all triggering content</label>
       </div>
         <div id="single_trigger_warnings">
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="abuse-checkbox"
           name="abuse"
           value="True"
           {{ checkabuse|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
+          <label class="form-check-label" for="abuse-checkbox">Abuse (physical, sexual, emotional and verbal)</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="drug-checkbox"
           name="drug"
           value="True"
           {{ checkdrug|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
+          <label class="form-check-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="negbody-checkbox"
           name="negbody"
           value="True"
           {{ checknegbody|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="negbody-checkbox">Negative body image</label>
+          <label class="form-check-label" for="negbody-checkbox">Negative body image</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="violence-checkbox"
           name="violence"
           value="True"
           {{ checkviolence|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="violence-checkbox">Violence and Assault</label>
+          <label class="form-check-label" for="violence-checkbox">Violence and Assault</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="mentalhealth-checkbox"
           name="mentalhealth"
           value="True"
           {{ checkmentalhealth|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="mentalhealth-checkbox">Mental Health Issues</label>
+          <label class="form-check-label" for="mentalhealth-checkbox">Mental Health Issues</label>
         </div>
-        <div class="custom-control custom-control custom-switch">
-          <input class="custom-control-input"
+        <div class="form-check form-switch">
+          <input class="form-check-input"
           type="checkbox"
+          role="switch"
           id="other-checkbox"
           name="other"
           value="True"
           {{ checkother|yesno:"checked,unchecked" }}>
-          <label class="custom-control-label" for="other-checkbox">Other</label>
+          <label class="form-check-label" for="other-checkbox">Other</label>
         </div>
       </div>
       </div>
@@ -112,7 +120,7 @@
     </form>
   </div>
   {% if searched %}
-    <div class="container-fluidr story-text">
+    <div class="container-fluid story-text">
     <p class="story-header">Search results for '{{ searched }}'</p>
     </div>
   {% endif %}
@@ -120,7 +128,7 @@
 
 
 <section id="stories-post">
-  <div class="container-fluidr story-text">
+  <div class="container-fluid story-text">
     {% for experience in experiences %}
     <div class="row">
       <div class="col-lg-12 story">
@@ -128,28 +136,28 @@
           <div class="card-body story">
             {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
                <div class="row">
-               <div class="col-lg-12 float-right ">
+               <div class="col-lg-12 float-end ">
                {% if experience.abuse and experience.violence and experience.drug and experience.mentalhealth and experience.negbody and experience.other %}
-               <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
-               <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">All trigger warnings selected</span>
+               <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
+               <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">All trigger warnings selected</span>
                {% else %}
                  {% if experience.other %}
-                   <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
                  {% endif %}
                  {% if experience.mentalhealth %}
-                   <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Mental Health issues</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Mental Health issues</span>
                  {% endif %}
                  {% if experience.violence %}
-                   <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Violence</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Violence</span>
                  {% endif %}
                  {% if experience.negbody %}
-                   <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Negative body image</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Negative body image</span>
                  {% endif %}
                  {% if experience.drug %}
-                   <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Drug and/or Alcohol misuse</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Drug and/or Alcohol misuse</span>
                  {% endif %}
                  {% if experience.abuse %}
-                   <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Abuse</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Abuse</span>
                  {% endif %}
              {% endif %}        
              </div> 
@@ -163,8 +171,8 @@
               <em>{% firstof experience.authorship_relation "AutSPACEs Contributor" %}</em>
               {% endif %}
               <a
-              class="btn btn-primary collapsed float-right"
-              data-toggle="collapse"
+              class="btn btn-primary collapsed float-end"
+              data-bs-toggle="collapse"
               href="#exp{{ experience.experience_id }}"
               aria-expanded="false"
               aria-controls="exp{{ experience.experience_id }}"
@@ -178,7 +186,7 @@
           <div class="pull-right">
           <div class="card-body story">
           <a
-          class="btn btn-primary collapsed float-right"
+          class="btn btn-primary collapsed float-end"
           href="{% url 'main:single_story' experience.experience_id %}" 
           aria-expanded="false"
           aria-controls="single{{ experience.experience_id }}"

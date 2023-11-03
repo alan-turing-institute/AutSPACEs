@@ -27,7 +27,7 @@
     <td>
     {% for tag in file.metadata.tags %}
         {% if tag in sharing_tags %}
-        <strong class="badge">{{ tag }}</strong>
+        <span class="badge text-bg-light">{{ tag }}</span>
         {%endif%}
     {% endfor %}
     </td>
@@ -67,7 +67,7 @@
     <td>
     {% for tag in file.metadata.tags %}
         {% if tag in sharing_tags %}
-            <strong class="badge">{{ tag }}</strong>
+            <span class="badge text-bg-light">{{ tag }}</span>
         {%endif%}
     {% endfor %}
     </td>
