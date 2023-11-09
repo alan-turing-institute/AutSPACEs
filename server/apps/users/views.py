@@ -16,9 +16,20 @@ from .helpers import (
     user_profile_exists,
     get_user_profile,
     delete_user,
+    update_session_success_or_confirm,
 )
 
 logger = logging.getLogger(__name__)
+
+def tmp_confirm_profile_save(request):
+    """
+    Flexible confirmation page
+    """
+    if request.user.is_authenticated:
+        return render(request, "users/tmp_confirm_profile_save.html")
+    else:
+        return redirect("index")
+
 
 def user_profile(request, first_visit=False):
     """
@@ -30,11 +41,21 @@ def user_profile(request, first_visit=False):
 
             if form.is_valid():
                 # Update the status to indicate the user has submitted at least once
+                print("Profile already exists in some form")
                 form.cleaned_data["profile_submitted"] = True
                 UserProfile.objects.update_or_create(user=request.user, defaults=form.cleaned_data)
 
-            return redirect("users:profile")
+                success_confirm_dict = update_session_success_or_confirm(source="profile")
+
+                for key in success_confirm_dict.keys():
+                    print(key)
+                    if key in request.session:
+                        del request.session[key]
+                    request.session[key] = success_confirm_dict[key]
+
+            return redirect("users:tmp_confirm_profile_save")
         else:
+            print("Just visiting this page")
             profile = get_user_profile(request.user)
             if profile:
                 data = model_to_dict(profile)

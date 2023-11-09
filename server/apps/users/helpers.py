@@ -83,3 +83,20 @@ def delete_user(user, delete_oh_data):
 
     # Delete the actual user
     user.delete()
+
+
+def update_session_success_or_confirm(source):
+    """
+    Updates the session details for users editing their profile.
+    """
+    sc_dict = {}
+    if source == "profile":
+        sc_dict["success_or_confirm"] = source
+        sc_dict["s_or_c_title"] = "Profile Saved"
+        sc_dict["s_or_c_header"] = "Profile changes saved."
+        sc_dict["s_or_c_subheader"] = "Thank you for updating your profile."
+        sc_dict["s_or_c_whn_1"] = "If you decide to allow researchers to use your stories, the more information you share, the better and more representative their research will be"
+        sc_dict["s_or_c_whn_2"] = "You can update your profile as often as you need using the same form you have just edited - linked below"
+        sc_dict["s_or_c_whn_3"] = "Thank you for updating your profile."
+
+    return sc_dict
