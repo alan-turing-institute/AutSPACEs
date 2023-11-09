@@ -114,6 +114,15 @@ def registration(request):
     print(registration_status)
     return render(request, "main/registration.html", {"page_status": "registration"})
 
+def flex_success_confirm(request):
+    """
+    Flexible confirmation page
+    """
+    if request.user.is_authenticated:
+        return render(request, "main/flex_success_confirm.html")
+    else:
+        return redirect("index")
+
 
 def logout_user(request):
     """

@@ -7,5 +7,4 @@ urlpatterns = [
     path("profile/", views.user_profile, name="profile"),
     path("greetings/", views.user_profile, {"first_visit": True}, name="greetings"),
     path("delete/", views.user_profile_delete, name="delete"),
-    path("tmp_confirm_profile_save", views.tmp_confirm_profile_save, name="tmp_confirm_profile_save"),
 ]

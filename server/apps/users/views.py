@@ -48,12 +48,11 @@ def user_profile(request, first_visit=False):
                 success_confirm_dict = update_session_success_or_confirm(source="profile")
 
                 for key in success_confirm_dict.keys():
-                    print(key)
                     if key in request.session:
                         del request.session[key]
                     request.session[key] = success_confirm_dict[key]
 
-            return redirect("users:tmp_confirm_profile_save")
+            return redirect("main:flex_success_confirm")
         else:
             print("Just visiting this page")
             profile = get_user_profile(request.user)

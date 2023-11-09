@@ -32,5 +32,6 @@ urlpatterns = [
     path("help/", views.help, name="help"),
     path("code_of_conduct/", views.code_of_conduct, name="code_of_conduct"),
     path("registration/", views.registration, name="registration"),
-    path("single_story/<uuid>/",views.single_story,name="single_story")
+    path("single_story/<uuid>/",views.single_story,name="single_story"),
+    path("flex_success_confirm/", views.flex_success_confirm, name="flex_success_confirm"),
 ]
