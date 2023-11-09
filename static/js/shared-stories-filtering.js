@@ -43,7 +43,7 @@ $("#single_trigger_warnings :checkbox").change(function(){
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     var scrollpos = localStorage.getItem('scrollpos');
-    if (scrollpos) window.scrollTo(0, scrollpos);
+    if (scrollpos) window.scrollTo({left: 0, top: scrollpos, behavior: "instant"});
 });
 
 window.onbeforeunload = function(e) {

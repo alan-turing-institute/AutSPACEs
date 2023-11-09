@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}AutSPACEs - Help {% endblock %}
 
-{% block body_attributes%} data-spy="scroll" data-target="#content-bar" {% endblock %}
+{% block body_attributes%} {% endblock %}
 
 {% block content %}
 
@@ -17,7 +17,7 @@
         <!-- Space filler to avoid the main text shifting leftwards -->
         </div>
         <div id="content-bar" class="list-group col-lg-3 content-list">
-          <h5 class="list-group-item content-title">Contents</h5>
+          <div class="list-group-item content-title fw-bold">Contents</div>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
             href="#sharing-stories">Sharing Stories on AutSPACEs<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
@@ -25,9 +25,9 @@
           </div>
       </div>
 
-      <div id="text-container" class="topic-content col-lg-9" data-offset="0" data-target="#content-bar" style="padding: 2% 8%">
+      <div id="text-container" class="topic-content col-lg-9"  style="padding: 2% 8%">
         <div class="faq-class">
-          <h5 class="text-info" id="sharing-stories">What Stories Should I Share On AutSPACEs?</h5>
+          <h5 class="heading-blue" id="sharing-stories">What Stories Should I Share On AutSPACEs?</h5>
           <p>
             AutSPACEs is a website to collect stories about how autistic people’s sensory processing affects us in our daily
             lives. Please share any experiences you have had where your senses have affected you, or tell us about how you
@@ -42,23 +42,41 @@
           <p>
             Please follow our Code of Conduct
           </p>
-          <p><a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
-              <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button></a></p>
+
+          <p>
+            <div class="row ">
+              <div class="col">
+                <a class="btn btn-outline-dark float-end"
+                  href="{% url 'main:code_of_conduct' %}" rel="noopener noreferrer">
+                  Read the code of conduct
+                </a>
+              </div>
+            </div>
+          </p>
+
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="who-can-share">Who Can Share Stories On AutSPACEs?</h5>
+          <h5 class="heading-blue" id="who-can-share">Who Can Share Stories On AutSPACEs?</h5>
           <p>Anyone can share stories on AutSPACEs. You do not have to be autistic to share stories on AutSPACEs, but we
             are looking for stories to help understand autism and sensory processing, and to make spaces better for
             autistic people.
           </p>
           <p>You can help an autistic person to share experiences or share stories about someone who is unable to do so
             themselves as long as you follow our code of conduct and guidelines.</p>
-          <p><a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
-              <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button>
-            </a></p>
+          <p>
+            <div class="row ">
+              <div class="col">
+                <a class="btn btn-outline-dark float-end"
+                  href="{% url 'main:code_of_conduct' %}" rel="noopener noreferrer">
+                  Read the code of conduct
+                </a>
+              </div>
+            </div>
+          </p>
+
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="what-happens-to-stories">What Happens To The Stories I Share On AutSPACEs?
+          <h5 class="heading-blue" id="what-happens-to-stories">What Happens To The Stories I Share On AutSPACEs?
           </h5>
           <p>You can decide who can see any story you share on AutSPACEs. You have four options. </p>
 
@@ -87,30 +105,55 @@
 
           <p>We will never sell your data, or share your stories with anyone without your permission.</p>
 
-          <p><a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
-              <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button>
-            </a></p>
+          <p>
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-outline-dark float-end"
+                  href="{% url 'main:code_of_conduct' %}" rel="noopener noreferrer">
+                  Read the code of conduct
+                </a>
+              </div>
+            </div>
+          </p>
 
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="how-to-decide">How Do You Decide Which Stories To Publish On The AutSPACEs
+          <h5 class="heading-blue" id="how-to-decide">How Do You Decide Which Stories To Publish On The AutSPACEs
             Website?</h5>
           <p>We publish all stories that follow our Code of Conduct and that we have permission from the writer of
             the story to share publicly.</p>
-          <p><a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
-              <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button>
-            </a></p>
+
+          <p>
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-outline-dark float-end"
+                  href="{% url 'main:code_of_conduct' %}" rel="noopener noreferrer">
+                  Read the code of conduct
+                </a>
+              </div>
+            </div>
+          </p>
+
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="what-if-not-accepted">What Can I Do If I Want My Story To Be Published But
+          <h5 class="heading-blue" id="what-if-not-accepted">What Can I Do If I Want My Story To Be Published But
             It Wasn’t Accepted?</h5>
           <p>You can change your story and submit it again. Please make sure your story follows our Code of Conduct</p>
-          <p><a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
-              <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button>
-            </a></p>
+
+          <p>
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-outline-dark float-end"
+                  href="{% url 'main:code_of_conduct' %}" rel="noopener noreferrer">
+                  Read the code of conduct
+                </a>
+              </div>
+            </div>
+          </p>
+
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="what-if-change-mind">What If I Change My Mind About My Story?</h5>
+          <h5 class="heading-blue" id="what-if-change-mind">What If I Change My Mind About My Story?</h5>
           <p>If you change your mind about who you want to see your story, you can go to the story on your account and
             change your sharing permissions.</p>
           <p>If you no longer want to share it with researchers, we will not share it with any further researchers,
@@ -127,7 +170,7 @@
             database. You can delete your story at any time by logging into your account.</p>
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="share-someone-else">Can I Share A Story About Someone Else?</h5>
+          <h5 class="heading-blue" id="share-someone-else">Can I Share A Story About Someone Else?</h5>
           <p>Yes, but please be respectful when you share someone else’s story. You are welcome to help someone else to
             use the platform. For example, you can help someone to put their story into writing if they are unable to do it
             themselves, or if they find it hard to do without help. Please ask for their permission and check they are happy
@@ -137,12 +180,21 @@
             neutral as possible, and make observations instead of assumptions or inferences. Please read and follow our
             guidelines on sharing stories about someone else. AutSPACEs is not a place to complain, rant or vent about
             autistic people. It exists to understand autistic people better and to promote our wellbeing.</p>
-          <p><a class="col-lg-12" href="{% url 'main:code_of_conduct' %}">
-              <button class="btn btn-outline-dark float-right" type="button">Read the code of conduct</button>
-            </a></p>
+
+          <p>
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-outline-dark float-end"
+                  href="{% url 'main:code_of_conduct' %}" rel="noopener noreferrer">
+                  Read the code of conduct
+                </a>
+              </div>
+            </div>
+          </p>
+
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="share-someone-else">What's the Process for Sharing a Story?</h5>
+          <h5 class="heading-blue" id="share-someone-else">What's the Process for Sharing a Story?</h5>
           <p>To share an experience on AutSPACEs, please go to the <a href="{% url 'main:share_exp' %}">Share Stories
           page</a> when you are logged in and write in the text box about any time you have been effected by your senses.
             Then you can submit your experience for research or to share publicly on our website. The flow chart below shows
@@ -151,17 +203,17 @@
             process for submitting a story"/></p>
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="moderating-autspaces">What does being an AutSPACEs moderator involve?</h5>
+          <h5 class="heading-blue" id="moderating-autspaces">What does being an AutSPACEs moderator involve?</h5>
           <p>Thank you for your interest in becoming a moderator for AutSPACEs. This is a hugely important and valuable role. As a moderator you will have a direct impact on the experiences of people using the AutSPACEs platform. You can help ensure that AutSPACEs is a welcoming and inclusive space where autistic people can be heard.</p>
           </p>
         </div>
         <div class="faq-class">
-          <h5 class="text-info" id="moderation-benefits">What are the benefits of being an AutSPACEs moderator?</h5>
-          <p>There are many benefits to being a moderator for AutSPACEs</p>  
-          <p>1. Helping the autism community</p> 
-          <p> Moderation is absolutely essential to creating a welcoming and inclusive space for autistic people and their supporters online. Unfortunately, autistic people are more likely to encounter problems such as bullying and harassment online which may make their experience negative or prevent them from benefiting from online communities. At AutSPACEs we want to change that by creating a friendly, safe, autistic-voice-first space which diverse autistic people can trust. As a moderator, you can support other autistic people and their allies by making sure that when they come to AutSPACEs they are protected and can feel comfortable sharing their experiences.</p> 
+          <h5 class="heading-blue" id="moderation-benefits">What are the benefits of being an AutSPACEs moderator?</h5>
+          <p>There are many benefits to being a moderator for AutSPACEs</p>
+          <p>1. Helping the autism community</p>
+          <p> Moderation is absolutely essential to creating a welcoming and inclusive space for autistic people and their supporters online. Unfortunately, autistic people are more likely to encounter problems such as bullying and harassment online which may make their experience negative or prevent them from benefiting from online communities. At AutSPACEs we want to change that by creating a friendly, safe, autistic-voice-first space which diverse autistic people can trust. As a moderator, you can support other autistic people and their allies by making sure that when they come to AutSPACEs they are protected and can feel comfortable sharing their experiences.</p>
           </p>
-          <p>2. Having power</p> 
+          <p>2. Having power</p>
           </p>
           <p>As an AutSPACEs moderator, you have a direct say in what gets published. You can also influence the way the platform is run and the values that it upholds. We want you to have power and control over AutSPACEs, because it is your space and exists to support you. If you are frustrated about how autistic people are treated or spoken about online, by becoming an AutSPACEs moderator you can take direct action to change that and create a different space.
           </p>
@@ -170,7 +222,7 @@
           <p>4. Flexibility </p>
           <p>As a moderator, the amount of time you want to put in is up to you. You will not be required to moderate for any set number of hours, and you can stop at any time if you do not wish to continue. It is an entirely flexible volunteering role which you can do from the comfort of your own home. </p>
         </div>
-        <h5 class="text-info" id="moderation-risks">What are the risks of being an AutSPACEs moderator?</h5>
+        <h5 class="heading-blue" id="moderation-risks">What are the risks of being an AutSPACEs moderator?</h5>
         <p>As an AutSPACEs moderator, you will be in a position to shield others from potentially upsetting, triggering, explicit or abusive content. This means you will have to be prepared to read that content. Please therefore only apply to become an AutSPACEs moderator if you are psychologically robust and prepared to encounter such content</p>
         <p>If you find that you are distressed, concerned, or negatively affected in any way by your experiences as a moderator, please reach out to a member of the moderator team and we will support you.</p>
       </div>

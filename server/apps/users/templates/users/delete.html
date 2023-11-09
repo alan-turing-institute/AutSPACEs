@@ -23,9 +23,9 @@
         {% for field in form %}
           <div class="row">
             <div class="form-check col-lg-12">
-              <div class="custom-control custom-switch">
+              <div class="form-check form-switch">
                 {{ field }}
-                <label class="custom-control-label" for="{{ field.auto_id}}">{{ field.label }}</label>
+                <label class="form-check-label" for="{{ field.auto_id}}">{{ field.label }}</label>
               </div>
             </div>
           </div>

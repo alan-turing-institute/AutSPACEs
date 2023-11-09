@@ -16,7 +16,7 @@ class UserProfileForm(forms.Form):
     ]
     
     autistic_identification = forms.ChoiceField(choices = autistic_identifications, widget = SelectRequired(attrs={
-        "class": "custom-select",
+        "class": "form-select",
         "aria-describedby": "help_id_autistic_identification"}
         ),
                                            label="Do you identify as autistic?",
@@ -34,7 +34,7 @@ class UserProfileForm(forms.Form):
         ("unspecified", "Prefer not to say"),
     ]
     age_bracket = forms.ChoiceField(choices = age_brackets, widget = forms.Select(attrs={
-        "class": "custom-select",
+        "class": "form-select",
         "aria-describedby": "help_id_age_bracket"}
         ), 
                                    required=False,
@@ -45,7 +45,7 @@ class UserProfileForm(forms.Form):
 
     age_public = forms.BooleanField(label = "Make age public",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     age_public.group = 1
     age_public.gap = True
 
@@ -57,7 +57,7 @@ class UserProfileForm(forms.Form):
         ("unspecified", "Prefer not to say"),
     ]
     gender = forms.ChoiceField(choices = genders, widget = forms.Select(attrs={
-        "class": "custom-select",
+        "class": "form-select",
         "aria-describedby": "help_id_gender"}
         ), 
                               required=False,
@@ -76,7 +76,7 @@ class UserProfileForm(forms.Form):
 
     gender_public = forms.BooleanField(label = "Make gender public",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
 
     gender_public.group = 1
     gender_public.gap = True
@@ -92,48 +92,52 @@ class UserProfileForm(forms.Form):
 
     description_public = forms.BooleanField(label = "Make description public",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     description_public.group = 1
 
     # Add triggering here
     abuse = forms.BooleanField(label = "Abuse (physical, sexual, emotional and verbal)",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     abuse.group = 2
     violence = forms.BooleanField(label = "Violence and Assault",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     violence.group = 2
     drug = forms.BooleanField(label = "Drug and/or Alcohol misuse",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     drug.group = 2
     mentalhealth = forms.BooleanField(label = "Mental Health Issues",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     mentalhealth.group = 2
     negbody = forms.BooleanField(label = "Negative body image",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     negbody.group = 2
     other = forms.BooleanField(label = "Other",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     other.group = 2
 
     # Communications preferences
     comms_review = forms.BooleanField(label = "Moderation reviews of my experiences",
         required = False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     comms_review.group = 3
 
     # New user management
     profile_submitted = forms.BooleanField(label = "Profile submitted",
         required=False,
-        widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     profile_submitted.group = "hidden"
 
 class UserProfileDeleteForm(forms.Form):
     delete_oh_data = forms.BooleanField(label = "Delete your stories from OpenHumans",
                                        required=False,
-                                       widget=forms.CheckboxInput(attrs={"class": "custom-control-input"}))
+                                       widget=forms.CheckboxInput(attrs={
+                                           "class": "form-check-input",
+                                           "type": "checkbox",
+                                           "role": "switch"
+                                           }))

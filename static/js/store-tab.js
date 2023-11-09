@@ -4,7 +4,7 @@ $(function() {
   const pageid = window.location.pathname.replaceAll('/','_')
 
   // when a tab is clicked
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
     // save the latest tab using a cookie
     localStorage.setItem('lastTab' + pageid, $(this).attr('id'));
   });
@@ -16,6 +16,6 @@ $(function() {
     $('#' + lastTabStories).tab('show');
   } else {
     // Set the first tab to active if no active tab exists
-    $('a[data-toggle="tab"]:first').tab('show');
+    $('a[data-bs-toggle="tab"]:first').tab('show');
   }
 });

@@ -44,7 +44,7 @@
                     <td>{% firstof experience.title_text "notitle" %}</td>
                     <td>
                       {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
-                      <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+                      <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
                       {% endif %}
                     </td>
                     <td>
@@ -63,13 +63,13 @@
       <div class="card">
         <div class="card-header" id="review_moderated">
           <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_review_moderated" aria-expanded="true" aria-controls="collapse_review_moderated">
+            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapse_review_moderated" aria-expanded="true" aria-controls="collapse_review_moderated">
               Review Moderated Experiences
             </button>
           </h5>
         </div>
 
-        <div id="collapse_review_moderated" class="collapse" aria-labelledby="review_moderated" data-parent="#accordion-moderation">
+        <div id="collapse_review_moderated" class="collapse" aria-labelledby="review_moderated" data-bs-parent="#accordion-moderation">
           <div class="card-body">
 
             <table class="table table-responsive-lg table-hover table-striped" style="width:auto">
@@ -87,7 +87,7 @@
                     <td>{% firstof experience.title_text "notitle" %}</td>
                     <td>
                       {% if experience.abuse or experience.violence or experience.drug or experience.mentalhealth or experience.negbody or experience.other %}
-                        <span class="badge badge-warning float-right" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
+                        <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:2%">Includes triggering contents</span>
                       {% endif %}
                     </td>
                     <td>{{ experience.moderation_status }}</td>
