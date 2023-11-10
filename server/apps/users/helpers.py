@@ -106,7 +106,7 @@ def update_session_success_or_confirm(source,
 
         if research_response is True:
             if autistic_identification == "":
-                sc_dict["s_or_c_whn_2"] = 'Thank you for choosing to share your experience with researchers. As your profile does not state whether you are autistic or not, then this experience will not be usable for research. You can update your profile using the "Visit My Profile" button below.'
+                sc_dict["s_or_c_whn_2"] = 'Thank you for choosing to share your experience with researchers. As your profile does not state whether you are autistic or not, this experience will not be usable for research. You can update your profile using the "Visit My Profile" button below.'
             else:
                 sc_dict["s_or_c_whn_2"] = "As you chose to share your experience with researchers, your experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."
         elif research_response is False:
