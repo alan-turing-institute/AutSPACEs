@@ -183,9 +183,11 @@ def share_experience(request, uuid=False):
                     uuid=uuid,
                     ohmember=request.user.openhumansmember,
                 )
-                print("HERE AFTER SHARING")
                 profile = get_user_profile(request.user)
-                autistic_identification = profile.autistic_identification
+                if profile:
+                    autistic_identification = profile.autistic_identification
+                else:
+                    autistic_identification = "" # as cannot see the profile
                 # Check the viewable and research options
                 conf_story, pr, rr = get_story_privacy_and_research_for_session(data=form.cleaned_data, story_change_type=story_change_type)
                 success_confirm_dict = update_session_success_or_confirm(source="experience", 
