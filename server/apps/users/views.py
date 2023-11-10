@@ -19,6 +19,7 @@ from .helpers import (
     update_session_success_or_confirm,
 )
 
+
 logger = logging.getLogger(__name__)
 
 def tmp_confirm_profile_save(request):
@@ -41,7 +42,6 @@ def user_profile(request, first_visit=False):
 
             if form.is_valid():
                 # Update the status to indicate the user has submitted at least once
-                print("Profile already exists in some form")
                 form.cleaned_data["profile_submitted"] = True
                 UserProfile.objects.update_or_create(user=request.user, defaults=form.cleaned_data)
 
@@ -54,7 +54,6 @@ def user_profile(request, first_visit=False):
 
             return redirect("main:flex_success_confirm")
         else:
-            print("Just visiting this page")
             profile = get_user_profile(request.user)
             if profile:
                 data = model_to_dict(profile)

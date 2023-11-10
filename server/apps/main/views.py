@@ -61,6 +61,7 @@ from .helpers import (
 from server.apps.users.helpers import (
     user_profile_exists,
     get_user_profile,
+    update_session_success_or_confirm,
 )
 
 logger = logging.getLogger(__name__)
@@ -205,16 +206,12 @@ def share_experience(request, uuid=False):
 
                 # Check the viewable and research options
                 conf_story, pr, rr = get_story_privacy_and_research_for_session(data=form.cleaned_data, story_change_type=story_change_type)
-                if "confirm_story" in request.session:
-                    del request.session["confirm_story"]
-                request.session["confirm_story"] = conf_story
-                # update the session info for public sharing and research
-                if "confirm_story_privacy" in request.session:
-                    del request.session["confirm_story_privacy"]
-                request.session['confirm_story_privacy'] = pr
-                if "confirm_story_research" in request.session:
-                    del request.session["confirm_story_research"]
-                request.session["confirm_story_research"] = rr
+                success_confirm_dict = update_session_success_or_confirm(source="experience", confirm_story_response=conf_story, public_response=pr, research_response=rr)
+
+                for key in success_confirm_dict.keys():
+                    if key in request.session:
+                        del request.session[key]
+                    request.session[key] = success_confirm_dict[key]
 
                 # for Public Experience we need to check if it's viewable and update accordingly.
                 update_public_experience_db(
@@ -225,7 +222,7 @@ def share_experience(request, uuid=False):
                 )
 
                 # redirect to a new URL:
-                return redirect("main:new_confirm_page")
+                return redirect("main:flex_success_confirm")
             # If form is invalid raise errors back to user
             else:
                 for field in form:

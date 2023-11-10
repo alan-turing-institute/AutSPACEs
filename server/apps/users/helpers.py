@@ -85,18 +85,27 @@ def delete_user(user, delete_oh_data):
     user.delete()
 
 
-def update_session_success_or_confirm(source):
+def update_session_success_or_confirm(source, confirm_story_response=None, public_response=None, research_response=None):
     """
-    Updates the session details for users editing their profile.
+    Updates the session details for users editing their profile or editing/saving an experience.
     """
     sc_dict = {}
+    if source == "experience":
+        sc_dict["success_or_confirm"] = source
+        sc_dict["s_or_c_title"] = "Experience Saved"
+        sc_dict["s_or_c_header"] = "Success!"
+        sc_dict["s_or_c_subheader"] = confirm_story_response
+        sc_dict["s_or_c_whn_1"] = public_response
+        sc_dict["s_or_c_whn_2"] = research_response
+        sc_dict["s_or_c_whn_3"] = 'You can change your privacy and research settings for this story by editing it via "My Stories" and changing the "Sharing Options".'
+
     if source == "profile":
         sc_dict["success_or_confirm"] = source
-        sc_dict["s_or_c_title"] = "Profile Saved"
+        sc_dict["s_or_c_title"] = "Profile"
         sc_dict["s_or_c_header"] = "Profile changes saved."
         sc_dict["s_or_c_subheader"] = "Thank you for updating your profile."
         sc_dict["s_or_c_whn_1"] = "If you decide to allow researchers to use your stories, the more information you share, the better and more representative their research will be"
         sc_dict["s_or_c_whn_2"] = "You can update your profile as often as you need using the same form you have just edited - linked below"
         sc_dict["s_or_c_whn_3"] = "Thank you for updating your profile."
-
+    
     return sc_dict
