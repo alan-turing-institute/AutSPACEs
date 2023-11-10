@@ -22,16 +22,6 @@ from .helpers import (
 
 logger = logging.getLogger(__name__)
 
-def tmp_confirm_profile_save(request):
-    """
-    Flexible confirmation page
-    """
-    if request.user.is_authenticated:
-        return render(request, "users/tmp_confirm_profile_save.html")
-    else:
-        return redirect("index")
-
-
 def user_profile(request, first_visit=False):
     """
     User profile page.
@@ -52,7 +42,7 @@ def user_profile(request, first_visit=False):
                         del request.session[key]
                     request.session[key] = success_confirm_dict[key]
 
-            return redirect("main:flex_success_confirm")
+            return redirect("main:success_confirm")
         else:
             profile = get_user_profile(request.user)
             if profile:

@@ -66,26 +66,6 @@ from server.apps.users.helpers import (
 
 logger = logging.getLogger(__name__)
 
-
-def confirmation_page(request):
-    """
-    Confirmation Page For App.
-    """
-    if request.user.is_authenticated:
-        return render(request, "main/confirmation_page.html")
-    else:
-        return redirect("index")
-    
-def new_confirm_page(request):
-    """
-    Flexible confirmation page
-    """
-    if request.user.is_authenticated:
-        return render(request, "main/new_confirmation_page.html")
-    else:
-        return redirect("index")
-
-
 def about_us(request):
     return render(request, "main/about_us.html")
 
@@ -115,12 +95,12 @@ def registration(request):
     print(registration_status)
     return render(request, "main/registration.html", {"page_status": "registration"})
 
-def flex_success_confirm(request):
+def success_confirm(request):
     """
     Flexible confirmation page
     """
     if request.user.is_authenticated:
-        return render(request, "main/flex_success_confirm.html")
+        return render(request, "main/success_confirm.html")
     else:
         return redirect("index")
 
@@ -222,7 +202,7 @@ def share_experience(request, uuid=False):
                 )
 
                 # redirect to a new URL:
-                return redirect("main:flex_success_confirm")
+                return redirect("main:success_confirm")
             # If form is invalid raise errors back to user
             else:
                 for field in form:
