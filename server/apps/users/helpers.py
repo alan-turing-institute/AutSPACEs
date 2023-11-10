@@ -101,7 +101,7 @@ def update_session_success_or_confirm(source, confirm_story_response=None, publi
 
     if source == "profile":
         sc_dict["success_or_confirm"] = source
-        sc_dict["s_or_c_title"] = "Profile"
+        sc_dict["s_or_c_title"] = "Profile Saved"
         sc_dict["s_or_c_header"] = "Profile changes saved."
         sc_dict["s_or_c_subheader"] = "Thank you for updating your profile."
         sc_dict["s_or_c_whn_1"] = "If you decide to allow researchers to use your stories, the more information you share, the better and more representative their research will be"
