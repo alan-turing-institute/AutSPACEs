@@ -46,16 +46,19 @@
         </p>
   
         <div class="btn-class-confirmationpage">
-          {% if request.session.success_or_confirm == "profile" %}
+
+            <a href="{% url 'main:share_exp' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
+              {% if request.session.success_or_confirm == "experience" %}
+              Enter Another Experience
+              {% else %}
+              Enter An Experience
+              {% endif %}
+            </a>
+
             <a href="{% url 'users:profile' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
               Visit My Profile
             </a>
-          {% else %}
-          <a href="{% url 'main:share_exp' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
-            Enter Another Experience
-          </a>
-          {% endif %}
-  
+
           <a href="{% url 'main:my_stories' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
             Go To My Stories
           </a>
