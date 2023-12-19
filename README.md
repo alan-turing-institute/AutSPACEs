@@ -40,7 +40,7 @@
 | server/apps/main/tests/test\_views.py                                                  |      332 |        3 |     99% |   692-694 |
 | server/apps/main/tests/tests\_2023.py                                                  |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                               |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                              |      255 |        7 |     97% |93, 97, 171, 306-312, 460, 521 |
+| server/apps/main/views.py                                                              |      257 |        8 |     97% |92, 95, 99, 173, 308-314, 462, 523 |
 | server/apps/users/\_\_init\_\_.py                                                      |        0 |        0 |    100% |           |
 | server/apps/users/admin.py                                                             |        3 |        0 |    100% |           |
 | server/apps/users/apps.py                                                              |        3 |        0 |    100% |           |
@@ -66,7 +66,7 @@
 | server/settings/environments/development.py                                            |       29 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2321** |   **28** | **99%** |           |
+|                                                                              **TOTAL** | **2323** |   **29** | **99%** |           |
 
 
 ## Setup coverage badge
