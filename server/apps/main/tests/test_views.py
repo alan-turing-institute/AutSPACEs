@@ -170,9 +170,9 @@ class Views(TestCase):
         response = c.get("/main/help/")
         assert response.status_code == 200
 
-    def test_code_of_conduct(self):
+    def test_content_moderation_guidelines(self):
         c = Client()
-        response = c.get("/main/code_of_conduct/")
+        response = c.get("/main/content_moderation_guidelines/")
         assert response.status_code == 200
 
     def test_registration(self):

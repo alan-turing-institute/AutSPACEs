@@ -1,0 +1,250 @@
+{% extends 'main/application.html' %}
+{% load static %}
+{% block title %}AutSPACEs - Participant Information Sheet {% endblock %}
+
+{% block body_attributes%}  {% endblock %}
+
+{% block content %}
+
+<script src="{% static 'js/menu-alignment.js' %}"></script>
+
+<!--Contents-->
+<section id="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div id="menu-container" class="col-lg-3">
+        <div id="content-bar-filler" class="col-lg-3">
+        <!-- Space filler to avoid the main text shifting leftwards -->
+        </div>
+        <div id="content-bar" class="list-group col-lg-3 content-list">
+            <div class="list-group-item content-title fw-bold">Contents</div>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#purpose-of-the-study">Purpose of the study<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#invited">Who is invited to contribute to the project?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#take-part">Do I have to take part?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#what-will-happen">What will happen if I choose to take part in AutSPACEs?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#confidentiality">Will my taking part in this project be kept confidential?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#benefits">What are the possible benefits of taking part?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#disadvantages">What are the possible disadvantages and/or risks in taking part?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#organisers">Who is organising and funding the research?<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#ethics-review">Ethical review of the study<span class="badge badge-pill"></span></a>
+            <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
+              href="#contact">Contact for further information<span class="badge badge-pill"></span></a>
+        </div>
+      </div>
+
+      <div id="text-container" class="topic-content col-lg-9" 
+           style="padding: 2% 8%">
+           <h2 class="heading-blue">AutSPACEs Participant Information Sheet</h2>
+           <p><b>This page gives a brief overview of the project, including where to find more detailed information, as well 
+            as an outline of what to expect when contributing to AutSPACEs.</b></p>
+
+        <div class="code-of-conduct">
+          <h5 class="heading-blue" id="purpose-of-the-study">Purpose of the study</h5>
+
+            <p>
+                Many autistic people have sensory processing sensitivities and differences when compared to non-autistic people. 
+                These differences can make it difficult to navigate environments that were not built with autistic people in mind. 
+                For example, it can be stressful to take a busy train during rush hour, or to attend an appointment in a brightly lit hospital waiting room. 
+            </p>
+            <p>
+                Every person is different. We want to gather many autistic people’s stories together. 
+                
+                Our goal is to 
+                <ol>
+                <li>share them with people who have similar experiences,</li>
+                <li>educate neurotypical people on how they can better support</li>
+                autistic people, and 
+                <li>advise people on how they can design and adapt spaces to improve autistic people’s lives.</li>
+                </ol>
+            </p>
+            <p>
+                <b>The purpose of this study is to investigate sensory differences experienced by autistic people by collecting sensory 
+                processing experiences from autistic people in an ethical, participatory way using a citizen science approach.</b>
+            </p>
+            <p>
+                “Citizen-science” is when non-professional scientists directly contribute to scientific research and are involved in the research process. 
+                This could be, for example, by performing tasks, analysing data, or contributing data. 
+            </p>
+            <p>
+            An online “platform” is a way of collecting and sharing data from people. 
+            </p>
+        </div>
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="invited">Who is invited to contribute to the project?</h5>
+
+            <p>
+                The best research about autism is done in close collaboration with autistic people. 
+                Participatory citizen science is a way of doing research that involves many people contributing to the project. 
+                Citizen scientists do not have to be paid academic researchers (in fact most are not) and participatory means 
+                that we will include a large and broad range of people, including non-professional scientists in the direction and design of the work.
+            </p>
+            <p> 
+                We particularly invite autistic people and the carers and relatives of autistic people to contribute to the project. 
+                The eligibility criteria to be part of this study are that participants are over the age of 18 and have capacity to give informed consent.  
+            </p>
+        </div>
+
+        <div class="code-of-conduct">
+          <h5 class="heading-blue" id="take-part">Do I have to take part</h5>
+            <p>
+                Taking part is entirely voluntary. You can withdraw at any time without having to give a reason.  
+            </p> 
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="what-will-happen">What will happen if I choose to take part in AutSPACEs?</h5>
+            <p>
+                If you join AutSPACEs you will be able to contribute your own stories around sensory processing experiences in text form, 
+                alongside recommendations of what would have made that experience better. 
+                Additionally, we ask you to fill in a small profile with demographic information (age, gender, and whether you identify as autistic). 
+            </p>
+            <p>
+                Entering any of these data is optional and participation more broadly is voluntary. 
+                For each story or experience you share you can choose whether you want to allow researchers to use this story for their 
+                research and/or if you want to make it publicly accessible for others to read as well. 
+            </p>
+            <p>
+                If you choose to share your story for research, your story will be part of a research dataset alongside 
+                other people’s experiences, and our research team at The Alan Turing Institute will be able to use that experience 
+                to learn about shared sensory processing challenges.
+            </p>
+            <p>
+                If you choose to make your experience public, your experience will first be checked over by a moderator 
+                to make sure it follows our content moderation guidelines. 
+                If you opt-in to receive notifications, we will let you know when a moderator has decided about your experience. 
+                If your story follows our content moderation guidelines, it will be published anonymously on this website. 
+                Anyone will be able to view your story, but your name will be kept private. 
+                You can make this choice by checking the box ‘share online with everyone’.
+            </p>
+            <p>
+                Both sharing for research and making stories are optional, you can also choose neither, 
+                in which case you can personally see your stories, but they won’t be publicly listed or used for research. 
+            </p>
+            <p>
+                For each of your stories you can always change your mind and edit/rewrite it, 
+                delete it or change your sharing settings at any time.
+            </p>
+            <p>
+                All your data and information will be handled according to 
+                The Alan Turing Institute Information Policy that you can read here:
+                <a href="https://www.turing.ac.uk/data-protection-policy">https://www.turing.ac.uk/data-protection-policy </a>
+            </p>
+    
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="confidentiality">Will my taking part in this project be kept confidential?</h5>
+
+            <p>
+                Yes. Your email address and username are only stored on the Open Humans system, the AutSPACEs team will not have access to it. 
+                Instead, the AutSPACEs project only receives a randomised identifier that allows us to read & write your experiences into 
+                Open Humans, without receiving personal identifiable information.
+            </p>
+            <p>
+                If you decide to make a story publicly accessible, a moderator from our research team will review it in accordance to our 
+                <a href="{% url 'main:content_moderation_guidelines' %}">content moderation guidelines</a>, 
+                to amongst other things avoid that it contains personal identifiable information.
+            </p>
+            <p>
+                For stories that you select to be usable for research, we will not use direct quotations from it, 
+                unless the stories are also publicly shared. For non-public stories that are consented for research use, 
+                we will use the anonymous contact feature of AutSPACEs to request your individual consent with the possibility 
+                to redact personal information before using any quotes. 
+            </p>
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="benefits">What are the possible benefits of taking part?</h5>
+            <p>
+                By taking part in AutSPACEs, you will be able to share your sensory processing experiences both for research and publicly. 
+                Writing up these stories can be a way to process past experiences to personally learn from them.
+            </p>
+            <p>
+                Regardless of whether you are taking part in AutSPACEs by contributing stories, 
+                you will also be able to read publicly shared stories, which has the potential to be beneficial by 
+                learning from other contributors’ adaptive techniques. 
+            </p>
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="disadvantages">What are the possible disadvantages and/or risks in taking part?</h5>
+            <p>
+                Our goal is to learn from autistic people’s experiences of challenges they have navigating environments that were not 
+                designed by or for autistic people. You may find it stressful or upsetting to remember and share these difficult experiences 
+                although this is not a necessary required. <b>If you do not wish to participate in any parts of AutSPACEs, you do not have to. </b>
+            </p>
+            <p>
+                We have a <a href="https://github.com/alan-turing-institute/AutSPACEs/blob/main/code-of-conduct.md">code of conduct</a> that applies to all online and in person interactions during the project. 
+                We are committed to ensuring that every member of our community is treated with respect. 
+            </p>
+
+            <p>
+                Posts that are not in line with our content moderation guidelines will not be made publicly available. 
+                Our moderators will always exclude stories that contain racial slurs and any stories that discriminate against or belittle individual people.
+            </p>
+            <p>
+                We do allow publication of some difficult content as we want members of our community to share all their experiences including 
+                the difficult ones. By default content that is moderated as “Amber” are hidden unless you opt-in to seeing them. 
+                You can choose to see stories about:
+            <ul>
+                <li>Abuse (physical, sexual, emotional and verbal)</li>
+                <li>Violence and Assault</li>
+                <li>Drug and/or Alcohol use</li>
+                <li>Mental Health Issues</li>
+                <li>Negative body image</li>
+            </ul>
+            </p>
+            <p>
+                The content warning labels for each publicly available story are added by our content moderators. 
+                Details of that process are available in our <a href="{% url 'main:content_moderation_guidelines' %}">moderator guidelines</a>.
+            </p>
+
+
+
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="organising">Who is organising and funding the research?</h5>
+            <p>
+                The study is funded by Autistica and The Alan Turing Institute. The lead investigators are Dr. Kirstie Whitaker and Dr. Bastian Greshake Tzovaras. 
+            </p>
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="ethics-review">Ethical review of the study</h5>
+            <p>
+                The project has been reviewed by The Alan Turing Institute’s ethics panel, with reference number: [ADD REFERENCE NUMBER WHEN APPROVED]. 
+                You can <a href="https://github.com/alan-turing-institute/AutisticaCitizenScience/tree/master/project-management/ethics-applications">find our ethics documentation on GitHub</a>.
+            </p>
+        </div>
+
+        <div class="code-of-conduct">
+            <h5 class="heading-blue" id="contact">Contact for further information</h5>
+            <p>
+                You can contact Georgia Aitkenhead by email at gaitkenhead@turing.ac.uk for any further information.
+            </p>
+            <p>
+                If you feel that your query has not been properly addressed you may contact the project lead investigators: 
+                Dr. Kirstie Whitaker at kwhitaker@turing.ac.uk  or Dr. Bastian Greshake Tzovaras at bgreshaketzovaras@turing.ac.uk.
+            </p>
+            <p>
+                If you have any concerns about how your data and information has been handled you can also get in contact with our Data Protection team at dataprotection@turing.ac.uk.  
+            </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{%endblock%}

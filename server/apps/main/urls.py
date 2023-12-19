@@ -29,7 +29,8 @@ urlpatterns = [
     path("about_us/", views.about_us, name="about_us"),
     path("what_autism_is/", views.what_autism_is, name="what_autism_is"),
     path("help/", views.help, name="help"),
-    path("code_of_conduct/", views.code_of_conduct, name="code_of_conduct"),
+    path("content_moderation_guidelines/", views.content_moderation_guidelines, name="content_moderation_guidelines"),
+    path("participant_information/", views.participant_information, name="participant_information"),
     path("registration/", views.registration, name="registration"),
     path("single_story/<uuid>/",views.single_story,name="single_story")
 ]

@@ -85,9 +85,11 @@ def help(request):
     return render(request, "main/help.html")
 
 
-def code_of_conduct(request):
-    return render(request, "main/code_of_conduct.html")
+def content_moderation_guidelines(request):
+    return render(request, "main/content_moderation_guidelines.html")
 
+def participant_information(request):
+    return render(request, "main/participant_information.html")
 
 def edit_experience(request):
     return render(request, "main/share_experiences.html")

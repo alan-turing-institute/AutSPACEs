@@ -22,9 +22,9 @@
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
              href="#about-autspaces">About AutSPACEs<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action  d-flex justify-content-between align-items-center"
-             href="#platform-usage">Platform Usage<span class="badge badge-pill"></span></a>
+             href="#platform-usage">How to use the Platform<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-             href="#explore-autspaces">Explore AutSPACEs<span class="badge badge-pill"></span></a>
+             href="#explore-autspaces">Exploring AutSPACEs<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
              href="#data-usage">Data Usage<span class="badge badge-pill"></span></a>
           <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
@@ -41,7 +41,7 @@
       <div id="text-container" class="about-content col-lg-9" style="padding: 2% 8%">
         <div class="about-content-section">
           <h5 class="heading-blue" id="about-autspaces"><em></em>About AutSPACEs</h5>
-          <p>The “Aut” in AutSPACEs refers to Autistic people, and the “SPACEs” is an acronym which refers to exploring
+          <p>The <i>“Aut”</i> in AutSPACEs refers to Autistic people, and the <i>“SPACEs”</i> is an acronym which refers to exploring
             Sensory Processing for Accessible Community Environments. This captures the aim of AutSPACEs which is to make
             spaces better for autistic people by learning about sensory processing and its impact.</p>
 
@@ -68,7 +68,12 @@
           </ul>
         </div>
         <div class="about-content-section">
-          <h5 class="heading-blue" id="platform-usage"><em></em>Platform Usage</h5>
+          <h5 class="heading-blue" id="platform-usage"><em></em>How to use the platform</h5>
+          <p>
+            This section gives a brief step-by-step overview of how AutSPACEs works. 
+            You can find more information in the <a href="{% url 'main:participant_information' %}">participant information</a> and 
+            <a href="{% url 'main:help' %}">help</a> sections.
+          </p>
           <h6 class="platform-list-title">1. Register with Open Humans</h6>
           <p>When you register you create a private and anonymous account with Open Humans. We work with Open Humans to
             make sure you have control over your data and that it is safe.</p>
@@ -77,8 +82,6 @@
             things that use that data.
 
             You can find out more about <a href="https://www.openhumans.org/about/" target="_blank" rel="noopener noreferrer">Open Humans</a> on their website.</p>
-
-          <p>We will never sell your data, and we will never share it without your consent.</p>
           <h6 class="platform-list-title">2. Share your story</h6>
           <p>Enter a description of how your senses affect you. For example: “I do not go on trains because they are too
             loud”.</p>
@@ -86,14 +89,14 @@
           <p>You can choose to share your story publicly, so people using AutSPACEs can learn from it, or privately, for
             research. You can also share both publicly and with researchers if you prefer.</p>
           <h6 class="platform-list-title">4. Story is checked</h6>
-          <p>If you want to make your story public, it will first be checked to make sure it follows our code of conduct.
+          <p>If you want to make your story public, it will first be checked to make sure it follows our <a href="{% url 'main:content_moderation_guidelines' %}">content moderation guidelines</a>.
             This is to keep AutSPACEs an autism-first, inclusive and welcoming space for all.</p>
           <h6 class="platform-list-title">5. Change your stories any time</h6>
           <p>You can view your own stories and edit them, or change who they are shared with any time, even once they are
             submitted.</p>
         </div>
         <div class="about-content-section">
-          <h5 class="heading-blue" id="explore-autspaces"><em></em>Explore AutSPACEs</h5>
+          <h5 class="heading-blue" id="explore-autspaces"><em></em>Exploring AutSPACEs</h5>
           <p>You do not need an account to explore AutSPACEs and read other people’s stories.</p>
 
           <p>If you are autistic, you may find other people who have similar sense experiences to you. You can discover tips
@@ -104,12 +107,12 @@
         </div>
         <div class="about-content-section">
           <h5 class="heading-blue" id="data-usage"><em></em>Data Usage</h5>
-          <p>We will <b>never</b> sell your data or share it with anyone without your consent.</p>
+          <p>We will <b>never</b> sell your data.</p>
 
           <p>We believe that your data should belong to you, so it’s your choice what to do with it.</p>
 
           <p>If you choose to share your story with researchers, your story will be part of a dataset with other people’s
-            experiences, and researchers can apply to look at the dataset for the purposes of making the world better for
+            experiences, and researchers outside the AutSPACEs team will have to apply to look at the dataset for the purposes of making the world better for
             autistic people and their families. We will make sure that autistic people are involved in making decisions
             about
             who can look at the data. We have partnered with Open Humans to make sure your data is kept safe and secure. You
@@ -117,25 +120,25 @@
 
           <p>If you choose to make your experience public, your experience will first be checked over by a moderator to make
             sure
-            it follows our [code of conduct](link to code of conduct). We will let you know when a moderator has made a
-            decision about your experience. If they decide it does follow our code of conduct, it will be published
+            it follows our <a href="{% url 'main:content_moderation_guidelines' %}">content moderation guidelines</a>. We will let you know when a moderator has made a
+            decision about your experience. If they decide it does follow our guidelines, it will be published
             anonymously
             on this website. Anyone will be able to view your story, but your name will be kept private. You can make this
             choice by checking the box ‘share online with everyone’.</p>
 
-          <p>If you choose not to share your experience you can still view it by going to My Stories.</p>
+          <p>If you choose not to share your experience you can still view it by going to <a href="{% url 'main:my_stories' %}">My Stories.</a></p>
 
           <p>You can also choose to share with your story with researchers and make make your story public. You can do this
             by
             selecting ‘share with researchers’ and ‘share online with everyone’.</p>
 
-          <p>You can also change your mind at any time by going to My-Experiences and selecting which options you would
+          <p>You can also change your mind at any time by going to <a href="{% url 'main:my_stories' %}">My Stories.</a> and selecting which options you would
             prefer.</p>
         </div>
         <div class="use-terms">
           <h5 class="heading-blue" id="use-terms"><em></em>Terms of Use</h5>
           <p> The AutSPACEs software itself is released under an open MIT license. This means that the code is freely available to reuse and modify for any purpose, as long as they credit the AutSPACEs community. Importantly, this does not extend to the data provided by AutSPACEs participants.</p>   
-          <p> The data we collect for researchers is only available by application, and researchers must commit to following our values to receive approval. We are currently working on a protocol to implement this.</p>
+          <p> The data we collect for researchers will only be available by application, and researchers must commit to following our values to receive approval. We are currently working on a protocol to implement this.</p>
         </div>
           <h5 class="heading-blue" id="our-values"><em></em>Our Values</h5>
           <p><b>"Nothing About Us Without Us"</b></p>
