@@ -110,7 +110,7 @@ $(function() {
     for (var index = 0; index < reasons.length; index++) {
       let reasonrow = $($("#template-reasons").prop('content')).find('.reason-row').clone()
       reasonrow.find(".reason").text(reasons[index].reason)
-      reasonrow.find(".reason").attr("href", "/main/code_of_conduct/#" + reasons[index].href)
+      reasonrow.find(".reason").attr("href", "/main/content_moderation_guidelines/#" + reasons[index].href)
       reasonrow.find(".text").text(reasons[index].text)
       reasonrow.find(".remove").on("click", {index: index}, function(event) {
         event.preventDefault()
