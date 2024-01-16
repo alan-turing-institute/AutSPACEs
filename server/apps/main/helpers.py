@@ -790,20 +790,20 @@ def get_carousel_stories(filename="carousel.json"):
     return stories
 
 
-def get_story_privacy(data):
-    story_viewable = data.get("viewable", False)
-    if story_viewable:
-        return "As you chose to share your story with the world, an autistic moderator will check that it follows our code of conduct, and if it does, you will receive a confirmation and your experience will then be published on this website."
-    else:
-        return "Your story is private and only viewable to you."
+# def get_story_privacy(data):
+#     story_viewable = data.get("viewable", False)
+#     if story_viewable:
+#         return "As you chose to share your story with the world, an autistic moderator will check that it follows our code of conduct, and if it does, you will receive a confirmation and your experience will then be published on this website."
+#     else:
+#         return "Your story is private and only viewable to you."
     
 
-def get_story_research_status(data):
-    story_research = data.get("research", False)
-    if story_research:
-        return "As you chose to share your story with researchers, it will be saved into a database, and researchers who follow our values will be able to use it for their research."
-    else:
-        return "Your story will not be shared by us with researchers"
+# def get_story_research_status(data):
+#     story_research = data.get("research", False)
+#     if story_research:
+#         return "As you chose to share your story with researchers, it will be saved into a database, and researchers who follow our values will be able to use it for their research."
+#     else:
+#         return "Your story will not be shared by us with researchers"
     
 
 def get_story_privacy_and_research_for_session(data, story_change_type):
@@ -829,3 +829,32 @@ def get_story_privacy_and_research_for_session(data, story_change_type):
         research_response = False
 
     return confirm_story_response, public_response, research_response
+
+def pick_research_message(first_hand, autistic_identification):
+    """Return the appropriate message for users who have selected to share their stories with researchers"""
+    
+    research_messages = {}
+    research_messages["yes_someone_else"] = "Thank you for choosing to share the experience of an autistic individual with researchers. As you chose to share this experience with researchers, the experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."
+    research_messages["no_need_info"] = "You have marked your story to be used for research, but so far you have not filled out your profile yet. For your story to be more useful, please consider entering whether you identify as autistic, any information you share will help researchers. You can update your profile using the “Visit My Profile” button below."
+    research_messages["yes_own"] = "As you chose to share your experience with researchers, your experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."
+    research_messages["no_prefer_not_to_say"] = "Thank you for choosing to share your experience with researchers. As you have chosen not to share if you identify as autistic, this experience will not be usable for research. If you wish to, you can update your profile using the “Visit My Profile” button below."
+    research_messages["no_own"] = "Thank you for choosing to share your experience with researchers. As you have indicated you do not identify as autistic, this experience will not be usable for research. If you wish to, you can update your profile using the “Visit My Profile” button below."
+    research_messages["unknown"] = "Thank you for sharing your story"
+
+    if first_hand == "False":
+        dict_key = "yes_someone_else"
+    else:
+        if autistic_identification == "blank":
+            dict_key = "no_need_info"
+        elif autistic_identification == "yes":
+            dict_key = "yes_own"
+        elif autistic_identification == "no":
+            dict_key = "no_own"
+        elif autistic_identification == "unspecified":
+            dict_key = "no_prefer_not_to_say"
+        else:
+            dict_key = "unknown"
+    
+    
+    return research_messages[dict_key]
+

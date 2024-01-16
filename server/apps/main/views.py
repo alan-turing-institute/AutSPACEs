@@ -21,7 +21,7 @@ from .forms import ShareExperienceForm, ModerateExperienceForm
 
 from django.contrib import messages
 
-from .helpers import (
+from server.apps.main.helpers import (
     is_moderator,
     public_experience_model_to_form,
     extract_experience_details,
@@ -53,16 +53,14 @@ from .helpers import (
     get_carousel_stories,
     number_by_review_status,
     most_recent_exp_history,
-    get_story_privacy,
-    get_story_research_status,
     get_story_privacy_and_research_for_session,
+    pick_research_message,
 )
 
 from server.apps.users.helpers import (
     user_profile_exists,
     get_user_profile,
-    update_session_success_or_confirm,
-)
+    update_session_success_or_confirm,)
 
 logger = logging.getLogger(__name__)
 
@@ -187,14 +185,18 @@ def share_experience(request, uuid=False):
                 if profile:
                     autistic_identification = profile.autistic_identification
                 else:
-                    autistic_identification = "" # as cannot see the profile
+                    autistic_identification = "blank" # "" as cannot see the profile
+                first_hand = form.cleaned_data['first_hand_authorship']
+
+                research_message = pick_research_message(first_hand, autistic_identification)
+
                 # Check the viewable and research options
                 conf_story, pr, rr = get_story_privacy_and_research_for_session(data=form.cleaned_data, story_change_type=story_change_type)
                 success_confirm_dict = update_session_success_or_confirm(source="experience", 
                                                                          confirm_story_response=conf_story, 
                                                                          public_response=pr, 
                                                                          research_response=rr,
-                                                                         autistic_identification=autistic_identification,)
+                                                                         research_message=research_message,)
 
                 for key in success_confirm_dict.keys():
                     if key in request.session:

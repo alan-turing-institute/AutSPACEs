@@ -84,12 +84,11 @@ def delete_user(user, delete_oh_data):
     # Delete the actual user
     user.delete()
 
-
 def update_session_success_or_confirm(source,
                                       confirm_story_response=None,
                                       public_response=None, 
                                       research_response=None,
-                                      autistic_identification=None,):
+                                      research_message=None,):
     """
     Updates the session details for users editing their profile or editing/saving an experience.
     """
@@ -104,12 +103,10 @@ def update_session_success_or_confirm(source,
         elif public_response is False:
             sc_dict["s_or_c_whn_1"] = "Your experience will not be publicly accessible on AutSPACEs"
 
+        
         if research_response is True:
-            if autistic_identification == "":
-                sc_dict["s_or_c_whn_2"] = 'Thank you for choosing to share your experience with researchers. As your profile does not state whether you are autistic or not, this experience will not be usable for research. You can update your profile using the "Visit My Profile" button below.'
-            else:
-                sc_dict["s_or_c_whn_2"] = "As you chose to share your experience with researchers, your experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."
-        elif research_response is False:
+            sc_dict["s_or_c_whn_2"] = research_message
+        else:
             sc_dict["s_or_c_whn_2"] = "Your experience will not be part of the AutSPACEs research data set."
 
         sc_dict["s_or_c_whn_3"] = 'You can change your privacy and research settings for this story by editing it via "My Stories" and changing the "Sharing Options".'
