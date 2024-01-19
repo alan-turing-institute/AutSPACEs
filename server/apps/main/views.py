@@ -21,7 +21,7 @@ from .forms import ShareExperienceForm, ModerateExperienceForm
 
 from django.contrib import messages
 
-from .helpers import (
+from server.apps.main.helpers import (
     is_moderator,
     public_experience_model_to_form,
     extract_experience_details,
@@ -53,25 +53,16 @@ from .helpers import (
     get_carousel_stories,
     number_by_review_status,
     most_recent_exp_history,
+    get_story_privacy_and_research_for_session,
+    pick_research_message,
 )
 
 from server.apps.users.helpers import (
     user_profile_exists,
     get_user_profile,
-)
+    update_session_success_or_confirm,)
 
 logger = logging.getLogger(__name__)
-
-
-def confirmation_page(request):
-    """
-    Confirmation Page For App.
-    """
-    if request.user.is_authenticated:
-        return render(request, "main/confirmation_page.html")
-    else:
-        return redirect("index")
-
 
 def about_us(request):
     return render(request, "main/about_us.html")
@@ -103,6 +94,15 @@ def registration(request):
     registration_status = True
     print(registration_status)
     return render(request, "main/registration.html", {"page_status": "registration"})
+
+def success_confirm(request):
+    """
+    Flexible confirmation page
+    """
+    if request.user.is_authenticated:
+        return render(request, "main/success_confirm.html")
+    else:
+        return redirect("index")
 
 
 def logout_user(request):
@@ -173,14 +173,37 @@ def share_experience(request, uuid=False):
                     request.user.openhumansmember.delete_single_file(
                         file_basename=f"{uuid}.json"
                     )
+                    story_change_type = "edited"
                 else:
                     uuid = make_uuid()
+                    story_change_type = "new"
 
                 upload(
                     data=form.cleaned_data,
                     uuid=uuid,
                     ohmember=request.user.openhumansmember,
                 )
+                profile = get_user_profile(request.user)
+                if profile:
+                    autistic_identification = profile.autistic_identification
+                else:
+                    autistic_identification = ""
+                first_hand = form.cleaned_data['first_hand_authorship']
+
+                research_message = pick_research_message(first_hand, autistic_identification)
+
+                # Check the viewable and research options
+                conf_story, pr, rr = get_story_privacy_and_research_for_session(data=form.cleaned_data, story_change_type=story_change_type)
+                success_confirm_dict = update_session_success_or_confirm(source="experience", 
+                                                                         confirm_story_response=conf_story, 
+                                                                         public_response=pr, 
+                                                                         research_response=rr,
+                                                                         research_message=research_message,)
+
+                for key in success_confirm_dict.keys():
+                    if key in request.session:
+                        del request.session[key]
+                    request.session[key] = success_confirm_dict[key]
 
                 # for Public Experience we need to check if it's viewable and update accordingly.
                 update_public_experience_db(
@@ -191,7 +214,7 @@ def share_experience(request, uuid=False):
                 )
 
                 # redirect to a new URL:
-                return redirect("main:confirm_page")
+                return redirect("main:success_confirm")
             # If form is invalid raise errors back to user
             else:
                 for field in form:

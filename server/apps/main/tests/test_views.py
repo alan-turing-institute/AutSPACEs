@@ -148,11 +148,11 @@ class Views(TestCase):
 
     def test_confirm_page(self):
         c = Client()
-        unauthorised_response = c.get("/main/confirm_page/")
+        unauthorised_response = c.get("/main/success_confirm/")
         # Redirect when logged out
         assert unauthorised_response.status_code == 302
         c.force_login(self.user_a)
-        response = c.get("/main/confirm_page/")
+        response = c.get("/main/success_confirm/")
         assert response.status_code == 200
 
     def test_about_us(self):

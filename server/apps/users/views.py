@@ -16,7 +16,9 @@ from .helpers import (
     user_profile_exists,
     get_user_profile,
     delete_user,
+    update_session_success_or_confirm,
 )
+
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +35,14 @@ def user_profile(request, first_visit=False):
                 form.cleaned_data["profile_submitted"] = True
                 UserProfile.objects.update_or_create(user=request.user, defaults=form.cleaned_data)
 
-            return redirect("users:profile")
+                success_confirm_dict = update_session_success_or_confirm(source="profile")
+
+                for key in success_confirm_dict.keys():
+                    if key in request.session:
+                        del request.session[key]
+                    request.session[key] = success_confirm_dict[key]
+
+            return redirect("main:success_confirm")
         else:
             profile = get_user_profile(request.user)
             if profile:

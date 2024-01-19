@@ -25,12 +25,12 @@ urlpatterns = [
     path("moderate/<uuid>/", views.moderate_experience, name="moderate_exp"),
     path("view/<uuid>/", views.view_experience, name="view_exp"),
     path("my_stories/", views.my_stories, name="my_stories"),
-    path("confirm_page/", views.confirmation_page, name="confirm_page"),
     path("about_us/", views.about_us, name="about_us"),
     path("what_autism_is/", views.what_autism_is, name="what_autism_is"),
     path("help/", views.help, name="help"),
     path("content_moderation_guidelines/", views.content_moderation_guidelines, name="content_moderation_guidelines"),
     path("participant_information/", views.participant_information, name="participant_information"),
     path("registration/", views.registration, name="registration"),
-    path("single_story/<uuid>/",views.single_story,name="single_story")
+    path("single_story/<uuid>/",views.single_story,name="single_story"),
+    path("success_confirm/", views.success_confirm, name="success_confirm"),
 ]
