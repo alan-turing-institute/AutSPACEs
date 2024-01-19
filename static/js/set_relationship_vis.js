@@ -23,3 +23,10 @@ function change_viz (viz, field_id) {
     }
 }
 
+$("#id_other").on("keyup", function(e){
+  if(this.value!=""){
+        $("#id_other_trigger").prop("checked", "checked");
+  }else{
+        $("#id_other_trigger").prop('checked', "");
+  }
+});

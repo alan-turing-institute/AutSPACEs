@@ -200,7 +200,8 @@
 
             <div class="form-check {{ columns }}">
               {% if field.label == "Other"%}
-                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                <input type="checkbox" name="other_trigger" id="id_other_trigger">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{field}}
               {% elif field.label == "First hand authorship" %}
               <label for="{{ field.id_for_label }}"></label>
