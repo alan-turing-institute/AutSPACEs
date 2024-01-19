@@ -790,22 +790,6 @@ def get_carousel_stories(filename="carousel.json"):
     return stories
 
 
-# def get_story_privacy(data):
-#     story_viewable = data.get("viewable", False)
-#     if story_viewable:
-#         return "As you chose to share your story with the world, an autistic moderator will check that it follows our code of conduct, and if it does, you will receive a confirmation and your experience will then be published on this website."
-#     else:
-#         return "Your story is private and only viewable to you."
-    
-
-# def get_story_research_status(data):
-#     story_research = data.get("research", False)
-#     if story_research:
-#         return "As you chose to share your story with researchers, it will be saved into a database, and researchers who follow our values will be able to use it for their research."
-#     else:
-#         return "Your story will not be shared by us with researchers"
-    
-
 def get_story_privacy_and_research_for_session(data, story_change_type):
     """
     Get the privacy and research tags for the story and return appropriate responses
