@@ -844,7 +844,7 @@ def pick_research_message(first_hand, autistic_identification):
     if first_hand == "False":
         dict_key = "yes_someone_else"
     else:
-        if autistic_identification == "blank":
+        if autistic_identification == "":
             dict_key = "no_need_info"
         elif autistic_identification == "yes":
             dict_key = "yes_own"

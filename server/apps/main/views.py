@@ -185,7 +185,7 @@ def share_experience(request, uuid=False):
                 if profile:
                     autistic_identification = profile.autistic_identification
                 else:
-                    autistic_identification = "blank" # "" as cannot see the profile
+                    autistic_identification = ""
                 first_hand = form.cleaned_data['first_hand_authorship']
 
                 research_message = pick_research_message(first_hand, autistic_identification)
