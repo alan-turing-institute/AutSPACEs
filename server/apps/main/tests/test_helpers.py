@@ -5,7 +5,8 @@ from server.apps.main.helpers import reformat_date_string, get_review_status, \
     is_moderator, make_tags, extract_experience_details, delete_single_file_and_pe, delete_PE, \
     public_experience_model_to_form, process_trigger_warnings, update_public_experience_db, \
     get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect, \
-    extract_triggers_to_show, get_message, message_wrap, number_by_review_status, get_carousel_stories
+    extract_triggers_to_show, get_message, message_wrap, number_by_review_status, get_carousel_stories, \
+    pick_research_message
 
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
@@ -537,4 +538,23 @@ class StoryHelper(TestCase):
             assert story["title"] != "trigger"
             assert "placeholder" not in story["uuid"]
 
-
+    def test_pick_research_message(self):
+        """
+        Test that pick_research_message returns correct messages
+        """
+        # check for non-1st-hand account
+        message = pick_research_message("False",'irrelevant')
+        self.assertIn("share the experience of an autistic individual with researchers",message)
+        # check other responses
+        options = ["", "yes", "no", "unspecified"]
+        answers = []
+        for o in options:
+            message = pick_research_message("True", o)
+            # assert doesn't give 'fallback' response
+            self.assertNotIn("Thank you for sharing your story", message)
+            answers.append(message)
+        # assert all responses are different
+        assert len(answers) == len(set(answers))
+        # assert fallback works
+        message = pick_research_message("True", 'failmepls')
+        self.assertIn("Thank you for sharing your story", message)
