@@ -12,7 +12,7 @@
 | server/apps/main/apps.py                                                               |        3 |        0 |    100% |           |
 | server/apps/main/context\_processors.py                                                |        4 |        0 |    100% |           |
 | server/apps/main/forms.py                                                              |      115 |        3 |     97% |91, 93, 187 |
-| server/apps/main/helpers.py                                                            |      325 |        2 |     99% |  568, 681 |
+| server/apps/main/helpers.py                                                            |      358 |        2 |     99% |  568, 681 |
 | server/apps/main/management/commands/seed\_db.py                                       |       21 |        0 |    100% |           |
 | server/apps/main/management/commands/unseed\_db.py                                     |       12 |        0 |    100% |           |
 | server/apps/main/migrations/0001\_initial.py                                           |        6 |        0 |    100% |           |
@@ -31,7 +31,7 @@
 | server/apps/main/templatetags/\_\_init\_\_.py                                          |        0 |        0 |    100% |           |
 | server/apps/main/templatetags/custom\_tags.py                                          |       25 |        1 |     96% |        17 |
 | server/apps/main/tests/\_\_init\_\_.py                                                 |        0 |        0 |    100% |           |
-| server/apps/main/tests/test\_helpers.py                                                |      281 |        0 |    100% |           |
+| server/apps/main/tests/test\_helpers.py                                                |      301 |        0 |    100% |           |
 | server/apps/main/tests/test\_management\_commands.py                                   |       59 |        0 |    100% |           |
 | server/apps/main/tests/test\_models.py                                                 |       25 |        0 |    100% |           |
 | server/apps/main/tests/test\_moderate\_views.py                                        |      250 |        0 |    100% |           |
@@ -40,22 +40,23 @@
 | server/apps/main/tests/test\_views.py                                                  |      332 |        3 |     99% |   692-694 |
 | server/apps/main/tests/tests\_2023.py                                                  |       12 |        7 |     42% |     11-35 |
 | server/apps/main/urls.py                                                               |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                              |      257 |        8 |     97% |92, 95, 99, 173, 308-314, 462, 523 |
+| server/apps/main/views.py                                                              |      271 |       11 |     96% |83, 86, 90, 173-176, 188, 205, 331-337, 485, 546 |
 | server/apps/users/\_\_init\_\_.py                                                      |        0 |        0 |    100% |           |
 | server/apps/users/admin.py                                                             |        3 |        0 |    100% |           |
 | server/apps/users/apps.py                                                              |        3 |        0 |    100% |           |
 | server/apps/users/forms.py                                                             |       44 |        0 |    100% |           |
-| server/apps/users/helpers.py                                                           |       30 |        0 |    100% |           |
+| server/apps/users/helpers.py                                                           |       54 |        0 |    100% |           |
 | server/apps/users/migrations/0001\_initial.py                                          |        6 |        0 |    100% |           |
 | server/apps/users/migrations/0002\_userprofile\_refine\_fields.py                      |        4 |        0 |    100% |           |
 | server/apps/users/migrations/0003\_alter\_userprofile\_autistic\_identification.py     |        4 |        0 |    100% |           |
 | server/apps/users/migrations/\_\_init\_\_.py                                           |        0 |        0 |    100% |           |
 | server/apps/users/models.py                                                            |       22 |        0 |    100% |           |
 | server/apps/users/tests/\_\_init\_\_.py                                                |        0 |        0 |    100% |           |
+| server/apps/users/tests/test\_helpers.py                                               |       10 |        0 |    100% |           |
 | server/apps/users/tests/test\_models.py                                                |       64 |        0 |    100% |           |
 | server/apps/users/tests/test\_views.py                                                 |      144 |        0 |    100% |           |
 | server/apps/users/urls.py                                                              |        4 |        0 |    100% |           |
-| server/apps/users/views.py                                                             |       41 |        0 |    100% |           |
+| server/apps/users/views.py                                                             |       46 |        1 |     98% |        42 |
 | server/settings/\_\_init\_\_.py                                                        |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                             |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                                   |        2 |        0 |    100% |           |
@@ -66,7 +67,7 @@
 | server/settings/environments/development.py                                            |       29 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2323** |   **29** | **99%** |           |
+|                                                                              **TOTAL** | **2429** |   **33** | **99%** |           |
 
 
 ## Setup coverage badge

@@ -54,8 +54,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">325 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">323<span class="text"> run</span></button>
+            <span class="text">358 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">356<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">2<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_aadf874289a68d69_seed_db_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.4.0">coverage.py v7.4.0</a>,
-            created at 2024-01-16 16:54 +0000
+            created at 2024-01-19 11:20 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -872,6 +872,58 @@
     <p class="run"><span class="n"><a id="t790" href="#t790">790</a></span><span class="t">    <span class="key">return</span> <span class="nam">stories</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t791" href="#t791">791</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t792" href="#t792">792</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t793" href="#t793">793</a></span><span class="t"><span class="key">def</span> <span class="nam">get_story_privacy_and_research_for_session</span><span class="op">(</span><span class="nam">data</span><span class="op">,</span> <span class="nam">story_change_type</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t794" href="#t794">794</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t795" href="#t795">795</a></span><span class="t"><span class="str">    Get the privacy and research tags for the story and return appropriate responses</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t796" href="#t796">796</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t797" href="#t797">797</a></span><span class="t">    <span class="nam">story_viewable</span> <span class="op">=</span> <span class="nam">data</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"viewable"</span><span class="op">,</span> <span class="key">False</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t798" href="#t798">798</a></span><span class="t">    <span class="nam">story_research</span> <span class="op">=</span> <span class="nam">data</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"research"</span><span class="op">,</span> <span class="key">False</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t799" href="#t799">799</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t800" href="#t800">800</a></span><span class="t">    <span class="key">if</span> <span class="key">not</span> <span class="nam">story_viewable</span> <span class="key">and</span> <span class="key">not</span> <span class="nam">story_research</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t801" href="#t801">801</a></span><span class="t">        <span class="nam">confirm_story_response</span> <span class="op">=</span> <span class="str">f"Your {story_change_type} experience was saved"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t802" href="#t802">802</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t803" href="#t803">803</a></span><span class="t">        <span class="nam">confirm_story_response</span> <span class="op">=</span> <span class="str">f"Thank you for sharing your {story_change_type} experience"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t804" href="#t804">804</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t805" href="#t805">805</a></span><span class="t">    <span class="key">if</span> <span class="nam">story_viewable</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t806" href="#t806">806</a></span><span class="t">        <span class="nam">public_response</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t807" href="#t807">807</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t808" href="#t808">808</a></span><span class="t">        <span class="nam">public_response</span> <span class="op">=</span> <span class="key">False</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t809" href="#t809">809</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t810" href="#t810">810</a></span><span class="t">    <span class="key">if</span> <span class="nam">story_research</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t811" href="#t811">811</a></span><span class="t">        <span class="nam">research_response</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t812" href="#t812">812</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t813" href="#t813">813</a></span><span class="t">        <span class="nam">research_response</span> <span class="op">=</span> <span class="key">False</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t814" href="#t814">814</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t815" href="#t815">815</a></span><span class="t">    <span class="key">return</span> <span class="nam">confirm_story_response</span><span class="op">,</span> <span class="nam">public_response</span><span class="op">,</span> <span class="nam">research_response</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t816" href="#t816">816</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t817" href="#t817">817</a></span><span class="t"><span class="key">def</span> <span class="nam">pick_research_message</span><span class="op">(</span><span class="nam">first_hand</span><span class="op">,</span> <span class="nam">autistic_identification</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t818" href="#t818">818</a></span><span class="t">    <span class="str">"""Return the appropriate message for users who have selected to share their stories with researchers"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t819" href="#t819">819</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t820" href="#t820">820</a></span><span class="t">    <span class="nam">research_messages</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t821" href="#t821">821</a></span><span class="t">    <span class="nam">research_messages</span><span class="op">[</span><span class="str">"yes_someone_else"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Thank you for choosing to share the experience of an autistic individual with researchers. As you chose to share this experience with researchers, the experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t822" href="#t822">822</a></span><span class="t">    <span class="nam">research_messages</span><span class="op">[</span><span class="str">"no_need_info"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"You have marked your story to be used for research, but so far you have not filled out your profile yet. For your story to be more useful, please consider entering whether you identify as autistic, any information you share will help researchers. You can update your profile using the &#8220;Visit My Profile&#8221; button below."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t823" href="#t823">823</a></span><span class="t">    <span class="nam">research_messages</span><span class="op">[</span><span class="str">"yes_own"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"As you chose to share your experience with researchers, your experience will be part of the AutSPACEs research data set to which researchers that are aligned with our values and follow our code of conduct can apply for access to."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t824" href="#t824">824</a></span><span class="t">    <span class="nam">research_messages</span><span class="op">[</span><span class="str">"no_prefer_not_to_say"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Thank you for choosing to share your experience with researchers. As you have chosen not to share if you identify as autistic, this experience will not be usable for research. If you wish to, you can update your profile using the &#8220;Visit My Profile&#8221; button below."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t825" href="#t825">825</a></span><span class="t">    <span class="nam">research_messages</span><span class="op">[</span><span class="str">"no_own"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Thank you for choosing to share your experience with researchers. As you have indicated you do not identify as autistic, this experience will not be usable for research. If you wish to, you can update your profile using the &#8220;Visit My Profile&#8221; button below."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t826" href="#t826">826</a></span><span class="t">    <span class="nam">research_messages</span><span class="op">[</span><span class="str">"unknown"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Thank you for sharing your story"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t827" href="#t827">827</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t828" href="#t828">828</a></span><span class="t">    <span class="key">if</span> <span class="nam">first_hand</span> <span class="op">==</span> <span class="str">"False"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t829" href="#t829">829</a></span><span class="t">        <span class="nam">dict_key</span> <span class="op">=</span> <span class="str">"yes_someone_else"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t830" href="#t830">830</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t831" href="#t831">831</a></span><span class="t">        <span class="key">if</span> <span class="nam">autistic_identification</span> <span class="op">==</span> <span class="str">""</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t832" href="#t832">832</a></span><span class="t">            <span class="nam">dict_key</span> <span class="op">=</span> <span class="str">"no_need_info"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t833" href="#t833">833</a></span><span class="t">        <span class="key">elif</span> <span class="nam">autistic_identification</span> <span class="op">==</span> <span class="str">"yes"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t834" href="#t834">834</a></span><span class="t">            <span class="nam">dict_key</span> <span class="op">=</span> <span class="str">"yes_own"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t835" href="#t835">835</a></span><span class="t">        <span class="key">elif</span> <span class="nam">autistic_identification</span> <span class="op">==</span> <span class="str">"no"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t836" href="#t836">836</a></span><span class="t">            <span class="nam">dict_key</span> <span class="op">=</span> <span class="str">"no_own"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t837" href="#t837">837</a></span><span class="t">        <span class="key">elif</span> <span class="nam">autistic_identification</span> <span class="op">==</span> <span class="str">"unspecified"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t838" href="#t838">838</a></span><span class="t">            <span class="nam">dict_key</span> <span class="op">=</span> <span class="str">"no_prefer_not_to_say"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t839" href="#t839">839</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t840" href="#t840">840</a></span><span class="t">            <span class="nam">dict_key</span> <span class="op">=</span> <span class="str">"unknown"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t841" href="#t841">841</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t842" href="#t842">842</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t843" href="#t843">843</a></span><span class="t">    <span class="key">return</span> <span class="nam">research_messages</span><span class="op">[</span><span class="nam">dict_key</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t844" href="#t844">844</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -881,7 +933,7 @@
             <a id="nextFileLink" class="nav" href="d_aadf874289a68d69_seed_db_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.4.0">coverage.py v7.4.0</a>,
-            created at 2024-01-16 16:54 +0000
+            created at 2024-01-19 11:20 +0000
         </p>
     </div>
 </footer>

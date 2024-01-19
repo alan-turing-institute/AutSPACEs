@@ -54,8 +54,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">30 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">30<span class="text"> run</span></button>
+            <span class="text">54 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">54<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">0<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_c4c125a8bba96925_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.4.0">coverage.py v7.4.0</a>,
-            created at 2024-01-16 16:54 +0000
+            created at 2024-01-19 11:20 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -165,6 +165,44 @@
     <p class="pln"><span class="n"><a id="t83" href="#t83">83</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t84" href="#t84">84</a></span><span class="t">    <span class="com"># Delete the actual user</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t85" href="#t85">85</a></span><span class="t">    <span class="nam">user</span><span class="op">.</span><span class="nam">delete</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t"><span class="key">def</span> <span class="nam">update_session_success_or_confirm</span><span class="op">(</span><span class="nam">source</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t88" href="#t88">88</a></span><span class="t">                                      <span class="nam">confirm_story_response</span><span class="op">=</span><span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t89" href="#t89">89</a></span><span class="t">                                      <span class="nam">public_response</span><span class="op">=</span><span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t90" href="#t90">90</a></span><span class="t">                                      <span class="nam">research_response</span><span class="op">=</span><span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t91" href="#t91">91</a></span><span class="t">                                      <span class="nam">research_message</span><span class="op">=</span><span class="key">None</span><span class="op">,</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t92" href="#t92">92</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t93" href="#t93">93</a></span><span class="t"><span class="str">    Updates the session details for users editing their profile or editing/saving an experience.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t94" href="#t94">94</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t95" href="#t95">95</a></span><span class="t">    <span class="nam">sc_dict</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t96" href="#t96">96</a></span><span class="t">    <span class="key">if</span> <span class="nam">source</span> <span class="op">==</span> <span class="str">"experience"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t97" href="#t97">97</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"success_or_confirm"</span><span class="op">]</span> <span class="op">=</span> <span class="nam">source</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t98" href="#t98">98</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_title"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Experience Saved"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_header"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Success!"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_subheader"</span><span class="op">]</span> <span class="op">=</span> <span class="nam">confirm_story_response</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">        <span class="key">if</span> <span class="nam">public_response</span> <span class="key">is</span> <span class="key">True</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">            <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_1"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"As you chose to publicly share your experience, a moderator will check that it follows our code of conduct, and if it does, you will receive a confirmation and your experience will then be published on this website."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t103" href="#t103">103</a></span><span class="t">        <span class="key">elif</span> <span class="nam">public_response</span> <span class="key">is</span> <span class="key">False</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t104" href="#t104">104</a></span><span class="t">            <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_1"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Your experience will not be publicly accessible on AutSPACEs"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t105" href="#t105">105</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t106" href="#t106">106</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t107" href="#t107">107</a></span><span class="t">        <span class="key">if</span> <span class="nam">research_response</span> <span class="key">is</span> <span class="key">True</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t108" href="#t108">108</a></span><span class="t">            <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_2"</span><span class="op">]</span> <span class="op">=</span> <span class="nam">research_message</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t109" href="#t109">109</a></span><span class="t">        <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t110" href="#t110">110</a></span><span class="t">            <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_2"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Your experience will not be part of the AutSPACEs research data set."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t111" href="#t111">111</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t112" href="#t112">112</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_3"</span><span class="op">]</span> <span class="op">=</span> <span class="str">'You can change your privacy and research settings for this story by editing it via "My Stories" and changing the "Sharing Options".'</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t113" href="#t113">113</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t114" href="#t114">114</a></span><span class="t">    <span class="key">if</span> <span class="nam">source</span> <span class="op">==</span> <span class="str">"profile"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t115" href="#t115">115</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"success_or_confirm"</span><span class="op">]</span> <span class="op">=</span> <span class="nam">source</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t116" href="#t116">116</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_title"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Profile Saved"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t117" href="#t117">117</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_header"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Profile changes saved."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t118" href="#t118">118</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_subheader"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Thank you for updating your profile."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t119" href="#t119">119</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_1"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"If you decide to allow researchers to use your stories, the more information you share, the better and more representative their research will be"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t120" href="#t120">120</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_2"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"You can update your profile as often as you need using the same form you have just edited - linked below"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t121" href="#t121">121</a></span><span class="t">        <span class="nam">sc_dict</span><span class="op">[</span><span class="str">"s_or_c_whn_3"</span><span class="op">]</span> <span class="op">=</span> <span class="str">"Thank you for updating your profile."</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t122" href="#t122">122</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t123" href="#t123">123</a></span><span class="t">    <span class="key">return</span> <span class="nam">sc_dict</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
@@ -174,7 +212,7 @@
             <a id="nextFileLink" class="nav" href="d_c4c125a8bba96925_0001_initial_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.4.0">coverage.py v7.4.0</a>,
-            created at 2024-01-16 16:54 +0000
+            created at 2024-01-19 11:20 +0000
         </p>
     </div>
 </footer>

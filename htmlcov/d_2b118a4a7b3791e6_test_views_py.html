@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="d_2b118a4a7b3791e6_tests_2023_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.4.0">coverage.py v7.4.0</a>,
-            created at 2024-01-16 16:54 +0000
+            created at 2024-01-19 11:20 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -230,11 +230,11 @@
     <p class="pln"><span class="n"><a id="t148" href="#t148">148</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t149" href="#t149">149</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_confirm_page</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t150" href="#t150">150</a></span><span class="t">        <span class="nam">c</span> <span class="op">=</span> <span class="nam">Client</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t151" href="#t151">151</a></span><span class="t">        <span class="nam">unauthorised_response</span> <span class="op">=</span> <span class="nam">c</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/main/confirm_page/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t151" href="#t151">151</a></span><span class="t">        <span class="nam">unauthorised_response</span> <span class="op">=</span> <span class="nam">c</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/main/success_confirm/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t152" href="#t152">152</a></span><span class="t">        <span class="com"># Redirect when logged out</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t153" href="#t153">153</a></span><span class="t">        <span class="key">assert</span> <span class="nam">unauthorised_response</span><span class="op">.</span><span class="nam">status_code</span> <span class="op">==</span> <span class="num">302</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t154" href="#t154">154</a></span><span class="t">        <span class="nam">c</span><span class="op">.</span><span class="nam">force_login</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">user_a</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t155" href="#t155">155</a></span><span class="t">        <span class="nam">response</span> <span class="op">=</span> <span class="nam">c</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/main/confirm_page/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t155" href="#t155">155</a></span><span class="t">        <span class="nam">response</span> <span class="op">=</span> <span class="nam">c</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"/main/success_confirm/"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t156" href="#t156">156</a></span><span class="t">        <span class="key">assert</span> <span class="nam">response</span><span class="op">.</span><span class="nam">status_code</span> <span class="op">==</span> <span class="num">200</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t157" href="#t157">157</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t158" href="#t158">158</a></span><span class="t">    <span class="key">def</span> <span class="nam">test_about_us</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -895,7 +895,7 @@
             <a id="nextFileLink" class="nav" href="d_2b118a4a7b3791e6_tests_2023_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.4.0">coverage.py v7.4.0</a>,
-            created at 2024-01-16 16:54 +0000
+            created at 2024-01-19 11:20 +0000
         </p>
     </div>
 </footer>
