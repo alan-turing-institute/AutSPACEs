@@ -203,7 +203,6 @@ def share_experience(request, uuid=False):
                         del request.session[key]
                     request.session[key] = success_confirm_dict[key]
 
-
                 # for Public Experience we need to check if it's viewable and update accordingly.
                 update_public_experience_db(
                     data=form.cleaned_data,

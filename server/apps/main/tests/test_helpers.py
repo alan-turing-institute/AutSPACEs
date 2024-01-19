@@ -6,7 +6,7 @@ from server.apps.main.helpers import reformat_date_string, get_review_status, \
     public_experience_model_to_form, process_trigger_warnings, update_public_experience_db, \
     get_oh_metadata, get_oh_file, get_oh_combined, moderate_page, choose_moderation_redirect, \
     extract_triggers_to_show, get_message, message_wrap, number_by_review_status, get_carousel_stories, \
-    pick_research_message
+    pick_research_message, get_story_privacy_and_research_for_session
 
 from openhumans.models import OpenHumansMember
 from server.apps.main.models import PublicExperience, ExperienceHistory
@@ -558,3 +558,16 @@ class StoryHelper(TestCase):
         # assert fallback works
         message = pick_research_message("True", 'failmepls')
         self.assertIn("Thank you for sharing your story", message)
+
+    def test_get_story_privacy_and_research_for_session(self):
+        """
+        Test that privacy & research session settings work 
+        """
+        data = {'viewable': False, 'research': True}
+        conf, pr, rr = get_story_privacy_and_research_for_session(data, 'blabla')
+        self.assertEqual(pr, False)
+        self.assertEqual(rr, True)
+
+        data = {'viewable': False, 'research': False}
+        conf, pr, rr = get_story_privacy_and_research_for_session(data, 'blabla')
+        self.assertEqual(conf, "Your blabla experience was saved")
