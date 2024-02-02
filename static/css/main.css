@@ -146,7 +146,8 @@ body {
    line-height: 1.5;
    font-weight: bold;
    text-align: center;
-   color: #fff;
+   /* color: #fff; */
+   color: var(--bs-tertiary-bg);
    text-decoration: none;
  }
  .usage-box a:hover {
@@ -161,7 +162,7 @@ body {
  .intro {
    padding: 2% 5% 3%;
    background: #1BB5AF;
-   color: #fff;
+   color: var(--bs-body-bg);
  }
 
  .title-text {
@@ -181,7 +182,7 @@ body {
  #value {
    padding: 4% 5%;
    background: #309FDC;
-   color: #fff;
+   color: var(--bs-body-bg);
  }
  .value-text {
    line-height: 2;
@@ -359,8 +360,20 @@ body {
  }
 
  .cta-header, .card-text {
-   color: #000;
+  /* color: var(--bs-primary-text-emphasis) */
+  color: var(--bs-body-color);
  }
+
+ @include color-mode(dark) {
+  .card-text{
+  color: #fff;
+  }
+}
+
+ .cta-header, .card-text-dark {
+  color: #fff;
+ }
+
 
  /*Responsive Design*/
  @media (max-width: 992px) {
@@ -507,10 +520,10 @@ body {
 }
 
 .story-card-text {
-  color: #000000;
   line-height: 2;
   padding: 0 2%;
 }
+
 
 .story-text {
   padding: 2% 11% 3%;

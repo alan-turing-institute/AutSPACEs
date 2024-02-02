@@ -28,7 +28,6 @@
           </li>
           {% endif %}
           {% endif %}
-
           <li class="nav-item dropdown">
             <a class="nav-link nav-link-menu dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,6 +39,9 @@
               <li><a class="dropdown-item" href="{% url 'main:content_moderation_guidelines' %}">Content Moderation Guidelines</a></li>
               <li><a class="dropdown-item" href="{% url 'main:help' %}">Help</a></li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-menu" id="theme-toggle">Toggle Theme</a>
           </li>
         </ul>
 
@@ -73,3 +75,5 @@
     </div>
   </nav>
 </div>
+
+<script src="{% static 'js/theme-checker.js' %}"></script>
