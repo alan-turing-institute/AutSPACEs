@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() { 
-    change_viz(chk_radio(), 'id_authorship_relation')
+    change_viz(chk_radio(), 'id_authorship_relation');
+    check_checkbox('id_other');
     }
 );
 
@@ -23,3 +24,19 @@ function change_viz (viz, field_id) {
     }
 }
 
+$("#id_other").on("keyup", function(e){
+  if(this.value!=""){
+        $("#id_other_trigger").prop("checked", "checked");
+  }else{
+        $("#id_other_trigger").prop('checked', "");
+  }
+});
+
+function check_checkbox (field_id) {
+  r = document.getElementById(field_id)
+  if (r.value != "") {
+    $("#id_other_trigger").prop("checked", "checked");}
+  else {
+    $("#id_other_trigger").prop("checked", "");
+    }
+}
