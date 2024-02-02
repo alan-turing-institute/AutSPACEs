@@ -18,8 +18,7 @@ $(all_check).change(function(){
             document.getElementById(trigger_array[i]).checked = false
         }
     }
-
-    $("#search-form").submit()
+    modal();
 })
 
 $("#single_trigger_warnings :checkbox").change(function(){
@@ -36,8 +35,7 @@ $("#single_trigger_warnings :checkbox").change(function(){
     } else {
         document.getElementById("all-checkbox").checked = true
     }
-
-    $("#search-form").submit()
+    modal();
 
 });
 
@@ -49,6 +47,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 window.onbeforeunload = function(e) {
     localStorage.setItem('scrollpos', window.scrollY);
 };
-
-
   
+function modal(){
+    $('.modal').modal('show');
+    setTimeout(function () {
+        $("#search-form").submit();
+        //$('.modal').modal('hide');
+    }, 250);
+}
+
+ document.getElementById("modalbutton").addEventListener("click", modal);
