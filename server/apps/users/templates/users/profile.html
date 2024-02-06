@@ -47,7 +47,7 @@
       {% endif %}
       {% if group.grouper == 2 %}
         {% define "Sensitive topics" as header %}
-        {% define "Select the topics that you are comfortable seeing in experiences" as subheader %}
+        {% define "Select which sensitive topics should be visible as your default" as subheader %}
         {% define "col-lg-6" as columns %}
       {% endif %}
       {% if group.grouper == 3 %}
@@ -63,6 +63,15 @@
         <h3><label>{{ header }}</label></h3>
 
         <h5>{{ subheader }}</h5>
+
+        {% if group.grouper == 2 %}
+        <p>
+          <small id="help_{{field.auto_id}}" class="form-text text-muted">
+            You can modify these defaults at any time. You can also override the defaults from the <i>View Stories</i> page.
+          </small>
+        </p>
+        {% endif %}
+
         <div class="form-row">
         {% for field in group.list %}
           <div class="col {{ columns }}">
@@ -81,11 +90,9 @@
               {% endif %}
           {% endif %}
           </div>
-
           {% if field.field.gap %}
             <div class="form-check {{ columns }} mb-3"></div>
           {% endif %}
-
         {% endfor %}
         </div>
       </div>
