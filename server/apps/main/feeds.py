@@ -30,7 +30,7 @@ class PublicExperienceFeed(Feed):
 		return "AutSPACEs public experiences"
 
 	def link(self, obj):
-		return "https://example.com"
+		return reverse("main:public_experiences")
 
 	def description(self, obj):
 		joined_triggers = ", ".join(obj)
@@ -51,7 +51,7 @@ class PublicExperienceFeed(Feed):
 	def items(self, obj):
 		experiences = PublicExperience.objects.filter(moderation_status="approved")
 		experiences = expand_filter(experiences, obj)
-		experiences = experiences.order_by("-created_at")[:5]
+		experiences = experiences.order_by("-created_at")[:10]
 		return experiences
 
 class PublicExperienceAtomFeed(PublicExperienceFeed):
