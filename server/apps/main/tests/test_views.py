@@ -819,6 +819,11 @@ class Views(TestCase):
         
         # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
         search_response_abuse = c.get("/main/public_experiences/rss.xml?abuse=True")
-        print(search_response_abuse.content)
         self.assertNotContains(search_response_abuse,"No triggering content is included in this feed")
         self.assertContains(search_response_abuse,"<item>", count=2)
+
+
+        search_response_t = c.get("/main/public_experiences/rss.xml?all_triggers=True")
+        self.assertContains(search_response_t,"<item>", count=2)
+
+        
