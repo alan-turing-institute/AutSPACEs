@@ -804,3 +804,21 @@ class Views(TestCase):
                     assert len(stories) == min(num_items_per_page, n_stories)
                     # check story numbering
                     assert stories[0]['number'] == num_items_per_page + 1  # first story on page 1 is continuation of page 1
+
+
+
+    def test_feeds(self):
+        c = Client()
+        c.force_login(self.user_a)
+        response = c.get("/main/public_experiences/rss.xml")
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, "main/feed.html")
+        # Check that there is only one story visible - the one with no triggering labels
+        self.assertContains(response,"No triggering content is included in this feed")
+        self.assertContains(response,"<item>", count=1)
+        
+        # If you allow the abuse tag there should be 2 stories one with no tags one with the abuse tag
+        search_response_abuse = c.get("/main/public_experiences/rss.xml?abuse=True")
+        print(search_response_abuse.content)
+        self.assertNotContains(search_response_abuse,"No triggering content is included in this feed")
+        self.assertContains(search_response_abuse,"<item>", count=2)
