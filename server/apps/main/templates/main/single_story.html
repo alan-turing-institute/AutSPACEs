@@ -61,8 +61,22 @@
     <h3>What could have made the experience better?</h3>
     <p><i>{% firstof experience.difference_text "No Difference Text Given" %}</i></p>
     </div>
+    
+    <a
+    class="btn btn-primary"
+    {% if request.META.HTTP_REFERER %}
+    href="{{ request.META.HTTP_REFERER }}"
+    {% else %}
+    href="{% url 'main:public_experiences' %}"
+    {% endif %}
+    >
+    Back to list of stories
+    </a>
 
   </div>
+
+
+
 
 
 </section>
