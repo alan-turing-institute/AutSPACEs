@@ -162,7 +162,7 @@ body {
  .intro {
    padding: 2% 5% 3%;
    background: #1BB5AF;
-   color: var(--bs-body-bg);
+   color: #fff;
  }
 
  .title-text {
