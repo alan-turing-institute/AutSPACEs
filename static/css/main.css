@@ -320,7 +320,7 @@ body {
  #platform_usage {
    background: #FAC145;
    padding: 4% 5%;
-   color: #ffffff;
+   color: var(--bs-body-bg);
  }
 
  .platform-title  {
