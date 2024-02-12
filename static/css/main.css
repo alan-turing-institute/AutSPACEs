@@ -285,7 +285,7 @@ body {
  /*Platform Information*/
 
  #platform_info {
-   background: #FFFFFF;
+   background: var(--bs-body-bg);
    padding: 4% 5%;
    color: #1BB5AF;
  }
