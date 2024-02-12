@@ -1,5 +1,6 @@
 from django.urls import path, re_path
 from server.apps.main import views
+from server.apps.main import feeds
 
 app_name = "main"
 
@@ -33,4 +34,6 @@ urlpatterns = [
     path("registration/", views.registration, name="registration"),
     path("single_story/<uuid>/",views.single_story,name="single_story"),
     path("success_confirm/", views.success_confirm, name="success_confirm"),
+    path("public_experiences/rss.xml", feeds.PublicExperienceFeed(), name='rss_feed'),
+    path("public_experiences/atom.xml", feeds.PublicExperienceAtomFeed(), name='atom_feed'),
 ]

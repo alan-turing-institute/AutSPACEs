@@ -410,7 +410,10 @@ def list_public_experiences(request):
 
     exp_context = {"experiences": page_experiences}
 
-    context = {**tts, **exp_context, **search_context}
+    rss_link = reverse("main:rss_feed") + "?" +  request.GET.urlencode()
+    atom_link = rss_link = reverse("main:atom_feed") + "?" +  request.GET.urlencode()
+
+    context = {'rss_link': rss_link, 'atom_link': atom_link, **tts, **exp_context, **search_context}
 
     # Standard page showing all moderated stories
     return render(request, "main/experiences_page.html", context=context)

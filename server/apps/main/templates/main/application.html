@@ -26,6 +26,12 @@
     <link href="{% static '/css/main.css' %}" rel="stylesheet">
     {%block page_css%} {% endblock %}
 
+    <!-- RSS links where appropriate -->
+    {% if rss_link %}
+    <link rel="alternate" type="application/rss+xml" href="{{rss_link}}">
+    <link rel="alternate" type="application/atom+xml" href="{{atom_link}}">
+    {% endif %}
+
   </head>
 
   <body {% block body_attributes%} {% endblock %}>
