@@ -136,8 +136,6 @@
       </div>
       </div>
     </form>
-    <div class="form-text">
-      <a href="{{atom_link}}" <i class="bi bi-rss"></i> You can also subscribe to this page as a feed</a>. The current trigger options will be preserved.</div>
   </div>
   {% if searched %}
     <div class="container-fluid story-text">
@@ -228,6 +226,8 @@
     <!-- Add Pagination -->
     {% include 'main/pagination.html' with stories=experiences page_query_param='page' %}
     {% endif %}
+    <div class="form-text">
+      <a href="{{atom_link}}" <i class="bi bi-rss"></i> You can also subscribe to this page as a feed</a>. The current trigger options will be preserved.</div>
   </div>
 </section>
 
