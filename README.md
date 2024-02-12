@@ -11,6 +11,7 @@
 | server/apps/main/admin.py                                                              |        4 |        0 |    100% |           |
 | server/apps/main/apps.py                                                               |        3 |        0 |    100% |           |
 | server/apps/main/context\_processors.py                                                |        4 |        0 |    100% |           |
+| server/apps/main/feeds.py                                                              |       37 |        0 |    100% |           |
 | server/apps/main/forms.py                                                              |      115 |        3 |     97% |91, 93, 187 |
 | server/apps/main/helpers.py                                                            |      358 |        2 |     99% |  568, 681 |
 | server/apps/main/management/commands/seed\_db.py                                       |       21 |        0 |    100% |           |
@@ -37,10 +38,10 @@
 | server/apps/main/tests/test\_moderate\_views.py                                        |      250 |        0 |    100% |           |
 | server/apps/main/tests/test\_my\_stories.py                                            |       15 |        0 |    100% |           |
 | server/apps/main/tests/test\_templatetags.py                                           |       12 |        0 |    100% |           |
-| server/apps/main/tests/test\_views.py                                                  |      332 |        3 |     99% |   692-694 |
+| server/apps/main/tests/test\_views.py                                                  |      345 |        3 |     99% |   692-694 |
 | server/apps/main/tests/tests\_2023.py                                                  |       12 |        7 |     42% |     11-35 |
-| server/apps/main/urls.py                                                               |        4 |        0 |    100% |           |
-| server/apps/main/views.py                                                              |      271 |       11 |     96% |83, 86, 90, 173-176, 188, 205, 331-337, 485, 546 |
+| server/apps/main/urls.py                                                               |        5 |        0 |    100% |           |
+| server/apps/main/views.py                                                              |      273 |       11 |     96% |83, 86, 90, 173-176, 188, 205, 331-337, 488, 549 |
 | server/apps/users/\_\_init\_\_.py                                                      |        0 |        0 |    100% |           |
 | server/apps/users/admin.py                                                             |        3 |        0 |    100% |           |
 | server/apps/users/apps.py                                                              |        3 |        0 |    100% |           |
@@ -67,7 +68,7 @@
 | server/settings/environments/development.py                                            |       29 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2429** |   **33** | **99%** |           |
+|                                                                              **TOTAL** | **2482** |   **33** | **99%** |           |
 
 
 ## Setup coverage badge
