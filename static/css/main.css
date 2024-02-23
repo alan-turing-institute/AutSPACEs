@@ -752,7 +752,7 @@ arrowhead {
 
 .collapsablecell a {
   text-decoration: none;
-  color: #000;
+  color: var(--bs-table-color-state);
 }
 
 .collapsablecell p.collapse:not(.show) {
