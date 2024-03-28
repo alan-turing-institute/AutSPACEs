@@ -1,9 +1,9 @@
 # User Testing February 2024
 
-10 participants were tested via. one hour sessions over Zoom. 
-They were shared a link to the most recent deployment of the AutSPACEs platform to test out for themselves, while being given tasks and asked questions by researchers.
-The results of these sessions are below. 
-All participants consented to their results being published on GitHub for the purposes of improving the AutSPACEs platform. 
+We performed user testng with 10 participants. These user tests took approximately one hour each and all took place over Zoom. The tests were conducted between February 13-19, 2024. 
+Participants were given a link to a test deployment of the AutSPACEs platform (code state at commit `c12031ce5a5911cd1814a3415d16ce0aa7c54b3d`, February 12, 2024) to explore for themselves, followed by being given tasks and asked questions by researchers. The results of these sessions are below. 
+
+All participants consented to their results being published on GitHub for the purposes of improving the AutSPACEs platform, following [the research protocol as outlined in the research ethics documentation](https://github.com/alan-turing-institute/AutSPACEs/tree/main/00-project-documentation/community/user-tests).
 
 ### Contents
   * [User Test 1](#user-test-1)
