@@ -88,7 +88,7 @@ def process_trigger_warnings(form):
     trigger_warning_dict = {
         k: form.cleaned_data[k]
         for k in form.data.keys()
-        if k not in ["csrfmiddlewaretoken", "research"]
+        if k not in ["csrfmiddlewaretoken", "research", "other_trigger"]
     }
 
     # Set all others as False
