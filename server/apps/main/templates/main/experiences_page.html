@@ -182,7 +182,13 @@
             <h5 class="card-title story-header">{{ experience.number }}. {% firstof experience.title_text "no title given" %}</h5>
               <p class="card-text">{% firstof experience.experience_text|truncatechars:100 "no experience text given" %}</p>
               {% if experience.first_hand_authorship %}
-                <em>Autistic individual</em>
+                {% if experience.open_humans_member.user.userprofile.autistic_identification == 'yes' %}
+                  <em>Autistic individual</em>
+                {% elif experience.open_humans_member.user.userprofile.autistic_identification == 'no' %}
+                  <em>Non-autistic individual</em>
+                {% else %}
+                  <em>User has not answered if they identify as autistic</em>
+                {% endif %}
               {% else %}
               <em>{% firstof experience.authorship_relation "AutSPACEs Contributor" %}</em>
               {% endif %}
