@@ -121,7 +121,8 @@ NPLUSONE_LOGGER = logging.getLogger('django')
 NPLUSONE_LOG_LEVEL = logging.WARN
 NPLUSONE_WHITELIST = [
     {'model': 'admin.*'},
-    {'label': 'n_plus_one', 'model': 'users.UserProfile'}
+    {'label': 'n_plus_one', 'model': 'users.UserProfile'},
+    {'label': 'n_plus_one', 'model': 'main.PublicExperience'}
 ]
 
 
