@@ -152,7 +152,7 @@ body {
    font-weight: bold;
    text-align: center;
    /* color: #fff; */
-   color: var(--bs-tertiary-bg);
+   color: var(--bs-light);
    text-decoration: none;
  }
  .usage-box a:hover {
@@ -187,7 +187,7 @@ body {
  #value {
    padding: 4% 5%;
    background: #309FDC;
-   color: var(--bs-body-bg);
+   color: var(--bs-light);
  }
  .value-text {
    line-height: 2;
@@ -295,6 +295,10 @@ body {
    color: #1BB5AF;
  }
 
+ [data-bs-theme=dark] #platform_info {
+  color: var(--bs-light);
+  }
+
  .platform-info-text {
    line-height: 1.5;
    font-size: 20px;
@@ -325,7 +329,7 @@ body {
  #platform_usage {
    background: #FAC145;
    padding: 4% 5%;
-   color: var(--bs-body-bg);
+   color: var(--bs-light);
  }
 
  .platform-title  {
@@ -522,7 +526,6 @@ body {
 }
 
 .story-card-title {
-  color: #F1806F;
   line-height: 2;
   padding: 0 2%;
 }
@@ -540,7 +543,8 @@ body {
 
 .story {
   padding: 2% 3%;
-  color: #309FDC;
+  /* color: #309FDC; */
+  color: #1BB5AF;
 }
 
 
