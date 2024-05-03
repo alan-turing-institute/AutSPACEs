@@ -48,11 +48,17 @@
     {% if placeholder %}
     <em>Example story</em>
     {% else %}
-    {% if experience.first_hand_authorship %}
-    <em>Autistic individual</em>
-    {% else %}
-    <em>{% firstof experience.authorship_relation "AutSPACEs Contributor" %}</em>
-    {% endif %}
+      {% if experience.first_hand_authorship %}
+        {% if experience.open_humans_member.user.userprofile.autistic_identification == 'yes' %}
+          <em>Autistic individual</em>
+        {% elif experience.open_humans_member.user.userprofile.autistic_identification == 'no' %}
+          <em>Non-autistic individual</em>
+        {% else %}
+          <em>User has not answered if they identify as autistic</em>
+        {% endif %}
+      {% else %}
+        <em>{% firstof experience.authorship_relation "AutSPACEs Contributor" %}</em>
+      {% endif %}
     {% endif %}
 
     <h3>Experience</h3>
