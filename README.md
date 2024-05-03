@@ -12,7 +12,7 @@
 | server/apps/main/apps.py                                                               |        3 |        0 |    100% |           |
 | server/apps/main/context\_processors.py                                                |        4 |        0 |    100% |           |
 | server/apps/main/feeds.py                                                              |       37 |        0 |    100% |           |
-| server/apps/main/forms.py                                                              |      115 |        3 |     97% |91, 93, 187 |
+| server/apps/main/forms.py                                                              |      115 |        3 |     97% |92, 94, 188 |
 | server/apps/main/helpers.py                                                            |      358 |        2 |     99% |  568, 681 |
 | server/apps/main/management/commands/seed\_db.py                                       |       21 |        0 |    100% |           |
 | server/apps/main/management/commands/unseed\_db.py                                     |       12 |        0 |    100% |           |
