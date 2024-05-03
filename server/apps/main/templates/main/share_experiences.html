@@ -169,6 +169,7 @@
         {% for field in group.list %}
         <div class="form-group">
           <h3><label for="{{ field.id_for_label }}">{{ field.label }}</label></h3>
+          <h5>{{ field.help_text }}</h5>
           {{ field }}
         </div>
         {% endfor %}
@@ -218,14 +219,14 @@
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
               {% endif %}
               {% if field.help_text %}
-               <div id="help_{{field.auto_id}}" class="form-text">
+               <div id="help_{{field.auto_id}}" class="form-text form-text-color">
                  {{field.help_text|safe}}</div>
               {% endif %}
             </div>
 
           {% endfor %}
           {% if group.grouper == 3 %}
-          <div class="form-text">
+          <div class="form-text form-text-color">
             If neither of these boxes are checked, the story is only visible to yourself. In this case, the story will not be used for research and not moderated. 
             You can always change these settings from the <i>My Stories</i> page.
           </div>

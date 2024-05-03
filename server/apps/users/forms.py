@@ -83,8 +83,12 @@ class UserProfileForm(forms.Form):
 
     description = forms.CharField(label="What else would you like researchers (or readers) to know about yourself?",
                                  max_length=2048, strip=True, required=False,
-                                 help_text="You can provide any additional context about yourself here that you deem relevant to understanding your perspective and experiences. The AutSPACEs team will potential use your information to refine the structured demographic questions above. You can also make this information publicly accessible &mdash; which will be linked to your public experiences.",
-                                 widget=forms.Textarea(attrs={"placeholder":"Potential things you could talk about here include your ethnicity, whether you grew up/are living in a rural or urban environment, your educational background or really anything else that comes to your mind.",
+                                 help_text="""You can provide any additional context about yourself here that you deem 
+                                 relevant to understanding your perspective and experiences. This could be your ethnicity, 
+                                 where you grew up, your educational background, or when and how you (self-)diagnosed.
+                                 The AutSPACEs team might use this information to refine the structured demographic questions above. 
+                                 You can also make this information publicly accessible &mdash; which might be linked to your public experiences in the future.""",
+                                 widget=forms.Textarea(attrs={"placeholder":"Optionally share more about yourself",
                                                               "rows":"4",
                                                               "class":"form-control",
                                                               "aria-describedby": "help_id_description"}))

@@ -61,7 +61,8 @@ body {
 /* FOOTER */
 
 #footer {
-  background: #F2F2F2;
+  /* background: var(--bs-tertiary-bg);*/
+  background: #F2F2F2; 
   padding: 2% 5%;
   color:#000;
   position: relative;
@@ -78,6 +79,10 @@ body {
 .footer-text {
   text-align: left;
   padding-right: 2%;
+}
+
+.footer-text a {
+  color: var(--bs-blue);
 }
 
 .footer-text p {
@@ -214,7 +219,7 @@ body {
  }
 
  .experience-content {
-   color: #8f8f8f;
+   color: var(--bs-body-color);
    line-height: 1.5;
    font-size: 20px;
  }
@@ -374,6 +379,9 @@ body {
   color: #fff;
  }
 
+ .form-text-color {
+  color: var(--bs-body-color);
+ }
 
  /*Responsive Design*/
  @media (max-width: 992px) {
@@ -427,7 +435,7 @@ body {
 }
 
 .submitted {
-  background-color: #F1806F !important;
+  background-color: #F9BB33 !important;
 }
 
 .messages {
@@ -507,7 +515,7 @@ body {
 }
 
 .story-header {
-  color: #F1806F;
+  color: #1BB5AF;
   font-size: 2rem;
   line-height: 2;
   font-weight: bold;
@@ -633,7 +641,7 @@ body {
 /* REGISTRATION PAGE */
 #registration-intro {
   padding: 3% 5%;
-  background-color: #F1806F;
+  background-color: #1BB5AF;
   color: #fff;
 }
 
@@ -648,12 +656,12 @@ body {
 connection {
   border: 16px solid;
   border-radius: 7em;
-  color: #1BB5AF;
+  color: #F9BB33;
 }
 
 arrowhead {
-  border-top: solid 8px #1BB5AF;
-  border-right: solid 8px #1BB5AF;
+  border-top: solid 8px #F9BB33;
+  border-right: solid 8px #F9BB33;
   border-bottom: solid 8px transparent;
   border-left: solid 8px transparent;
 }

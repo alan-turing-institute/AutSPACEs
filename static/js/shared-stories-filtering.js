@@ -53,7 +53,7 @@ function modal(){
     setTimeout(function () {
         $("#search-form").submit();
         //$('.modal').modal('hide');
-    }, 250);
+    }, 450);
 }
 
  document.getElementById("modalbutton").addEventListener("click", modal);

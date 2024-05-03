@@ -66,7 +66,7 @@
 
         {% if group.grouper == 2 %}
         <p>
-          <small id="help_{{field.auto_id}}" class="form-text text-muted">
+          <small id="help_{{field.auto_id}}" class="form-text form-text-color">
             You can modify these defaults at any time. You can also override the defaults from the <i>View Stories</i> page.
           </small>
         </p>
@@ -84,7 +84,7 @@
               <p/><label for="{{ field.auto_id }}">{{ field.label }}</label>
               {{ field }}
               {% if field.help_text %}
-              <small id="help_{{field.auto_id}}" class="form-text text-muted">
+              <small id="help_{{field.auto_id}}" class="form-text form-text-color">
                 {{field.help_text|safe}}
               </small>
               {% endif %}
