@@ -61,7 +61,8 @@ body {
 /* FOOTER */
 
 #footer {
-  background: #F2F2F2;
+  /* background: var(--bs-tertiary-bg);*/
+  background: #F2F2F2; 
   padding: 2% 5%;
   color:#000;
   position: relative;
@@ -78,6 +79,10 @@ body {
 .footer-text {
   text-align: left;
   padding-right: 2%;
+}
+
+.footer-text a {
+  color: var(--bs-blue);
 }
 
 .footer-text p {
@@ -214,7 +219,7 @@ body {
  }
 
  .experience-content {
-   color: #8f8f8f;
+   color: var(--bs-body-color);
    line-height: 1.5;
    font-size: 20px;
  }
@@ -430,7 +435,7 @@ body {
 }
 
 .submitted {
-  background-color: #F1806F !important;
+  background-color: #F9BB33 !important;
 }
 
 .messages {
