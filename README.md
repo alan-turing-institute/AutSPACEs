@@ -13,7 +13,7 @@
 | server/apps/main/context\_processors.py                                                |        4 |        0 |    100% |           |
 | server/apps/main/feeds.py                                                              |       37 |        0 |    100% |           |
 | server/apps/main/forms.py                                                              |      115 |        3 |     97% |92, 94, 188 |
-| server/apps/main/helpers.py                                                            |      358 |        2 |     99% |  568, 681 |
+| server/apps/main/helpers.py                                                            |      366 |        3 |     99% |569, 583, 696 |
 | server/apps/main/management/commands/seed\_db.py                                       |       21 |        0 |    100% |           |
 | server/apps/main/management/commands/unseed\_db.py                                     |       12 |        0 |    100% |           |
 | server/apps/main/migrations/0001\_initial.py                                           |        6 |        0 |    100% |           |
@@ -68,7 +68,7 @@
 | server/settings/environments/development.py                                            |       29 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2482** |   **33** | **99%** |           |
+|                                                                              **TOTAL** | **2490** |   **34** | **99%** |           |
 
 
 ## Setup coverage badge
