@@ -423,6 +423,7 @@ def moderate_page(request, tabbed_stories):
         paginator = Paginator(stories, items_per_page)
         stories = paginate_stories(request, paginator, status)
         stories = number_stories(stories, items_per_page)
+        stories = number_stories_by_author(stories)
         tabbed_stories[status] = stories
 
     context={
@@ -564,6 +565,20 @@ def number_stories(stories, items_per_page):
             story.number = i + 1
         elif isinstance(story, dict):
             story["number"] = i + 1
+        else:
+            raise TypeError(f'Unexpected type for story: {type(story)}')
+    return stories
+
+def number_stories_by_author(stories):
+    """
+    Adds a field to each story if it's that person's first story
+
+    """
+    # iterate over all stories in that batch
+    for story in stories:
+        if isinstance(story, PublicExperience):
+            number_stories = story.open_humans_member.publicexperience_set.all().count()
+            story.author_stories = number_stories
         else:
             raise TypeError(f'Unexpected type for story: {type(story)}')
     return stories
