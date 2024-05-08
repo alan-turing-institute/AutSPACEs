@@ -19,7 +19,14 @@
       <tr>
         <th scope="row">{{ file.number }}</th>
 
-        <td>{% firstof file.title_text "notitle" %}</td>
+        <td>
+          {% firstof file.title_text "notitle" %}
+          {% if file.author_stories == 1 %}
+          <span class="badge text-bg-primary">
+            Contributor's first story
+            </span>
+            {% endif %}
+        </td>
         <td>
         {% if file.other %}
           <span class="badge text-bg-warning float-end"
