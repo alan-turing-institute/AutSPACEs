@@ -3,7 +3,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-39-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-*Code respository for AutSPACEs: the Autistica/Turing citizen science platform*
+*Code repository for AutSPACEs: the Autistica/Turing citizen science platform*
 
 ## Welcome.
 
@@ -54,7 +54,7 @@ The platform is entirely open source. All code is available to be used and adapt
 
 The design for the platform is created according to specifications made by autistic people and their supporters. It is build with, for, and by the autistic community. You can find out more about this at the [Autistica/Turing Citizen Science](https://github.com/alan-turing-institute/AutisticaCitizenScience) repository.
 
-**To be succesful, the platform must be accessible to diverse autistic users and meet the priorities and recommendations of the autistica/turing citizen science community.**
+**To be successful, the platform must be accessible to diverse autistic users and meet the priorities and recommendations of the autistica/turing citizen science community.**
 
 It has been built on work from the following repositories:
 
