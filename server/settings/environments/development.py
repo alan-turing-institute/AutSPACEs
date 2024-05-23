@@ -53,6 +53,8 @@ STATICFILES_DIRS: List[str] = [
 
 ]
 
+STATIC_ROOT = "staticfiles/"
+
 # Django debug toolbar:
 # https://django-debug-toolbar.readthedocs.io
 
