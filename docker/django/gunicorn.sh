@@ -29,7 +29,7 @@ python /code/manage.py compilemessages
 # Concerning `workers` setting see:
 # https://github.com/wemake-services/wemake-django-template/issues/1022
 /usr/local/bin/gunicorn server.wsgi \
-  --workers=4 `# Sync worker settings` \
+  --workers=2 `# Sync worker settings` \
   --max-requests=2000 \
   --max-requests-jitter=400 \
   --bind='0.0.0.0:8000' `# Run Django on 8000 port` \
