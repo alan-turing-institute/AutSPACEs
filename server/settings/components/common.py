@@ -70,6 +70,7 @@ MIDDLEWARE: Tuple[str, ...] = (
 
     # Django:
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django_feature_policy.FeaturePolicyMiddleware',  # django-feature-policy
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -89,6 +90,7 @@ MIDDLEWARE: Tuple[str, ...] = (
 ROOT_URLCONF = 'server.urls'
 
 WSGI_APPLICATION = 'server.wsgi.application'
+
 
 
 # Database
@@ -155,6 +157,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Templates
 # https://docs.djangoproject.com/en/2.2/ref/templates/api
@@ -212,7 +220,7 @@ PASSWORD_HASHERS = [
 
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_CONTENT_TYPE_NOSNIFF = False
 SECURE_BROWSER_XSS_FILTER = True
 
 X_FRAME_OPTIONS = 'DENY'

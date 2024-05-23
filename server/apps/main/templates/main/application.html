@@ -23,7 +23,7 @@
 
 
     {% load static %}
-    <link href="{% static '/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
     {%block page_css%} {% endblock %}
 
     <!-- RSS links where appropriate -->
@@ -59,7 +59,7 @@
       {% include 'main/partials/footer.html'%}
     </section>
 
-    <script src="{% static '/js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
   </body>
 </html>

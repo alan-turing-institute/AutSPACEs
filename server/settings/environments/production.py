@@ -6,6 +6,7 @@ values are overridden.
 """
 
 from server.settings.components import config
+import os.path
 
 # Production flags:
 # https://docs.djangoproject.com/en/2.2/howto/deployment/
@@ -18,6 +19,7 @@ ALLOWED_HOSTS = [
 
     # We need this value for `healthcheck` to work:
     'localhost',
+    '0.0.0.0',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -36,11 +38,12 @@ _COLLECTSTATIC_DRYRUN = config(
 # Adding STATIC_ROOT to collect static files via 'collectstatic':
 STATIC_ROOT = '.static' if _COLLECTSTATIC_DRYRUN else '/var/www/django/static'
 
-STATICFILES_STORAGE = (
-    # This is a string, not a tuple,
-    # but it does not fit into 80 characters rule.
-    'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-)
+STATICFILES_DIRS: List[str] = [
+    os.path.join('static'),
+
+]
+
+STATIC_URL = "/static/"
 
 
 # Media files
@@ -64,12 +67,43 @@ AUTH_PASSWORD_VALIDATORS = [
 # Security
 # https://docs.djangoproject.com/en/2.2/topics/security/
 
-SECURE_HSTS_SECONDS = 31536000  # the same as Caddy has
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'ajax.googleapis.com',
+    'cdnjs.cloudflare.com',
+    'maxcdn.bootstrapcdn.com',
+    'cdn.jsdelivr.net',
+)
+CSP_IMG_SRC = (
+    "'self'",
+    'data:'
+)
+CSP_CONNECT_SRC = (
+    "'self'",
+)
+CSP_FONT_SRC = (
+    "'self'",
+    'fonts.gstatic.com',
+    'maxcdn.bootstrapcdn.com',
+    'netdna.bootstrapcdn.com',
+    'cdn.jsdelivr.net',
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    'fonts.googleapis.com',
+    'maxcdn.bootstrapcdn.com',
+    'netdna.bootstrapcdn.com',
+    'cdn.jsdelivr.net',
+)
+
+
+SECURE_HSTS_SECONDS = 10  # the same as Caddy has
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 SECURE_REDIRECT_EXEMPT = [
     # This is required for healthcheck to work:
     '^health/',
