@@ -36,6 +36,7 @@ django-open-humans = "^0.2.0"
 vcrpy = "^4.2.1"
 coverage = "^7.2.2"
 dj-database-url = "^2.1.0"
+whitenoise = "^6.6.0"
 
 
 [tool.poetry.dev-dependencies]
