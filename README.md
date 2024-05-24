@@ -61,14 +61,14 @@
 | server/settings/\_\_init\_\_.py                                                        |        8 |        0 |    100% |           |
 | server/settings/components/\_\_init\_\_.py                                             |        4 |        0 |    100% |           |
 | server/settings/components/caches.py                                                   |        2 |        0 |    100% |           |
-| server/settings/components/common.py                                                   |       44 |        2 |     95% |   120-121 |
+| server/settings/components/common.py                                                   |       45 |        2 |     96% |   122-123 |
 | server/settings/components/csp.py                                                      |        5 |        0 |    100% |           |
 | server/settings/components/logging.py                                                  |        3 |        0 |    100% |           |
 | server/settings/environments/\_\_init\_\_.py                                           |        1 |        0 |    100% |           |
-| server/settings/environments/development.py                                            |       29 |        0 |    100% |           |
+| server/settings/environments/development.py                                            |       30 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2490** |   **34** | **99%** |           |
+|                                                                              **TOTAL** | **2492** |   **34** | **99%** |           |
 
 
 ## Setup coverage badge
