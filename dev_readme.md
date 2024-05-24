@@ -1,4 +1,4 @@
-# How to start website
+# How to start website locally
 
 If you're interested in building and running the AutSPACE platform, read on!
 
@@ -165,3 +165,28 @@ Before running the deploy step, one will have to add all the information that ot
 
 You might find the chapter on [reproducible computational environments](https://the-turing-way.netlify.app/reproducible-research/renv.html) and spectifically the section on [containers](https://the-turing-way.netlify.app/reproducible-research/renv/renv-containers.html) in _The Turing Way_ useful!
 
+# Managing the deployment
+
+AutSPACEs will be deployed through the Microsoft Azure Cloud as a _Azure Web App_, which similar to the local development environment is based around Docker containers. But as it's being deployed in production we can not rely on the _Django_ internal development web server, but rather use `gunicorn` for serving the pages. 
+
+## Dockerfile for production
+
+For the actual deployment, we are not using `docker compose` and the `docker-compose.yml` files, but rather we use the `Dockerfile` that is in the repository root. This file has been adapted to work in the production environment, by using `docker/django/gunicorn.sh` as the entrypoint that runs when the container is launched. 
+
+The GH repository for AutSPACEs is set up to automatically build this container every time the `main` branch is pushed to, by automatically running the `.workflows/push_docker.yml`, which in turns pushes the container to Docker Hub. On Docker Hub, the AutSPACEs production container can be found as [`gedankenstuecke/autspaces`](https://hub.docker.com/r/gedankenstuecke/autspaces), which is currently [managed by Bastian](https://github.com/gedankenstuecke/). 
+
+You can find all the [changes made for the deployment in this PR](https://github.com/alan-turing-institute/AutSPACEs/pull/681). 
+
+## Static handling
+
+In the `development` environment, the static files (such as CSS, images and JS) are served directly by the development server, without having to collect them and serve them from a particular location. In production this is not an appropriate way of serving the files. Instead, bigger projects typically have a dedicated webserver for handling those files. 
+
+Given our scope, we have taken an intermediate solution, which is using the Python library `whitenoise`, which is why the `gunicorn.sh` script runs the static collection. 
+
+## Environment variables
+
+On Azure, we need to set a number of environment variables that go beyond those used in the `.env` for development. Most importantly: 
+
+1. `DJANGO_ENV` needs to be set to `production`, to ensure that we go into the right deployment path
+2. `DOMAIN_NAME` needs to be set to the actual domin name where it's being deployed to, as in production we have set Django to reject all requests coming from other places for security reasons
+3. `WEBSITES_PORT` should be set to `8000`, which is where our `gunicorn` serves to, so that Azure can bridge the connections. 
