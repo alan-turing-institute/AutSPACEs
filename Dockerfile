@@ -15,6 +15,13 @@ RUN apt-get update && apt-get install -y \
     gettext \
     && rm -rf /var/lib/apt/lists/*
 
+# install & setup sshd
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends dialog \
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "root:Docker!" | chpasswd
+COPY ./config/sshd_config /etc/ssh/
+
 # Installing `tini` utility:
 # https://github.com/krallin/tini
 
@@ -31,7 +38,7 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --no-root --no-interaction
 COPY . /code
 
-EXPOSE 8000
+EXPOSE 8000 2222
 
 # load entrypoint script for launching guincorn
 COPY ./docker/django/gunicorn.sh /docker-entrypoint.sh
@@ -43,7 +50,7 @@ RUN chmod +x '/docker-entrypoint.sh' \
     && mkdir -p /var/www/django/static /var/www/django/media \
     && chown web:web /var/www/django/static /var/www/django/media
 
-USER web
+#USER web
 
 # CMD ["gunicorn", "--bind", ":8000", "--workers", "1", "server.wsgi"]
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
