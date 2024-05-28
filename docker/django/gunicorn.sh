@@ -17,10 +17,6 @@ fi
 
 export DJANGO_ENV
 
-# start sshd
-set -e
-service ssh start
-
 # Run python specific scripts:
 # Running migrations in startup script might not be the best option, see:
 # docs/pages/template/production-checklist.rst
