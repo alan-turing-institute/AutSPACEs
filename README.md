@@ -64,11 +64,11 @@
 | server/settings/components/common.py                                                   |       45 |        2 |     96% |   122-123 |
 | server/settings/components/csp.py                                                      |        5 |        0 |    100% |           |
 | server/settings/components/logging.py                                                  |        3 |        0 |    100% |           |
-| server/settings/environments/\_\_init\_\_.py                                           |        1 |        0 |    100% |           |
+| server/settings/environments/\_\_init\_\_.py                                           |        0 |        0 |    100% |           |
 | server/settings/environments/development.py                                            |       30 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2492** |   **34** | **99%** |           |
+|                                                                              **TOTAL** | **2491** |   **34** | **99%** |           |
 
 
 ## Setup coverage badge
