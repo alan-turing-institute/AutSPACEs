@@ -73,8 +73,7 @@ It is a research project which is pioneering new methods of participatory scienc
 There are lots of ways to get in touch and stay updated. You can:
 
 * Anonymously, publicly share suggestions via the "always open" google form: https://bit.ly/AutisticaTuringCitSciForm
-* Say hello in our public slack channel: https://slackin.openhumans.org
-* Subscribe to our mailing list for monthly project updates: https://tinyletter.com/AutisticaTuringCitizenScience
+* Subscribe to our newsletter monthly project updates: email us at AutSPACEs@turing.ac.uk and ask to be added to the mailing list. 
 * Join the discussion in our issues and pull requests
 
 We welcome all contributions and feedback!
