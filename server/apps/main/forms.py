@@ -7,7 +7,7 @@ class ShareExperienceForm(forms.Form):
 
 
     experience_text = forms.CharField(label='Please share your experience', strip=True,
-                                help_text='Write your experience here, you can take as much or little space as you need.',
+                                help_text='Write your experience here. You can take as much or as little space as you need.',
                                 widget=forms.Textarea(attrs={'placeholder':'Please share your story.',
                                                              'rows':'4',
                                                              'class':'form-control'}))
@@ -31,11 +31,11 @@ class ShareExperienceForm(forms.Form):
     # add triggering here
     abuse = forms.BooleanField(label = 'Abuse (physical, sexual, emotional and verbal)', required=False)
     abuse.group = 2
-    violence = forms.BooleanField(label = 'Violence and Assault', required=False)
+    violence = forms.BooleanField(label = 'Violence and assault', required=False)
     violence.group = 2
-    drug = forms.BooleanField(label = 'Drug and/or Alcohol misuse', required=False)
+    drug = forms.BooleanField(label = 'Drug and/or alcohol misuse', required=False)
     drug.group = 2
-    mentalhealth = forms.BooleanField(label = 'Mental Health Issues', required=False)
+    mentalhealth = forms.BooleanField(label = 'Mental health issues', required=False)
     mentalhealth.group = 2
     negbody = forms.BooleanField(label = 'Negative body image', required=False)
     negbody.group = 2
@@ -124,11 +124,11 @@ class ModerateExperienceForm(forms.Form):
     # trigger labels
     abuse = forms.BooleanField(label = 'Abuse (physical, sexual, emotional and verbal)', required=False)
     abuse.group = 2
-    violence = forms.BooleanField(label = 'Violence and Assault', required=False)
+    violence = forms.BooleanField(label = 'Violence and assault', required=False)
     violence.group = 2
-    drug = forms.BooleanField(label = 'Drug and/or Alcohol misuse', required=False)
+    drug = forms.BooleanField(label = 'Drug and/or alcohol misuse', required=False)
     drug.group = 2
-    mentalhealth = forms.BooleanField(label = 'Mental Health Issues', required=False)
+    mentalhealth = forms.BooleanField(label = 'Mental health issues', required=False)
     mentalhealth.group = 2
     negbody = forms.BooleanField(label = 'Negative body image', required=False)
     negbody.group = 2

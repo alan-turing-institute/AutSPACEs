@@ -104,15 +104,15 @@ class UserProfileForm(forms.Form):
         required=False,
         widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     abuse.group = 2
-    violence = forms.BooleanField(label = "Violence and Assault",
+    violence = forms.BooleanField(label = "Violence and assault",
         required=False,
         widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     violence.group = 2
-    drug = forms.BooleanField(label = "Drug and/or Alcohol misuse",
+    drug = forms.BooleanField(label = "Drug and/or alcohol misuse",
         required=False,
         widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     drug.group = 2
-    mentalhealth = forms.BooleanField(label = "Mental Health Issues",
+    mentalhealth = forms.BooleanField(label = "Mental health issues",
         required=False,
         widget=forms.CheckboxInput(attrs={"class": "form-check-input","type": "checkbox","role": "switch"}))
     mentalhealth.group = 2
