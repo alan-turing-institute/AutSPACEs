@@ -9,10 +9,10 @@
     <tr>
       <th class="number-th" scope="col">Nr.</th>
       <th class="title-th" scope="col">Title</th>
-      <th class="submission-date-th" scope="col">Creation Date</th>
+      <th class="submission-date-th" scope="col">Creation date</th>
       <th class="tags-th" scope="col">Tags</th>
-      <th class="status-th" scope="col">Moderation Status</th>
-      <th class="status-th" scope="col" colspan="4">File Options</th>
+      <th class="status-th" scope="col">Moderation status</th>
+      <th class="status-th" scope="col" colspan="4">File options</th>
     </tr>
     </thead>
     <tbody>
@@ -72,7 +72,7 @@
     {% endfor %}
     </td>
     <td>
-    {% firstof file.metadata.data.moderation_status "Moderation Status Unknown" %}
+    {% firstof file.metadata.data.moderation_status "Moderation status unknown" %}
     </td>
     <td>
     <a href="{% url 'main:view_exp' file.metadata.uuid %}" class="btn btn-light">
