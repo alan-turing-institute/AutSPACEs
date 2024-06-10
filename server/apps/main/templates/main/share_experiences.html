@@ -18,41 +18,47 @@
           <h5 class="mb-0">
             <button aria-controls="collapseOne" aria-expanded="false" class="btn btn-link collapsed"
                     data-bs-target="#collapseOne" data-bs-toggle="collapse">
-              Read before
+              Read this first
             </button>
           </h5>
         </div>
         <div aria-labelledby="headingOne" class="collapse" data-bs-parent="#accordion" id="collapseOne">
           <div class="card-body">
             <strong>What is AutSPACEs?</strong>
-            <p>The AutSPACEs platform is an online space which puts autistic people first. We are committed to
-              providing a safe and welcoming place for autistic people and their supporters to share experiences,
-              knowing their voices will be heard and their contributions recognised.</p>
-            <p>AutSPACEs allows users to share stories publicly with other users as well as privately with researchers.
-              In order
-              for the platform to be a respectful and welcoming place for autistic people and other members of the
-              community, everyone sharing a story publicly will be required to follow our content moderation guidelines. Before they
-              are
-              published all stories will be reviewed by a moderator who will use this document as guidance when making
-              decisions as to whether a post can be approved or not.</p>
-
+            <p>
+              AutSPACEs is an online space which puts autistic people first. 
+              We’re committed to providing a safe and welcoming place for autistic people 
+              and supporters to share experiences, knowing your voices will be heard and your contributions recognised.
+            </p>
+            <p>
+              AutSPACEs allows users to share stories publicly with other users as well as privately with researchers. 
+              To ensure it is a respectful and welcoming place for autistic people and other members of the community, 
+              everyone sharing a story publicly will be required to follow our 
+              <a href="{% url 'main:content_moderation_guidelines' %}"
+               target="_blank">content guidelines</a>.
+            </p>
+            <p>
+              Before a story can be published, it will be reviewed by a moderator to check it adheres to these guidelines. 
+              If it doesn’t, you can choose for the story to remain private or to edit and resubmit it.
+            </p>
             <strong>What are sensory experiences?</strong>
-            <p>People with autism often have sensory differences. This means their senses may be weaker or stronger than
-              those who are neurotypical. This is why navigating and coping in the world can be very difficult for
-              people with autism.
-              </br>Examples of senses include:
+            <p>
+              Autistic people often have senses that are weaker or stronger than those of non-autistic people. 
+              This is one of the reasons navigating and coping in the world can be very difficult.
+            </p>
+            <p>
+              </br>Sight, hearing, smell, taste and touch are not the only senses. Others include:
             <ul>
-              <li>Sight</li>
-              <li>Hearing</li>
-              <li>Smell</li>
-              <li>Taste</li>
-              <li>Balance (Vestibular)</li>
-              <li>Body Awareness (Proprioception)</li>
+              <li>The sense of your body, its movement and position, known as proprioception;</li>
+              <li>The sense of balance, or equilibrioception;</li>
+              <li>The perception of pain, or nociception;</li>
+              <li>The perception of hot and cold, or thermoception;</li>
+              <li>The sense of time passing, or chromoception.</li>
             </ul>
             </p>
               <a href="{% url 'main:help' %}"
                target="_blank">
-              <button class="btn btn-outline-primary coc-btn float-end">Read More</button>
+              <button class="btn btn-outline-primary coc-btn float-end">Read more</button>
             </a>
           </div>
         </div>
@@ -71,21 +77,21 @@
             <strong>What are trigger labels?</strong>
             <p>
               AutSPACEs is interested in sensory experiences across a wide range of situations and impacts. 
-              This explicitly includes potentially challenging or distressing experiences. 
-              In order to give readers the possibility to only read those stories when they are ready for them, we do ask 
-              contributors and our moderators to label potentially sensitive topics.
+              This includes potentially challenging or distressing experiences. 
+              So readers see those stories only when they’re ready for them, 
+              we ask users to label potentially sensitive topics.
             </p>
-            <strong>Example topics:</strong>
+            <strong>These include:</strong>
             <ul>
               <li>Abuse (physical, sexual, emotional and verbal)</li>
-              <li>Violence and Assault</li>
-              <li>Drug and/or Alcohol use</li>
-              <li>Mental Health Issues</li>
+              <li>Violence and assault</li>
+              <li>Drug and/or alcohol misuse</li>
+              <li>Mental health issues</li>
               <li>Negative body image</li>
             </ul>
             <a href="{% url 'main:content_moderation_guidelines' %}"
                target="_blank">
-              <button class="btn btn-outline-primary coc-btn float-end">Read More</button>
+              <button class="btn btn-outline-primary coc-btn float-end">Read more</button>
             </a>
           </div>
         </div>
@@ -102,34 +108,35 @@
         <div aria-labelledby="headingThree" class="collapse" data-bs-parent="#accordion" id="collapseThree">
           <div class="card-body">
             <p>
-              To keep our community safe, there a number of topics that are off-limits and that won't be made publicly available. 
-              Our moderators will reject the publication of these stories. This includes personal identifiable information &  discriminating content.
+              To keep our community safe, our moderators will not make stories that include personal identifiable 
+              information and/or discriminatory content publicly available.
             </p>
 
-            <strong>Examples of unacceptable personal details</strong>
+            Unacceptable personal details include:
             <ul>
-              <li>Names of people (e.g. friends, co-workers, family members)</li>
-              <li>Names of workplaces/schools, etc.</li>
+              <li>Names of people (for example, friends, co-workers or family members)</li>
+              <li>Names of workplaces, schools etc</li>
               <li>Addresses</li>
               <li>Emails</li>
               <li>Phone numbers</li>
             </ul>
 
-            <strong>Examples of discrimination against:</strong>
+            Any story that discriminates against or belittles anyone based on the following 
+            characteristics will not be approved by moderators, so will not be visible to other site users:
             <ul>
-              <li>Neurodiversity</li>
-              <li>Gender Identity and/or Expression</li>
-              <li>Sexual Orientation</li>
-              <li>Disability and/or Health</li>
-              <li>Physical Appearance (eg. skin colour, body size, etc.)</li>
-              <li>Nationality, Citizenship and Ethnic or Social Origin</li>
-              <li>Religion/Belief (or lack thereof)</li>
-              <li>Pregnancy and/or Familial Status</li>
-              <li>Veteran Status</li>
-              <li>Genetic Information</li>
-              <li>Property and/or Socio-Economic Status</li>
-              <li>Technical Preferences</li>
-              <li>Experience Level</li>
+              <li>Neurodivergence</li>
+              <li>Gender identity and/or expression</li>
+              <li>Sexual orientation</li>
+              <li>Disability and/or health</li>
+              <li>Physical appearance (such as skin colour, body size, etc)</li>
+              <li>Nationality, citizenship, ethnic, or social origin</li>
+              <li>Religion/belief (or lack thereof)</li>
+              <li>Pregnancy and/or familial status</li>
+              <li>Veteran status</li>
+              <li>Genetic information</li>
+              <li>Property and/or socio-economic status</li>
+              <li>Technical preferences</li>
+              <li>Experience and/or education level</li>
             </ul>
           </div>
         </div>
@@ -177,16 +184,16 @@
       {% else %}
         {% if group.grouper == 2 %}
           {% define "Sensitive topics" as header %}
-          {% define "Please indicate if your experience covers a sensitive topic by selecting from the trigger labels below" as subheader %}
+          {% define "Please indicate if your experience covers a sensitive topic by selecting from the following trigger labels:" as subheader %}
           {% define "col-lg-6" as columns %}
         {% endif %}
         {% if group.grouper == 3 %}
-          {% define "Sharing Options" as header %}
+          {% define "Sharing options" as header %}
           {% define "Please indicate if you want to share your experience" as subheader %}
           {% define "col-lg-6" as columns %}
         {% endif %}
         {% if group.grouper == 4 %}
-          {% define "Authorship Description" as header %}
+          {% define "Authorship description" as header %}
           {% define "Are you writing this experience on behalf of yourself?" as subheader %}
           {% define "col-lg-12" as columns %}
         {% endif %} 
@@ -227,8 +234,9 @@
           {% endfor %}
           {% if group.grouper == 3 %}
           <div class="form-text form-text-color">
-            If neither of these boxes are checked, the story is only visible to yourself. In this case, the story will not be used for research and not moderated. 
-            You can always change these settings from the <i>My Stories</i> page.
+            If neither of these boxes is checked, only you will be able to see your story. 
+            It will not be used for research and not moderated. You can change these settings at any time on the 
+            <a href="{% url 'main:my_stories' %}">My stories</a> page.
           </div>
           {% endif %}
          </div>

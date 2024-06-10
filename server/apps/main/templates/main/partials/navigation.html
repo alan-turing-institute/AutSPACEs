@@ -12,14 +12,14 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link nav-link-menu" href="{% url 'main:public_experiences' %}">View Stories</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:share_exp' %}">Add stories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-menu" href="{% url 'main:share_exp' %}">Add Story</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:public_experiences' %}">View stories</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link nav-link-menu" href="{% url 'main:my_stories' %}">My Stories</a>
+            <a class="nav-link nav-link-menu" href="{% url 'main:my_stories' %}">My stories</a>
           </li>
           {% is_moderator user as moderator %}
           {% if moderator %}
@@ -31,17 +31,17 @@
           <li class="nav-item dropdown">
             <a class="nav-link nav-link-menu dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Learn More
+            Learn more
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="{% url 'main:what_autism_is' %}">What is Autism</a></li>
-              <li><a class="dropdown-item" href="{% url 'main:about_us' %}">About Us</a></li>
-              <li><a class="dropdown-item" href="{% url 'main:content_moderation_guidelines' %}">Content Moderation Guidelines</a></li>
+              <li><a class="dropdown-item" href="{% url 'main:what_autism_is' %}">About autism</a></li>
+              <li><a class="dropdown-item" href="{% url 'main:about_us' %}">About AutSPACEs</a></li>
+              <li><a class="dropdown-item" href="{% url 'main:content_moderation_guidelines' %}">Content guidelines</a></li>
               <li><a class="dropdown-item" href="{% url 'main:help' %}">Help</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-menu" id="theme-toggle"><i class="bi bi-circle-half"></i> Switch Light/Dark</a>
+            <a class="nav-link nav-link-menu" id="theme-toggle"><i class="bi bi-circle-half"></i> Switch light/dark</a>
           </li>
         </ul>
 

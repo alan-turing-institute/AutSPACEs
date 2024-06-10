@@ -20,7 +20,7 @@
         </p>
 
         <ul class="mystory-ul" class="can_do">
-          <li class="list-item">See the experiences you have saved and submitted.
+          <li class="list-item">See the experiences you’ve saved and submitted.
           </li>
           <li class="list-item">Change sharing permissions for your experiences.
           </li>
@@ -29,13 +29,13 @@
 
       <div class="story-dashboard">
         <p class="dashboard-heading">
-          Stories Dashboard
+          Stories dashboard
         </p>
 
         <div class="row story-card-row">
           <div class="story-card col-lg-4">
             <div class="card">
-              <h3 class="story-head card-header process">In Process</h3>
+              <h3 class="story-head card-header process">In process</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
                   <li class="list-item"><p class="card-text">Not yet reviewed:<strong> {% firstof not_reviewed 0|floatformat %} {% toggle_story not_reviewed %}
@@ -65,7 +65,7 @@
           </div>
           <div class="story-card col-lg-4 message-card">
             <div class="card">
-              <h3 class="story-head card-header messages">Moderation Update</h3>
+              <h3 class="story-head card-header messages">Moderation update</h3>
               <div class="card-body">
                 <ul class="mystory-ul">
                   {% if exp_hist %}
@@ -162,12 +162,12 @@
     <div class="col-lg-12 text-right">
 
       <a href="{% url 'main:share_exp' %}" class="btn btn-outline-primary btn-lg btn-confirmationpage">
-        Enter Another Experience
+        Add another story
       </a>
       <a
       class="btn btn-lg btn-outline-primary float-end"
       href="https://docs.google.com/forms/d/e/1FAIpQLSe_9MW3r4nsGUDxGWN24X88hqtz6q_347DC1gbMc_Yzj2Hrcg/viewform?fbzx=6470416391260718913" rel="noopener noreferrer"
-      target="_blank">Contact Moderators
+      target="_blank">Contact moderators
     </a>
 
      </div>

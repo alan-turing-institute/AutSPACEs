@@ -23,19 +23,20 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-left">
-        <h1 class="big-heading">View Stories</h1>
+        <h1 class="big-heading">View stories</h1>
       </div>
       <div class="col-lg-12 text-left">
-        <p class="intro-text">Autistic people often have different sensory processing to people who are not autistic.
-          By collecting together lots of autistic people's experiences, we can change spaces so that they are
-          better for autistic people.
+        <p class="intro-text">
+          Autistic people’s senses often work differently to those of non-autistic people, 
+          creating all sorts of challenges in day-to-day life. By collecting your experiences, 
+          we can learn more and use the information to influence decision-makers to make spaces more autism-friendly.
         </p>
       </div>
     </div>
     <div class="row">
       <div class="col">
           <a href="{% url 'main:share_exp' %}" class="float-end btn btn-light btn-lg">
-            Add Story
+            Add story
           </a>
       </div>
     </div>
@@ -52,12 +53,11 @@
             <input class="form-control mb-2" id="inlineFormInput" placeholder="Search Stories" value="{{ searched }}" type="text" name="searched" />
           </div>
           <div class="col-md-2">
-            <button class="btn btn-primary mb-2" type="submit">Search Stories</button>
+            <button class="btn btn-primary mb-2" type="submit">Search stories</button>
           </div>
         </div>
-        <div class="trigger-warning-message"> We have excluded potentially
-          triggering content, please select any categories that you would be
-          comfortable seeing
+        <div class="trigger-warning-message">
+          We have <strong>excluded</strong> potentially triggering content. Please <strong>select any categories you would be comfortable seeing</strong>:
         </div>
       </div>
 
@@ -87,11 +87,31 @@
           <input class="form-check-input"
           type="checkbox"
           role="switch"
+          id="violence-checkbox"
+          name="violence"
+          value="True"
+          {{ checkviolence|yesno:"checked,unchecked" }} />
+          <label class="form-check-label" for="violence-checkbox">Violence and assault</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input"
+          type="checkbox"
+          role="switch"
           id="drug-checkbox"
           name="drug"
           value="True"
           {{ checkdrug|yesno:"checked,unchecked" }} />
-          <label class="form-check-label" for="drug-checkbox">Drug and/or Alcohol misuse</label>
+          <label class="form-check-label" for="drug-checkbox">Drug and/or alcohol misuse</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="mentalhealth-checkbox"
+          name="mentalhealth"
+          value="True"
+          {{ checkmentalhealth|yesno:"checked,unchecked" }} />
+          <label class="form-check-label" for="mentalhealth-checkbox">Mental health issues</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input"
@@ -102,26 +122,6 @@
           value="True"
           {{ checknegbody|yesno:"checked,unchecked" }} />
           <label class="form-check-label" for="negbody-checkbox">Negative body image</label>
-        </div>
-        <div class="form-check form-switch">
-          <input class="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="violence-checkbox"
-          name="violence"
-          value="True"
-          {{ checkviolence|yesno:"checked,unchecked" }} />
-          <label class="form-check-label" for="violence-checkbox">Violence and Assault</label>
-        </div>
-        <div class="form-check form-switch">
-          <input class="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="mentalhealth-checkbox"
-          name="mentalhealth"
-          value="True"
-          {{ checkmentalhealth|yesno:"checked,unchecked" }} />
-          <label class="form-check-label" for="mentalhealth-checkbox">Mental Health Issues</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input"
@@ -161,7 +161,7 @@
                    <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">{{experience.other}}</span>
                  {% endif %}
                  {% if experience.mentalhealth %}
-                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Mental Health issues</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Mental health issues</span>
                  {% endif %}
                  {% if experience.violence %}
                    <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Violence</span>
@@ -170,7 +170,7 @@
                    <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Negative body image</span>
                  {% endif %}
                  {% if experience.drug %}
-                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Drug and/or Alcohol misuse</span>
+                   <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Drug and/or alcohol misuse</span>
                  {% endif %}
                  {% if experience.abuse %}
                    <span class="badge text-bg-warning float-end" style="font-size: 1rem; margin-top:1%; margin-left:1%;">Abuse</span>
