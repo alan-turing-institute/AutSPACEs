@@ -20,7 +20,7 @@ class UserProfileForm(forms.Form):
         "aria-describedby": "help_id_autistic_identification"}
         ),
                                            label="Do you identify as autistic?",
-                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why we <strong>require a conscious decision for this question</strong>. If you select <i>prefer not to say</i> your experiences will be considered as coming from a non-autistic person, labeled as such and e.g. not used for research.",
+                                           help_text="AutSPACEs is focused on collecting and sharing the voices and lived experiences of autistic people, which is why we <strong>require a conscious decision for this question</strong>. If you select <i>prefer not to say</i>, your experiences will be considered as coming from a non-autistic person, labelled as such and can’t be used for research.",
                                            required=True,
                                            initial="")
     autistic_identification.group = 1
@@ -39,7 +39,7 @@ class UserProfileForm(forms.Form):
         ), 
                                    required=False,
                                    label="What is your age group?",
-                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers to better understand your perspective if this data is made public.",
+                                   help_text="Sharing your age might help researchers understand potential trends across age groups. It can also help readers understand your perspective if this data is made public.",
                                    initial="unspecified")
     age_bracket.group = 1
 
@@ -62,7 +62,7 @@ class UserProfileForm(forms.Form):
         ), 
                               required=False,
                               label="What gender do you identify with?",
-                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers to better understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
+                              help_text="Sharing your gender identity might help researchers understand potential trends across different demographics. It can also help readers understand your perspective if this data is made public. You can also choose to self-identify instead of using one of the pre-given options.",
                               initial="unspecified")
     gender.group = 1
 
@@ -81,13 +81,14 @@ class UserProfileForm(forms.Form):
     gender_public.group = 1
     gender_public.gap = True
 
-    description = forms.CharField(label="What else would you like researchers (or readers) to know about yourself?",
+    description = forms.CharField(label="What else would you like researchers (or readers) to know about you?",
                                  max_length=2048, strip=True, required=False,
-                                 help_text="""You can provide any additional context about yourself here that you deem 
-                                 relevant to understanding your perspective and experiences. This could be your ethnicity, 
-                                 where you grew up, your educational background, or when and how you (self-)diagnosed.
-                                 The AutSPACEs team might use this information to refine the structured demographic questions above. 
-                                 You can also make this information publicly accessible &mdash; which might be linked to your public experiences in the future.""",
+                                 help_text="""
+                                    You can provide any additional context here that you deem relevant to understanding your perspective and experiences. 
+                                    This could be your ethnicity, where you grew up, your educational background, or when and how you (self-)diagnosed. 
+                                    The AutSPACEs team might use this information to refine the structured demographic questions above. 
+                                    You can also make this information publicly accessible, and it might be linked to your public experiences in the future.
+                                 """,
                                  widget=forms.Textarea(attrs={"placeholder":"Optionally share more about yourself",
                                                               "rows":"4",
                                                               "class":"form-control",
