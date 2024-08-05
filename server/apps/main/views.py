@@ -613,7 +613,7 @@ def moderate_experience(request, uuid):
                 moderation_status = data.get("moderation_status", "")
                 moderation_string = moderation_status.title()
 
-                profile = get_user_profile(user=request.user)
+                profile = get_user_profile(user=user_OH_member.user)
                 if (profile and profile.comms_review and moderation_prior != moderation_status
                     and moderation_status in ["approved", "rejected"]):
                     story_url = "{}/main/view/{}".format(settings.OPENHUMANS_APP_BASE_URL,
@@ -630,7 +630,7 @@ def moderate_experience(request, uuid):
                         subject = subject.format(**substitutes)
                         message = message.format(**substitutes)
                         message = message_wrap(message, 80)
-                        request.user.openhumansmember.message(subject, message)
+                        user_OH_member.message(subject, message)
 
                 # redirect to a new URL:
                 status = choose_moderation_redirect(moderation_prior)
