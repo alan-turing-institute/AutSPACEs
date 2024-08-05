@@ -35,7 +35,7 @@
 | server/apps/main/tests/test\_helpers.py                                                |      301 |        0 |    100% |           |
 | server/apps/main/tests/test\_management\_commands.py                                   |       59 |        0 |    100% |           |
 | server/apps/main/tests/test\_models.py                                                 |       25 |        0 |    100% |           |
-| server/apps/main/tests/test\_moderate\_views.py                                        |      250 |        0 |    100% |           |
+| server/apps/main/tests/test\_moderate\_views.py                                        |      251 |        0 |    100% |           |
 | server/apps/main/tests/test\_my\_stories.py                                            |       15 |        0 |    100% |           |
 | server/apps/main/tests/test\_templatetags.py                                           |       12 |        0 |    100% |           |
 | server/apps/main/tests/test\_views.py                                                  |      345 |        3 |     99% |   692-694 |
@@ -68,7 +68,7 @@
 | server/settings/environments/development.py                                            |       30 |        0 |    100% |           |
 | server/settings/environments/local.py                                                  |        0 |        0 |    100% |           |
 | server/urls.py                                                                         |       12 |        0 |    100% |           |
-|                                                                              **TOTAL** | **2491** |   **34** | **99%** |           |
+|                                                                              **TOTAL** | **2492** |   **34** | **99%** |           |
 
 
 ## Setup coverage badge

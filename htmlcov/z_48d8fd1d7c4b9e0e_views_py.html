@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="z_bc1ba9ab5375fa65_admin_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.6.0">coverage.py v7.6.0</a>,
-            created at 2024-08-05 13:01 +0000
+            created at 2024-08-05 15:16 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -695,7 +695,7 @@
     <p class="run"><span class="n"><a id="t613" href="#t613">613</a></span><span class="t">                <span class="nam">moderation_status</span> <span class="op">=</span> <span class="nam">data</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"moderation_status"</span><span class="op">,</span> <span class="str">""</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t614" href="#t614">614</a></span><span class="t">                <span class="nam">moderation_string</span> <span class="op">=</span> <span class="nam">moderation_status</span><span class="op">.</span><span class="nam">title</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t615" href="#t615">615</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t616" href="#t616">616</a></span><span class="t">                <span class="nam">profile</span> <span class="op">=</span> <span class="nam">get_user_profile</span><span class="op">(</span><span class="nam">user</span><span class="op">=</span><span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t616" href="#t616">616</a></span><span class="t">                <span class="nam">profile</span> <span class="op">=</span> <span class="nam">get_user_profile</span><span class="op">(</span><span class="nam">user</span><span class="op">=</span><span class="nam">user_OH_member</span><span class="op">.</span><span class="nam">user</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t617" href="#t617">617</a></span><span class="t">                <span class="key">if</span> <span class="op">(</span><span class="nam">profile</span> <span class="key">and</span> <span class="nam">profile</span><span class="op">.</span><span class="nam">comms_review</span> <span class="key">and</span> <span class="nam">moderation_prior</span> <span class="op">!=</span> <span class="nam">moderation_status</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t618" href="#t618">618</a></span><span class="t">                    <span class="key">and</span> <span class="nam">moderation_status</span> <span class="key">in</span> <span class="op">[</span><span class="str">"approved"</span><span class="op">,</span> <span class="str">"rejected"</span><span class="op">]</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t619" href="#t619">619</a></span><span class="t">                    <span class="nam">story_url</span> <span class="op">=</span> <span class="str">"{}/main/view/{}"</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="nam">settings</span><span class="op">.</span><span class="nam">OPENHUMANS_APP_BASE_URL</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
@@ -712,7 +712,7 @@
     <p class="run"><span class="n"><a id="t630" href="#t630">630</a></span><span class="t">                        <span class="nam">subject</span> <span class="op">=</span> <span class="nam">subject</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="op">**</span><span class="nam">substitutes</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t631" href="#t631">631</a></span><span class="t">                        <span class="nam">message</span> <span class="op">=</span> <span class="nam">message</span><span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="op">**</span><span class="nam">substitutes</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t632" href="#t632">632</a></span><span class="t">                        <span class="nam">message</span> <span class="op">=</span> <span class="nam">message_wrap</span><span class="op">(</span><span class="nam">message</span><span class="op">,</span> <span class="num">80</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t633" href="#t633">633</a></span><span class="t">                        <span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="op">.</span><span class="nam">openhumansmember</span><span class="op">.</span><span class="nam">message</span><span class="op">(</span><span class="nam">subject</span><span class="op">,</span> <span class="nam">message</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t633" href="#t633">633</a></span><span class="t">                        <span class="nam">user_OH_member</span><span class="op">.</span><span class="nam">message</span><span class="op">(</span><span class="nam">subject</span><span class="op">,</span> <span class="nam">message</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t634" href="#t634">634</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t635" href="#t635">635</a></span><span class="t">                <span class="com"># redirect to a new URL:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t636" href="#t636">636</a></span><span class="t">                <span class="nam">status</span> <span class="op">=</span> <span class="nam">choose_moderation_redirect</span><span class="op">(</span><span class="nam">moderation_prior</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -823,7 +823,7 @@
             <a class="nav" href="z_bc1ba9ab5375fa65_admin_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.6.0">coverage.py v7.6.0</a>,
-            created at 2024-08-05 13:01 +0000
+            created at 2024-08-05 15:16 +0000
         </p>
     </div>
 </footer>
