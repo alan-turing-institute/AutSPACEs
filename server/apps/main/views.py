@@ -402,7 +402,7 @@ def list_public_experiences(request):
     items_per_page = settings.EXPERIENCES_PER_PAGE
 
     # Create a Paginator object, order by time of creation to avoid pagination issues
-    paginator = Paginator(experiences.order_by("created_at"), items_per_page)
+    paginator = Paginator(experiences.order_by("-created_at"), items_per_page)
     # Paginate experiences
     page_experiences = paginate_stories(request, paginator, "page")
     # Set continuous numbering across pages
