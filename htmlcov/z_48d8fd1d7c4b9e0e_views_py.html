@@ -65,7 +65,7 @@
             <a id="nextFileLink" class="nav" href="z_bc1ba9ab5375fa65_admin_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.6.0">coverage.py v7.6.0</a>,
-            created at 2024-08-05 15:16 +0000
+            created at 2024-08-05 16:23 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -484,7 +484,7 @@
     <p class="run"><span class="n"><a id="t402" href="#t402">402</a></span><span class="t">    <span class="nam">items_per_page</span> <span class="op">=</span> <span class="nam">settings</span><span class="op">.</span><span class="nam">EXPERIENCES_PER_PAGE</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t403" href="#t403">403</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t404" href="#t404">404</a></span><span class="t">    <span class="com"># Create a Paginator object, order by time of creation to avoid pagination issues</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t405" href="#t405">405</a></span><span class="t">    <span class="nam">paginator</span> <span class="op">=</span> <span class="nam">Paginator</span><span class="op">(</span><span class="nam">experiences</span><span class="op">.</span><span class="nam">order_by</span><span class="op">(</span><span class="str">"created_at"</span><span class="op">)</span><span class="op">,</span> <span class="nam">items_per_page</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t405" href="#t405">405</a></span><span class="t">    <span class="nam">paginator</span> <span class="op">=</span> <span class="nam">Paginator</span><span class="op">(</span><span class="nam">experiences</span><span class="op">.</span><span class="nam">order_by</span><span class="op">(</span><span class="str">"-created_at"</span><span class="op">)</span><span class="op">,</span> <span class="nam">items_per_page</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t406" href="#t406">406</a></span><span class="t">    <span class="com"># Paginate experiences</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t407" href="#t407">407</a></span><span class="t">    <span class="nam">page_experiences</span> <span class="op">=</span> <span class="nam">paginate_stories</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="nam">paginator</span><span class="op">,</span> <span class="str">"page"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t408" href="#t408">408</a></span><span class="t">    <span class="com"># Set continuous numbering across pages</span>&nbsp;</span><span class="r"></span></p>
@@ -823,7 +823,7 @@
             <a class="nav" href="z_bc1ba9ab5375fa65_admin_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.6.0">coverage.py v7.6.0</a>,
-            created at 2024-08-05 15:16 +0000
+            created at 2024-08-05 16:23 +0000
         </p>
     </div>
 </footer>
