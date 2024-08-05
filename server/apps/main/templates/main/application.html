@@ -40,10 +40,23 @@
     {% include 'main/partials/navigation.html' %}
     </section>
 
+    <div class="container alert-container">
+        <div class="alert alert-warning" role="alert">
+        <h2>Public pilot</h2>
+        <p>
+          AutSPACEs is in a public pilot phase until September 30, 2024. 
+          After this date we aim to keep this website available for viewing but closed for new input. 
+          We would love to hear your feedback on this pilot.
+      </p>
+        <a href="{% url 'main:help' %}">Read the FAQ to learn more about the pilot phase</a>.
+      </div>
+    </div>
+
+
         <div class="container alert-container">
           {% if messages %}
 
-            {% for message in messages %}
+            {% for message in messages %}s
             <div class="alert alert-{{message.tags}}" role="alert">
             {{ message }}
             </div>
