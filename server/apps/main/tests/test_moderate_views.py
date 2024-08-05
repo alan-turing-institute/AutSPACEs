@@ -91,6 +91,7 @@ class ModerationViewTests(TestCase):
            "other": False,
         }
         self.moderator_profile = UserProfile.objects.create(user=self.moderator_user_with_profile, **user_profile)
+        self.non_moderator_profile = UserProfile.objects.create(user=self.non_moderator_user, **user_profile)
 
     # test moderation pages as logged-out user
 
@@ -540,8 +541,8 @@ class ModerationViewTests(TestCase):
         A helper method for testing message sending with different moderation conditions
         """
         # Ensure the user profile has the correct message send flag
-        self.moderator_profile.comms_review = comms_review
-        self.moderator_profile.save()
+        self.non_moderator_profile.comms_review = comms_review
+        self.non_moderator_profile.save()
 
         c = Client()
         c.force_login(self.moderator_user_with_profile)
