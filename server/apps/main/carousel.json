@@ -24,12 +24,16 @@
   ],
   "stories": [
     {
-      "uuid": "bf48c18e-6133-11ee-8f2d-0242ac120003",
+      "uuid": "1cb72620-5b21-11ef-ac43-ceaf5fb9266a",
+      "image": "animation_a.jpg"
+    },
+    {
+      "uuid": "8f146050-53fd-11ef-8a69-f667fa6ba8ca",
       "image": "animation_b.jpg"
     },
     {
-      "uuid": "",
-      "image": ""
+      "uuid": "76d1cbbc-5331-11ef-b198-86b43afad93d",
+      "image": "animation_c.jpg"
     }
   ]
 }
