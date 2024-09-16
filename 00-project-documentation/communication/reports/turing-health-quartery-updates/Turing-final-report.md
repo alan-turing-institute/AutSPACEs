@@ -9,7 +9,7 @@ The report aims to be concise and point towards further resources, reports and o
 
 **Contents**
 
-- Project description & aims
+- [Project description & aims](#project-description-and-aims)
 - Lessons learned
 - Achievements
 - Impact
@@ -17,7 +17,7 @@ The report aims to be concise and point towards further resources, reports and o
 - Outputs - artefacts
 - Outputs - reports, publications, talks
 
-## Project description & aims
+## Project description and aims
 
 Short for **Aut**ism research into **S**ensory **P**rocessing for **A**ccessible **C**ommunity **E**nvironment**s**, [AutSPACEs is a co-created citizen science project](https://github.com/alan-turing-institute/AutSPACEs/) that was started in collaboration with the *[Autistica Foundation](https://www.autistica.org.uk/)*. The project was fully co-created with autistic participants that are involved in project design, management and implementation. The project was developing an online platform to collect qualitative experiences on sensory processing in autistic people, alongside recommendations & coping strategies to support autistic people, their friends/relatives, and policy makers. 
 
