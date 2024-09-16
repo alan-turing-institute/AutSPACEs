@@ -10,12 +10,11 @@ The report aims to be concise and point towards further resources, reports and o
 **Contents**
 
 - [Project description & aims](#project-description-and-aims)
-- Lessons learned
-- Achievements
-- Impact
-- Real world applications
-- Outputs - artefacts
-- Outputs - reports, publications, talks
+- [Lessons learned](#-lessons-learned)
+- [Achievements](#achievements)
+- [Impact](#impact)
+- [Real world applications](#real-world-applications)
+- [Outputs](#outputs)
 
 ## Project description and aims
 
@@ -31,7 +30,7 @@ Beyond the positive aspect, the project also had to recognize that this approach
 
 The flip side of this is that the deep deliberation can pre-empt challenges, which otherwise could become serious road blocks down the line: For example, the ethics and data protection reviews done within the Turing benefited dramatically from our deliberate approach, as we collectively not only considered a wide range of potential risks and harms to participants and how to protect their data, but also could demonstrate how we deliberatively agreed on tradeoffs in these situations.
 
-## Achievement
+## Achievements
 
 There a number of achievements across domains, given the interdisciplinary nature of the project. 
 
