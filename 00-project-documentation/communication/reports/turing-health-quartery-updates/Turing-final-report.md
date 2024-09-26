@@ -42,21 +42,21 @@ There a number of achievements across domains, given the interdisciplinary natur
 ### Citizen Science / Community engagement
 
 - Over its lifetime, AutSPACEs managed to engage 100s of contributors, including autistic contributors, contributors who are parents/caretakers of autistic people, autism researchers, web/graphic designers, professional writers, open source developers, and many more - including virtually all intersections of these. Our diverse community, and the connections made within it, are one of the most lasting achievements that goes far beyond any traditional research. 
-- Developing a wide range of modes of engagement. Contributors to AutSPACEs were engaged in a wide range of modes, including: 
-    - in-person focus groups and 
+- Developing a wide range of modes of engagement. In these different modes, the contributors played in active role through: 
+    - Attending in-person focus groups and 
     - monthly community meetings, 
-    - user testing and actively interpreting the findings of those tests
+    - participating in user testing - as well as actively interpreting the findings of those tests, and 
     - co-leading on data interpretations and content moderation design
 
 ### Software / platform implementation
 
-- AutSPACEs as a platform is now deployed as a pilot and collecting data
+- AutSPACEs as a platform is now deployed as a pilot and collecting data, until September 30 when the platform will become _read only_
 - All software outputs are openly licensed for re-use in the future
 - The whole stack is thoroughly documented to make this re-use and re-deployment by others easy
 
 ## Impact
 
-The impact of AutSPACEs is three-fold: 
+The impact of AutSPACEs is two-fold: 
 
 1. The project has brought together a highly engaged and active community of contributors that support the project and each other. On this level, AutSPACEs has positively impacted a large number of its contributors, by providing a social network, but also opportunities to learn new skills (e.g. web design), building capacities and confidence (e.g. through public speaking opportunities), including opening up professional employment opportunities.
 
@@ -72,7 +72,7 @@ The AutSPACEs approach to both the design itself and the software developed as p
 
 - Software: The [AutSPACEs platform](https://github.com/alan-turing-institute/AutSPACEs), openly available under MIT license ([archived on Zenodo](https://zenodo.org/records/10667125))
 - Data sets 
-    - The [data sets generated as part of the user tests](https://github.com/alan-turing-institute/AutSPACEs/tree/main/00-project-documentation/community/user-tests), openly licensed
+    - The [data sets generated as part of the user tests](https://github.com/alan-turing-institute/AutSPACEs/tree/main/00-project-documentation/community/user-tests), openly licensed under MIT as well
     - The [data set of how the content moderation was designed](https://www.cambridge.org/core/journals/data-and-policy/article/how-to-cocreate-content-moderation-policies-the-case-of-the-autspaces-project/DF59760CB3F89901CB5634981C588B55)
 
 ### Publications
