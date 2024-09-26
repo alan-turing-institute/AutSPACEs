@@ -26,7 +26,8 @@ The project had four goals: (1) Collect data to improve our understanding of sen
 
 ## Lessons learned
 
-One main lesson from the AutSPACEs project is the potential that deep, engaged collaboration between academic researchers, open source developers and a community of volunteer contributors has for shaping and implementing a research project, in particular in a research environment that often is shaped by mutual distrust between "researchers" and "human subject". By approaching each other on eye level, AutSPACEs managed to build a deep and sustained trust, leading to better and more ethical research than usually observed - especially in the fields of data science and AI. 
+One main lesson from the AutSPACEs project is that deep, engaged collaboration between academic researchers, open source developers and a community of volunteer contributors has significant potential to shape and implement a research project, in particular in a research environment that often is shaped by mutual distrust between "researchers" and "human subject". 
+By approaching each group as equal collaborators, AutSPACEs managed to build a deep and sustained trust, leading to better and more ethical research than usually observed - especially in the fields of data science and AI. 
 
 The project also had to recognize that this approach comes with its own challenges.
 It requires a high level of engagement and buy-in from researchers - which not all researchers are willing to do. 
