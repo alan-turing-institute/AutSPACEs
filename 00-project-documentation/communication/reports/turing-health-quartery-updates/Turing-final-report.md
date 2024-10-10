@@ -35,6 +35,14 @@ Due to the deliberative nature, this approach also moves slower than the typical
 
 The flip side of this is that the deep deliberation can pre-empt challenges, which otherwise could become serious road blocks down the line: For example, the ethics and data protection reviews done within the Turing benefited dramatically from our deliberate approach, as we collectively not only considered a wide range of potential risks and harms to participants and how to protect their data, but also could demonstrate how we deliberatively agreed on tradeoffs in these situations.
 
+### Managing a Citizen Science Project
+
+In terms of project management citizen science requires a higher degree of adaptability and flexibility.
+As needs arise and change with community input and involve non-professional researchers and collaborators, a project manager in such a project should focus on helping everyone understand and navigate processes.
+The participation of individual collaborators and members of the public also makes it paramount to put mechanisms in place to enable and reward their contributions, all while ensuring this does not put them at any risk.
+The latter can be a challenge, in particular in the UK, when any income or attending an event can be cause of scrutiny for any state benefits.
+You should very carefully design this mechanisms and have clarity on existing and specific laws.
+
 ## Achievements
 
 There a number of achievements across domains, given the interdisciplinary nature of the project. 
