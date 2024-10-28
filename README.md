@@ -9,9 +9,9 @@
 
 ``Work on this repository is paused, currently not maintained or updated``
 
-AutSPACEs is moving, after been hosted at The Alan Turing Institute this project during its development the project will now be hosted and continued by Autistica.
+AutSPACEs is moving. After been hosted at The Alan Turing Institute during its development, the project will now be hosted and continued by Autistica.
 The transition may take a bit of time and while it happens no further work will be done on this repository.
-
+We will update this readme with relevant details as soon as possible, but thank you for your interest in the project in the meantime. 
 ## Welcome.
 
 This repository **holds the code** for AutSPACEs. AutSPACEs is a citizen science platform co-created by autistic people and their supporters alongside researchers and the open source community.
